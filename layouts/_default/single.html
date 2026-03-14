@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article class="py-24 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <nav class="text-sm text-gray-400 mb-8 flex gap-2">
+      <a href="/" class="hover:text-gold">Home</a><span>/</span>
+      <a href="/blog/" class="hover:text-gold">Blog</a><span>/</span>
+      <span class="text-gray-600">{{ .Title }}</span>
+    </nav>
+    <span class="section-tag">{{ with .Params.category }}{{ . }}{{ else }}FCP Sports Blog{{ end }}</span>
+    <h1 class="font-display text-5xl md:text-6xl text-navy mb-6 leading-none">{{ .Title }}</h1>
+    <p class="text-xl text-gray-500 mb-4">{{ .Description }}</p>
+    <div class="flex items-center gap-4 text-sm text-gray-400 mb-12 pb-12 border-b border-gray-100">
+      <span>{{ .Date.Format "January 2, 2006" }}</span>
+      <span>•</span>
+      <span>FCP Sports, Fort Walton Beach FL</span>
+    </div>
+    <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-navy prose-h2:text-3xl prose-a:text-gold prose-strong:text-navy">
+      {{ .Content }}
+    </div>
+    <div class="mt-16 pt-8 border-t border-gray-100">
+      <div class="bg-gold/10 border border-gold/30 rounded-2xl p-8">
+        <h3 class="font-display text-2xl text-navy mb-2">Train With FCP Sports</h3>
+        <p class="text-gray-600 mb-4">Ready to take your game to the next level? FCP Sports offers elite basketball training, camps, leagues, and open gym in Fort Walton Beach, FL.</p>
+        <a href="/registration/" class="btn-primary inline-block">Register Now →</a>
+      </div>
+    </div>
+  </div>
+</article>
+{{ partial "cta-section.html" . }}
+{{ end }}

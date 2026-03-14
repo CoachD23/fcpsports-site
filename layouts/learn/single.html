@@ -1,0 +1,26 @@
+{{ define "main" }}
+<article class="py-24 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <nav class="text-sm text-gray-400 mb-8 flex gap-2">
+      <a href="/" class="hover:text-gold transition-colors">Home</a>
+      <span>/</span>
+      <a href="/learn/" class="hover:text-gold transition-colors">Learn</a>
+      <span>/</span>
+      <span class="text-gray-600">{{ .Title }}</span>
+    </nav>
+    <span class="section-tag">Basketball Education</span>
+    <h1 class="font-display text-5xl md:text-6xl text-navy mb-6 leading-none">{{ .Title }}</h1>
+    <p class="text-xl text-gray-500 mb-4 font-medium">{{ .Description }}</p>
+    <div class="flex items-center gap-4 text-sm text-gray-400 mb-12 pb-12 border-b border-gray-100">
+      <span>By FCP Sports Coaching Staff</span>
+      <span>•</span>
+      <span>Fort Walton Beach, FL</span>
+    </div>
+    <div class="prose prose-xl max-w-none prose-headings:font-display prose-headings:text-navy prose-h2:text-4xl prose-h3:text-2xl prose-a:text-gold prose-strong:text-navy prose-li:text-gray-700">
+      {{ .Content }}
+    </div>
+  </div>
+</article>
+{{ partial "faq-block.html" . }}
+{{ partial "cta-section.html" . }}
+{{ end }}
