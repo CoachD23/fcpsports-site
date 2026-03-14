@@ -1,0 +1,439 @@
+{{ define "main" }}
+
+<!-- =====================================================
+     HERO — Full-screen video background
+     ===================================================== -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+  <!-- Video background -->
+  <video
+    class="absolute inset-0 w-full h-full object-cover"
+    autoplay muted loop playsinline preload="auto"
+    poster="/images/fcp-sports-basketball-training-fort-walton-beach.jpg"
+  >
+    <source src="/videos/fcp-sports-hero.mp4" type="video/mp4">
+  </video>
+
+  <!-- Dark navy overlay -->
+  <div class="absolute inset-0 bg-navy/75"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+
+    <!-- Location tag -->
+    <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-sm font-bold tracking-widest uppercase px-5 py-2 rounded-full mb-8 fade-in">
+      Fort Walton Beach, FL &bull; Emerald Coast&rsquo;s Premier Basketball Facility
+    </span>
+
+    <!-- H1 -->
+    <h1 class="font-display text-7xl sm:text-8xl md:text-9xl text-white leading-none mb-6 fade-in">
+      TRAIN LIKE<br>
+      <span class="text-gold">A CHAMPION</span>
+    </h1>
+
+    <!-- Subheading -->
+    <p class="text-white/85 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed fade-in">
+      Fort Walton Beach&rsquo;s home for elite basketball development. Whether your athlete is 5 or 18, a beginner or a future D1 star, FCP Sports has a program built for them — serving families across the entire Emerald Coast.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+      <a href="/registration/" class="btn-primary text-lg px-10 py-4">Register Now</a>
+      <a href="/guides/youth-basketball-parents-guide/" class="btn-outline text-lg px-10 py-4">Free Parent&rsquo;s Guide</a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 animate-bounce">
+    <span class="text-xs tracking-widest uppercase">Scroll</span>
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS BAR
+     ===================================================== -->
+<section class="bg-gold py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+
+      <div class="fade-in">
+        <div class="font-display text-5xl md:text-6xl text-navy leading-none">500+</div>
+        <div class="font-display text-navy/70 text-lg tracking-wide mt-1">Athletes Trained</div>
+      </div>
+
+      <div class="fade-in">
+        <div class="font-display text-5xl md:text-6xl text-navy leading-none">8</div>
+        <div class="font-display text-navy/70 text-lg tracking-wide mt-1">Programs Offered</div>
+      </div>
+
+      <div class="fade-in">
+        <div class="font-display text-5xl md:text-6xl text-navy leading-none">7</div>
+        <div class="font-display text-navy/70 text-lg tracking-wide mt-1">Cities Served</div>
+      </div>
+
+      <div class="fade-in">
+        <div class="font-display text-5xl md:text-6xl text-navy leading-none">5&#9733;</div>
+        <div class="font-display text-navy/70 text-lg tracking-wide mt-1">Google Rating</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     PROGRAMS GRID
+     ===================================================== -->
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-4">
+
+    <!-- Header -->
+    <div class="text-center mb-16 fade-in">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-heading text-center">Programs For Every Athlete</h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">From first-timers to future pros, we have a program for every level, age, and goal on the Emerald Coast.</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range site.Data.programs }}
+      <div class="card p-6 flex flex-col fade-in group">
+        <div class="text-4xl mb-4">{{ .icon }}</div>
+        <h3 class="font-display text-2xl text-navy mb-2 group-hover:text-gold transition-colors duration-200">{{ .title }}</h3>
+        <p class="text-gray-600 text-sm leading-relaxed flex-1 mb-5">{{ .description }}</p>
+        <a href="{{ .slug }}" class="text-gold font-bold text-sm hover:text-gold-dark transition-colors duration-200 inline-flex items-center gap-1">
+          Learn More
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+          </svg>
+        </a>
+      </div>
+      {{ end }}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =====================================================
+     YOUTH TIERS
+     ===================================================== -->
+<section class="bg-navy py-24">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <!-- Header -->
+    <div class="text-center mb-16 fade-in">
+      <span class="section-tag">Youth Development</span>
+      <h2 class="section-heading--white text-center">Built For Every Age Group</h2>
+      <p class="text-white/70 text-lg max-w-2xl mx-auto">Our age-tiered youth programs meet athletes exactly where they are and build them into who they want to become.</p>
+    </div>
+
+    <!-- 3 Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+
+      <!-- Little Ballers -->
+      <div class="card bg-navy-800 border border-white/10 p-8 flex flex-col fade-in">
+        <div class="text-5xl mb-4">🌟</div>
+        <h3 class="font-display text-3xl text-white mb-1">Little Ballers</h3>
+        <p class="text-gold font-bold text-sm mb-4">Kindergarten &ndash; 2nd Grade &bull; Ages 5&ndash;8</p>
+        <p class="text-white/70 leading-relaxed flex-1 mb-6">
+          A fun, high-energy introduction to basketball. We build foundational skills, coordination, and love for the game — while keeping every session age-appropriate and exciting.
+        </p>
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Basic dribbling &amp; passing</li>
+          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Teamwork &amp; sportsmanship</li>
+          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Small-sided games</li>
+        </ul>
+        <a href="/youth/elementary-school-basketball/" class="btn-outline text-center text-sm">Learn More</a>
+      </div>
+
+      <!-- Junior Program — MOST POPULAR -->
+      <div class="card border-2 border-gold p-8 flex flex-col fade-in relative">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+          <span class="bg-gold text-navy font-display text-sm tracking-widest px-5 py-1.5 rounded-full uppercase">Most Popular</span>
+        </div>
+        <div class="text-5xl mb-4 mt-2">🏀</div>
+        <h3 class="font-display text-3xl text-navy mb-1">Junior Program</h3>
+        <p class="text-gold-dark font-bold text-sm mb-4">3rd &ndash; 5th Grade &bull; Ages 8&ndash;11</p>
+        <p class="text-gray-600 leading-relaxed flex-1 mb-6">
+          Structured development for growing athletes. We sharpen fundamentals, introduce offensive &amp; defensive concepts, and start building the competitive mindset that separates good players from great ones.
+        </p>
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-center gap-2 text-gray-700 text-sm"><span class="text-gold">✓</span> Shooting mechanics</li>
+          <li class="flex items-center gap-2 text-gray-700 text-sm"><span class="text-gold">✓</span> Offensive &amp; defensive systems</li>
+          <li class="flex items-center gap-2 text-gray-700 text-sm"><span class="text-gold">✓</span> Game film &amp; coaching</li>
+        </ul>
+        <a href="/youth/elementary-school-basketball/" class="btn-primary text-center text-sm">Register Now</a>
+      </div>
+
+      <!-- Elite Youth -->
+      <div class="card bg-navy-800 border border-white/10 p-8 flex flex-col fade-in">
+        <div class="text-5xl mb-4">🏆</div>
+        <h3 class="font-display text-3xl text-white mb-1">Elite Youth</h3>
+        <p class="text-gold font-bold text-sm mb-4">6th &ndash; 8th Grade &bull; Ages 11&ndash;14</p>
+        <p class="text-white/70 leading-relaxed flex-1 mb-6">
+          High-intensity training for athletes with serious aspirations. We prepare middle schoolers for high school basketball — and beyond — with college-level concepts and elite competition.
+        </p>
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Position-specific training</li>
+          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> AAU tournament prep</li>
+          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Strength &amp; athleticism work</li>
+        </ul>
+        <a href="/youth/middle-school-basketball/" class="btn-outline text-center text-sm">Learn More</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     ABOUT / E-E-A-T
+     ===================================================== -->
+<section class="bg-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+      <!-- Image -->
+      <div class="fade-in">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+          <img
+            src="/images/fcp-sports-basketball-training-fort-walton-beach.jpg"
+            alt="Basketball training at FCP Sports in Fort Walton Beach, FL"
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          >
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy/80 to-transparent p-6">
+            <p class="text-white font-display text-xl">Fort Walton Beach&rsquo;s #1 Basketball Facility</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="fade-in">
+        <span class="section-tag">About FCP Sports</span>
+        <h2 class="section-heading">The Emerald Coast&rsquo;s Premier Basketball Facility</h2>
+
+        <p class="text-gray-600 leading-relaxed mb-5">
+          FCP Sports was built with one mission: give every athlete on the Emerald Coast access to elite basketball development. Located in the heart of Fort Walton Beach, our facility features a full regulation court, professional coaching staff, and a proven curriculum that develops players at every age and skill level.
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-8">
+          From 5-year-olds discovering the game for the first time to high schoolers chasing college scholarships, our coaches meet athletes exactly where they are — and take them further than they thought possible.
+        </p>
+
+        <!-- Trust signals -->
+        <ul class="space-y-3 mb-10">
+          <li class="flex items-start gap-3">
+            <span class="bg-gold/15 text-gold-dark rounded-full p-1 mt-0.5 flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-gray-700"><strong>USA Basketball certified coaches</strong> with years of player development experience</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="bg-gold/15 text-gold-dark rounded-full p-1 mt-0.5 flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-gray-700"><strong>500+ athletes trained</strong> across Fort Walton Beach, Destin, Niceville, and beyond</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="bg-gold/15 text-gold-dark rounded-full p-1 mt-0.5 flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-gray-700"><strong>AAU tournament access</strong> with full travel program and college coach exposure</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="bg-gold/15 text-gold-dark rounded-full p-1 mt-0.5 flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-gray-700"><strong>School partnerships</strong> with Bruner Middle, Ruckel Middle, Pryor Middle, and Destin Middle</span>
+          </li>
+        </ul>
+
+        <a href="/about/" class="btn-primary inline-flex items-center gap-2">
+          Meet The Coaches
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     TESTIMONIALS
+     ===================================================== -->
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-4">
+
+    <!-- Header -->
+    <div class="text-center mb-16 fade-in">
+      <span class="section-tag">What Families Say</span>
+      <h2 class="section-heading text-center">Real Results From Real Families</h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">Hundreds of Emerald Coast families trust FCP Sports with their athlete&rsquo;s development. Here&rsquo;s what they&rsquo;re saying.</p>
+    </div>
+
+    <!-- Cards — first 3 -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {{ range first 3 site.Data.testimonials }}
+      <div class="card p-8 flex flex-col fade-in">
+        <!-- Stars -->
+        <div class="flex gap-1 mb-5">
+          {{ range seq .rating }}
+          <svg class="w-5 h-5 text-gold fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {{ end }}
+        </div>
+        <!-- Quote -->
+        <blockquote class="text-gray-700 leading-relaxed italic flex-1 mb-6">&ldquo;{{ .quote }}&rdquo;</blockquote>
+        <!-- Attribution -->
+        <div class="border-t border-gray-100 pt-5">
+          <p class="font-bold text-navy">{{ .name }}</p>
+          <p class="text-gray-500 text-sm">{{ .city }} &bull; {{ .program }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-12 fade-in">
+      <a href="/about/#testimonials" class="text-gold font-bold hover:text-gold-dark transition-colors duration-200 inline-flex items-center gap-2">
+        Read More Reviews
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =====================================================
+     LOCATIONS TEASER
+     ===================================================== -->
+<section class="bg-navy py-20">
+  <div class="max-w-5xl mx-auto px-4 text-center">
+
+    <span class="section-tag fade-in">Service Area</span>
+    <h2 class="section-heading--white mb-4 fade-in">We Serve The Entire Emerald Coast</h2>
+    <p class="text-white/70 text-lg mb-12 fade-in">No matter where you are on the Emerald Coast, FCP Sports is within reach. Athletes regularly travel from across the region to train with our coaches.</p>
+
+    <div class="flex flex-wrap justify-center gap-3 fade-in">
+      {{ $cities := slice
+        (dict "name" "Fort Walton Beach" "slug" "fort-walton-beach")
+        (dict "name" "Destin"            "slug" "destin")
+        (dict "name" "Niceville"         "slug" "niceville")
+        (dict "name" "Navarre"           "slug" "navarre")
+        (dict "name" "Crestview"         "slug" "crestview")
+        (dict "name" "Pensacola"         "slug" "pensacola")
+        (dict "name" "Panama City"       "slug" "panama-city")
+      }}
+      {{ range $cities }}
+      <a
+        href="/locations/{{ .slug }}/"
+        class="inline-block bg-white/10 hover:bg-gold hover:text-navy text-white border border-white/20 hover:border-gold font-bold px-6 py-3 rounded-full transition-all duration-200 text-sm"
+      >
+        {{ .name }}
+      </a>
+      {{ end }}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =====================================================
+     FREE GUIDE CTA
+     ===================================================== -->
+<section class="bg-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+      <!-- Left content -->
+      <div class="fade-in">
+        <span class="section-tag">Free Resource</span>
+        <h2 class="section-heading">The Ultimate Parent&rsquo;s Guide To Youth Basketball</h2>
+        <p class="text-gray-600 leading-relaxed mb-8">
+          Not sure which program is right for your child? We put together a comprehensive guide for Emerald Coast parents navigating youth basketball — completely free, no strings attached.
+        </p>
+
+        <ul class="space-y-4 mb-10">
+          <li class="flex items-start gap-3">
+            <span class="bg-navy text-white rounded-full p-1 mt-0.5 flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-gray-700"><strong>How to choose the right program</strong> for your child&rsquo;s age and skill level</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="bg-navy text-white rounded-full p-1 mt-0.5 flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-gray-700"><strong>What to look for in a basketball coach</strong> and training facility</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="bg-navy text-white rounded-full p-1 mt-0.5 flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-gray-700"><strong>The AAU pathway explained</strong> — timelines, costs, and what to expect</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="bg-navy text-white rounded-full p-1 mt-0.5 flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-gray-700"><strong>How to support your young athlete</strong> without adding pressure</span>
+          </li>
+        </ul>
+
+        <div class="bg-navy/5 border border-navy/10 rounded-xl p-5 flex items-center gap-4">
+          <div class="text-4xl">📘</div>
+          <div>
+            <p class="font-bold text-navy">Free Guide — No Purchase Required</p>
+            <p class="text-gray-500 text-sm">Delivered instantly. No spam, ever.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: GHL Form -->
+      <div class="fade-in">
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+          <h3 class="font-display text-3xl text-navy mb-2">Get Your Free Guide</h3>
+          <p class="text-gray-600 mb-6 text-sm">Fill out the form and we&rsquo;ll send it right over.</p>
+          {{ partial "ghl-form.html" (dict "formId" site.Params.ghl_form_id) }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     FINAL CTA
+     ===================================================== -->
+{{ partial "cta-section.html" . }}
+
+
+<!-- Scroll-reveal JS (IntersectionObserver for .fade-in) -->
+<script>
+(function () {
+  var els = document.querySelectorAll('.fade-in');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+{{ end }}
