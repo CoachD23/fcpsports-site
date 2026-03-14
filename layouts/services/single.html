@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+<!-- Page Hero -->
+<section class="bg-navy py-24 text-center">
+  <div class="max-w-4xl mx-auto px-4">
+    <nav class="text-xs text-white/40 mb-6 flex justify-center gap-2">
+      <a href="/" class="hover:text-gold">Home</a>
+      <span>/</span>
+      <a href="/services/" class="hover:text-gold">Services</a>
+      <span>/</span>
+      <span class="text-white/70">{{ .Title }}</span>
+    </nav>
+    <span class="text-gold font-display tracking-widest text-sm uppercase">FCP Sports Programs</span>
+    <h1 class="font-display text-6xl md:text-7xl text-white mt-3 mb-6 leading-none">{{ .Params.h1 | default .Title }}</h1>
+    <p class="text-white/70 text-lg max-w-2xl mx-auto leading-relaxed">{{ .Description }}</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+      <a href="/registration/" class="btn-primary">Enroll Now</a>
+      <a href="/contact/" class="btn-outline">Ask a Question</a>
+    </div>
+  </div>
+</section>
+
+<!-- Main content + sidebar -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <!-- Content -->
+      <div class="lg:col-span-2 prose prose-lg max-w-none prose-headings:font-display prose-headings:text-navy prose-h2:text-3xl prose-h3:text-2xl prose-a:text-gold prose-strong:text-navy">
+        {{ .Content }}
+      </div>
+      <!-- Sidebar -->
+      <div class="space-y-6 lg:sticky lg:top-28 lg:self-start">
+        <div class="bg-white rounded-xl shadow-md border-t-4 border-gold p-6">
+          <h3 class="font-display text-xl text-navy mb-4">QUICK INFO</h3>
+          <div class="space-y-3 text-sm mb-6">
+            {{ with .Params.age_range }}<div class="flex justify-between border-b pb-2 gap-4"><span class="text-gray-500">Ages</span><span class="font-semibold text-navy text-right">{{ . }}</span></div>{{ end }}
+            {{ with .Params.price }}<div class="flex justify-between border-b pb-2 gap-4"><span class="text-gray-500">Starting From</span><span class="font-semibold text-navy text-right">{{ . }}</span></div>{{ end }}
+            {{ with .Params.frequency }}<div class="flex justify-between border-b pb-2 gap-4"><span class="text-gray-500">Schedule</span><span class="font-semibold text-navy text-right">{{ . }}</span></div>{{ end }}
+            <div class="flex justify-between gap-4"><span class="text-gray-500">Location</span><span class="font-semibold text-navy text-right">Fort Walton Beach, FL</span></div>
+          </div>
+          <a href="/registration/" class="btn-primary w-full text-center block">Register Now</a>
+          <a href="/contact/" class="block text-center text-sm text-gray-500 hover:text-gold mt-3 transition-colors">Have questions? Contact us →</a>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h3 class="font-display text-lg text-navy mb-4">ALL PROGRAMS</h3>
+          <ul class="space-y-2">
+            {{ range site.Data.programs }}
+            <li><a href="{{ .slug }}" class="text-sm text-gray-600 hover:text-gold transition-colors flex items-center gap-2"><span>{{ .icon }}</span>{{ .title }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+        <div class="bg-navy rounded-xl p-6 text-center">
+          <p class="font-display text-xl text-gold mb-2">FREE GUIDE</p>
+          <p class="text-white/70 text-sm mb-4">Get the Youth Basketball Parent's Guide — free download</p>
+          <a href="/guides/youth-basketball-parents-guide/" class="btn-outline text-sm py-2 px-4 inline-block">Download Free</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ partial "faq-block.html" . }}
+{{ partial "cta-section.html" . }}
+
+{{ end }}
