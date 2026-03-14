@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body class="{{ page.body_class }}">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  {% include nav.html %}
+  <main id="main-content">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  {% if jekyll.environment == "production" %}
+  <!-- GA4: defer until after main thread is free -->
+  <script>
+  function loadGA4(){var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-XXXXXXXXXX');}
+  if('requestIdleCallback' in window){requestIdleCallback(loadGA4);}else{setTimeout(loadGA4,2000);}
+  </script>
+  {% endif %}
+
+  <!-- GHL Chat Widget: defer until user interaction or 5s idle -->
+  <script>
+  (function(){var d=false;function l(){if(d)return;d=true;var s=document.createElement('script');s.src='https://widgets.leadconnectorhq.com/loader.js';s.setAttribute('data-resources-url','https://widgets.leadconnectorhq.com/chat-widget/loader.js');s.setAttribute('data-widget-id','jBDUi7Sma6tCl3eXKBmX');document.body.appendChild(s);}
+  ['scroll','mousemove','touchstart','keydown','click'].forEach(function(e){window.addEventListener(e,l,{once:true,passive:true});});setTimeout(l,5000);})();
+  </script>
+</body>
+</html>
