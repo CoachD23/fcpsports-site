@@ -1,0 +1,16 @@
+- name: "Coach D"
+  title: "Head Coach & Founder"
+  bio: "Former collegiate athlete with 10+ years developing basketball talent across the Florida Panhandle. Specializes in skill development and college recruiting prep."
+  image: "/images/coach-d-fcp-sports.jpg"
+  credentials:
+    - "USA Basketball Certified"
+    - "10+ Years Coaching Experience"
+    - "Former Collegiate Athlete"
+
+- name: "Assistant Coach"
+  title: "Skills & Development Coach"
+  bio: "Specializes in guard development, ball handling, and shooting mechanics for youth athletes ages 8-18."
+  image: "/images/fcp-sports-youth-basketball-program-florida.jpg"
+  credentials:
+    - "AAU Certified Coach"
+    - "Youth Development Specialist"

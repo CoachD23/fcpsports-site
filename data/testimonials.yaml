@@ -1,0 +1,35 @@
+- name: "Marcus T."
+  city: "Fort Walton Beach"
+  program: "Elite Training"
+  quote: "My son improved more in 3 months at FCP Sports than in 2 years elsewhere. The coaches actually care about development, not just wins."
+  rating: 5
+
+- name: "Jennifer R."
+  city: "Destin"
+  program: "Youth Basketball"
+  quote: "The Little Ballers program was perfect for my 7-year-old. Patient coaches, structured curriculum, and my daughter actually loves going."
+  rating: 5
+
+- name: "David K."
+  city: "Niceville"
+  program: "Summer AAU"
+  quote: "Worth every penny. My son got exposure to college scouts and improved his game dramatically over the summer."
+  rating: 5
+
+- name: "Tanya M."
+  city: "Navarre"
+  program: "Basketball Lessons"
+  quote: "Private lessons transformed my daughter's confidence on the court. She made the school team after just 8 weeks of training."
+  rating: 5
+
+- name: "Robert S."
+  city: "Crestview"
+  program: "Basketball Camp"
+  quote: "Best basketball camp on the Emerald Coast. My kids look forward to it every year. The coaches push them but keep it fun."
+  rating: 5
+
+- name: "Lisa M."
+  city: "Pensacola"
+  program: "Elite Youth"
+  quote: "We drive from Pensacola and it is absolutely worth it. No program in our area comes close to what FCP Sports offers."
+  rating: 5

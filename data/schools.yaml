@@ -1,0 +1,76 @@
+fort_walton_beach:
+  elementary:
+    - "Annette P. Edwins Elementary"
+    - "Liza Jackson Preparatory School"
+    - "Florosa Elementary"
+    - "Eglin Elementary"
+  middle:
+    - "W.C. Pryor Middle School"
+    - "Max Bruner Jr. Middle School"
+    - "Clifford Meigs Middle School"
+  high:
+    - "Fort Walton Beach High School"
+    - "Choctawhatchee High School"
+
+destin:
+  elementary:
+    - "Destin Elementary School"
+  middle:
+    - "Destin Middle School"
+  high:
+    - "Fort Walton Beach High School"
+
+niceville:
+  elementary:
+    - "James E. Plew Elementary"
+    - "Lula J. Edge Elementary"
+    - "Bluewater Elementary"
+  middle:
+    - "C.W. Ruckel Middle School"
+    - "Okaloosa STEMM Center"
+    - "Addie R. Lewis School"
+  high:
+    - "Niceville High School"
+
+navarre:
+  elementary:
+    - "Holley-Navarre Primary"
+    - "Holley-Navarre Intermediate"
+    - "West Navarre Intermediate"
+  middle:
+    - "Holley-Navarre Middle School"
+  high:
+    - "Navarre High School"
+
+crestview:
+  elementary:
+    - "Antioch Elementary"
+    - "Bob Sikes Elementary"
+  middle:
+    - "Davidson Middle School"
+    - "Shoal River Middle School"
+  high:
+    - "Crestview High School"
+
+pensacola:
+  middle:
+    - "Bellview Middle School"
+    - "Beulah Middle School"
+    - "Ferry Pass Middle School"
+    - "Jim C. Bailey Middle School"
+    - "J.H. Workman Middle School"
+    - "Ransom Middle School"
+  high:
+    - "Pensacola High School"
+    - "Pine Forest High School"
+    - "Washington High School"
+
+panama_city:
+  middle:
+    - "Jinks Middle School"
+    - "Merritt Brown Middle School"
+    - "Deane Bozeman Middle School"
+  high:
+    - "Bay High School"
+    - "Arnold High School"
+    - "Mosley High School"

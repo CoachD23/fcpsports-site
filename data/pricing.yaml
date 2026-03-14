@@ -1,0 +1,65 @@
+- name: "Little Ballers"
+  ages: "Ages 5-8 (K-2nd)"
+  price: "Contact for pricing"
+  frequency: "Weekly sessions"
+  highlight: false
+  features:
+    - "Fundamentals and fun"
+    - "Small group sizes (max 8)"
+    - "Monthly progress reports"
+    - "Parent updates after each session"
+
+- name: "Junior Program"
+  ages: "Ages 8-11 (3rd-5th)"
+  price: "Contact for pricing"
+  frequency: "2x per week"
+  highlight: false
+  features:
+    - "Skill-based curriculum"
+    - "Position training"
+    - "Game IQ development"
+    - "League play included"
+
+- name: "Elite Youth"
+  ages: "Ages 11-14 (6th-8th)"
+  price: "Contact for pricing"
+  frequency: "3x per week"
+  highlight: true
+  features:
+    - "Competitive prep"
+    - "AAU pipeline access"
+    - "Film review sessions"
+    - "Recruiting education"
+
+- name: "Summer AAU Program"
+  ages: "Ages 12-18"
+  price: "$6,799"
+  frequency: "Full summer"
+  highlight: true
+  features:
+    - "Tournament travel included"
+    - "NCAA exposure window events"
+    - "College coach exposure"
+    - "All-inclusive package"
+
+- name: "Private Lessons"
+  ages: "All ages"
+  price: "Contact for rates"
+  frequency: "Flexible scheduling"
+  highlight: false
+  features:
+    - "1-on-1 coaching"
+    - "Custom curriculum"
+    - "Video analysis included"
+    - "Parent progress reports"
+
+- name: "Gym Rental"
+  ages: "N/A"
+  price: "Contact for rates"
+  frequency: "Hourly / Half-day / Full-day"
+  highlight: false
+  features:
+    - "Full regulation court"
+    - "Scoreboard available"
+    - "Equipment included"
+    - "Weekday and weekend slots"
