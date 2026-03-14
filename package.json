@@ -1,0 +1,30 @@
+{
+  "name": "fcpsports",
+  "version": "1.0.0",
+  "description": "",
+  "main": "postcss.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoachD23/fcpsports-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CoachD23/fcpsports-site/issues"
+  },
+  "homepage": "https://github.com/CoachD23/fcpsports-site#readme",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.19"
+  }
+}
