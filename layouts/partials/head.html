@@ -1,0 +1,42 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | FCP Sports{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
+<link rel="canonical" href="{{ .Permalink }}" />
+
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:image" content="{{ site.BaseURL }}images/fcp-sports-basketball-training-fort-walton-beach.jpg" />
+<meta property="og:site_name" content="FCP Sports" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ .Title }}" />
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+{{ $css := resources.Get "css/main.css" | resources.PostCSS | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+
+{{ with site.Params.ga4_id }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ . }}');
+</script>
+{{ end }}
+
+{{ if .IsHome }}{{ partial "schema/local-business.html" . }}{{ end }}
+{{ if not .IsHome }}{{ partial "schema/breadcrumb.html" . }}{{ end }}
+{{ if eq .Section "services" }}{{ partial "schema/service.html" . }}{{ end }}
+{{ if .Params.faq }}{{ partial "schema/faqpage.html" . }}{{ end }}
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />

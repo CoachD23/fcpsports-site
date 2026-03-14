@@ -1,0 +1,50 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["SportsOrganization", "LocalBusiness"],
+  "name": "FCP Sports",
+  "alternateName": "Florida Coastal Prep Sports",
+  "url": "https://fcpsports.org",
+  "logo": "https://fcpsports.org/images/fcp-sports-logo.png",
+  "image": "https://fcpsports.org/images/fcp-sports-basketball-training-fort-walton-beach.jpg",
+  "description": "Elite basketball training, camps, leagues, and open gym in Fort Walton Beach, FL. Serving the entire Emerald Coast.",
+  "telephone": "{{ site.Params.phone }}",
+  "email": "{{ site.Params.email }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Fort Walton Beach",
+    "addressRegion": "FL",
+    "postalCode": "32547",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.4057,
+    "longitude": -86.6188
+  },
+  "areaServed": [
+    "Fort Walton Beach, FL", "Destin, FL", "Niceville, FL",
+    "Navarre, FL", "Crestview, FL", "Pensacola, FL", "Panama City, FL"
+  ],
+  "sport": "Basketball",
+  "sameAs": [
+    "{{ site.Params.instagram }}",
+    "{{ site.Params.facebook }}"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "21:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday","Sunday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "priceRange": "$$"
+}
+</script>

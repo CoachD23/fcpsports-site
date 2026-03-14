@@ -1,0 +1,32 @@
+{{ if not (hasPrefix .RelPermalink "/guides/") }}
+<div id="exit-popup" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="exit-popup-title">
+  <div id="exit-overlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+  <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
+      <div class="bg-navy p-8 text-center relative">
+        <button id="exit-close" class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors" aria-label="Close popup">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="text-5xl mb-3">🏀</div>
+        <h2 id="exit-popup-title" class="font-display text-3xl text-white leading-tight">WAIT — DON'T LEAVE<br><span class="text-gold">EMPTY-HANDED!</span></h2>
+      </div>
+      <div class="p-8">
+        <p class="text-gray-600 text-center mb-4">Grab the <strong>FREE Youth Basketball Parent's Guide</strong> before you go:</p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-sm text-gray-700"><span class="text-gold font-bold">✓</span> What to look for in a training program</li>
+          <li class="flex items-center gap-2 text-sm text-gray-700"><span class="text-gold font-bold">✓</span> AAU basketball basics every parent should know</li>
+          <li class="flex items-center gap-2 text-sm text-gray-700"><span class="text-gold font-bold">✓</span> How to help your athlete level up fast</li>
+        </ul>
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/EXIT_INTENT_FORM_ID"
+          style="width:100%;height:220px;border:none;"
+          scrolling="no"
+          title="Get Free Guide"
+          loading="lazy"
+        ></iframe>
+        <p class="text-center text-xs text-gray-400 mt-3">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

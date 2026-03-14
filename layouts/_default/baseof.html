@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body class="font-body bg-white text-gray-900 antialiased">
+
+  {{ partial "nav.html" . }}
+
+  <main id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+  {{ partial "exit-popup.html" . }}
+  {{ partial "ghl-chat.html" . }}
+
+  {{ $js := resources.Get "js/main.js" | resources.Minify | resources.Fingerprint }}
+  <script src="{{ $js.RelPermalink }}" defer></script>
+
+</body>
+</html>

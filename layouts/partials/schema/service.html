@@ -1,0 +1,18 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": {{ .Title | jsonify }},
+  "description": {{ .Description | jsonify }},
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "FCP Sports",
+    "url": "https://fcpsports.org"
+  },
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Florida Panhandle"
+  },
+  "serviceType": "Basketball Training"
+}
+</script>

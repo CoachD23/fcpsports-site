@@ -1,0 +1,19 @@
+{{ if .Params.faq }}
+<section class="py-16 bg-gray-50">
+  <div class="max-w-3xl mx-auto px-4">
+    <span class="section-tag">Common Questions</span>
+    <h2 class="section-heading">Frequently Asked Questions</h2>
+    <div class="mt-8 space-y-4">
+      {{ range .Params.faq }}
+      <details class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold text-navy hover:text-gold transition-colors list-none">
+          {{ .q }}
+          <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">{{ .a }}</div>
+      </details>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
