@@ -24,7 +24,7 @@ faqs:
   - q: "What do college basketball coaches actually look for?"
     a: "In order: athleticism and upside, skills and basketball IQ, coachability (how you respond to instruction and mistakes), academics (GPA and test scores determine eligibility), and character references from your high school and AAU coaches. Most recruited players check at least four of these five boxes. FCP Sports prepares athletes to check all five."
   - q: "What is the Summer AAU program and what does it cost?"
-    a: "FCP Sports' Summer AAU program is a fully all-inclusive competitive team package — tournament fees, travel, hotels, meals, uniforms, and coaching are all covered. Athletes compete on the national AAU circuit with maximum college coach exposure during the July Live Period. The program is priced at $6,799. Learn more on our Summer AAU page."
+    a: "FCP Sports' Summer AAU program is a fully all-inclusive competitive team package — tournament fees, travel, hotels, meals, uniforms, and coaching are all covered. Athletes compete on the national AAU circuit with maximum college coach exposure during the July Live Period. Contact us for pricing details. Learn more on our Summer AAU page."
   - q: "Does GPA matter for college basketball recruiting?"
     a: "Absolutely — and it matters more than most athletes realize. NCAA eligibility requirements mandate minimum GPA and ACT/SAT scores. NAIA and junior college programs have their own standards. A player with a 2.0 GPA closes off entire divisions of opportunity. We encourage every athlete to treat academics as part of their recruiting profile, not separate from it."
 ---
@@ -63,9 +63,9 @@ When a college coach watches your game — live or on film — here is their men
 
 At FCP Sports, we prepare athletes for all five categories — not just skill development.
 
-## The Summer AAU Program: $6,799 All-Inclusive
+## The Summer AAU Program: All-Inclusive Pricing
 
-For athletes ready to compete on the national stage, FCP Sports' [Summer AAU program](/services/summer-aau/) is the single most effective recruiting investment available on the Emerald Coast. At **$6,799 all-inclusive** — covering tournament fees, travel, hotels, meals, uniforms, and coaching — athletes compete on the national AAU circuit during the July NCAA Live Period when college coaches are actively watching.
+For athletes ready to compete on the national stage, FCP Sports' [Summer AAU program](/services/summer-aau/) is the single most effective recruiting investment available on the Emerald Coast. Our all-inclusive package covers tournament fees, travel, hotels, meals, uniforms, and coaching — allowing athletes to compete on the national AAU circuit during the July NCAA Live Period when college coaches are actively watching. Contact us for pricing details.
 
 This is how Emerald Coast athletes get seen by programs they would otherwise never encounter. We handle all the logistics. Athletes and families show up and compete.
 

@@ -39,7 +39,7 @@ Inside Section 2, you'll learn:
 - **When to start** — the optimal age for AAU entry based on your child's development and goals
 - **Red flags in AAU programs** — what exploitative programs look like and how to avoid them
 
-FCP Sports' Summer AAU program is fully all-inclusive at $6,799 — we explain exactly why that number exists and what it covers.
+FCP Sports' Summer AAU program is fully all-inclusive — we explain exactly what it covers and the pricing structure. Contact us for details.
 
 ---
 

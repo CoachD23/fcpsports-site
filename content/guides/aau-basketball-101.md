@@ -45,7 +45,7 @@ Here is what no one tells you upfront: AAU is expensive. The range is enormous.
 
 A bare-bones local AAU program might charge $300–$500 per season and play only regional tournaments, with families covering their own travel and hotels. A national-circuit program can run $3,000–$8,000+ when you factor in tournament fees, travel, lodging, meals, and uniforms — some of which the family covers out of pocket, some of which the program covers (or doesn't).
 
-FCP Sports' [Summer AAU program](/services/summer-aau/) is fully all-inclusive at **$6,799** — tournament fees, travel, hotels, meals, uniforms, and coaching are all covered. There are no surprise expenses. You pay once and your athlete competes at the national level with zero additional cost to your family.
+FCP Sports' [Summer AAU program](/services/summer-aau/) is fully all-inclusive — tournament fees, travel, hotels, meals, uniforms, and coaching are all covered. There are no surprise expenses. Contact us for pricing details. Your athlete competes at the national level with zero additional cost to your family beyond the program fee.
 
 When evaluating any AAU program, always ask: what is included in the fee, and what will I be responsible for on top of it?
 

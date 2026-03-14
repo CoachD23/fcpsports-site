@@ -1,16 +1,16 @@
 ---
 title: "AAU Basketball Florida — Summer AAU Program | FCP Sports"
-description: "All-inclusive summer AAU basketball program in Florida for $6,799. Tournament travel, NCAA exposure windows & college coach visibility on the Emerald Coast."
-h1: "Summer AAU Basketball Program — $6,799 All-Inclusive Travel Basketball in Florida"
+description: "All-inclusive summer AAU basketball program in Florida. Tournament travel, NCAA exposure windows & college coach visibility on the Emerald Coast."
+h1: "Summer AAU Basketball Program — All-Inclusive Travel Basketball in Florida"
 keyword: "AAU basketball florida"
 age_range: "Ages 14–18"
-price: "$6,799 all-inclusive"
+price: "Contact us for pricing"
 frequency: "Summer season"
 faq:
   - q: "How much does AAU basketball cost in Florida?"
-    a: "Most Florida families who piece together AAU basketball on their own spend $8,000–$12,000 per summer when you add tournament entry fees, travel, hotels, meals, uniforms, and coaching costs separately. FCP Sports Summer AAU is $6,799 all-inclusive — that price covers everything. No surprise costs, no extra fees, no hidden charges."
+    a: "Most Florida families who piece together AAU basketball on their own spend $8,000–$12,000 per summer when you add tournament entry fees, travel, hotels, meals, uniforms, and coaching costs separately. FCP Sports Summer AAU is all-inclusive and covers everything. No surprise costs, no extra fees, no hidden charges. Contact us for details on pricing."
   - q: "What is included in the FCP Sports summer AAU program?"
-    a: "Everything: tournament entry fees, round-trip travel to all tournaments, hotel accommodations, daily meals during travel weekends, FCP Sports AAU uniform set (jersey, shorts, warm-up), all coaching fees, training sessions during the program, and access to NCAA Live Period exposure events. You pay $6,799 once and we handle all logistics."
+    a: "Everything: tournament entry fees, round-trip travel to all tournaments, hotel accommodations, daily meals during travel weekends, FCP Sports AAU uniform set (jersey, shorts, warm-up), all coaching fees, training sessions during the program, and access to NCAA Live Period exposure events. Contact us for pricing and we'll handle all logistics."
   - q: "How do I try out for AAU basketball on the Emerald Coast?"
     a: "FCP Sports holds evaluation days each spring for the summer AAU program. Players from Pensacola to Panama City try out, and selection is based on skill level, coachability, and position needs. Register for a tryout evaluation through our registration page or contact us — we will add you to the notification list for the next tryout date."
   - q: "Does AAU basketball help with college recruiting?"
@@ -19,13 +19,13 @@ faq:
     a: "We compete in major AAU circuit tournaments including events in Orlando, Atlanta, Memphis, and other southeastern hubs — wherever the highest concentration of college coaches will be watching. Tournament selection is made based on the current year's NCAA Live Period calendar to maximize college coach exposure for our players."
 ---
 
-## The FCP Sports Summer AAU Experience: What $6,799 Covers
+## The FCP Sports Summer AAU Experience: All-Inclusive Pricing
 
 Let's talk about what AAU basketball actually costs when families build it themselves. Tournament entry: $300–$500 per event. Flights or hotel for travel tournaments: $400–$700 per trip. Meals on the road: $60–$100 per day per person. Uniforms: $150–$250. Private coaching through the summer: $1,500–$3,000. Independent AAU club fees: $1,000–$2,500.
 
 Families who do it piecemeal routinely spend **$9,000–$12,000** for a serious summer of AAU basketball — and still deal with the logistical chaos of booking flights, coordinating hotel rooms, and tracking tournament schedules.
 
-FCP Sports Summer AAU is **$6,799, all-inclusive.** Everything listed above — travel, hotels, meals, tournament fees, uniforms, coaching — is covered. You pay once. We handle everything.
+FCP Sports Summer AAU is **all-inclusive.** Everything listed above — travel, hotels, meals, tournament fees, uniforms, coaching — is covered. You pay once. We handle everything. Contact us for details on pricing.
 
 And unlike putting your athlete on a team in Pensacola or Tallahassee (the nearest existing AAU programs before FCP Sports), your child trains and competes with a **locally-based program rooted on the Emerald Coast.** This is the only all-inclusive AAU program based in the Florida panhandle.
 
