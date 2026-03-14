@@ -72,7 +72,7 @@ theme = ""
 
 [params]
   description = "FCP Sports offers elite basketball training, camps, leagues, and open gym in Fort Walton Beach, FL. Serving the entire Emerald Coast."
-  phone = "(850) 000-0000"
+  phone = "850.961.2323"
   email = "info@fcpsports.org"
   address = "Fort Walton Beach, FL"
   ghl_chat_widget = "jBDUi7Sma6tCl3eXKBmX"
