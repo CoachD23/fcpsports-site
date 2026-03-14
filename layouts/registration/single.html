@@ -1,0 +1,32 @@
+{{ define "main" }}
+<section class="bg-navy py-20 text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">Join FCP Sports</span>
+    <h1 class="font-display text-6xl text-white mt-3 mb-4 leading-none">{{ .Title }}</h1>
+    <p class="text-white/70 text-lg">{{ .Description }}</p>
+  </div>
+</section>
+<section class="py-20 bg-gray-50">
+  <div class="max-w-2xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-xl p-10">
+      <h2 class="font-display text-3xl text-navy mb-2">Tell Us About Your Athlete</h2>
+      <p class="text-gray-500 text-sm mb-8">Fill out the form below and our coaching staff will reach out within 24 hours to recommend the best program.</p>
+      {{ partial "ghl-form.html" (dict "formId" site.Params.ghl_form_id) }}
+    </div>
+    <div class="grid grid-cols-3 gap-4 mt-8 text-center">
+      <div class="bg-white rounded-xl p-4 shadow-sm">
+        <div class="font-display text-2xl text-gold">24hr</div>
+        <div class="text-xs text-gray-500 mt-1">Response Time</div>
+      </div>
+      <div class="bg-white rounded-xl p-4 shadow-sm">
+        <div class="font-display text-2xl text-gold">Free</div>
+        <div class="text-xs text-gray-500 mt-1">Consultation</div>
+      </div>
+      <div class="bg-white rounded-xl p-4 shadow-sm">
+        <div class="font-display text-2xl text-gold">5★</div>
+        <div class="text-xs text-gray-500 mt-1">Rated Coaches</div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

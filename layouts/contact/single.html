@@ -1,0 +1,62 @@
+{{ define "main" }}
+<section class="bg-navy py-20 text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">Get In Touch</span>
+    <h1 class="font-display text-6xl text-white mt-3 mb-4 leading-none">{{ .Title }}</h1>
+    <p class="text-white/70 text-lg">{{ .Description }}</p>
+  </div>
+</section>
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div>
+        <span class="section-tag">Send Us a Message</span>
+        <h2 class="section-heading">We'll Get Back to You Fast</h2>
+        {{ partial "ghl-form.html" (dict "formId" site.Params.ghl_form_id) }}
+      </div>
+      <div>
+        <span class="section-tag">Find Us</span>
+        <h2 class="section-heading">Visit FCP Sports</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 bg-gold rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-navy">Address</div>
+              <div class="text-gray-500 text-sm">Fort Walton Beach, FL 32547</div>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 bg-gold rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-navy">Phone</div>
+              <a href="tel:{{ site.Params.phone }}" class="text-gold hover:underline text-sm">{{ site.Params.phone }}</a>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 bg-gold rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-navy">Hours</div>
+              <div class="text-gray-500 text-sm">Mon–Fri: 9am – 9pm<br>Sat–Sun: 9am – 6pm</div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-lg aspect-video">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55505.07!2d-86.6188!3d30.4057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88313e6e4e4e4e4e%3A0x3f3f3f3f3f3f3f3f!2sFort+Walton+Beach%2C+FL!5e0!3m2!1sen!2sus!4v1"
+            width="100%" height="100%"
+            style="border:0" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="FCP Sports location Fort Walton Beach FL"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

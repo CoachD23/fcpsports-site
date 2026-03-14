@@ -1,0 +1,50 @@
+{{ define "main" }}
+<section class="bg-navy py-24 text-center">
+  <div class="max-w-4xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">Transparent Pricing</span>
+    <h1 class="font-display text-6xl md:text-7xl text-white mt-3 mb-6 leading-none">{{ .Title }}</h1>
+    <p class="text-white/70 text-lg max-w-2xl mx-auto">{{ .Description }}</p>
+  </div>
+</section>
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {{ range site.Data.pricing }}
+      <div class="bg-white rounded-2xl shadow-md overflow-hidden fade-in {{ if .highlight }}ring-2 ring-gold{{ end }}">
+        {{ if .highlight }}<div class="bg-gold text-navy text-center text-xs font-bold py-2 tracking-widest uppercase">Most Popular</div>{{ end }}
+        <div class="p-8">
+          <h3 class="font-display text-2xl text-navy mb-1">{{ .name }}</h3>
+          <p class="text-gray-400 text-sm mb-4">{{ .ages }}</p>
+          <div class="mb-6">
+            <span class="font-display text-4xl text-gold">{{ .price }}</span>
+            {{ if ne .price "Contact for pricing" }}<span class="text-gray-400 text-sm ml-1">/ {{ .frequency }}</span>{{ end }}
+          </div>
+          <ul class="space-y-3 mb-8">
+            {{ range .features }}
+            <li class="flex items-center gap-3 text-sm text-gray-600">
+              <span class="text-gold font-bold">✓</span>{{ . }}
+            </li>
+            {{ end }}
+          </ul>
+          <a href="/registration/" class="{{ if .highlight }}btn-primary{{ else }}btn-dark{{ end }} w-full text-center block">Get Started</a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    <p class="text-center text-gray-500 text-sm mt-10">All prices subject to change. Contact us for current rates, payment plans, and multi-athlete discounts.</p>
+  </div>
+</section>
+
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <span class="section-tag">Questions About Pricing?</span>
+    <h2 class="section-heading">We'll Find the Right Program for Your Budget</h2>
+    <p class="text-gray-500 mb-8">We offer payment plans and multi-athlete discounts for families. Reach out — we'll find a way to make it work.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/contact/" class="btn-primary">Contact Us</a>
+      <a href="/registration/" class="btn-dark">Register Now</a>
+    </div>
+  </div>
+</section>
+{{ end }}
