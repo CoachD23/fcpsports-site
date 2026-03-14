@@ -1,0 +1,20 @@
+---
+title: "{{ replace .Name "-" " " | title }}"
+description: ""
+h1: ""
+keyword: ""
+age_range: ""
+price: "Contact for pricing"
+frequency: ""
+faq:
+  - q: ""
+    a: ""
+  - q: ""
+    a: ""
+  - q: ""
+    a: ""
+  - q: ""
+    a: ""
+  - q: ""
+    a: ""
+---
