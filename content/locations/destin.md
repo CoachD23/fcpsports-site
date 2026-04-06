@@ -46,3 +46,10 @@ Past HarborWalk Village, straight shot on 98 West: that's how simple the drive i
 **Back roads via Commons Drive:** A quieter alternative avoiding the main highway strip during peak tourist season.
 
 Destin kids deserve elite basketball training. At 15 minutes from HarborWalk Village, FCP Sports is close enough to make it a routine — and good enough to make it worth it.
+
+## Programs Available Near Destin
+
+- [Basketball Camps](/camps/) — Summer, spring break, and holiday camps just 15 minutes away
+- [Youth Leagues](/leagues/) — Fall and summer leagues for ages 5–18
+- [Open Gym](/services/open-gym/) — Drop-in basketball sessions — great for visitors and residents alike
+- [Our Facility](/basketball-gym-fort-walton-beach/) — The Emerald Coast's only dedicated basketball gym

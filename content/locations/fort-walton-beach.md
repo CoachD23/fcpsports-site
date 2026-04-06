@@ -47,3 +47,10 @@ Our proximity to Eglin AFB also means we work regularly with military families w
 Every program at FCP Sports begins with an honest assessment. We want to know your athlete's strengths, their gaps, and their goals — whether that's making the middle school team, earning a starting spot at Choctawhatchee High, or developing the skills for a college opportunity. From that foundation, we build.
 
 Parking is free, drop-off is easy from Eglin Parkway, and our staff is available to answer questions about scheduling, pricing, or program fit. If you live in Fort Walton Beach, you're already here — come see what a basketball-first facility looks like.
+
+## Programs Available Near Fort Walton Beach
+
+- [Basketball Camps](/camps/) — Summer, spring break, and holiday camps
+- [Youth Leagues](/leagues/) — Fall and summer leagues for ages 5–18
+- [Our Facility](/basketball-gym-fort-walton-beach/) — Fort Walton Beach's only dedicated basketball gym
+- [Military Family Discounts](/military-families/) — $20 off all programs for Eglin AFB and Hurlburt Field families

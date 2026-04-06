@@ -74,3 +74,10 @@ Ready to get personalized attention from a dedicated basketball coach? [Register
 If private lessons feel like a big commitment to start, our [basketball training programs](/services/basketball-training/) offer more affordable group options. Not sure what your athlete needs? Start with a free assessment — we'll tell you exactly where they are and what will help most.
 
 For a summer intensive option, explore our [basketball camp](/services/basketball-camp/) — multiple sessions per day in a structured camp environment.
+
+## Keep Exploring
+
+- [Basketball Camps](/camps/) — Summer, holiday, and specialty camps for all skill levels
+- [Basketball Training Programs](/services/basketball-training/) — Ongoing group development for systematic long-term improvement
+- [Program Pricing](/pricing/) — Session rates, bundles, and monthly package pricing
+- [Military Family Discounts](/military-families/) — Discounted rates for families at Eglin AFB and Hurlburt Field

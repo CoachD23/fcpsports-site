@@ -87,3 +87,9 @@ Team-building events, employee appreciation days, and group sports activities. W
 [Contact us](/contact/) to check availability and get a quote. For questions about the facility or specific event needs, [reach out here](/contact/).
 
 If you're not ready to rent the full facility but want court access, check out our [open gym sessions](/services/open-gym/) for drop-in play. Or if you're looking for structured programming for your group instead of a rental, explore our [basketball camp](/services/basketball-camp/) or [basketball training programs](/services/basketball-training/).
+
+## Keep Exploring
+
+- [Our Facility](/basketball-gym-fort-walton-beach/) — Full specs and details on Fort Walton Beach's only dedicated basketball gym
+- [Basketball Leagues](/leagues/) — Looking for regular competitive court time? Join a league
+- [Contact Us](/contact/) — Get availability and a quote for your rental date

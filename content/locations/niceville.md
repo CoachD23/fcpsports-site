@@ -46,3 +46,10 @@ FCP Sports training gives Niceville athletes the supplemental edge that school p
 ## A Pipeline to College Basketball
 
 Northwest Florida State College in Niceville fields a competitive Raiders basketball program. For athletes with college aspirations, that's a realistic, local target — and FCP Sports coaching is oriented toward the skills and habits that college coaches look for. The 20-minute drive from Niceville to Fort Walton Beach is the first step in a longer journey worth taking.
+
+## Programs Available Near Niceville
+
+- [Basketball Camps](/camps/) — Summer, spring break, and holiday camps
+- [Youth Leagues](/leagues/) — Fall and summer leagues for ages 5–18
+- [Open Gym](/services/open-gym/) — Drop-in basketball sessions for youth and adults
+- [Our Facility](/basketball-gym-fort-walton-beach/) — Fort Walton Beach's only dedicated basketball gym, 20 minutes from Niceville

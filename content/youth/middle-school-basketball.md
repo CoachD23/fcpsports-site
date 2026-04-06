@@ -76,3 +76,9 @@ Middle school athletes are still developing — not just physically but emotiona
 If your child's goal is to make their high school team, to earn a starting spot, or to eventually play at the next level — this is where that journey begins in earnest. The path forward leads to our [High School Basketball & Recruiting program](/youth/high-school-basketball/).
 
 [Download our free Youth Basketball Parent's Guide](/guides/youth-basketball-parents-guide/) to understand exactly how middle school training translates to high school success.
+
+## Keep Exploring
+
+- [Fall League](/leagues/fall-league/) — Competitive league play to complement your training
+- [Elite Showcase Camp](/camps/elite-showcase/) — High-visibility camps for players ready to take the next step
+- [Basketball Training Programs](/services/basketball-training/) — Structured individual skill development alongside the team program

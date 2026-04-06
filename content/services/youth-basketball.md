@@ -89,3 +89,10 @@ If a player is developmentally ready to advance ahead of their grade (common for
 [Register now](/registration/) or [contact us](/contact/) to ask about the current season's start date, schedule, and pricing. For summer development alongside the youth program, our [basketball camp](/services/basketball-camp/) runs each summer and is a natural complement to the school-year programs.
 
 As players advance through Elite Youth, the natural next step is our [basketball league](/services/basketball-league/) for competitive game experience, or our [Summer AAU program](/services/summer-aau/) for the most serious athletes ready to pursue college basketball.
+
+## Keep Exploring
+
+- [Basketball Leagues](/leagues/) — Fall, summer, and little ballers league options for all ages
+- [Basketball Camps](/camps/) — Summer and holiday camps that complement the school-year program
+- [Elementary School Basketball](/youth/elementary-school-basketball/) — Deep dive into our K–5th grade programs
+- [Military Family Discounts](/military-families/) — Special rates for families stationed at Eglin AFB and Hurlburt Field

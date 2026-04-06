@@ -76,3 +76,10 @@ Monthly passes cover unlimited open gym sessions (youth or adult, not combined) 
 Check the current open gym schedule, then come play. [Contact us](/contact/) with questions about hours or upcoming special sessions.
 
 If open gym has you thinking about getting more serious, explore our [basketball training programs](/services/basketball-training/) or [private basketball lessons](/services/basketball-lessons/). And if you want the court to yourself — for a practice, a birthday party, or a private game — check out our [gym rental options](/services/gym-rental/).
+
+## Keep Exploring
+
+- [Basketball Leagues](/leagues/) — Compete in fall, summer, and little ballers leagues
+- [Our Facility](/basketball-gym-fort-walton-beach/) — Learn more about Fort Walton Beach's only dedicated basketball gym
+- [Basketball Camps](/camps/) — Structured multi-day camps for all ages and skill levels
+- [Program Pricing](/pricing/) — Drop-in rates, monthly passes, and program fees

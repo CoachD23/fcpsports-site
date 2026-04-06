@@ -76,3 +76,9 @@ Every FCP Sports high school athlete gets film review built into their training.
 Athletes come to us from Fort Walton Beach High, Choctawhatchee, Niceville High, Navarre High, and Crestview High. Some drive from Pensacola high schools — Washington, Pine Forest, Pensacola High. Some come from Bay County — Bay High, Arnold, Mosley. They all share the same goal: playing beyond high school.
 
 If that is your goal too, the time to start is now. [Enroll in our high school program](/registration/) or explore our [College Recruiting Roadmap guide](/guides/college-recruiting-roadmap/) to map out exactly where your athlete stands and what comes next.
+
+## Keep Exploring
+
+- [Elite Showcase Camp](/camps/elite-showcase/) — High-visibility camp designed for recruiting-age athletes
+- [Basketball Leagues](/leagues/) — Competitive league play to stay sharp during the off-season
+- [Basketball Training Programs](/services/basketball-training/) — Position-specific skill development for high school players

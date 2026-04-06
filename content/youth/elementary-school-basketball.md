@@ -78,3 +78,9 @@ Sessions run after school and on weekends. We have athletes coming directly from
 Elementary school is Step 1. After 5th grade, athletes naturally move into our [Middle School Basketball program](/youth/middle-school-basketball/), where training gets more competitive and high school preparation begins. We've watched hundreds of kids walk through our doors as nervous 5-year-olds and leave as confident middle schoolers. That journey starts here.
 
 [Download our free Youth Basketball Parent's Guide](/guides/youth-basketball-parents-guide/) to learn exactly what to look for in a youth program, what questions to ask any coach, and how to support your athlete at home.
+
+## Keep Exploring
+
+- [Little League Basketball](/leagues/little-league/) — Organized league play for our youngest athletes
+- [Basketball Camps](/camps/) — Summer and holiday camps for K–5th grade players
+- [Military Family Discounts](/military-families/) — $20 off all programs for Eglin AFB and Hurlburt Field families

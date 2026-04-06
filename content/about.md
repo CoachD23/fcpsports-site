@@ -21,3 +21,11 @@ Our programs are built on a simple philosophy: **develop the whole athlete**. Th
 FCP Sports serves athletes from Fort Walton Beach, Destin, Niceville, Navarre, Crestview, Pensacola, and Panama City. Athletes come from over 30 schools across Okaloosa, Santa Rosa, Escambia, and Bay Counties.
 
 We work with families from all backgrounds — from beginners picking up a basketball for the first time to AAU-level athletes preparing for college recruitment.
+
+## Keep Exploring
+
+- [Basketball Camps](/camps/) — Summer day camps, girls-only, holiday, and more
+- [Basketball Leagues](/leagues/) — Fall, summer, and little ballers leagues
+- [Our Facility](/basketball-gym-fort-walton-beach/) — Fort Walton Beach's only dedicated basketball gym
+- [Military Family Discounts](/military-families/) — $20 off all programs for Eglin AFB and Hurlburt Field families
+- [Program Pricing](/pricing/) — Transparent pricing for all FCP Sports programs

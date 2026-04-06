@@ -66,3 +66,10 @@ If your athlete is serious about getting better, start with a free baseline asse
 [Register for training](/registration/) or [contact us](/contact/) to schedule your athlete's assessment. Already training and want more individualized attention? Explore our [private basketball lessons](/services/basketball-lessons/) for 1-on-1 focused instruction.
 
 Ready to compete? Ask us about our [Summer AAU program](/services/summer-aau/) — the all-inclusive travel team for players ready to get seen by college coaches.
+
+## Keep Exploring
+
+- [Basketball Camps](/camps/) — Intensive multi-day skill development camps for all ages
+- [Private Basketball Lessons](/services/basketball-lessons/) — 1-on-1 focused instruction for faster individual progress
+- [Basketball Leagues](/leagues/) — Put your training to work in a real competitive league
+- [Military Family Discounts](/military-families/) — Special rates for Eglin AFB and Hurlburt Field families
