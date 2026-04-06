@@ -1,0 +1,44 @@
+{{ if .Params.event_dates }}
+{{ range .Params.event_dates }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": {{ $.Title | jsonify }},
+  "description": {{ $.Description | jsonify }},
+  "startDate": "{{ .start }}",
+  "endDate": "{{ .end }}",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "FCP Sports",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Fort Walton Beach",
+      "addressRegion": "FL",
+      "postalCode": "32547",
+      "addressCountry": "US"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "FCP Sports",
+    "url": "https://fcpsports.org"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ .price }}",
+    "priceCurrency": "USD",
+    "url": "https://fcpsports.org/registration/",
+    "availability": "https://schema.org/InStock"
+  },
+  "image": "https://fcpsports.org/images/fcp-sports-basketball-training-fort-walton-beach.jpg",
+  "performer": {
+    "@type": "Organization",
+    "name": "FCP Sports"
+  }
+}
+</script>
+{{ end }}
+{{ end }}

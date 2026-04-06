@@ -18,6 +18,10 @@ faq:
     a: "Yes. FCP Sports is located in Fort Walton Beach, about 15 minutes from Destin and 10 minutes from Niceville. Families from Destin, Niceville, Navarre, Crestview, and across the Emerald Coast attend our spring break camp. Our facility is climate-controlled and dedicated entirely to basketball."
   - q: "What should my child bring to spring break camp?"
     a: "Bring court shoes with clean non-marking soles, athletic clothing, a water bottle, and a packed lunch with snacks. We provide basketballs. Our facility is fully indoor and climate-controlled, so weather is never a factor. Label everything with your child's name."
+event_dates:
+  - start: "2027-03-15"
+    end: "2027-03-18"
+    price: "129"
 ---
 
 ## Four Days. No Wasted Time. Friday Free.

@@ -18,6 +18,22 @@ faq:
     a: "Kenny focuses on the skills that made him an elite point guard — ball handling, court vision, decision-making under pressure, and the mental approach to competitive basketball. These clinics go beyond physical drills. Kenny shares what he learned in 14 NBA seasons about preparation, composure, and what separates good players from great ones."
   - q: "Is there an NBA basketball clinic near Destin or Pensacola?"
     a: "FCP Sports in Fort Walton Beach is about 15 minutes from Destin and 45 minutes from Pensacola. The Kenny Anderson clinics draw players from across the Panhandle including Destin, Niceville, Navarre, Crestview, Pensacola, and even Tallahassee. There is no other opportunity to train with an NBA veteran of this caliber anywhere in the region."
+event_dates:
+  - start: "2026-10-17"
+    end: "2026-10-17"
+    price: "49"
+  - start: "2026-11-14"
+    end: "2026-11-14"
+    price: "49"
+  - start: "2026-12-12"
+    end: "2026-12-12"
+    price: "49"
+  - start: "2027-01-16"
+    end: "2027-01-16"
+    price: "49"
+  - start: "2027-02-13"
+    end: "2027-02-13"
+    price: "49"
 ---
 
 ## Train with NBA Veteran Kenny Anderson

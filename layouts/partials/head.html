@@ -37,6 +37,8 @@
 {{ if .IsHome }}{{ partial "schema/local-business.html" . }}{{ end }}
 {{ if not .IsHome }}{{ partial "schema/breadcrumb.html" . }}{{ end }}
 {{ if eq .Section "services" }}{{ partial "schema/service.html" . }}{{ end }}
+{{ partial "schema/event.html" . }}
+{{ partial "schema/course.html" . }}
 {{ if .Params.faq }}{{ partial "schema/faqpage.html" . }}{{ end }}
 
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />

@@ -18,6 +18,19 @@ faq:
     a: "Pack court shoes (clean, non-marking soles), athletic clothing, a water bottle, and a packed lunch with snacks. We provide basketballs, but your child is welcome to bring their own. Our facility is fully climate-controlled, so sunscreen is not needed. Label everything with your child's name."
   - q: "Are your summer camps good for beginners who have never played basketball?"
     a: "Absolutely. We run skill assessments on day one and group campers by ability, not just grade. Beginners get fundamentals-focused instruction — dribbling, passing, layups, and game rules — while experienced players work on advanced skill sets. No child is singled out or left behind. Our coaches are trained to build confidence alongside skills."
+event_dates:
+  - start: "2026-06-08"
+    end: "2026-06-12"
+    price: "149"
+  - start: "2026-06-22"
+    end: "2026-06-26"
+    price: "149"
+  - start: "2026-07-13"
+    end: "2026-07-17"
+    price: "149"
+  - start: "2026-07-27"
+    end: "2026-07-31"
+    price: "149"
 ---
 
 ## Four Sessions, Four Grade Groups

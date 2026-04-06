@@ -18,6 +18,10 @@ faq:
     a: "Not at all. Holiday camp has a fun-first philosophy with real fundamentals built in. It is a great option for kids who are curious about basketball, just started playing on a school team, or want to stay active during winter break. Experienced players are also welcome — they will be challenged at their level."
   - q: "What should my child bring to holiday basketball camp?"
     a: "Bring court shoes with clean non-marking soles, athletic clothing, a water bottle, and a light snack. Since this is a half-day camp (9 AM to noon), a full lunch is not necessary. Our facility is indoor and climate-controlled."
+event_dates:
+  - start: "2026-12-28"
+    end: "2026-12-30"
+    price: "79"
 ---
 
 ## The Best Way to Spend Winter Break (That Isn't a Screen)

@@ -1,0 +1,28 @@
+{{ if .Params.course_type }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": {{ .Title | jsonify }},
+  "description": {{ .Description | jsonify }},
+  "provider": {
+    "@type": "Organization",
+    "name": "FCP Sports",
+    "url": "https://fcpsports.org",
+    "sameAs": ["https://instagram.com/fcpsports", "https://facebook.com/fcpsports"]
+  },
+  "courseMode": "{{ .Params.course_mode | default "onsite" }}",
+  "educationalLevel": "{{ .Params.age_range | default "All Ages" }}",
+  "locationCreated": {
+    "@type": "Place",
+    "name": "FCP Sports",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Fort Walton Beach",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    }
+  }
+}
+</script>
+{{ end }}

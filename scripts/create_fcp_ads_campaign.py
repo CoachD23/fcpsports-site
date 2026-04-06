@@ -1,9 +1,11 @@
 """
 FCP Sports — Google Ads Campaign Creation Script
-Account: 3223054729 (FCP Sports / fcpsports.org)
+Account: 2629789119 (Florida Coastal Prep LLC — active billing, used for fcpsports.org)
 Budget: $10/day
 Status: PAUSED (review before activating)
 Created: 2026-04-05
+
+NOTE: Account 3223054729 ("Florida Coastal Prep") has no billing and cannot create campaigns.
 """
 
 import warnings
@@ -441,9 +443,9 @@ def run():
         asset_op = client.get_type("AssetOperation")
         asset = asset_op.create
         asset.sitelink_asset.link_text = sl["link_text"]
-        asset.sitelink_asset.final_urls.append(sl["final_url"])
         asset.sitelink_asset.description1 = sl["desc1"]
         asset.sitelink_asset.description2 = sl["desc2"]
+        asset.final_urls.append(sl["final_url"])  # final_urls is on Asset, not SitelinkAsset
 
         try:
             asset_response = asset_service.mutate_assets(

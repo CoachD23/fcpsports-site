@@ -6,6 +6,7 @@ keyword: "basketball training near me"
 age_range: "Ages 8–18"
 price: "Contact for pricing"
 frequency: "Weekly sessions"
+course_type: "basketball training"
 faq:
   - q: "Where can I find basketball training near me on the Emerald Coast?"
     a: "FCP Sports in Fort Walton Beach is the only dedicated basketball training facility between Pensacola and Panama City. Players from Fort Walton Beach, Destin, Niceville, Navarre, Crestview, and as far as DeFuniak Springs train here weekly. We are located just off US-98 with easy access from across Okaloosa County."

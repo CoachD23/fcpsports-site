@@ -18,6 +18,10 @@ faq:
     a: "FCP Sports is located in Fort Walton Beach, FL — about 45 minutes east of Pensacola and 15 minutes east of Destin on US-98. We are the closest dedicated basketball facility to both cities, and our showcase attracts players from across the Florida Panhandle and southern Alabama."
   - q: "What should my son do to prepare for the showcase camp?"
     a: "Come in game shape. This is two days of competitive play, not skill clinics. Players should be comfortable playing at a high intensity for extended periods. Bring court shoes, athletic clothing, a water bottle, and snacks. We provide basketballs and keep stats. If your son wants to sharpen his game before the showcase, our private basketball training sessions are available year-round."
+event_dates:
+  - start: "2026-07-17"
+    end: "2026-07-18"
+    price: "129"
 ---
 
 ## Built for Players Chasing College Basketball

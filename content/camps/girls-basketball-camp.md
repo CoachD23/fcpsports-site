@@ -18,6 +18,10 @@ faq:
     a: "In co-ed camps, girls often defer to boys for shots, touches, and leadership reps. Research shows that girls develop confidence and skill faster in single-gender training environments where they get equal reps, equal coaching attention, and the freedom to be competitive without social pressure. Our girls camp is designed from the ground up for female athletes — not a co-ed program with a pink logo."
   - q: "What will my daughter learn at girls basketball camp?"
     a: "The curriculum covers ball handling, shooting mechanics, footwork, defensive technique, and basketball IQ through coached scrimmages. We also emphasize leadership, communication, and competitive mindset — skills that transfer beyond basketball. Every player gets a baseline skill assessment on Monday and a repeat assessment on Friday so she can see her improvement."
+event_dates:
+  - start: "2026-06-15"
+    end: "2026-06-19"
+    price: "149"
 ---
 
 ## This Camp Exists Because Girls Deserve Better

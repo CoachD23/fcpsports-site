@@ -6,6 +6,7 @@ keyword: "basketball lessons fort walton beach"
 age_range: "Ages 6–Adult"
 price: "Contact for pricing"
 frequency: "Flexible scheduling"
+course_type: "basketball training"
 faq:
   - q: "How much do private basketball lessons cost in Fort Walton Beach?"
     a: "Private lesson pricing at FCP Sports depends on session length (30, 45, or 60 minutes), whether it is 1-on-1 or semi-private, and package size (single session vs. monthly bundles). Bundles offer significant savings over per-session rates. Contact us for current pricing — we also offer military discount rates for families at Eglin AFB and Hurlburt Field."
