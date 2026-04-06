@@ -4,6 +4,11 @@
   {{ partial "head.html" . }}
 </head>
 <body class="font-body bg-white text-gray-900 antialiased">
+  {{ with site.Params.gtm_id }}
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ . }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  {{ end }}
 
   {{ partial "nav.html" . }}
 
