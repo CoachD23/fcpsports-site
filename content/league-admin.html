@@ -1,0 +1,1092 @@
+---
+layout: default
+title: "League Admin | FCP"
+description: "Internal admin tool — manage league scores, teams, and standings."
+og_image: /assets/images/fcp-logo-square.png
+noindex: true
+sitemap: false
+permalink: /league-admin/
+---
+<style>
+  .admin-wrap {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .admin-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+  }
+  .admin-card h1 {
+    font-size: 1.4rem;
+    color: #0a1628;
+    margin: 0 0 0.4rem;
+  }
+  .admin-card h2 {
+    font-size: 1.1rem;
+    color: #0a1628;
+    margin: 0 0 1rem;
+  }
+  .admin-card p.sub {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 1.75rem;
+  }
+  .admin-card label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.35rem;
+  }
+  .admin-card input[type="text"],
+  .admin-card input[type="password"],
+  .admin-card input[type="number"],
+  .admin-card input[type="date"],
+  .admin-card input[type="time"],
+  .admin-card select,
+  .admin-card textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    margin-bottom: 1.1rem;
+    color: #111;
+    background: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .admin-card select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+    padding-right: 2.2rem;
+  }
+  .admin-card button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #b22234;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .admin-card button:hover { background: #8e1a28; }
+  .admin-card button:disabled { background: #aaa; cursor: not-allowed; }
+  .btn-sm {
+    width: auto !important;
+    padding: 0.4rem 0.9rem !important;
+    font-size: 0.85rem !important;
+  }
+  .btn-secondary {
+    background: #444 !important;
+  }
+  .btn-secondary:hover { background: #222 !important; }
+  .divider { border: none; border-top: 1px solid #eee; margin: 1.5rem 0; }
+
+  /* Auth status */
+  .auth-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+  }
+  .auth-status.authenticated { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+  .auth-status.unauthenticated { background: #fdecea; color: #721c24; border: 1px solid #f5c6cb; }
+  .auth-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .auth-status.authenticated .auth-dot { background: #2e7d32; }
+  .auth-status.unauthenticated .auth-dot { background: #c62828; }
+
+  /* Tabs */
+  .tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 1.75rem;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    border-radius: 0;
+    width: auto;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: #0a1628; background: none; }
+  .tab-btn.active { color: #b22234; border-bottom-color: #b22234; background: none; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Toast */
+  #toast {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 9999;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    max-width: 90vw;
+    text-align: center;
+    pointer-events: none;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  #toast.success { background: #1b5e20; color: #fff; }
+  #toast.error { background: #b22234; color: #fff; }
+  #toast.info { background: #0a1628; color: #fff; }
+
+  /* Spinner */
+  .spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Standings table */
+  .standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .standings-table th {
+    background: #0a1628;
+    color: #fff;
+    padding: 0.55rem 0.6rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+  .standings-table td {
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #222;
+  }
+  .standings-table tr:nth-child(even) td { background: #f9f9f9; }
+  .standings-table tr:hover td { background: #fff3f3; }
+  .standings-table .rank-col { font-weight: 700; color: #b22234; text-align: center; }
+  .standings-table .win-pct { font-weight: 600; }
+
+  /* Schedule list */
+  .schedule-list { list-style: none; padding: 0; margin: 0; }
+  .schedule-item {
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    margin-bottom: 0.6rem;
+    overflow: hidden;
+  }
+  .schedule-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .schedule-item-header:hover { background: #fef8f8; }
+  .schedule-item.expanded .schedule-item-header { background: #fef3f3; border-bottom: 1px solid #f5c6cb; }
+  .game-info { font-size: 0.9rem; color: #222; font-weight: 600; }
+  .game-meta { font-size: 0.8rem; color: #666; margin-top: 0.15rem; }
+  .expand-icon { color: #b22234; font-size: 1.2rem; font-weight: 700; line-height: 1; }
+  .score-form {
+    display: none;
+    padding: 1rem;
+    background: #fafafa;
+  }
+  .schedule-item.expanded .score-form { display: block; }
+  .score-inputs {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .score-inputs .score-field { flex: 1; min-width: 120px; }
+  .score-inputs .score-field input { margin-bottom: 0; }
+  .score-inputs .score-submit { flex: 1; min-width: 120px; }
+  .score-inputs .score-submit button { margin-top: 1.6rem; }
+  .empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: #999;
+    font-size: 0.9rem;
+  }
+
+  /* Team list */
+  .team-list { list-style: none; padding: 0; margin: 0; }
+  .team-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+  }
+  .team-item:last-child { border-bottom: none; }
+  .team-item-info { flex: 1; }
+  .team-name { font-weight: 600; color: #0a1628; }
+  .team-coach { font-size: 0.8rem; color: #666; margin-top: 0.1rem; }
+  .team-actions { display: flex; gap: 0.5rem; }
+  .division-header {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #b22234;
+    padding: 0.75rem 0.75rem 0.4rem;
+    border-bottom: 1px solid #f5e8e9;
+    background: #fef8f8;
+  }
+  .inline-edit-form {
+    display: none;
+    padding: 0.75rem;
+    background: #fafafa;
+    border-top: 1px solid #eee;
+  }
+  .inline-edit-form.open { display: block; }
+  .form-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .form-row .form-field { flex: 1; min-width: 140px; }
+  .form-row .form-field label { margin-bottom: 0.25rem; }
+  .form-row .form-field input,
+  .form-row .form-field select { margin-bottom: 0; }
+  .form-row .form-actions {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    padding-bottom: 0;
+  }
+
+  /* Section heading in tabs */
+  .section-heading {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0a1628;
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Checkbox group */
+  .checkbox-group { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.1rem; }
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: #333;
+  }
+  .checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    accent-color: #b22234;
+  }
+
+  /* Loading overlay for sections */
+  .loading-bar {
+    text-align: center;
+    padding: 1.5rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  .loading-bar .spinner { border-color: rgba(178,34,52,0.3); border-top-color: #b22234; }
+
+  @media (max-width: 540px) {
+    .admin-card { padding: 1.5rem 1.1rem; }
+    .tabs-nav { gap: 0; }
+    .tab-btn { padding: 0.55rem 0.65rem; font-size: 0.8rem; }
+    .score-inputs { flex-direction: column; }
+    .score-inputs .score-submit button { margin-top: 0; }
+    .form-row { flex-direction: column; }
+    .standings-table { font-size: 0.78rem; }
+    .standings-table th,
+    .standings-table td { padding: 0.4rem 0.35rem; }
+  }
+</style>
+
+<div id="toast"></div>
+
+<div class="admin-wrap">
+
+  <!-- Auth Card -->
+  <div class="admin-card">
+    <h1>League Admin</h1>
+    <p class="sub">Score entry, team management, and standings for FCP leagues. Admin access required.</p>
+
+    <div id="auth-status" class="auth-status unauthenticated">
+      <span class="auth-dot"></span>
+      <span id="auth-status-text">Not authenticated</span>
+    </div>
+
+    <label for="admin-secret">Admin Secret</label>
+    <input type="password" id="admin-secret" placeholder="Enter admin secret" autocomplete="off" />
+    <button id="auth-btn" onclick="handleAuth()">Authenticate</button>
+  </div>
+
+  <!-- Main Dashboard (hidden until authed) -->
+  <div id="dashboard" style="display:none;">
+
+    <!-- Tab Navigation -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('submit-score')">Submit Score</button>
+      <button class="tab-btn" onclick="switchTab('manage-teams')">Manage Teams</button>
+      <button class="tab-btn" onclick="switchTab('create-game')">Create Game</button>
+      <button class="tab-btn" onclick="switchTab('standings')">Standings</button>
+      <button class="tab-btn" onclick="switchTab('create-season')">Create Season</button>
+    </div>
+
+    <!-- Tab: Submit Score -->
+    <div id="tab-submit-score" class="tab-panel active">
+      <div class="admin-card">
+        <h2>Submit Game Score</h2>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="ss-season">Season</label>
+            <select id="ss-season" onchange="onSSSeasonChange()"><option value="">-- Select season --</option></select>
+          </div>
+          <div class="form-field">
+            <label for="ss-division">Division</label>
+            <select id="ss-division" onchange="loadSchedule()"><option value="">-- Select division --</option></select>
+          </div>
+        </div>
+        <div id="schedule-container"><p class="empty-state">Select a season and division to load scheduled games.</p></div>
+      </div>
+    </div>
+
+    <!-- Tab: Manage Teams -->
+    <div id="tab-manage-teams" class="tab-panel">
+      <div class="admin-card">
+        <h2>Create Team</h2>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="ct-name">Team Name</label>
+            <input type="text" id="ct-name" placeholder="e.g. Coastal Eagles" />
+          </div>
+          <div class="form-field">
+            <label for="ct-season">Season</label>
+            <select id="ct-season"><option value="">-- Select --</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="ct-division">Division</label>
+            <select id="ct-division">
+              <option value="">-- Select --</option>
+              <option value="Mini">Mini (K-2)</option>
+              <option value="Junior">Junior (3-5)</option>
+              <option value="Intermediate">Intermediate (6-8)</option>
+              <option value="Senior">Senior (9-12)</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="ct-coach">Coach Name</label>
+            <input type="text" id="ct-coach" placeholder="e.g. Coach Williams" />
+          </div>
+        </div>
+        <button onclick="createTeam()">Create Team</button>
+      </div>
+
+      <div class="admin-card">
+        <h2>Existing Teams</h2>
+        <div class="form-row" style="margin-bottom:1rem;">
+          <div class="form-field">
+            <label for="lt-season">Filter by Season</label>
+            <select id="lt-season" onchange="loadTeams()"><option value="">-- All seasons --</option></select>
+          </div>
+        </div>
+        <div id="teams-container"><p class="empty-state">Select a season or load all teams.</p></div>
+      </div>
+    </div>
+
+    <!-- Tab: Create Game -->
+    <div id="tab-create-game" class="tab-panel">
+      <div class="admin-card">
+        <h2>Schedule a Game</h2>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cg-season">Season</label>
+            <select id="cg-season" onchange="onCGSeasonChange()"><option value="">-- Select --</option></select>
+          </div>
+          <div class="form-field">
+            <label for="cg-division">Division</label>
+            <select id="cg-division" onchange="loadGameTeams()"><option value="">-- Select --</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cg-date">Date</label>
+            <input type="date" id="cg-date" />
+          </div>
+          <div class="form-field">
+            <label for="cg-time">Time</label>
+            <input type="time" id="cg-time" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cg-home">Home Team</label>
+            <select id="cg-home"><option value="">-- Select division first --</option></select>
+          </div>
+          <div class="form-field">
+            <label for="cg-away">Away Team</label>
+            <select id="cg-away"><option value="">-- Select division first --</option></select>
+          </div>
+        </div>
+        <button onclick="scheduleGame()">Schedule Game</button>
+      </div>
+    </div>
+
+    <!-- Tab: Standings -->
+    <div id="tab-standings" class="tab-panel">
+      <div class="admin-card">
+        <h2>League Standings</h2>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="st-season">Season</label>
+            <select id="st-season" onchange="onSTSeasonChange()"><option value="">-- Select season --</option></select>
+          </div>
+          <div class="form-field">
+            <label for="st-division">Division</label>
+            <select id="st-division" onchange="loadStandings()"><option value="">-- Select division --</option></select>
+          </div>
+        </div>
+        <div id="standings-container"><p class="empty-state">Select a season and division to view standings.</p></div>
+      </div>
+    </div>
+
+    <!-- Tab: Create Season -->
+    <div id="tab-create-season" class="tab-panel">
+      <div class="admin-card">
+        <h2>Create New Season</h2>
+        <label for="cs-name">Season Name</label>
+        <input type="text" id="cs-name" placeholder="e.g. Fall 2026" />
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cs-start">Start Date</label>
+            <input type="date" id="cs-start" />
+          </div>
+          <div class="form-field">
+            <label for="cs-end">End Date</label>
+            <input type="date" id="cs-end" />
+          </div>
+        </div>
+        <label>Divisions</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" id="div-mini" value="Mini" checked /> Mini (K-2)</label>
+          <label class="checkbox-label"><input type="checkbox" id="div-junior" value="Junior" checked /> Junior (3-5)</label>
+          <label class="checkbox-label"><input type="checkbox" id="div-intermediate" value="Intermediate" checked /> Intermediate (6-8)</label>
+          <label class="checkbox-label"><input type="checkbox" id="div-senior" value="Senior" checked /> Senior (9-12)</label>
+        </div>
+        <button onclick="createSeason()">Create Season</button>
+      </div>
+    </div>
+
+  </div><!-- /dashboard -->
+</div><!-- /admin-wrap -->
+
+<script>
+(function () {
+  'use strict';
+
+  /* ─── State ─────────────────────────────────────────────────────── */
+  var secret = '';
+  var seasons = [];
+  var allTeams = [];
+  var expandedGame = null;
+
+  var DIVISIONS = ['Mini', 'Junior', 'Intermediate', 'Senior'];
+  var DIVISION_LABELS = { Mini: 'Mini (K-2)', Junior: 'Junior (3-5)', Intermediate: 'Intermediate (6-8)', Senior: 'Senior (9-12)' };
+
+  /* ─── Init ───────────────────────────────────────────────────────── */
+  (function init() {
+    var saved = localStorage.getItem('fcp_admin_secret');
+    if (saved) {
+      document.getElementById('admin-secret').value = saved;
+      doAuthenticate(saved);
+    }
+  })();
+
+  /* ─── Auth ───────────────────────────────────────────────────────── */
+  window.handleAuth = function () {
+    var val = document.getElementById('admin-secret').value.trim();
+    if (!val) { showToast('Enter the admin secret.', 'error'); return; }
+    doAuthenticate(val);
+  };
+
+  function doAuthenticate(val) {
+    secret = val;
+    localStorage.setItem('fcp_admin_secret', val);
+    setAuthUI(true);
+    loadSeasons();
+  }
+
+  function setAuthUI(authed) {
+    var statusEl = document.getElementById('auth-status');
+    var statusText = document.getElementById('auth-status-text');
+    var dashboard = document.getElementById('dashboard');
+    statusEl.className = 'auth-status ' + (authed ? 'authenticated' : 'unauthenticated');
+    statusText.textContent = authed ? 'Authenticated' : 'Not authenticated';
+    dashboard.style.display = authed ? 'block' : 'none';
+  }
+
+  /* ─── Tabs ───────────────────────────────────────────────────────── */
+  window.switchTab = function (name) {
+    document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  };
+
+  /* ─── API helpers ────────────────────────────────────────────────── */
+  function apiFetch(path, opts) {
+    opts = opts || {};
+    opts.headers = Object.assign({ 'Content-Type': 'application/json', 'X-Admin-Secret': secret }, opts.headers || {});
+    return fetch('/.netlify/functions/' + path, opts);
+  }
+
+  /* ─── Seasons ────────────────────────────────────────────────────── */
+  function loadSeasons() {
+    apiFetch('league-manage-teams?resource=seasons')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        seasons = data.seasons || data || [];
+        populateAllSeasonSelects();
+      })
+      .catch(function () {
+        // Seasons endpoint may not exist yet — work gracefully
+        seasons = [];
+        populateAllSeasonSelects();
+      });
+  }
+
+  function populateAllSeasonSelects() {
+    var ids = ['ss-season', 'ct-season', 'cg-season', 'st-season', 'lt-season'];
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      var cur = el.value;
+      // keep placeholder options
+      while (el.options.length > 1) el.remove(1);
+      seasons.forEach(function (s) {
+        var opt = new Option(s.name || s, s.id || s.name || s);
+        el.add(opt);
+      });
+      if (cur) el.value = cur;
+    });
+  }
+
+  /* ─── Submit Score tab ──────────────────────────────────────────── */
+  window.onSSSeasonChange = function () {
+    populateDivisionSelect('ss-division');
+    document.getElementById('schedule-container').innerHTML = '<p class="empty-state">Select a division to load games.</p>';
+  };
+
+  function populateDivisionSelect(selectId) {
+    var el = document.getElementById(selectId);
+    while (el.options.length > 1) el.remove(1);
+    DIVISIONS.forEach(function (d) {
+      el.add(new Option(DIVISION_LABELS[d], d));
+    });
+  }
+
+  window.loadSchedule = function () {
+    var season = document.getElementById('ss-season').value;
+    var division = document.getElementById('ss-division').value;
+    if (!season || !division) return;
+    var container = document.getElementById('schedule-container');
+    container.innerHTML = '<div class="loading-bar"><span class="spinner"></span> Loading games…</div>';
+    apiFetch('league-get-schedule?season=' + encodeURIComponent(season) + '&division=' + encodeURIComponent(division) + '&status=scheduled')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var games = data.games || data || [];
+        renderSchedule(games, container);
+      })
+      .catch(function (err) {
+        container.innerHTML = '<p class="empty-state" style="color:#b22234;">Failed to load games: ' + err.message + '</p>';
+      });
+  };
+
+  function renderSchedule(games, container) {
+    if (!games.length) {
+      container.innerHTML = '<p class="empty-state">No scheduled games found for this season and division.</p>';
+      return;
+    }
+    var ul = document.createElement('ul');
+    ul.className = 'schedule-list';
+    games.forEach(function (g) {
+      var li = document.createElement('li');
+      li.className = 'schedule-item';
+      li.dataset.gameId = g.id;
+      var dateStr = g.date ? formatDate(g.date) : 'TBD';
+      var timeStr = g.time ? formatTime(g.time) : '';
+      li.innerHTML =
+        '<div class="schedule-item-header" onclick="toggleScoreForm(this.closest(\'.schedule-item\'))">' +
+          '<div>' +
+            '<div class="game-info">' + esc(g.home_team || g.homeTeam || 'Home') + ' vs ' + esc(g.away_team || g.awayTeam || 'Away') + '</div>' +
+            '<div class="game-meta">' + dateStr + (timeStr ? ' &bull; ' + timeStr : '') + '</div>' +
+          '</div>' +
+          '<span class="expand-icon">+</span>' +
+        '</div>' +
+        '<div class="score-form">' +
+          '<div class="score-inputs">' +
+            '<div class="score-field form-field">' +
+              '<label>' + esc(g.home_team || g.homeTeam || 'Home') + ' Score</label>' +
+              '<input type="number" class="home-score" min="0" placeholder="0" />' +
+            '</div>' +
+            '<div class="score-field form-field">' +
+              '<label>' + esc(g.away_team || g.awayTeam || 'Away') + ' Score</label>' +
+              '<input type="number" class="away-score" min="0" placeholder="0" />' +
+            '</div>' +
+            '<div class="score-submit">' +
+              '<button class="btn-sm" onclick="submitScore(\'' + g.id + '\', this)">Submit Score</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      ul.appendChild(li);
+    });
+    container.innerHTML = '';
+    container.appendChild(ul);
+  }
+
+  window.toggleScoreForm = function (item) {
+    var isExpanded = item.classList.contains('expanded');
+    document.querySelectorAll('.schedule-item.expanded').forEach(function (el) {
+      el.classList.remove('expanded');
+      el.querySelector('.expand-icon').textContent = '+';
+    });
+    if (!isExpanded) {
+      item.classList.add('expanded');
+      item.querySelector('.expand-icon').textContent = '-';
+      item.querySelector('.home-score').focus();
+    }
+  };
+
+  window.submitScore = function (gameId, btn) {
+    var item = btn.closest('.schedule-item');
+    var homeScore = item.querySelector('.home-score').value;
+    var awayScore = item.querySelector('.away-score').value;
+    if (homeScore === '' || awayScore === '') { showToast('Enter both scores.', 'error'); return; }
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Saving…';
+    apiFetch('league-submit-score', {
+      method: 'POST',
+      body: JSON.stringify({ game_id: gameId, home_score: parseInt(homeScore, 10), away_score: parseInt(awayScore, 10) })
+    })
+      .then(function (r) {
+        if (!r.ok) return r.json().then(function (d) { throw new Error(d.error || r.statusText); });
+        return r.json();
+      })
+      .then(function () {
+        showToast('Score submitted successfully!', 'success');
+        loadSchedule();
+        // Also refresh standings if same season/division is loaded
+        var stSeason = document.getElementById('st-season').value;
+        var stDiv = document.getElementById('st-division').value;
+        var ssSeason = document.getElementById('ss-season').value;
+        var ssDiv = document.getElementById('ss-division').value;
+        if (stSeason === ssSeason && stDiv === ssDiv) loadStandings();
+      })
+      .catch(function (err) {
+        showToast('Error: ' + err.message, 'error');
+        btn.disabled = false;
+        btn.textContent = 'Submit Score';
+      });
+  };
+
+  /* ─── Manage Teams tab ──────────────────────────────────────────── */
+  window.createTeam = function () {
+    var name = document.getElementById('ct-name').value.trim();
+    var season = document.getElementById('ct-season').value;
+    var division = document.getElementById('ct-division').value;
+    var coach = document.getElementById('ct-coach').value.trim();
+    if (!name) { showToast('Team name is required.', 'error'); return; }
+    if (!season) { showToast('Select a season.', 'error'); return; }
+    if (!division) { showToast('Select a division.', 'error'); return; }
+    var btn = event.target;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Creating…';
+    apiFetch('league-manage-teams', {
+      method: 'POST',
+      body: JSON.stringify({ name: name, season: season, division: division, coach: coach })
+    })
+      .then(function (r) {
+        if (!r.ok) return r.json().then(function (d) { throw new Error(d.error || r.statusText); });
+        return r.json();
+      })
+      .then(function () {
+        showToast('Team "' + name + '" created!', 'success');
+        document.getElementById('ct-name').value = '';
+        document.getElementById('ct-coach').value = '';
+        loadTeams();
+      })
+      .catch(function (err) {
+        showToast('Error: ' + err.message, 'error');
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = 'Create Team';
+      });
+  };
+
+  window.loadTeams = function () {
+    var season = document.getElementById('lt-season').value;
+    var container = document.getElementById('teams-container');
+    container.innerHTML = '<div class="loading-bar"><span class="spinner"></span> Loading teams…</div>';
+    var url = 'league-manage-teams' + (season ? '?season=' + encodeURIComponent(season) : '');
+    apiFetch(url)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        allTeams = data.teams || data || [];
+        renderTeams(allTeams, container);
+      })
+      .catch(function (err) {
+        container.innerHTML = '<p class="empty-state" style="color:#b22234;">Failed to load teams: ' + err.message + '</p>';
+      });
+  };
+
+  function renderTeams(teams, container) {
+    if (!teams.length) {
+      container.innerHTML = '<p class="empty-state">No teams found.</p>';
+      return;
+    }
+    // Group by division
+    var grouped = {};
+    DIVISIONS.forEach(function (d) { grouped[d] = []; });
+    teams.forEach(function (t) {
+      var div = t.division || 'Other';
+      if (!grouped[div]) grouped[div] = [];
+      grouped[div].push(t);
+    });
+    var html = '';
+    DIVISIONS.forEach(function (div) {
+      if (!grouped[div] || !grouped[div].length) return;
+      html += '<div class="division-header">' + esc(DIVISION_LABELS[div] || div) + '</div>';
+      html += '<ul class="team-list">';
+      grouped[div].forEach(function (t) {
+        html +=
+          '<li class="team-item" id="team-item-' + esc(t.id) + '">' +
+            '<div class="team-item-info">' +
+              '<div class="team-name">' + esc(t.name) + '</div>' +
+              (t.coach ? '<div class="team-coach">Coach: ' + esc(t.coach) + '</div>' : '') +
+            '</div>' +
+            '<div class="team-actions">' +
+              '<button class="btn-sm btn-secondary" onclick="openTeamEdit(\'' + esc(t.id) + '\')">Edit</button>' +
+            '</div>' +
+          '</li>' +
+          '<li id="team-edit-' + esc(t.id) + '" class="inline-edit-form">' +
+            '<div class="form-row">' +
+              '<div class="form-field"><label>Name</label><input type="text" id="te-name-' + esc(t.id) + '" value="' + esc(t.name) + '" /></div>' +
+              '<div class="form-field"><label>Coach</label><input type="text" id="te-coach-' + esc(t.id) + '" value="' + esc(t.coach || '') + '" /></div>' +
+              '<div class="form-field"><label>Division</label>' +
+                '<select id="te-div-' + esc(t.id) + '">' +
+                  DIVISIONS.map(function (d) { return '<option value="' + d + '"' + (t.division === d ? ' selected' : '') + '>' + DIVISION_LABELS[d] + '</option>'; }).join('') +
+                '</select>' +
+              '</div>' +
+              '<div class="form-actions">' +
+                '<button class="btn-sm" onclick="saveTeamEdit(\'' + esc(t.id) + '\')">Save</button>' +
+                '<button class="btn-sm btn-secondary" onclick="closeTeamEdit(\'' + esc(t.id) + '\')">Cancel</button>' +
+              '</div>' +
+            '</div>' +
+          '</li>';
+      });
+      html += '</ul>';
+    });
+    container.innerHTML = html;
+  }
+
+  window.openTeamEdit = function (id) {
+    closeAllTeamEdits();
+    document.getElementById('team-edit-' + id).classList.add('open');
+  };
+  window.closeTeamEdit = function (id) {
+    document.getElementById('team-edit-' + id).classList.remove('open');
+  };
+  function closeAllTeamEdits() {
+    document.querySelectorAll('.inline-edit-form.open').forEach(function (el) { el.classList.remove('open'); });
+  }
+
+  window.saveTeamEdit = function (id) {
+    var name = document.getElementById('te-name-' + id).value.trim();
+    var coach = document.getElementById('te-coach-' + id).value.trim();
+    var division = document.getElementById('te-div-' + id).value;
+    if (!name) { showToast('Team name is required.', 'error'); return; }
+    var btn = event.target;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>';
+    apiFetch('league-manage-teams', {
+      method: 'PUT',
+      body: JSON.stringify({ id: id, name: name, coach: coach, division: division })
+    })
+      .then(function (r) {
+        if (!r.ok) return r.json().then(function (d) { throw new Error(d.error || r.statusText); });
+        return r.json();
+      })
+      .then(function () {
+        showToast('Team updated.', 'success');
+        loadTeams();
+      })
+      .catch(function (err) {
+        showToast('Error: ' + err.message, 'error');
+        btn.disabled = false;
+        btn.textContent = 'Save';
+      });
+  };
+
+  /* ─── Create Game tab ───────────────────────────────────────────── */
+  window.onCGSeasonChange = function () {
+    populateDivisionSelect('cg-division');
+    resetSelect('cg-home', '-- Select division first --');
+    resetSelect('cg-away', '-- Select division first --');
+  };
+
+  window.loadGameTeams = function () {
+    var season = document.getElementById('cg-season').value;
+    var division = document.getElementById('cg-division').value;
+    if (!season || !division) return;
+    apiFetch('league-manage-teams?season=' + encodeURIComponent(season) + '&division=' + encodeURIComponent(division))
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var teams = data.teams || data || [];
+        populateTeamSelects(teams, 'cg-home', 'cg-away');
+      })
+      .catch(function () {
+        resetSelect('cg-home', '-- Failed to load --');
+        resetSelect('cg-away', '-- Failed to load --');
+      });
+  };
+
+  function populateTeamSelects(teams, id1, id2) {
+    [id1, id2].forEach(function (id) {
+      var el = document.getElementById(id);
+      while (el.options.length > 0) el.remove(0);
+      el.add(new Option('-- Select team --', ''));
+      teams.forEach(function (t) { el.add(new Option(t.name, t.id)); });
+    });
+  }
+
+  window.scheduleGame = function () {
+    var season = document.getElementById('cg-season').value;
+    var division = document.getElementById('cg-division').value;
+    var date = document.getElementById('cg-date').value;
+    var time = document.getElementById('cg-time').value;
+    var home = document.getElementById('cg-home').value;
+    var away = document.getElementById('cg-away').value;
+    if (!season) { showToast('Select a season.', 'error'); return; }
+    if (!division) { showToast('Select a division.', 'error'); return; }
+    if (!date) { showToast('Select a date.', 'error'); return; }
+    if (!home) { showToast('Select a home team.', 'error'); return; }
+    if (!away) { showToast('Select an away team.', 'error'); return; }
+    if (home === away) { showToast('Home and away teams must be different.', 'error'); return; }
+    var btn = event.target;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Scheduling…';
+    apiFetch('league-manage-teams', {
+      method: 'POST',
+      body: JSON.stringify({ resource: 'game', season: season, division: division, date: date, time: time, home_team_id: home, away_team_id: away })
+    })
+      .then(function (r) {
+        if (!r.ok) return r.json().then(function (d) { throw new Error(d.error || r.statusText); });
+        return r.json();
+      })
+      .then(function () {
+        showToast('Game scheduled!', 'success');
+        document.getElementById('cg-date').value = '';
+        document.getElementById('cg-time').value = '';
+        document.getElementById('cg-home').value = '';
+        document.getElementById('cg-away').value = '';
+      })
+      .catch(function (err) {
+        showToast('Error: ' + err.message, 'error');
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = 'Schedule Game';
+      });
+  };
+
+  /* ─── Standings tab ─────────────────────────────────────────────── */
+  window.onSTSeasonChange = function () {
+    populateDivisionSelect('st-division');
+    document.getElementById('standings-container').innerHTML = '<p class="empty-state">Select a division to view standings.</p>';
+  };
+
+  window.loadStandings = function () {
+    var season = document.getElementById('st-season').value;
+    var division = document.getElementById('st-division').value;
+    if (!season || !division) return;
+    var container = document.getElementById('standings-container');
+    container.innerHTML = '<div class="loading-bar"><span class="spinner"></span> Loading standings…</div>';
+    apiFetch('league-get-standings?season=' + encodeURIComponent(season) + '&division=' + encodeURIComponent(division))
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var rows = data.standings || data || [];
+        renderStandings(rows, container);
+      })
+      .catch(function (err) {
+        container.innerHTML = '<p class="empty-state" style="color:#b22234;">Failed to load standings: ' + err.message + '</p>';
+      });
+  };
+
+  function renderStandings(rows, container) {
+    if (!rows.length) {
+      container.innerHTML = '<p class="empty-state">No standings data available.</p>';
+      return;
+    }
+    var html =
+      '<div style="overflow-x:auto;">' +
+      '<table class="standings-table">' +
+        '<thead><tr>' +
+          '<th style="text-align:center;">#</th>' +
+          '<th>Team</th>' +
+          '<th>W</th>' +
+          '<th>L</th>' +
+          '<th>Win%</th>' +
+          '<th>PF</th>' +
+          '<th>PA</th>' +
+          '<th>+/-</th>' +
+          '<th>Streak</th>' +
+        '</tr></thead>' +
+        '<tbody>';
+    rows.forEach(function (r, i) {
+      var diff = (r.points_for || 0) - (r.points_against || 0);
+      var diffStr = diff > 0 ? '+' + diff : String(diff);
+      var winPct = r.win_pct != null ? (parseFloat(r.win_pct) * 100).toFixed(1) + '%' : (r.wins + r.losses > 0 ? ((r.wins / (r.wins + r.losses)) * 100).toFixed(1) + '%' : '—');
+      html +=
+        '<tr>' +
+          '<td class="rank-col">' + (r.rank || i + 1) + '</td>' +
+          '<td>' + esc(r.team_name || r.name || 'Unknown') + '</td>' +
+          '<td>' + (r.wins || 0) + '</td>' +
+          '<td>' + (r.losses || 0) + '</td>' +
+          '<td class="win-pct">' + winPct + '</td>' +
+          '<td>' + (r.points_for || 0) + '</td>' +
+          '<td>' + (r.points_against || 0) + '</td>' +
+          '<td>' + diffStr + '</td>' +
+          '<td>' + esc(r.streak || '—') + '</td>' +
+        '</tr>';
+    });
+    html += '</tbody></table></div>';
+    container.innerHTML = html;
+  }
+
+  /* ─── Create Season tab ─────────────────────────────────────────── */
+  window.createSeason = function () {
+    var name = document.getElementById('cs-name').value.trim();
+    var start = document.getElementById('cs-start').value;
+    var end = document.getElementById('cs-end').value;
+    var divs = [];
+    ['div-mini', 'div-junior', 'div-intermediate', 'div-senior'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el.checked) divs.push(el.value);
+    });
+    if (!name) { showToast('Season name is required.', 'error'); return; }
+    if (!start || !end) { showToast('Start and end dates are required.', 'error'); return; }
+    if (new Date(end) <= new Date(start)) { showToast('End date must be after start date.', 'error'); return; }
+    if (!divs.length) { showToast('Select at least one division.', 'error'); return; }
+    var btn = event.target;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Creating…';
+    apiFetch('league-manage-teams', {
+      method: 'POST',
+      body: JSON.stringify({ resource: 'season', name: name, start_date: start, end_date: end, divisions: divs })
+    })
+      .then(function (r) {
+        if (!r.ok) return r.json().then(function (d) { throw new Error(d.error || r.statusText); });
+        return r.json();
+      })
+      .then(function () {
+        showToast('Season "' + name + '" created!', 'success');
+        document.getElementById('cs-name').value = '';
+        document.getElementById('cs-start').value = '';
+        document.getElementById('cs-end').value = '';
+        loadSeasons();
+      })
+      .catch(function (err) {
+        showToast('Error: ' + err.message, 'error');
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = 'Create Season';
+      });
+  };
+
+  /* ─── Utilities ──────────────────────────────────────────────────── */
+  var toastTimer = null;
+  window.showToast = function (msg, type) {
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'show ' + (type || 'info');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.className = type || 'info'; }, 3000);
+  };
+
+  function esc(str) {
+    if (str == null) return '';
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function resetSelect(id, placeholder) {
+    var el = document.getElementById(id);
+    while (el.options.length > 0) el.remove(0);
+    el.add(new Option(placeholder, ''));
+  }
+
+  function formatDate(str) {
+    try {
+      var d = new Date(str + (str.length === 10 ? 'T00:00:00' : ''));
+      return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+    } catch (e) { return str; }
+  }
+
+  function formatTime(str) {
+    try {
+      var parts = str.split(':');
+      var h = parseInt(parts[0], 10);
+      var m = parts[1];
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+      return h + ':' + m + ' ' + ampm;
+    } catch (e) { return str; }
+  }
+
+})();
+</script>

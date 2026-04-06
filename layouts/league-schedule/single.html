@@ -1,0 +1,189 @@
+{{ define "main" }}
+
+<!-- Hero -->
+<section class="bg-navy py-24 text-center">
+  <div class="max-w-4xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">FCP Sports Leagues</span>
+    <h1 class="font-display text-6xl md:text-7xl text-white mt-3 mb-6 leading-none">{{ .Params.h1 | default .Title }}</h1>
+    <p class="text-white/70 text-lg max-w-2xl mx-auto">{{ .Description }}</p>
+  </div>
+</section>
+
+<!-- Filters + Schedule -->
+<section class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <!-- Filters -->
+    <div class="bg-gray-50 rounded-2xl p-6 mb-10 flex flex-col sm:flex-row gap-4">
+      <div class="flex-1">
+        <label for="sched-season" class="block text-sm font-semibold text-navy mb-1">Season</label>
+        <select id="sched-season" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-gold focus:outline-none">
+          <option value="">Select season…</option>
+        </select>
+      </div>
+      <div class="flex-1">
+        <label for="sched-division" class="block text-sm font-semibold text-navy mb-1">Division</label>
+        <select id="sched-division" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-gold focus:outline-none">
+          <option value="">Select division…</option>
+        </select>
+      </div>
+      <div class="flex-1">
+        <label for="sched-status" class="block text-sm font-semibold text-navy mb-1">Status</label>
+        <select id="sched-status" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-gold focus:outline-none">
+          <option value="">All Games</option>
+          <option value="scheduled">Upcoming</option>
+          <option value="final">Final</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="sched-loading" class="hidden text-center py-16">
+      <div class="inline-block w-10 h-10 border-4 border-gray-200 border-t-gold rounded-full animate-spin"></div>
+      <p class="text-gray-500 mt-3 text-sm">Loading schedule…</p>
+    </div>
+
+    <!-- Empty State -->
+    <div id="sched-empty" class="text-center py-16">
+      <p class="font-display text-2xl text-navy mb-2">Select a Season &amp; Division</p>
+      <p class="text-gray-500">Choose filters above to see the game schedule.</p>
+    </div>
+
+    <!-- Error -->
+    <div id="sched-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-xl p-4 mb-8 text-sm"></div>
+
+    <!-- Schedule Container -->
+    <div id="sched-container" class="hidden space-y-10"></div>
+
+    <!-- Prose content -->
+    <div class="prose prose-lg max-w-none mt-16 prose-headings:font-display prose-headings:text-navy prose-a:text-gold">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+
+{{ partial "cta-section.html" . }}
+
+<style>
+@keyframes spin{to{transform:rotate(360deg)}}
+.animate-spin{animation:spin .7s linear infinite}
+</style>
+
+<script>
+(function(){
+  const API = '/.netlify/functions';
+  const $season = document.getElementById('sched-season');
+  const $division = document.getElementById('sched-division');
+  const $status = document.getElementById('sched-status');
+  const $loading = document.getElementById('sched-loading');
+  const $empty = document.getElementById('sched-empty');
+  const $error = document.getElementById('sched-error');
+  const $container = document.getElementById('sched-container');
+
+  function show(el){ el.classList.remove('hidden') }
+  function hide(el){ el.classList.add('hidden') }
+  function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+  async function loadFilters(){
+    try{
+      const res = await fetch(API+'/league-manage-teams?resource=seasons');
+      if(!res.ok) return;
+      const data = await res.json();
+      if(Array.isArray(data.seasons)){
+        data.seasons.forEach(function(s){
+          const o = document.createElement('option');
+          o.value = s.name; o.textContent = s.name;
+          $season.appendChild(o);
+        });
+      }
+    }catch(e){ console.warn('Could not load seasons',e) }
+  }
+
+  $season.addEventListener('change', function(){
+    $division.innerHTML = '<option value="">Select division…</option>';
+    if(!$season.value) return;
+    ['Mini','Junior','Intermediate','Senior'].forEach(function(d){
+      const o = document.createElement('option');
+      o.value = d; o.textContent = d;
+      $division.appendChild(o);
+    });
+  });
+
+  $division.addEventListener('change', loadSchedule);
+  $status.addEventListener('change', loadSchedule);
+
+  async function loadSchedule(){
+    const season = $season.value;
+    const division = $division.value;
+    if(!season || !division){ show($empty); hide($container); hide($error); return; }
+
+    hide($empty); hide($error); hide($container); show($loading);
+
+    try{
+      let url = API+'/league-get-schedule?season='+encodeURIComponent(season)+'&division='+encodeURIComponent(division);
+      if($status.value) url += '&status='+encodeURIComponent($status.value);
+
+      const res = await fetch(url);
+      if(!res.ok) throw new Error('API returned '+res.status);
+      const games = await res.json();
+      hide($loading);
+
+      if(!games || !games.length){
+        $empty.innerHTML = '<p class="font-display text-2xl text-navy mb-2">No Games Scheduled</p><p class="text-gray-500">Check back soon — the schedule will be posted before the season starts!</p>';
+        show($empty); return;
+      }
+
+      // Group by date
+      const grouped = {};
+      games.forEach(function(g){
+        const d = g.Date || 'TBD';
+        if(!grouped[d]) grouped[d] = [];
+        grouped[d].push(g);
+      });
+
+      $container.innerHTML = '';
+      Object.keys(grouped).sort().forEach(function(dateStr){
+        const dateGames = grouped[dateStr];
+        const formatted = dateStr !== 'TBD' ? new Date(dateStr+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : 'Date TBD';
+
+        let html = '<div><h2 class="font-display text-2xl text-navy mb-4 border-b-2 border-gold pb-2">'+esc(formatted)+'</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+
+        dateGames.forEach(function(g){
+          const isFinal = g.Status === 'final';
+          const badge = isFinal
+            ? '<span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded-full">Final</span>'
+            : '<span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded-full">Upcoming</span>';
+
+          const score = isFinal
+            ? '<div class="font-display text-3xl text-navy mt-3">'+((g.HomeScore)||0)+' &ndash; '+((g.AwayScore)||0)+'</div>'
+            : '<div class="text-gray-400 text-sm mt-3">'+(g.Time||'Time TBD')+'</div>';
+
+          html +=
+            '<div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">'+
+            '<div class="flex justify-between items-start mb-2">'+
+            '<div class="text-sm text-gray-500">'+(g.Time||'')+'</div>'+
+            badge+
+            '</div>'+
+            '<div class="font-semibold text-navy">'+esc(g.HomeTeam||'TBD')+' <span class="text-gray-400">vs</span> '+esc(g.AwayTeam||'TBD')+'</div>'+
+            score+
+            '<div class="text-xs text-gray-400 mt-2">'+(g.Location||'FCP Sports — Fort Walton Beach')+'</div>'+
+            '</div>';
+        });
+
+        html += '</div></div>';
+        $container.innerHTML += html;
+      });
+      show($container);
+    }catch(e){
+      hide($loading);
+      $error.textContent = 'Unable to load schedule. Please try again.';
+      show($error);
+      console.error(e);
+    }
+  }
+
+  loadFilters();
+})();
+</script>
+
+{{ end }}

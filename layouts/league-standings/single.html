@@ -1,0 +1,178 @@
+{{ define "main" }}
+
+<!-- Hero -->
+<section class="bg-navy py-24 text-center">
+  <div class="max-w-4xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">FCP Sports Leagues</span>
+    <h1 class="font-display text-6xl md:text-7xl text-white mt-3 mb-6 leading-none">{{ .Params.h1 | default .Title }}</h1>
+    <p class="text-white/70 text-lg max-w-2xl mx-auto">{{ .Description }}</p>
+  </div>
+</section>
+
+<!-- Filters + Standings -->
+<section class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <!-- Filters -->
+    <div class="bg-gray-50 rounded-2xl p-6 mb-10 flex flex-col sm:flex-row gap-4">
+      <div class="flex-1">
+        <label for="season-select" class="block text-sm font-semibold text-navy mb-1">Season</label>
+        <select id="season-select" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-gold focus:outline-none">
+          <option value="">Select season…</option>
+        </select>
+      </div>
+      <div class="flex-1">
+        <label for="division-select" class="block text-sm font-semibold text-navy mb-1">Division</label>
+        <select id="division-select" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-gold focus:outline-none">
+          <option value="">Select division…</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="standings-loading" class="hidden text-center py-16">
+      <div class="inline-block w-10 h-10 border-4 border-gray-200 border-t-gold rounded-full animate-spin"></div>
+      <p class="text-gray-500 mt-3 text-sm">Loading standings…</p>
+    </div>
+
+    <!-- Empty State -->
+    <div id="standings-empty" class="text-center py-16">
+      <p class="font-display text-2xl text-navy mb-2">Select a Season &amp; Division</p>
+      <p class="text-gray-500">Choose filters above to view the current standings.</p>
+    </div>
+
+    <!-- Error -->
+    <div id="standings-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-xl p-4 mb-8 text-sm"></div>
+
+    <!-- Standings Table -->
+    <div id="standings-table-wrap" class="hidden overflow-x-auto rounded-2xl shadow-md">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-navy text-white font-display tracking-wide text-xs uppercase">
+            <th class="px-4 py-3 text-left">#</th>
+            <th class="px-4 py-3 text-left">Team</th>
+            <th class="px-4 py-3 text-center">W</th>
+            <th class="px-4 py-3 text-center">L</th>
+            <th class="px-4 py-3 text-center">Win%</th>
+            <th class="px-4 py-3 text-center">PF</th>
+            <th class="px-4 py-3 text-center">PA</th>
+            <th class="px-4 py-3 text-center">+/&minus;</th>
+            <th class="px-4 py-3 text-center">Streak</th>
+          </tr>
+        </thead>
+        <tbody id="standings-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- Prose content -->
+    <div class="prose prose-lg max-w-none mt-16 prose-headings:font-display prose-headings:text-navy prose-a:text-gold">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+
+{{ partial "cta-section.html" . }}
+
+<style>
+@keyframes spin{to{transform:rotate(360deg)}}
+.animate-spin{animation:spin .7s linear infinite}
+</style>
+
+<script>
+(function(){
+  const API = '/.netlify/functions';
+  const $season = document.getElementById('season-select');
+  const $division = document.getElementById('division-select');
+  const $loading = document.getElementById('standings-loading');
+  const $empty = document.getElementById('standings-empty');
+  const $error = document.getElementById('standings-error');
+  const $tableWrap = document.getElementById('standings-table-wrap');
+  const $tbody = document.getElementById('standings-tbody');
+
+  function show(el){ el.classList.remove('hidden') }
+  function hide(el){ el.classList.add('hidden') }
+  function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+  async function loadFilters(){
+    try{
+      const res = await fetch(API+'/league-manage-teams?resource=seasons');
+      if(!res.ok) return;
+      const data = await res.json();
+      if(Array.isArray(data.seasons)){
+        data.seasons.forEach(function(s){
+          const o = document.createElement('option');
+          o.value = s.name; o.textContent = s.name;
+          $season.appendChild(o);
+        });
+      }
+    }catch(e){ console.warn('Could not load seasons',e) }
+  }
+
+  $season.addEventListener('change', function(){
+    // populate divisions based on season
+    const sel = $season.value;
+    $division.innerHTML = '<option value="">Select division…</option>';
+    if(!sel) return;
+    // divisions are standard
+    ['Mini','Junior','Intermediate','Senior'].forEach(function(d){
+      const o = document.createElement('option');
+      o.value = d; o.textContent = d;
+      $division.appendChild(o);
+    });
+  });
+
+  $division.addEventListener('change', loadStandings);
+
+  async function loadStandings(){
+    const season = $season.value;
+    const division = $division.value;
+    if(!season || !division){ show($empty); hide($tableWrap); hide($error); return; }
+
+    hide($empty); hide($error); hide($tableWrap); show($loading);
+
+    try{
+      const res = await fetch(API+'/league-get-standings?season='+encodeURIComponent(season)+'&division='+encodeURIComponent(division));
+      if(!res.ok) throw new Error('API returned '+res.status);
+      const teams = await res.json();
+      hide($loading);
+
+      if(!teams || !teams.length){
+        $empty.innerHTML = '<p class="font-display text-2xl text-navy mb-2">No Standings Yet</p><p class="text-gray-500">Season hasn\'t started yet — check back soon!</p>';
+        show($empty); return;
+      }
+
+      $tbody.innerHTML = '';
+      teams.forEach(function(t, i){
+        const w = t.W||0, l = t.L||0, pf = t.PF||0, pa = t.PA||0;
+        const pct = (w+l)>0 ? (w/(w+l)).toFixed(3) : '.000';
+        const diff = pf - pa;
+        const diffStr = diff > 0 ? '+'+diff : ''+diff;
+        const streak = t.Streak || '—';
+        const cls = i%2===0 ? 'bg-white' : 'bg-gray-50';
+        $tbody.innerHTML +=
+          '<tr class="'+cls+' hover:bg-gold/5">'+
+          '<td class="px-4 py-3 font-bold text-navy">'+(i+1)+'</td>'+
+          '<td class="px-4 py-3 font-semibold text-navy">'+esc(t.Name)+'</td>'+
+          '<td class="px-4 py-3 text-center">'+w+'</td>'+
+          '<td class="px-4 py-3 text-center">'+l+'</td>'+
+          '<td class="px-4 py-3 text-center">'+pct+'</td>'+
+          '<td class="px-4 py-3 text-center">'+pf+'</td>'+
+          '<td class="px-4 py-3 text-center">'+pa+'</td>'+
+          '<td class="px-4 py-3 text-center font-semibold '+(diff>0?'text-green-600':diff<0?'text-red-600':'text-gray-400')+'">'+diffStr+'</td>'+
+          '<td class="px-4 py-3 text-center font-display">'+esc(streak)+'</td>'+
+          '</tr>';
+      });
+      show($tableWrap);
+    }catch(e){
+      hide($loading);
+      $error.textContent = 'Unable to load standings. Please try again.';
+      show($error);
+      console.error(e);
+    }
+  }
+
+  loadFilters();
+})();
+</script>
+
+{{ end }}

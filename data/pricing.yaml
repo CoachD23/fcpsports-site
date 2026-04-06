@@ -1,41 +1,76 @@
-- name: "Little Ballers"
-  ages: "Ages 5-8 (K-2nd)"
-  price: "Contact for pricing"
-  frequency: "Weekly sessions"
-  highlight: false
-  features:
-    - "Fundamentals and fun"
-    - "Small group sizes (max 8)"
-    - "Monthly progress reports"
-    - "Parent updates after each session"
-
-- name: "Junior Program"
-  ages: "Ages 8-11 (3rd-5th)"
-  price: "Contact for pricing"
-  frequency: "2x per week"
-  highlight: false
-  features:
-    - "Skill-based curriculum"
-    - "Position training"
-    - "Game IQ development"
-    - "League play included"
-
-- name: "Elite Youth"
-  ages: "Ages 11-14 (6th-8th)"
-  price: "Contact for pricing"
-  frequency: "3x per week"
+- name: "Summer Day Camp"
+  ages: "Grades 3-10 (Ages 8-16)"
+  price: "$149"
+  frequency: "per week"
   highlight: true
   features:
-    - "Competitive prep"
-    - "AAU pipeline access"
-    - "Film review sessions"
-    - "Recruiting education"
+    - "5-day camp (Mon-Fri, 9am-3pm)"
+    - "Structured drills, scrimmages & film review"
+    - "Grouped by age and skill level"
+    - "Early bird: $129 (before May 1)"
+    - "Military & sibling discounts available"
+
+- name: "Girls-Only Camp"
+  ages: "Grades 6-10"
+  price: "$149"
+  frequency: "per week"
+  highlight: false
+  features:
+    - "The only girls basketball camp in the Panhandle"
+    - "5-day camp (Mon-Fri, 9am-3pm)"
+    - "June 15-19, 2026"
+    - "Early bird: $129 (before May 1)"
+
+- name: "Basketball League"
+  ages: "Ages 5-18 (K-12th)"
+  price: "From $59"
+  frequency: "per season"
+  highlight: true
+  features:
+    - "Fall, summer & little league seasons"
+    - "Jersey included in registration"
+    - "Trained refs, stats & standings"
+    - "Playoff brackets & champion trophies"
+    - "Military & sibling discounts available"
+
+- name: "Kenny Anderson Clinic"
+  ages: "Grades 6-12"
+  price: "$49"
+  frequency: "per session"
+  highlight: false
+  features:
+    - "Train with NBA veteran Kenny Anderson"
+    - "Monthly Saturday clinics (Oct-Feb)"
+    - "2-hour intensive sessions"
+    - "5-session pack: $199 (save $46)"
+
+- name: "Elite Showcase Camp"
+  ages: "Grades 9-12"
+  price: "$129"
+  frequency: "2-day camp"
+  highlight: false
+  features:
+    - "College recruiting exposure"
+    - "During NCAA evaluation period"
+    - "July 17-18, 2026"
+    - "Film and stats provided"
+
+- name: "Holiday & Spring Break Camps"
+  ages: "Grades 4-10"
+  price: "From $79"
+  frequency: "per camp"
+  highlight: false
+  features:
+    - "Holiday Camp: $79 (Dec 28-30)"
+    - "Spring Break Camp: $129 (Mar 15-18)"
+    - "Perfect for school breaks"
+    - "Military & sibling discounts available"
 
 - name: "Summer AAU Program"
   ages: "Ages 12-18"
   price: "$6,799"
   frequency: "Full summer"
-  highlight: true
+  highlight: false
   features:
     - "Tournament travel included"
     - "NCAA exposure window events"

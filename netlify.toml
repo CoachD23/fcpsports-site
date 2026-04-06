@@ -2,6 +2,9 @@
   publish = "public"
   command = "npm ci && hugo --minify"
 
+[functions]
+  directory = "netlify/functions"
+
 [build.environment]
   HUGO_VERSION = "0.157.0"
   NODE_VERSION = "20"
