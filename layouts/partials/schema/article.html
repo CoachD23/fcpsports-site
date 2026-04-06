@@ -1,0 +1,31 @@
+{{ if eq .Section "blog" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ .Title | jsonify }},
+  "description": {{ .Description | jsonify }},
+  "url": "{{ .Permalink }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "author": {
+    "@type": "Organization",
+    "name": "FCP Sports",
+    "url": "https://fcpsports.org"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "FCP Sports",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://fcpsports.org/images/fcp-sports-logo.png"
+    }
+  },
+  "image": "https://fcpsports.org/images/fcp-sports-basketball-training-fort-walton-beach.jpg",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+{{ end }}

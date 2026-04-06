@@ -1,0 +1,20 @@
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  "name": "Main Navigation",
+  "url": "https://fcpsports.org",
+  "hasPart": [
+    {"@type": "SiteNavigationElement", "name": "Basketball Camps", "url": "https://fcpsports.org/camps/"},
+    {"@type": "SiteNavigationElement", "name": "Basketball Leagues", "url": "https://fcpsports.org/leagues/"},
+    {"@type": "SiteNavigationElement", "name": "Skills Training", "url": "https://fcpsports.org/services/basketball-training/"},
+    {"@type": "SiteNavigationElement", "name": "Private Lessons", "url": "https://fcpsports.org/services/basketball-lessons/"},
+    {"@type": "SiteNavigationElement", "name": "Open Gym", "url": "https://fcpsports.org/services/open-gym/"},
+    {"@type": "SiteNavigationElement", "name": "Gym Rental", "url": "https://fcpsports.org/services/gym-rental/"},
+    {"@type": "SiteNavigationElement", "name": "Pricing", "url": "https://fcpsports.org/pricing/"},
+    {"@type": "SiteNavigationElement", "name": "Contact", "url": "https://fcpsports.org/contact/"}
+  ]
+}
+</script>
+{{ end }}
