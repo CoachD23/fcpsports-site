@@ -1,0 +1,17 @@
+# FCP Sports (fcpsports.org) — Toxic backlink disavow file
+# Generated: 2026-04-05
+# All referring domains are spam link farms — zero legitimate backlinks
+# Submit at: https://search.google.com/search-console/disavow-links
+
+domain:buybacklinks.agency
+domain:seoexpress.org
+domain:rankyour.website
+domain:prolinkbox.com
+domain:seoagency.sale
+domain:creativeposts.top
+domain:leonlinks.agency
+domain:rank-fast.agency
+domain:rankpilot.shop
+domain:seo-high-ranking.shop
+domain:backlinker.shop
+domain:flibanserina4es-x7.top
