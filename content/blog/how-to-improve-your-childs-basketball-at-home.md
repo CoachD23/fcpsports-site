@@ -3,6 +3,7 @@ title: "At-Home Basketball Drills for Kids: Simple, No-Gym Required | FCP Sports
 description: "Simple at-home basketball drills for parents — no gym required. Help your child improve ball handling, shooting, and footwork between training sessions."
 date: 2026-03-01
 category: "Training Tips"
+featured_image: "/images/blog/fcp-sports-youth-training.jpg"
 ---
 
 The biggest gains in youth basketball development don't always happen at practice. They happen in the driveway at 6 PM on a Tuesday, or in the garage before school, or during 20 minutes of focused work on a Wednesday when there's no scheduled training.

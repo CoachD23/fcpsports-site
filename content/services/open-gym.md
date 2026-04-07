@@ -1,4 +1,5 @@
 ---
+hero_image: /images/hero-loc-11.jpg
 title: "Open Gym Basketball Fort Walton Beach FL | FCP Sports"
 description: "Open gym basketball in Fort Walton Beach — drop-in pickup games, individual work & free play. The only dedicated indoor basketball open gym on the Emerald Coast."
 h1: "Open Gym Basketball in Fort Walton Beach — Drop-In Pickup Games at FCP Sports"
@@ -6,6 +7,7 @@ keyword: "open gym basketball fort walton beach"
 age_range: "Youth & Adult"
 price: "Drop-in rates available"
 frequency: "Weekly schedule"
+ghl_tag: "open-gym-inquiry"
 faq:
   - q: "Where can I play pickup basketball near Fort Walton Beach?"
     a: "FCP Sports is the only dedicated indoor basketball open gym between Pensacola and Panama City. We run adult and youth open gym sessions on a weekly schedule. Unlike outdoor courts — which are largely unusable in Florida summer heat and afternoon rain — our facility is climate-controlled with hardwood floors, regulation hoops, and a scoreboard."

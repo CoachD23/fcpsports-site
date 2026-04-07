@@ -1,4 +1,5 @@
 ---
+hero_image: /images/hero-loc-3.jpg
 title: "Basketball Training Fort Walton Beach FL | FCP Sports"
 description: "Basketball training near me — FCP Sports offers progressive skill development for youth, middle school & high school players in Fort Walton Beach."
 h1: "Basketball Training in Fort Walton Beach — Personalized Skill Development at FCP Sports"
@@ -6,6 +7,7 @@ keyword: "basketball training near me"
 age_range: "Ages 8–18"
 price: "Contact for pricing"
 frequency: "Weekly sessions"
+ghl_tag: "training-inquiry"
 course_type: "basketball training"
 faq:
   - q: "Where can I find basketball training near me on the Emerald Coast?"

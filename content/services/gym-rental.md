@@ -1,4 +1,5 @@
 ---
+hero_image: /images/hero-heic-IMG_2918.jpg
 title: "Basketball Gym Rental Fort Walton Beach FL | FCP Sports"
 description: "Rent a private basketball court in Fort Walton Beach. Gym rental on the Emerald Coast for team practices, birthday parties, tryouts & private events."
 h1: "Basketball Gym Rental in Fort Walton Beach — Rent a Private Court at FCP Sports"
@@ -6,6 +7,7 @@ keyword: "basketball gym rental fort walton beach"
 age_range: "All ages"
 price: "Contact for rates"
 frequency: "Flexible booking"
+ghl_tag: "gym-rental-inquiry"
 faq:
   - q: "How much does it cost to rent a basketball gym in Fort Walton Beach?"
     a: "Rental rates at FCP Sports are based on block length (1-hour, 2-hour, half-day, and full-day blocks are available) and the day of the week. Weekday rates are lower than weekend rates. Recurring renters (teams that book weekly) receive discounted rates. Contact us for current pricing and availability."

@@ -1,4 +1,5 @@
 ---
+hero_image: /images/hero-heic-IMG_2916.jpg
 title: "Basketball Training Pensacola FL | FCP Sports"
 description: "Pensacola families drive 45 minutes to FCP Sports for a reason — specialized basketball training, elite coaching, and programs Pensacola doesn't offer. Weekend intensives available."
 h1: "Basketball Training for Pensacola Players"

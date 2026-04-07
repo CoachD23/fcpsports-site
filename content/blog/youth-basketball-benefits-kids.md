@@ -3,6 +3,7 @@ title: "8 Science-Backed Benefits of Youth Basketball for Kids | FCP Sports"
 description: "8 science-backed benefits of youth basketball for kids — physical health, social development, academic performance, and life skills that last beyond the court."
 date: 2026-02-20
 category: "Youth Development"
+featured_image: "/images/blog/fcp-sports-coaching.jpg"
 ---
 
 Every parent who has watched their kid drain their first jump shot or make their first no-look pass has felt it — something more than the sport happening in front of them. Youth basketball isn't just about learning to dribble and shoot. The research supports what coaches and parents have observed for decades: competitive team sports, and basketball in particular, deliver measurable benefits that extend far beyond the gym.

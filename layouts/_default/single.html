@@ -1,4 +1,10 @@
 {{ define "main" }}
+{{ $featImg := .Params.featured_image }}
+{{ if $featImg }}
+<div class="w-full" style="max-height:460px;overflow:hidden;">
+  <img src="{{ $featImg }}" alt="{{ .Title }}" class="w-full object-cover" style="max-height:460px;object-position:center;" loading="eager" width="1200" height="460" />
+</div>
+{{ end }}
 <article class="py-24 bg-white">
   <div class="max-w-4xl mx-auto px-4">
     <nav class="text-sm text-gray-400 mb-8 flex gap-2">

@@ -33,16 +33,41 @@
       <span class="text-gold">A CHAMPION</span>
     </h1>
 
-    <!-- Subheading -->
-    <p class="text-white/85 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed fade-in">
-      Fort Walton Beach&rsquo;s home for elite basketball development. Whether your athlete is 5 or 18, a beginner or a future D1 star, FCP Sports has a program built for them — serving families across the entire Emerald Coast.
-    </p>
-
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
-      <a href="/registration/" class="btn-primary text-lg px-10 py-4">Register Now</a>
-      <a href="/guides/youth-basketball-parents-guide/" class="btn-outline text-lg px-10 py-4">Free Parent&rsquo;s Guide</a>
+    <!-- CTAs + Lead Form -->
+    <div class="fade-in max-w-xl mx-auto">
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
+        <p class="text-white font-bold text-lg mb-1">Stay Up to Date</p>
+        <p class="text-white/70 text-sm mb-4">Receive updates on programs, camps &amp; open gym.</p>
+        <form id="hero-signup-form" class="flex gap-2">
+          <input type="email" name="email" placeholder="Your email address" required
+            class="flex-1 px-4 py-3 rounded-lg text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold" />
+          <button type="submit" id="hero-signup-btn"
+            class="bg-gold text-navy font-bold px-6 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap">
+            Sign Up
+          </button>
+        </form>
+        <p id="hero-signup-success" class="hidden text-green-400 font-semibold text-sm mt-3">You&rsquo;re in! We&rsquo;ll keep you posted.</p>
+        <p class="text-white/40 text-xs mt-3">No spam. Unsubscribe anytime.</p>
+      </div>
     </div>
+
+    <script>
+    document.getElementById('hero-signup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = document.getElementById('hero-signup-btn');
+      var email = this.email.value.trim();
+      if (!email) return;
+      btn.textContent = '...';
+      btn.disabled = true;
+      fetch('/.netlify/functions/capture-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, tag: 'newsletter-signup', source: 'hero' })
+      }).catch(function(){});
+      this.classList.add('hidden');
+      document.getElementById('hero-signup-success').classList.remove('hidden');
+    });
+    </script>
   </div>
 
   <!-- Scroll indicator -->
@@ -89,32 +114,31 @@
 
 
 <!-- =====================================================
-     PROGRAMS GRID
+     PROGRAMS GRID — ELITE DARK
      ===================================================== -->
-<section class="bg-white pt-24 pb-8">
+<section style="background:#0a0d14;" class="py-24">
   <div class="max-w-7xl mx-auto px-4">
 
-    <!-- Header -->
-    <div class="text-center mb-16 fade-in">
-      <span class="section-tag">What We Offer</span>
-      <h2 class="section-heading text-center">Programs For Every Athlete</h2>
-      <p class="text-gray-600 text-lg max-w-2xl mx-auto">From first-timers to future pros, we have a program for every level, age, and goal on the Emerald Coast.</p>
+    <div class="text-center mb-14 fade-in">
+      <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-4">What We Offer</span>
+      <h2 class="font-display text-5xl md:text-6xl text-white leading-none">7 Programs.<br><span class="text-gold">One Facility.</span></h2>
     </div>
 
-    <!-- Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {{ range site.Data.programs }}
-      <div class="card p-6 flex flex-col fade-in group">
-        <div class="text-4xl mb-4">{{ .icon }}</div>
-        <h3 class="font-display text-2xl text-navy mb-2 group-hover:text-gold transition-colors duration-200">{{ .title }}</h3>
-        <p class="text-gray-600 text-sm leading-relaxed flex-1 mb-5">{{ .description }}</p>
-        <a href="{{ .slug }}" class="text-gold font-bold text-sm hover:text-gold-dark transition-colors duration-200 inline-flex items-center gap-1">
-          Learn More
-          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
-          </svg>
-        </a>
-      </div>
+      <a href="{{ .slug }}" class="group relative overflow-hidden rounded-xl flex flex-col fade-in transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl" style="background:{{ .gradient }}; padding:0;">
+        <!-- top accent bar -->
+        <div style="height:4px; background:rgba(255,255,255,0.25); width:100%;"></div>
+        <div style="padding:24px 24px 28px;">
+          <span style="font-size:10px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.6); display:block; margin-bottom:10px;">{{ .label }}</span>
+          <h3 class="font-display text-white leading-tight" style="font-size:1.75rem; margin-bottom:12px;">{{ .title }}</h3>
+          <p style="color:rgba(255,255,255,0.78); font-size:0.875rem; line-height:1.6; margin-bottom:22px;">{{ .description }}</p>
+          <span style="display:inline-flex; align-items:center; gap:6px; color:#fff; font-weight:800; font-size:0.875rem; letter-spacing:0.02em;">
+            {{ .cta }}
+            <svg style="width:15px;height:15px;transition:transform 0.2s;" class="group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </span>
+        </div>
+      </a>
       {{ end }}
     </div>
 
@@ -123,73 +147,40 @@
 
 
 <!-- =====================================================
-     YOUTH TIERS
+     UPCOMING EVENTS STRIP
      ===================================================== -->
-<section class="bg-navy py-24">
-  <div class="max-w-6xl mx-auto px-4">
+<section class="bg-white py-20">
+  <div class="max-w-7xl mx-auto px-4">
 
-    <!-- Header -->
-    <div class="text-center mb-16 fade-in">
-      <span class="section-tag">Youth Development</span>
-      <h2 class="section-heading--white text-center">Built For Every Age Group</h2>
-      <p class="text-white/70 text-lg max-w-2xl mx-auto">Our age-tiered youth programs meet athletes exactly where they are and build them into who they want to become.</p>
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-in">
+      <div>
+        <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-2">Schedule</span>
+        <h2 class="font-display text-4xl md:text-5xl text-navy leading-none">Upcoming Events</h2>
+      </div>
+      <a href="/schedule/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
+        View Full Calendar
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
     </div>
 
-    <!-- 3 Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-
-      <!-- Little Ballers -->
-      <div class="card bg-navy-800 border border-white/10 p-8 flex flex-col fade-in">
-        <div class="text-5xl mb-4">🌟</div>
-        <h3 class="font-display text-3xl text-white mb-1">Little Ballers</h3>
-        <p class="text-gold font-bold text-sm mb-4">Kindergarten &ndash; 2nd Grade &bull; Ages 5&ndash;8</p>
-        <p class="text-white/70 leading-relaxed flex-1 mb-6">
-          A fun, high-energy introduction to basketball. We build foundational skills, coordination, and love for the game — while keeping every session age-appropriate and exciting.
-        </p>
-        <ul class="space-y-2 mb-8">
-          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Basic dribbling &amp; passing</li>
-          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Teamwork &amp; sportsmanship</li>
-          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Small-sided games</li>
-        </ul>
-        <a href="/youth/elementary-school-basketball/" class="btn-outline text-center text-sm">Learn More</a>
-      </div>
-
-      <!-- Junior Program — MOST POPULAR -->
-      <div class="card border-2 border-gold p-8 flex flex-col fade-in relative">
-        <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-          <span class="bg-gold text-navy font-display text-sm tracking-widest px-5 py-1.5 rounded-full uppercase">Most Popular</span>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {{ range first 3 site.Data.events }}
+      <div class="border border-gray-100 rounded-2xl p-6 hover:border-gold hover:shadow-md transition-all duration-200 fade-in flex flex-col">
+        <div class="flex items-center justify-between mb-4">
+          <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none">
+            {{ dateFormat "Jan 02" .date }}
+          </span>
+          <span class="text-xs font-bold uppercase tracking-wide text-gold">{{ .badge }}</span>
         </div>
-        <div class="text-5xl mb-4 mt-2">🏀</div>
-        <h3 class="font-display text-3xl text-navy mb-1">Junior Program</h3>
-        <p class="text-gold-dark font-bold text-sm mb-4">3rd &ndash; 5th Grade &bull; Ages 8&ndash;11</p>
-        <p class="text-gray-600 leading-relaxed flex-1 mb-6">
-          Structured development for growing athletes. We sharpen fundamentals, introduce offensive &amp; defensive concepts, and start building the competitive mindset that separates good players from great ones.
-        </p>
-        <ul class="space-y-2 mb-8">
-          <li class="flex items-center gap-2 text-gray-700 text-sm"><span class="text-gold">✓</span> Shooting mechanics</li>
-          <li class="flex items-center gap-2 text-gray-700 text-sm"><span class="text-gold">✓</span> Offensive &amp; defensive systems</li>
-          <li class="flex items-center gap-2 text-gray-700 text-sm"><span class="text-gold">✓</span> Game film &amp; coaching</li>
-        </ul>
-        <a href="/youth/elementary-school-basketball/" class="btn-primary text-center text-sm">Register Now</a>
+        <h3 class="font-display text-xl text-navy mb-1">{{ .title }}</h3>
+        <p class="text-gray-500 text-sm mb-1">{{ .time }}</p>
+        <p class="text-gray-500 text-sm flex-1">{{ .age }}</p>
+        {{ if .price }}<p class="font-bold text-navy text-sm mt-3">{{ .price }}</p>{{ end }}
+        <a href="{{ .slug }}" class="mt-4 btn-primary text-sm text-center py-2.5">Register</a>
       </div>
-
-      <!-- Elite Youth -->
-      <div class="card bg-navy-800 border border-white/10 p-8 flex flex-col fade-in">
-        <div class="text-5xl mb-4">🏆</div>
-        <h3 class="font-display text-3xl text-white mb-1">Elite Youth</h3>
-        <p class="text-gold font-bold text-sm mb-4">6th &ndash; 8th Grade &bull; Ages 11&ndash;14</p>
-        <p class="text-white/70 leading-relaxed flex-1 mb-6">
-          High-intensity training for athletes with serious aspirations. We prepare middle schoolers for high school basketball — and beyond — with college-level concepts and elite competition.
-        </p>
-        <ul class="space-y-2 mb-8">
-          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Position-specific training</li>
-          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> AAU tournament prep</li>
-          <li class="flex items-center gap-2 text-white/80 text-sm"><span class="text-gold">✓</span> Strength &amp; athleticism work</li>
-        </ul>
-        <a href="/youth/middle-school-basketball/" class="btn-outline text-center text-sm">Learn More</a>
-      </div>
-
+      {{ end }}
     </div>
+
   </div>
 </section>
 
@@ -343,67 +334,45 @@
 
 
 <!-- =====================================================
-     FREE GUIDE CTA
+     STAY UP TO DATE
      ===================================================== -->
 <section class="bg-gray-50 py-24">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+  <div class="max-w-2xl mx-auto px-4 text-center">
+    <div class="fade-in">
+      <span class="section-tag">Stay Connected</span>
+      <h2 class="section-heading text-center">Stay Up to Date</h2>
+      <p class="text-gray-600 text-lg mb-10">Receive updates on programs, camps, leagues, and open gym schedules from FCP Sports.</p>
 
-      <!-- Left content -->
-      <div class="fade-in">
-        <span class="section-tag">Free Resource</span>
-        <h2 class="section-heading">The Ultimate Parent&rsquo;s Guide To Youth Basketball</h2>
-        <p class="text-gray-600 leading-relaxed mb-8">
-          Not sure which program is right for your child? We put together a comprehensive guide for Emerald Coast parents navigating youth basketball — completely free, no strings attached.
-        </p>
-
-        <ul class="space-y-4 mb-10">
-          <li class="flex items-start gap-3">
-            <span class="bg-navy text-white rounded-full p-1 mt-0.5 flex-shrink-0">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </span>
-            <span class="text-gray-700"><strong>How to choose the right program</strong> for your child&rsquo;s age and skill level</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="bg-navy text-white rounded-full p-1 mt-0.5 flex-shrink-0">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </span>
-            <span class="text-gray-700"><strong>What to look for in a basketball coach</strong> and training facility</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="bg-navy text-white rounded-full p-1 mt-0.5 flex-shrink-0">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </span>
-            <span class="text-gray-700"><strong>The AAU pathway explained</strong> — timelines, costs, and what to expect</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="bg-navy text-white rounded-full p-1 mt-0.5 flex-shrink-0">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </span>
-            <span class="text-gray-700"><strong>How to support your young athlete</strong> without adding pressure</span>
-          </li>
-        </ul>
-
-        <div class="bg-navy/5 border border-navy/10 rounded-xl p-5 flex items-center gap-4">
-          <div class="text-4xl">📘</div>
-          <div>
-            <p class="font-bold text-navy">Free Guide — No Purchase Required</p>
-            <p class="text-gray-500 text-sm">Delivered instantly. No spam, ever.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: GHL Form -->
-      <div class="fade-in">
-        <div class="bg-white rounded-2xl shadow-xl p-8">
-          <h3 class="font-display text-3xl text-navy mb-2">Get Your Free Guide</h3>
-          <p class="text-gray-600 mb-6 text-sm">Fill out the form and we&rsquo;ll send it right over.</p>
-          {{ partial "ghl-form.html" (dict "formId" site.Params.ghl_form_id) }}
-        </div>
-      </div>
-
+      <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" name="email" placeholder="Enter your email" required
+          class="flex-1 px-5 py-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:outline-none" />
+        <button type="submit" id="newsletter-btn"
+          class="bg-gold text-navy font-bold px-8 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap">
+          Sign Up
+        </button>
+      </form>
+      <p id="newsletter-success" class="hidden text-green-600 font-semibold mt-4">You&rsquo;re in! We&rsquo;ll keep you posted.</p>
+      <p class="text-gray-400 text-xs mt-4">No spam. Unsubscribe anytime.</p>
     </div>
   </div>
+
+  <script>
+  document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('newsletter-btn');
+    var email = this.email.value.trim();
+    if (!email) return;
+    btn.textContent = 'Signing up...';
+    btn.disabled = true;
+    fetch('/.netlify/functions/capture-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, tag: 'newsletter-signup', source: 'homepage' })
+    }).catch(function(){});
+    this.classList.add('hidden');
+    document.getElementById('newsletter-success').classList.remove('hidden');
+  });
+  </script>
 </section>
 
 

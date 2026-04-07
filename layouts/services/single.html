@@ -1,8 +1,11 @@
 {{ define "main" }}
 
 <!-- Page Hero -->
-<section class="bg-navy py-24 text-center">
-  <div class="max-w-4xl mx-auto px-4">
+{{ $heroImg := .Params.hero_image | default "/images/fcp-hero-action1.jpg" }}
+<section class="relative py-32 text-center overflow-hidden" style="min-height:480px;">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ $heroImg }}');"></div>
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(6,15,34,0.72) 0%, rgba(6,15,34,0.85) 100%);"></div>
+  <div class="relative z-10 max-w-4xl mx-auto px-4">
     <nav class="text-xs text-white/40 mb-6 flex justify-center gap-2">
       <a href="/" class="hover:text-gold">Home</a>
       <span>/</span>
@@ -49,10 +52,19 @@
             {{ end }}
           </ul>
         </div>
-        <div class="bg-navy rounded-xl p-6 text-center">
-          <p class="font-display text-xl text-gold mb-2">FREE GUIDE</p>
-          <p class="text-white/70 text-sm mb-4">Get the Youth Basketball Parent's Guide — free download</p>
-          <a href="/guides/youth-basketball-parents-guide/" class="btn-outline text-sm py-2 px-4 inline-block">Download Free</a>
+        <div class="bg-navy rounded-xl p-6">
+          <p class="font-display text-xl text-gold mb-1 text-center">STAY UP TO DATE</p>
+          <p class="text-white/70 text-sm mb-4 text-center">Receive updates on this and other programs.</p>
+          <form class="service-signup-form space-y-2" data-tag="{{ .Params.ghl_tag | default "general-inquiry" }}">
+            <input type="email" name="email" placeholder="Your email" required
+              class="w-full px-3 py-2 rounded-lg text-sm border border-white/20 bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-gold" />
+            <button type="submit"
+              class="w-full bg-gold text-navy font-bold py-2 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide">
+              Sign Up
+            </button>
+          </form>
+          <p class="signup-success hidden text-center text-green-400 text-sm font-semibold mt-2">You&rsquo;re in!</p>
+          <p class="text-white/40 text-xs text-center mt-2">No spam. Unsubscribe anytime.</p>
         </div>
       </div>
     </div>
@@ -61,5 +73,26 @@
 
 {{ partial "faq-block.html" . }}
 {{ partial "cta-section.html" . }}
+
+<script>
+document.querySelectorAll('.service-signup-form').forEach(function(form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var email = form.querySelector('input[name="email"]').value.trim();
+    var tag = form.dataset.tag || 'general-inquiry';
+    if (!email) return;
+    btn.textContent = 'Signing up...';
+    btn.disabled = true;
+    fetch('/.netlify/functions/capture-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, tag: tag, source: 'service-page' })
+    }).catch(function(){});
+    form.classList.add('hidden');
+    form.nextElementSibling.classList.remove('hidden');
+  });
+});
+</script>
 
 {{ end }}

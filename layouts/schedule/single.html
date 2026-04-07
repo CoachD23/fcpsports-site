@@ -1,0 +1,77 @@
+{{ define "main" }}
+
+<section class="bg-navy py-24 text-center">
+  <div class="max-w-4xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">FCP Sports</span>
+    <h1 class="font-display text-6xl md:text-7xl text-white mt-3 mb-6 leading-none">Upcoming Events</h1>
+    <p class="text-white/70 text-lg max-w-2xl mx-auto">Camps, leagues, open gym, and more. Register below or sign up to get notified when new dates drop.</p>
+  </div>
+</section>
+
+<section class="bg-gray-50 py-20">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <div class="space-y-4">
+      {{ range site.Data.events }}
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col sm:flex-row sm:items-center gap-6 hover:shadow-md transition-shadow fade-in">
+
+        <div class="flex-shrink-0 text-center bg-navy rounded-xl px-5 py-4 min-w-[90px]">
+          <div class="font-display text-gold text-3xl leading-none">{{ dateFormat "02" .date }}</div>
+          <div class="text-white/70 text-xs uppercase tracking-widest mt-1">{{ dateFormat "Jan" .date }}</div>
+          <div class="text-white/50 text-xs">{{ dateFormat "2006" .date }}</div>
+        </div>
+
+        <div class="flex-1">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="bg-gold/15 text-yellow-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">{{ .badge }}</span>
+            <span class="text-gray-400 text-xs uppercase tracking-wide">{{ .type }}</span>
+          </div>
+          <h3 class="font-display text-2xl text-navy mb-1">{{ .title }}</h3>
+          <div class="flex flex-wrap gap-4 text-sm text-gray-500">
+            <span>{{ .date_display }}</span>
+            <span>{{ .time }}</span>
+            <span>{{ .age }}</span>
+            {{ if .price }}<span class="font-semibold text-navy">{{ .price }}</span>{{ end }}
+          </div>
+        </div>
+
+        <div class="flex-shrink-0">
+          <a href="{{ .slug }}" class="btn-primary text-sm px-6 py-3 whitespace-nowrap">Register</a>
+        </div>
+
+      </div>
+      {{ end }}
+    </div>
+
+    <div class="mt-16 bg-navy rounded-2xl p-10 text-center">
+      <h2 class="font-display text-3xl text-white mb-2">Don't Miss a Date</h2>
+      <p class="text-white/70 mb-6">Get notified when new camps, leagues, and open gym sessions are added.</p>
+      <form id="schedule-signup" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" name="email" placeholder="Your email" required
+          class="flex-1 px-4 py-3 rounded-lg text-sm text-navy focus:outline-none focus:ring-2 focus:ring-gold" />
+        <button type="submit" class="bg-gold text-navy font-bold px-8 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap">Notify Me</button>
+      </form>
+      <p id="schedule-success" class="hidden text-green-400 font-semibold mt-4">You're in! We'll keep you posted.</p>
+      <p class="text-white/40 text-xs mt-4">No spam. Unsubscribe anytime.</p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.getElementById('schedule-signup').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var email = this.email.value.trim();
+  if (!email) return;
+  this.querySelector('button').disabled = true;
+  fetch('/.netlify/functions/capture-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, tag: 'newsletter-signup', source: 'schedule-page' })
+  }).catch(function(){});
+  this.classList.add('hidden');
+  document.getElementById('schedule-success').classList.remove('hidden');
+});
+</script>
+
+{{ end }}

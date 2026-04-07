@@ -3,6 +3,7 @@ title: "AAU Basketball in the Florida Panhandle: A Local Guide | FCP Sports"
 description: "A local guide to AAU basketball in the Florida Panhandle — circuits, events, costs, and how FCP Sports athletes compete at the regional and national level."
 date: 2026-02-01
 category: "AAU & Recruiting"
+featured_image: "/images/blog/fcp-sports-game-action.jpg"
 ---
 
 If you're raising a serious basketball player in the Florida Panhandle, you already know the competitive landscape looks different here than it does in Orlando or Miami. We don't have the same density of elite programs. Tournaments aren't in our backyard. And the path from Fort Walton Beach to a college scholarship requires more intentional planning than it does for athletes living in Florida's population centers.

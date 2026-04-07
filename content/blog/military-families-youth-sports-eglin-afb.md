@@ -3,6 +3,7 @@ title: "Youth Sports for Military Families at Eglin AFB — A Parent's Guide"
 description: "Guide for military families at Eglin AFB and Hurlburt Field looking for youth basketball and sports programs in Fort Walton Beach, FL."
 date: 2026-04-05
 category: "Community"
+featured_image: "/images/blog/fcp-sports-group-training.jpg"
 ---
 
 PCS orders bring a familiar challenge: you've landed in a new place, your kids don't know anyone yet, and you need to find activities that give them structure, community, and something to look forward to. If you're at Eglin AFB or Hurlburt Field, Fort Walton Beach has solid options — and FCP Sports is built with military families specifically in mind.

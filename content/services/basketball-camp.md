@@ -1,4 +1,5 @@
 ---
+hero_image: /images/hero-loc-2.jpg
 title: "Basketball Camp Fort Walton Beach FL | FCP Sports"
 description: "Basketball camp in Fort Walton Beach with structured drills, scrimmages & film review. Half-day, full-day & week-long sessions for ages 6–17."
 h1: "Basketball Camp in Fort Walton Beach — Day & Week-Long Programs at FCP Sports"
@@ -6,6 +7,7 @@ keyword: "basketball camp fort walton beach"
 age_range: "Ages 6–17"
 price: "Contact for pricing"
 frequency: "Multi-day sessions"
+ghl_tag: "camp-inquiry"
 faq:
   - q: "How much does basketball camp cost in Fort Walton Beach?"
     a: "FCP Sports basketball camp pricing varies by format — half-day, full-day, and week-long options are available at different price points. Contact us directly or visit our registration page for current pricing. We also offer sibling discounts and military family rates for families stationed at Eglin AFB or Hurlburt Field."

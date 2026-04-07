@@ -1,4 +1,5 @@
 ---
+hero_image: /images/hero-loc-21.jpg
 title: "AAU Basketball Florida — Summer AAU Program | FCP Sports"
 description: "All-inclusive summer AAU basketball program in Florida. Tournament travel, NCAA exposure windows & college coach visibility on the Emerald Coast."
 h1: "Summer AAU Basketball Program — All-Inclusive Travel Basketball in Florida"
@@ -6,6 +7,7 @@ keyword: "AAU basketball florida"
 age_range: "Ages 14–18"
 price: "Contact us for pricing"
 frequency: "Summer season"
+ghl_tag: "aau-inquiry"
 faq:
   - q: "How much does AAU basketball cost in Florida?"
     a: "Most Florida families who piece together AAU basketball on their own spend $8,000–$12,000 per summer when you add tournament entry fees, travel, hotels, meals, uniforms, and coaching costs separately. FCP Sports Summer AAU is all-inclusive and covers everything. No surprise costs, no extra fees, no hidden charges. Contact us for details on pricing."
