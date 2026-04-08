@@ -20,7 +20,7 @@
             <h2 class="font-display text-2xl text-navy">Get Instant Access</h2>
             <p class="text-gray-500 text-sm mt-2">Enter your email — we'll send it right away.</p>
           </div>
-          {{ partial "ghl-form.html" (dict "formId" (.Params.ghl_form_id | default site.Params.ghl_form_id)) }}
+          {{ partial "guide-form.html" (dict "source" .File.BaseFileName) }}
           <p class="text-xs text-gray-400 mt-4 text-center">No spam. Unsubscribe with one click.</p>
         </div>
       </div>
