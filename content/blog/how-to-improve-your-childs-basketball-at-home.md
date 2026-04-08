@@ -3,6 +3,7 @@ title: "At-Home Basketball Drills for Kids: Simple, No-Gym Required | FCP Sports
 description: "Simple at-home basketball drills for parents — no gym required. Help your child improve ball handling, shooting, and footwork between training sessions."
 date: 2026-03-01
 category: "Training Tips"
+keyword: "basketball drills for kids at home"
 featured_image: "/images/blog/fcp-sports-youth-training.jpg"
 ---
 

@@ -3,6 +3,7 @@ title: "Youth Basketball Leagues in Fort Walton Beach — Complete Guide for Par
 description: "Everything parents need to know about youth basketball leagues in Fort Walton Beach. Compare rec leagues vs FCP Sports leagues — pricing, refs, schedules, and what to expect."
 date: 2026-04-05
 category: "Leagues"
+keyword: "youth basketball league fort walton beach"
 featured_image: "/images/blog/fcp-sports-banner.jpg"
 ---
 
