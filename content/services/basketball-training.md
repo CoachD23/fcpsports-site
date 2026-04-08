@@ -69,7 +69,7 @@ If your athlete is serious about getting better, start with a free baseline asse
 
 [Register for training](/registration/) or [contact us](/contact/) to schedule your athlete's assessment. Already training and want more individualized attention? Explore our [private basketball lessons](/services/basketball-lessons/) for 1-on-1 focused instruction.
 
-Ready to compete? Ask us about our [Summer AAU program](/services/summer-aau/) — the all-inclusive travel team for players ready to get seen by college coaches.
+Ready to compete at the highest level? Check out our [Elite Basketball Showcase](/camps/elite-showcase/) — timed to the NCAA evaluation period so college coaches are actively watching.
 
 ## Keep Exploring
 

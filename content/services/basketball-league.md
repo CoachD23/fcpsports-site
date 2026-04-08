@@ -137,4 +137,4 @@ Ready to register? [Sign up here](/registration/) or [contact us](/contact/) wit
 
 For players who want to stay sharp between league seasons, check out our [open gym sessions](/services/open-gym/) for pickup games and our [basketball training programs](/services/basketball-training/) for off-season skill development. We also run [basketball camps](/camps/) throughout the year.
 
-Looking for the next level after league play? Ask us about our [Summer AAU program](/services/summer-aau/) for players ready to compete beyond Okaloosa County.
+Looking for the next level after league play? Check out our [Elite Basketball Showcase](/camps/elite-showcase/) — competitive exposure during the NCAA evaluation period for serious athletes.

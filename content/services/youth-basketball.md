@@ -91,7 +91,7 @@ If a player is developmentally ready to advance ahead of their grade (common for
 
 [Register now](/registration/) or [contact us](/contact/) to ask about the current season's start date, schedule, and pricing. For summer development alongside the youth program, our [basketball camp](/services/basketball-camp/) runs each summer and is a natural complement to the school-year programs.
 
-As players advance through Elite Youth, the natural next step is our [basketball league](/services/basketball-league/) for competitive game experience, or our [Summer AAU program](/services/summer-aau/) for the most serious athletes ready to pursue college basketball.
+As players advance through Elite Youth, the natural next step is our [basketball league](/services/basketball-league/) for competitive game experience, or our [high school training program](/youth/high-school-basketball/) for athletes ready to take their game to the next level.
 
 ## Keep Exploring
 

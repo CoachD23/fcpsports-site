@@ -95,4 +95,4 @@ Players from Plew Elementary, Pryor Middle, and Choctawhatchee High School have 
 
 Ready to give your child the best basketball camp experience on the Emerald Coast? [Register here](/registration/) or [contact us](/contact/) with questions. For families looking for **year-round development** after camp, explore our [youth basketball programs](/services/youth-basketball/) or [private basketball lessons](/services/basketball-lessons/) to keep the momentum going.
 
-For serious players ready to compete at the highest level, ask us about our [Summer AAU program](/services/summer-aau/) — the all-inclusive travel basketball experience for athletes chasing college exposure.
+For serious players ready to compete at the highest level, check out our [Elite Basketball Showcase](/camps/elite-showcase/) — a college recruiting exposure event timed to the NCAA Division I evaluation period.

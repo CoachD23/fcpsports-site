@@ -17,7 +17,7 @@ faq:
   - q: "How far is FCP Sports from Navarre?"
     a: "FCP Sports is about 25 minutes from Navarre traveling west on Highway 98 or Navarre Parkway. The drive is straightforward and many Navarre families make it a regular part of their weekly routine."
   - q: "What youth basketball programs are available for Navarre kids?"
-    a: "FCP Sports offers basketball camp, skills training groups, private lessons, youth leagues, open gym, and summer AAU programs — all open to Navarre athletes. We work with players from elementary age through high school."
+    a: "FCP Sports offers basketball camps, skills training groups, private lessons, youth leagues, open gym, and elite showcase events — all open to Navarre athletes. We work with players from elementary age through high school."
   - q: "Does FCP Sports have players from Navarre High School?"
     a: "Yes. We regularly train athletes from Navarre High School who want the competitive edge that school practice alone cannot provide. Navarre competes against Okaloosa County programs, and our training helps level that playing field."
   - q: "Is there a basketball camp near Navarre this summer?"

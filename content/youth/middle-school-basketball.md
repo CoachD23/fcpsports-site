@@ -1,6 +1,6 @@
 ---
 title: "Middle School Basketball Training Fort Walton Beach | FCP Sports"
-description: "Elite Youth basketball training for 6th–8th grade athletes on the Emerald Coast. High school tryout prep, position-specific coaching, and AAU introduction at FCP Sports."
+description: "Elite basketball training for 6th–8th grade athletes on the Emerald Coast. High school tryout prep, position-specific coaching, and competitive development at FCP Sports in Fort Walton Beach."
 h1: "Middle School Basketball Training"
 age_range: "Ages 11–14"
 grade_range: "6th – 8th Grade"
@@ -63,9 +63,9 @@ High school coaches do not have time to develop raw athletes — they need playe
 
 We run **tryout-simulation sessions** in the months leading up to high school tryout season. Athletes go through the same types of drills, defensive evaluations, and scrimmage scenarios they will face on cut day. We teach athletes what coaches are actually watching — because most players have no idea.
 
-## AAU Introduction: The Next Level
+## Exposure: The Next Step After Middle School
 
-For 7th and 8th grade athletes who are ready to compete at a higher level, we introduce AAU basketball as the natural next step. The [AAU circuit in Florida](/guides/aau-basketball-101/) is where college coaches begin identifying talent as early as 8th grade — yes, 8th grade. Our Elite Youth athletes get an on-ramp to FCP Sports' AAU program, learning what competitive travel basketball looks like before they're thrown into the deep end.
+For 7th and 8th grade athletes who are ready to compete at a higher level, high school and competitive basketball are the natural next step. College coaches begin identifying talent as early as 8th grade. Our Elite Youth athletes are prepared for the jump — learning what competitive high school play looks and feels like before they're thrown into varsity tryouts.
 
 Athletes from Shoal River Middle, Bellview Middle in Pensacola, Ferry Pass Middle, and Jim C. Bailey Middle have all used FCP Sports as the bridge between recreational play and high-level competition.
 
@@ -75,7 +75,7 @@ Middle school athletes are still developing — not just physically but emotiona
 
 If your child's goal is to make their high school team, to earn a starting spot, or to eventually play at the next level — this is where that journey begins in earnest. The path forward leads to our [High School Basketball & Recruiting program](/youth/high-school-basketball/).
 
-[Download our free Youth Basketball Parent's Guide](/guides/youth-basketball-parents-guide/) to understand exactly how middle school training translates to high school success.
+[Contact us](/contact/) to learn more about how middle school training translates to high school success — we'll walk you through exactly what to expect.
 
 ## Keep Exploring
 

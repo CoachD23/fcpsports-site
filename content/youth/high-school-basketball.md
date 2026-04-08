@@ -23,8 +23,6 @@ faqs:
     a: "Earlier than most families think: 9th grade. Your freshman year is when you establish your baseline — grades, film, skills. By 10th grade, college coaches at the D2 and D3 levels begin watching AAU events. By 11th grade, D1 coaches can make official contact. Families who wait until senior year are starting too late."
   - q: "What do college basketball coaches actually look for?"
     a: "In order: athleticism and upside, skills and basketball IQ, coachability (how you respond to instruction and mistakes), academics (GPA and test scores determine eligibility), and character references from your high school and AAU coaches. Most recruited players check at least four of these five boxes. FCP Sports prepares athletes to check all five."
-  - q: "What is the Summer AAU program and what does it cost?"
-    a: "FCP Sports' Summer AAU program is a fully all-inclusive competitive team package — tournament fees, travel, hotels, meals, uniforms, and coaching are all covered. Athletes compete on the national AAU circuit with maximum college coach exposure during the July Live Period. Contact us for pricing details. Learn more on our Summer AAU page."
   - q: "Does GPA matter for college basketball recruiting?"
     a: "Absolutely — and it matters more than most athletes realize. NCAA eligibility requirements mandate minimum GPA and ACT/SAT scores. NAIA and junior college programs have their own standards. A player with a 2.0 GPA closes off entire divisions of opportunity. We encourage every athlete to treat academics as part of their recruiting profile, not separate from it."
 ---
@@ -63,11 +61,9 @@ When a college coach watches your game — live or on film — here is their men
 
 At FCP Sports, we prepare athletes for all five categories — not just skill development.
 
-## The Summer AAU Program: All-Inclusive Pricing
+## Exposure Events: The Elite Basketball Showcase
 
-For athletes ready to compete on the national stage, FCP Sports' [Summer AAU program](/services/summer-aau/) is the single most effective recruiting investment available on the Emerald Coast. Our all-inclusive package covers tournament fees, travel, hotels, meals, uniforms, and coaching — allowing athletes to compete on the national AAU circuit during the July NCAA Live Period when college coaches are actively watching. Contact us for pricing details.
-
-This is how Emerald Coast athletes get seen by programs they would otherwise never encounter. We handle all the logistics. Athletes and families show up and compete.
+For athletes ready to compete in front of college coaches, FCP Sports runs the [Elite Basketball Showcase](/camps/elite-showcase/) — a two-day event timed to the NCAA Division I evaluation period (July 17-18). College coaches are actively scouting during this window. This is how Emerald Coast athletes get in front of programs they would otherwise never encounter.
 
 ## Film Review and Exposure Events
 
@@ -75,7 +71,7 @@ Every FCP Sports high school athlete gets film review built into their training.
 
 Athletes come to us from Fort Walton Beach High, Choctawhatchee, Niceville High, Navarre High, and Crestview High. Some drive from Pensacola high schools — Washington, Pine Forest, Pensacola High. Some come from Bay County — Bay High, Arnold, Mosley. They all share the same goal: playing beyond high school.
 
-If that is your goal too, the time to start is now. [Enroll in our high school program](/registration/) or explore our [College Recruiting Roadmap guide](/guides/college-recruiting-roadmap/) to map out exactly where your athlete stands and what comes next.
+If that is your goal too, the time to start is now. [Enroll in our high school program](/registration/) or [contact us](/contact/) to map out exactly where your athlete stands and what comes next.
 
 ## Keep Exploring
 

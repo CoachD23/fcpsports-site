@@ -66,17 +66,6 @@
     - "Perfect for school breaks"
     - "Military & sibling discounts available"
 
-- name: "Summer AAU Program"
-  ages: "Ages 12-18"
-  price: "$6,799"
-  frequency: "Full summer"
-  highlight: false
-  features:
-    - "Tournament travel included"
-    - "NCAA exposure window events"
-    - "College coach exposure"
-    - "All-inclusive package"
-
 - name: "Private Lessons"
   ages: "All ages"
   price: "Contact for rates"
