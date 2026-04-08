@@ -94,7 +94,7 @@ exports.handler = async function (event) {
       await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
         method: "POST",
         headers: ghlHeaders(),
-        body: JSON.stringify({ tags: ["fcp-lead", "guide-download"] }),
+        body: JSON.stringify({ tags: ["fcpsports", "guide-download"] }),
       }).catch((e) => console.warn("[capture-guide-lead] Tag failed:", e.message));
     }
 

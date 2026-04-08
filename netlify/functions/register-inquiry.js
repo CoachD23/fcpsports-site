@@ -122,8 +122,8 @@ exports.handler = async function (event) {
 
   const safeTag = ALLOWED_TAGS.has(tag) ? tag : "general-inquiry";
   const tagsToApply = safeTag === "general-inquiry"
-    ? ["fcp-lead", "general-inquiry", "website-inquiry"]
-    : ["fcp-lead", safeTag, "general-inquiry", "website-inquiry"];
+    ? ["fcpsports", "general-inquiry", "website-inquiry"]
+    : ["fcpsports", safeTag, "general-inquiry", "website-inquiry"];
 
   try {
     // Upsert contact with full details
