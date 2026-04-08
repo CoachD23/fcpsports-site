@@ -46,10 +46,3 @@
   label: "YOUTH"
   description: "Age-tiered development from K through 8th grade. Little Ballers, Junior Program, and Elite Youth tracks."
   cta: "Find Your Program"
-
-- title: "Summer AAU"
-  slug: "/services/summer-aau/"
-  gradient: "linear-gradient(135deg, #b45309, #78350f)"
-  label: "AAU"
-  description: "All-inclusive AAU travel program. Tournaments, uniforms, coaching, and college exposure — one flat fee."
-  cta: "Learn More"
