@@ -47,23 +47,31 @@ K-2nd grade only. $59 includes jersey. Modified rules, lower baskets, coaches on
 
 [Register for any season here](/registration/) or [contact us](/contact/) with questions.
 
-## League Pricing
+## League Pricing & Registration Packages
 
-| Division | Grades | Ages | Price |
-|----------|--------|------|-------|
-| Mini | K-2nd | 5-8 | $59 |
-| Junior | 3rd-5th | 8-11 | $79 |
-| Intermediate | 6th-8th | 11-14 | $89 |
-| Senior | 9th-12th | 15-18 | $99 |
+We offer two ways to register — League Only, or a League + Training bundle that gives your player 8 skill training classes to use during the season:
 
-All prices include a game jersey. No hidden fees.
+| Division | Grades | Ages | League Only | League + Training |
+|----------|--------|------|-------------|-------------------|
+| Mini | K-2nd | 5-8 | $79 | $149 |
+| Junior | 3rd-5th | 8-11 | $99 | $179 |
+| Intermediate | 6th-8th | 11-14 | $129 | $219 |
+| Senior | 9th-12th | 15-18 | $149 | $249 |
+
+All registrations include a game jersey. No hidden fees.
+
+**League + Training Package includes:**
+- Everything in League Only registration
+- 8 skill training classes to use anytime during the season (Tue/Thu/Sat)
+- Skills sessions are grouped by age and ability — not mixed with adults
+- Ideal for players who want to develop between games, not just show up on game day
 
 **Available discounts (can be combined):**
 - **Early bird:** $20 off (register 4+ weeks before season)
 - **Military:** $20 off (active duty and veterans)
 - **Sibling:** $20 off per additional child
 
-Payment plans available for all divisions. For context, the FWB city rec league runs $30-50 and Pensacola rec leagues run $40-85. FCP is priced above basic rec but well below travel and AAU programs — and you get a dedicated facility, paid refs, and stats that rec leagues do not offer.
+Payment plans available for all divisions. For context, the FWB city rec league runs $30-50 and Pensacola rec leagues run $40-85. FCP is priced above basic rec but well below travel and AAU programs — and you get a dedicated facility, paid refs, stats, and real coaching that rec leagues do not offer.
 
 ## League Divisions by Age & Skill Level
 
@@ -96,6 +104,17 @@ A standard FCP Sports league season runs **6-8 regular-season weeks** plus a sin
 | Standings & playoffs | Full bracket online | Often informal |
 | Practice access | Included | No |
 | Jersey | Included in registration | Often extra |
+
+## Combine Night — Before Every Season
+
+Every FCP Sports league season begins with a **Combine Night** before the first game week. Every registered player goes through a brief on-court evaluation: ball handling, shooting, and 1-on-1 defense. Coaches use those results to draft balanced teams across all divisions.
+
+This matters because:
+- **No stacked teams.** Travel ball families can't stack a roster. Every team is drafted to be competitive.
+- **Your child plays real, close games.** Blowouts kill development. Balanced drafts mean every game matters.
+- **Coaches see every player early.** If a kid has a specific skill or needs extra attention, it shows on Combine Night — not week 5.
+
+Players who want to play with a specific friend or group can request it at registration — we honor reasonable requests within draft balance constraints.
 
 ## Team Formation: Drafts and Rosters
 
