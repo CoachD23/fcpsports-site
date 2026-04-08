@@ -82,8 +82,8 @@ exports.handler = async function (event) {
     // Only allow known tags to prevent tag pollution
     const safeTag = ALLOWED_TAGS.has(tag) ? tag : "general-inquiry";
     const tagsToApply = safeTag === "general-inquiry"
-      ? ["general-inquiry"]
-      : [safeTag, "general-inquiry"];
+      ? ["fcp-lead", "general-inquiry"]
+      : ["fcp-lead", safeTag, "general-inquiry"];
 
     // Upsert contact in GHL
     const upsertRes = await fetch(`${GHL_BASE}/contacts/upsert`, {
