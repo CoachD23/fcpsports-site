@@ -65,7 +65,7 @@ The price tag doesn't tell you much on its own. Here's what actually matters:
 
 **Age and skill grouping.** An advanced 10-year-old grouped with beginners gets nothing from the week. A beginner 13-year-old grouped with competitive players loses confidence. Proper grouping by age and skill level matters.
 
-For a deeper breakdown of how to evaluate camps before committing, read our full guide: [How to Choose a Basketball Camp.](/guides/how-to-choose-a-basketball-camp/)
+For a deeper look at what separates a great camp from a mediocre one, [contact us](/contact/) or [view our full camp lineup](/camps/).
 
 ## Which Camp Is Right for Your Athlete?
 
