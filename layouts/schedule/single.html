@@ -1,7 +1,10 @@
 {{ define "main" }}
 
-<section class="bg-navy py-24 text-center">
-  <div class="max-w-4xl mx-auto px-4">
+{{ $heroImg := .Params.hero_image | default "/images/fcp-hero-court.jpg" }}
+<section class="relative py-28 text-center overflow-hidden" style="min-height:400px;">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ $heroImg }}');"></div>
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(6,15,34,0.72) 0%,rgba(6,15,34,0.88) 100%);"></div>
+  <div class="relative z-10 max-w-4xl mx-auto px-4">
     <span class="text-gold font-display tracking-widest text-sm uppercase">FCP Sports</span>
     <h1 class="font-display text-6xl md:text-7xl text-white mt-3 mb-6 leading-none">Upcoming Events</h1>
     <p class="text-white/70 text-lg max-w-2xl mx-auto">Camps, leagues, open gym, and more. Register below or sign up to get notified when new dates drop.</p>

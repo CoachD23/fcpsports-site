@@ -6,6 +6,7 @@ keyword: "basketball showcase camp florida"
 age_range: "Grades 9-12 (Boys)"
 price: "$129/2 days"
 frequency: "Fri-Sat, Jul 17-18"
+hero_image: /images/fcp-hero-action1.jpg
 layout: "services"
 ghl_tag: "camp-showcase"
 program_name: "Elite Showcase Camp"

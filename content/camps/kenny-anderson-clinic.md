@@ -6,6 +6,7 @@ keyword: "kenny anderson basketball clinic"
 age_range: "Grades 6-12"
 price: "$49/session"
 frequency: "Monthly Saturdays, 10am-12pm"
+hero_image: /images/fcp-hero-training.jpg
 layout: "services"
 ghl_tag: "camp-kenny"
 program_name: "Kenny Anderson Clinic"

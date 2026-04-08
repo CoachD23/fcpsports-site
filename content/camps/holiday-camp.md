@@ -6,6 +6,7 @@ keyword: "holiday basketball camp fort walton beach"
 age_range: "Grades 4-8 (Co-Ed)"
 price: "$79/3 days"
 frequency: "Mon-Wed, 9am-12pm"
+hero_image: /images/fcp-hero-court.jpg
 layout: "services"
 ghl_tag: "camp-holiday"
 program_name: "Holiday Camp"

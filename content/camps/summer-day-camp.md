@@ -6,6 +6,7 @@ keyword: "summer basketball camp fort walton beach"
 age_range: "Grades 3-10"
 price: "$149/week"
 frequency: "Mon-Fri, 9am-3pm"
+hero_image: /images/fcp-hero-camp.jpg
 layout: "services"
 ghl_tag: "camp-summer"
 program_name: "Summer Day Camp"
