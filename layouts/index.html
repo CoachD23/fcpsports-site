@@ -57,7 +57,7 @@
       var btn = document.getElementById('hero-signup-btn');
       var email = this.email.value.trim();
       if (!email) return;
-      btn.textContent = '...';
+      btn.textContent = 'Signing up...';
       btn.disabled = true;
       fetch('/.netlify/functions/capture-lead', {
         method: 'POST',
@@ -94,7 +94,7 @@
       </div>
 
       <div class="fade-in">
-        <div class="font-display text-5xl md:text-6xl text-navy leading-none">8</div>
+        <div class="font-display text-5xl md:text-6xl text-navy leading-none">7</div>
         <div class="font-display text-navy/70 text-lg tracking-wide mt-1">Programs Offered</div>
       </div>
 
@@ -104,11 +104,54 @@
       </div>
 
       <div class="fade-in">
-        <div class="font-display text-5xl md:text-6xl text-navy leading-none">5&#9733;</div>
+        <div class="font-display text-5xl md:text-6xl text-navy leading-none flex items-center justify-center gap-1">5<svg class="w-10 h-10 fill-navy inline-block" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
         <div class="font-display text-navy/70 text-lg tracking-wide mt-1">Google Rating</div>
       </div>
 
     </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     TRAIN / COMPETE — Two-column split
+     ===================================================== -->
+<section style="background:#060f22;" class="py-0">
+  <div style="display:grid;grid-template-columns:1fr 1fr;min-height:480px;">
+
+    <!-- TRAIN -->
+    <div class="fade-in" style="padding:72px 56px;border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <h2 class="font-display" style="font-size:5rem;color:#fff;line-height:1;margin-bottom:28px;letter-spacing:-.02em">TRAIN</h2>
+        <p style="color:rgba(255,255,255,.65);font-size:1.125rem;line-height:1.75;max-width:480px;">Skills training, private lessons, camps, and youth programs — all under one roof. We build athletes from the ground up with measurable skill development and real coaching.</p>
+      </div>
+      <div style="margin-top:48px;">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;">
+          <a href="/services/basketball-training/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Skills Training</a>
+          <a href="/services/basketball-lessons/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Private Lessons</a>
+          <a href="/services/basketball-camp/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Basketball Camp</a>
+          <a href="/services/youth-basketball/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Youth Basketball</a>
+          <a href="/services/open-gym/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Open Gym</a>
+        </div>
+        <a href="/registration/" class="btn-primary" style="display:inline-block;">Start Training</a>
+      </div>
+    </div>
+
+    <!-- COMPETE -->
+    <div class="fade-in" style="padding:72px 56px;background:rgba(212,175,55,.04);display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <h2 class="font-display" style="font-size:5rem;color:#d4af37;line-height:1;margin-bottom:28px;letter-spacing:-.02em">COMPETE</h2>
+        <p style="color:rgba(255,255,255,.65);font-size:1.125rem;line-height:1.75;max-width:480px;">Where training meets competition. Our basketball leagues run year-round with organized schedules, refs, standings, and playoffs. Real games. Real stakes. Real development.</p>
+      </div>
+      <div style="margin-top:48px;">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;">
+          <a href="/services/basketball-league/" style="background:rgba(212,175,55,.15);color:#d4af37;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(212,175,55,.3);text-decoration:none;">Basketball League</a>
+          <a href="/services/gym-rental/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Gym Rental</a>
+        </div>
+        <a href="/services/basketball-league/" class="btn-primary" style="display:inline-block;">Register Your Team</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -124,25 +167,128 @@
       <h2 class="font-display text-5xl md:text-6xl text-white leading-none">7 Programs.<br><span class="text-gold">One Facility.</span></h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {{ range site.Data.programs }}
-      <a href="{{ .slug }}" class="group relative overflow-hidden rounded-xl flex flex-col fade-in transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl" style="background:{{ .gradient }}; padding:0;">
-        <!-- top accent bar -->
-        <div style="height:4px; background:rgba(255,255,255,0.25); width:100%;"></div>
-        <div style="padding:24px 24px 28px;">
-          <span style="font-size:10px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.6); display:block; margin-bottom:10px;">{{ .label }}</span>
-          <h3 class="font-display text-white leading-tight" style="font-size:1.75rem; margin-bottom:12px;">{{ .title }}</h3>
-          <p style="color:rgba(255,255,255,0.78); font-size:0.875rem; line-height:1.6; margin-bottom:22px;">{{ .description }}</p>
-          <span style="display:inline-flex; align-items:center; gap:6px; color:#fff; font-weight:800; font-size:0.875rem; letter-spacing:0.02em;">
-            {{ .cta }}
-            <svg style="width:15px;height:15px;transition:transform 0.2s;" class="group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-          </span>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+
+      <a href="/services/basketball-camp/" class="fade-in" style="background:linear-gradient(135deg,#d97706,#92400e);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="height:4px;background:rgba(255,255,255,.25)"></div>
+        <div style="padding:26px 26px 30px;flex:1;display:flex;flex-direction:column">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:10px">CAMPS</span>
+          <h3 class="font-display" style="font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:12px">Basketball Camp</h3>
+          <p style="color:rgba(255,255,255,.78);font-size:.875rem;line-height:1.6;margin-bottom:24px;flex:1">Multi-day intensive camps with structured drills, scrimmages, and elite coaching. All skill levels. All ages.</p>
+          <span style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;font-size:.875rem">View Camp Dates <svg style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
         </div>
       </a>
-      {{ end }}
+
+      <a href="/services/basketball-training/" class="fade-in" style="background:linear-gradient(135deg,#2563eb,#1e3a8a);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="height:4px;background:rgba(255,255,255,.25)"></div>
+        <div style="padding:26px 26px 30px;flex:1;display:flex;flex-direction:column">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:10px">TRAINING</span>
+          <h3 class="font-display" style="font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:12px">Skills Training</h3>
+          <p style="color:rgba(255,255,255,.78);font-size:.875rem;line-height:1.6;margin-bottom:24px;flex:1">Position-specific development for serious athletes. Ball handling, shooting mechanics, footwork, and game IQ.</p>
+          <span style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;font-size:.875rem">Book a Session <svg style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </div>
+      </a>
+
+      <a href="/services/basketball-lessons/" class="fade-in" style="background:linear-gradient(135deg,#7c3aed,#4c1d95);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="height:4px;background:rgba(255,255,255,.25)"></div>
+        <div style="padding:26px 26px 30px;flex:1;display:flex;flex-direction:column">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:10px">1-ON-1</span>
+          <h3 class="font-display" style="font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:12px">Private Lessons</h3>
+          <p style="color:rgba(255,255,255,.78);font-size:.875rem;line-height:1.6;margin-bottom:24px;flex:1">Individualized coaching tailored to your athlete's goals. 1-on-1 and small group sessions available.</p>
+          <span style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;font-size:.875rem">Book a Lesson <svg style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </div>
+      </a>
+
+      <a href="/services/basketball-league/" class="fade-in" style="background:linear-gradient(135deg,#059669,#064e3b);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="height:4px;background:rgba(255,255,255,.25)"></div>
+        <div style="padding:26px 26px 30px;flex:1;display:flex;flex-direction:column">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:10px">LEAGUE</span>
+          <h3 class="font-display" style="font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:12px">Basketball League</h3>
+          <p style="color:rgba(255,255,255,.78);font-size:.875rem;line-height:1.6;margin-bottom:24px;flex:1">Competitive league play for youth and adults. Organized schedules, standings, and playoff brackets.</p>
+          <span style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;font-size:.875rem">Register Your Team <svg style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </div>
+      </a>
+
+      <a href="/services/open-gym/" class="fade-in" style="background:linear-gradient(135deg,#475569,#1e293b);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="height:4px;background:rgba(255,255,255,.25)"></div>
+        <div style="padding:26px 26px 30px;flex:1;display:flex;flex-direction:column">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:10px">OPEN GYM</span>
+          <h3 class="font-display" style="font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:12px">Open Gym</h3>
+          <p style="color:rgba(255,255,255,.78);font-size:.875rem;line-height:1.6;margin-bottom:24px;flex:1">Drop-in court access for pick-up games and individual work. No membership required — just show up.</p>
+          <span style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;font-size:.875rem">See the Schedule <svg style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </div>
+      </a>
+
+      <a href="/services/gym-rental/" class="fade-in" style="background:linear-gradient(135deg,#ea580c,#7f1d1d);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="height:4px;background:rgba(255,255,255,.25)"></div>
+        <div style="padding:26px 26px 30px;flex:1;display:flex;flex-direction:column">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:10px">RENTAL</span>
+          <h3 class="font-display" style="font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:12px">Gym Rental</h3>
+          <p style="color:rgba(255,255,255,.78);font-size:.875rem;line-height:1.6;margin-bottom:24px;flex:1">Book the full regulation court for practices, tryouts, birthday parties, or private events.</p>
+          <span style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;font-size:.875rem">Check Availability <svg style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </div>
+      </a>
+
+      <a href="/services/youth-basketball/" class="fade-in" style="background:linear-gradient(135deg,#0d9488,#134e4a);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="height:4px;background:rgba(255,255,255,.25)"></div>
+        <div style="padding:26px 26px 30px;flex:1;display:flex;flex-direction:column">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:10px">YOUTH</span>
+          <h3 class="font-display" style="font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:12px">Youth Basketball</h3>
+          <p style="color:rgba(255,255,255,.78);font-size:.875rem;line-height:1.6;margin-bottom:24px;flex:1">Age-tiered development from K through 8th grade. Little Ballers, Junior Program, and Elite Youth tracks.</p>
+          <span style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;font-size:.875rem">Find Your Program <svg style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+        </div>
+      </a>
+
+      <a href="/registration/" class="fade-in" style="background:transparent;border:2px dashed rgba(255,255,255,.15);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px;text-align:center;transition:border-color .2s,background .2s" onmouseover="this.style.borderColor='#c9a227';this.style.background='rgba(201,162,39,.08)'" onmouseout="this.style.borderColor='rgba(255,255,255,.15)';this.style.background='transparent'">
+        <svg style="width:36px;height:36px;color:#c9a227;margin-bottom:14px" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        <p class="font-display" style="color:#fff;font-size:1.2rem;margin-bottom:6px">Ready to Start?</p>
+        <p style="color:rgba(255,255,255,.5);font-size:.8rem;margin-bottom:16px">Register for any program</p>
+        <span style="background:#c9a227;color:#0a0d14;font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:10px 20px;border-radius:8px">Register Now</span>
+      </a>
+
     </div>
 
   </div>
+</section>
+
+
+<!-- =====================================================
+     TRAIN / COMPETE SPLIT
+     ===================================================== -->
+<section style="display:grid; grid-template-columns:1fr 1fr; min-height:520px;">
+
+  <!-- TRAIN -->
+  <div class="relative flex flex-col justify-end overflow-hidden" style="min-height:520px;">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('/images/hero-heic-IMG_2916.jpg');"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(6,15,34,0.95) 0%, rgba(6,15,34,0.5) 60%, rgba(6,15,34,0.3) 100%);"></div>
+    <div class="relative z-10 p-10 md:p-14">
+      <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-4">Skill Development</span>
+      <h2 class="font-display text-6xl md:text-7xl text-white leading-none mb-5">TRAIN</h2>
+      <p class="text-white/75 text-base leading-relaxed mb-8 max-w-sm">We don't guess progress, we measure it. Players move through a clear pathway designed to build confidence, sharpen decision-making, and develop the skills needed for success.</p>
+      <a href="/services/basketball-training/" class="inline-flex items-center gap-2 bg-gold text-navy font-bold px-7 py-3 rounded-full text-sm uppercase tracking-wide hover:brightness-110 transition-all">
+        Start Training
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- COMPETE -->
+  <div class="relative flex flex-col justify-end overflow-hidden" style="min-height:520px;">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('/images/hero-loc-2.jpg');"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(6,15,34,0.95) 0%, rgba(6,15,34,0.5) 60%, rgba(6,15,34,0.3) 100%);"></div>
+    <!-- gold divider line -->
+    <div class="absolute top-0 bottom-0 left-0 w-px" style="background:rgba(201,162,39,0.4);"></div>
+    <div class="relative z-10 p-10 md:p-14">
+      <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-4">Leagues & Competition</span>
+      <h2 class="font-display text-6xl md:text-7xl text-white leading-none mb-5">COMPETE</h2>
+      <p class="text-white/75 text-base leading-relaxed mb-8 max-w-sm">Where training meets competition. Athletes learn to think, adapt, and perform under pressure in organized leagues with real standings, playoffs, and championship games.</p>
+      <a href="/services/basketball-league/" class="inline-flex items-center gap-2 bg-gold text-navy font-bold px-7 py-3 rounded-full text-sm uppercase tracking-wide hover:brightness-110 transition-all">
+        Register Your Team
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+
 </section>
 
 
@@ -188,16 +334,16 @@
 <!-- =====================================================
      ABOUT / E-E-A-T
      ===================================================== -->
-<section class="bg-gray-50 py-24">
+<section class="bg-gray-50 py-16">
   <div class="max-w-7xl mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
       <!-- Image -->
-      <div class="fade-in h-96 md:h-auto">
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl h-full">
-          <img src="/assets/img/facility-1.jpg" alt="FCP Sports basketball training facility Fort Walton Beach" class="rounded-2xl w-full h-full object-cover">
-          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy/80 to-transparent p-6">
-            <p class="text-white font-display text-xl">Fort Walton Beach&rsquo;s #1 Basketball Facility</p>
+      <div class="fade-in">
+        <div class="relative rounded-xl overflow-hidden shadow-2xl" style="height:420px;">
+          <img src="/assets/img/facility-1.jpg" alt="FCP Sports basketball training facility Fort Walton Beach" class="w-full h-full object-cover">
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy/80 to-transparent p-5">
+            <p class="text-white font-display text-lg">Fort Walton Beach&rsquo;s #1 Basketball Facility</p>
           </div>
         </div>
       </div>
@@ -205,40 +351,28 @@
       <!-- Text -->
       <div class="fade-in">
         <span class="section-tag">About FCP Sports</span>
-        <h2 class="section-heading">The Emerald Coast&rsquo;s Premier Basketball Facility</h2>
+        <h2 class="font-display text-4xl md:text-5xl text-navy leading-tight mb-4">The Emerald Coast&rsquo;s Premier Basketball Facility</h2>
 
-        <p class="text-gray-600 leading-relaxed mb-5">
-          FCP Sports was built with one mission: give every athlete on the Emerald Coast access to elite basketball development. Located in the heart of Fort Walton Beach, our facility features a full regulation court, professional coaching staff, and a proven curriculum that develops players at every age and skill level.
-        </p>
-        <p class="text-gray-600 leading-relaxed mb-8">
-          From 5-year-olds discovering the game for the first time to high schoolers chasing college scholarships, our coaches meet athletes exactly where they are — and take them further than they thought possible.
+        <p class="text-gray-600 leading-relaxed mb-6">
+          Built with one mission — give every athlete on the Emerald Coast access to elite basketball development. Full regulation court, certified coaches, and a proven curriculum for every age and skill level.
         </p>
 
-        <!-- Trust signals -->
-        <ul class="space-y-3 mb-10">
-          <li class="flex items-start gap-3">
-            <span class="bg-gold/15 text-gold-dark rounded-full p-1 mt-0.5 flex-shrink-0">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </span>
-            <span class="text-gray-700"><strong>USA Basketball certified coaches</strong> with years of player development experience</span>
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-center gap-3 text-gray-700 text-sm">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span><strong>USA Basketball certified coaches</strong></span>
           </li>
-          <li class="flex items-start gap-3">
-            <span class="bg-gold/15 text-gold-dark rounded-full p-1 mt-0.5 flex-shrink-0">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </span>
-            <span class="text-gray-700"><strong>500+ athletes trained</strong> across Fort Walton Beach, Destin, Niceville, and beyond</span>
+          <li class="flex items-center gap-3 text-gray-700 text-sm">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span><strong>500+ athletes trained</strong> across the Emerald Coast</span>
           </li>
-          <li class="flex items-start gap-3">
-            <span class="bg-gold/15 text-gold-dark rounded-full p-1 mt-0.5 flex-shrink-0">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </span>
-            <span class="text-gray-700"><strong>AAU tournament access</strong> with full travel program and college coach exposure</span>
+          <li class="flex items-center gap-3 text-gray-700 text-sm">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span><strong>School partnerships</strong> — Bruner, Ruckel, Pryor &amp; Destin Middle</span>
           </li>
-          <li class="flex items-start gap-3">
-            <span class="bg-gold/15 text-gold-dark rounded-full p-1 mt-0.5 flex-shrink-0">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </span>
-            <span class="text-gray-700"><strong>School partnerships</strong> with Bruner Middle, Ruckel Middle, Pryor Middle, and Destin Middle</span>
+          <li class="flex items-center gap-3 text-gray-700 text-sm">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span><strong>Programs for K–12</strong> — camps, leagues, private lessons &amp; open gym</span>
           </li>
         </ul>
 
@@ -256,14 +390,13 @@
 <!-- =====================================================
      TESTIMONIALS
      ===================================================== -->
-<section class="bg-white py-24">
+<section class="bg-white py-16">
   <div class="max-w-7xl mx-auto px-4">
 
     <!-- Header -->
-    <div class="text-center mb-16 fade-in">
+    <div class="text-center mb-10 fade-in">
       <span class="section-tag">What Families Say</span>
       <h2 class="section-heading text-center">Real Results From Real Families</h2>
-      <p class="text-gray-600 text-lg max-w-2xl mx-auto">Hundreds of Emerald Coast families trust FCP Sports with their athlete&rsquo;s development. Here&rsquo;s what they&rsquo;re saying.</p>
     </div>
 
     <!-- Cards — first 3 -->
@@ -302,7 +435,7 @@
 <!-- =====================================================
      LOCATIONS TEASER
      ===================================================== -->
-<section class="bg-navy py-20">
+<section class="bg-navy py-14">
   <div class="max-w-5xl mx-auto px-4 text-center">
 
     <span class="section-tag fade-in">Service Area</span>
@@ -333,47 +466,6 @@
 </section>
 
 
-<!-- =====================================================
-     STAY UP TO DATE
-     ===================================================== -->
-<section class="bg-gray-50 py-24">
-  <div class="max-w-2xl mx-auto px-4 text-center">
-    <div class="fade-in">
-      <span class="section-tag">Stay Connected</span>
-      <h2 class="section-heading text-center">Stay Up to Date</h2>
-      <p class="text-gray-600 text-lg mb-10">Receive updates on programs, camps, leagues, and open gym schedules from FCP Sports.</p>
-
-      <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-        <input type="email" name="email" placeholder="Enter your email" required
-          class="flex-1 px-5 py-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:outline-none" />
-        <button type="submit" id="newsletter-btn"
-          class="bg-gold text-navy font-bold px-8 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap">
-          Sign Up
-        </button>
-      </form>
-      <p id="newsletter-success" class="hidden text-green-600 font-semibold mt-4">You&rsquo;re in! We&rsquo;ll keep you posted.</p>
-      <p class="text-gray-400 text-xs mt-4">No spam. Unsubscribe anytime.</p>
-    </div>
-  </div>
-
-  <script>
-  document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = document.getElementById('newsletter-btn');
-    var email = this.email.value.trim();
-    if (!email) return;
-    btn.textContent = 'Signing up...';
-    btn.disabled = true;
-    fetch('/.netlify/functions/capture-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, tag: 'newsletter-signup', source: 'homepage' })
-    }).catch(function(){});
-    this.classList.add('hidden');
-    document.getElementById('newsletter-success').classList.remove('hidden');
-  });
-  </script>
-</section>
 
 
 <!-- =====================================================
