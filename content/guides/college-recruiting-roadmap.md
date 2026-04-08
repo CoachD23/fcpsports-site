@@ -1,7 +1,9 @@
 ---
+draft: true
 title: "College Basketball Recruiting Roadmap | Free Guide — FCP Sports"
 description: "A grade-by-grade college basketball recruiting action plan for Florida Panhandle families. From 9th grade to signing day."
 ---
+draft: true
 
 ## College Basketball Recruiting Doesn't Start in Senior Year — It Started Already
 
@@ -12,6 +14,7 @@ By the time most families start thinking about recruiting, the athletes who will
 This guide gives you a grade-by-grade roadmap — what to do, when to do it, and what actually matters to college coaches at each stage of the process.
 
 ---
+draft: true
 
 ## 9th Grade: Build Your Foundation
 
@@ -28,6 +31,7 @@ Freshman year is not too early. It is the beginning.
 **Establish a recruiting profile.** Create accounts on Hudl and NCSA. These cost nothing and establish your presence in the systems coaches actually use.
 
 ---
+draft: true
 
 ## 10th Grade: Build Visibility
 
@@ -42,6 +46,7 @@ Sophomore year is when the recruiting process gets real for D2, D3, and NAIA pro
 **Highlight film.** By the end of 10th grade, you should have a 3-to-4-minute highlight reel that shows your skills, your athleticism, and your basketball IQ. Not dunks. Not stats overlays. Actual basketball plays: reads, defense, passing, and shot selection.
 
 ---
+draft: true
 
 ## 11th Grade: The Contact Period Opens
 
@@ -58,6 +63,7 @@ September 1 of junior year is the most important date in the D1 recruiting calen
 **The July Live Period.** Junior year's July AAU circuit is the highest-stakes recruiting window for most athletes. D1 coaches fill the majority of their boards during this period. FCP Sports' [Summer AAU program](/services/summer-aau/) is built around maximum exposure during these weeks.
 
 ---
+draft: true
 
 ## 12th Grade: Decision Time
 
@@ -72,6 +78,7 @@ Most committed athletes — athletes who have done the work in 9th, 10th, and 11
 **Academics.** The NCAA Eligibility Center must clear you before you can sign or practice. Transcripts, test scores, and course requirements all matter. Do not let a paperwork failure end your career.
 
 ---
+draft: true
 
 ## What College Coaches Are Actually Looking For
 
@@ -86,6 +93,7 @@ Across all levels and all programs, college coaches evaluate five things:
 FCP Sports prepares athletes in all five categories. Skill training is part of it. Film review is part of it. Learning how to carry yourself in a gym — in front of coaches, teammates, and parents — is part of it too.
 
 ---
+draft: true
 
 ## Get the Full Roadmap — Free
 
