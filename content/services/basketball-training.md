@@ -7,6 +7,7 @@ keyword: "basketball training near me"
 age_range: "Ages 8–18"
 price: "Contact for pricing"
 frequency: "Weekly sessions"
+program_name: "Skills Training"
 ghl_tag: "training-inquiry"
 course_type: "basketball training"
 faq:

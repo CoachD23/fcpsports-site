@@ -7,6 +7,8 @@ age_range: "Grades 3-10"
 price: "$149/week"
 frequency: "Mon-Fri, 9am-3pm"
 layout: "services"
+ghl_tag: "camp-summer"
+program_name: "Summer Day Camp"
 faq:
   - q: "How much does summer basketball camp cost at FCP Sports?"
     a: "Summer basketball camp is $149 per week at full price. Register before May 1 and the early bird rate drops to $129. Military and DoD families (Eglin AFB, Hurlburt Field) pay $129 regardless of registration date. Siblings are $129 each, and booking two weeks together is $273 — a $25 savings over two separate registrations."

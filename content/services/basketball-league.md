@@ -7,6 +7,7 @@ keyword: "basketball league fort walton beach"
 age_range: "Ages 5–18"
 price: "Starting at $59"
 frequency: "Weekly games"
+program_name: "Basketball League"
 ghl_tag: "league-inquiry"
 faq:
   - q: "Is there a youth basketball league in Fort Walton Beach?"

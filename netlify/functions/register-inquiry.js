@@ -22,7 +22,15 @@
 
 const ALLOWED_TAGS = new Set([
   "newsletter-signup",
+  // Camp-specific tags — one per camp so GHL can filter/automate per product
   "camp-inquiry",
+  "camp-summer",
+  "camp-girls",
+  "camp-showcase",
+  "camp-spring-break",
+  "camp-holiday",
+  "camp-kenny",
+  // Program tags
   "training-inquiry",
   "league-inquiry",
   "gym-rental-inquiry",

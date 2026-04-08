@@ -7,6 +7,8 @@ age_range: "Grades 9-12 (Boys)"
 price: "$129/2 days"
 frequency: "Fri-Sat, Jul 17-18"
 layout: "services"
+ghl_tag: "camp-showcase"
+program_name: "Elite Showcase Camp"
 faq:
   - q: "What is a basketball showcase camp and how is it different from a regular camp?"
     a: "A showcase camp is designed for competitive exposure, not beginner skill development. Players compete in structured games with stat tracking and individual evaluation. The FCP Sports showcase is timed to the NCAA Division I evaluation period (July 16-19), which means college coaches are actively evaluating prospects during this window. This is not a camp for learning fundamentals — it is a camp for demonstrating what you already have."

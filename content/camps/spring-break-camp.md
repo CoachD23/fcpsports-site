@@ -7,6 +7,8 @@ age_range: "Grades 6-10 (Co-Ed)"
 price: "$129/4 days"
 frequency: "Mon-Thu, 9am-3pm"
 layout: "services"
+ghl_tag: "camp-spring-break"
+program_name: "Spring Break Camp"
 faq:
   - q: "When is spring break basketball camp at FCP Sports?"
     a: "Spring break camp runs March 15-18, 2027 — Monday through Thursday during Okaloosa County spring break. We intentionally leave Friday open so your family can still take a long weekend trip or head to the beach without missing camp. Drop-off is at 8:45 AM and pickup is at 3:00 PM each day."

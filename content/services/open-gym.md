@@ -7,6 +7,7 @@ keyword: "open gym basketball fort walton beach"
 age_range: "Youth & Adult"
 price: "Drop-in rates available"
 frequency: "Weekly schedule"
+program_name: "Open Gym"
 ghl_tag: "open-gym-inquiry"
 faq:
   - q: "Where can I play pickup basketball near Fort Walton Beach?"

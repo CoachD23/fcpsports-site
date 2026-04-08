@@ -7,6 +7,7 @@ keyword: "basketball lessons fort walton beach"
 age_range: "Ages 6–Adult"
 price: "Contact for pricing"
 frequency: "Flexible scheduling"
+program_name: "Private Lessons"
 ghl_tag: "training-inquiry"
 course_type: "basketball training"
 faq:

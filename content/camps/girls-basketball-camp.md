@@ -7,6 +7,8 @@ age_range: "Grades 6-10 (Girls)"
 price: "$149/week"
 frequency: "Mon-Fri, 9am-3pm"
 layout: "services"
+ghl_tag: "camp-girls"
+program_name: "Girls Basketball Camp"
 faq:
   - q: "Is there a girls-only basketball camp near me in the Florida Panhandle?"
     a: "FCP Sports runs the only girls-specific basketball camp in the Florida Panhandle. Our girls camp takes place June 15-19 at our dedicated basketball facility in Fort Walton Beach. We draw female athletes from Destin, Niceville, Navarre, Crestview, Pensacola, and Panama City. If you have been searching for a girls basketball camp that is not just a co-ed program with a different name, this is it."

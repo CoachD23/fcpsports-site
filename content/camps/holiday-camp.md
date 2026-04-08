@@ -7,6 +7,8 @@ age_range: "Grades 4-8 (Co-Ed)"
 price: "$79/3 days"
 frequency: "Mon-Wed, 9am-12pm"
 layout: "services"
+ghl_tag: "camp-holiday"
+program_name: "Holiday Camp"
 faq:
   - q: "When is the holiday basketball camp at FCP Sports?"
     a: "Holiday camp runs December 28-30, 2026 — Monday through Wednesday during Okaloosa County winter break (December 21-31). It is a half-day camp, 9:00 AM to 12:00 PM each day. This gives your child something structured and active to do during the week between Christmas and New Year's without taking over the whole day."

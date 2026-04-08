@@ -7,6 +7,7 @@ keyword: "basketball camp fort walton beach"
 age_range: "Ages 6–17"
 price: "Contact for pricing"
 frequency: "Multi-day sessions"
+program_name: "Basketball Camp"
 ghl_tag: "camp-inquiry"
 faq:
   - q: "How much does basketball camp cost in Fort Walton Beach?"

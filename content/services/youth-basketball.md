@@ -7,6 +7,7 @@ keyword: "youth basketball fort walton beach"
 age_range: "Ages 5–14"
 price: "Contact for pricing"
 frequency: "Weekly sessions + games"
+program_name: "Youth Basketball"
 ghl_tag: "youth-inquiry"
 faq:
   - q: "What age can my child start youth basketball in Fort Walton Beach?"

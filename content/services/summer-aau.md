@@ -7,6 +7,7 @@ keyword: "AAU basketball florida"
 age_range: "Ages 14–18"
 price: "Contact us for pricing"
 frequency: "Summer season"
+program_name: "Summer AAU"
 ghl_tag: "aau-inquiry"
 faq:
   - q: "How much does AAU basketball cost in Florida?"

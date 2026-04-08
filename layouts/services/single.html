@@ -55,7 +55,7 @@
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           {{ partial "inquiry-form.html" (dict
             "tag"     (.Params.ghl_tag | default "general-inquiry")
-            "program" (.Params.title | default "")
+            "program" (.Params.program_name | default "")
             "title"   "Get More Info"
             "subtitle" "We'll reach out within 24 hours."
             "id"      (printf "svc-%s" .File.BaseFileName)

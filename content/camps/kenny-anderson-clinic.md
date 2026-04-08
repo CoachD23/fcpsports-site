@@ -7,6 +7,8 @@ age_range: "Grades 6-12"
 price: "$49/session"
 frequency: "Monthly Saturdays, 10am-12pm"
 layout: "services"
+ghl_tag: "camp-kenny"
+program_name: "Kenny Anderson Clinic"
 faq:
   - q: "Who is Kenny Anderson and will he actually be at the clinic?"
     a: "Kenny Anderson is a former NBA first-round draft pick who played 14 seasons in the NBA. He is not a name on a flyer — Kenny is personally present at every one of these clinics, working directly with players on the court. These Saturday sessions are the premium product at FCP Sports specifically because Kenny is guaranteed to be there coaching your child."

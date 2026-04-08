@@ -7,6 +7,7 @@ keyword: "basketball gym rental fort walton beach"
 age_range: "All ages"
 price: "Contact for rates"
 frequency: "Flexible booking"
+program_name: "Gym Rental"
 ghl_tag: "gym-rental-inquiry"
 faq:
   - q: "How much does it cost to rent a basketball gym in Fort Walton Beach?"
