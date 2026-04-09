@@ -4,6 +4,7 @@ title: "Basketball Training Fort Walton Beach FL | FCP Sports"
 description: "Fort Walton Beach's only dedicated basketball training facility. Programs for youth, middle, and high school athletes at FCP Sports — located in the heart of FWB."
 h1: "Basketball Training in Fort Walton Beach, FL"
 city: "Fort Walton Beach"
+keyword: "basketball training fort walton beach"
 schools:
   - "Annette P. Edwins Elementary"
   - "Liza Jackson Preparatory School"

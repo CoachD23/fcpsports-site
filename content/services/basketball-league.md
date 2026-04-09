@@ -1,7 +1,7 @@
 ---
 hero_image: /images/hero-loc-10.jpg
 title: "Youth Basketball League Fort Walton Beach FL | FCP Sports"
-description: "Youth basketball league in Fort Walton Beach with trained refs, stat tracking & real competition. Competitive & recreational divisions for ages 5-18. Starting at $59 with jersey included."
+description: "Youth basketball league in Fort Walton Beach with trained refs, stat tracking, and standings. Ages 5–18, co-ed. Fall and summer seasons. From $59."
 h1: "Youth Basketball League in Fort Walton Beach — Competitive & Recreational Leagues at FCP Sports"
 keyword: "basketball league fort walton beach"
 age_range: "Ages 5–18"

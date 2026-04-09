@@ -1,9 +1,10 @@
 ---
 title: "High School Basketball Training & Recruiting Prep Florida | FCP Sports"
-description: "College recruiting prep, NCAA eligibility guidance, AAU national circuit, and exposure events for high school basketball players on the Florida Panhandle. FCP Sports, Fort Walton Beach."
+description: "College recruiting prep, NCAA eligibility guidance, and exposure events for high school basketball players on the Florida Panhandle. FCP Sports, Fort Walton Beach."
 h1: "High School Basketball Training & Recruiting Prep"
 age_range: "Ages 14–18"
 grade_range: "9th – 12th Grade"
+keyword: "high school basketball training florida panhandle"
 schools:
   - "Fort Walton Beach High School"
   - "Choctawhatchee High School"

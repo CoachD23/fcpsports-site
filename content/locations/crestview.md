@@ -4,6 +4,7 @@ title: "Basketball Training Crestview FL | FCP Sports"
 description: "Basketball training 30 minutes from Crestview FL. FCP Sports offers affordable programs, payment plans, and flexible scheduling for North Okaloosa County families."
 h1: "Basketball Training Near Crestview, FL"
 city: "Crestview"
+keyword: "basketball training crestview fl"
 drive_time: "~30 minutes via FL-85 S"
 schools:
   - "Antioch Elementary"

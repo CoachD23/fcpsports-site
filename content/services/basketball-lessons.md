@@ -8,7 +8,7 @@ age_range: "Ages 6–Adult"
 price: "Contact for pricing"
 frequency: "Flexible scheduling"
 program_name: "Private Lessons"
-ghl_tag: "training-inquiry"
+ghl_tag: "lessons-inquiry"
 course_type: "basketball training"
 faq:
   - q: "How much do private basketball lessons cost in Fort Walton Beach?"

@@ -4,6 +4,7 @@ title: "Basketball Training Niceville FL | FCP Sports"
 description: "Basketball training near Niceville and Eglin AFB. FCP Sports is 20 minutes from Niceville with flexible programs designed for military families and competitive athletes."
 h1: "Basketball Training Near Niceville, FL"
 city: "Niceville"
+keyword: "basketball training niceville fl"
 drive_time: "~20 minutes via FL-85 S"
 schools:
   - "James E. Plew Elementary"

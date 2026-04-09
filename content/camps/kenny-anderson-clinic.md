@@ -1,6 +1,6 @@
 ---
 title: "Kenny Anderson Basketball Clinic Fort Walton Beach | FCP Sports"
-description: "Train with NBA veteran Kenny Anderson at monthly Saturday clinics in Fort Walton Beach. Grades 6-12. $49/session or $199 for all 5 clinics. Ball handling, decision-making, and mentorship."
+description: "Train with NBA veteran Kenny Anderson at monthly Saturday clinics in Fort Walton Beach. Grades 6-12. $49/session or $199 for all 5."
 h1: "Kenny Anderson Basketball Clinics — Train with an NBA Veteran"
 keyword: "kenny anderson basketball clinic"
 age_range: "Grades 6-12"

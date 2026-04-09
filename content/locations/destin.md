@@ -4,6 +4,7 @@ title: "Basketball Training Destin FL | FCP Sports"
 description: "Elite basketball training just 15 minutes from Destin. FCP Sports offers year-round programs and drop-in sessions for Destin families and summer visitors on the Emerald Coast."
 h1: "Basketball Training in Destin, FL"
 city: "Destin"
+keyword: "basketball training destin fl"
 drive_time: "~15 minutes via US-98 W"
 schools:
   - "Destin Elementary School"

@@ -1,9 +1,10 @@
 ---
 title: "Middle School Basketball Training Fort Walton Beach | FCP Sports"
-description: "Elite basketball training for 6th–8th grade athletes on the Emerald Coast. High school tryout prep, position-specific coaching, and competitive development at FCP Sports in Fort Walton Beach."
+description: "Elite basketball training for 6th–8th grade athletes on the Emerald Coast. High school tryout prep and position-specific coaching at FCP Sports."
 h1: "Middle School Basketball Training"
 age_range: "Ages 11–14"
 grade_range: "6th – 8th Grade"
+keyword: "middle school basketball training fort walton beach"
 schools:
   - "W.C. Pryor Middle School"
   - "Max Bruner Jr. Middle School"

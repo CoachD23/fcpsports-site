@@ -1,6 +1,6 @@
 ---
 title: "Summer Basketball Camp Fort Walton Beach | FCP Sports"
-description: "Week-long summer basketball day camp in Fort Walton Beach for grades 3-10. Mon-Fri, 9am-3pm with structured drills, scrimmages, and film review. $149/week with early bird and military discounts."
+description: "Week-long summer basketball day camps in Fort Walton Beach for grades 3-10. Mon-Fri, 9am-3pm. $149/week with early bird and military discounts."
 h1: "Summer Basketball Day Camp in Fort Walton Beach"
 keyword: "summer basketball camp fort walton beach"
 age_range: "Grades 3-10"

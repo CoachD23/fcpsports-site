@@ -4,6 +4,7 @@ title: "Basketball Training Panama City FL | FCP Sports"
 description: "Elite basketball training one hour from Panama City FL. FCP Sports offers weekend intensives, week-long camps, and specialized programs for serious Bay County athletes."
 h1: "Basketball Training for Panama City Athletes"
 city: "Panama City"
+keyword: "basketball training panama city fl"
 drive_time: "~1 hour via US-98 E"
 schools:
   - "Jinks Middle School"

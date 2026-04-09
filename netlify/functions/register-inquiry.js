@@ -32,6 +32,7 @@ const ALLOWED_TAGS = new Set([
   "camp-kenny",
   // Program tags
   "training-inquiry",
+  "lessons-inquiry",
   "league-inquiry",
   "gym-rental-inquiry",
   "open-gym-inquiry",
