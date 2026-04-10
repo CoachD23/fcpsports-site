@@ -1,20 +1,80 @@
 {{ define "main" }}
 
+<style>
+/* ── Homepage mobile responsive ── */
+
+/* Hero H1 */
+@media (max-width: 479px) {
+  .hero-h1 { font-size: 3.5rem !important; }
+}
+
+/* TRAIN / COMPETE split */
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+}
+@media (max-width: 767px) {
+  .split-grid {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+  .split-panel {
+    padding: 48px 24px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .split-panel:last-child { border-bottom: none; }
+  .split-heading { font-size: 3rem !important; margin-bottom: 16px !important; }
+  .split-tags { margin-bottom: 24px !important; }
+}
+
+/* Programs grid */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 639px) {
+  .programs-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .programs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+
 <!-- =====================================================
      HERO — Full-screen video background
      ===================================================== -->
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-  <!-- Video background -->
+  <!-- Video background — lazy loaded on desktop with fast connection only -->
   <video
+    id="hero-video"
     class="absolute inset-0 w-full h-full object-cover"
     autoplay muted loop playsinline
     poster="/assets/img/hero-poster.jpg"
-    preload="metadata"
-  >
-    <source src="/assets/video/hero.webm" type="video/webm">
-    <source src="/assets/video/hero.mp4" type="video/mp4">
-  </video>
+    preload="none"
+  ></video>
+  <script>
+  (function() {
+    var mq = window.matchMedia('(min-width: 768px)');
+    var conn = navigator.connection;
+    var slow = conn && (conn.saveData || /2g/.test(conn.effectiveType));
+    if (mq.matches && !slow) {
+      var v = document.getElementById('hero-video');
+      var webm = document.createElement('source');
+      webm.src = '/assets/video/hero.webm';
+      webm.type = 'video/webm';
+      var mp4 = document.createElement('source');
+      mp4.src = '/assets/video/hero.mp4';
+      mp4.type = 'video/mp4';
+      v.appendChild(webm);
+      v.appendChild(mp4);
+      v.load();
+    }
+  })();
+  </script>
 
   <!-- Dark navy overlay -->
   <div class="absolute inset-0 bg-navy/75"></div>
@@ -28,7 +88,7 @@
     </span>
 
     <!-- H1 -->
-    <h1 class="font-display text-7xl sm:text-8xl md:text-9xl text-white leading-none mb-6 fade-in">
+    <h1 class="hero-h1 font-display text-6xl sm:text-8xl md:text-9xl text-white leading-none mb-6 fade-in">
       TRAIN LIKE<br>
       <span class="text-gold">A CHAMPION</span>
     </h1>
@@ -38,11 +98,11 @@
       <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
         <p class="text-white font-bold text-lg mb-1">Stay Up to Date</p>
         <p class="text-white/70 text-sm mb-4">Receive updates on programs, camps &amp; open gym.</p>
-        <form id="hero-signup-form" class="flex gap-2">
+        <form id="hero-signup-form" class="flex flex-col sm:flex-row gap-2">
           <input type="email" name="email" placeholder="Your email address" required
             class="flex-1 px-4 py-3 rounded-lg text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold" />
           <button type="submit" id="hero-signup-btn"
-            class="bg-gold text-navy font-bold px-6 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap">
+            class="bg-gold text-navy font-bold px-6 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap w-full sm:w-auto">
             Sign Up
           </button>
         </form>
@@ -104,7 +164,7 @@
       </div>
 
       <div class="fade-in">
-        <div class="font-display text-5xl md:text-6xl text-navy leading-none flex items-center justify-center gap-1">5<svg class="w-10 h-10 fill-navy inline-block" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+        <div class="font-display text-5xl md:text-6xl text-navy leading-none flex items-center justify-center gap-1">5<svg class="w-7 h-7 md:w-10 md:h-10 fill-navy inline-block" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
         <div class="font-display text-navy/70 text-lg tracking-wide mt-1">Google Rating</div>
       </div>
 
@@ -117,16 +177,16 @@
      TRAIN / COMPETE — Two-column split
      ===================================================== -->
 <section style="background:#060f22;" class="py-0">
-  <div style="display:grid;grid-template-columns:1fr 1fr;min-height:480px;">
+  <div class="split-grid">
 
     <!-- TRAIN -->
-    <div class="fade-in" style="padding:72px 56px;border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;">
+    <div class="split-panel fade-in" style="padding:72px 56px;border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;">
       <div>
-        <h2 class="font-display" style="font-size:5rem;color:#fff;line-height:1;margin-bottom:28px;letter-spacing:-.02em">TRAIN</h2>
+        <h2 class="split-heading font-display" style="font-size:5rem;color:#fff;line-height:1;margin-bottom:28px;letter-spacing:-.02em">TRAIN</h2>
         <p style="color:rgba(255,255,255,.65);font-size:1.125rem;line-height:1.75;max-width:480px;">Skills training, private lessons, camps, and youth programs — all under one roof. We build athletes from the ground up with measurable skill development and real coaching.</p>
       </div>
       <div style="margin-top:48px;">
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;">
+        <div class="split-tags" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;">
           <a href="/services/basketball-training/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Skills Training</a>
           <a href="/services/basketball-lessons/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Private Lessons</a>
           <a href="/services/basketball-camp/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Basketball Camp</a>
@@ -137,13 +197,13 @@
     </div>
 
     <!-- COMPETE -->
-    <div class="fade-in" style="padding:72px 56px;background:rgba(212,175,55,.04);display:flex;flex-direction:column;justify-content:space-between;">
+    <div class="split-panel fade-in" style="padding:72px 56px;background:rgba(212,175,55,.04);display:flex;flex-direction:column;justify-content:space-between;">
       <div>
-        <h2 class="font-display" style="font-size:5rem;color:#d4af37;line-height:1;margin-bottom:28px;letter-spacing:-.02em">COMPETE</h2>
+        <h2 class="split-heading font-display" style="font-size:5rem;color:#d4af37;line-height:1;margin-bottom:28px;letter-spacing:-.02em">COMPETE</h2>
         <p style="color:rgba(255,255,255,.65);font-size:1.125rem;line-height:1.75;max-width:480px;">Where training meets competition. Our basketball leagues run year-round with organized schedules, refs, standings, and playoffs. Real games. Real stakes. Real development.</p>
       </div>
       <div style="margin-top:48px;">
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;">
+        <div class="split-tags" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;">
           <a href="/services/basketball-league/" style="background:rgba(212,175,55,.15);color:#d4af37;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(212,175,55,.3);text-decoration:none;">Basketball League</a>
           <a href="/services/youth-basketball/" style="background:rgba(212,175,55,.15);color:#d4af37;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(212,175,55,.3);text-decoration:none;">Youth Basketball</a>
           <a href="/services/gym-rental/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Gym Rental</a>
@@ -167,7 +227,7 @@
       <h2 class="font-display text-5xl md:text-6xl text-white leading-none">7 Programs.<br><span class="text-gold">One Facility.</span></h2>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+    <div class="programs-grid">
 
       <a href="/services/basketball-camp/" class="fade-in" style="background:linear-gradient(135deg,#d97706,#92400e);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <div style="height:4px;background:rgba(255,255,255,.25)"></div>
@@ -301,7 +361,7 @@
       <!-- Image -->
       <div class="fade-in">
         <div class="relative rounded-xl overflow-hidden shadow-2xl" style="height:420px;">
-          <img src="/assets/img/facility-1.jpg" alt="FCP Sports basketball training facility Fort Walton Beach" class="w-full h-full object-cover">
+          <img src="/assets/img/facility-1.jpg" alt="FCP Sports basketball training facility Fort Walton Beach" class="w-full h-full object-cover" loading="lazy" decoding="async" width="800" height="600">
           <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy/80 to-transparent p-5">
             <p class="text-white font-display text-lg">Fort Walton Beach&rsquo;s #1 Basketball Facility</p>
           </div>
