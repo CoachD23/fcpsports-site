@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FCP Sports — Basketball Camps & Leagues Coming to FWB</title>
+<meta name="description" content="Tell us when your family is available. Get early bird pricing on FCP Sports basketball camps and leagues in Fort Walton Beach.">
+<meta property="og:title" content="FCP Sports — Help Us Pick the Best Camp & League Dates">
+<meta property="og:description" content="30-second survey. Get early bird pricing on basketball camps and leagues in the Fort Walton Beach area.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0B1120;
+  --card:#131C31;
+  --card-border:#1E2D4A;
+  --orange:#F26522;
+  --orange-hover:#E05A1B;
+  --orange-glow:rgba(242,101,34,.15);
+  --white:#FFFFFF;
+  --light:#CBD5E1;
+  --muted:#64748B;
+  --green:#34D399;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Source Sans 3',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── LAYOUT ── */
+.page{
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 1.25rem;
+}
+
+/* ── HEADER BAR ── */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1.25rem 0;
+  border-bottom:1px solid var(--card-border);
+}
+.logo{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:1.35rem;
+  letter-spacing:.02em;
+  color:var(--white);
+  text-decoration:none;
+}
+.logo span{color:var(--orange)}
+.top-bar .tag{
+  font-size:.75rem;
+  font-weight:600;
+  color:var(--orange);
+  background:var(--orange-glow);
+  border:1px solid rgba(242,101,34,.25);
+  padding:.35rem .85rem;
+  border-radius:6px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+
+/* ── HERO + FORM SPLIT ── */
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3.5rem;
+  align-items:start;
+  padding:3.5rem 0 4rem;
+}
+
+/* Left: Copy */
+.hero-copy{padding-top:1rem}
+.hero-copy h1{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:clamp(2.2rem,4.5vw,3.2rem);
+  line-height:1.05;
+  letter-spacing:-.01em;
+  margin-bottom:1.25rem;
+}
+.hero-copy h1 .highlight{color:var(--orange)}
+.hero-copy .sub{
+  font-size:1.1rem;
+  line-height:1.65;
+  color:var(--light);
+  margin-bottom:2rem;
+  max-width:440px;
+}
+.perks{
+  display:flex;
+  flex-direction:column;
+  gap:.85rem;
+  margin-bottom:2.5rem;
+}
+.perk{
+  display:flex;align-items:center;gap:.65rem;
+  font-size:1rem;font-weight:500;color:var(--white);
+}
+.perk .icon{
+  width:28px;height:28px;
+  background:var(--orange-glow);
+  border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-size:.85rem;
+}
+.social-proof{
+  display:flex;align-items:center;gap:.65rem;
+  padding-top:.5rem;
+}
+.avatars{display:flex}
+.avatars .av{
+  width:32px;height:32px;
+  border-radius:50%;
+  border:2px solid var(--bg);
+  margin-left:-8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;
+  color:var(--white);
+}
+.avatars .av:first-child{margin-left:0}
+.av-1{background:#3B82F6}
+.av-2{background:#8B5CF6}
+.av-3{background:#EC4899}
+.av-4{background:#F59E0B}
+.social-proof .text{font-size:.85rem;color:var(--muted)}
+.social-proof .text strong{color:var(--green);font-weight:600}
+
+/* Right: Form Card */
+.form-card{
+  background:var(--card);
+  border:1px solid var(--card-border);
+  border-radius:16px;
+  padding:2rem 1.75rem 1.75rem;
+  position:relative;
+}
+.form-card::before{
+  content:'';
+  position:absolute;
+  top:-1px;left:2rem;right:2rem;
+  height:3px;
+  background:var(--orange);
+  border-radius:0 0 3px 3px;
+}
+.form-card h2{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:1.35rem;
+  margin-bottom:.25rem;
+}
+.form-card .form-sub{
+  font-size:.85rem;
+  color:var(--muted);
+  margin-bottom:1.5rem;
+}
+
+/* Form */
+.f-group{margin-bottom:1.1rem}
+.f-group label{
+  display:block;
+  font-size:.78rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  color:var(--light);
+  margin-bottom:.35rem;
+}
+.f-group input,.f-group select{
+  width:100%;
+  background:var(--bg);
+  border:1.5px solid var(--card-border);
+  color:var(--white);
+  font-family:'Source Sans 3',sans-serif;
+  font-size:.95rem;
+  padding:.7rem .85rem;
+  border-radius:8px;
+  outline:none;
+  transition:border-color .2s;
+}
+.f-group input::placeholder{color:var(--muted)}
+.f-group input:focus,.f-group select:focus{border-color:var(--orange)}
+.f-group select option{background:var(--bg)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+
+/* Checkbox sections */
+.check-section{margin-bottom:1.1rem}
+.check-section .cs-label{
+  font-size:.78rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  color:var(--light);
+  margin-bottom:.45rem;
+  display:block;
+}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{
+  display:flex;align-items:center;gap:.4rem;
+  background:var(--bg);
+  border:1.5px solid var(--card-border);
+  padding:.45rem .75rem;
+  border-radius:7px;
+  font-size:.82rem;
+  font-weight:500;
+  color:var(--light);
+  cursor:pointer;
+  transition:border-color .15s,background .15s,color .15s;
+  user-select:none;
+}
+.chip:hover{border-color:rgba(242,101,34,.4)}
+.chip input{display:none}
+.chip.selected{
+  border-color:var(--orange);
+  background:var(--orange-glow);
+  color:var(--white);
+}
+
+/* Submit */
+.submit-btn{
+  width:100%;
+  background:var(--orange);
+  color:var(--white);
+  font-family:'Source Sans 3',sans-serif;
+  font-weight:700;
+  font-size:1.05rem;
+  padding:.85rem 1rem;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:background .2s,transform .12s;
+  margin-top:.5rem;
+}
+.submit-btn:hover{background:var(--orange-hover);transform:translateY(-1px)}
+.submit-btn:active{transform:translateY(0)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.privacy-note{
+  text-align:center;
+  font-size:.72rem;
+  color:var(--muted);
+  margin-top:.75rem;
+}
+.privacy-note svg{vertical-align:middle;margin-right:.25rem}
+
+/* Success */
+.success-state{
+  display:none;
+  text-align:center;
+  padding:2.5rem 1rem;
+}
+.success-state .s-icon{
+  width:56px;height:56px;
+  background:rgba(52,211,153,.12);
+  border:2px solid rgba(52,211,153,.3);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.25rem;
+  font-size:1.5rem;
+}
+.success-state h3{
+  font-family:'Oswald',sans-serif;
+  font-size:1.5rem;
+  margin-bottom:.5rem;
+}
+.success-state p{
+  color:var(--muted);
+  font-size:.95rem;
+  line-height:1.55;
+  max-width:340px;
+  margin:0 auto;
+}
+
+/* ── FOOTER ── */
+.foot{
+  text-align:center;
+  padding:2rem 0;
+  border-top:1px solid var(--card-border);
+  font-size:.78rem;
+  color:var(--muted);
+}
+.foot a{color:var(--orange);text-decoration:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero-grid{
+    grid-template-columns:1fr;
+    gap:2rem;
+    padding:2rem 0 3rem;
+  }
+  .hero-copy{text-align:center}
+  .hero-copy .sub{margin-left:auto;margin-right:auto}
+  .perks{align-items:center}
+  .social-proof{justify-content:center}
+  .f-row{grid-template-columns:1fr}
+  .form-card{padding:1.5rem 1.25rem 1.5rem}
+}
+@media(max-width:420px){
+  .top-bar .tag{display:none}
+  .chips{gap:.35rem}
+  .chip{padding:.4rem .6rem;font-size:.78rem}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <a href="https://www.fcpsports.org" class="logo">FCP <span>SPORTS</span></a>
+    <div class="tag">Fort Walton Beach, FL</div>
+  </header>
+
+  <!-- Hero Grid -->
+  <div class="hero-grid">
+
+    <!-- Left: Copy -->
+    <div class="hero-copy">
+      <h1>HELP US BUILD THE <span class="highlight">PERFECT SCHEDULE</span> FOR YOUR FAMILY</h1>
+      <p class="sub">We're launching basketball camps and leagues on the Emerald Coast. Tell us when works best — and you'll get early bird pricing before we open to the public.</p>
+
+      <div class="perks">
+        <div class="perk"><span class="icon">🏀</span> Ages 5–17, boys & girls</div>
+        <div class="perk"><span class="icon">💰</span> Early bird pricing for survey takers</div>
+        <div class="perk"><span class="icon">📋</span> Takes 30 seconds</div>
+      </div>
+
+      <div class="social-proof">
+        <div class="avatars">
+          <div class="av av-1">J</div>
+          <div class="av av-2">M</div>
+          <div class="av av-3">K</div>
+          <div class="av av-4">T</div>
+        </div>
+        <div class="text"><strong id="counter">0</strong> families have responded</div>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="form-card">
+      <h2>YOUR AVAILABILITY</h2>
+      <p class="form-sub">Fill this out and we'll build around your schedule.</p>
+
+      <form id="surveyForm">
+        <div class="f-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="First and last" required>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" required>
+          </div>
+          <div class="f-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="(850) 555-1234" required>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label for="age">Child's Age Range</label>
+          <select id="age" name="age" required>
+            <option value="" disabled selected>Select</option>
+            <option value="5-7">5–7</option>
+            <option value="8-10">8–10</option>
+            <option value="11-13">11–13</option>
+            <option value="14-17">14–17</option>
+            <option value="multiple">Multiple ages</option>
+          </select>
+        </div>
+
+        <div class="check-section">
+          <span class="cs-label">Best Months</span>
+          <div class="chips" data-name="season">
+            <label class="chip"><input type="checkbox" name="season" value="june">June</label>
+            <label class="chip"><input type="checkbox" name="season" value="july">July</label>
+            <label class="chip"><input type="checkbox" name="season" value="fall">Fall</label>
+            <label class="chip"><input type="checkbox" name="season" value="winter-break">Winter Break</label>
+            <label class="chip"><input type="checkbox" name="season" value="spring-break">Spring Break</label>
+            <label class="chip"><input type="checkbox" name="season" value="year-round">Year-Round</label>
+          </div>
+        </div>
+
+        <div class="check-section">
+          <span class="cs-label">Best Times</span>
+          <div class="chips" data-name="time">
+            <label class="chip"><input type="checkbox" name="time" value="weekday-am">Weekday AM</label>
+            <label class="chip"><input type="checkbox" name="time" value="weekday-pm">Weekday PM</label>
+            <label class="chip"><input type="checkbox" name="time" value="weekday-eve">Weekday Eve</label>
+            <label class="chip"><input type="checkbox" name="time" value="saturday">Saturday</label>
+            <label class="chip"><input type="checkbox" name="time" value="sunday">Sunday</label>
+          </div>
+        </div>
+
+        <div class="check-section">
+          <span class="cs-label">Interested In</span>
+          <div class="chips" data-name="interest">
+            <label class="chip"><input type="checkbox" name="interest" value="camp">Skills Camp</label>
+            <label class="chip"><input type="checkbox" name="interest" value="league">League</label>
+            <label class="chip"><input type="checkbox" name="interest" value="clinic">Shooting Clinic</label>
+            <label class="chip"><input type="checkbox" name="interest" value="training">Team Training</label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Lock In Early Bird Pricing →</button>
+        <p class="privacy-note">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          No spam. We only contact you about camps & leagues.
+        </p>
+      </form>
+
+      <div class="success-state" id="successState">
+        <div class="s-icon">✓</div>
+        <h3>YOU'RE ON THE LIST</h3>
+        <p>We'll reach out with early bird pricing before registration opens to the public.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="page">&copy; 2026 <a href="https://www.fcpsports.org">FCP Sports</a> — Fort Walton Beach, Florida</div>
+</footer>
+
+<script>
+// Chip toggle
+document.querySelectorAll('.chip').forEach(function(chip){
+  chip.addEventListener('click', function(e){
+    if(e.target.tagName==='INPUT') return;
+    var cb = chip.querySelector('input');
+    cb.checked = !cb.checked;
+    chip.classList.toggle('selected', cb.checked);
+  });
+  chip.querySelector('input').addEventListener('change', function(){
+    chip.classList.toggle('selected', this.checked);
+  });
+});
+
+// Phone format
+document.getElementById('phone').addEventListener('input', function(e){
+  var v = e.target.value.replace(/\D/g,'');
+  if(v.length>=6) v='('+v.slice(0,3)+') '+v.slice(3,6)+'-'+v.slice(6,10);
+  else if(v.length>=3) v='('+v.slice(0,3)+') '+v.slice(3);
+  e.target.value=v;
+});
+
+// Social proof counter animation
+(function(){
+  var target = 47;
+  var el = document.getElementById('counter');
+  var current = 0;
+  var step = Math.ceil(target/30);
+  var timer = setInterval(function(){
+    current += step;
+    if(current >= target){current = target; clearInterval(timer);}
+    el.textContent = current;
+  }, 50);
+})();
+
+// Submit
+document.getElementById('surveyForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  var fd = new FormData(this);
+  var data = {
+    name: fd.get('name'),
+    email: fd.get('email'),
+    phone: fd.get('phone'),
+    age: fd.get('age'),
+    seasons: fd.getAll('season'),
+    times: fd.getAll('time'),
+    interests: fd.getAll('interest')
+  };
+
+  console.log('Lead:', JSON.stringify(data, null, 2));
+
+  // ── REPLACE WITH GHL WEBHOOK ──
+  // fetch('https://YOUR-GHL-WEBHOOK-URL', {
+  //   method:'POST',
+  //   headers:{'Content-Type':'application/json'},
+  //   body: JSON.stringify(data)
+  // }).then(done).catch(done);
+  // ──────────────────────────────
+
+  setTimeout(done, 500);
+
+  function done(){
+    document.getElementById('surveyForm').style.display='none';
+    document.getElementById('successState').style.display='block';
+  }
+});
+</script>
+</body>
+</html>
