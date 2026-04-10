@@ -1,8 +1,9 @@
 {{ define "main" }}
 
 <!-- Hero -->
+{{ $heroImg := .Params.hero_image | default "/images/hero-heic-IMG_2916.jpg" }}
 <section class="relative py-28 text-center overflow-hidden" style="min-height:460px;">
-  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('/images/hero-heic-IMG_2916.jpg');"></div>
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('{{ $heroImg }}');"></div>
   <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(6,15,34,0.78) 0%,rgba(6,15,34,0.88) 100%);"></div>
   <div class="relative z-10 max-w-4xl mx-auto px-4">
     <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-xs font-bold tracking-widest uppercase px-5 py-2 rounded-full mb-6">School Partnerships</span>
