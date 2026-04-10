@@ -4,7 +4,7 @@ description: "Complete guide to basketball camps in the Florida Panhandle — Fo
 date: 2026-04-05
 category: "Camps & Programs"
 keyword: "best basketball camps florida panhandle"
-featured_image: "/images/blog/fcp-sports-facility-wide.jpg"
+featured_image: "/images/basketball-gym-game-day-crowd-fort-walton-beach.jpg"
 ---
 
 Finding a quality basketball camp on the Florida Panhandle used to mean driving to Pensacola or Panama City. That's changed. The region now has several solid options at different price points and formats — from city rec programs to nationally-branded Nike camps to dedicated facility programs like FCP Sports.
@@ -40,6 +40,8 @@ Northwest Florida State College runs one of the more credible college-affiliated
 The Nike camp brand carries national recognition, and the Panama City iteration delivers on that reputation at a price. At $335, it's the most expensive option on the Panhandle. The facility is a university gym, the coaching staff is credentialed, and the curriculum is standardized across all Nike camps nationally. If you want name-brand recognition and your athlete is serious about development, it's a legitimate option. The drive from Fort Walton Beach is approximately 75 minutes.
 
 ### FCP Sports Summer Camp — Fort Walton Beach
+
+![FCP Sports head coach giving sideline instruction at Fort Walton Beach basketball camp](/images/fcp-sports-basketball-coach-sideline-talk-fort-walton-beach.jpg)
 
 FCP Sports runs out of a **dedicated basketball facility** in Fort Walton Beach — not a shared gym, not a school cafeteria, not a college facility that gets used for other events during the day. The entire building is built for basketball year-round, which means the floor, hoops, lighting, and coaching infrastructure are optimized for the sport.
 

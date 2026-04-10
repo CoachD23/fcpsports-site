@@ -4,7 +4,7 @@ description: "Simple at-home basketball drills for parents — no gym required. 
 date: 2026-03-01
 category: "Training Tips"
 keyword: "basketball drills for kids at home"
-featured_image: "/images/blog/fcp-sports-youth-training.jpg"
+featured_image: "/images/youth-basketball-player-fcp-sports-fort-walton-beach.jpg"
 ---
 
 The biggest gains in youth basketball development don't always happen at practice. They happen in the driveway at 6 PM on a Tuesday, or in the garage before school, or during 20 minutes of focused work on a Wednesday when there's no scheduled training.
@@ -83,6 +83,8 @@ That's it. No special equipment, no gym, no expensive training tools required.
 **How you can help:** Watch that they don't cross their feet (the most common error) and that they stay low throughout the drill. Standing up tall between slides is the other common error. If you see either, just say "stay low" — you don't need to know more than that.
 
 ## How Often to Practice
+
+![FCP Sports basketball coach demonstrating player development drill on court](/images/basketball-coach-player-development-training-court-fcp.jpg)
 
 Consistency beats intensity every time. Short, daily sessions produce faster results than one long weekly session.
 

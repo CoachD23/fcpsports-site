@@ -4,7 +4,7 @@ description: "First time at a basketball camp? Here's exactly what to expect at 
 date: 2026-01-15
 category: "Camps & Programs"
 keyword: "basketball camp fort walton beach"
-featured_image: "/images/blog/fcp-sports-kids-basketball.jpg"
+featured_image: "/images/youth-basketball-team-huddle-practice-fort-walton-beach.jpg"
 ---
 
 Dropping your child off at basketball camp for the first time is equal parts exciting and nerve-wracking. Will they be grouped with kids their age? Will the coaches be patient with beginners? What actually happens during a five-hour camp day?
@@ -18,6 +18,8 @@ Every FCP Sports camp session begins with a brief individual skill assessment on
 Groups are assigned by a combination of age and skill — so a naturally athletic 11-year-old might be grouped with 12-year-olds at a similar level, while a less experienced 12-year-old trains with younger players who match their current abilities. This approach keeps everyone challenged without anyone feeling lost.
 
 ## A Typical Camp Day at FCP Sports
+
+![FCP Sports basketball film study session — youth players watching chalk talk in Fort Walton Beach](/images/basketball-film-study-chalk-talk-youth-players-fort-walton-beach.jpg)
 
 **7:30 AM — Doors open, drop-off begins.** Athletes arrive and get settled. Coaches are on the floor, not in the office. We greet every athlete by name.
 

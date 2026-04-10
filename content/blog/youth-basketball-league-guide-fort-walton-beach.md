@@ -4,7 +4,7 @@ description: "Everything parents need to know about youth basketball leagues in 
 date: 2026-04-05
 category: "Leagues"
 keyword: "youth basketball league fort walton beach"
-featured_image: "/images/blog/fcp-sports-banner.jpg"
+featured_image: "/images/fcp-sports-basketball-league-champions-fort-walton-beach-fl.jpg"
 ---
 
 Signing your child up for a youth basketball league in Fort Walton Beach raises a lot of questions. Which league is actually competitive? What does my kid get for the registration fee? When do the seasons run? How do drafts work?
@@ -44,6 +44,8 @@ FCP Sports operates three distinct league seasons:
 [View current season dates and registration for all leagues here.](/registration/)
 
 ## What Does Registration Include?
+
+![FCP Sports 2026 SEHAL basketball champions team photo — Fort Walton Beach youth basketball league](/images/fcp-sports-2026-sehal-basketball-champions-team-photo.jpg)
 
 FCP Sports league registration covers more than a jersey and a time slot on a gym floor. Here's what's included at every level:
 

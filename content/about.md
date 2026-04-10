@@ -2,6 +2,7 @@
 title: "About FCP Sports | Basketball Training Fort Walton Beach"
 description: "FCP Sports is the Emerald Coast's premier basketball development facility. Learn about our mission, coaching staff, and why 500+ athletes across 7 cities choose us."
 layout: "about"
+hero_image: "/images/fcp-sports-basketball-coach-sideline-talk-fort-walton-beach.jpg"
 ---
 
 FCP Sports was founded with a single purpose: to bring elite basketball development to the Florida Panhandle.
@@ -17,6 +18,8 @@ We don't run babysitting camps. We don't run feel-good programs that make kids f
 Our programs are built on a simple philosophy: **develop the whole athlete**. That means physical skill development, basketball IQ, mental toughness, and the character traits that make great teammates and great people.
 
 ## Our Community
+
+![FCP Sports 2026 SEHAL basketball champions — Fort Walton Beach youth basketball league team photo](/images/fcp-sports-basketball-league-champions-fort-walton-beach-fl.jpg)
 
 FCP Sports serves athletes from Fort Walton Beach, Destin, Niceville, Navarre, Crestview, Pensacola, and Panama City. Athletes come from over 30 schools across Okaloosa, Santa Rosa, Escambia, and Bay Counties.
 

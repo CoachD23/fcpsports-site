@@ -7,6 +7,7 @@ age_range: "All Ages"
 price: "Programs from $49"
 frequency: "Open 7 days/week"
 layout: "services"
+hero_image: "/images/basketball-gym-game-day-crowd-fort-walton-beach.jpg"
 faq:
   - q: "Is there a basketball gym near me in Fort Walton Beach?"
     a: "Yes — FCP Sports is Fort Walton Beach's only dedicated indoor basketball gym. Unlike rec centers and school gyms that share court time with other activities, our entire facility exists for basketball. We're open 7 days a week with open gym sessions, structured training, private lessons, court rentals, and league play all under one climate-controlled roof. If you're searching for a basketball gym near Fort Walton Beach, Niceville, Navarre, or Destin, FCP Sports is your closest dedicated option."

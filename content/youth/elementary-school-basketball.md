@@ -5,6 +5,7 @@ h1: "Elementary School Basketball Programs"
 age_range: "Ages 5–11"
 grade_range: "Kindergarten – 5th Grade"
 keyword: "elementary school basketball programs fort walton beach"
+hero_image: "/images/youth-basketball-player-fcp-sports-fort-walton-beach.jpg"
 schools:
   - "Annette P. Edwins Elementary"
   - "Liza Jackson Preparatory School"

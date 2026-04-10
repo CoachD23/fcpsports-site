@@ -4,7 +4,7 @@ description: "A local guide to AAU basketball in the Florida Panhandle — circu
 date: 2026-02-01
 category: "AAU & Recruiting"
 keyword: "aau basketball florida panhandle"
-featured_image: "/images/blog/fcp-sports-game-action.jpg"
+featured_image: "/images/basketball-college-recruiting-showcase-coaches-only-fcp.jpg"
 ---
 
 If you're raising a serious basketball player in the Florida Panhandle, you already know the competitive landscape looks different here than it does in Orlando or Miami. We don't have the same density of elite programs. Tournaments aren't in our backyard. And the path from Fort Walton Beach to a college scholarship requires more intentional planning than it does for athletes living in Florida's population centers.
@@ -52,6 +52,8 @@ The most prestigious July events — Peach Jam (Augusta, GA), Nike EYBL Finals, 
 For Panhandle athletes with Division I or high Division II aspirations, getting on the floor at the right July event — for the right program — is the single most important strategic decision of their high school career. FCP Sports coaches have contacts in the Florida AAU circuit and can help guide athletes toward programs that participate in the right events for their level.
 
 ## How FCP Sports Fits Into the Pipeline
+
+![FCP Sports coaches drawing plays at halftime — basketball strategy session Fort Walton Beach](/images/basketball-coaches-drawing-plays-timeout-fort-walton-beach.jpg)
 
 FCP Sports is not an AAU program — we're the foundation that makes AAU success possible.
 
