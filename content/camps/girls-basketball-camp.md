@@ -8,6 +8,7 @@ price: "$149/week"
 frequency: "Mon-Fri, 9am-3pm"
 hero_image: /images/fcp-hero-kids.jpg
 layout: "services"
+course_type: "girls basketball camp"
 ghl_tag: "camp-girls"
 program_name: "Girls Basketball Camp"
 faq:

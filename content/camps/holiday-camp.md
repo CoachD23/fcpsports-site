@@ -8,6 +8,7 @@ price: "$79/3 days"
 frequency: "Mon-Wed, 9am-12pm"
 hero_image: /images/fcp-hero-court.jpg
 layout: "services"
+course_type: "holiday basketball camp"
 ghl_tag: "camp-holiday"
 program_name: "Holiday Camp"
 faq:

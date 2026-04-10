@@ -8,6 +8,7 @@ price: "$129/2 days"
 frequency: "Fri-Sat, Jul 17-18"
 hero_image: /images/fcp-hero-action1.jpg
 layout: "services"
+course_type: "basketball showcase camp"
 ghl_tag: "camp-showcase"
 program_name: "Elite Showcase Camp"
 faq:

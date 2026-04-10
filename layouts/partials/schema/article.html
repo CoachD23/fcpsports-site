@@ -21,7 +21,7 @@
       "url": "https://fcpsports.org/images/fcp-sports-logo.png"
     }
   },
-  "image": "https://fcpsports.org/images/fcp-sports-basketball-training-fort-walton-beach.jpg",
+  "image": "{{ with .Params.featured_image }}https://fcpsports.org{{ . }}{{ else }}https://fcpsports.org/images/fcp-sports-basketball-training-fort-walton-beach.jpg{{ end }}",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ .Permalink }}"

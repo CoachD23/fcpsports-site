@@ -8,6 +8,7 @@ price: "$49/session"
 frequency: "Monthly Saturdays, 10am-12pm"
 hero_image: /images/fcp-hero-training.jpg
 layout: "services"
+course_type: "basketball clinic"
 ghl_tag: "camp-kenny"
 program_name: "Kenny Anderson Clinic"
 faq:

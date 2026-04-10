@@ -8,13 +8,14 @@ price: "$149/week"
 frequency: "Mon-Fri, 9am-3pm"
 hero_image: /images/fcp-hero-camp.jpg
 layout: "services"
+course_type: "summer basketball camp"
 ghl_tag: "camp-summer"
 program_name: "Summer Day Camp"
 faq:
   - q: "How much does summer basketball camp cost at FCP Sports?"
     a: "Summer basketball camp is $149 per week at full price. Register before May 1 and the early bird rate drops to $129. Military and DoD families (Eglin AFB, Hurlburt Field) pay $129 regardless of registration date. Siblings are $129 each, and booking two weeks together is $273 — a $25 savings over two separate registrations."
   - q: "What ages are your summer basketball camps for?"
-    a: "We run four sessions grouped by grade level: Session 1 (Jun 8-12) is for grades 3-5, Session 2 (Jun 22-26) is for grades 6-8, Session 3 (Jul 13-17) is for grades 6-10, and Session 4 (Jul 27-31) is for grades 3-8. This means your child trains with kids at a similar developmental stage, not mixed in with players three years older or younger."
+    a: "We run four sessions grouped by grade level: Session 1 (Jun 8-12) is for grades 3-5, Session 2 (Jun 22-26) is for grades 6-8, Session 3 (Jul 13-16) is for grades 6-10, and Session 4 (Jul 27-31) is for grades 3-8. This means your child trains with kids at a similar developmental stage, not mixed in with players three years older or younger."
   - q: "Is there a summer basketball camp near Destin FL?"
     a: "Yes. FCP Sports is located in Fort Walton Beach, about 15 minutes from Destin via US-98. We are the closest dedicated basketball facility to Destin, and families from Destin, Niceville, Navarre, and Crestview attend our summer camps every year. You can drop your child off and spend the day at Okaloosa Island — we are 5 minutes from the bridge."
   - q: "What should my child bring to summer basketball camp?"
@@ -29,7 +30,7 @@ event_dates:
     end: "2026-06-26"
     price: "149"
   - start: "2026-07-13"
-    end: "2026-07-17"
+    end: "2026-07-16"
     price: "149"
   - start: "2026-07-27"
     end: "2026-07-31"
@@ -44,7 +45,7 @@ We do not run one giant camp and throw every kid together. FCP Sports runs four 
 |---------|-------|--------|
 | Session 1 | June 8-12 | Grades 3-5 |
 | Session 2 | June 22-26 | Grades 6-8 |
-| Session 3 | July 13-17 | Grades 6-10 |
+| Session 3 | July 13-16 | Grades 6-10 |
 | Session 4 | July 27-31 | Grades 3-8 |
 
 Each session runs Monday through Friday, 9:00 AM to 3:00 PM. Drop-off begins at 8:45 AM. Pickup is at 3:00 PM sharp.
