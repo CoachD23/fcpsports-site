@@ -6,141 +6,258 @@
 <title>FCP Sports — Lock In Early Bird Pricing</title>
 <meta name="description" content="Lock in early bird pricing on FCP Sports basketball camps and leagues in Fort Walton Beach, FL.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --orange:#F26522;
-  --orange-dark:#D4571A;
-  --orange-bg:rgba(242,101,34,.08);
-  --orange-ring:rgba(242,101,34,.2);
-  --text:#0F172A;
-  --text-2:#64748B;
-  --border:#E2E8F0;
-  --bg:#FFFFFF;
-  --green:#10B981;
+  --navy:#060f22;
+  --navy-2:#0d1b35;
+  --navy-card:#0f1f3d;
+  --gold:#d4af37;
+  --gold-dim:rgba(212,175,55,.15);
+  --gold-border:rgba(212,175,55,.3);
+  --text:#ffffff;
+  --text-2:rgba(255,255,255,.6);
+  --text-3:rgba(255,255,255,.35);
+  --border:rgba(255,255,255,.1);
+  --green:#10b981;
 }
-html{height:100%}
-body{
+html,body{
   min-height:100%;min-height:100dvh;
-  font-family:'Space Grotesk',system-ui,sans-serif;
-  background:var(--bg);color:var(--text);
-  -webkit-font-smoothing:antialiased;overflow:hidden;
+  font-family:'DM Sans',system-ui,sans-serif;
+  background:var(--navy);color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── PAGE SHELL ── */
+.page{
+  min-height:100dvh;
   display:flex;flex-direction:column;
 }
 
 /* ── TOP BAR ── */
 .topbar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:.9rem 1.5rem;border-bottom:1px solid var(--border);
+  padding:.9rem 2rem;border-bottom:1px solid var(--border);
   flex-shrink:0;
 }
-.brand{font-weight:700;font-size:1rem;letter-spacing:.02em;color:var(--text);display:flex;align-items:center;gap:.4rem}
-.brand span{color:var(--orange)}
-.brand-loc{font-size:.68rem;font-weight:600;color:var(--text-2);letter-spacing:.05em;text-transform:uppercase}
-
-/* ── PROGRESS ── */
-.progress-bar{height:3px;background:var(--border);flex-shrink:0}
-.progress-fill{height:100%;background:var(--orange);transition:width .35s cubic-bezier(.4,0,.2,1);width:0%}
-
-/* ── SCREEN WRAPPER ── */
-.screens{flex:1;position:relative;overflow:hidden}
-.screen{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:2rem 1.5rem;
-  transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s ease;
-  will-change:transform,opacity;
+.brand{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;letter-spacing:.06em;color:var(--text);
+  display:flex;align-items:center;gap:.15em;
 }
-.screen.active{transform:translateX(0);opacity:1}
-.screen.exit-left{transform:translateX(-60px);opacity:0;pointer-events:none}
-.screen.enter-right{transform:translateX(60px);opacity:0;pointer-events:none}
-
-/* ── QUESTION LAYOUT ── */
-.q-wrap{width:100%;max-width:480px}
-.q-step{
-  font-size:.68rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:.1em;color:var(--orange);margin-bottom:.6rem;
+.brand span{color:var(--gold)}
+.brand-loc{
+  font-size:.68rem;font-weight:600;color:var(--text-2);
+  letter-spacing:.05em;text-transform:uppercase;
 }
-.q-text{
-  font-size:clamp(1.7rem,4.5vw,2.3rem);font-weight:700;
-  line-height:1.15;letter-spacing:-.02em;color:var(--text);
-  margin-bottom:.5rem;
-}
-.q-sub{font-size:1rem;color:var(--text-2);margin-bottom:1.75rem;line-height:1.5}
 
-/* ── INPUTS ── */
-.field{margin-bottom:1.25rem}
+/* ── MAIN CONTENT ── */
+.main{
+  flex:1;
+  display:flex;align-items:center;justify-content:center;
+  padding:3rem 1.5rem;
+}
+.container{
+  width:100%;max-width:1000px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3.5rem;align-items:center;
+}
+
+/* ── LEFT: COPY ── */
+.copy-side{}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--gold);margin-bottom:1rem;
+}
+.eyebrow::before{
+  content:'';display:block;width:18px;height:2px;background:var(--gold);
+}
+.copy-side h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.8rem,5vw,4rem);
+  line-height:1;letter-spacing:.03em;
+  color:var(--text);margin-bottom:1.1rem;
+}
+.copy-side h1 em{color:var(--gold);font-style:normal}
+.copy-side p{
+  font-size:1rem;color:var(--text-2);line-height:1.65;
+  margin-bottom:2rem;max-width:400px;
+}
+
+/* Value props */
+.props{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
+.prop{
+  display:flex;align-items:flex-start;gap:.75rem;
+}
+.prop-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--gold-dim);border:1px solid var(--gold-border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  margin-top:.05rem;
+}
+.prop-icon svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2}
+.prop-text strong{display:block;font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:.1rem}
+.prop-text span{font-size:.82rem;color:var(--text-2)}
+
+/* Social proof */
+.proof{
+  display:flex;align-items:center;gap:.65rem;
+  font-size:.8rem;color:var(--text-2);
+}
+.proof-dots{display:flex;gap:-4px}
+.proof-dot{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--navy-2);border:2px solid var(--navy-card);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;font-weight:700;color:var(--gold);
+  margin-left:-6px;
+}
+.proof-dot:first-child{margin-left:0}
+
+/* ── RIGHT: FORM CARD ── */
+.form-side{}
+.form-card{
+  background:var(--navy-card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,.4);
+}
+.card-stripe{
+  height:4px;
+  background:linear-gradient(90deg, var(--gold) 0%, rgba(212,175,55,.4) 100%);
+}
+.card-body{padding:2rem}
+
+.card-head{margin-bottom:1.5rem}
+.card-head h2{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;letter-spacing:.04em;color:var(--text);margin-bottom:.3rem;
+}
+.card-head p{font-size:.85rem;color:var(--text-2)}
+
+/* Fields */
+.field{margin-bottom:1.1rem}
 .field-label{
-  display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;
+  display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;
   letter-spacing:.07em;color:var(--text-2);margin-bottom:.4rem;
 }
-.big-input{
-  width:100%;font-family:'Space Grotesk',sans-serif;
-  font-size:1.2rem;font-weight:600;color:var(--text);
-  background:transparent;border:none;border-bottom:2.5px solid var(--border);
-  padding:.65rem 0;outline:none;
-  transition:border-color .2s;
+.field-input{
+  width:100%;
+  font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;color:var(--text);
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--border);border-radius:10px;
+  padding:.8rem 1rem;outline:none;
+  transition:border-color .2s,background .2s;
   -webkit-appearance:none;
 }
-.big-input::placeholder{color:#CBD5E1;font-weight:500}
-.big-input:focus{border-color:var(--orange)}
+.field-input::placeholder{color:var(--text-3)}
+.field-input:focus{border-color:var(--gold);background:rgba(212,175,55,.04)}
 
-/* ── BUTTON ── */
-.btn-next{
+/* Chips */
+.chip-label{
+  display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.07em;color:var(--text-2);margin-bottom:.6rem;
+}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem}
+.chip{
+  display:flex;align-items:center;gap:.35rem;
+  padding:.45rem .85rem;border-radius:999px;
+  border:1px solid var(--border);background:rgba(255,255,255,.04);
+  cursor:pointer;user-select:none;
+  font-size:.82rem;font-weight:600;color:var(--text-2);
+  transition:border-color .15s,background .15s,color .15s;
+}
+.chip input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+.chip:hover{border-color:var(--gold-border);color:var(--text)}
+.chip.sel{
+  border-color:var(--gold);
+  background:var(--gold-dim);
+  color:var(--gold);
+}
+.chip.sel .chip-dot{background:var(--gold)}
+.chip-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--text-3);transition:background .15s;flex-shrink:0;
+}
+
+/* Submit */
+.btn-submit{
   display:flex;align-items:center;justify-content:center;gap:.5rem;
-  width:100%;margin-top:2rem;
-  background:var(--orange);color:#fff;
-  font-family:'Space Grotesk',sans-serif;
-  font-size:1.05rem;font-weight:700;letter-spacing:.01em;
-  padding:1rem 1.75rem;border:none;border-radius:12px;
-  cursor:pointer;box-shadow:0 4px 14px rgba(242,101,34,.3);
+  width:100%;
+  background:var(--gold);color:var(--navy);
+  font-family:'DM Sans',sans-serif;
+  font-size:1rem;font-weight:700;letter-spacing:.01em;
+  padding:1rem 1.75rem;border:none;border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 4px 20px rgba(212,175,55,.25);
   transition:background .15s,transform .12s,box-shadow .15s;
   -webkit-appearance:none;
+  margin-top:.25rem;
 }
-.btn-next:hover{background:var(--orange-dark);transform:translateY(-1px);box-shadow:0 6px 18px rgba(242,101,34,.38)}
-.btn-next:active{transform:translateY(0);background:var(--orange-dark)}
-.btn-next svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;flex-shrink:0;transition:transform .15s}
-.btn-next:hover svg{transform:translateX(3px)}
-.btn-next.btn-submit{background:var(--orange);font-size:1.1rem;padding:1.1rem 1.75rem}
+.btn-submit:hover{background:#c9a42e;transform:translateY(-1px);box-shadow:0 6px 24px rgba(212,175,55,.35)}
+.btn-submit:active{transform:translateY(0)}
+.btn-submit svg{width:15px;height:15px;stroke:var(--navy);fill:none;stroke-width:2.5}
 
-/* ── PRIVACY NOTE ── */
-.privacy-note{
-  font-size:.72rem;color:var(--text-2);margin-top:.9rem;
-  display:flex;align-items:center;gap:.35rem;
+.form-note{
+  text-align:center;font-size:.7rem;color:var(--text-3);
+  margin-top:.75rem;display:flex;align-items:center;justify-content:center;gap:.3rem;
 }
-.privacy-note svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+.form-note svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
 
-/* ── SUCCESS ── */
-.success-wrap{text-align:center;width:100%;max-width:400px}
+/* ── SUCCESS STATE ── */
+.success-wrap{
+  padding:2.5rem 2rem;text-align:center;
+}
 .success-icon{
-  width:80px;height:80px;border-radius:50%;
+  width:72px;height:72px;border-radius:50%;
   background:rgba(16,185,129,.1);border:2px solid rgba(16,185,129,.25);
-  display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;
 }
-.success-icon svg{width:34px;height:34px;stroke:var(--green);fill:none;stroke-width:2.5}
-.success-wrap h2{font-size:2.1rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.65rem}
-.success-wrap p{font-size:1rem;color:var(--text-2);line-height:1.65;max-width:320px;margin:0 auto}
+.success-icon svg{width:30px;height:30px;stroke:var(--green);fill:none;stroke-width:2.5}
+.success-wrap h2{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;letter-spacing:.04em;margin-bottom:.5rem;color:var(--text);
+}
+.success-wrap p{font-size:.92rem;color:var(--text-2);line-height:1.6;max-width:280px;margin:0 auto}
 .success-tag{
   display:inline-flex;align-items:center;gap:.4rem;
-  margin-top:1.25rem;
-  background:var(--orange-bg);border:1px solid var(--orange-ring);
-  color:var(--orange);font-size:.8rem;font-weight:700;
+  margin-top:1rem;
+  background:var(--gold-dim);border:1px solid var(--gold-border);
+  color:var(--gold);font-size:.78rem;font-weight:700;
   padding:.45rem .9rem;border-radius:999px;
 }
-.success-tag svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5}
 
+/* ── FOOTER ── */
+.footer{
+  text-align:center;padding:1rem;
+  font-size:.68rem;color:var(--text-3);
+  border-top:1px solid var(--border);
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .topbar{padding:.8rem 1.25rem}
+  .main{padding:2rem 1.25rem}
+  .container{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+  .copy-side p{max-width:100%}
+  .copy-side h1{font-size:2.6rem}
+  .card-body{padding:1.5rem}
+}
 @media(max-width:400px){
-  .q-text{font-size:1.55rem}
-  .topbar{padding:.75rem 1.1rem}
+  .copy-side h1{font-size:2.2rem}
+  .chips{gap:.4rem}
 }
-@media(prefers-reduced-motion:reduce){
-  *{transition:none !important;animation:none !important}
-}
+@media(prefers-reduced-motion:reduce){*{transition:none !important}}
 </style>
 </head>
 <body>
+<div class="page">
 
 <!-- Top bar -->
 <div class="topbar">
@@ -148,119 +265,134 @@ body{
   <div class="brand-loc">Fort Walton Beach, FL</div>
 </div>
 
-<!-- Progress -->
-<div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
+<!-- Main -->
+<div class="main">
+  <div class="container">
 
-<!-- Screens -->
-<div class="screens" id="screens">
+    <!-- LEFT: Copy -->
+    <div class="copy-side">
+      <div class="eyebrow">Early Bird Pricing</div>
+      <h1>Get First Access to <em>Camps &amp; Leagues</em></h1>
+      <p>FCP Sports runs elite basketball camps and leagues for kids ages 5–14 in Fort Walton Beach. Register early and lock in the best price before spots open to the public.</p>
 
-  <!-- S1: Email + Name -->
-  <div class="screen active" id="s1">
-    <div class="q-wrap">
-      <div class="q-step">Step 1 of 2</div>
-      <h1 class="q-text">Lock in early bird pricing.</h1>
-      <p class="q-sub">Enter your info and we'll hold your spot before registration opens to the public.</p>
-
-      <div class="field">
-        <label class="field-label" for="f-email">Email address</label>
-        <input class="big-input" type="email" id="f-email" autocomplete="email" placeholder="you@email.com" inputmode="email">
-      </div>
-      <div class="field">
-        <label class="field-label" for="f-name">Your name</label>
-        <input class="big-input" type="text" id="f-name" autocomplete="name" placeholder="First and last name">
-      </div>
-
-      <button class="btn-next" id="s1Next">
-        Continue
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
-      <p class="privacy-note">
-        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        No spam. Early bird info only.
-      </p>
-    </div>
-  </div>
-
-  <!-- S2: Phone -->
-  <div class="screen enter-right" id="s2">
-    <div class="q-wrap">
-      <div class="q-step">Step 2 of 2</div>
-      <h1 class="q-text">Best number to reach you?</h1>
-      <p class="q-sub">We'll text you before spots open — no calls, no spam.</p>
-
-      <div class="field">
-        <label class="field-label" for="f-phone">Phone number</label>
-        <input class="big-input" type="tel" id="f-phone" autocomplete="tel" placeholder="(850) 555-1234" inputmode="tel">
+      <div class="props">
+        <div class="prop">
+          <div class="prop-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="prop-text">
+            <strong>Early bird pricing locked in</strong>
+            <span>You get the lowest rate before registration opens publicly</span>
+          </div>
+        </div>
+        <div class="prop">
+          <div class="prop-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="prop-text">
+            <strong>59 kids trained last season</strong>
+            <span>6 teams, proven coaching staff, real results on the court</span>
+          </div>
+        </div>
+        <div class="prop">
+          <div class="prop-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div class="prop-text">
+            <strong>Spots fill fast</strong>
+            <span>We reach out to the early bird list before anyone else</span>
+          </div>
+        </div>
       </div>
 
-      <button class="btn-next btn-submit" id="s2Next">
-        Lock In My Spot
-        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-      </button>
-      <p class="privacy-note">
-        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        We'll reach out before registration opens publicly.
-      </p>
-    </div>
-  </div>
-
-  <!-- S3: Success -->
-  <div class="screen enter-right" id="s3">
-    <div class="success-wrap">
-      <div class="success-icon">
-        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-      </div>
-      <h2>You're on the list!</h2>
-      <p>We'll reach out with early bird details before registration opens to the public. Keep an eye on your phone.</p>
-      <div class="success-tag">
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
-        Watch for a text from FCP Sports
+      <div class="proof">
+        <div class="proof-dots">
+          <div class="proof-dot">J</div>
+          <div class="proof-dot">M</div>
+          <div class="proof-dot">T</div>
+          <div class="proof-dot">+</div>
+        </div>
+        59 families already enrolled this season
       </div>
     </div>
-  </div>
 
-</div><!-- /screens -->
+    <!-- RIGHT: Form card -->
+    <div class="form-side">
+      <div class="form-card" id="formCard">
+        <div class="card-stripe"></div>
+        <div class="card-body" id="cardBody">
+          <div class="card-head">
+            <h2>Lock In My Spot</h2>
+            <p>Takes 30 seconds. No spam — just early access.</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-name">Your name</label>
+            <input class="field-input" type="text" id="f-name" autocomplete="name" placeholder="First and last name">
+          </div>
+          <div class="field">
+            <label class="field-label" for="f-email">Email address</label>
+            <input class="field-input" type="email" id="f-email" autocomplete="email" placeholder="you@email.com" inputmode="email">
+          </div>
+          <div class="field">
+            <label class="field-label" for="f-phone">Phone number</label>
+            <input class="field-input" type="tel" id="f-phone" autocomplete="tel" placeholder="(850) 555-1234" inputmode="tel">
+          </div>
+
+          <div>
+            <div class="chip-label">I'm interested in</div>
+            <div class="chips">
+              <label class="chip" id="chip-camps">
+                <input type="checkbox" name="interest" value="camps-clinics">
+                <span class="chip-dot"></span>Camps &amp; Clinics
+              </label>
+              <label class="chip" id="chip-leagues">
+                <input type="checkbox" name="interest" value="leagues">
+                <span class="chip-dot"></span>Leagues
+              </label>
+              <label class="chip" id="chip-training">
+                <input type="checkbox" name="interest" value="private-training">
+                <span class="chip-dot"></span>Private Training
+              </label>
+              <label class="chip" id="chip-both">
+                <input type="checkbox" name="interest" value="all">
+                <span class="chip-dot"></span>All of the above
+              </label>
+            </div>
+          </div>
+
+          <button class="btn-submit" id="submitBtn">
+            Lock In Early Bird Pricing
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <p class="form-note">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Your info is never shared or sold.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">© 2025 FCP Sports · Fort Walton Beach, FL · floridacoastalprep.com</div>
+
+</div><!-- /page -->
 
 <script>
 (function(){
-  var total = 2;
 
-  function pct(step){ return Math.round((step / total) * 100); }
+  // Chip toggle
+  document.querySelectorAll('.chip').forEach(function(chip){
+    var cb = chip.querySelector('input');
+    cb.addEventListener('change', function(){
+      chip.classList.toggle('sel', this.checked);
+    });
+  });
 
-  function go(from, to){
-    var fromEl = document.getElementById('s' + from);
-    var toEl   = document.getElementById('s' + to);
-    fromEl.classList.remove('active');
-    fromEl.classList.add('exit-left');
-    toEl.classList.remove('enter-right');
-    toEl.classList.add('active');
-    document.getElementById('pFill').style.width = pct(to > total ? total : to - 1) + '%';
-    var inp = toEl.querySelector('input.big-input');
-    if(inp) setTimeout(function(){ inp.focus(); }, 340);
-  }
-
-  // S1: Email + Name → partial capture on continue
-  function s1go(){
-    var email = document.getElementById('f-email').value.trim();
-    var name  = document.getElementById('f-name').value.trim();
-    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-      document.getElementById('f-email').focus(); return;
-    }
-    if(!name){
-      document.getElementById('f-name').focus(); return;
-    }
-    // Fire partial lead immediately — we have email + name
-    fetch('/.netlify/functions/camp-survey', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ email: email, name: name, partial: true })
-    }).catch(function(){});
-    go(1, 2);
-  }
-  document.getElementById('s1Next').addEventListener('click', s1go);
-  document.getElementById('f-email').addEventListener('keydown', function(e){ if(e.key==='Enter') document.getElementById('f-name').focus(); });
-  document.getElementById('f-name').addEventListener('keydown',  function(e){ if(e.key==='Enter') s1go(); });
-
-  // Phone formatting
+  // Phone format
   document.getElementById('f-phone').addEventListener('input', function(e){
     var v = e.target.value.replace(/\D/g,'');
     if(v.length >= 6) v = '(' + v.slice(0,3) + ') ' + v.slice(3,6) + '-' + v.slice(6,10);
@@ -268,27 +400,47 @@ body{
     e.target.value = v;
   });
 
-  // S2: Phone → full submit
-  function s2go(){
+  // Submit
+  document.getElementById('submitBtn').addEventListener('click', function(){
+    var name  = document.getElementById('f-name').value.trim();
+    var email = document.getElementById('f-email').value.trim();
     var phone = document.getElementById('f-phone').value.trim();
-    if(!phone){ document.getElementById('f-phone').focus(); return; }
-    var btn = document.getElementById('s2Next');
+
+    if(!name)  { document.getElementById('f-name').focus(); return; }
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('f-email').focus(); return; }
+    if(!phone) { document.getElementById('f-phone').focus(); return; }
+
+    var interests = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(function(e){ return e.value; });
+
+    var btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.textContent = 'Saving…';
+    btn.innerHTML = 'Saving&hellip;';
+
     fetch('/.netlify/functions/camp-survey', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        email: document.getElementById('f-email').value.trim(),
-        name:  document.getElementById('f-name').value.trim(),
-        phone: phone
-      })
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ name: name, email: email, phone: phone, interests: interests })
     }).catch(function(){}).finally(function(){
-      document.getElementById('pFill').style.width = '100%';
-      go(2, 3);
+      // Swap card body for success
+      document.getElementById('cardBody').innerHTML = [
+        '<div class="success-wrap">',
+        '<div class="success-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>',
+        '<h2>You\'re on the list!</h2>',
+        '<p>We\'ll send early bird pricing to <strong>' + email + '</strong> before registration opens.</p>',
+        '<div class="success-tag">Watch for an email from FCP Sports</div>',
+        '</div>'
+      ].join('');
     });
-  }
-  document.getElementById('s2Next').addEventListener('click', s2go);
-  document.getElementById('f-phone').addEventListener('keydown', function(e){ if(e.key==='Enter') s2go(); });
+  });
+
+  // Enter key support
+  ['f-name','f-email','f-phone'].forEach(function(id, i, arr){
+    document.getElementById(id).addEventListener('keydown', function(e){
+      if(e.key !== 'Enter') return;
+      if(i < arr.length - 1) document.getElementById(arr[i+1]).focus();
+      else document.getElementById('submitBtn').click();
+    });
+  });
 
 })();
 </script>
