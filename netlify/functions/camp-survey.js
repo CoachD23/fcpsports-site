@@ -125,11 +125,13 @@ exports.handler = async function (event) {
         source: "Facebook Ad",
       }),
     });
+    const oppStatus = oppRes.status;
+    const oppText = await oppRes.text();
     if (!oppRes.ok) {
-      const errText = await oppRes.text();
-      console.error(`[camp-survey] Opportunity creation failed ${oppRes.status}:`, errText);
+      console.error(`[camp-survey] Opportunity creation failed ${oppStatus}:`, oppText);
+      return { statusCode: 200, headers, body: JSON.stringify({ ok: true, _oppError: `${oppStatus}: ${oppText}` }) };
     } else {
-      const oppData = await oppRes.json();
+      const oppData = JSON.parse(oppText);
       console.log(`[camp-survey] Opportunity created: ${oppData.opportunity?.id}`);
     }
 
