@@ -77,16 +77,20 @@ exports.handler = async function (event) {
   const lastName = rest.join(" ") || "";
 
   try {
-    // Partial capture: email only — upsert contact + tag, skip opportunity
+    // Partial capture: email + name — upsert contact + tag, skip opportunity
     if (partial) {
+      const upsertBody = {
+        locationId: process.env.GHL_LOCATION_ID,
+        email: email.trim().toLowerCase(),
+        source: "Facebook Ad - Camp Survey",
+      };
+      if (firstName) upsertBody.firstName = firstName;
+      if (lastName)  upsertBody.lastName  = lastName;
+
       await fetch(`${GHL_BASE}/contacts/upsert`, {
         method: "POST",
         headers: ghlHeaders(),
-        body: JSON.stringify({
-          locationId: process.env.GHL_LOCATION_ID,
-          email: email.trim().toLowerCase(),
-          source: "Facebook Ad - Camp Survey",
-        }),
+        body: JSON.stringify(upsertBody),
       }).then(async (r) => {
         const d = await r.json();
         const cid = d.contact?.id || d.id;
