@@ -446,13 +446,9 @@ body{display:flex;flex-direction:column}
     rb.addEventListener('change', function(){ if(this.checked) pick(); });
   });
 
-  // S5 times
+  // S5 times — let the label handle toggle natively, sync .sel on change
   document.querySelectorAll('.trow').forEach(function(row){
     var cb = row.querySelector('input');
-    row.addEventListener('click', function(e){
-      if(e.target===cb) return;
-      cb.checked = !cb.checked; row.classList.toggle('sel', cb.checked);
-    });
     cb.addEventListener('change', function(){ row.classList.toggle('sel', this.checked); });
   });
   document.getElementById('s5Next').addEventListener('click', function(){ go(5,6); });
