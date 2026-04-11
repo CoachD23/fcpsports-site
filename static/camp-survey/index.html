@@ -485,17 +485,11 @@ document.getElementById('surveyForm').addEventListener('submit', function(e){
     interests: fd.getAll('interest')
   };
 
-  console.log('Lead:', JSON.stringify(data, null, 2));
-
-  // ── REPLACE WITH GHL WEBHOOK ──
-  // fetch('https://YOUR-GHL-WEBHOOK-URL', {
-  //   method:'POST',
-  //   headers:{'Content-Type':'application/json'},
-  //   body: JSON.stringify(data)
-  // }).then(done).catch(done);
-  // ──────────────────────────────
-
-  setTimeout(done, 500);
+  fetch('/.netlify/functions/camp-survey', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  }).then(done).catch(done);
 
   function done(){
     document.getElementById('surveyForm').style.display='none';
