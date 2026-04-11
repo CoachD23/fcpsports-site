@@ -37,18 +37,25 @@ body{
 
 /* ── HERO BAND ── */
 .hero{
-  background:linear-gradient(135deg,#0B1A3A 0%,#1A2E5A 60%,#0F2043 100%);
+  background-image:url('/images/camp-survey-hero1.jpg');
+  background-size:cover;
+  background-position:center 30%;
   padding:2.5rem 1.25rem 3.5rem;
   text-align:center;
   position:relative;
   overflow:hidden;
+  transition:background-image .0s;
 }
 .hero::before{
   content:'';
   position:absolute;
   inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(242,101,34,.18) 0%,transparent 70%);
+  background:linear-gradient(to bottom, rgba(8,15,35,.72) 0%, rgba(8,15,35,.82) 100%);
   pointer-events:none;
+}
+.hero.step2-hero{
+  background-image:url('/images/camp-survey-hero2.jpg');
+  background-position:center 40%;
 }
 .logo{
   display:inline-flex;
@@ -563,6 +570,7 @@ document.getElementById('nextBtn').addEventListener('click', function(){
   document.getElementById('progressFill').style.width = '100%';
   document.getElementById('ps1').classList.remove('active');
   document.getElementById('ps2').classList.add('active');
+  document.querySelector('.hero').classList.add('step2-hero');
   window.scrollTo({top:0,behavior:'smooth'});
 });
 
@@ -573,6 +581,7 @@ document.getElementById('backBtn').addEventListener('click', function(){
   document.getElementById('progressFill').style.width = '50%';
   document.getElementById('ps1').classList.add('active');
   document.getElementById('ps2').classList.remove('active');
+  document.querySelector('.hero').classList.remove('step2-hero');
 });
 
 // ── Submit ──
