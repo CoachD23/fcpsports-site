@@ -111,7 +111,7 @@ exports.handler = async function (event) {
     }).catch((e) => console.warn("[camp-survey] Tag failed:", e.message));
 
     // 3. Always create opportunity — triggers GHL workflow to send emails
-    await fetch(`${GHL_BASE}/opportunities/`, {
+    const oppRes = await fetch(`${GHL_BASE}/opportunities/`, {
       method: "POST",
       headers: ghlHeaders(),
       body: JSON.stringify({
@@ -120,10 +120,18 @@ exports.handler = async function (event) {
         locationId: process.env.GHL_LOCATION_ID,
         name: `${name.trim() || email} — Camp Survey`,
         contactId,
+        monetaryValue: 0,
         status: "open",
         source: "Facebook Ad",
       }),
-    }).catch((e) => console.warn("[camp-survey] Opportunity creation failed:", e.message));
+    });
+    if (!oppRes.ok) {
+      const errText = await oppRes.text();
+      console.error(`[camp-survey] Opportunity creation failed ${oppRes.status}:`, errText);
+    } else {
+      const oppData = await oppRes.json();
+      console.log(`[camp-survey] Opportunity created: ${oppData.opportunity?.id}`);
+    }
 
     // 4. Add internal note
     await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
