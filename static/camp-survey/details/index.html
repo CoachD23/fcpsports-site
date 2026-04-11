@@ -3,39 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FCP Sports — Your Early Bird Details</title>
+<title>FCP Sports — One Quick Question</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --orange:#F26522;
-  --orange-dark:#D4571A;
-  --orange-bg:rgba(242,101,34,.08);
-  --orange-ring:rgba(242,101,34,.2);
-  --text:#0F172A;
-  --text-2:#64748B;
-  --border:#E2E8F0;
-  --bg:#FFFFFF;
-  --green:#10B981;
+  --navy:#060f22;
+  --navy-2:#0d1b35;
+  --navy-card:#0f1f3d;
+  --gold:#d4af37;
+  --gold-dim:rgba(212,175,55,.15);
+  --gold-border:rgba(212,175,55,.3);
+  --text:#ffffff;
+  --text-2:rgba(255,255,255,.6);
+  --text-3:rgba(255,255,255,.3);
+  --border:rgba(255,255,255,.1);
+  --green:#10b981;
 }
 html{height:100%}
 body{
   min-height:100%;min-height:100dvh;
-  font-family:'Space Grotesk',system-ui,sans-serif;
-  background:var(--bg);color:var(--text);
-  -webkit-font-smoothing:antialiased;overflow:hidden;
-  display:flex;flex-direction:column;
+  font-family:'DM Sans',system-ui,sans-serif;
+  background:var(--navy);color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;display:flex;flex-direction:column;
 }
+
+/* ── TOP BAR ── */
 .topbar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:.9rem 1.5rem;border-bottom:1px solid var(--border);flex-shrink:0;
+  padding:.9rem 2rem;border-bottom:1px solid var(--border);flex-shrink:0;
 }
-.brand{font-weight:700;font-size:1rem;letter-spacing:.02em;color:var(--text);display:flex;align-items:center;gap:.4rem}
-.brand span{color:var(--orange)}
+.brand{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:var(--text);display:flex;align-items:center;gap:.15em}
+.brand span{color:var(--gold)}
 .brand-loc{font-size:.68rem;font-weight:600;color:var(--text-2);letter-spacing:.05em;text-transform:uppercase}
-.progress-bar{height:3px;background:var(--border);flex-shrink:0}
-.progress-fill{height:100%;background:var(--orange);transition:width .35s cubic-bezier(.4,0,.2,1);width:0%}
+
+/* ── PROGRESS ── */
+.progress-bar{height:3px;background:rgba(255,255,255,.08);flex-shrink:0}
+.progress-fill{height:100%;background:var(--gold);transition:width .35s cubic-bezier(.4,0,.2,1);width:0%}
+
+/* ── SCREENS ── */
 .screens{flex:1;position:relative;overflow:hidden}
 .screen{
   position:absolute;inset:0;
@@ -47,66 +55,75 @@ body{
 .screen.active{transform:translateX(0);opacity:1}
 .screen.exit-left{transform:translateX(-60px);opacity:0;pointer-events:none}
 .screen.enter-right{transform:translateX(60px);opacity:0;pointer-events:none}
-.screen.times-screen{justify-content:flex-start;padding-top:1.5rem;overflow-y:auto}
+.screen.times-screen{justify-content:flex-start;padding-top:2rem;overflow-y:auto}
 .times-screen .q-wrap{padding-bottom:2rem}
 
+/* ── QUESTION LAYOUT ── */
 .q-wrap{width:100%;max-width:480px}
-.q-step{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:.6rem}
-.q-text{font-size:clamp(1.7rem,4.5vw,2.3rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:var(--text);margin-bottom:.5rem}
-.q-sub{font-size:1rem;color:var(--text-2);margin-bottom:1.75rem;line-height:1.5}
+.q-step{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.6rem}
+.q-text{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.2rem,5vw,3rem);
+  letter-spacing:.03em;line-height:1;
+  color:var(--text);margin-bottom:.6rem;
+}
+.q-sub{font-size:.95rem;color:var(--text-2);margin-bottom:1.75rem;line-height:1.5}
 
-/* Age cards */
+/* ── AGE CARDS ── */
 .age-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;width:100%}
 .age-card{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  border:2px solid var(--border);border-radius:16px;
+  border:1px solid var(--border);border-radius:14px;
+  background:var(--navy-card);
   padding:1.35rem .5rem;cursor:pointer;user-select:none;position:relative;
   transition:border-color .15s,background .15s,transform .1s,box-shadow .15s;
   min-height:100px;
 }
 .age-card input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
-.age-card .age-num{font-size:1.9rem;font-weight:700;color:var(--text);line-height:1;transition:color .15s}
-.age-card .age-lbl{font-size:.65rem;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.07em;margin-top:.25rem}
-.age-card:hover{border-color:rgba(242,101,34,.45);transform:translateY(-1px)}
-.age-card.sel{border-color:var(--orange);background:var(--orange-bg);box-shadow:0 0 0 3px var(--orange-ring)}
-.age-card.sel .age-num{color:var(--orange)}
+.age-card .age-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--text);line-height:1;transition:color .15s}
+.age-card .age-lbl{font-size:.62rem;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem}
+.age-card:hover{border-color:var(--gold-border);transform:translateY(-1px)}
+.age-card.sel{border-color:var(--gold);background:var(--gold-dim);box-shadow:0 0 0 1px var(--gold)}
+.age-card.sel .age-num{color:var(--gold)}
 
-/* Interest cards */
-.choice-grid{display:flex;flex-direction:column;gap:.55rem;width:100%}
+/* ── INTEREST CARDS ── */
+.choice-grid{display:flex;flex-direction:column;gap:.45rem;width:100%}
 .choice-card{
-  display:flex;align-items:center;gap:1rem;
-  border:2px solid var(--border);border-radius:14px;
-  padding:1rem 1.15rem;cursor:pointer;
-  transition:border-color .15s,background .15s,transform .1s,box-shadow .15s;
+  display:flex;align-items:center;gap:.9rem;
+  border:1px solid var(--border);border-radius:12px;
+  background:var(--navy-card);
+  padding:.9rem 1.1rem;cursor:pointer;
+  transition:border-color .15s,background .15s;
   user-select:none;position:relative;
 }
 .choice-card input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
 .choice-card-icon{
-  width:44px;height:44px;border-radius:10px;background:var(--border);
+  width:38px;height:38px;border-radius:8px;
+  background:rgba(255,255,255,.06);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
   transition:background .15s;
 }
-.choice-card-icon svg{width:22px;height:22px;stroke:var(--text-2);fill:none;stroke-width:1.75;transition:stroke .15s}
-.choice-card-label{font-size:1rem;font-weight:600;color:var(--text);transition:color .15s}
+.choice-card-icon svg{width:18px;height:18px;stroke:var(--text-2);fill:none;stroke-width:1.75;transition:stroke .15s}
+.choice-card-label{font-size:.95rem;font-weight:600;color:var(--text-2);transition:color .15s}
 .choice-card-check{
-  margin-left:auto;width:22px;height:22px;border-radius:50%;
-  border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  margin-left:auto;width:20px;height:20px;border-radius:50%;
+  border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;
   transition:background .15s,border-color .15s;
 }
-.choice-card-check svg{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:3;opacity:0;transition:opacity .15s}
-.choice-card:hover{border-color:rgba(242,101,34,.4);transform:translateY(-1px)}
-.choice-card.sel{border-color:var(--orange);background:var(--orange-bg);box-shadow:0 0 0 3px var(--orange-ring)}
-.choice-card.sel .choice-card-icon{background:rgba(242,101,34,.15)}
-.choice-card.sel .choice-card-icon svg{stroke:var(--orange)}
-.choice-card.sel .choice-card-label{color:var(--orange)}
-.choice-card.sel .choice-card-check{background:var(--orange);border-color:var(--orange)}
+.choice-card-check svg{width:9px;height:9px;stroke:#000;fill:none;stroke-width:3;opacity:0;transition:opacity .15s}
+.choice-card:hover{border-color:var(--gold-border)}
+.choice-card.sel{border-color:var(--gold);background:var(--gold-dim)}
+.choice-card.sel .choice-card-icon{background:rgba(212,175,55,.15)}
+.choice-card.sel .choice-card-icon svg{stroke:var(--gold)}
+.choice-card.sel .choice-card-label{color:var(--gold)}
+.choice-card.sel .choice-card-check{background:var(--gold);border-color:var(--gold)}
 .choice-card.sel .choice-card-check svg{opacity:1}
 
-/* Time rows */
-.time-groups{display:flex;flex-direction:column;gap:1.1rem;width:100%}
+/* ── TIME ROWS ── */
+.time-groups{display:flex;flex-direction:column;gap:1.25rem;width:100%}
 .tg-head{
   display:flex;align-items:center;gap:.5rem;
-  font-size:.7rem;font-weight:700;text-transform:uppercase;
+  font-size:.68rem;font-weight:700;text-transform:uppercase;
   letter-spacing:.08em;color:var(--text-2);margin-bottom:.5rem;
 }
 .tg-head svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
@@ -114,41 +131,42 @@ body{
 .time-list{display:flex;flex-direction:column;gap:.4rem}
 .trow{
   display:flex;align-items:center;gap:.85rem;
-  border:2px solid var(--border);border-radius:12px;
+  border:1px solid var(--border);border-radius:10px;
+  background:var(--navy-card);
   padding:.8rem 1rem;cursor:pointer;user-select:none;
-  transition:border-color .15s,background .15s;position:relative;
+  transition:border-color .15s,background .15s;
 }
 .trow input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
 .trow-box{
-  width:22px;height:22px;border-radius:6px;flex-shrink:0;
-  border:2px solid var(--border);background:#fff;
+  width:20px;height:20px;border-radius:5px;flex-shrink:0;
+  border:1.5px solid var(--border);background:transparent;
   display:flex;align-items:center;justify-content:center;
   transition:background .15s,border-color .15s;
 }
-.trow-box svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:3;opacity:0;transition:opacity .15s}
-.trow-text{font-size:1rem;font-weight:600;color:var(--text-2);transition:color .15s}
-.trow.sel{border-color:var(--orange);background:var(--orange-bg)}
-.trow.sel .trow-box{background:var(--orange);border-color:var(--orange)}
+.trow-box svg{width:10px;height:10px;stroke:#000;fill:none;stroke-width:3;opacity:0;transition:opacity .15s}
+.trow-text{font-size:.95rem;font-weight:600;color:var(--text-2);transition:color .15s}
+.trow.sel{border-color:var(--gold);background:var(--gold-dim)}
+.trow.sel .trow-box{background:var(--gold);border-color:var(--gold)}
 .trow.sel .trow-box svg{opacity:1}
-.trow.sel .trow-text{color:var(--orange);font-weight:700}
+.trow.sel .trow-text{color:var(--gold);font-weight:700}
 
-/* Button */
+/* ── BUTTON ── */
 .btn-next{
   display:flex;align-items:center;justify-content:center;gap:.5rem;
   width:100%;margin-top:1.75rem;
-  background:var(--orange);color:#fff;
-  font-family:'Space Grotesk',sans-serif;
-  font-size:1.05rem;font-weight:700;letter-spacing:.01em;
-  padding:1rem 1.75rem;border:none;border-radius:12px;
-  cursor:pointer;box-shadow:0 4px 14px rgba(242,101,34,.3);
-  transition:background .15s,transform .12s,box-shadow .15s;
+  background:var(--gold);color:var(--navy);
+  font-family:'DM Sans',sans-serif;
+  font-size:1rem;font-weight:700;letter-spacing:.01em;
+  padding:1rem 1.75rem;border:none;border-radius:10px;
+  cursor:pointer;box-shadow:0 4px 20px rgba(212,175,55,.2);
+  transition:background .15s,transform .12s;
   -webkit-appearance:none;
 }
-.btn-next:hover{background:var(--orange-dark);transform:translateY(-1px)}
-.btn-next:active{transform:translateY(0);background:var(--orange-dark)}
-.btn-next svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;flex-shrink:0}
+.btn-next:hover{background:#c9a42e;transform:translateY(-1px)}
+.btn-next:active{transform:translateY(0)}
+.btn-next svg{width:15px;height:15px;stroke:var(--navy);fill:none;stroke-width:2.5;flex-shrink:0}
 
-/* Success */
+/* ── SUCCESS ── */
 .success-wrap{text-align:center;width:100%;max-width:400px}
 .success-icon{
   width:80px;height:80px;border-radius:50%;
@@ -156,12 +174,30 @@ body{
   display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;
 }
 .success-icon svg{width:34px;height:34px;stroke:var(--green);fill:none;stroke-width:2.5}
-.success-wrap h2{font-size:2.1rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.65rem}
-.success-wrap p{font-size:1rem;color:var(--text-2);line-height:1.65;max-width:320px;margin:0 auto}
+.success-wrap h2{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.5rem;letter-spacing:.04em;margin-bottom:.6rem;
+}
+.success-wrap p{font-size:.95rem;color:var(--text-2);line-height:1.65;max-width:300px;margin:0 auto}
+.success-tag{
+  display:inline-flex;align-items:center;gap:.4rem;
+  margin-top:1.1rem;
+  background:var(--gold-dim);border:1px solid var(--gold-border);
+  color:var(--gold);font-size:.78rem;font-weight:700;
+  padding:.45rem .9rem;border-radius:999px;
+}
+
+/* ── FOOTER ── */
+.footer{
+  text-align:center;padding:1rem;
+  font-size:.68rem;color:var(--text-3);
+  border-top:1px solid var(--border);
+  flex-shrink:0;
+}
 
 @media(max-width:400px){
-  .q-text{font-size:1.55rem}
-  .topbar{padding:.75rem 1.1rem}
+  .topbar{padding:.8rem 1.25rem}
+  .q-text{font-size:2rem}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
 </style>
@@ -200,7 +236,7 @@ body{
       <div class="choice-grid">
         <label class="choice-card">
           <input type="radio" name="interest" value="camps-clinics">
-          <div class="choice-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+          <div class="choice-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
           <span class="choice-card-label">Basketball Camps &amp; Clinics</span>
           <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
         </label>
@@ -262,17 +298,19 @@ body{
   <div class="screen enter-right" id="s4">
     <div class="success-wrap">
       <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-      <h2>All set!</h2>
-      <p>We'll reach out with your early bird pricing and available spots based on what you told us. Talk soon.</p>
+      <h2>All Set!</h2>
+      <p>We'll reach out with your early bird pricing and available spots. Talk soon.</p>
+      <div class="success-tag">Watch for an email from FCP Sports</div>
     </div>
   </div>
 
 </div>
 
+<div class="footer">© 2025 FCP Sports · Fort Walton Beach, FL</div>
+
 <script>
 (function(){
   var total = 3;
-  // Pull email from URL param so we can update the right GHL contact
   var email = new URLSearchParams(window.location.search).get('email') || '';
 
   function pct(step){ return Math.round((step / total) * 100); }
@@ -290,8 +328,7 @@ body{
     var rb = card.querySelector('input');
     function pick(){
       document.querySelectorAll('.age-card').forEach(function(c){ c.classList.remove('sel'); });
-      rb.checked = true;
-      card.classList.add('sel');
+      rb.checked = true; card.classList.add('sel');
       setTimeout(function(){ go(1, 2); }, 220);
     }
     card.addEventListener('click', function(e){ if(e.target === rb) return; pick(); });
@@ -303,15 +340,14 @@ body{
     var card = rb.closest('.choice-card');
     function pick(){
       document.querySelectorAll('.choice-card').forEach(function(c){ c.classList.remove('sel'); });
-      rb.checked = true;
-      card.classList.add('sel');
+      rb.checked = true; card.classList.add('sel');
       setTimeout(function(){ go(2, 3); }, 220);
     }
     card.addEventListener('click', function(e){ if(e.target === rb) return; pick(); });
     rb.addEventListener('change', function(){ if(this.checked) pick(); });
   });
 
-  // S3: Times — native checkbox via label, sync .sel on change
+  // S3: Times — let label handle toggle, sync .sel on change
   document.querySelectorAll('.trow').forEach(function(row){
     var cb = row.querySelector('input');
     cb.addEventListener('change', function(){ row.classList.toggle('sel', this.checked); });
@@ -320,26 +356,21 @@ body{
   // S3 submit
   document.getElementById('s3Next').addEventListener('click', function(){
     var btn = document.getElementById('s3Next');
-    btn.disabled = true;
-    btn.textContent = 'Saving…';
-
-    var data = {
-      email:    email,
-      age:      (document.querySelector('input[name="age"]:checked') || {}).value    || '',
-      interest: (document.querySelector('input[name="interest"]:checked') || {}).value || '',
-      times:    Array.from(document.querySelectorAll('input[name="time"]:checked')).map(function(e){ return e.value; })
-    };
-
+    btn.disabled = true; btn.textContent = 'Saving…';
     fetch('/.netlify/functions/camp-survey-details', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        email:    email,
+        age:      (document.querySelector('input[name="age"]:checked') || {}).value || '',
+        interest: (document.querySelector('input[name="interest"]:checked') || {}).value || '',
+        times:    Array.from(document.querySelectorAll('input[name="time"]:checked')).map(function(e){ return e.value; })
+      })
     }).catch(function(){}).finally(function(){
       document.getElementById('pFill').style.width = '100%';
       go(3, 4);
     });
   });
-
 })();
 </script>
 </body>
