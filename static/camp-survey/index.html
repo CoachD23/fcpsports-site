@@ -327,15 +327,15 @@ html,body{
           </div>
 
           <div class="field">
-            <label class="field-label" for="f-name">Your name</label>
+            <label class="field-label" for="f-name">Your name <span style="color:var(--gold)">*</span></label>
             <input class="field-input" type="text" id="f-name" autocomplete="name" placeholder="First and last name">
           </div>
           <div class="field">
-            <label class="field-label" for="f-email">Email address</label>
+            <label class="field-label" for="f-email">Email address <span style="color:var(--gold)">*</span></label>
             <input class="field-input" type="email" id="f-email" autocomplete="email" placeholder="you@email.com" inputmode="email">
           </div>
           <div class="field">
-            <label class="field-label" for="f-phone">Phone number</label>
+            <label class="field-label" for="f-phone">Phone number <span style="color:var(--text-3);font-size:.65rem">(optional)</span></label>
             <input class="field-input" type="tel" id="f-phone" autocomplete="tel" placeholder="(850) 555-1234" inputmode="tel">
           </div>
 
@@ -376,9 +376,13 @@ html,body{
     var email = document.getElementById('f-email').value.trim();
     var phone = document.getElementById('f-phone').value.trim();
 
-    if(!name)  { document.getElementById('f-name').focus(); return; }
-    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('f-email').focus(); return; }
-    if(!phone) { document.getElementById('f-phone').focus(); return; }
+    var ok = true;
+    function err(id){ var el=document.getElementById(id); el.style.borderColor='#e05252'; el.focus(); ok=false; }
+    function clear(id){ document.getElementById(id).style.borderColor=''; }
+    clear('f-name'); clear('f-email');
+    if(!name)  { err('f-name');  return; }
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err('f-email'); return; }
+    if(!ok) return;
 
     var btn = document.getElementById('submitBtn');
     btn.disabled = true;
