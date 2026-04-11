@@ -67,7 +67,7 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid JSON" }) };
   }
 
-  const { name = "", email = "", phone = "", age = "", seasons = [], times = [], interests = [], partial = false } = body;
+  const { name = "", email = "", phone = "" } = body;
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid email required" }) };
@@ -77,35 +77,7 @@ exports.handler = async function (event) {
   const lastName = rest.join(" ") || "";
 
   try {
-    // Partial capture: email + name — upsert contact + tag, skip opportunity
-    if (partial) {
-      const upsertBody = {
-        locationId: process.env.GHL_LOCATION_ID,
-        email: email.trim().toLowerCase(),
-        source: "Facebook Ad - Camp Survey",
-      };
-      if (firstName) upsertBody.firstName = firstName;
-      if (lastName)  upsertBody.lastName  = lastName;
-
-      await fetch(`${GHL_BASE}/contacts/upsert`, {
-        method: "POST",
-        headers: ghlHeaders(),
-        body: JSON.stringify(upsertBody),
-      }).then(async (r) => {
-        const d = await r.json();
-        const cid = d.contact?.id || d.id;
-        if (cid) {
-          await fetch(`${GHL_BASE}/contacts/${cid}/tags`, {
-            method: "POST", headers: ghlHeaders(),
-            body: JSON.stringify({ tags: ["fcpsports", "camp-survey-lead", "source-facebook-ad", "partial-lead"] }),
-          }).catch(() => {});
-        }
-      }).catch(() => {});
-      console.log(`[camp-survey] Partial lead captured: ${email}`);
-      return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
-    }
-
-    // 1. Upsert contact (full submission)
+    // 1. Upsert contact
     const upsertRes = await fetch(`${GHL_BASE}/contacts/upsert`, {
       method: "POST",
       headers: ghlHeaders(),
@@ -132,50 +104,35 @@ exports.handler = async function (event) {
     }
 
     // 2. Apply tags
-    const tags = ["fcpsports", "camp-survey-lead", "source-facebook-ad"];
-    if (interests.includes("camp")) tags.push("camp-inquiry");
-    if (interests.includes("league")) tags.push("league-inquiry");
-
     await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
       method: "POST",
       headers: ghlHeaders(),
-      body: JSON.stringify({ tags }),
+      body: JSON.stringify({ tags: ["fcpsports", "camp-survey-lead", "source-facebook-ad"] }),
     }).catch((e) => console.warn("[camp-survey] Tag failed:", e.message));
 
-    // 3. Create opportunity (only if contact is new to avoid duplicates)
-    if (!data.contact?.id || data.new) {
-      const oppNote = [
-        `Age range: ${age}`,
-        `Seasons: ${seasons.join(", ") || "not specified"}`,
-        `Times: ${times.join(", ") || "not specified"}`,
-        `Interests: ${interests.join(", ") || "not specified"}`,
-        `Source: Facebook Ad — Camp Survey`,
-      ].join("\n");
+    // 3. Always create opportunity — triggers GHL workflow to send emails
+    await fetch(`${GHL_BASE}/opportunities/`, {
+      method: "POST",
+      headers: ghlHeaders(),
+      body: JSON.stringify({
+        pipelineId: PIPELINE_ID,
+        pipelineStageId: STAGE_ID,
+        locationId: process.env.GHL_LOCATION_ID,
+        name: `${name.trim() || email} — Camp Survey`,
+        contactId,
+        status: "open",
+        source: "Facebook Ad",
+      }),
+    }).catch((e) => console.warn("[camp-survey] Opportunity creation failed:", e.message));
 
-      await fetch(`${GHL_BASE}/opportunities/`, {
-        method: "POST",
-        headers: ghlHeaders(),
-        body: JSON.stringify({
-          pipelineId: PIPELINE_ID,
-          pipelineStageId: STAGE_ID,
-          locationId: process.env.GHL_LOCATION_ID,
-          name: `${name.trim()} — Camp Survey`,
-          contactId,
-          status: "open",
-          source: "Facebook Ad",
-          customFields: [],
-        }),
-      }).catch((e) => console.warn("[camp-survey] Opportunity creation failed:", e.message));
+    // 4. Add internal note
+    await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
+      method: "POST",
+      headers: ghlHeaders(),
+      body: JSON.stringify({ body: `Camp survey form submitted.\nName: ${name}\nPhone: ${phone}\nSource: Facebook Ad`, userId: "" }),
+    }).catch((e) => console.warn("[camp-survey] Note failed:", e.message));
 
-      // 4. Add internal note with survey answers
-      await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
-        method: "POST",
-        headers: ghlHeaders(),
-        body: JSON.stringify({ body: oppNote, userId: "" }),
-      }).catch((e) => console.warn("[camp-survey] Note failed:", e.message));
-    }
-
-    console.log(`[camp-survey] Lead captured: ${email} | interests: ${interests.join(",")}`);
+    console.log(`[camp-survey] Lead captured: ${email}`);
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
   } catch (err) {
     console.error("[camp-survey] Error:", err.message);
