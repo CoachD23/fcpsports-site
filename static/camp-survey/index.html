@@ -64,8 +64,7 @@ html,body{
   gap:3.5rem;align-items:center;
 }
 
-/* ── LEFT: COPY ── */
-.copy-side{}
+/* ── EYEBROW ── */
 .eyebrow{
   display:inline-flex;align-items:center;gap:.4rem;
   font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
@@ -81,30 +80,11 @@ html,body{
   color:var(--text);margin-bottom:1.1rem;
 }
 .copy-side h1 em{color:var(--gold);font-style:normal}
-.copy-side p{
-  font-size:1rem;color:var(--text-2);line-height:1.65;
-  margin-bottom:2rem;max-width:400px;
-}
-
-/* Value props */
-.props{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
-.prop{
-  display:flex;align-items:flex-start;gap:.75rem;
-}
-.prop-icon{
-  width:36px;height:36px;border-radius:8px;
-  background:var(--gold-dim);border:1px solid var(--gold-border);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  margin-top:.05rem;
-}
-.prop-icon svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2}
-.prop-text strong{display:block;font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:.1rem}
-.prop-text span{font-size:.82rem;color:var(--text-2)}
-
 /* Social proof */
 .proof{
-  display:flex;align-items:center;gap:.65rem;
+  display:flex;align-items:center;justify-content:center;gap:.65rem;
   font-size:.8rem;color:var(--text-2);
+  max-width:520px;margin:0 auto;
 }
 .proof-dots{display:flex;gap:-4px}
 .proof-dot{
@@ -237,21 +217,38 @@ html,body{
   border-top:1px solid var(--border);
 }
 
+/* ── ABOVE/BELOW CONTAINER ── */
+.above{
+  width:100%;max-width:1000px;
+  margin:0 auto 1.5rem;
+  padding:0 1.5rem;
+}
+.above .eyebrow{margin-bottom:.5rem}
+.above h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.8rem,5vw,4.2rem);
+  line-height:1;letter-spacing:.03em;color:var(--text);
+}
+.above h1 em{color:var(--gold);font-style:normal}
+.below{
+  width:100%;max-width:1000px;
+  margin:1.25rem auto 0;
+  padding:0 1.5rem;
+}
+
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   .topbar{padding:.8rem 1.25rem}
-  .main{padding:2rem 1.25rem}
+  .main{padding:1.5rem 1.25rem}
   .container{
     grid-template-columns:1fr;
-    gap:2rem;
+    gap:1.5rem;
   }
-  .copy-side p{max-width:100%}
-  .copy-side h1{font-size:2.6rem}
   .card-body{padding:1.5rem}
+  .above,.below{padding:0 1.25rem}
 }
 @media(max-width:400px){
-  .copy-side h1{font-size:2.2rem}
-  .chips{gap:.4rem}
+  .above h1{font-size:2.2rem}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none !important}}
 </style>
@@ -265,59 +262,18 @@ html,body{
   <div class="brand-loc">Fort Walton Beach, FL</div>
 </div>
 
+<!-- Headline above container -->
+<div class="above">
+  <div class="eyebrow">Early Bird Pricing</div>
+  <h1>Get First Access to <em>Camps &amp; Leagues</em></h1>
+</div>
+
 <!-- Main -->
 <div class="main">
   <div class="container">
 
-    <!-- LEFT: Copy -->
-    <div class="copy-side">
-      <div class="eyebrow">Early Bird Pricing</div>
-      <h1>Get First Access to <em>Camps &amp; Leagues</em></h1>
-      <p>FCP Sports runs elite basketball camps and leagues for kids ages 5–14 in Fort Walton Beach. Register early and lock in the best price before spots open to the public.</p>
-
-      <div class="props">
-        <div class="prop">
-          <div class="prop-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <div class="prop-text">
-            <strong>Early bird pricing locked in</strong>
-            <span>You get the lowest rate before registration opens publicly</span>
-          </div>
-        </div>
-        <div class="prop">
-          <div class="prop-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-          </div>
-          <div class="prop-text">
-            <strong>59 kids trained last season</strong>
-            <span>6 teams, proven coaching staff, real results on the court</span>
-          </div>
-        </div>
-        <div class="prop">
-          <div class="prop-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          </div>
-          <div class="prop-text">
-            <strong>Spots fill fast</strong>
-            <span>We reach out to the early bird list before anyone else</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="proof">
-        <div class="proof-dots">
-          <div class="proof-dot">J</div>
-          <div class="proof-dot">M</div>
-          <div class="proof-dot">T</div>
-          <div class="proof-dot">+</div>
-        </div>
-        59 families already enrolled this season
-      </div>
-    </div>
-
-    <!-- RIGHT: Form card -->
-    <div class="form-side">
+    <!-- Form card (full width now) -->
+    <div class="form-side" style="grid-column:1/-1;max-width:520px;margin:0 auto;width:100%">
       <div class="form-card" id="formCard">
         <div class="card-stripe"></div>
         <div class="card-body" id="cardBody">
@@ -351,6 +307,19 @@ html,body{
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- Social proof below container -->
+<div class="below">
+  <div class="proof">
+    <div class="proof-dots">
+      <div class="proof-dot">J</div>
+      <div class="proof-dot">M</div>
+      <div class="proof-dot">T</div>
+      <div class="proof-dot">+</div>
+    </div>
+    59 families already enrolled this season
   </div>
 </div>
 
