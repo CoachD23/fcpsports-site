@@ -67,28 +67,49 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid JSON" }) };
   }
 
-  const { name = "", email = "", phone = "", age = "", seasons = [], times = [], interests = [] } = body;
+  const { name = "", email = "", phone = "", age = "", seasons = [], times = [], interests = [], partial = false } = body;
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid email required" }) };
   }
-  if (!name.trim()) {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: "Name required" }) };
-  }
 
-  const [firstName, ...rest] = name.trim().split(" ");
+  const [firstName, ...rest] = (name || "").trim().split(" ");
   const lastName = rest.join(" ") || "";
 
   try {
-    // 1. Upsert contact
+    // Partial capture: email only — upsert contact + tag, skip opportunity
+    if (partial) {
+      await fetch(`${GHL_BASE}/contacts/upsert`, {
+        method: "POST",
+        headers: ghlHeaders(),
+        body: JSON.stringify({
+          locationId: process.env.GHL_LOCATION_ID,
+          email: email.trim().toLowerCase(),
+          source: "Facebook Ad - Camp Survey",
+        }),
+      }).then(async (r) => {
+        const d = await r.json();
+        const cid = d.contact?.id || d.id;
+        if (cid) {
+          await fetch(`${GHL_BASE}/contacts/${cid}/tags`, {
+            method: "POST", headers: ghlHeaders(),
+            body: JSON.stringify({ tags: ["fcpsports", "camp-survey-lead", "source-facebook-ad", "partial-lead"] }),
+          }).catch(() => {});
+        }
+      }).catch(() => {});
+      console.log(`[camp-survey] Partial lead captured: ${email}`);
+      return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
+    }
+
+    // 1. Upsert contact (full submission)
     const upsertRes = await fetch(`${GHL_BASE}/contacts/upsert`, {
       method: "POST",
       headers: ghlHeaders(),
       body: JSON.stringify({
         locationId: process.env.GHL_LOCATION_ID,
         email: email.trim().toLowerCase(),
-        firstName,
-        lastName,
+        firstName: firstName || undefined,
+        lastName: lastName || undefined,
         phone: phone.trim() || undefined,
         source: "Facebook Ad - Camp Survey",
       }),

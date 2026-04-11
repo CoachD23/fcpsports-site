@@ -238,13 +238,13 @@ body{display:flex;flex-direction:column}
 <!-- Screens -->
 <div class="screens" id="screens">
 
-  <!-- S1: Name -->
+  <!-- S1: Email -->
   <div class="screen active" id="s1">
     <div class="q-wrap">
       <div class="q-step">Step 1 of 6</div>
-      <h1 class="q-text">What's your name?</h1>
-      <p class="q-sub">We'll use this to personalize your early bird offer.</p>
-      <input class="big-input" type="text" id="f-name" autocomplete="name" placeholder="First and last name" inputmode="text">
+      <h1 class="q-text">What's your email?</h1>
+      <p class="q-sub">We'll send your early bird pricing here first.</p>
+      <input class="big-input" type="email" id="f-email" autocomplete="email" placeholder="you@email.com" inputmode="email">
       <button class="btn-next" id="s1Next">
         Continue <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
@@ -252,13 +252,13 @@ body{display:flex;flex-direction:column}
     </div>
   </div>
 
-  <!-- S2: Email -->
+  <!-- S2: Name -->
   <div class="screen enter-right" id="s2">
     <div class="q-wrap">
       <div class="q-step">Step 2 of 6</div>
-      <h1 class="q-text">What's your email?</h1>
-      <p class="q-sub">We'll send your early bird pricing here first.</p>
-      <input class="big-input" type="email" id="f-email" autocomplete="email" placeholder="you@email.com" inputmode="email">
+      <h1 class="q-text">What's your name?</h1>
+      <p class="q-sub">We'll use this to personalize your early bird offer.</p>
+      <input class="big-input" type="text" id="f-name" autocomplete="name" placeholder="First and last name" inputmode="text">
       <button class="btn-next" id="s2Next">
         Continue <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
@@ -396,23 +396,28 @@ body{display:flex;flex-direction:column}
     window.scrollTo(0,0);
   }
 
-  // S1 → S2
+  // S1 → S2: Email first — fire partial lead capture immediately
   function s1go(){
-    var v = document.getElementById('f-name').value.trim();
-    if(!v) return document.getElementById('f-name').focus();
+    var v = document.getElementById('f-email').value.trim();
+    if(!v || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return document.getElementById('f-email').focus();
+    // Capture email right now — if they drop off we still have it
+    fetch('/.netlify/functions/camp-survey', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ email: v, partial: true })
+    }).catch(function(){});
     go(1,2);
   }
   document.getElementById('s1Next').addEventListener('click', s1go);
-  document.getElementById('f-name').addEventListener('keydown', function(e){ if(e.key==='Enter') s1go(); });
+  document.getElementById('f-email').addEventListener('keydown', function(e){ if(e.key==='Enter') s1go(); });
 
-  // S2 → S3
+  // S2 → S3: Name
   function s2go(){
-    var v = document.getElementById('f-email').value.trim();
-    if(!v || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return document.getElementById('f-email').focus();
+    var v = document.getElementById('f-name').value.trim();
+    if(!v) return document.getElementById('f-name').focus();
     go(2,3);
   }
   document.getElementById('s2Next').addEventListener('click', s2go);
-  document.getElementById('f-email').addEventListener('keydown', function(e){ if(e.key==='Enter') s2go(); });
+  document.getElementById('f-name').addEventListener('keydown', function(e){ if(e.key==='Enter') s2go(); });
 
   // Phone format + S3 → S4
   document.getElementById('f-phone').addEventListener('input', function(e){
