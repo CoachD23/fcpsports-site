@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FCP Sports — Your Early Bird Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --orange:#F26522;
+  --orange-dark:#D4571A;
+  --orange-bg:rgba(242,101,34,.08);
+  --orange-ring:rgba(242,101,34,.2);
+  --text:#0F172A;
+  --text-2:#64748B;
+  --border:#E2E8F0;
+  --bg:#FFFFFF;
+  --green:#10B981;
+}
+html{height:100%}
+body{
+  min-height:100%;min-height:100dvh;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);
+  -webkit-font-smoothing:antialiased;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1.5rem;border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.brand{font-weight:700;font-size:1rem;letter-spacing:.02em;color:var(--text);display:flex;align-items:center;gap:.4rem}
+.brand span{color:var(--orange)}
+.brand-loc{font-size:.68rem;font-weight:600;color:var(--text-2);letter-spacing:.05em;text-transform:uppercase}
+.progress-bar{height:3px;background:var(--border);flex-shrink:0}
+.progress-fill{height:100%;background:var(--orange);transition:width .35s cubic-bezier(.4,0,.2,1);width:0%}
+.screens{flex:1;position:relative;overflow:hidden}
+.screen{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:2rem 1.5rem;
+  transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s ease;
+  will-change:transform,opacity;
+}
+.screen.active{transform:translateX(0);opacity:1}
+.screen.exit-left{transform:translateX(-60px);opacity:0;pointer-events:none}
+.screen.enter-right{transform:translateX(60px);opacity:0;pointer-events:none}
+.screen.times-screen{justify-content:flex-start;padding-top:1.5rem;overflow-y:auto}
+.times-screen .q-wrap{padding-bottom:2rem}
+
+.q-wrap{width:100%;max-width:480px}
+.q-step{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:.6rem}
+.q-text{font-size:clamp(1.7rem,4.5vw,2.3rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:var(--text);margin-bottom:.5rem}
+.q-sub{font-size:1rem;color:var(--text-2);margin-bottom:1.75rem;line-height:1.5}
+
+/* Age cards */
+.age-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;width:100%}
+.age-card{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:2px solid var(--border);border-radius:16px;
+  padding:1.35rem .5rem;cursor:pointer;user-select:none;position:relative;
+  transition:border-color .15s,background .15s,transform .1s,box-shadow .15s;
+  min-height:100px;
+}
+.age-card input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+.age-card .age-num{font-size:1.9rem;font-weight:700;color:var(--text);line-height:1;transition:color .15s}
+.age-card .age-lbl{font-size:.65rem;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.07em;margin-top:.25rem}
+.age-card:hover{border-color:rgba(242,101,34,.45);transform:translateY(-1px)}
+.age-card.sel{border-color:var(--orange);background:var(--orange-bg);box-shadow:0 0 0 3px var(--orange-ring)}
+.age-card.sel .age-num{color:var(--orange)}
+
+/* Interest cards */
+.choice-grid{display:flex;flex-direction:column;gap:.55rem;width:100%}
+.choice-card{
+  display:flex;align-items:center;gap:1rem;
+  border:2px solid var(--border);border-radius:14px;
+  padding:1rem 1.15rem;cursor:pointer;
+  transition:border-color .15s,background .15s,transform .1s,box-shadow .15s;
+  user-select:none;position:relative;
+}
+.choice-card input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+.choice-card-icon{
+  width:44px;height:44px;border-radius:10px;background:var(--border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:background .15s;
+}
+.choice-card-icon svg{width:22px;height:22px;stroke:var(--text-2);fill:none;stroke-width:1.75;transition:stroke .15s}
+.choice-card-label{font-size:1rem;font-weight:600;color:var(--text);transition:color .15s}
+.choice-card-check{
+  margin-left:auto;width:22px;height:22px;border-radius:50%;
+  border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:background .15s,border-color .15s;
+}
+.choice-card-check svg{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:3;opacity:0;transition:opacity .15s}
+.choice-card:hover{border-color:rgba(242,101,34,.4);transform:translateY(-1px)}
+.choice-card.sel{border-color:var(--orange);background:var(--orange-bg);box-shadow:0 0 0 3px var(--orange-ring)}
+.choice-card.sel .choice-card-icon{background:rgba(242,101,34,.15)}
+.choice-card.sel .choice-card-icon svg{stroke:var(--orange)}
+.choice-card.sel .choice-card-label{color:var(--orange)}
+.choice-card.sel .choice-card-check{background:var(--orange);border-color:var(--orange)}
+.choice-card.sel .choice-card-check svg{opacity:1}
+
+/* Time rows */
+.time-groups{display:flex;flex-direction:column;gap:1.1rem;width:100%}
+.tg-head{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.7rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--text-2);margin-bottom:.5rem;
+}
+.tg-head svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+.tg-rule{flex:1;height:1px;background:var(--border)}
+.time-list{display:flex;flex-direction:column;gap:.4rem}
+.trow{
+  display:flex;align-items:center;gap:.85rem;
+  border:2px solid var(--border);border-radius:12px;
+  padding:.8rem 1rem;cursor:pointer;user-select:none;
+  transition:border-color .15s,background .15s;position:relative;
+}
+.trow input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+.trow-box{
+  width:22px;height:22px;border-radius:6px;flex-shrink:0;
+  border:2px solid var(--border);background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s,border-color .15s;
+}
+.trow-box svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:3;opacity:0;transition:opacity .15s}
+.trow-text{font-size:1rem;font-weight:600;color:var(--text-2);transition:color .15s}
+.trow.sel{border-color:var(--orange);background:var(--orange-bg)}
+.trow.sel .trow-box{background:var(--orange);border-color:var(--orange)}
+.trow.sel .trow-box svg{opacity:1}
+.trow.sel .trow-text{color:var(--orange);font-weight:700}
+
+/* Button */
+.btn-next{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  width:100%;margin-top:1.75rem;
+  background:var(--orange);color:#fff;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.05rem;font-weight:700;letter-spacing:.01em;
+  padding:1rem 1.75rem;border:none;border-radius:12px;
+  cursor:pointer;box-shadow:0 4px 14px rgba(242,101,34,.3);
+  transition:background .15s,transform .12s,box-shadow .15s;
+  -webkit-appearance:none;
+}
+.btn-next:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.btn-next:active{transform:translateY(0);background:var(--orange-dark)}
+.btn-next svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;flex-shrink:0}
+
+/* Success */
+.success-wrap{text-align:center;width:100%;max-width:400px}
+.success-icon{
+  width:80px;height:80px;border-radius:50%;
+  background:rgba(16,185,129,.1);border:2px solid rgba(16,185,129,.25);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;
+}
+.success-icon svg{width:34px;height:34px;stroke:var(--green);fill:none;stroke-width:2.5}
+.success-wrap h2{font-size:2.1rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.65rem}
+.success-wrap p{font-size:1rem;color:var(--text-2);line-height:1.65;max-width:320px;margin:0 auto}
+
+@media(max-width:400px){
+  .q-text{font-size:1.55rem}
+  .topbar{padding:.75rem 1.1rem}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">FCP <span>SPORTS</span></div>
+  <div class="brand-loc">Fort Walton Beach, FL</div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
+
+<div class="screens">
+
+  <!-- S1: Age -->
+  <div class="screen active" id="s1">
+    <div class="q-wrap">
+      <div class="q-step">Step 1 of 3</div>
+      <h1 class="q-text">How old is your child?</h1>
+      <p class="q-sub">Tap to continue.</p>
+      <div class="age-grid">
+        <label class="age-card"><input type="radio" name="age" value="5-7"><div class="age-num">5–7</div><div class="age-lbl">Ages</div></label>
+        <label class="age-card"><input type="radio" name="age" value="8-10"><div class="age-num">8–10</div><div class="age-lbl">Ages</div></label>
+        <label class="age-card"><input type="radio" name="age" value="11-13"><div class="age-num">11–13</div><div class="age-lbl">Ages</div></label>
+        <label class="age-card"><input type="radio" name="age" value="14+"><div class="age-num">14+</div><div class="age-lbl">Ages</div></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: Interest -->
+  <div class="screen enter-right" id="s2">
+    <div class="q-wrap">
+      <div class="q-step">Step 2 of 3</div>
+      <h1 class="q-text">What are you interested in?</h1>
+      <p class="q-sub">Tap to continue.</p>
+      <div class="choice-grid">
+        <label class="choice-card">
+          <input type="radio" name="interest" value="camps-clinics">
+          <div class="choice-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+          <span class="choice-card-label">Basketball Camps &amp; Clinics</span>
+          <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+        </label>
+        <label class="choice-card">
+          <input type="radio" name="interest" value="leagues">
+          <div class="choice-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <span class="choice-card-label">Leagues &amp; Competition</span>
+          <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+        </label>
+        <label class="choice-card">
+          <input type="radio" name="interest" value="both">
+          <div class="choice-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+          <span class="choice-card-label">Both — Camps &amp; Leagues</span>
+          <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: Times -->
+  <div class="screen enter-right times-screen" id="s3">
+    <div class="q-wrap">
+      <div class="q-step">Step 3 of 3</div>
+      <h1 class="q-text">When works best?</h1>
+      <p class="q-sub">Pick all that apply.</p>
+      <div class="time-groups">
+        <div>
+          <div class="tg-head">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Weekdays<div class="tg-rule"></div>
+          </div>
+          <div class="time-list">
+            <label class="trow"><input type="checkbox" name="time" value="weekday-after-4"><div class="trow-box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><span class="trow-text">After 4:00 PM</span></label>
+            <label class="trow"><input type="checkbox" name="time" value="weekday-after-6"><div class="trow-box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><span class="trow-text">After 6:00 PM</span></label>
+          </div>
+        </div>
+        <div>
+          <div class="tg-head">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Weekends<div class="tg-rule"></div>
+          </div>
+          <div class="time-list">
+            <label class="trow"><input type="checkbox" name="time" value="sat-morning"><div class="trow-box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><span class="trow-text">Saturday Morning</span></label>
+            <label class="trow"><input type="checkbox" name="time" value="sat-afternoon"><div class="trow-box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><span class="trow-text">Saturday Afternoon</span></label>
+            <label class="trow"><input type="checkbox" name="time" value="sat-evening"><div class="trow-box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><span class="trow-text">Saturday Evening</span></label>
+            <label class="trow"><input type="checkbox" name="time" value="sun-afternoon"><div class="trow-box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><span class="trow-text">Sunday Afternoon</span></label>
+            <label class="trow"><input type="checkbox" name="time" value="sun-evening"><div class="trow-box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><span class="trow-text">Sunday Evening</span></label>
+          </div>
+        </div>
+      </div>
+      <button class="btn-next" id="s3Next">
+        Send My Preferences
+        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- S4: Success -->
+  <div class="screen enter-right" id="s4">
+    <div class="success-wrap">
+      <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h2>All set!</h2>
+      <p>We'll reach out with your early bird pricing and available spots based on what you told us. Talk soon.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var total = 3;
+  // Pull email from URL param so we can update the right GHL contact
+  var email = new URLSearchParams(window.location.search).get('email') || '';
+
+  function pct(step){ return Math.round((step / total) * 100); }
+
+  function go(from, to){
+    document.getElementById('s' + from).classList.remove('active');
+    document.getElementById('s' + from).classList.add('exit-left');
+    document.getElementById('s' + to).classList.remove('enter-right');
+    document.getElementById('s' + to).classList.add('active');
+    document.getElementById('pFill').style.width = pct(to > total ? total : to - 1) + '%';
+  }
+
+  // S1: Age — tap = auto-advance
+  document.querySelectorAll('.age-card').forEach(function(card){
+    var rb = card.querySelector('input');
+    function pick(){
+      document.querySelectorAll('.age-card').forEach(function(c){ c.classList.remove('sel'); });
+      rb.checked = true;
+      card.classList.add('sel');
+      setTimeout(function(){ go(1, 2); }, 220);
+    }
+    card.addEventListener('click', function(e){ if(e.target === rb) return; pick(); });
+    rb.addEventListener('change', function(){ if(this.checked) pick(); });
+  });
+
+  // S2: Interest — tap = auto-advance
+  document.querySelectorAll('.choice-card input[name="interest"]').forEach(function(rb){
+    var card = rb.closest('.choice-card');
+    function pick(){
+      document.querySelectorAll('.choice-card').forEach(function(c){ c.classList.remove('sel'); });
+      rb.checked = true;
+      card.classList.add('sel');
+      setTimeout(function(){ go(2, 3); }, 220);
+    }
+    card.addEventListener('click', function(e){ if(e.target === rb) return; pick(); });
+    rb.addEventListener('change', function(){ if(this.checked) pick(); });
+  });
+
+  // S3: Times — native checkbox via label, sync .sel on change
+  document.querySelectorAll('.trow').forEach(function(row){
+    var cb = row.querySelector('input');
+    cb.addEventListener('change', function(){ row.classList.toggle('sel', this.checked); });
+  });
+
+  // S3 submit
+  document.getElementById('s3Next').addEventListener('click', function(){
+    var btn = document.getElementById('s3Next');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+
+    var data = {
+      email:    email,
+      age:      (document.querySelector('input[name="age"]:checked') || {}).value    || '',
+      interest: (document.querySelector('input[name="interest"]:checked') || {}).value || '',
+      times:    Array.from(document.querySelectorAll('input[name="time"]:checked')).map(function(e){ return e.value; })
+    };
+
+    fetch('/.netlify/functions/camp-survey-details', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).catch(function(){}).finally(function(){
+      document.getElementById('pFill').style.width = '100%';
+      go(3, 4);
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
