@@ -322,8 +322,8 @@ html,body{
         <div class="card-stripe"></div>
         <div class="card-body" id="cardBody">
           <div class="card-head">
-            <h2>Lock In My Spot</h2>
-            <p>Takes 30 seconds. No spam — just early access.</p>
+            <h2>Early Bird Pricing — Lock In Now</h2>
+            <p>Takes 30 seconds. We'll email you before spots open to the public.</p>
           </div>
 
           <div class="field">
@@ -337,28 +337,6 @@ html,body{
           <div class="field">
             <label class="field-label" for="f-phone">Phone number</label>
             <input class="field-input" type="tel" id="f-phone" autocomplete="tel" placeholder="(850) 555-1234" inputmode="tel">
-          </div>
-
-          <div>
-            <div class="chip-label">I'm interested in</div>
-            <div class="chips">
-              <label class="chip" id="chip-camps">
-                <input type="checkbox" name="interest" value="camps-clinics">
-                <span class="chip-dot"></span>Camps &amp; Clinics
-              </label>
-              <label class="chip" id="chip-leagues">
-                <input type="checkbox" name="interest" value="leagues">
-                <span class="chip-dot"></span>Leagues
-              </label>
-              <label class="chip" id="chip-training">
-                <input type="checkbox" name="interest" value="private-training">
-                <span class="chip-dot"></span>Private Training
-              </label>
-              <label class="chip" id="chip-both">
-                <input type="checkbox" name="interest" value="all">
-                <span class="chip-dot"></span>All of the above
-              </label>
-            </div>
           </div>
 
           <button class="btn-submit" id="submitBtn">
@@ -384,14 +362,6 @@ html,body{
 <script>
 (function(){
 
-  // Chip toggle
-  document.querySelectorAll('.chip').forEach(function(chip){
-    var cb = chip.querySelector('input');
-    cb.addEventListener('change', function(){
-      chip.classList.toggle('sel', this.checked);
-    });
-  });
-
   // Phone format
   document.getElementById('f-phone').addEventListener('input', function(e){
     var v = e.target.value.replace(/\D/g,'');
@@ -410,8 +380,6 @@ html,body{
     if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('f-email').focus(); return; }
     if(!phone) { document.getElementById('f-phone').focus(); return; }
 
-    var interests = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(function(e){ return e.value; });
-
     var btn = document.getElementById('submitBtn');
     btn.disabled = true;
     btn.innerHTML = 'Saving&hellip;';
@@ -419,7 +387,7 @@ html,body{
     fetch('/.netlify/functions/camp-survey', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ name: name, email: email, phone: phone, interests: interests })
+      body: JSON.stringify({ name: name, email: email, phone: phone })
     }).catch(function(){}).finally(function(){
       // Swap card body for success
       document.getElementById('cardBody').innerHTML = [
