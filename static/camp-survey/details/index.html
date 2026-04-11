@@ -57,17 +57,32 @@ body{
 .screen.enter-right{transform:translateX(60px);opacity:0;pointer-events:none}
 .screen.times-screen{justify-content:flex-start;padding-top:2rem;overflow-y:auto}
 .times-screen .q-wrap{padding-bottom:2rem}
+.times-screen .card-inner{max-height:calc(100dvh - 140px);overflow-y:auto}
+
+/* ── CARD CONTAINER ── */
+.q-wrap{width:100%;max-width:520px}
+.card{
+  background:var(--navy-card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,.4);
+}
+.card-stripe{height:4px;background:linear-gradient(90deg,var(--gold) 0%,rgba(212,175,55,.4) 100%)}
+.card-inner{padding:2rem}
 
 /* ── QUESTION LAYOUT ── */
-.q-wrap{width:100%;max-width:480px}
-.q-step{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.6rem}
+.q-step{
+  font-size:.75rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--gold);margin-bottom:.5rem;
+}
 .q-text{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.2rem,5vw,3rem);
+  font-size:clamp(2.6rem,5vw,3.4rem);
   letter-spacing:.03em;line-height:1;
-  color:var(--text);margin-bottom:.6rem;
+  color:var(--text);margin-bottom:.5rem;
 }
-.q-sub{font-size:.95rem;color:var(--text-2);margin-bottom:1.75rem;line-height:1.5}
+.q-sub{font-size:.95rem;color:var(--text-2);margin-bottom:1.5rem;line-height:1.5}
 
 /* ── AGE CARDS ── */
 .age-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;width:100%}
@@ -215,14 +230,19 @@ body{
   <!-- S1: Age -->
   <div class="screen active" id="s1">
     <div class="q-wrap">
-      <div class="q-step">Let's Find the Right Fit</div>
-      <h1 class="q-text">How old is your child?</h1>
-      <p class="q-sub">Tap to continue.</p>
-      <div class="age-grid">
-        <label class="age-card"><input type="radio" name="age" value="5-7"><div class="age-num">5–7</div><div class="age-lbl">Ages</div></label>
-        <label class="age-card"><input type="radio" name="age" value="8-10"><div class="age-num">8–10</div><div class="age-lbl">Ages</div></label>
-        <label class="age-card"><input type="radio" name="age" value="11-13"><div class="age-num">11–13</div><div class="age-lbl">Ages</div></label>
-        <label class="age-card"><input type="radio" name="age" value="14+"><div class="age-num">14+</div><div class="age-lbl">Ages</div></label>
+      <div class="card">
+        <div class="card-stripe"></div>
+        <div class="card-inner">
+          <div class="q-step">Let's Find the Right Fit</div>
+          <h1 class="q-text">How old is your child?</h1>
+          <p class="q-sub">Tap to continue.</p>
+          <div class="age-grid">
+            <label class="age-card"><input type="radio" name="age" value="5-7"><div class="age-num">5–7</div><div class="age-lbl">Ages</div></label>
+            <label class="age-card"><input type="radio" name="age" value="8-10"><div class="age-num">8–10</div><div class="age-lbl">Ages</div></label>
+            <label class="age-card"><input type="radio" name="age" value="11-13"><div class="age-num">11–13</div><div class="age-lbl">Ages</div></label>
+            <label class="age-card"><input type="radio" name="age" value="14+"><div class="age-num">14+</div><div class="age-lbl">Ages</div></label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -230,28 +250,33 @@ body{
   <!-- S2: Interest -->
   <div class="screen enter-right" id="s2">
     <div class="q-wrap">
-      <div class="q-step">Step 2 of 3</div>
-      <h1 class="q-text">What are you interested in?</h1>
-      <p class="q-sub">Tap to continue.</p>
-      <div class="choice-grid">
-        <label class="choice-card">
-          <input type="radio" name="interest" value="camps-clinics">
-          <div class="choice-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
-          <span class="choice-card-label">Basketball Camps &amp; Clinics</span>
-          <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
-        </label>
-        <label class="choice-card">
-          <input type="radio" name="interest" value="leagues">
-          <div class="choice-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-          <span class="choice-card-label">Leagues &amp; Competition</span>
-          <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
-        </label>
-        <label class="choice-card">
-          <input type="radio" name="interest" value="both">
-          <div class="choice-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-          <span class="choice-card-label">Both — Camps &amp; Leagues</span>
-          <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
-        </label>
+      <div class="card">
+        <div class="card-stripe"></div>
+        <div class="card-inner">
+          <div class="q-step">Step 2 of 3</div>
+          <h1 class="q-text">What are you interested in?</h1>
+          <p class="q-sub">Tap to continue.</p>
+          <div class="choice-grid">
+            <label class="choice-card">
+              <input type="radio" name="interest" value="camps-clinics">
+              <div class="choice-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
+              <span class="choice-card-label">Basketball Camps &amp; Clinics</span>
+              <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="interest" value="leagues">
+              <div class="choice-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+              <span class="choice-card-label">Leagues &amp; Competition</span>
+              <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="interest" value="both">
+              <div class="choice-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+              <span class="choice-card-label">Both — Camps &amp; Leagues</span>
+              <div class="choice-card-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -259,10 +284,13 @@ body{
   <!-- S3: Times -->
   <div class="screen enter-right times-screen" id="s3">
     <div class="q-wrap">
-      <div class="q-step">Step 3 of 3</div>
-      <h1 class="q-text">When works best?</h1>
-      <p class="q-sub">Pick all that apply.</p>
-      <div class="time-groups">
+      <div class="card">
+        <div class="card-stripe"></div>
+        <div class="card-inner">
+          <div class="q-step">Step 3 of 3</div>
+          <h1 class="q-text">When works best?</h1>
+          <p class="q-sub">Pick all that apply.</p>
+          <div class="time-groups">
         <div>
           <div class="tg-head">
             <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -287,20 +315,29 @@ body{
           </div>
         </div>
       </div>
-      <button class="btn-next" id="s3Next">
-        Send My Preferences
-        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-      </button>
+          <button class="btn-next" id="s3Next">
+            Send My Preferences
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- S4: Success -->
   <div class="screen enter-right" id="s4">
+    <div class="q-wrap">
+      <div class="card">
+        <div class="card-stripe"></div>
+        <div class="card-inner">
     <div class="success-wrap">
       <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
       <h2>All Set!</h2>
       <p>We'll reach out with your early bird pricing and available spots. Talk soon.</p>
       <div class="success-tag">Watch for an email from FCP Sports</div>
+    </div>
+        </div>
+      </div>
     </div>
   </div>
 
