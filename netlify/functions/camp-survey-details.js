@@ -15,82 +15,61 @@ const headers = {
 };
 
 exports.handler = async function (event) {
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 200, headers, body: "" };
-  }
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, headers, body: JSON.stringify({ error: "Method not allowed" }) };
-  }
+  if (event.httpMethod === "OPTIONS") return { statusCode: 200, headers, body: "" };
+  if (event.httpMethod !== "POST") return { statusCode: 405, headers, body: JSON.stringify({ error: "Method not allowed" }) };
 
   let body;
-  try {
-    body = JSON.parse(event.body || "{}");
-  } catch {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid JSON" }) };
-  }
+  try { body = JSON.parse(event.body || "{}"); }
+  catch { return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid JSON" }) }; }
 
   const { email = "", age = "", interest = "", times = [] } = body;
-
-  if (!email) {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: "Email required" }) };
-  }
+  if (!email) return { statusCode: 400, headers, body: JSON.stringify({ error: "Email required" }) };
 
   try {
-    // Find contact by email
-    const searchRes = await fetch(
-      `${GHL_BASE}/contacts/search?locationId=${process.env.GHL_LOCATION_ID}&email=${encodeURIComponent(email)}`,
-      { headers: ghlHeaders() }
-    );
-    const searchData = await searchRes.json();
-    const contact = searchData.contacts?.[0];
+    // 1. Upsert contact to reliably get contact ID
+    const upsertRes = await fetch(`${GHL_BASE}/contacts/upsert`, {
+      method: "POST",
+      headers: ghlHeaders(),
+      body: JSON.stringify({
+        locationId: process.env.GHL_LOCATION_ID,
+        email: email.trim().toLowerCase(),
+      }),
+    });
+    const upsertData = await upsertRes.json();
+    const cid = upsertData.contact?.id || upsertData.id;
 
-    if (!contact) {
-      console.log(`[camp-survey-details] Contact not found for ${email} — creating`);
+    if (!cid) {
+      console.error("[camp-survey-details] Could not resolve contact for", email);
+      return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
     }
 
-    const contactId = contact?.id;
-
-    // Build tags from responses
+    // 2. Apply Part 2 tags
     const tags = ["camp-survey-part2-complete"];
     if (age)      tags.push(`age-${age}`);
     if (interest) tags.push(`interest-${interest}`);
 
-    // Upsert with custom fields if contact exists, else create
-    const upsertBody = {
-      locationId: process.env.GHL_LOCATION_ID,
-      email: email.trim().toLowerCase(),
-    };
-
-    await fetch(`${GHL_BASE}/contacts/upsert`, {
+    await fetch(`${GHL_BASE}/contacts/${cid}/tags`, {
       method: "POST",
       headers: ghlHeaders(),
-      body: JSON.stringify(upsertBody),
-    }).then(async (r) => {
-      const d = await r.json();
-      const cid = d.contact?.id || d.id || contactId;
-      if (!cid) return;
+      body: JSON.stringify({ tags }),
+    }).catch((e) => console.warn("[camp-survey-details] Tag failed:", e.message));
 
-      // Add tags
-      await fetch(`${GHL_BASE}/contacts/${cid}/tags`, {
-        method: "POST",
-        headers: ghlHeaders(),
-        body: JSON.stringify({ tags }),
-      }).catch(() => {});
+    // 3. Add internal note
+    const note = [
+      "Part 2 survey completed.",
+      `Age range: ${age || "not provided"}`,
+      `Interest: ${interest || "not provided"}`,
+      `Best times: ${times.length ? times.join(", ") : "not provided"}`,
+    ].join("\n");
 
-      // Add internal note with full survey answers
-      const noteLines = [
-        `Part 2 survey completed.`,
-        `Age range: ${age || "not provided"}`,
-        `Interest: ${interest || "not provided"}`,
-        `Best times: ${times.length ? times.join(", ") : "not provided"}`,
-      ];
-      await fetch(`${GHL_BASE}/contacts/${cid}/notes`, {
-        method: "POST",
-        headers: ghlHeaders(),
-        body: JSON.stringify({ body: noteLines.join("\n") }),
-      }).catch(() => {});
+    await fetch(`${GHL_BASE}/contacts/${cid}/notes`, {
+      method: "POST",
+      headers: ghlHeaders(),
+      body: JSON.stringify({ body: note }),
+    }).catch((e) => console.warn("[camp-survey-details] Note failed:", e.message));
 
-      // Move opportunity to next stage if one exists
+    // 4. Move opportunity to next stage if env var is set
+    if (process.env.GHL_QUALIFIED_STAGE_ID) {
       const oppRes = await fetch(
         `${GHL_BASE}/opportunities/search?location_id=${process.env.GHL_LOCATION_ID}&contact_id=${cid}`,
         { headers: ghlHeaders() }
@@ -98,16 +77,15 @@ exports.handler = async function (event) {
 
       const opp = oppRes.opportunities?.[0];
       if (opp?.id) {
-        // Move to "Qualified" stage — update this stage ID to match your pipeline
         await fetch(`${GHL_BASE}/opportunities/${opp.id}`, {
           method: "PUT",
           headers: ghlHeaders(),
-          body: JSON.stringify({ stageId: process.env.GHL_QUALIFIED_STAGE_ID || opp.stageId }),
+          body: JSON.stringify({ stageId: process.env.GHL_QUALIFIED_STAGE_ID }),
         }).catch(() => {});
       }
-    });
+    }
 
-    console.log(`[camp-survey-details] Part 2 complete for ${email}`);
+    console.log(`[camp-survey-details] Part 2 complete for ${email} | cid: ${cid} | tags: ${tags.join(",")}`);
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
 
   } catch (err) {
