@@ -3,437 +3,510 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FCP Sports — Basketball Camps & Leagues Coming to FWB</title>
-<meta name="description" content="Tell us when your family is available. Get early bird pricing on FCP Sports basketball camps and leagues in Fort Walton Beach.">
-<meta property="og:title" content="FCP Sports — Help Us Pick the Best Camp & League Dates">
-<meta property="og:description" content="30-second survey. Get early bird pricing on basketball camps and leagues in the Fort Walton Beach area.">
+<title>FCP Sports — Join Our Camps & Leagues</title>
+<meta name="description" content="Lock in early bird pricing on FCP Sports basketball camps and leagues in Fort Walton Beach.">
+<meta property="og:title" content="FCP Sports — Lock In Early Bird Pricing">
+<meta property="og:description" content="Join our basketball camps and leagues in Fort Walton Beach. Grab early bird pricing before we open to the public.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0B1120;
-  --card:#131C31;
-  --card-border:#1E2D4A;
   --orange:#F26522;
-  --orange-hover:#E05A1B;
-  --orange-glow:rgba(242,101,34,.15);
+  --orange-dark:#D4571A;
   --white:#FFFFFF;
-  --light:#CBD5E1;
-  --muted:#64748B;
-  --green:#34D399;
+  --off-white:#F8F9FB;
+  --light:#E2E8F0;
+  --muted:#94A3B8;
+  --text:#1E293B;
+  --text-light:#475569;
+  --green:#10B981;
+  --card-shadow:0 4px 24px rgba(0,0,0,.09);
 }
 html{scroll-behavior:smooth}
 body{
-  font-family:'Source Sans 3',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--white);
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--off-white);
+  color:var(--text);
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-
-/* ── LAYOUT ── */
-.page{
-  max-width:1080px;
-  margin:0 auto;
-  padding:0 1.25rem;
-}
-
-/* ── HEADER BAR ── */
-.top-bar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:1.25rem 0;
-  border-bottom:1px solid var(--card-border);
-}
-.logo{
-  font-family:'Oswald',sans-serif;
-  font-weight:700;
-  font-size:1.35rem;
-  letter-spacing:.02em;
-  color:var(--white);
-  text-decoration:none;
-}
-.logo span{color:var(--orange)}
-.top-bar .tag{
-  font-size:.75rem;
-  font-weight:600;
-  color:var(--orange);
-  background:var(--orange-glow);
-  border:1px solid rgba(242,101,34,.25);
-  padding:.35rem .85rem;
-  border-radius:6px;
-  letter-spacing:.03em;
-  text-transform:uppercase;
-}
-
-/* ── HERO + FORM SPLIT ── */
-.hero-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:3.5rem;
-  align-items:start;
-  padding:3.5rem 0 4rem;
-}
-
-/* Left: Copy */
-.hero-copy{padding-top:1rem}
-.hero-copy h1{
-  font-family:'Oswald',sans-serif;
-  font-weight:700;
-  font-size:clamp(2.2rem,4.5vw,3.2rem);
-  line-height:1.05;
-  letter-spacing:-.01em;
-  margin-bottom:1.25rem;
-}
-.hero-copy h1 .highlight{color:var(--orange)}
-.hero-copy .sub{
-  font-size:1.1rem;
-  line-height:1.65;
-  color:var(--light);
-  margin-bottom:2rem;
-  max-width:440px;
-}
-.perks{
+  min-height:100vh;
   display:flex;
   flex-direction:column;
-  gap:.85rem;
-  margin-bottom:2.5rem;
 }
-.perk{
-  display:flex;align-items:center;gap:.65rem;
-  font-size:1rem;font-weight:500;color:var(--white);
-}
-.perk .icon{
-  width:28px;height:28px;
-  background:var(--orange-glow);
-  border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  font-size:.85rem;
-}
-.social-proof{
-  display:flex;align-items:center;gap:.65rem;
-  padding-top:.5rem;
-}
-.avatars{display:flex}
-.avatars .av{
-  width:32px;height:32px;
-  border-radius:50%;
-  border:2px solid var(--bg);
-  margin-left:-8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.7rem;font-weight:700;
-  color:var(--white);
-}
-.avatars .av:first-child{margin-left:0}
-.av-1{background:#3B82F6}
-.av-2{background:#8B5CF6}
-.av-3{background:#EC4899}
-.av-4{background:#F59E0B}
-.social-proof .text{font-size:.85rem;color:var(--muted)}
-.social-proof .text strong{color:var(--green);font-weight:600}
 
-/* Right: Form Card */
-.form-card{
-  background:var(--card);
-  border:1px solid var(--card-border);
-  border-radius:16px;
-  padding:2rem 1.75rem 1.75rem;
+/* ── HERO BAND ── */
+.hero{
+  background:linear-gradient(135deg,#0B1A3A 0%,#1A2E5A 60%,#0F2043 100%);
+  padding:2.5rem 1.25rem 3.5rem;
+  text-align:center;
   position:relative;
+  overflow:hidden;
 }
-.form-card::before{
+.hero::before{
   content:'';
   position:absolute;
-  top:-1px;left:2rem;right:2rem;
-  height:3px;
-  background:var(--orange);
-  border-radius:0 0 3px 3px;
+  inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(242,101,34,.18) 0%,transparent 70%);
+  pointer-events:none;
 }
-.form-card h2{
+.logo{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
   font-family:'Oswald',sans-serif;
   font-weight:700;
-  font-size:1.35rem;
+  font-size:1.25rem;
+  color:var(--white);
+  letter-spacing:.04em;
+  margin-bottom:2rem;
+  text-decoration:none;
+}
+.logo .dot{
+  width:8px;height:8px;
+  background:var(--orange);
+  border-radius:50%;
+}
+.hero-badge{
+  display:inline-block;
+  background:rgba(242,101,34,.18);
+  border:1px solid rgba(242,101,34,.35);
+  color:var(--orange);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:.35rem .9rem;
+  border-radius:999px;
+  margin-bottom:1.25rem;
+}
+.hero h1{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:clamp(2rem,6vw,3rem);
+  line-height:1.08;
+  color:var(--white);
+  letter-spacing:-.01em;
+  margin-bottom:.85rem;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--orange);
+}
+.hero-sub{
+  font-size:1rem;
+  color:rgba(255,255,255,.72);
+  max-width:420px;
+  margin:0 auto 0;
+  line-height:1.6;
+}
+
+/* ── CARD ── */
+.card-wrap{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:0 1.25rem 3rem;
+  margin-top:-1.75rem;
+}
+.card{
+  background:var(--white);
+  border-radius:20px;
+  box-shadow:var(--card-shadow);
+  width:100%;
+  max-width:480px;
+  overflow:hidden;
+}
+
+/* ── PROGRESS ── */
+.progress-bar{
+  height:4px;
+  background:var(--light);
+  position:relative;
+}
+.progress-fill{
+  height:100%;
+  background:var(--orange);
+  border-radius:2px;
+  transition:width .4s cubic-bezier(.4,0,.2,1);
+  width:50%;
+}
+.progress-steps{
+  display:flex;
+  justify-content:space-between;
+  padding:.85rem 1.5rem .6rem;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.progress-steps span.active{color:var(--orange)}
+
+/* ── STEP PANELS ── */
+.step{display:none;padding:1.25rem 1.75rem 1.75rem}
+.step.visible{display:block}
+
+.step-title{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:1.3rem;
+  color:var(--text);
   margin-bottom:.25rem;
 }
-.form-card .form-sub{
+.step-sub{
   font-size:.85rem;
-  color:var(--muted);
-  margin-bottom:1.5rem;
+  color:var(--text-light);
+  margin-bottom:1.4rem;
+  line-height:1.5;
 }
 
-/* Form */
-.f-group{margin-bottom:1.1rem}
+/* Fields */
+.f-group{margin-bottom:1rem}
 .f-group label{
   display:block;
-  font-size:.78rem;
-  font-weight:600;
+  font-size:.72rem;
+  font-weight:700;
   text-transform:uppercase;
-  letter-spacing:.05em;
-  color:var(--light);
+  letter-spacing:.06em;
+  color:var(--text-light);
   margin-bottom:.35rem;
 }
-.f-group input,.f-group select{
+.f-group input{
   width:100%;
-  background:var(--bg);
-  border:1.5px solid var(--card-border);
-  color:var(--white);
-  font-family:'Source Sans 3',sans-serif;
+  background:var(--off-white);
+  border:1.5px solid var(--light);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
   font-size:.95rem;
-  padding:.7rem .85rem;
-  border-radius:8px;
+  padding:.7rem .9rem;
+  border-radius:10px;
   outline:none;
-  transition:border-color .2s;
+  transition:border-color .2s,box-shadow .2s;
 }
 .f-group input::placeholder{color:var(--muted)}
-.f-group input:focus,.f-group select:focus{border-color:var(--orange)}
-.f-group select option{background:var(--bg)}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.f-group input:focus{
+  border-color:var(--orange);
+  box-shadow:0 0 0 3px rgba(242,101,34,.1);
+}
 
-/* Checkbox sections */
-.check-section{margin-bottom:1.1rem}
-.check-section .cs-label{
-  font-size:.78rem;
+/* Choice groups */
+.choice-label{
+  display:block;
+  font-size:.72rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--text-light);
+  margin-bottom:.5rem;
+  margin-top:1.1rem;
+}
+.choice-label:first-of-type{margin-top:0}
+
+/* Age cards — 2x2 grid */
+.age-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.5rem;
+}
+.age-card{
+  border:1.5px solid var(--light);
+  border-radius:12px;
+  padding:.85rem .75rem;
+  text-align:center;
+  cursor:pointer;
+  transition:border-color .15s,background .15s,box-shadow .15s;
+  user-select:none;
+}
+.age-card input{display:none}
+.age-card .ac-age{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:1.4rem;
+  color:var(--text);
+  line-height:1;
+  margin-bottom:.2rem;
+}
+.age-card .ac-label{
+  font-size:.7rem;
   font-weight:600;
+  color:var(--muted);
   text-transform:uppercase;
   letter-spacing:.05em;
-  color:var(--light);
-  margin-bottom:.45rem;
-  display:block;
 }
+.age-card:hover{border-color:rgba(242,101,34,.4)}
+.age-card.selected{
+  border-color:var(--orange);
+  background:rgba(242,101,34,.06);
+  box-shadow:0 0 0 3px rgba(242,101,34,.1);
+}
+.age-card.selected .ac-age{color:var(--orange)}
+
+/* Time + interest chips */
 .chips{display:flex;flex-wrap:wrap;gap:.4rem}
 .chip{
-  display:flex;align-items:center;gap:.4rem;
-  background:var(--bg);
-  border:1.5px solid var(--card-border);
-  padding:.45rem .75rem;
-  border-radius:7px;
+  display:inline-flex;
+  align-items:center;
+  background:var(--off-white);
+  border:1.5px solid var(--light);
+  padding:.45rem .8rem;
+  border-radius:8px;
   font-size:.82rem;
   font-weight:500;
-  color:var(--light);
+  color:var(--text-light);
   cursor:pointer;
   transition:border-color .15s,background .15s,color .15s;
   user-select:none;
 }
-.chip:hover{border-color:rgba(242,101,34,.4)}
 .chip input{display:none}
+.chip:hover{border-color:rgba(242,101,34,.4)}
 .chip.selected{
   border-color:var(--orange);
-  background:var(--orange-glow);
-  color:var(--white);
+  background:rgba(242,101,34,.07);
+  color:var(--orange);
+  font-weight:600;
 }
 
-/* Submit */
-.submit-btn{
+/* Interest cards — full width stacked */
+.interest-list{display:flex;flex-direction:column;gap:.45rem}
+.interest-card{
+  display:flex;
+  align-items:center;
+  gap:.85rem;
+  border:1.5px solid var(--light);
+  border-radius:12px;
+  padding:.85rem 1rem;
+  cursor:pointer;
+  transition:border-color .15s,background .15s;
+  user-select:none;
+}
+.interest-card input{display:none}
+.interest-card .ic-icon{
+  font-size:1.35rem;
+  flex-shrink:0;
+  width:36px;
+  text-align:center;
+}
+.interest-card .ic-text{
+  font-size:.9rem;
+  font-weight:600;
+  color:var(--text);
+}
+.interest-card:hover{border-color:rgba(242,101,34,.4)}
+.interest-card.selected{
+  border-color:var(--orange);
+  background:rgba(242,101,34,.06);
+}
+.interest-card.selected .ic-text{color:var(--orange)}
+
+/* Buttons */
+.btn{
   width:100%;
   background:var(--orange);
   color:var(--white);
-  font-family:'Source Sans 3',sans-serif;
+  font-family:'Inter',sans-serif;
   font-weight:700;
-  font-size:1.05rem;
-  padding:.85rem 1rem;
+  font-size:1rem;
+  padding:.9rem 1rem;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   cursor:pointer;
-  transition:background .2s,transform .12s;
-  margin-top:.5rem;
+  transition:background .2s,transform .12s,box-shadow .2s;
+  margin-top:1.25rem;
+  box-shadow:0 4px 14px rgba(242,101,34,.3);
 }
-.submit-btn:hover{background:var(--orange-hover);transform:translateY(-1px)}
-.submit-btn:active{transform:translateY(0)}
-.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.privacy-note{
+.btn:hover{background:var(--orange-dark);transform:translateY(-1px);box-shadow:0 6px 18px rgba(242,101,34,.35)}
+.btn:active{transform:translateY(0)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost{
+  background:transparent;
+  color:var(--muted);
+  box-shadow:none;
+  font-size:.85rem;
+  padding:.5rem;
+  margin-top:.4rem;
+}
+.btn-ghost:hover{background:transparent;box-shadow:none;color:var(--text);transform:none}
+
+.privacy{
   text-align:center;
-  font-size:.72rem;
+  font-size:.7rem;
   color:var(--muted);
   margin-top:.75rem;
 }
-.privacy-note svg{vertical-align:middle;margin-right:.25rem}
 
-/* Success */
+/* ── SUCCESS ── */
 .success-state{
   display:none;
   text-align:center;
-  padding:2.5rem 1rem;
+  padding:3rem 2rem;
 }
-.success-state .s-icon{
-  width:56px;height:56px;
-  background:rgba(52,211,153,.12);
-  border:2px solid rgba(52,211,153,.3);
+.success-icon{
+  width:64px;height:64px;
+  background:rgba(16,185,129,.1);
+  border:2px solid rgba(16,185,129,.25);
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   margin:0 auto 1.25rem;
-  font-size:1.5rem;
+  font-size:1.75rem;
 }
-.success-state h3{
+.success-state h2{
   font-family:'Oswald',sans-serif;
-  font-size:1.5rem;
+  font-weight:700;
+  font-size:1.6rem;
   margin-bottom:.5rem;
+  color:var(--text);
 }
 .success-state p{
-  color:var(--muted);
-  font-size:.95rem;
-  line-height:1.55;
-  max-width:340px;
+  font-size:.9rem;
+  color:var(--text-light);
+  line-height:1.6;
+  max-width:320px;
   margin:0 auto;
 }
 
-/* ── FOOTER ── */
-.foot{
-  text-align:center;
-  padding:2rem 0;
-  border-top:1px solid var(--card-border);
+/* ── TRUST BAR ── */
+.trust-bar{
+  display:flex;
+  justify-content:center;
+  gap:1.5rem;
+  flex-wrap:wrap;
+  padding:1.5rem 1.25rem 0;
+  max-width:480px;
+  margin:0 auto;
+}
+.trust-item{
+  display:flex;
+  align-items:center;
+  gap:.4rem;
   font-size:.78rem;
+  font-weight:500;
   color:var(--muted);
 }
-.foot a{color:var(--orange);text-decoration:none}
+.trust-item span{font-size:.95rem}
 
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  .hero-grid{
-    grid-template-columns:1fr;
-    gap:2rem;
-    padding:2rem 0 3rem;
-  }
-  .hero-copy{text-align:center}
-  .hero-copy .sub{margin-left:auto;margin-right:auto}
-  .perks{align-items:center}
-  .social-proof{justify-content:center}
-  .f-row{grid-template-columns:1fr}
-  .form-card{padding:1.5rem 1.25rem 1.5rem}
+/* ── FOOTER ── */
+footer{
+  text-align:center;
+  padding:1.75rem 1rem;
+  font-size:.72rem;
+  color:var(--muted);
 }
+footer a{color:var(--orange);text-decoration:none}
+
+/* ── MOBILE ── */
 @media(max-width:420px){
-  .top-bar .tag{display:none}
-  .chips{gap:.35rem}
-  .chip{padding:.4rem .6rem;font-size:.78rem}
+  .hero{padding:2rem 1rem 3rem}
+  .step{padding:1.1rem 1.25rem 1.5rem}
+  .trust-bar{gap:1rem}
 }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- Top Bar -->
-  <header class="top-bar">
-    <a href="https://www.fcpsports.org" class="logo">FCP <span>SPORTS</span></a>
-    <div class="tag">Fort Walton Beach, FL</div>
-  </header>
+<!-- Hero -->
+<div class="hero">
+  <a href="https://www.fcpsports.org" class="logo">FCP <span style="color:var(--orange);margin:0 2px">SPORTS</span><span class="dot"></span></a>
+  <div class="hero-badge">Fort Walton Beach, FL</div>
+  <h1>JOIN OUR<br><em>CAMPS &amp; LEAGUES</em></h1>
+  <p class="hero-sub">Tell us what works for your family and lock in early bird pricing before we open to the public.</p>
+</div>
 
-  <!-- Hero Grid -->
-  <div class="hero-grid">
+<!-- Card -->
+<div class="card-wrap">
+  <div class="card">
 
-    <!-- Left: Copy -->
-    <div class="hero-copy">
-      <h1>HELP US BUILD THE <span class="highlight">PERFECT SCHEDULE</span> FOR YOUR FAMILY</h1>
-      <p class="sub">We're launching basketball camps and leagues on the Emerald Coast. Tell us when works best — and you'll get early bird pricing before we open to the public.</p>
-
-      <div class="perks">
-        <div class="perk"><span class="icon">🏀</span> Ages 5–17, boys & girls</div>
-        <div class="perk"><span class="icon">💰</span> Early bird pricing for survey takers</div>
-        <div class="perk"><span class="icon">📋</span> Takes 30 seconds</div>
-      </div>
-
-      <div class="social-proof">
-        <div class="avatars">
-          <div class="av av-1">J</div>
-          <div class="av av-2">M</div>
-          <div class="av av-3">K</div>
-          <div class="av av-4">T</div>
-        </div>
-        <div class="text"><strong id="counter">0</strong> families have responded</div>
-      </div>
+    <!-- Progress -->
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-steps">
+      <span id="ps1" class="active">Step 1 — Contact Info</span>
+      <span id="ps2">Step 2 — Your Schedule</span>
     </div>
 
-    <!-- Right: Form -->
-    <div class="form-card">
-      <h2>YOUR AVAILABILITY</h2>
-      <p class="form-sub">Fill this out and we'll build around your schedule.</p>
+    <!-- Step 1 -->
+    <div class="step visible" id="step1">
+      <p class="step-title">Let's get you on the list</p>
+      <p class="step-sub">Quick info so we can send you early bird pricing.</p>
 
-      <form id="surveyForm">
-        <div class="f-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="First and last" required>
-        </div>
-
-        <div class="f-row">
-          <div class="f-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@email.com" required>
-          </div>
-          <div class="f-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="(850) 555-1234" required>
-          </div>
-        </div>
-
-        <div class="f-group">
-          <label for="age">Child's Age Range</label>
-          <select id="age" name="age" required>
-            <option value="" disabled selected>Select</option>
-            <option value="5-7">5–7</option>
-            <option value="8-10">8–10</option>
-            <option value="11-13">11–13</option>
-            <option value="14-17">14–17</option>
-            <option value="multiple">Multiple ages</option>
-          </select>
-        </div>
-
-        <div class="check-section">
-          <span class="cs-label">Best Months</span>
-          <div class="chips" data-name="season">
-            <label class="chip"><input type="checkbox" name="season" value="june">June</label>
-            <label class="chip"><input type="checkbox" name="season" value="july">July</label>
-            <label class="chip"><input type="checkbox" name="season" value="fall">Fall</label>
-            <label class="chip"><input type="checkbox" name="season" value="winter-break">Winter Break</label>
-            <label class="chip"><input type="checkbox" name="season" value="spring-break">Spring Break</label>
-            <label class="chip"><input type="checkbox" name="season" value="year-round">Year-Round</label>
-          </div>
-        </div>
-
-        <div class="check-section">
-          <span class="cs-label">Best Times</span>
-          <div class="chips" data-name="time">
-            <label class="chip"><input type="checkbox" name="time" value="weekday-am">Weekday AM</label>
-            <label class="chip"><input type="checkbox" name="time" value="weekday-pm">Weekday PM</label>
-            <label class="chip"><input type="checkbox" name="time" value="weekday-eve">Weekday Eve</label>
-            <label class="chip"><input type="checkbox" name="time" value="saturday">Saturday</label>
-            <label class="chip"><input type="checkbox" name="time" value="sunday">Sunday</label>
-          </div>
-        </div>
-
-        <div class="check-section">
-          <span class="cs-label">Interested In</span>
-          <div class="chips" data-name="interest">
-            <label class="chip"><input type="checkbox" name="interest" value="camp">Skills Camp</label>
-            <label class="chip"><input type="checkbox" name="interest" value="league">League</label>
-            <label class="chip"><input type="checkbox" name="interest" value="clinic">Shooting Clinic</label>
-            <label class="chip"><input type="checkbox" name="interest" value="training">Team Training</label>
-          </div>
-        </div>
-
-        <button type="submit" class="submit-btn" id="submitBtn">Lock In Early Bird Pricing →</button>
-        <p class="privacy-note">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          No spam. We only contact you about camps & leagues.
-        </p>
-      </form>
-
-      <div class="success-state" id="successState">
-        <div class="s-icon">✓</div>
-        <h3>YOU'RE ON THE LIST</h3>
-        <p>We'll reach out with early bird pricing before registration opens to the public.</p>
+      <div class="f-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="First and last name" autocomplete="name" required>
       </div>
+      <div class="f-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required>
+      </div>
+      <div class="f-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(850) 555-1234" autocomplete="tel" required>
+      </div>
+
+      <button class="btn" id="nextBtn" type="button">Next — Tell Us Your Schedule →</button>
+      <p class="privacy">🔒 No spam. Early bird info only.</p>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step" id="step2">
+      <p class="step-title">What works for your family?</p>
+      <p class="step-sub">We'll build the schedule around your availability.</p>
+
+      <!-- Age -->
+      <span class="choice-label">Child's Age Range</span>
+      <div class="age-grid">
+        <label class="age-card"><input type="radio" name="age" value="5-7"><div class="ac-age">5–7</div><div class="ac-label">Ages</div></label>
+        <label class="age-card"><input type="radio" name="age" value="8-10"><div class="ac-age">8–10</div><div class="ac-label">Ages</div></label>
+        <label class="age-card"><input type="radio" name="age" value="11-13"><div class="ac-age">11–13</div><div class="ac-label">Ages</div></label>
+        <label class="age-card"><input type="radio" name="age" value="14+"><div class="ac-age">14+</div><div class="ac-label">Ages</div></label>
+      </div>
+
+      <!-- Times -->
+      <span class="choice-label">Best Times</span>
+      <div class="chips" id="timeChips">
+        <label class="chip"><input type="checkbox" name="time" value="weekday-after-4">Weekdays after 4:00 PM</label>
+        <label class="chip"><input type="checkbox" name="time" value="weekday-after-6">Weekdays after 6:00 PM</label>
+        <label class="chip"><input type="checkbox" name="time" value="sat-morning">Saturday Morning</label>
+        <label class="chip"><input type="checkbox" name="time" value="sat-afternoon">Saturday Afternoon</label>
+        <label class="chip"><input type="checkbox" name="time" value="sat-evening">Saturday Evening</label>
+        <label class="chip"><input type="checkbox" name="time" value="sun-afternoon">Sunday Afternoon</label>
+        <label class="chip"><input type="checkbox" name="time" value="sun-evening">Sunday Evening</label>
+      </div>
+
+      <!-- Interest -->
+      <span class="choice-label">Interested In</span>
+      <div class="interest-list">
+        <label class="interest-card"><input type="radio" name="interest" value="camps-clinics"><span class="ic-icon">🏀</span><span class="ic-text">Basketball Camps &amp; Clinics</span></label>
+        <label class="interest-card"><input type="radio" name="interest" value="leagues"><span class="ic-icon">🏆</span><span class="ic-text">Leagues &amp; Competition</span></label>
+        <label class="interest-card"><input type="radio" name="interest" value="both"><span class="ic-icon">⭐</span><span class="ic-text">Both — Camps &amp; Leagues</span></label>
+      </div>
+
+      <button class="btn" id="submitBtn" type="button">Lock In Early Bird Pricing →</button>
+      <button class="btn btn-ghost" id="backBtn" type="button">← Back</button>
+    </div>
+
+    <!-- Success -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">✓</div>
+      <h2>YOU'RE ON THE LIST</h2>
+      <p>We'll reach out with early bird pricing before registration opens to the public. Keep an eye on your phone.</p>
     </div>
 
   </div>
+
+  <!-- Trust -->
+  <div class="trust-bar">
+    <div class="trust-item"><span>🏀</span> Ages 5–17</div>
+    <div class="trust-item"><span>📍</span> Fort Walton Beach</div>
+    <div class="trust-item"><span>💰</span> Early bird pricing</div>
+  </div>
 </div>
 
-<footer class="foot">
-  <div class="page">&copy; 2026 <a href="https://www.fcpsports.org">FCP Sports</a> — Fort Walton Beach, Florida</div>
+<footer>
+  &copy; 2026 <a href="https://www.fcpsports.org">FCP Sports</a> — Fort Walton Beach, Florida
 </footer>
 
 <script>
-// Chip toggle
+// ── Chip toggle ──
 document.querySelectorAll('.chip').forEach(function(chip){
   chip.addEventListener('click', function(e){
     if(e.target.tagName==='INPUT') return;
@@ -446,7 +519,28 @@ document.querySelectorAll('.chip').forEach(function(chip){
   });
 });
 
-// Phone format
+// ── Age card + Interest card (radio) ──
+function initRadioCards(selector){
+  document.querySelectorAll(selector).forEach(function(card){
+    card.addEventListener('click', function(e){
+      if(e.target.tagName==='INPUT') return;
+      var rb = card.querySelector('input');
+      rb.checked = true;
+      document.querySelectorAll(selector).forEach(function(c){ c.classList.remove('selected'); });
+      card.classList.add('selected');
+    });
+    card.querySelector('input').addEventListener('change', function(){
+      if(this.checked){
+        document.querySelectorAll(selector).forEach(function(c){ c.classList.remove('selected'); });
+        card.classList.add('selected');
+      }
+    });
+  });
+}
+initRadioCards('.age-card');
+initRadioCards('.interest-card');
+
+// ── Phone format ──
 document.getElementById('phone').addEventListener('input', function(e){
   var v = e.target.value.replace(/\D/g,'');
   if(v.length>=6) v='('+v.slice(0,3)+') '+v.slice(3,6)+'-'+v.slice(6,10);
@@ -454,35 +548,54 @@ document.getElementById('phone').addEventListener('input', function(e){
   e.target.value=v;
 });
 
-// Social proof counter animation
-(function(){
-  var target = 47;
-  var el = document.getElementById('counter');
-  var current = 0;
-  var step = Math.ceil(target/30);
-  var timer = setInterval(function(){
-    current += step;
-    if(current >= target){current = target; clearInterval(timer);}
-    el.textContent = current;
-  }, 50);
-})();
+// ── Step 1 → Step 2 ──
+document.getElementById('nextBtn').addEventListener('click', function(){
+  var name = document.getElementById('name').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var phone = document.getElementById('phone').value.trim();
 
-// Submit
-document.getElementById('surveyForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  var btn = document.getElementById('submitBtn');
+  if(!name){ alert('Please enter your name.'); return; }
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Please enter a valid email.'); return; }
+  if(!phone){ alert('Please enter your phone number.'); return; }
+
+  document.getElementById('step1').classList.remove('visible');
+  document.getElementById('step2').classList.add('visible');
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('ps1').classList.remove('active');
+  document.getElementById('ps2').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+// ── Back ──
+document.getElementById('backBtn').addEventListener('click', function(){
+  document.getElementById('step2').classList.remove('visible');
+  document.getElementById('step1').classList.add('visible');
+  document.getElementById('progressFill').style.width = '50%';
+  document.getElementById('ps1').classList.add('active');
+  document.getElementById('ps2').classList.remove('active');
+});
+
+// ── Submit ──
+document.getElementById('submitBtn').addEventListener('click', function(){
+  var btn = this;
+  var age = document.querySelector('input[name="age"]:checked');
+  var interest = document.querySelector('input[name="interest"]:checked');
+
+  if(!age){ alert('Please select your child\'s age range.'); return; }
+  if(!interest){ alert('Please select what you\'re interested in.'); return; }
+
   btn.disabled = true;
-  btn.textContent = 'Submitting...';
+  btn.textContent = 'Locking you in...';
 
-  var fd = new FormData(this);
+  var times = Array.from(document.querySelectorAll('input[name="time"]:checked')).map(function(el){ return el.value; });
+
   var data = {
-    name: fd.get('name'),
-    email: fd.get('email'),
-    phone: fd.get('phone'),
-    age: fd.get('age'),
-    seasons: fd.getAll('season'),
-    times: fd.getAll('time'),
-    interests: fd.getAll('interest')
+    name: document.getElementById('name').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    age: age.value,
+    times: times,
+    interests: [interest.value]
   };
 
   fetch('/.netlify/functions/camp-survey', {
@@ -492,8 +605,10 @@ document.getElementById('surveyForm').addEventListener('submit', function(e){
   }).then(done).catch(done);
 
   function done(){
-    document.getElementById('surveyForm').style.display='none';
+    document.getElementById('step2').style.display='none';
     document.getElementById('successState').style.display='block';
+    document.querySelector('.progress-bar').style.display='none';
+    document.querySelector('.progress-steps').style.display='none';
   }
 });
 </script>
