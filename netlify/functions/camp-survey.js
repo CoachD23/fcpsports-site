@@ -11,6 +11,20 @@
  */
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
+const nodemailer = require("nodemailer");
+
+function createSmtpTransport() {
+  return nodemailer.createTransport({
+    host: "smtp.office365.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "info@fcpsports.org",
+      pass: process.env.FCPSPORTS_SMTP_PASS,
+    },
+    tls: { ciphers: "SSLv3" },
+  });
+}
 const PIPELINE_ID = "YtrqQQ8kE2R3bZjnZxIK"; // FCP Sports Leads
 const STAGE_ID = "c39fccaf-7441-4268-a426-6d602987693f"; // New Lead
 
@@ -139,62 +153,44 @@ exports.handler = async function (event) {
       body: JSON.stringify({ body: `Camp survey form submitted.\nName: ${name}\nPhone: ${phone}\nSource: Facebook Ad`, userId: "" }),
     }).catch((e) => console.warn("[camp-survey] Note failed:", e.message));
 
-    // 5. Send Email 1 — confirmation
+    // 5. Send emails via SMTP (Office 365 / info@fcpsports.org)
     const cleanEmail = email.trim().toLowerCase();
     const firstName1 = firstName || "there";
-    const email1Html = `<p>Hey ${firstName1},</p>
+    const part2Link = `https://fcpsports.org/camp-survey/details/?email=${encodeURIComponent(cleanEmail)}`;
+
+    const transporter = createSmtpTransport();
+
+    // Email 1 — confirmation
+    try {
+      await transporter.sendMail({
+        from: '"FCP Sports" <info@fcpsports.org>',
+        to: cleanEmail,
+        subject: "You're on the early bird list",
+        html: `<p>Hey ${firstName1},</p>
 <p>You're on the list! We'll reach out with early bird pricing and details before registration opens to the public.</p>
 <p>FCP Sports runs camps and leagues right here in Fort Walton Beach — we're excited to have you.</p>
-<p>Talk soon,<br>FCP Sports<br>Fort Walton Beach, FL</p>`;
-
-    const e1Res = await fetch(`${GHL_BASE}/conversations/messages`, {
-      method: "POST",
-      headers: ghlHeaders(),
-      body: JSON.stringify({
-        type: "Email",
-        contactId,
-        locationId: process.env.GHL_LOCATION_ID,
-        subject: "You're on the early bird list",
-        html: email1Html,
-        to: cleanEmail,
-        fromEmail: "info@fcpsports.org",
-        fromName: "FCP Sports",
-      }),
-    });
-    if (!e1Res.ok) {
-      console.error("[camp-survey] Email 1 failed:", await e1Res.text());
-    } else {
-      const e1Data = await e1Res.json();
-      console.log("[camp-survey] Email 1 queued:", e1Data.messageId);
+<p>Talk soon,<br>FCP Sports<br>Fort Walton Beach, FL</p>`,
+      });
+      console.log("[camp-survey] Email 1 sent via SMTP");
+    } catch (e) {
+      console.error("[camp-survey] Email 1 SMTP failed:", e.message);
     }
 
-    // 6. Send Email 2 — Part 2 link
-    const part2Link = `https://fcpsports.org/camp-survey/details/?email=${encodeURIComponent(cleanEmail)}`;
-    const email2Html = `<p>Hey ${firstName1},</p>
+    // Email 2 — Part 2 link
+    try {
+      await transporter.sendMail({
+        from: '"FCP Sports" <info@fcpsports.org>',
+        to: cleanEmail,
+        subject: "Quick question before we send your pricing",
+        html: `<p>Hey ${firstName1},</p>
 <p>One quick question before we send your pricing — helps us point you to the right program.</p>
 <p>Takes about 60 seconds:<br>
 👉 <a href="${part2Link}">Click here to answer 3 quick questions</a></p>
-<p>Talk soon,<br>FCP Sports<br>Fort Walton Beach, FL</p>`;
-
-    const e2Res = await fetch(`${GHL_BASE}/conversations/messages`, {
-      method: "POST",
-      headers: ghlHeaders(),
-      body: JSON.stringify({
-        type: "Email",
-        contactId,
-        locationId: process.env.GHL_LOCATION_ID,
-        subject: "Quick question before we send your pricing",
-        html: email2Html,
-        to: cleanEmail,
-        fromEmail: "info@fcpsports.org",
-        fromName: "FCP Sports",
-      }),
-    });
-    if (!e2Res.ok) {
-      console.error("[camp-survey] Email 2 failed:", await e2Res.text());
-    } else {
-      const e2Data = await e2Res.json();
-      console.log("[camp-survey] Email 2 queued:", e2Data.messageId);
+<p>Talk soon,<br>FCP Sports<br>Fort Walton Beach, FL</p>`,
+      });
+      console.log("[camp-survey] Email 2 sent via SMTP");
+    } catch (e) {
+      console.error("[camp-survey] Email 2 SMTP failed:", e.message);
     }
 
     // 7. Add tag to mark emails sent
