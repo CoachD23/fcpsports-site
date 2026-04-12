@@ -176,22 +176,7 @@ exports.handler = async function (event) {
       console.error("[camp-survey] Email 1 SMTP failed:", e.message);
     }
 
-    // Email 2 — Part 2 link
-    try {
-      await transporter.sendMail({
-        from: '"FCP Sports" <info@fcpsports.org>',
-        to: cleanEmail,
-        subject: "Quick question before we send your pricing",
-        html: `<p>Hey ${firstName1},</p>
-<p>One quick question before we send your pricing — helps us point you to the right program.</p>
-<p>Takes about 60 seconds:<br>
-👉 <a href="${part2Link}">Click here to answer 3 quick questions</a></p>
-<p>Talk soon,<br>FCP Sports<br>Fort Walton Beach, FL</p>`,
-      });
-      console.log("[camp-survey] Email 2 sent via SMTP");
-    } catch (e) {
-      console.error("[camp-survey] Email 2 SMTP failed:", e.message);
-    }
+    // Email 2 is sent on Day 2 by camp-survey-day2.js scheduled function
 
     // 7. Add tag to mark emails sent
     await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
