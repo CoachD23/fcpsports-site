@@ -143,9 +143,9 @@ exports.handler = async function (event) {
     const cleanEmail = email.trim().toLowerCase();
     const firstName1 = firstName || "there";
     const email1Html = `<p>Hey ${firstName1},</p>
-<p>You're officially on the early bird list for FCP Sports camps and leagues in Fort Walton Beach.</p>
-<p>We'll send you pricing and registration details before spots open to the public.</p>
-<p>Talk soon,<br>Coach D<br>FCP Sports — floridacoastalprep.com</p>`;
+<p>You're on the list! We'll reach out with early bird pricing and details before registration opens to the public.</p>
+<p>FCP Sports runs camps and leagues right here in Fort Walton Beach — we're excited to have you.</p>
+<p>Talk soon,<br>FCP Sports<br>Fort Walton Beach, FL</p>`;
 
     const e1Res = await fetch(`${GHL_BASE}/conversations/messages`, {
       method: "POST",
@@ -171,10 +171,10 @@ exports.handler = async function (event) {
     // 6. Send Email 2 — Part 2 link
     const part2Link = `https://fcpsports.org/camp-survey/details/?email=${encodeURIComponent(cleanEmail)}`;
     const email2Html = `<p>Hey ${firstName1},</p>
-<p>Before I send over pricing, I want to make sure I point you to the right program.</p>
-<p>Takes 60 seconds — just tell me about your athlete:<br>
-👉 <a href="${part2Link}">${part2Link}</a></p>
-<p>Talk soon,<br>Coach D<br>FCP Sports</p>`;
+<p>One quick question before we send your pricing — helps us point you to the right program.</p>
+<p>Takes about 60 seconds:<br>
+👉 <a href="${part2Link}">Click here to answer 3 quick questions</a></p>
+<p>Talk soon,<br>FCP Sports<br>Fort Walton Beach, FL</p>`;
 
     const e2Res = await fetch(`${GHL_BASE}/conversations/messages`, {
       method: "POST",
