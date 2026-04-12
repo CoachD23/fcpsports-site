@@ -106,6 +106,74 @@ exports.handler = async function () {
   }
 
   console.log(`[day2] Done — sent ${sent} day-2 emails`);
+
+  // ── PASS 2: Reminder for anyone who got Email 2 but never completed Part 2 ──
+  // Condition: camp-survey-day2-sent + NO camp-survey-part2-complete + NO camp-survey-reminder-sent + 48h+ since signup
+
+  const reminderCutoff = Date.now() - 48 * 60 * 60 * 1000;
+  const remindRes = await fetch(
+    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=camp-survey-day2-sent&limit=100`,
+    { headers: ghlHeaders() }
+  ).catch((e) => { console.error("[day2] Reminder search failed:", e.message); return null; });
+
+  if (!remindRes || !remindRes.ok) {
+    console.error("[day2] Reminder GHL search error");
+    return { statusCode: 200 };
+  }
+
+  const remindData = await remindRes.json();
+  const remindContacts = remindData.contacts || [];
+  console.log(`[day2] Found ${remindContacts.length} day2-sent contacts for reminder check`);
+
+  let remindSent = 0;
+
+  for (const contact of remindContacts) {
+    const tags = contact.tags || [];
+
+    // Skip if already completed Part 2
+    if (tags.includes("camp-survey-part2-complete")) continue;
+
+    // Skip if reminder already sent
+    if (tags.includes("camp-survey-reminder-sent")) continue;
+
+    // Skip if less than 48 hours since signup
+    const createdAt = new Date(contact.dateAdded || contact.createdAt).getTime();
+    if (createdAt > reminderCutoff) continue;
+
+    const email = contact.email;
+    if (!email) continue;
+
+    const firstName = contact.firstName || "there";
+    const part2Link = `https://fcpsports.org/camp-survey/details/?email=${encodeURIComponent(email.trim().toLowerCase())}`;
+
+    try {
+      await transporter.sendMail({
+        from: '"FCP Sports" <info@fcpsports.org>',
+        to: email,
+        subject: "Just a reminder — quick question for you",
+        html: `<p>Hey ${firstName},</p>
+<p>Just a reminder — we still need a little info from you before we can send your pricing.</p>
+<p>This is important to us — it helps us design the best camps and training for your athlete.</p>
+<p>Takes 60 seconds:<br>
+👉 <a href="${part2Link}">Click here to answer 3 quick questions</a></p>
+<p>Thank you again for your time — we really appreciate it.<br><br>
+FCP Sports<br>Fort Walton Beach, FL</p>`,
+      });
+      console.log(`[day2] Reminder sent to ${email}`);
+      remindSent++;
+
+      await fetch(`${GHL_BASE}/contacts/${contact.id}/tags`, {
+        method: "POST",
+        headers: ghlHeaders(),
+        body: JSON.stringify({ tags: ["camp-survey-reminder-sent"] }),
+      }).catch((e) => console.warn("[day2] Reminder tag failed:", e.message));
+
+    } catch (e) {
+      console.error(`[day2] Reminder failed for ${email}:`, e.message);
+    }
+  }
+
+  console.log(`[day2] Done — sent ${remindSent} reminder emails`);
   return { statusCode: 200 };
 };
 
