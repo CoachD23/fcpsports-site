@@ -139,6 +139,74 @@ exports.handler = async function (event) {
       body: JSON.stringify({ body: `Camp survey form submitted.\nName: ${name}\nPhone: ${phone}\nSource: Facebook Ad`, userId: "" }),
     }).catch((e) => console.warn("[camp-survey] Note failed:", e.message));
 
+    // 5. Send Email 1 — confirmation
+    const email1Body = `Hey ${firstName || "there"},
+
+You're officially on the early bird list for FCP Sports camps and leagues in Fort Walton Beach.
+
+We'll send you pricing and registration details before spots open to the public.
+
+Talk soon,
+Coach D
+FCP Sports — floridacoastalprep.com`;
+
+    const e1Res = await fetch(`${GHL_BASE}/conversations/messages`, {
+      method: "POST",
+      headers: ghlHeaders(),
+      body: JSON.stringify({
+        type: "Email",
+        contactId,
+        locationId: process.env.GHL_LOCATION_ID,
+        subject: "You're on the early bird list",
+        body: email1Body,
+        fromEmail: "info@fcpsports.org",
+        fromName: "FCP Sports",
+      }),
+    });
+    if (!e1Res.ok) {
+      console.error("[camp-survey] Email 1 failed:", await e1Res.text());
+    } else {
+      console.log("[camp-survey] Email 1 sent");
+    }
+
+    // 6. Send Email 2 — Part 2 link
+    const email2Body = `Hey ${firstName || "there"},
+
+Before I send over pricing, I want to make sure I point you to the right program.
+
+Takes 60 seconds — just tell me about your athlete:
+👉 https://fcpsports.org/camp-survey/details/?email=${encodeURIComponent(email.trim().toLowerCase())}
+
+Talk soon,
+Coach D
+FCP Sports`;
+
+    const e2Res = await fetch(`${GHL_BASE}/conversations/messages`, {
+      method: "POST",
+      headers: ghlHeaders(),
+      body: JSON.stringify({
+        type: "Email",
+        contactId,
+        locationId: process.env.GHL_LOCATION_ID,
+        subject: "Quick question before we send your pricing",
+        body: email2Body,
+        fromEmail: "info@fcpsports.org",
+        fromName: "FCP Sports",
+      }),
+    });
+    if (!e2Res.ok) {
+      console.error("[camp-survey] Email 2 failed:", await e2Res.text());
+    } else {
+      console.log("[camp-survey] Email 2 sent");
+    }
+
+    // 7. Add tag to mark emails sent
+    await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
+      method: "POST",
+      headers: ghlHeaders(),
+      body: JSON.stringify({ tags: ["camp-survey-email-sent"] }),
+    }).catch((e) => console.warn("[camp-survey] Email-sent tag failed:", e.message));
+
     console.log(`[camp-survey] Lead captured: ${email}`);
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
   } catch (err) {
