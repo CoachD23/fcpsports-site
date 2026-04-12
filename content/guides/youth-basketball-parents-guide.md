@@ -1,9 +1,9 @@
 ---
-draft: true
+draft: false
 title: "Youth Basketball Parent's Guide | Free Download — FCP Sports"
 description: "Everything Emerald Coast parents need to know about youth basketball programs, AAU, camps, and supporting your athlete. Free guide from FCP Sports."
 ---
-draft: true
+draft: false
 
 ## What's Inside This Free Guide
 
@@ -14,7 +14,7 @@ We wrote this guide to answer all of it — in plain language, without the jargo
 **The Youth Basketball Parent's Guide covers four complete sections:**
 
 ---
-draft: true
+draft: false
 
 ## Section 1: Choosing the Right Program
 
@@ -29,7 +29,7 @@ Not all youth basketball programs are created equal, and the wrong fit can do mo
 We also cover the specific programs available at FCP Sports: Little Ballers (K–2nd), Junior Program (3rd–5th), Elite Youth (6th–8th), and High School & Recruiting. You'll understand exactly which program fits your child's age and goals — and why.
 
 ---
-draft: true
+draft: false
 
 ## Section 2: AAU Basketball 101
 
@@ -46,7 +46,7 @@ Inside Section 2, you'll learn:
 FCP Sports' Summer AAU program is fully all-inclusive — we explain exactly what it covers and the pricing structure. Contact us for details.
 
 ---
-draft: true
+draft: false
 
 ## Section 3: Supporting Your Athlete
 
@@ -63,7 +63,7 @@ Key topics:
 This section alone is worth downloading the guide for.
 
 ---
-draft: true
+draft: false
 
 ## Section 4: The Recruiting Timeline
 
@@ -79,7 +79,7 @@ We walk through the grade-by-grade roadmap:
 We also cover NCAA eligibility basics, the role of a recruiting profile (Hudl, NCSA), and how FCP Sports gets athletes in front of college programs at every level.
 
 ---
-draft: true
+draft: false
 
 ## Get the Full Guide — Free
 

@@ -1,9 +1,9 @@
 ---
-draft: true
+draft: false
 title: "How to Choose a Basketball Camp | Free Guide — FCP Sports"
 description: "A parent's checklist for evaluating basketball camps. What to look for, what to avoid, and questions to ask any camp director."
 ---
-draft: true
+draft: false
 
 ## Not All Basketball Camps Are the Same — And the Difference Matters
 
@@ -14,7 +14,7 @@ Almost none of them ask the questions that actually matter.
 This guide gives you the five-criteria checklist that will help you evaluate any basketball camp — ours or anyone else's. Because a bad camp experience does not just waste money. It can convince an 8-year-old that basketball isn't for them.
 
 ---
-draft: true
+draft: false
 
 ## Criterion 1: Coach Credentials and Background Checks
 
@@ -25,7 +25,7 @@ Beyond safety, ask about coaching credentials. Are these coaches basketball-spec
 At FCP Sports, every coach is background-checked and has experience specific to the age group they work with. Our [basketball camp](/services/basketball-camp/) does not use counselors as coaches. That distinction matters.
 
 ---
-draft: true
+draft: false
 
 ## Criterion 2: Athlete-to-Coach Ratio
 
@@ -36,7 +36,7 @@ For meaningful skill development, the ratio should be no more than 8–10 athlet
 Ask the camp director directly: what is your ratio? If they don't know the answer, that tells you something.
 
 ---
-draft: true
+draft: false
 
 ## Criterion 3: Curriculum Structure
 
@@ -47,7 +47,7 @@ A camp without a curriculum will describe a general feeling. "We work on fundame
 Ask for the daily schedule. Ask what happens on Day 1 versus Day 5. Ask whether there is a skills assessment at the beginning and end. A camp that evaluates progress takes development seriously. A camp that doesn't is just filling time.
 
 ---
-draft: true
+draft: false
 
 ## Criterion 4: Skill Development vs. Supervised Play
 
@@ -58,7 +58,7 @@ The best youth basketball camps follow a structured flow: warm-up, individual sk
 Ask the camp director: how much of the day is structured drills versus scrimmage? The honest answer for a development-focused camp is roughly 60% structured skill work, 40% competitive application. If the answer is "mostly games," you're paying for babysitting.
 
 ---
-draft: true
+draft: false
 
 ## Criterion 5: What Happens After Camp
 
@@ -69,7 +69,7 @@ A good camp gives athletes a clear next step: a written summary of what they wor
 Ask the camp director: what do athletes take home at the end of camp? If the answer is a t-shirt and a water bottle, you have your answer.
 
 ---
-draft: true
+draft: false
 
 ## Questions to Ask Any Camp Director
 
@@ -84,7 +84,7 @@ Before enrolling, ask these five questions:
 FCP Sports' [basketball camp in Fort Walton Beach](/services/basketball-camp/) has clear answers to all five. We'll show you the schedule, the ratios, the credentials, and the pathway forward — before you ever sign your child up.
 
 ---
-draft: true
+draft: false
 
 ## Get the Full Checklist — Free
 

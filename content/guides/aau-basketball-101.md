@@ -1,9 +1,9 @@
 ---
-draft: true
+draft: false
 title: "AAU Basketball 101 | Free Parent's Guide — FCP Sports"
 description: "What is AAU basketball? How does it work in Florida? When should your child start? Everything new parents need to know, from FCP Sports."
 ---
-draft: true
+draft: false
 
 ## What Is AAU Basketball? A Plain-Language Guide for Florida Parents
 
@@ -12,7 +12,7 @@ If your child plays youth basketball and you have spent more than five minutes t
 Here is what AAU basketball actually is, how it works in Florida, and how to decide if and when it is right for your child.
 
 ---
-draft: true
+draft: false
 
 ## What AAU Is (And What It Isn't)
 
@@ -31,7 +31,7 @@ The Amateur Athletic Union — AAU — is a non-profit organization that sanctio
 - The right fit for every athlete at every age
 
 ---
-draft: true
+draft: false
 
 ## How Florida AAU Works
 
@@ -42,7 +42,7 @@ Florida AAU tournaments are divided by classification (boys/girls), age group (t
 The most important events for recruiting purposes are the AAU Super Showcase, the AAU Junior National Championships (held in Orlando), and the Nike, Adidas, and Under Armour circuit events in July.
 
 ---
-draft: true
+draft: false
 
 ## The Real Costs of AAU Basketball in Florida
 
@@ -55,7 +55,7 @@ FCP Sports' [Summer AAU program](/services/summer-aau/) is fully all-inclusive �
 When evaluating any AAU program, always ask: what is included in the fee, and what will I be responsible for on top of it?
 
 ---
-draft: true
+draft: false
 
 ## When Should Your Child Start AAU?
 
@@ -68,7 +68,7 @@ There is no universal right answer, but here is a practical framework:
 **Ages 14–17 (9th–12th grade):** AAU is non-negotiable for athletes serious about playing in college. The July Live Period in high school is when D1, D2, and D3 coaches fill their recruiting boards. Athletes who are not competing in front of those coaches simply do not exist on their radar.
 
 ---
-draft: true
+draft: false
 
 ## What College Coaches Look For at AAU Events
 
@@ -82,7 +82,7 @@ College coaches watch AAU with a very different eye than fans and parents. They 
 These are the same qualities FCP Sports coaches develop in every training session. We feed athletes into the AAU pipeline already knowing how to be coachable, how to compete at the right level, and how to perform when the stakes are real.
 
 ---
-draft: true
+draft: false
 
 ## Get the Full Guide — Free
 
