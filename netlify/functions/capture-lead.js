@@ -38,6 +38,30 @@ function isRateLimited(ip) {
 }
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
+const nodemailer = require("nodemailer");
+
+function createSmtpTransport() {
+  return nodemailer.createTransport({
+    host: "smtp.office365.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "info@fcpsports.org",
+      pass: process.env.FCPSPORTS_SMTP_PASS,
+    },
+    tls: { ciphers: "SSLv3" },
+  });
+}
+
+// Tags that should trigger the camp/league email sequence
+const CAMP_LEAGUE_TAGS = new Set([
+  "camp-inquiry",
+  "league-inquiry",
+  "aau-inquiry",
+  "youth-inquiry",
+  "general-inquiry",
+  "newsletter-signup",
+]);
 
 function ghlHeaders() {
   return {
@@ -113,6 +137,36 @@ exports.handler = async function (event) {
     }
 
     console.log(`[capture-lead] Lead captured: ${email} | tag: ${safeTag} | source: ${source}`);
+
+    // Send confirmation email + enroll in day-2 sequence for camp/league tags
+    if (CAMP_LEAGUE_TAGS.has(safeTag) && process.env.FCPSPORTS_SMTP_PASS) {
+      // Also tag as camp-survey-lead so the day-2 scheduler picks them up
+      if (contactId) {
+        await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
+          method: "POST",
+          headers: ghlHeaders(),
+          body: JSON.stringify({ tags: ["camp-survey-lead"] }),
+        }).catch((e) => console.warn("[capture-lead] camp-survey-lead tag failed:", e.message));
+      }
+
+      // Send confirmation email immediately
+      try {
+        const transporter = createSmtpTransport();
+        await transporter.sendMail({
+          from: '"FCP Sports" <info@fcpsports.org>',
+          to: email.trim().toLowerCase(),
+          subject: "You're on the list — FCP Sports",
+          html: `<p>Hey,</p>
+<p>You're on the list! We'll keep you updated as new camps and leagues form here in Fort Walton Beach.</p>
+<p>We're building something great — you'll hear from us before spots open to the public.</p>
+<p>Talk soon,<br>FCP Sports<br>Fort Walton Beach, FL</p>`,
+        });
+        console.log(`[capture-lead] Confirmation email sent to ${email}`);
+      } catch (e) {
+        console.error("[capture-lead] Email failed:", e.message);
+      }
+    }
+
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
   } catch (err) {
     console.error("[capture-lead] Error:", err.message);
