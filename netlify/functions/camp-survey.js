@@ -140,15 +140,12 @@ exports.handler = async function (event) {
     }).catch((e) => console.warn("[camp-survey] Note failed:", e.message));
 
     // 5. Send Email 1 — confirmation
-    const email1Body = `Hey ${firstName || "there"},
-
-You're officially on the early bird list for FCP Sports camps and leagues in Fort Walton Beach.
-
-We'll send you pricing and registration details before spots open to the public.
-
-Talk soon,
-Coach D
-FCP Sports — floridacoastalprep.com`;
+    const cleanEmail = email.trim().toLowerCase();
+    const firstName1 = firstName || "there";
+    const email1Html = `<p>Hey ${firstName1},</p>
+<p>You're officially on the early bird list for FCP Sports camps and leagues in Fort Walton Beach.</p>
+<p>We'll send you pricing and registration details before spots open to the public.</p>
+<p>Talk soon,<br>Coach D<br>FCP Sports — floridacoastalprep.com</p>`;
 
     const e1Res = await fetch(`${GHL_BASE}/conversations/messages`, {
       method: "POST",
@@ -158,7 +155,8 @@ FCP Sports — floridacoastalprep.com`;
         contactId,
         locationId: process.env.GHL_LOCATION_ID,
         subject: "You're on the early bird list",
-        body: email1Body,
+        html: email1Html,
+        to: cleanEmail,
         fromEmail: "info@fcpsports.org",
         fromName: "FCP Sports",
       }),
@@ -166,20 +164,17 @@ FCP Sports — floridacoastalprep.com`;
     if (!e1Res.ok) {
       console.error("[camp-survey] Email 1 failed:", await e1Res.text());
     } else {
-      console.log("[camp-survey] Email 1 sent");
+      const e1Data = await e1Res.json();
+      console.log("[camp-survey] Email 1 queued:", e1Data.messageId);
     }
 
     // 6. Send Email 2 — Part 2 link
-    const email2Body = `Hey ${firstName || "there"},
-
-Before I send over pricing, I want to make sure I point you to the right program.
-
-Takes 60 seconds — just tell me about your athlete:
-👉 https://fcpsports.org/camp-survey/details/?email=${encodeURIComponent(email.trim().toLowerCase())}
-
-Talk soon,
-Coach D
-FCP Sports`;
+    const part2Link = `https://fcpsports.org/camp-survey/details/?email=${encodeURIComponent(cleanEmail)}`;
+    const email2Html = `<p>Hey ${firstName1},</p>
+<p>Before I send over pricing, I want to make sure I point you to the right program.</p>
+<p>Takes 60 seconds — just tell me about your athlete:<br>
+👉 <a href="${part2Link}">${part2Link}</a></p>
+<p>Talk soon,<br>Coach D<br>FCP Sports</p>`;
 
     const e2Res = await fetch(`${GHL_BASE}/conversations/messages`, {
       method: "POST",
@@ -189,7 +184,8 @@ FCP Sports`;
         contactId,
         locationId: process.env.GHL_LOCATION_ID,
         subject: "Quick question before we send your pricing",
-        body: email2Body,
+        html: email2Html,
+        to: cleanEmail,
         fromEmail: "info@fcpsports.org",
         fromName: "FCP Sports",
       }),
@@ -197,7 +193,8 @@ FCP Sports`;
     if (!e2Res.ok) {
       console.error("[camp-survey] Email 2 failed:", await e2Res.text());
     } else {
-      console.log("[camp-survey] Email 2 sent");
+      const e2Data = await e2Res.json();
+      console.log("[camp-survey] Email 2 queued:", e2Data.messageId);
     }
 
     // 7. Add tag to mark emails sent
