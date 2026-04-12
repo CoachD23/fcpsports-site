@@ -174,6 +174,64 @@ FCP Sports<br>Fort Walton Beach, FL</p>`,
   }
 
   console.log(`[day2] Done — sent ${remindSent} reminder emails`);
+
+  // ── PASS 3: Weekly Monday report — cold leads who never completed Part 2 ──
+  const now = new Date();
+  const isMonday = now.getUTCDay() === 1;
+  const isMorning = now.getUTCHours() === 13; // 9am ET = 1pm UTC
+
+  if (!isMonday || !isMorning) return { statusCode: 200 };
+
+  const coldRes = await fetch(
+    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=camp-survey-reminder-sent&limit=100`,
+    { headers: ghlHeaders() }
+  ).catch(() => null);
+
+  if (!coldRes || !coldRes.ok) return { statusCode: 200 };
+
+  const coldData = await coldRes.json();
+  const coldLeads = (coldData.contacts || []).filter(c => !(c.tags || []).includes("camp-survey-part2-complete"));
+
+  console.log(`[day2] Weekly report: ${coldLeads.length} cold leads`);
+  if (coldLeads.length === 0) return { statusCode: 200 };
+
+  const rows = coldLeads.map(c => {
+    const date = new Date(c.dateAdded || c.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    return `<tr>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${c.firstName || ""} ${c.lastName || ""}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${c.email || ""}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${c.phone || ""}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${date}</td>
+    </tr>`;
+  }).join("");
+
+  const reportHtml = `
+<p>Here are the <strong>${coldLeads.length} camp survey lead${coldLeads.length !== 1 ? "s" : ""}</strong> who never completed Part 2:</p>
+<table style="border-collapse:collapse;font-family:sans-serif;font-size:14px;width:100%">
+  <thead>
+    <tr style="background:#060f22;color:#fff">
+      <th style="padding:8px 12px;text-align:left">Name</th>
+      <th style="padding:8px 12px;text-align:left">Email</th>
+      <th style="padding:8px 12px;text-align:left">Phone</th>
+      <th style="padding:8px 12px;text-align:left">Signed Up</th>
+    </tr>
+  </thead>
+  <tbody>${rows}</tbody>
+</table>
+<p style="margin-top:16px;font-size:13px;color:#888">These contacts have tag <code>camp-survey-reminder-sent</code> but not <code>camp-survey-part2-complete</code>.</p>`;
+
+  try {
+    await transporter.sendMail({
+      from: '"FCP Sports" <info@fcpsports.org>',
+      to: "info@fcpsports.org",
+      subject: `Camp Survey — ${coldLeads.length} lead${coldLeads.length !== 1 ? "s" : ""} haven't completed Part 2`,
+      html: reportHtml,
+    });
+    console.log("[day2] Weekly cold lead report sent");
+  } catch (e) {
+    console.error("[day2] Weekly report failed:", e.message);
+  }
+
   return { statusCode: 200 };
 };
 
