@@ -217,7 +217,6 @@
       body: JSON.stringify(payload),
     })
     .then(function(res) { return res.json(); })
-    .then(function(res) { return res.json(); })
     .then(function() { afterSubmit(); })
     .catch(function() { afterSubmit(); });
 

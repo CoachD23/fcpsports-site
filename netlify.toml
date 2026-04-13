@@ -48,6 +48,31 @@
   from = "/home"
   to = "/"
   status = 301
+
+[[redirects]]
+  from = "/guides/*"
+  to = "/camps/"
+  status = 301
+
+[[redirects]]
+  from = "/schools/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/camps/elite-showcase/"
+  to = "/camps/"
+  status = 301
+
+[[redirects]]
+  from = "/camps/kenny-anderson-clinic/"
+  to = "/camps/"
+  status = 301
+
+[[redirects]]
+  from = "/services/summer-aau/"
+  to = "/services/basketball-camp/"
+  status = 301
 [[headers]]
   for = "/*.html"
   [headers.values]
