@@ -1,6 +1,7 @@
 baseURL = "https://fcpsports.org/"
 languageCode = "en-us"
 title = "FCP Sports | Basketball Training Fort Walton Beach"
+enableGitInfo = true
 
 [params]
   description = "FCP Sports offers elite basketball training, camps, leagues, and open gym in Fort Walton Beach, FL. Serving the entire Emerald Coast."
