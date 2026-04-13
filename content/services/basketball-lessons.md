@@ -1,5 +1,5 @@
 ---
-hero_image: /images/hero-loc-9.jpg
+hero_image: /images/fcp-hero-training.jpg
 title: "Private Basketball Lessons Fort Walton Beach FL | FCP Sports"
 description: "Private basketball lessons in Fort Walton Beach with 1-on-1 coaching. Find a private basketball coach near me at FCP Sports — all ages & skill levels."
 h1: "Private Basketball Lessons in Fort Walton Beach — 1-on-1 Coaching at FCP Sports"
@@ -8,7 +8,7 @@ age_range: "Ages 6–Adult"
 price: "Contact for pricing"
 frequency: "Flexible scheduling"
 program_name: "Private Lessons"
-ghl_tag: "lessons-inquiry"
+ghl_tag: "train"
 course_type: "basketball training"
 faq:
   - q: "How much do private basketball lessons cost in Fort Walton Beach?"

@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /guides/thank-you/
 
 Sitemap: https://fcpsports.org/sitemap.xml

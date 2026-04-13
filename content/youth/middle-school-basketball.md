@@ -82,5 +82,5 @@ If your child's goal is to make their high school team, to earn a starting spot,
 ## Keep Exploring
 
 - [Fall League](/leagues/fall-league/) — Competitive league play to complement your training
-- [Elite Showcase Camp](/camps/elite-showcase/) — High-visibility camps for players ready to take the next step
+- [Basketball Camps](/camps/) — Intensive multi-day skill development camps for all ages
 - [Basketball Training Programs](/services/basketball-training/) — Structured individual skill development alongside the team program

@@ -17,8 +17,8 @@
 
 {{ $tag     := .tag     | default "general-inquiry" }}
 {{ $program := .program | default "" }}
-{{ $title   := .title   | default "Tell Us About Your Athlete" }}
-{{ $subtitle := .subtitle | default "Fill out the form and our coaching staff will reach out within 24 hours to recommend the right program." }}
+{{ $title   := cond (isset . "title") .title "Tell Us About Your Athlete" }}
+{{ $subtitle := cond (isset . "subtitle") .subtitle "Fill out the form and our coaching staff will reach out within 24 hours to recommend the right program." }}
 {{ $formId  := .id | default (printf "inq-%s" (sha1 $tag)) }}
 
 <div class="fcp-inquiry-form" id="{{ $formId }}-wrap">
@@ -85,30 +85,33 @@
       </div>
     </div>
 
-    <!-- Program Interest -->
+    <!-- Program Interest — 4 visual cards -->
     <div>
-      <label for="{{ $formId }}-program" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Program of Interest</label>
-      <select id="{{ $formId }}-program" name="program"
-        class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition bg-white text-gray-700">
-        {{ if $program }}
-        <option value="{{ $program }}" selected>{{ $program }}</option>
-        {{ else }}
-        <option value="">Select a program…</option>
-        {{ end }}
-        <option value="Skills Training" {{ if eq $program "Skills Training" }}selected{{ end }}>Skills Training</option>
-        <option value="Private Lessons" {{ if eq $program "Private Lessons" }}selected{{ end }}>Private Lessons</option>
-        <option value="Basketball League" {{ if eq $program "Basketball League" }}selected{{ end }}>Basketball League</option>
-        <option value="Youth Basketball" {{ if eq $program "Youth Basketball" }}selected{{ end }}>Youth Basketball</option>
-        <option value="Summer Day Camp" {{ if eq $program "Summer Day Camp" }}selected{{ end }}>Summer Day Camp</option>
-        <option value="Girls Basketball Camp" {{ if eq $program "Girls Basketball Camp" }}selected{{ end }}>Girls Basketball Camp</option>
-        <option value="Elite Showcase" {{ if eq $program "Elite Showcase" }}selected{{ end }}>Elite Showcase Camp</option>
-        <option value="Spring Break Camp" {{ if eq $program "Spring Break Camp" }}selected{{ end }}>Spring Break Camp</option>
-        <option value="Holiday Camp" {{ if eq $program "Holiday Camp" }}selected{{ end }}>Holiday Camp</option>
-        <option value="Kenny Anderson Clinic" {{ if eq $program "Kenny Anderson Clinic" }}selected{{ end }}>Kenny Anderson Clinic</option>
-        <option value="Open Gym" {{ if eq $program "Open Gym" }}selected{{ end }}>Open Gym</option>
-        <option value="Gym Rental" {{ if eq $program "Gym Rental" }}selected{{ end }}>Gym Rental</option>
-        <option value="Not sure — help me choose">Not sure — help me choose</option>
-      </select>
+      <label class="block text-xs font-semibold text-navy mb-2 uppercase tracking-wide">I'm Interested In</label>
+      <div class="grid grid-cols-2 gap-2" id="{{ $formId }}-cards">
+        <button type="button" data-tag="train" data-program="Training"
+          class="fcp-card px-3 py-4 border-2 border-gray-200 rounded-lg text-left hover:border-gold transition-all">
+          <div class="font-bold text-navy text-sm">🏋️ Train</div>
+          <div class="text-xs text-gray-500 mt-0.5">Skills, private lessons, open gym</div>
+        </button>
+        <button type="button" data-tag="compete" data-program="Compete"
+          class="fcp-card px-3 py-4 border-2 border-gray-200 rounded-lg text-left hover:border-gold transition-all">
+          <div class="font-bold text-navy text-sm">🏆 Compete</div>
+          <div class="text-xs text-gray-500 mt-0.5">Leagues &amp; youth basketball</div>
+        </button>
+        <button type="button" data-tag="camp-inquiry" data-program="Camps"
+          class="fcp-card px-3 py-4 border-2 border-gray-200 rounded-lg text-left hover:border-gold transition-all">
+          <div class="font-bold text-navy text-sm">☀️ Camps</div>
+          <div class="text-xs text-gray-500 mt-0.5">Day camps, clinics &amp; showcases</div>
+        </button>
+        <button type="button" data-tag="gym-rental-inquiry" data-program="Gym Rental"
+          class="fcp-card px-3 py-4 border-2 border-gray-200 rounded-lg text-left hover:border-gold transition-all">
+          <div class="font-bold text-navy text-sm">🏟️ Gym Rental</div>
+          <div class="text-xs text-gray-500 mt-0.5">Rent our facility</div>
+        </button>
+      </div>
+      <input type="hidden" id="{{ $formId }}-tag" name="tag" value="{{ $tag }}" />
+      <input type="hidden" id="{{ $formId }}-program" name="program" value="{{ $program }}" />
     </div>
 
     <!-- Optional Message -->
@@ -144,6 +147,29 @@
 (function() {
   var form = document.getElementById('{{ $formId }}');
   if (!form) return;
+
+  // Card selection
+  var cards = form.querySelectorAll('.fcp-card');
+  var tagInput = document.getElementById('{{ $formId }}-tag');
+  var programInput = document.getElementById('{{ $formId }}-program');
+
+  cards.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btn.classList.toggle('border-gold');
+      btn.classList.toggle('bg-gold/10');
+      btn.classList.toggle('border-gray-200');
+      var selectedTags = [];
+      var selectedPrograms = [];
+      cards.forEach(function(c) {
+        if (c.classList.contains('border-gold')) {
+          selectedTags.push(c.dataset.tag);
+          selectedPrograms.push(c.dataset.program);
+        }
+      });
+      tagInput.value = selectedTags.join(',');
+      programInput.value = selectedPrograms.join(', ');
+    });
+  });
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -181,7 +207,7 @@
       grade:           form.querySelector('[name="grade"]').value,
       program:         form.querySelector('[name="program"]').value,
       message:         form.querySelector('[name="message"]').value.trim(),
-      tag:             '{{ $tag }}',
+      tag:             tagInput.value || '{{ $tag }}',
       source:          window.location.pathname,
     };
 
@@ -191,15 +217,21 @@
       body: JSON.stringify(payload),
     })
     .then(function(res) { return res.json(); })
-    .then(function(data) {
-      document.getElementById('{{ $formId }}-wrap').querySelector('form').classList.add('hidden');
-      document.getElementById('{{ $formId }}-success').classList.remove('hidden');
-    })
-    .catch(function() {
-      // Show success anyway — backend errors shouldn't block the user
-      document.getElementById('{{ $formId }}-wrap').querySelector('form').classList.add('hidden');
-      document.getElementById('{{ $formId }}-success').classList.remove('hidden');
-    });
+    .then(function(res) { return res.json(); })
+    .then(function() { afterSubmit(); })
+    .catch(function() { afterSubmit(); });
+
+    function afterSubmit() {
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: payload.program || payload.tag, content_category: payload.tag });
+      var tags = payload.tag.split(',');
+      var onlyGym = tags.length === 1 && tags[0] === 'gym-rental-inquiry';
+      if (onlyGym) {
+        document.getElementById('{{ $formId }}-wrap').querySelector('form').classList.add('hidden');
+        document.getElementById('{{ $formId }}-success').classList.remove('hidden');
+      } else {
+        window.location.href = '/camp-survey/details/?email=' + encodeURIComponent(email) + '&source=' + encodeURIComponent(payload.tag);
+      }
+    }
   });
 })();
 </script>

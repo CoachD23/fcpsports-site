@@ -1,5 +1,5 @@
 ---
-hero_image: /images/hero-loc-10.jpg
+hero_image: /images/fcp-sports-league.jpg
 title: "Youth Basketball League Fort Walton Beach FL | FCP Sports"
 description: "Youth basketball league in Fort Walton Beach with trained refs, stat tracking, and standings. Ages 5–18, co-ed. Fall and summer seasons. From $59."
 h1: "Youth Basketball League in Fort Walton Beach — Competitive & Recreational Leagues at FCP Sports"
@@ -8,7 +8,7 @@ age_range: "Ages 5–18"
 price: "Starting at $59"
 frequency: "Weekly games"
 program_name: "Basketball League"
-ghl_tag: "league-inquiry"
+ghl_tag: "compete"
 faq:
   - q: "Is there a youth basketball league in Fort Walton Beach?"
     a: "Yes — FCP Sports runs youth basketball leagues in Fort Walton Beach for players ages 5 through 18. We offer both recreational and competitive divisions, with structured seasons, trained referees, standings, and playoff brackets. This is a step above standard rec center leagues — games are played in a dedicated basketball facility with a scoreboard, sound system, and real refs."
@@ -137,4 +137,4 @@ Ready to register? [Sign up here](/registration/) or [contact us](/contact/) wit
 
 For players who want to stay sharp between league seasons, check out our [open gym sessions](/services/open-gym/) for pickup games and our [basketball training programs](/services/basketball-training/) for off-season skill development. We also run [basketball camps](/camps/) throughout the year.
 
-Looking for the next level after league play? Check out our [Elite Basketball Showcase](/camps/elite-showcase/) — competitive exposure during the NCAA evaluation period for serious athletes.
+Looking for intensive skill development? Check out our [basketball camps](/camps/) running throughout the year for all ages and skill levels.

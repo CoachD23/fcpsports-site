@@ -9,7 +9,7 @@ frequency: "Mon-Wed, 9am-12pm"
 hero_image: /images/fcp-hero-court.jpg
 layout: "services"
 course_type: "holiday basketball camp"
-ghl_tag: "camp-holiday"
+ghl_tag: "train"
 program_name: "Holiday Camp"
 faq:
   - q: "When is the holiday basketball camp at FCP Sports?"

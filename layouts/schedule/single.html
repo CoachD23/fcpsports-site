@@ -70,8 +70,9 @@ document.getElementById('schedule-signup').addEventListener('submit', function(e
   fetch('/.netlify/functions/capture-lead', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, tag: 'newsletter-signup', source: 'schedule-page' })
+    body: JSON.stringify({ email: email, tag: 'camp-inquiry', source: 'schedule-page' })
   }).catch(function(){});
+  if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Schedule Notify', content_category: 'camp-inquiry' });
   this.classList.add('hidden');
   document.getElementById('schedule-success').classList.remove('hidden');
 });

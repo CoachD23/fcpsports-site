@@ -24,7 +24,7 @@
   gradient: "linear-gradient(135deg, #059669, #064e3b)"
   label: "LEAGUE"
   description: "Competitive league play for youth and adults. Organized schedules, standings, and playoff brackets."
-  cta: "Register Your Team"
+  cta: "Let's Play"
 
 - title: "Open Gym"
   slug: "/services/open-gym/"

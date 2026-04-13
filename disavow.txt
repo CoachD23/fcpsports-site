@@ -1,0 +1,17 @@
+# Google Search Console Disavow File
+# fcpsports.org — April 10, 2026
+# All 12 spam referring domains identified via Ahrefs
+# These are link farms, fake SEO agencies, and pharmaceutical spam
+
+domain:buybacklinks.agency
+domain:seoexpress.org
+domain:rankyour.website
+domain:prolinkbox.com
+domain:creativeposts.top
+domain:seoagency.sale
+domain:leonlinks.agency
+domain:rank-fast.agency
+domain:rankpilot.shop
+domain:seo-high-ranking.shop
+domain:backlinker.shop
+domain:flibanserina4es-x7.top

@@ -40,16 +40,6 @@
   slug: "/camps/summer-day-camp/"
   badge: "REGISTER NOW"
 
-- title: "Elite Basketball Showcase"
-  type: "Showcase"
-  date: "2026-07-17"
-  date_display: "July 17–18, 2026"
-  time: "Fri–Sat, Full Day"
-  age: "Grades 9–12 (Boys)"
-  price: "$129/2 days"
-  slug: "/camps/elite-showcase/"
-  badge: "NCAA EVAL PERIOD"
-
 - title: "Summer Day Camp — Session 4 (Grades 3–8)"
   type: "Camp"
   date: "2026-07-27"
@@ -72,38 +62,6 @@
   slug: "/services/basketball-league/"
   badge: "REGISTRATION OPEN"
 
-# ─── KENNY ANDERSON CLINICS (Oct – Feb) ──────────────────────────────────────
-
-- title: "Kenny Anderson Clinic — October"
-  type: "Clinic"
-  date: "2026-10-17"
-  date_display: "Saturday, October 17, 2026"
-  time: "10:00 AM – 12:00 PM"
-  age: "Grades 6–12"
-  price: "$49/session"
-  slug: "/camps/kenny-anderson-clinic/"
-  badge: "LIMITED SPOTS"
-
-- title: "Kenny Anderson Clinic — November"
-  type: "Clinic"
-  date: "2026-11-14"
-  date_display: "Saturday, November 14, 2026"
-  time: "10:00 AM – 12:00 PM"
-  age: "Grades 6–12"
-  price: "$49/session"
-  slug: "/camps/kenny-anderson-clinic/"
-  badge: "LIMITED SPOTS"
-
-- title: "Kenny Anderson Clinic — December"
-  type: "Clinic"
-  date: "2026-12-12"
-  date_display: "Saturday, December 12, 2026"
-  time: "10:00 AM – 12:00 PM"
-  age: "Grades 6–12"
-  price: "$49/session"
-  slug: "/camps/kenny-anderson-clinic/"
-  badge: "LIMITED SPOTS"
-
 # ─── HOLIDAY CAMP ─────────────────────────────────────────────────────────────
 
 - title: "Holiday Basketball Camp"
@@ -115,28 +73,6 @@
   price: "$79"
   slug: "/camps/holiday-camp/"
   badge: "HOLIDAY BREAK"
-
-# ─── KENNY ANDERSON CLINICS (continued) ──────────────────────────────────────
-
-- title: "Kenny Anderson Clinic — January"
-  type: "Clinic"
-  date: "2027-01-16"
-  date_display: "Saturday, January 16, 2027"
-  time: "10:00 AM – 12:00 PM"
-  age: "Grades 6–12"
-  price: "$49/session"
-  slug: "/camps/kenny-anderson-clinic/"
-  badge: "LIMITED SPOTS"
-
-- title: "Kenny Anderson Clinic — February"
-  type: "Clinic"
-  date: "2027-02-13"
-  date_display: "Saturday, February 13, 2027"
-  time: "10:00 AM – 12:00 PM"
-  age: "Grades 6–12"
-  price: "$49/session"
-  slug: "/camps/kenny-anderson-clinic/"
-  badge: "LIMITED SPOTS"
 
 # ─── SPRING BREAK CAMP ────────────────────────────────────────────────────────
 

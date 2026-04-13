@@ -122,8 +122,9 @@
       fetch('/.netlify/functions/capture-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, tag: 'newsletter-signup', source: 'hero' })
+        body: JSON.stringify({ email: email, tag: 'camp-inquiry', source: 'hero' })
       }).catch(function(){});
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Homepage Signup', content_category: 'camp-inquiry' });
       this.classList.add('hidden');
       document.getElementById('hero-signup-success').classList.remove('hidden');
     });
@@ -208,7 +209,7 @@
           <a href="/services/youth-basketball/" style="background:rgba(212,175,55,.15);color:#d4af37;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(212,175,55,.3);text-decoration:none;">Youth Basketball</a>
           <a href="/services/gym-rental/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;">Gym Rental</a>
         </div>
-        <a href="/services/basketball-league/" class="btn-primary" style="display:inline-block;">Register Your Team</a>
+        <a href="/services/basketball-league/" class="btn-primary" style="display:inline-block;">Let's Play</a>
       </div>
     </div>
 
@@ -265,7 +266,7 @@
           <span style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:10px">LEAGUE</span>
           <h3 class="font-display" style="font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:12px">Basketball League</h3>
           <p style="color:rgba(255,255,255,.78);font-size:.875rem;line-height:1.6;margin-bottom:24px;flex:1">Competitive league play for youth and adults. Organized schedules, standings, and playoff brackets.</p>
-          <span style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;font-size:.875rem">Register Your Team <svg style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+          <span style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;font-size:.875rem">Let's Play <svg style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
         </div>
       </a>
 

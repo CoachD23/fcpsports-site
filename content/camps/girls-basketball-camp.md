@@ -9,7 +9,7 @@ frequency: "Mon-Fri, 9am-3pm"
 hero_image: /images/fcp-hero-kids.jpg
 layout: "services"
 course_type: "girls basketball camp"
-ghl_tag: "camp-girls"
+ghl_tag: "train"
 program_name: "Girls Basketball Camp"
 faq:
   - q: "Is there a girls-only basketball camp near me in the Florida Panhandle?"

@@ -7,18 +7,18 @@
         <button id="exit-close" class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors" aria-label="Close popup">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
-        <div class="text-5xl mb-3">🏀</div>
-        <h2 id="exit-popup-title" class="font-display text-3xl text-white leading-tight">STAY UP TO DATE</h2>
-        <p class="text-gold font-bold tracking-wide mt-2">Receive Updates on Programs</p>
+        <img src="/images/fcp-exit-popup.jpg" alt="FCP Sports Basketball" class="w-full h-32 object-cover rounded-lg mb-3" />
+        <h2 id="exit-popup-title" class="font-display text-3xl text-white leading-tight">LOCK IN EARLY BIRD PRICING</h2>
+        <p class="text-gold font-bold tracking-wide mt-2">Summer Camps Fill Up Fast</p>
       </div>
       <div class="p-8">
-        <p class="text-gray-600 text-center mb-6">Get notified about new camps, leagues, open gym schedules, and training programs at FCP Sports.</p>
+        <p class="text-gray-600 text-center mb-6">Drop your email and we'll send you early bird discounts, camp dates, and pricing before spots fill up.</p>
         <form id="exit-form" class="space-y-3">
           <input type="email" name="email" placeholder="Your Email Address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:outline-none" />
-          <button type="submit" id="exit-submit-btn" class="w-full bg-gold text-navy font-bold py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide">Stay Up to Date</button>
+          <button type="submit" id="exit-submit-btn" class="w-full bg-gold text-navy font-bold py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide">Get Early Bird Pricing</button>
         </form>
-        <p id="exit-success" class="hidden text-center text-green-600 font-semibold py-4">You're in! We'll keep you posted.</p>
-        <p class="text-center text-xs text-gray-400 mt-3">No spam. Unsubscribe anytime.</p>
+        <p id="exit-success" class="hidden text-center text-green-600 font-semibold py-4">You're in! Check your email for camp details.</p>
+        <p class="text-center text-xs text-gray-400 mt-3">No spam. Just camp info.</p>
       </div>
       <script>
       document.getElementById('exit-form').addEventListener('submit', function(e) {
@@ -31,8 +31,9 @@
         fetch('/.netlify/functions/capture-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, tag: 'newsletter-signup', source: 'exit-popup' })
+          body: JSON.stringify({ email: email, tag: 'camp-inquiry', source: 'exit-popup' })
         }).catch(function(){});
+        if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Camp Early Bird', content_category: 'camp-inquiry' });
         document.getElementById('exit-form').classList.add('hidden');
         document.getElementById('exit-success').classList.remove('hidden');
       });

@@ -1,6 +1,6 @@
 ---
 title: "Basketball Camps Fort Walton Beach | FCP Sports"
-description: "Basketball camps for all ages and skill levels at FCP Sports in Fort Walton Beach, FL. Summer day camps, girls-only camps, elite showcases, holiday camps, and clinics with NBA veteran Kenny Anderson."
+description: "Basketball camps for all ages and skill levels at FCP Sports in Fort Walton Beach, FL. Summer day camps, girls-only camps, spring break camps, and holiday camps."
 h1: "Basketball Camps at FCP Sports"
 ---
 
@@ -38,24 +38,11 @@ The only girls-specific basketball camp in the Florida Panhandle. Built for fema
 
 ---
 
-### Elite Showcase Camp
-
-**Dates:** July 17-18 (Fri-Sat)
-**Time:** During NCAA D1 evaluation period
-**Ages:** Grades 9-12, boys
-**Price:** $129/2 days
-
-Timed to the NCAA Division I evaluation period (July 16-19). Competitive play, stat tracking, and college recruiting exposure for serious high school players.
-
-[View Elite Showcase Details](/camps/elite-showcase/)
-
----
-
 ### Spring Break Camp
 
 **Dates:** March 15-18, 2027 (Mon-Thu)
 **Time:** 9am-3pm
-**Ages:** Grades 6-10, co-ed
+**Ages:** Grades 3-12, co-ed (two sessions daily)
 **Price:** $129/4 days
 
 Four-day intensive during Okaloosa County spring break. Friday left free so your family can still get away for the weekend.
@@ -74,19 +61,6 @@ Four-day intensive during Okaloosa County spring break. Friday left free so your
 Half-day camp during winter break. Fun-focused with real fundamentals. A low-commitment way to keep your kid active and improving over the holidays.
 
 [View Holiday Camp Details](/camps/holiday-camp/)
-
----
-
-### Kenny Anderson Basketball Clinics
-
-**Dates:** Oct 17 | Nov 14 | Dec 12 | Jan 16 | Feb 13 (Saturdays)
-**Time:** 10am-12pm
-**Ages:** Grades 6-12
-**Price:** $49/session or $199 for all 5 (save $46)
-
-Train with NBA veteran Kenny Anderson. Monthly Saturday clinics where Kenny works directly with your child on ball handling, decision-making, and the mental side of the game.
-
-[View Kenny Anderson Clinic Details](/camps/kenny-anderson-clinic/)
 
 ---
 

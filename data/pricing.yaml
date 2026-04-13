@@ -33,28 +33,6 @@
     - "Playoff brackets & champion trophies"
     - "Military & sibling discounts available"
 
-- name: "Kenny Anderson Clinic"
-  ages: "Grades 6-12"
-  price: "$49"
-  frequency: "per session"
-  highlight: false
-  features:
-    - "Train with NBA veteran Kenny Anderson"
-    - "Monthly Saturday clinics (Oct-Feb)"
-    - "2-hour intensive sessions"
-    - "5-session pack: $199 (save $46)"
-
-- name: "Elite Showcase Camp"
-  ages: "Grades 9-12"
-  price: "$129"
-  frequency: "2-day camp"
-  highlight: false
-  features:
-    - "College recruiting exposure"
-    - "During NCAA evaluation period"
-    - "July 17-18, 2026"
-    - "Film and stats provided"
-
 - name: "Holiday & Spring Break Camps"
   ages: "Grades 4-10"
   price: "From $79"

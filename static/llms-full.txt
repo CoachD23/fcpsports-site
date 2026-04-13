@@ -3,50 +3,51 @@
 ## Organization Overview
 
 **Name:** FCP Sports
-**Location:** Fort Walton Beach, FL 32547
+**Location:** 33 Jet Drive NW, Fort Walton Beach, FL 32548
 **Contact:** 850.961.2323
 **Email:** info@fcpsports.org
 **Website:** https://fcpsports.org
 **Service Area:** Northwest Florida (Okaloosa, Santa Rosa, Walton, and surrounding counties)
 
-FCP Sports is a dedicated youth basketball facility offering comprehensive programs including camps, leagues, clinics, and training services. Our mission is to develop young athletes through skill development, competitive opportunities, and professional coaching.
+FCP Sports is a dedicated youth basketball facility offering comprehensive programs including camps, leagues, and training services. Our mission is to develop young athletes through skill development, competitive opportunities, and professional coaching.
 
 ---
 
 ## Basketball Camps
 
-### Summer Camp Schedule
-- **Camp 1:** June 8-12, 2024
-- **Camp 2:** June 15-19, 2024 (Girls Focus)
-- **Camp 3:** June 22-26, 2024
-- **Camp 4:** July 13-17, 2024
-- **Camp 5:** July 27-31, 2024
+### Summer Camp Schedule (2026)
+- **Session 1:** June 8-12, 2026 (Grades 3-5)
+- **Session 2 (Girls):** June 15-19, 2026 (Grades 6-10, Girls)
+- **Session 3:** June 22-26, 2026 (Grades 6-8)
+- **Session 4:** July 13-16, 2026 (Grades 6-10)
+- **Session 5:** July 27-31, 2026 (Grades 3-8)
 
 **Summer Camp Details:**
 - Price: $149 per week
-- Age Groups: K-12
+- Age Groups: Grades 3-10 (grouped by session)
 - Focus: Fundamentals, ball handling, shooting, defense, team play
 - Professional coaching staff
 - Daily instruction and skill development
 
-### Elite Showcase
-- **Dates:** July 17-18, 2024
-- **Price:** $199
-- **Description:** High-level competitive tournament showcasing elite youth talent
-- **Age Groups:** 8-18 years old
-- **Format:** Teams and individuals welcome
+### Girls Basketball Camp
+- **Dates:** June 15-19, 2026
+- **Price:** $149/week
+- **Ages:** Grades 6-10, girls only
+- **Description:** The only girls-specific basketball camp in the Florida Panhandle
 
 ### Holiday Camp
-- **Dates:** December 28-30, 2024
-- **Price:** $99
-- **Duration:** 3-day intensive camp
-- **Focus:** Skill development and holiday break activity
+- **Dates:** December 28-30, 2026
+- **Price:** $79
+- **Duration:** 3 half-days (9am-12pm)
+- **Ages:** Grades 4-8
+- **Focus:** Fun and fundamentals during winter break
 
-### Spring Break Camp 2025
-- **Dates:** March 15-18, 2025
+### Spring Break Camp 2027
+- **Dates:** March 15-18, 2027
 - **Price:** $129
-- **Duration:** 4-day intensive program
-- **Focus:** Spring preparation and skill refinement
+- **Duration:** 4-day program (Monday-Thursday)
+- **Sessions:** Morning (Grades 3-5, 8:30am-12pm) and Afternoon (Grades 6-12, 12:30pm-4pm)
+- **Focus:** Two age-appropriate sessions daily, Friday left free for families
 
 ---
 
@@ -85,32 +86,24 @@ FCP Sports is a dedicated youth basketball facility offering comprehensive progr
 - Age Range: 5-8 years old
 - Base Price: $59
 - Focus: Fundamentals, ball handling, basic rules, fun introduction to basketball
-- Game Format: Modified rules, shorter games
-- Season: All three seasons available
 
 **Junior Division**
 - Grade Level: 3rd-5th
 - Age Range: 8-11 years old
 - Base Price: $79
 - Focus: Skill development, team concepts, competitive play
-- Game Format: Standard rules, full-length games
-- Season: All three seasons available
 
 **Intermediate Division**
 - Grade Level: 6th-8th
 - Age Range: 11-14 years old
 - Base Price: $89
 - Focus: Advanced skills, strategy, competitive tournament play
-- Game Format: Full regulation rules, competitive format
-- Season: All three seasons available
 
 **Senior Division**
 - Grade Level: 9th-12th
 - Age Range: 14-18 years old
 - Base Price: $99
-- Focus: Elite development, advanced strategy, showcase opportunities
-- Game Format: Full regulation rules, high-level competition
-- Season: All three seasons available
+- Focus: Elite development, advanced strategy
 
 ---
 
@@ -119,87 +112,37 @@ FCP Sports is a dedicated youth basketball facility offering comprehensive progr
 ### Early Bird Discount
 - **Discount:** $20 off any league registration
 - **Timing:** Register before registration deadline
-- **Requirement:** Full registration and payment
-- **Applicable to:** All divisions and seasons
 
 ### Military Discount
 - **Discount:** $20 off any league or camp
 - **Eligible:** Eglin Air Force Base personnel, Hurlburt Field personnel, and their families
-- **Verification:** Military ID required
-- **Applicable to:** All programs
 
 ### Sibling Discount
 - **Discount:** $20 off per additional sibling
-- **Requirement:** Multiple siblings in same program/season
-- **Applicable to:** All programs
 - **Stackable:** Yes (each sibling receives discount)
 
 ---
 
-## Youth Training Programs
-
-### Little Ballers Program
-- **Grade Level:** Kindergarten-2nd
-- **Focus:** Introduction to basketball fundamentals
-- **Emphasis:** Fun, basic skills, cooperation
-- **Schedule:** Saturday games (January-March)
-- **Price:** $59
-- **Coaching:** Certified basketball development coaches
-
-### Junior Development Program
-- **Grade Level:** 3rd-5th
-- **Focus:** Skill advancement and team concepts
-- **Skills:** Ball handling, shooting, defense, positional play
-- **Schedule:** Available in all seasons
-- **Price:** $79 (league), $149 (camp)
-- **Coaching:** Experienced youth basketball coaches
-
-### Elite Youth Program
-- **Grade Level:** 6th-8th
-- **Focus:** Advanced development and competitive preparation
-- **Skills:** Advanced offensive/defensive strategies, shooting consistency, court vision
-- **Opportunities:** Tournament participation, showcase events
-- **Schedule:** Year-round availability
-- **Price:** $89 (league), $149 (camp)
-- **Coaching:** Certified elite-level coaches
-
----
-
-## Specialized Programs
-
-### Kenny Anderson Basketball Clinics
-- **Price:** $49 per session
-- **Format:** Small group skill development clinics
-- **Schedule:**
-  - October 17, 2024
-  - November 14, 2024
-  - December 12, 2024
-  - January 16, 2025
-  - February 13, 2025
-- **Focus:** One-on-one skill instruction, advanced techniques
-- **Group Size:** Limited enrollment
+## Training Programs
 
 ### Skills Training
 - **Format:** Individual and small group instruction
-- **Price:** Varies by session type
-- **Customization:** Tailored to individual skill development needs
+- **Tracks:** Beginner (ages 8-11), Intermediate (ages 10-14), Advanced (ages 13-18)
+- **Features:** Baseline assessment, custom development plan, progress benchmarks at 30/60/90 days
 - **Availability:** Year-round
 
 ### Private Lessons
 - **Format:** One-on-one coaching
 - **Price:** Contact facility for rates
-- **Customization:** Individual skill focus
-- **Availability:** By appointment
+- **Availability:** By appointment, flexible scheduling
 
 ### Open Gym
 - **Price:** Drop-in rates available
-- **Format:** Unstructured practice and shooting
-- **Availability:** Multiple times per week
-- **Equipment:** Full court access
+- **Format:** Pickup games and individual practice
+- **Availability:** Weekly schedule
 
 ### Gym Rental
 - **Format:** Private facility rental for teams and organizations
-- **Price:** Contact facility for rental rates
 - **Features:** Regulation court, scoreboard, PA system
 - **Availability:** Based on schedule
 
@@ -209,26 +152,24 @@ FCP Sports is a dedicated youth basketball facility offering comprehensive progr
 
 ### Basketball Court Specifications
 - **Dedicated Basketball-Only Facility**
-- **Court Type:** Regulation size basketball court
+- **Size:** 14,000 sq ft
+- **Court Type:** Full regulation size basketball court
 - **Floor:** Professional-grade hardwood
-- **Markings:** Full regulation court markings
-- **Lighting:** Professional-level overhead lighting
 - **Equipment:** Regulation baskets and backboards
 
 ### Amenities
 - **Scoreboard:** Professional electronic scoreboard with timer
 - **PA System:** Public address system for games and events
 - **Seating:** Spectator seating available
-- **Climate Control:** Air-conditioned facility
-- **Restrooms:** On-site facilities
-- **Parking:** Ample parking available
-- **Storage:** Equipment storage areas
+- **Climate Control:** Fully air-conditioned facility
+- **Parking:** Ample free parking available
 
 ### Coaching Staff
-- **Certification:** All coaches are certified basketball instructors
-- **Experience:** Coaches with youth and competitive experience
-- **Philosophy:** Player development focused, emphasis on fundamentals and safety
-- **Continuing Education:** Regular professional development
+- Head Coach & Director: Lee DeForest (25+ years, DI/DII/NAIA/JUCO)
+- Program Director: Vando Becheli (120+ collegiate wins, NJCAA National Finalist)
+- Skills & Development Coach: Jared Dugan
+- Player Development Coach: Mario Webb
+- Skills Trainer: Dada Huang
 
 ---
 
@@ -242,30 +183,11 @@ FCP Sports is a dedicated youth basketball facility offering comprehensive progr
 **Primary Cities:**
 - Fort Walton Beach
 - Destin
-- Panama City Beach
-- Pensacola area
-
-**Reach:** We serve families throughout Northwest Florida and surrounding communities.
-
----
-
-## Website Structure and Navigation
-
-### Main Site Pages
-- **Home:** https://fcpsports.org/
-- **About Us:** https://fcpsports.org/about
-- **Programs:** https://fcpsports.org/programs
-- **Camps:** https://fcpsports.org/camps
-- **Leagues:** https://fcpsports.org/leagues
-- **Skills Training:** https://fcpsports.org/skills-training
-- **Contact:** https://fcpsports.org/contact
-- **Schedule:** https://fcpsports.org/schedule
-- **Pricing:** https://fcpsports.org/pricing
-- **Registration:** https://fcpsports.org/register
-- **Facility Rental:** https://fcpsports.org/facility-rental
-- **News/Blog:** https://fcpsports.org/blog
-- **Gallery:** https://fcpsports.org/gallery
-- **FAQ:** https://fcpsports.org/faq
+- Niceville
+- Navarre
+- Crestview
+- Pensacola
+- Panama City
 
 ---
 
@@ -273,36 +195,9 @@ FCP Sports is a dedicated youth basketball facility offering comprehensive progr
 
 **Phone:** 850.961.2323
 **Email:** info@fcpsports.org
-**Address:** Fort Walton Beach, FL 32547
-**Hours:** Monday-Friday 9 AM-6 PM, Saturday 8 AM-5 PM, Sunday Closed
+**Address:** 33 Jet Drive NW, Fort Walton Beach, FL 32548
+**Hours:** Monday-Friday 9 AM-9 PM, Saturday-Sunday 9 AM-6 PM
 **Website:** https://fcpsports.org
-
-**Social Media:**
-- Facebook: facebook.com/fcpsports
-- Instagram: @fcpsports
-- Twitter: @fcpsports
-
----
-
-## Quick Reference: Registration and Enrollment
-
-### How to Register
-1. Visit https://fcpsports.org/register
-2. Select program (camp or league)
-3. Choose division/age group
-4. Provide participant information
-5. Apply applicable discounts
-6. Complete payment
-
-### Payment Options
-- Credit/Debit Card
-- ACH Bank Transfer
-- Check (mail-in option)
-
-### Cancellation Policy
-- Full refund if cancelled before registration deadline
-- 50% refund if cancelled within 7 days of program start
-- No refund for cancellations within 7 days of program start
 
 ---
 
@@ -310,17 +205,16 @@ FCP Sports is a dedicated youth basketball facility offering comprehensive progr
 
 | Program | Duration | Price | Ages | Season |
 |---------|----------|-------|------|--------|
-| Summer Camp | 1 week | $149 | K-12 | June-July |
-| Fall League | 12 weeks | $59-99 | K-12 | Sep-Nov |
-| Summer League | 8 weeks | $59-99 | K-12 | Jun-Jul |
-| Winter League | 12 weeks | $59-99 | K-12 | Jan-Mar |
-| Kenny Clinics | 2 hours | $49 | 8+ | Monthly |
-| Elite Showcase | 2 days | $199 | 8-18 | July |
-| Holiday Camp | 3 days | $99 | K-12 | Dec 28-30 |
-| Spring Break | 4 days | $129 | K-12 | Mar 15-18 |
+| Summer Camp | 1 week | $149 | Grades 3-10 | June-July |
+| Girls Camp | 1 week | $149 | Grades 6-10 | June |
+| Fall League | 8 weeks | $59-99 | K-12 | Sep-Nov |
+| Summer League | 6 weeks | $59-99 | K-12 | Jun-Jul |
+| Little Ballers | 6 weeks | $59 | K-2nd | Jan-Mar |
+| Holiday Camp | 3 days | $79 | Grades 4-8 | Dec 28-30 |
+| Spring Break | 4 days | $129 | Grades 3-12 | Mar 15-18 |
 
 ---
 
 ## About This Information
 
-This comprehensive information file has been created to help AI models, search engines, and digital assistants understand FCP Sports' offerings, structure, and services. The information is organized for easy parsing and includes all relevant details about programs, pricing, scheduling, and contact information as of April 2026.
+This comprehensive information file has been created to help AI models, search engines, and digital assistants understand FCP Sports' offerings, structure, and services. Updated April 2026.

@@ -4,7 +4,7 @@
  * Upserts contact in GoHighLevel and applies a program-specific tag.
  *
  * POST body: { email, tag, source }
- *   tag    - e.g. "newsletter-signup", "camp-inquiry", "gym-rental-inquiry"
+ *   tag    - e.g. "general-inquiry", "camp-inquiry", "gym-rental-inquiry"
  *   source - optional string for tracking (e.g. "exit-popup", "homepage")
  *
  * Env vars required:
@@ -13,14 +13,10 @@
  */
 
 const ALLOWED_TAGS = new Set([
-  "newsletter-signup",
+  "compete",
+  "train",
   "camp-inquiry",
-  "training-inquiry",
-  "league-inquiry",
   "gym-rental-inquiry",
-  "open-gym-inquiry",
-  "aau-inquiry",
-  "youth-inquiry",
   "general-inquiry",
 ]);
 

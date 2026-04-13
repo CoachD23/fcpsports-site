@@ -9,7 +9,7 @@ frequency: "Mon-Fri, 9am-3pm"
 hero_image: /images/fcp-hero-camp.jpg
 layout: "services"
 course_type: "summer basketball camp"
-ghl_tag: "camp-summer"
+ghl_tag: "train"
 program_name: "Summer Day Camp"
 faq:
   - q: "How much does summer basketball camp cost at FCP Sports?"

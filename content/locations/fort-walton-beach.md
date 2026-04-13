@@ -23,7 +23,7 @@ faq:
   - q: "Is there parking at the FCP Sports facility?"
     a: "Yes, FCP Sports has ample on-site parking at no charge. Families with multiple kids or carpooling groups from surrounding areas will find easy drop-off and pickup access."
   - q: "What basketball programs are available in Fort Walton Beach?"
-    a: "At our Fort Walton Beach facility we offer basketball camps, skills training, private lessons, youth basketball leagues, open gym sessions, and elite showcase events. Every level from beginner to competitive high school athlete is welcome."
+    a: "At our Fort Walton Beach facility we offer basketball camps, skills training, private lessons, youth basketball leagues, and open gym sessions. Every level from beginner to competitive high school athlete is welcome."
   - q: "Is FCP Sports the same as Spartan Training Center?"
     a: "FCP Sports is a dedicated basketball training facility — not a general multi-sport center. Our entire operation is built around basketball development, which means specialized coaching, basketball-specific flooring, and programming designed exclusively for the sport."
 ---

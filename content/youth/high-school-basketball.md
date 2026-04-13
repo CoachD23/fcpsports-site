@@ -63,11 +63,7 @@ When a college coach watches your game — live or on film — here is their men
 
 At FCP Sports, we prepare athletes for all five categories — not just skill development.
 
-## Exposure Events: The Elite Basketball Showcase
-
-For athletes ready to compete in front of college coaches, FCP Sports runs the [Elite Basketball Showcase](/camps/elite-showcase/) — a two-day event timed to the NCAA Division I evaluation period (July 17-18). College coaches are actively scouting during this window. This is how Emerald Coast athletes get in front of programs they would otherwise never encounter.
-
-## Film Review and Exposure Events
+## Film Review and Exposure
 
 Every FCP Sports high school athlete gets film review built into their training. We record, we break down, and we teach athletes to see the game the way coaches see it. We also maintain relationships with college programs at every level — D1, D2, D3, NAIA, and JUCO — so when a player is ready to be submitted for consideration, we have the contacts to make it happen.
 
@@ -77,6 +73,6 @@ If that is your goal too, the time to start is now. [Enroll in our high school p
 
 ## Keep Exploring
 
-- [Elite Showcase Camp](/camps/elite-showcase/) — High-visibility camp designed for recruiting-age athletes
+- [Basketball Camps](/camps/) — Intensive multi-day skill development camps for all ages
 - [Basketball Leagues](/leagues/) — Competitive league play to stay sharp during the off-season
 - [Basketball Training Programs](/services/basketball-training/) — Position-specific skill development for high school players

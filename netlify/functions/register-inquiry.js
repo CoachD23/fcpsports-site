@@ -21,25 +21,10 @@
  */
 
 const ALLOWED_TAGS = new Set([
-  "newsletter-signup",
-  // Camp-specific tags — one per camp so GHL can filter/automate per product
+  "compete",
+  "train",
   "camp-inquiry",
-  "camp-summer",
-  "camp-girls",
-  "camp-showcase",
-  "camp-spring-break",
-  "camp-holiday",
-  "camp-kenny",
-  // Program tags
-  "training-inquiry",
-  "lessons-inquiry",
-  "league-inquiry",
   "gym-rental-inquiry",
-  "open-gym-inquiry",
-  "aau-inquiry",
-  "youth-inquiry",
-  "guide-download",
-  "school-partner",
   "general-inquiry",
 ]);
 
@@ -121,10 +106,11 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: "First name required" }) };
   }
 
-  const safeTag = ALLOWED_TAGS.has(tag) ? tag : "general-inquiry";
-  const tagsToApply = safeTag === "general-inquiry"
-    ? ["fcpsports", "general-inquiry", "website-inquiry"]
-    : ["fcpsports", safeTag, "general-inquiry", "website-inquiry"];
+  // Support comma-separated tags from multi-select cards
+  const rawTags = tag.split(",").map(t => t.trim()).filter(t => ALLOWED_TAGS.has(t));
+  if (rawTags.length === 0) rawTags.push("general-inquiry");
+  const tagsToApply = ["fcpsports", "general-inquiry", ...rawTags.filter(t => t !== "general-inquiry")];
+  const safeTag = rawTags[0];
 
   try {
     // Upsert contact with full details
@@ -180,6 +166,30 @@ exports.handler = async function (event) {
           body: JSON.stringify({ body: noteParts.join("\n") }),
         }).catch((e) => console.warn("[register-inquiry] Note creation failed:", e.message));
       }
+    }
+
+    // Gym rental: email staff directly
+    if (safeTag === "gym-rental-inquiry" && contactId) {
+      const emailBody = [
+        `<h2>GYM RENTAL INQUIRY</h2>`,
+        `<p><strong>Name:</strong> ${parentFirstName.trim()} ${parentLastName.trim()}</p>`,
+        `<p><strong>Email:</strong> ${email.trim()}</p>`,
+        phone.trim() ? `<p><strong>Phone:</strong> ${phone.trim()}</p>` : "",
+        message.trim() ? `<p><strong>Message:</strong> ${message.trim()}</p>` : "",
+        `<p><strong>Source:</strong> ${source}</p>`,
+      ].filter(Boolean).join("");
+
+      await fetch(`${GHL_BASE}/conversations/messages`, {
+        method: "POST",
+        headers: ghlHeaders(),
+        body: JSON.stringify({
+          type: "Email",
+          contactId,
+          subject: "GYM RENTAL INQUIRY",
+          html: emailBody,
+          emailTo: "info@fcpsports.org",
+        }),
+      }).catch((e) => console.warn("[register-inquiry] Gym rental email failed:", e.message));
     }
 
     console.log(`[register-inquiry] Lead: ${email} | tag: ${safeTag} | program: ${program} | source: ${source}`);

@@ -1,20 +1,8 @@
 {{ define "main" }}
-{{ $heroImg := .Params.hero_image | default "/images/fcp-hero-action2.jpg" }}
-<section class="relative py-24 text-center overflow-hidden" style="min-height:380px;">
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ $heroImg }}');"></div>
-  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(6,15,34,0.72) 0%,rgba(6,15,34,0.88) 100%);"></div>
-  <div class="relative z-10 max-w-3xl mx-auto px-4">
-    <span class="text-gold font-display tracking-widest text-sm uppercase">Join FCP Sports</span>
-    <h1 class="font-display text-6xl text-white mt-3 mb-4 leading-none">{{ .Title }}</h1>
-    <p class="text-white/70 text-lg">{{ .Description }}</p>
-  </div>
-</section>
-<section class="py-20 bg-gray-50">
+<section class="pt-12 pb-20 bg-gray-50">
   <div class="max-w-2xl mx-auto px-4">
     <div class="bg-white rounded-2xl shadow-xl p-10">
-      <h2 class="font-display text-3xl text-navy mb-2">Tell Us About Your Athlete</h2>
-      <p class="text-gray-500 text-sm mb-8">Fill out the form below and our coaching staff will reach out within 24 hours to recommend the best program.</p>
-      {{ partial "inquiry-form.html" (dict "tag" "general-inquiry" "title" "" "subtitle" "") }}
+      {{ partial "inquiry-form.html" (dict "tag" "general-inquiry") }}
     </div>
     <div class="grid grid-cols-3 gap-4 mt-8 text-center">
       <div class="bg-white rounded-xl p-4 shadow-sm">

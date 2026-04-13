@@ -1,5 +1,5 @@
 ---
-hero_image: /images/hero-heic-IMG_3701.jpg
+hero_image: /images/fcp-hero-kids.jpg
 title: "Youth Basketball Fort Walton Beach FL | FCP Sports"
 description: "Youth basketball programs in Fort Walton Beach for ages K–8th grade. Little Ballers, Junior & Elite Youth tiers with structured seasons and real development."
 h1: "Youth Basketball Programs in Fort Walton Beach — Ages K Through 8th Grade at FCP Sports"
@@ -8,7 +8,7 @@ age_range: "Ages 5–14"
 price: "Contact for pricing"
 frequency: "Weekly sessions + games"
 program_name: "Youth Basketball"
-ghl_tag: "youth-inquiry"
+ghl_tag: "compete"
 faq:
   - q: "What age can my child start youth basketball in Fort Walton Beach?"
     a: "FCP Sports accepts players as young as kindergarten (age 5) in our Little Ballers program. This entry-level tier is designed for children who have never played organized basketball — the focus is on motor skills, basic dribbling, and loving the game. No prior experience is needed, and the youngest players are never put in situations that feel overwhelming or discouraging."

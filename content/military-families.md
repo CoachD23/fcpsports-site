@@ -18,7 +18,7 @@ faq:
   - q: "Is there a summer camp near Eglin AFB for kids?"
     a: "FCP Sports runs summer basketball camps that are a strong fit for military families at Eglin. Our climate-controlled facility means no Florida heat concerns, and our flexible scheduling is built to work around the realities of military life — including deployment and TDY conflicts. Half-day and full-day formats are available. We're 10 minutes from the main gate."
   - q: "What kids activities in Fort Walton Beach are good for military families?"
-    a: "For military families in Fort Walton Beach, FCP Sports offers structured, year-round basketball programs that give kids immediate community and skills development — exactly what's needed after a PCS move. Beyond camps, we run competitive leagues, Kenny Anderson clinics, open gym sessions, and private lessons. It's one activity that serves kids from age 5 through high school, so siblings can often train together."
+    a: "For military families in Fort Walton Beach, FCP Sports offers structured, year-round basketball programs that give kids immediate community and skills development — exactly what's needed after a PCS move. Beyond camps, we run competitive leagues, open gym sessions, and private lessons. It's one activity that serves kids from age 5 through high school, so siblings can often train together."
 ---
 
 ## Basketball for Military Kids — We Understand Your Family's Life
@@ -37,7 +37,7 @@ We offer a flat **$20 military discount** on every program at FCP Sports. No fin
 |---------|---------------|----------------|
 | Summer Basketball Camp | $149 | **$129** |
 | Youth League (Fall/Spring) | $59–$99 | **$39–$79** |
-| Kenny Anderson Clinic | $49 | **$29** |
+| Spring Break Camp | $129 | **$109** |
 
 To claim your discount, [register online](/registration/) using code **MILITARY**, or simply mention active duty status when you [contact us](/contact/). The discount applies to siblings and covers all programs year-round.
 
@@ -46,8 +46,6 @@ To claim your discount, [register online](/registration/) using code **MILITARY*
 **[Summer Camps](/camps/)** — Half-day and full-day formats for ages 5–18. Structured curriculum covering ball handling, shooting mechanics, footwork, defense, and game IQ. Skill assessment on day one; measurable improvement by end of week.
 
 **[Fall & Spring Leagues](/leagues/)** — Competitive youth basketball leagues organized by age group. Your child joins a team, plays a full season of games, and builds the kind of friendships that survive even a future PCS.
-
-**Kenny Anderson Clinics** — Skills clinics led by or built around the FCP training methodology. Focused technique work in a small-group setting — ideal for players who want to accelerate beyond league play.
 
 **[Open Gym](/services/open-gym/)** — Unstructured court time for players who want to get shots up, run pickup games, or work on their own. A great low-commitment option when your schedule is uncertain.
 

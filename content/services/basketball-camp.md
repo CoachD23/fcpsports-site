@@ -1,20 +1,20 @@
 ---
-hero_image: /images/fcp-sports-camp.jpg
+hero_image: /images/fcp-hero-camp.jpg
 title: "Basketball Camp Fort Walton Beach FL | FCP Sports"
-description: "Basketball camps in Fort Walton Beach for grades 3-12. Summer, spring break, girls-only, elite showcase, holiday, and Kenny Anderson clinics. From $49 to $149/week."
+description: "Basketball camps in Fort Walton Beach for grades 3-12. Summer, spring break, girls-only, and holiday camps. From $79 to $149/week."
 h1: "Basketball Camp in Fort Walton Beach — Every Format, Every Grade"
 keyword: "basketball camp fort walton beach"
 age_range: "Grades 3–12"
-price: "From $79 (holiday) to $149/week (summer)"
+price: "From $79 to $149/week"
 frequency: "Multi-day sessions"
 course_type: "basketball camp"
 program_name: "Basketball Camp"
-ghl_tag: "camp-inquiry"
+ghl_tag: "train"
 faq:
   - q: "How much does basketball camp cost in Fort Walton Beach?"
-    a: "FCP Sports runs six different camp programs at different price points: Summer Day Camp is $149/week (four sessions Jun-Jul), Girls Basketball Camp is $149/week (June 15-19), Elite Showcase is $129 for 2 days (July 17-18), Spring Break Camp is $129 for 4 days (March 15-18), Holiday Camp is $79 for 3 half-days (Dec 28-30), and Kenny Anderson Clinics are $49/session (monthly Oct-Feb). Early bird and military discounts apply to summer camp — see the individual camp pages for details."
+    a: "FCP Sports runs four different camp programs at different price points: Summer Day Camp is $149/week (four sessions Jun-Jul), Girls Basketball Camp is $149/week (June 15-19), Spring Break Camp is $129 for 4 days (March 15-18), and Holiday Camp is $79 for 3 half-days (Dec 28-30). Early bird and military discounts apply to summer camp — see the individual camp pages for details."
   - q: "What age groups can attend FCP Sports basketball camp?"
-    a: "Our camps serve grades 3 through 12. The right camp depends on your child's grade and goals: Summer Day Camp and Spring Break Camp cover the widest range (grades 3-12), Girls Camp and Elite Showcase are for older players (grades 6-12), Holiday Camp is focused on grades 4-8, and Kenny Anderson Clinics are for grades 6-12. Each program groups players by age and skill level so every camper gets instruction at the right level."
+    a: "Our camps serve grades 3 through 12. The right camp depends on your child's grade and goals: Summer Day Camp and Spring Break Camp cover the widest range (grades 3-12), Girls Camp is for older players (grades 6-10), and Holiday Camp is focused on grades 4-8. Each program groups players by age and skill level so every camper gets instruction at the right level."
   - q: "Is there a basketball camp near Destin FL this summer?"
     a: "Yes — FCP Sports is located in Fort Walton Beach, just 15 minutes from Destin via US-98. We are the closest dedicated basketball facility to Destin, and many campers come from Destin, Niceville, Navarre, and Miramar Beach every summer."
   - q: "What should my child bring to basketball camp?"
@@ -33,16 +33,14 @@ Located 5 minutes from the Okaloosa Island bridge and 15 minutes from Destin —
 
 ## Camp Types at FCP Sports
 
-We run six distinct camp programs. Each is built for a specific age group and purpose — not one generic camp repackaged six times.
+We run four distinct camp programs. Each is built for a specific age group and purpose — not one generic camp repackaged four times.
 
 | Camp | Dates | Grades | Price | Details |
 |------|-------|--------|-------|---------|
 | [Summer Day Camp](/camps/summer-day-camp/) | Jun 8-12, Jun 22-26, Jul 13-16, Jul 27-31 | Grades 3–10 | $149/wk | Four sessions, grouped by grade |
 | [Girls Basketball Camp](/camps/girls-basketball-camp/) | June 15–19 | Grades 6–10 (Girls) | $149/wk | Girls-only, week-long intensive |
-| [Elite Showcase](/camps/elite-showcase/) | July 17–18 | Grades 9–12 (Boys) | $129 | NCAA eval period, college exposure |
 | [Spring Break Camp](/camps/spring-break-camp/) | March 15–18 | Grades 3–12 | $129 | Two sessions daily, Mon–Thu |
 | [Holiday Camp](/camps/holiday-camp/) | Dec 28–30 | Grades 4–8 | $79 | 3 half-days during winter break |
-| [Kenny Anderson Clinics](/camps/kenny-anderson-clinic/) | Monthly, Oct–Feb | Grades 6–12 | $49/session | NBA-level instruction, Saturday mornings |
 
 ## 2026–2027 Camp Schedule
 
@@ -52,9 +50,7 @@ We run six distinct camp programs. Each is built for a specific age group and pu
 | June 15–19, 2026 | Girls Basketball Camp | Grades 6–10 (Girls) | $149/wk |
 | June 22–26, 2026 | Summer Day Camp — Session 2 | Grades 6–8 | $149/wk |
 | July 13–16, 2026 | Summer Day Camp — Session 3 | Grades 6–10 | $149/wk |
-| July 17–18, 2026 | Elite Basketball Showcase | Grades 9–12 (Boys) | $129 |
 | July 27–31, 2026 | Summer Day Camp — Session 4 | Grades 3–8 | $149/wk |
-| October–February | Kenny Anderson Clinics (monthly) | Grades 6–12 | $49/session |
 | December 28–30, 2026 | Holiday Basketball Camp | Grades 4–8 | $79 |
 | March 15–18, 2027 | Spring Break Camp | Grades 3–12 | $129 |
 
@@ -103,7 +99,5 @@ Scrimmages are not free-for-all time — they're coached. Players learn when to 
 Ready to lock in your spot? [Register here](/registration/) or [contact us](/contact/) with questions. Spots fill by session — summer sessions and spring break consistently sell out before the start date.
 
 For families looking for year-round development after camp, explore our [youth basketball programs](/services/youth-basketball/) or [private basketball training](/services/basketball-training/).
-
-For serious players ready to be seen by college coaches, check out our [Elite Basketball Showcase](/camps/elite-showcase/) — timed to the NCAA Division I evaluation period.
 
 **Phone:** 850.961.2323 | **Email:** info@fcpsports.org

@@ -9,7 +9,7 @@ frequency: "Mon–Thu, Two Sessions Daily"
 hero_image: /images/fcp-hero-action2.jpg
 layout: "services"
 course_type: "spring break basketball camp"
-ghl_tag: "camp-spring-break"
+ghl_tag: "train"
 program_name: "Spring Break Camp"
 faq:
   - q: "When is spring break basketball camp at FCP Sports?"
