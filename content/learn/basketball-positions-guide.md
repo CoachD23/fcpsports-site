@@ -1,6 +1,6 @@
 ---
 title: "Basketball Positions Guide: Roles, Skills & Training | FCP Sports"
-description: "Complete guide to all 5 basketball positions — point guard, shooting guard, small forward, power forward, center. Skills needed and how FCP Sports trains each position."
+description: "Complete guide to all 5 basketball positions — point guard, shooting guard, small forward, power forward, center. Skills needed and how FCP Sports trains each."
 faq:
   - q: "What are the 5 positions in basketball?"
     a: "The five positions in basketball are: Point Guard (1), Shooting Guard (2), Small Forward (3), Power Forward (4), and Center (5). Each position has distinct roles on offense and defense, though modern basketball increasingly emphasizes positional versatility — the ability to play multiple spots based on matchups and team needs."

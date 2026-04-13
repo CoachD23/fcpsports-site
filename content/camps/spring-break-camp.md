@@ -1,6 +1,6 @@
 ---
 title: "Spring Break Basketball Camp Fort Walton Beach | FCP Sports"
-description: "Spring break basketball camp in Fort Walton Beach, March 15-18, 2027. Two sessions daily: Grades 3-5 mornings (8:30am-12pm) and Grades 6-12 afternoons (12:30pm-4pm). $129 for 4 half-days."
+description: "Spring break basketball camp in Fort Walton Beach, March 15-18, 2027. Grades 3-5 mornings and Grades 6-12 afternoons, two sessions daily. $129 for 4 half-days."
 h1: "Spring Break Basketball Camp — Two Sessions, All Grades, Friday Free"
 keyword: "spring break basketball camp fort walton beach"
 age_range: "Grades 3–12 (Co-Ed)"

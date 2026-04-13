@@ -1,6 +1,6 @@
 ---
 title: "Little Ballers Basketball League Fort Walton Beach | FCP Sports"
-description: "Little Ballers basketball league for K-2nd graders in Fort Walton Beach. 6-week Saturday morning season with modified rules, lower baskets, and a focus on fun. $59 includes jersey."
+description: "Little Ballers league for K-2nd graders in Fort Walton Beach. 6-week Saturday season, modified rules, lower baskets, focus on fun. $59 includes jersey."
 h1: "Little Ballers Basketball League in Fort Walton Beach"
 keyword: "little basketball league fort walton beach"
 age_range: "Ages 5-8 (K-2nd Grade)"

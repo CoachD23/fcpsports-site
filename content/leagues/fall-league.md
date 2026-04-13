@@ -1,6 +1,6 @@
 ---
 title: "Fall Basketball League Fort Walton Beach | FCP Sports"
-description: "Fall youth basketball league in Fort Walton Beach. 8-week season with Saturday morning games, trained refs, stat tracking, and playoffs. Ages 5-18, starting at $59 with jersey included."
+description: "Fall youth basketball league in Fort Walton Beach. 8-week season, Saturday mornings, trained refs, stat tracking, and playoffs. Ages 5-18 from $59 with jersey."
 h1: "Fall Basketball League in Fort Walton Beach"
 keyword: "fall basketball league fort walton beach"
 age_range: "Ages 5-18"

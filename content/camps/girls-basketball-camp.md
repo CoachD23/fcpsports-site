@@ -1,6 +1,6 @@
 ---
 title: "Girls Basketball Camp Fort Walton Beach | FCP Sports"
-description: "The only girls-specific basketball camp in the Florida Panhandle. Grades 6-10, June 15-19 in Fort Walton Beach. $149/week with early bird and military discounts available."
+description: "The only girls-specific basketball camp in the Florida Panhandle. Grades 6-10, June 15-19, Fort Walton Beach. $149/week with early bird and military discounts."
 h1: "Girls Basketball Camp — The Only One in the Florida Panhandle"
 keyword: "girls basketball camp fort walton beach"
 age_range: "Grades 6-10 (Girls)"

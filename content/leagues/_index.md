@@ -1,6 +1,6 @@
 ---
 title: "Basketball Leagues Fort Walton Beach | FCP Sports"
-description: "Youth basketball leagues in Fort Walton Beach with trained refs, stat tracking, online standings, and playoff brackets. Fall, summer, and little ballers seasons for ages 5-18."
+description: "Youth basketball leagues in Fort Walton Beach — trained refs, stat tracking, online standings, and playoffs. Fall, summer, and Little Ballers for ages 5-18."
 h1: "FCP Sports Basketball Leagues"
 keyword: "basketball leagues fort walton beach"
 ---

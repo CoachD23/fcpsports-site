@@ -18,7 +18,7 @@ schools:
   - "Bay High School"
   - "Arnold High School"
   - "Mosley High School"
-faqs:
+faq:
   - q: "How does a high school basketball player get recruited in Florida?"
     a: "Recruiting starts with visibility — college coaches cannot recruit players they have never seen. The primary path to visibility in Florida is AAU basketball, specifically competing in high-profile tournaments during the NCAA Live Period (typically July). Beyond AAU, a strong highlight film, a Hudl or NCSA profile, and direct outreach to college programs matter enormously. FCP Sports supports athletes at every step of this process."
   - q: "When does the recruiting process start?"
@@ -76,3 +76,8 @@ If that is your goal too, the time to start is now. [Enroll in our high school p
 - [Basketball Camps](/camps/) — Intensive multi-day skill development camps for all ages
 - [Basketball Leagues](/leagues/) — Competitive league play to stay sharp during the off-season
 - [Basketball Training Programs](/services/basketball-training/) — Position-specific skill development for high school players
+- [Post-Graduate Program at Florida Coastal Prep](https://floridacoastalprep.com/post-grad/) — For high school graduates who want an elite development year before college
+
+---
+
+*The same 14,000 sq ft facility at 33 Jet Drive NW also hosts **[Florida Coastal Prep](https://floridacoastalprep.com/)** — an elite post-graduate and high school prep program that has placed athletes from 43 states and 22 countries into college programs at every level. If your athlete is approaching graduation without an offer, the post-grad route may be the right next step.*

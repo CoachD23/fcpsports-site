@@ -1,7 +1,7 @@
 ---
 hero_image: /images/hero-heic-IMG_3177.jpg
 title: "Basketball Training Panama City FL | FCP Sports"
-description: "Elite basketball training one hour from Panama City FL. FCP Sports offers weekend intensives, week-long camps, and specialized programs for serious Bay County athletes."
+description: "Elite basketball training one hour from Panama City, FL. FCP Sports offers weekend intensives, week-long camps, and programs for serious Bay County athletes."
 h1: "Basketball Training for Panama City Athletes"
 city: "Panama City"
 keyword: "basketball training panama city fl"

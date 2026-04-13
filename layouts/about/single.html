@@ -12,39 +12,95 @@
 
 <section class="py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-      <div class="fade-in">
+
+    <!-- Mission: 2-col text + image -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+      <div>
+        <span class="section-tag">Our Mission</span>
+        <h2 class="section-heading">Built for the Emerald Coast Athlete</h2>
+        <p class="text-gray-600 text-lg leading-relaxed mb-4">FCP Sports was founded with a single purpose: to bring elite basketball development to the Florida Panhandle.</p>
+        <p class="text-gray-600 leading-relaxed mb-4">For too long, Emerald Coast athletes had to travel hours to access the kind of structured, professional training programs available in larger metro areas. We changed that.</p>
+        <p class="text-gray-600 leading-relaxed">Located in Fort Walton Beach, FL, FCP Sports serves athletes from Destin to Panama City — a region spanning hundreds of miles of coastline and thousands of young athletes who deserve world-class coaching close to home.</p>
+      </div>
+      <div>
         <img src="/images/fcp-sports-basketball-training-fort-walton-beach.jpg"
           alt="FCP Sports basketball facility Fort Walton Beach Florida"
           class="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" loading="lazy" />
       </div>
-      <div class="fade-in">
-        <span class="section-tag">Our Mission</span>
-        <h2 class="section-heading">Built for the Emerald Coast Athlete</h2>
-        <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-navy prose-a:text-gold">
-          {{ .Content }}
-        </div>
+    </div>
+
+    <!-- What Makes Us Different: 2-col image + text -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+      <div class="order-2 lg:order-1">
+        <img src="/images/fcp-sports-basketball-coach-holding-ball-fort-walton-beach.jpg"
+          alt="FCP Sports basketball coach Fort Walton Beach"
+          class="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" loading="lazy" />
+      </div>
+      <div class="order-1 lg:order-2">
+        <span class="section-tag">Our Philosophy</span>
+        <h2 class="section-heading">What Makes FCP Sports Different</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">We don't run babysitting camps. We don't run feel-good programs that make kids feel busy but don't move the needle. Every session at FCP Sports has a purpose — a skill being developed, a habit being built, a gap in an athlete's game being closed.</p>
+        <p class="text-gray-600 leading-relaxed">Our programs are built on a simple philosophy: <strong class="text-navy">develop the whole athlete</strong>. That means physical skill development, basketball IQ, mental toughness, and the character traits that make great teammates and great people.</p>
+      </div>
+    </div>
+
+    <!-- Community: full-width image + text -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+      <div>
+        <span class="section-tag">Our Community</span>
+        <h2 class="section-heading">7 Cities. 30+ Schools. One Mission.</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">FCP Sports serves athletes from Fort Walton Beach, Destin, Niceville, Navarre, Crestview, Pensacola, and Panama City. Athletes come from over 30 schools across Okaloosa, Santa Rosa, Escambia, and Bay Counties.</p>
+        <p class="text-gray-600 leading-relaxed">We work with families from all backgrounds — from beginners picking up a basketball for the first time to AAU-level athletes preparing for college recruitment.</p>
+      </div>
+      <div>
+        <img src="/images/fcp-sports-basketball-league-champions-fort-walton-beach-fl.jpg"
+          alt="FCP Sports 2026 SEHAL basketball champions"
+          class="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" loading="lazy" />
       </div>
     </div>
 
     <!-- Trust signals -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-12 border-t border-b border-gray-100 mb-20">
-      <div class="text-center fade-in">
+      <div class="text-center">
         <div class="font-display text-5xl text-gold">500+</div>
         <div class="text-gray-500 text-sm mt-1">Athletes Trained</div>
       </div>
-      <div class="text-center fade-in">
+      <div class="text-center">
         <div class="font-display text-5xl text-gold">8</div>
         <div class="text-gray-500 text-sm mt-1">Programs Offered</div>
       </div>
-      <div class="text-center fade-in">
+      <div class="text-center">
         <div class="font-display text-5xl text-gold">7</div>
         <div class="text-gray-500 text-sm mt-1">Cities Served</div>
       </div>
-      <div class="text-center fade-in">
+      <div class="text-center">
         <div class="font-display text-5xl text-gold">5★</div>
         <div class="text-gray-500 text-sm mt-1">Google Rating</div>
       </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-20">
+      <a href="/camps/" class="bg-navy text-white rounded-xl p-6 text-center hover:bg-navy/90 transition">
+        <div class="font-display text-lg">Camps</div>
+        <div class="text-white/60 text-xs mt-1">Summer, holiday & more</div>
+      </a>
+      <a href="/leagues/" class="bg-navy text-white rounded-xl p-6 text-center hover:bg-navy/90 transition">
+        <div class="font-display text-lg">Leagues</div>
+        <div class="text-white/60 text-xs mt-1">Fall & summer seasons</div>
+      </a>
+      <a href="/basketball-gym-fort-walton-beach/" class="bg-navy text-white rounded-xl p-6 text-center hover:bg-navy/90 transition">
+        <div class="font-display text-lg">Our Facility</div>
+        <div class="text-white/60 text-xs mt-1">Dedicated basketball gym</div>
+      </a>
+      <a href="/military-families/" class="bg-navy text-white rounded-xl p-6 text-center hover:bg-navy/90 transition">
+        <div class="font-display text-lg">Military</div>
+        <div class="text-white/60 text-xs mt-1">$20 off for families</div>
+      </a>
+      <a href="/pricing/" class="bg-navy text-white rounded-xl p-6 text-center hover:bg-navy/90 transition">
+        <div class="font-display text-lg">Pricing</div>
+        <div class="text-white/60 text-xs mt-1">All programs</div>
+      </a>
     </div>
 
     <!-- Coaches -->
@@ -55,7 +111,7 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {{ range site.Data.coaches }}
-        <div class="card p-8 flex gap-6 items-start fade-in">
+        <div class="card p-8 flex gap-6 items-start">
           <div class="w-20 h-20 rounded-full bg-navy flex items-center justify-center flex-shrink-0">
             <span class="font-display text-2xl text-gold">{{ substr .name 0 1 }}</span>
           </div>

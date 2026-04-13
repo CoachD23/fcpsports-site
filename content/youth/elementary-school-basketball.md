@@ -1,6 +1,6 @@
 ---
 title: "Elementary School Basketball Programs Fort Walton Beach | FCP Sports"
-description: "Fun-first basketball programs for K–5th grade athletes on the Emerald Coast. Little Ballers (K–2nd) and Junior Program (3rd–5th) at FCP Sports in Fort Walton Beach."
+description: "Fun-first basketball programs for K–5th graders on the Emerald Coast. Little Ballers (K–2nd) and Junior Program (3rd–5th) at FCP Sports in Fort Walton Beach."
 h1: "Elementary School Basketball Programs"
 age_range: "Ages 5–11"
 grade_range: "Kindergarten – 5th Grade"
