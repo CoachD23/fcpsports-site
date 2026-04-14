@@ -17,7 +17,7 @@
   </main>
 
   {{ partial "footer.html" . }}
-  {{ partial "exit-popup.html" . }}
+  {{ if not .Params.no_exit_popup }}{{ partial "exit-popup.html" . }}{{ end }}
   {{ partial "ghl-chat.html" . }}
 
   {{ $js := resources.Get "js/main.js" | resources.Minify | resources.Fingerprint }}
