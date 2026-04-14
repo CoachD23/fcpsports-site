@@ -53,8 +53,11 @@ function createSmtpTransport() {
       user: "info@fcpsports.org",
       pass: process.env.FCPSPORTS_SMTP_PASS,
     },
-    tls: { ciphers: "SSLv3" },
   });
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 function buildWaiverEmailHtml(participantName, signedDate, isMinor, signerInfo) {
@@ -63,8 +66,8 @@ function buildWaiverEmailHtml(participantName, signedDate, isMinor, signerInfo) 
   });
 
   const signerLine = isMinor
-    ? `<p><strong>Parent/Guardian:</strong> ${signerInfo.parentName}</p><p><strong>Email:</strong> ${signerInfo.parentEmail}</p><p><strong>Phone:</strong> ${signerInfo.parentPhone}</p>`
-    : `<p><strong>Email:</strong> ${signerInfo.adultEmail}</p>`;
+    ? `<p><strong>Parent/Guardian:</strong> ${escHtml(signerInfo.parentName)}</p><p><strong>Email:</strong> ${escHtml(signerInfo.parentEmail)}</p><p><strong>Phone:</strong> ${escHtml(signerInfo.parentPhone)}</p>`
+    : `<p><strong>Email:</strong> ${escHtml(signerInfo.adultEmail)}</p>`;
 
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
@@ -75,7 +78,7 @@ function buildWaiverEmailHtml(participantName, signedDate, isMinor, signerInfo) 
         <h2 style="color: #1a1a2e; margin-top: 0;">Signed Waiver Confirmation</h2>
         <p>This confirms that the following waiver was signed on <strong>${dateStr}</strong>.</p>
         <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin: 16px 0;">
-          <p style="margin-top: 0;"><strong>Participant:</strong> ${participantName}</p>
+          <p style="margin-top: 0;"><strong>Participant:</strong> ${escHtml(participantName)}</p>
           ${signerLine}
           <p><strong>Date Signed:</strong> ${dateStr}</p>
         </div>
@@ -124,8 +127,14 @@ exports.handler = async function (event) {
     const body = JSON.parse(event.body || "{}");
     const { isMinor, signatureData, emailCopy } = body;
 
+    if (typeof isMinor !== "boolean") {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid request" }) };
+    }
     if (!signatureData || !signatureData.startsWith("data:image/png")) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Signature required" }) };
+    }
+    if (signatureData.length > 500000) {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: "Signature data too large" }) };
     }
 
     const now = new Date().toISOString();
@@ -146,8 +155,8 @@ exports.handler = async function (event) {
       if (!minorName || minorName.trim().length < 2) {
         return { statusCode: 400, headers, body: JSON.stringify({ error: "Participant name required" }) };
       }
-      if (!minorDOB) {
-        return { statusCode: 400, headers, body: JSON.stringify({ error: "Date of birth required" }) };
+      if (!minorDOB || !/^\d{4}-\d{2}-\d{2}$/.test(minorDOB) || isNaN(Date.parse(minorDOB))) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid date of birth required" }) };
       }
 
       participantName = minorName.trim();
@@ -174,8 +183,8 @@ exports.handler = async function (event) {
       if (!adultName || adultName.trim().length < 2) {
         return { statusCode: 400, headers, body: JSON.stringify({ error: "Full name required" }) };
       }
-      if (!adultDOB) {
-        return { statusCode: 400, headers, body: JSON.stringify({ error: "Date of birth required" }) };
+      if (!adultDOB || !/^\d{4}-\d{2}-\d{2}$/.test(adultDOB) || isNaN(Date.parse(adultDOB))) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid date of birth required" }) };
       }
       if (!adultEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(adultEmail)) {
         return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid email required" }) };

@@ -194,6 +194,7 @@
       minorFields.classList.toggle('hidden', !isMinor);
       adultFields.classList.toggle('hidden', isMinor);
       waiverBlock.classList.remove('hidden');
+      setTimeout(initCanvas, 0);
 
       if (isMinor) {
         agreeLabel.innerHTML = 'I am the parent or legal guardian of the minor named above and I have read and agree to the Waiver, Release & Assumption of Risk. <span class="text-red-500">*</span>';
@@ -203,21 +204,27 @@
     });
   });
 
-  // Signature canvas
+  // Signature canvas — defer init until visible
   var canvas = document.getElementById('w-sig');
   var ctx = canvas.getContext('2d');
   var drawing = false;
   var hasSigned = false;
-
-  var rect = canvas.getBoundingClientRect();
+  var canvasReady = false;
   var dpr = window.devicePixelRatio || 1;
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
-  ctx.scale(dpr, dpr);
-  ctx.lineWidth = 2;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  ctx.strokeStyle = '#1a1a2e';
+
+  function initCanvas() {
+    if (canvasReady) return;
+    var rect = canvas.getBoundingClientRect();
+    if (rect.width === 0) return; // still hidden
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = '#1a1a2e';
+    canvasReady = true;
+  }
 
   function getPos(e) {
     var r = canvas.getBoundingClientRect();
