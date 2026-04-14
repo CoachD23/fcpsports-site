@@ -14,7 +14,7 @@ Every camp below takes place at our indoor basketball facility — no shared gym
 
 ### Summer Day Camps
 
-**Dates:** June 8-12 | June 22-26 | July 13-17 | July 27-31
+**Dates:** June 8-12 | June 22-26 | July 13-16 | July 27-31
 **Time:** Mon-Fri, 9am-3pm
 **Ages:** Grades 3-10 (grouped by session)
 **Price:** $149/week | Early bird $129 (before May 1) | Military $129
