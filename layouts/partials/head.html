@@ -5,6 +5,7 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | FCP Sports{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
 <link rel="canonical" href="{{ .Permalink }}" />
+{{ if .Params.noindex }}<meta name="robots" content="noindex, nofollow" />{{ end }}
 
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:title" content="{{ .Title }}" />

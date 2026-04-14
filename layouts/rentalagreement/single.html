@@ -1,0 +1,371 @@
+{{ define "main" }}
+<section class="pt-12 pb-20 bg-gray-50">
+  <div class="max-w-2xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10" id="rental-wrap">
+
+      <div class="mb-8">
+        <h1 class="font-display text-3xl text-navy leading-tight">Gym Rental Agreement</h1>
+        <p class="text-gray-500 text-sm mt-1">FCP Sports &bull; Fort Walton Beach, FL</p>
+      </div>
+
+      <form id="rental-form" class="space-y-6" novalidate>
+
+        <!-- Section 1: Renter Info -->
+        <div class="space-y-4">
+          <h2 class="font-display text-lg text-navy">Renter Information</h2>
+          <div>
+            <label for="r-name" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Name of Renter <span class="text-red-500">*</span></label>
+            <input type="text" id="r-name" name="renterName" required autocomplete="name"
+              placeholder="Full name"
+              class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+          </div>
+          <div>
+            <label for="r-org" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Organization / Team</label>
+            <input type="text" id="r-org" name="organization"
+              placeholder="Team or organization name (if applicable)"
+              class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="r-email" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Email <span class="text-red-500">*</span></label>
+              <input type="email" id="r-email" name="renterEmail" required autocomplete="email"
+                placeholder="you@email.com"
+                class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+            </div>
+            <div>
+              <label for="r-phone" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Phone <span class="text-red-500">*</span></label>
+              <input type="tel" id="r-phone" name="renterPhone" required autocomplete="tel"
+                placeholder="(850) 555-0100"
+                class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Rental Details -->
+        <div class="space-y-4">
+          <h2 class="font-display text-lg text-navy">Rental Details</h2>
+          <div>
+            <label for="r-event" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Description of Event <span class="text-red-500">*</span></label>
+            <input type="text" id="r-event" name="eventDescription" required
+              placeholder="e.g. Team practice, tournament, tryouts"
+              class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="r-date" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Rental Date(s) <span class="text-red-500">*</span></label>
+              <input type="text" id="r-date" name="rentalDates" required
+                placeholder="e.g. June 15, 2026 or June 15-17"
+                class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+            </div>
+            <div>
+              <label for="r-time" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Time(s) <span class="text-red-500">*</span></label>
+              <input type="text" id="r-time" name="rentalTimes" required
+                placeholder="e.g. 6:00 PM - 9:00 PM"
+                class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-navy mb-2 uppercase tracking-wide">Court Option <span class="text-red-500">*</span></label>
+            <div class="flex gap-6">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="courtOption" value="full" required
+                  class="h-5 w-5 text-gold focus:ring-gold" />
+                <span class="text-sm text-gray-700"><strong>Full Court</strong> — $125/hr</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="courtOption" value="half"
+                  class="h-5 w-5 text-gold focus:ring-gold" />
+                <span class="text-sm text-gray-700"><strong>Half Court</strong> — $75/hr</span>
+              </label>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="r-hours" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Number of Hours <span class="text-red-500">*</span></label>
+              <input type="number" id="r-hours" name="hours" required min="1" max="24"
+                placeholder="e.g. 3"
+                class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Estimated Total</label>
+              <div id="r-total" class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-gray-50 text-navy font-semibold">$0.00</div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Security Deposit</label>
+            <p class="text-sm text-gray-600">A $250 security deposit is required and will be refunded upon satisfactory inspection of the facility after the rental period. The deposit may be waived at the discretion of FCP Sports management.</p>
+          </div>
+          <div>
+            <label for="r-notes" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Notes</label>
+            <textarea id="r-notes" name="notes" rows="2"
+              placeholder="Any additional requests or information"
+              class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition resize-none"></textarea>
+          </div>
+        </div>
+
+        <!-- Section 3: Usage Policies -->
+        <div>
+          <h2 class="font-display text-lg text-navy mb-3">Facility Usage Policies</h2>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-700 leading-relaxed max-h-64 overflow-y-auto space-y-3">
+            <p><strong>SCHEDULING:</strong> All gym rental requests must be submitted in advance. Reservations are confirmed on a first-come, first-served basis. All scheduling changes must be made in writing and approved by FCP Sports management. Contact info@fcpsports.org or call 850.961.2323.</p>
+
+            <p><strong>INSURANCE:</strong> Renters must provide a Certificate of Insurance with at least $1,000,000 in General Liability listing FCP Sports LLC as additional insured on the date(s) of rental. A copy of the insurance certificate must be provided to FCP Sports at least 14 days before the scheduled rental date.</p>
+
+            <p><strong>SECURITY DEPOSIT:</strong> A $250 security deposit is required for all gym rentals. The deposit will be refunded in full within 14 days after the rental, provided no damage has occurred and all terms of this agreement have been met. The deposit may be waived at the discretion of FCP Sports management.</p>
+
+            <p><strong>PAYMENT:</strong> Full payment for rental hours is due prior to the rental date. Rates are $125/hour for full court and $75/hour for half court.</p>
+
+            <p><strong>DAMAGES:</strong> The renter is responsible for any damage to the facility, equipment, or property caused during the rental period. Repair or replacement costs will be deducted from the security deposit or billed directly to the renter.</p>
+
+            <p><strong>LIABILITY:</strong> FCP Sports LLC is not responsible for any injuries, property damage, or losses incurred by the renter, their organization, participants, or spectators during the rental period. The renter assumes full responsibility for the safety of all persons present during the rental.</p>
+
+            <p><strong>INDEMNIFICATION:</strong> The renter agrees to indemnify, defend, and hold harmless FCP Sports LLC, its owners, employees, and agents from any and all claims, damages, losses, or expenses arising out of or related to the renter's use of the facility.</p>
+          </div>
+        </div>
+
+        <!-- Section 4: Facility Rules -->
+        <div>
+          <h2 class="font-display text-lg text-navy mb-3">Facility Rules</h2>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-700 leading-relaxed max-h-64 overflow-y-auto">
+            <ol class="list-decimal pl-4 space-y-2">
+              <li>No alcoholic beverages are permitted inside the gym or on FCP Sports property.</li>
+              <li>Disorderly conduct, abusive language, threats, or physical altercations will not be tolerated and will result in immediate termination of the rental without refund.</li>
+              <li>All accidents, breakage, or loss of FCP Sports property must be reported to FCP Sports management immediately.</li>
+              <li>The renter is responsible for cleanliness. The gym must be left in the same condition as it was found.</li>
+              <li>Only non-marking athletic shoes are permitted on the gym floor. No street shoes, boots, or cleats.</li>
+              <li>No food or drinks on the gym floor. Water bottles with caps are permitted courtside.</li>
+              <li>Moving of FCP Sports equipment (goals, bleachers, racks) is not permitted without prior approval.</li>
+              <li>The renter must provide a responsible adult (21+) on-site at all times during the rental period to serve as the point of contact for FCP Sports staff.</li>
+              <li>No vehicles may be driven or parked in unauthorized areas. Use designated parking only.</li>
+              <li>FCP Sports is not responsible for personal property lost, stolen, or damaged on the premises.</li>
+              <li>The renter must comply with posted occupancy limits and fire safety regulations at all times.</li>
+              <li>FCP Sports reserves the right to cancel any rental or restrict access to the gym due to emergency, severe weather, facility damage, or safety concerns.</li>
+              <li>All FCP Sports rules and regulations listed here and posted at the facility must be followed.</li>
+            </ol>
+            <p class="mt-4 font-semibold uppercase text-navy">Failure to follow the facility use guidelines may result in cancellation without refund. By signing, renter certifies that he/she is 21 years of age or older and agrees to follow all facility rules and regulations as stated above.</p>
+          </div>
+        </div>
+
+        <!-- Agreement Checkbox -->
+        <div class="flex items-start gap-3">
+          <input type="checkbox" id="r-agree" name="agree"
+            class="mt-1 h-5 w-5 rounded border-gray-300 text-gold focus:ring-gold cursor-pointer" />
+          <label for="r-agree" class="text-sm text-gray-700 cursor-pointer">
+            I have read and agree to the Facility Usage Policies and Facility Rules above. I certify that I am 21 years of age or older and am authorized to enter into this agreement. I understand that a Certificate of Insurance is required. <span class="text-red-500">*</span>
+          </label>
+        </div>
+
+        <!-- Signature -->
+        <div>
+          <label class="block text-xs font-semibold text-navy mb-2 uppercase tracking-wide">Renter Signature <span class="text-red-500">*</span></label>
+          <div class="relative border-2 border-gray-200 rounded-lg bg-white" style="touch-action: none;">
+            <canvas id="r-sig" width="600" height="180" class="w-full rounded-lg cursor-crosshair" style="height: 180px;"></canvas>
+            <button type="button" id="r-sig-clear"
+              class="absolute top-2 right-2 text-xs text-gray-400 hover:text-red-500 transition bg-white/80 px-2 py-1 rounded">
+              Clear
+            </button>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">Sign with your finger or mouse above.</p>
+        </div>
+
+        <!-- Date -->
+        <div>
+          <label for="r-sign-date" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Date <span class="text-red-500">*</span></label>
+          <input type="date" id="r-sign-date" name="signDate" required
+            class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+        </div>
+
+        <!-- Email copy checkbox -->
+        <div class="flex items-start gap-3">
+          <input type="checkbox" id="r-email-copy" name="emailCopy" checked
+            class="mt-1 h-5 w-5 rounded border-gray-300 text-gold focus:ring-gold cursor-pointer" />
+          <label for="r-email-copy" class="text-sm text-gray-700 cursor-pointer">
+            Email me a copy of this agreement
+          </label>
+        </div>
+
+        <!-- Error -->
+        <p id="r-error" class="hidden text-sm text-red-600 font-medium"></p>
+
+        <!-- Submit -->
+        <button type="submit" id="r-submit"
+          class="w-full bg-gold text-navy font-bold py-4 rounded-lg hover:brightness-110 transition-all text-sm uppercase tracking-widest">
+          Submit Rental Agreement
+        </button>
+
+      </form>
+
+      <!-- Success -->
+      <div id="rental-success" class="hidden text-center py-12">
+        <div class="text-5xl mb-4">&#10003;</div>
+        <h2 class="font-display text-2xl text-navy mb-2">Agreement Submitted</h2>
+        <p class="text-gray-600 text-sm" id="rental-success-msg">Thank you. Your rental agreement has been submitted. FCP Sports will review and confirm your reservation.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  // Auto-fill today's date
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementById('r-sign-date').value = today;
+
+  // Auto-calculate total
+  var hoursInput = document.getElementById('r-hours');
+  var courtRadios = document.querySelectorAll('[name="courtOption"]');
+  var totalDisplay = document.getElementById('r-total');
+
+  function updateTotal() {
+    var court = document.querySelector('[name="courtOption"]:checked');
+    var hours = parseInt(hoursInput.value) || 0;
+    if (!court || hours < 1) { totalDisplay.textContent = '$0.00'; return; }
+    var rate = court.value === 'full' ? 125 : 75;
+    totalDisplay.textContent = '$' + (rate * hours).toFixed(2);
+  }
+
+  hoursInput.addEventListener('input', updateTotal);
+  courtRadios.forEach(function(r) { r.addEventListener('change', updateTotal); });
+
+  // Signature canvas — defer init until visible
+  var canvas = document.getElementById('r-sig');
+  var ctx = canvas.getContext('2d');
+  var drawing = false;
+  var hasSigned = false;
+  var dpr = window.devicePixelRatio || 1;
+
+  function initCanvas() {
+    var rect = canvas.getBoundingClientRect();
+    if (rect.width === 0) return;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = '#1a1a2e';
+  }
+
+  // Init on load since this form is always visible
+  setTimeout(initCanvas, 0);
+
+  function getPos(e) {
+    var r = canvas.getBoundingClientRect();
+    var t = e.touches ? e.touches[0] : e;
+    return { x: t.clientX - r.left, y: t.clientY - r.top };
+  }
+
+  function startDraw(e) { e.preventDefault(); drawing = true; var p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }
+  function draw(e) { if (!drawing) return; e.preventDefault(); var p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSigned = true; }
+  function stopDraw() { drawing = false; }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDraw);
+  canvas.addEventListener('mouseleave', stopDraw);
+  canvas.addEventListener('touchstart', startDraw, { passive: false });
+  canvas.addEventListener('touchmove', draw, { passive: false });
+  canvas.addEventListener('touchend', stopDraw);
+
+  document.getElementById('r-sig-clear').addEventListener('click', function() {
+    ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+    hasSigned = false;
+  });
+
+  // Form submit
+  var form = document.getElementById('rental-form');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var err = document.getElementById('r-error');
+    var btn = document.getElementById('r-submit');
+
+    var renterName = form.querySelector('[name="renterName"]').value.trim();
+    var renterEmail = form.querySelector('[name="renterEmail"]').value.trim();
+    var renterPhone = form.querySelector('[name="renterPhone"]').value.trim();
+    var eventDesc = form.querySelector('[name="eventDescription"]').value.trim();
+    var rentalDates = form.querySelector('[name="rentalDates"]').value.trim();
+    var rentalTimes = form.querySelector('[name="rentalTimes"]').value.trim();
+    var courtOption = form.querySelector('[name="courtOption"]:checked');
+    var hours = form.querySelector('[name="hours"]').value.trim();
+    var signDate = form.querySelector('[name="signDate"]').value;
+
+    if (!renterName || renterName.length < 2) { err.textContent = 'Please enter your full name.'; err.classList.remove('hidden'); return; }
+    if (!renterEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(renterEmail)) { err.textContent = 'Please enter a valid email.'; err.classList.remove('hidden'); return; }
+    if (!renterPhone || renterPhone.replace(/\D/g, '').length < 10) { err.textContent = 'Please enter a valid phone number.'; err.classList.remove('hidden'); return; }
+    if (!eventDesc) { err.textContent = 'Please describe the event.'; err.classList.remove('hidden'); return; }
+    if (!rentalDates) { err.textContent = 'Please enter the rental date(s).'; err.classList.remove('hidden'); return; }
+    if (!rentalTimes) { err.textContent = 'Please enter the rental time(s).'; err.classList.remove('hidden'); return; }
+    if (!courtOption) { err.textContent = 'Please select full court or half court.'; err.classList.remove('hidden'); return; }
+    if (!hours || parseInt(hours) < 1) { err.textContent = 'Please enter the number of hours.'; err.classList.remove('hidden'); return; }
+    if (!form.querySelector('[name="agree"]').checked) { err.textContent = 'You must agree to the policies and rules.'; err.classList.remove('hidden'); return; }
+    if (!hasSigned) { err.textContent = 'Please sign the agreement above.'; err.classList.remove('hidden'); return; }
+    if (!signDate) { err.textContent = 'Please enter the date.'; err.classList.remove('hidden'); return; }
+
+    err.classList.add('hidden');
+    btn.textContent = 'Submitting\u2026';
+    btn.disabled = true;
+
+    var tmpCanvas = document.createElement('canvas');
+    tmpCanvas.width = canvas.width;
+    tmpCanvas.height = canvas.height;
+    var tmpCtx = tmpCanvas.getContext('2d');
+    tmpCtx.drawImage(canvas, 0, 0);
+    var sigData = tmpCanvas.toDataURL('image/png');
+    if (sigData.length > 500000) { err.textContent = 'Signature too large. Please clear and sign again.'; err.classList.remove('hidden'); btn.textContent = 'Submit Rental Agreement'; btn.disabled = false; return; }
+
+    var rate = courtOption.value === 'full' ? 125 : 75;
+    var totalAmount = rate * parseInt(hours);
+
+    fetch('/.netlify/functions/submit-rental', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        renterName: renterName,
+        organization: form.querySelector('[name="organization"]').value.trim(),
+        renterEmail: renterEmail,
+        renterPhone: renterPhone,
+        eventDescription: eventDesc,
+        rentalDates: rentalDates,
+        rentalTimes: rentalTimes,
+        courtOption: courtOption.value,
+        hours: parseInt(hours),
+        totalAmount: totalAmount,
+        notes: form.querySelector('[name="notes"]').value.trim(),
+        signDate: signDate,
+        signatureData: sigData,
+        emailCopy: form.querySelector('[name="emailCopy"]').checked,
+      }),
+    })
+    .then(function(res) {
+      if (res.status === 429) throw new Error('rate_limited');
+      return res.json();
+    })
+    .then(function(data) {
+      if (data.error) {
+        err.textContent = data.error;
+        err.classList.remove('hidden');
+        btn.textContent = 'Submit Rental Agreement';
+        btn.disabled = false;
+      } else {
+        form.classList.add('hidden');
+        var msg = document.getElementById('rental-success-msg');
+        if (form.querySelector('[name="emailCopy"]').checked) {
+          msg.textContent = 'Thank you. Your rental agreement has been submitted and a copy has been emailed to you. FCP Sports will review and confirm your reservation.';
+        }
+        document.getElementById('rental-success').classList.remove('hidden');
+      }
+    })
+    .catch(function(catchErr) {
+      var msg = catchErr.message === 'rate_limited'
+        ? 'Too many submissions. Please wait a minute and try again.'
+        : 'Something went wrong. Please try again.';
+      err.textContent = msg;
+      err.classList.remove('hidden');
+      btn.textContent = 'Submit Rental Agreement';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+{{ end }}
