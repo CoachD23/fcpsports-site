@@ -63,7 +63,7 @@ function buildWaiverEmailHtml(participantName, signedDate, isMinor, signerInfo) 
   });
 
   const signerLine = isMinor
-    ? `<p><strong>Parent/Guardian:</strong> ${signerInfo.parentEmail}</p><p><strong>Phone:</strong> ${signerInfo.parentPhone}</p>`
+    ? `<p><strong>Parent/Guardian:</strong> ${signerInfo.parentName}</p><p><strong>Email:</strong> ${signerInfo.parentEmail}</p><p><strong>Phone:</strong> ${signerInfo.parentPhone}</p>`
     : `<p><strong>Email:</strong> ${signerInfo.adultEmail}</p>`;
 
   return `
@@ -132,8 +132,11 @@ exports.handler = async function (event) {
     let participantName, recipientEmail, record;
 
     if (isMinor) {
-      const { parentEmail, parentPhone, minorName, minorDOB } = body;
+      const { parentName, parentEmail, parentPhone, minorName, minorDOB } = body;
 
+      if (!parentName || parentName.trim().length < 2) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: "Parent/guardian name required" }) };
+      }
       if (!parentEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(parentEmail)) {
         return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid parent email required" }) };
       }
@@ -150,9 +153,11 @@ exports.handler = async function (event) {
       participantName = minorName.trim();
       recipientEmail = parentEmail.trim().toLowerCase();
 
+      const signerName = parentName.trim();
+
       record = {
         fields: {
-          [FIELDS.Doc_Name]:       `Waiver - ${participantName}`,
+          [FIELDS.Doc_Name]:       `Waiver - ${participantName} (signed by ${signerName})`,
           [FIELDS.Doc_Type]:       "Liability Waiver",
           [FIELDS.Signed_Date]:    now,
           [FIELDS.IP_Address]:     clientIp,
@@ -215,7 +220,7 @@ exports.handler = async function (event) {
     if (emailCopy && process.env.FCPSPORTS_SMTP_PASS) {
       try {
         const signerInfo = isMinor
-          ? { parentEmail: recipientEmail, parentPhone: body.parentPhone }
+          ? { parentName: body.parentName.trim(), parentEmail: recipientEmail, parentPhone: body.parentPhone }
           : { adultEmail: recipientEmail };
 
         const transport = createSmtpTransport();
