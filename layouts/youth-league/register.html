@@ -267,12 +267,29 @@
             </div>
           </div>
 
-          <!-- Authorize.net payment form placeholder -->
           <div id="payment-fields" class="space-y-4">
-            <p class="text-center text-gray-400 text-sm py-8 border-2 border-dashed border-gray-200 rounded-xl">
-              Payment integration (Authorize.net) will be connected here.<br/>
-              <span class="text-xs">For now, registration will be submitted and staff will follow up for payment.</span>
-            </p>
+            <div>
+              <label for="cc-name" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Name on Card <span class="text-red-500">*</span></label>
+              <input type="text" id="cc-name" autocomplete="cc-name" placeholder="Full name on card" class="reg-input" />
+            </div>
+            <div>
+              <label for="cc-number" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Card Number <span class="text-red-500">*</span></label>
+              <input type="text" id="cc-number" autocomplete="cc-number" inputmode="numeric" maxlength="19" placeholder="4111 1111 1111 1111" class="reg-input" />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="cc-exp" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Expiration <span class="text-red-500">*</span></label>
+                <input type="text" id="cc-exp" autocomplete="cc-exp" inputmode="numeric" maxlength="7" placeholder="MM/YYYY" class="reg-input" />
+              </div>
+              <div>
+                <label for="cc-cvv" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">CVV <span class="text-red-500">*</span></label>
+                <input type="text" id="cc-cvv" autocomplete="cc-csc" inputmode="numeric" maxlength="4" placeholder="123" class="reg-input" />
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-400 mt-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+              <span>Card data is sent directly to Authorize.net — never touches our servers.</span>
+            </div>
           </div>
         </div>
 
@@ -303,6 +320,8 @@
     </div>
   </div>
 </section>
+
+<script type="text/javascript" src="https://js.authorize.net/v1/Accept.js" charset="utf-8"></script>
 
 <style>
   .reg-input {
@@ -479,20 +498,85 @@
   });
   btnBack.addEventListener("click", function() { if (step > 1) goTo(step - 1); });
 
+  // Accept.js tokenization
+  function tokenizeCard() {
+    return new Promise(function(resolve, reject) {
+      var ccNum = document.getElementById("cc-number").value.replace(/\s/g, "");
+      var ccExp = document.getElementById("cc-exp").value.trim();
+      var ccCvv = document.getElementById("cc-cvv").value.trim();
+      var ccName = document.getElementById("cc-name").value.trim();
+
+      if (!ccName) { reject(new Error("Name on card is required.")); return; }
+      if (!ccNum || ccNum.length < 13) { reject(new Error("Please enter a valid card number.")); return; }
+      if (!ccExp || !/^\d{2}\/\d{4}$/.test(ccExp)) { reject(new Error("Expiration must be MM/YYYY.")); return; }
+      if (!ccCvv || ccCvv.length < 3) { reject(new Error("Please enter a valid CVV.")); return; }
+
+      var parts = ccExp.split("/");
+      var authData = {};
+      authData.clientKey = "{{ site.Params.authnet_client_key | default "NEEDS_CLIENT_KEY" }}";
+      authData.apiLoginID = "{{ site.Params.authnet_login_id | default "" }}";
+
+      var cardData = {};
+      cardData.cardNumber = ccNum;
+      cardData.month = parts[0];
+      cardData.year = parts[1];
+      cardData.cardCode = ccCvv;
+      cardData.fullName = ccName;
+
+      var secureData = {};
+      secureData.authData = authData;
+      secureData.cardData = cardData;
+
+      Accept.dispatchData(secureData, function(response) {
+        if (response.messages.resultCode === "Error") {
+          var msg = response.messages.message.map(function(m) { return m.text; }).join(" ");
+          reject(new Error(msg));
+        } else {
+          resolve({ dataDescriptor: response.opaqueData.dataDescriptor, dataValue: response.opaqueData.dataValue });
+        }
+      });
+    });
+  }
+
+  // Format card number with spaces
+  document.getElementById("cc-number").addEventListener("input", function(e) {
+    var v = e.target.value.replace(/\D/g, "").substring(0, 16);
+    e.target.value = v.replace(/(.{4})/g, "$1 ").trim();
+  });
+  // Format expiration
+  document.getElementById("cc-exp").addEventListener("input", function(e) {
+    var v = e.target.value.replace(/\D/g, "").substring(0, 6);
+    if (v.length > 2) v = v.substring(0, 2) + "/" + v.substring(2);
+    e.target.value = v;
+  });
+
   form.addEventListener("submit", async function(e) {
     e.preventDefault();
     if (!validateStep(step)) return;
 
-    const submitLabel = document.getElementById("submit-label");
-    const submitSpin = document.getElementById("submit-spin");
+    var submitLabel = document.getElementById("submit-label");
+    var submitSpin = document.getElementById("submit-spin");
     btnSubmit.disabled = true;
     btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
-    submitLabel.textContent = "Submitting...";
+    submitLabel.textContent = "Processing payment...";
     submitSpin.classList.remove("hidden");
 
-    const div = calcDivision(form.childDob.value);
-    const tier = getPriceTier();
-    const payload = {
+    // Tokenize card via Accept.js first
+    var paymentNonce;
+    try {
+      paymentNonce = await tokenizeCard();
+    } catch (err) {
+      showError(err.message || "Card validation failed.");
+      btnSubmit.disabled = false;
+      btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+      submitLabel.textContent = "Complete Registration";
+      submitSpin.classList.add("hidden");
+      return;
+    }
+
+    var div = calcDivision(form.childDob.value);
+    var tier = getPriceTier();
+    var payload = {
       parentEmail: form.parentEmail.value.trim().toLowerCase(),
       parentFirst: form.parentFirst.value.trim(),
       parentLast: form.parentLast.value.trim(),
@@ -514,10 +598,15 @@
       parentPledge: true,
       priceTier: tier.label,
       priceAmount: tier.price,
+      payment: {
+        dataDescriptor: paymentNonce.dataDescriptor,
+        dataValue: paymentNonce.dataValue,
+        cardholderName: document.getElementById("cc-name").value.trim(),
+      },
     };
 
     try {
-      const res = await fetch("/.netlify/functions/register-youth-league", {
+      var res = await fetch("/.netlify/functions/register-youth-league", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

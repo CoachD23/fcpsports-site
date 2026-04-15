@@ -107,6 +107,7 @@ exports.handler = async function (event) {
 
   const hasGhl = process.env.GHL_API_KEY && process.env.GHL_LOCATION_ID;
   const hasAirtable = process.env.AIRTABLE_PAT && process.env.AIRTABLE_BASE_ID;
+  const hasAuthnet = process.env.AUTHNET_API_LOGIN && process.env.AUTHNET_TRANSACTION_KEY;
 
   if (!hasGhl && !hasAirtable) {
     console.error("[register-youth-league] No GHL or Airtable credentials configured");
@@ -114,6 +115,87 @@ exports.handler = async function (event) {
   }
 
   const today = new Date().toISOString().slice(0, 10);
+  let transactionId = null;
+  let paymentStatus = "Pending";
+
+  /* --- 0. Authorize.net: Charge card --- */
+  if (hasAuthnet && b.payment && b.payment.dataValue) {
+    try {
+      const authnetPayload = {
+        createTransactionRequest: {
+          merchantAuthentication: {
+            name: process.env.AUTHNET_API_LOGIN,
+            transactionKey: process.env.AUTHNET_TRANSACTION_KEY,
+          },
+          transactionRequest: {
+            transactionType: "authCaptureTransaction",
+            amount: String(b.priceAmount),
+            payment: {
+              opaqueData: {
+                dataDescriptor: b.payment.dataDescriptor,
+                dataValue: b.payment.dataValue,
+              },
+            },
+            order: {
+              invoiceNumber: `YL-${Date.now().toString(36).toUpperCase()}`,
+              description: `Youth League Summer 2026 — ${b.childFirst} ${b.childLast} (${b.divisionName || b.division})`,
+            },
+            customer: {
+              email: b.parentEmail.trim().toLowerCase(),
+            },
+            billTo: {
+              firstName: b.parentFirst.trim(),
+              lastName: b.parentLast.trim(),
+              zip: b.parentZip.trim(),
+            },
+          },
+        },
+      };
+
+      const authnetUrl = (process.env.AUTHNET_ENV === "sandbox")
+        ? "https://apitest.authorize.net/xml/v1/request.api"
+        : "https://api.authorize.net/xml/v1/request.api";
+
+      const payRes = await fetch(authnetUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: json(authnetPayload),
+      });
+
+      // Authorize.net returns 200 even on declines — check the response body
+      const raw = await payRes.text();
+      // Strip BOM if present
+      const payData = JSON.parse(raw.replace(/^\uFEFF/, ""));
+
+      const txResult = payData.transactionResponse;
+      if (
+        payData.messages?.resultCode === "Ok" &&
+        txResult &&
+        (txResult.responseCode === "1") // 1 = Approved
+      ) {
+        transactionId = txResult.transId;
+        paymentStatus = "Paid";
+        console.log(`[register-youth-league] Payment approved: $${b.priceAmount} txn=${transactionId}`);
+      } else {
+        const errMsg = txResult?.errors?.[0]?.errorText
+          || payData.messages?.message?.[0]?.text
+          || "Payment declined";
+        console.error("[register-youth-league] Payment failed:", errMsg);
+        return {
+          statusCode: 402,
+          headers: cors,
+          body: json({ error: `Payment failed: ${errMsg}` }),
+        };
+      }
+    } catch (err) {
+      console.error("[register-youth-league] Authorize.net error:", err.message);
+      return {
+        statusCode: 502,
+        headers: cors,
+        body: json({ error: "Payment processing error. Please try again." }),
+      };
+    }
+  }
 
   /* --- 1. GHL: Upsert contact --- */
   let contactId = null;
@@ -168,6 +250,7 @@ exports.handler = async function (event) {
         b.medicalNotes ? `Medical Notes: ${b.medicalNotes}` : null,
         ``,
         `Pricing: $${b.priceAmount} (${b.priceTier})`,
+        transactionId ? `Payment: PAID — Txn #${transactionId}` : `Payment: PENDING`,
         b.referralCode ? `Referral Code: ${b.referralCode}` : null,
         `SMS Consent: ${b.smsConsent ? "Yes" : "No"}`,
         `Photo Consent: ${b.photoConsent ? "Yes" : "No"}`,
@@ -211,7 +294,8 @@ exports.handler = async function (event) {
         "Photo Consent": b.photoConsent || false,
         "Price": b.priceAmount,
         "Price Tier": b.priceTier,
-        "Payment Status": "Pending",
+        "Payment Status": paymentStatus,
+        "Transaction ID": transactionId || "",
         "Registered At": new Date().toISOString(),
         "GHL Contact ID": contactId || "",
       };
