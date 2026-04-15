@@ -1,103 +1,70 @@
 ---
 hero_image: /images/fcp-hero-camp.jpg
 title: "Basketball Camp Fort Walton Beach FL | FCP Sports"
-description: "Basketball camps in Fort Walton Beach for grades 3-12. Summer, spring break, girls-only, and holiday camps. From $79 to $149/week."
-h1: "Basketball Camp in Fort Walton Beach — Every Format, Every Grade"
+description: "Basketball camps in Fort Walton Beach for grades 3–12. Summer, spring break, girls-only, and holiday options. From $79."
+h1: "Basketball Camps"
 keyword: "basketball camp fort walton beach"
 age_range: "Grades 3–12"
-price: "From $79 to $149/week"
+price: "From $79"
 frequency: "Multi-day sessions"
 course_type: "basketball camp"
 program_name: "Basketball Camp"
 ghl_tag: "train"
 faq:
-  - q: "How much does basketball camp cost in Fort Walton Beach?"
-    a: "FCP Sports runs four different camp programs at different price points: Summer Day Camp is $149/week (four sessions Jun-Jul), Girls Basketball Camp is $149/week (June 15-19), Spring Break Camp is $129 for 4 days (March 15-18), and Holiday Camp is $79 for 3 half-days (Dec 28-30). Early bird and military discounts apply to summer camp — see the individual camp pages for details."
-  - q: "What age groups can attend FCP Sports basketball camp?"
-    a: "Our camps serve grades 3 through 12. The right camp depends on your child's grade and goals: Summer Day Camp and Spring Break Camp cover the widest range (grades 3-12), Girls Camp is for older players (grades 6-10), and Holiday Camp is focused on grades 4-8. Each program groups players by age and skill level so every camper gets instruction at the right level."
-  - q: "Is there a basketball camp near Destin FL this summer?"
-    a: "Yes — FCP Sports is located in Fort Walton Beach, just 15 minutes from Destin via US-98. We are the closest dedicated basketball facility to Destin, and many campers come from Destin, Niceville, Navarre, and Miramar Beach every summer."
-  - q: "What should my child bring to basketball camp?"
-    a: "Bring athletic shoes with clean indoor-court soles, athletic clothing, a water bottle, and a packed lunch or snack for full-day camps. We provide basketballs, but campers are welcome to bring their own. Sunscreen is not needed — our facility is fully climate-controlled indoors."
-  - q: "Are FCP Sports basketball camps good for beginners?"
-    a: "Absolutely. We run skill assessments on day one and group campers by ability level, not just age. Beginners get fundamentals-focused instruction while more advanced players work on competitive skill sets. No child is left behind — our coaches are trained to build confidence alongside skills."
+  - q: "How much does basketball camp cost at FCP Sports?"
+    a: "Camps range from $79 to $149 depending on the program: Summer Camp is $129–$149/week, Girls Camp is $149/week, Spring Break Camp is $129, and Holiday Camp is $79. Early bird and military discounts are available on summer camps."
+  - q: "What ages can attend basketball camp?"
+    a: "Our camps serve grades 3 through 12. Each camp is built for a specific age group so your child trains with kids at a similar level."
+  - q: "Is there a basketball camp near Destin?"
+    a: "Yes. FCP Sports is about 15 minutes from Destin via US-98. Families from Destin, Niceville, Navarre, and Crestview attend every session."
+  - q: "Are camps good for beginners?"
+    a: "Yes. We assess skills on day one and group by ability. Beginners get fundamentals coaching. Experienced players work on advanced skills. Every kid is met where they are."
 ---
 
-## The Emerald Coast's Only Dedicated Basketball Camp Facility
+## Your Kid. A Real Court. A Week They'll Talk About.
 
-Most basketball camps in northwest Florida are run out of school gyms, rec centers, or church fellowship halls — multipurpose spaces where basketball shares time with volleyball and whatever else the facility has scheduled. FCP Sports is different. We are a **dedicated basketball-only facility** in Fort Walton Beach, built from the ground up for one sport.
+Every camp runs the same way: show up, learn real basketball, play real games, come home happy. Pick the one that fits your schedule.
 
-Real hoops at regulation height. Hardwood court with proper markings. Scoreboard. Climate control for Florida summer heat. Coaches who aren't pulled in fifteen directions. When your child comes to camp here, the entire building exists for basketball.
+## Camp Options
 
-Located 5 minutes from the Okaloosa Island bridge and 15 minutes from Destin — the most accessible dedicated basketball camp on the Emerald Coast. Parents stationed at **Eglin AFB or Hurlburt Field** know us well. We are the structured option that keeps kids developing when school is out.
+| Camp | Dates | Grades | Price | |
+|------|-------|--------|-------|-|
+| [Summer Day Camp](/camps/summer-day-camp/) | Jun 8 – Jul 31 (4 sessions) | 3–10 | From $129/wk | Half-day & full-day options |
+| [Girls Basketball Camp](/camps/girls-basketball-camp/) | June 15–19 | 6–10 (Girls) | $149/wk | The only girls-only camp in the Panhandle |
+| [Spring Break Camp](/camps/spring-break-camp/) | March 15–18 | 3–12 | $129 | Mon–Thu, Friday free |
+| [Holiday Camp](/camps/holiday-camp/) | Dec 28–30 | 4–8 | $79 | 3 half-day mornings |
 
-## Camp Types at FCP Sports
+## What Your Kid Gets
 
-We run four distinct camp programs. Each is built for a specific age group and purpose — not one generic camp repackaged four times.
+**Real coaching.** Your kid works with experienced coaches who teach fundamentals, not just supervise.
 
-| Camp | Dates | Grades | Price | Details |
-|------|-------|--------|-------|---------|
-| [Summer Day Camp](/camps/summer-day-camp/) | Jun 8-12, Jun 22-26, Jul 13-16, Jul 27-31 | Grades 3–10 | $149/wk | Four sessions, grouped by grade |
-| [Girls Basketball Camp](/camps/girls-basketball-camp/) | June 15–19 | Grades 6–10 (Girls) | $149/wk | Girls-only, week-long intensive |
-| [Spring Break Camp](/camps/spring-break-camp/) | March 15–18 | Grades 3–12 | $129 | Two sessions daily, Mon–Thu |
-| [Holiday Camp](/camps/holiday-camp/) | Dec 28–30 | Grades 4–8 | $79 | 3 half-days during winter break |
+**Skills they can measure.** Day one, we test where they are. Last day, we test again. Your kid sees exactly how much they improved — and so do you.
 
-## 2026–2027 Camp Schedule
+**Games that matter.** Scrimmages are coached, not free-for-all. We stop play, teach the read, then let them run it. That's how basketball IQ gets built.
+
+## 2026–2027 Schedule
 
 | Date | Camp | Grades | Price |
 |------|------|--------|-------|
-| June 8–12, 2026 | Summer Day Camp — Session 1 | Grades 3–5 | $149/wk |
-| June 15–19, 2026 | Girls Basketball Camp | Grades 6–10 (Girls) | $149/wk |
-| June 22–26, 2026 | Summer Day Camp — Session 2 | Grades 6–8 | $149/wk |
-| July 13–16, 2026 | Summer Day Camp — Session 3 | Grades 6–10 | $149/wk |
-| July 27–31, 2026 | Summer Day Camp — Session 4 | Grades 3–8 | $149/wk |
-| December 28–30, 2026 | Holiday Basketball Camp | Grades 4–8 | $79 |
-| March 15–18, 2027 | Spring Break Camp | Grades 3–12 | $129 |
+| June 8–12 | Summer Camp — Session 1 | 3–5 | $129 |
+| June 15–19 | Girls Basketball Camp | 6–10 (Girls) | $149 |
+| June 22–26 | Summer Camp — Session 2 | 6–8 | $149 |
+| July 13–16 | Summer Camp — Session 3 | 6–10 | $149 |
+| July 27–31 | Summer Camp — Session 4 | 3–8 | $129 |
+| December 28–30 | Holiday Camp | 4–8 | $79 |
+| March 15–18 | Spring Break Camp | 3–12 | $129 |
 
-## What Your Child Will Learn
+## What to Bring
 
-We don't run basketball camp like babysitting with a ball. Every session follows a curriculum built around four core areas:
+- Court shoes (non-marking soles)
+- Athletic clothes
+- Water bottle
+- Packed lunch (full-day campers only)
 
-### Ball Handling
-Stationary dribble work, on-the-move combinations, pressure dribble drills. By end of camp, players can execute crossover, between-the-legs, and behind-the-back moves with confidence.
-
-### Shooting Mechanics
-Form shooting from short range, spot shooting, off-the-dribble pull-ups. We use video on the final day so players can see their release and understand what to self-correct.
-
-### Footwork and Defense
-Defensive slide drills, closeout technique, help-side positioning, and offensive footwork — pivots, jabs, drop steps. Footwork separates players at the next level, and most camps skip it entirely.
-
-### Basketball IQ and Game Situations
-Scrimmages are not free-for-all time — they're coached. Players learn when to drive versus shoot, how to read a defense, how to set and use a screen. We pause live play to teach, then resume.
-
-## A Typical Day at Summer Camp
-
-| Time | Activity |
-|------|----------|
-| 8:45 AM | Drop-off and check-in |
-| 9:00 AM | Dynamic warm-up and stretching |
-| 9:20 AM | Ball handling stations (4 rotations) |
-| 10:15 AM | Shooting clinic by position |
-| 11:00 AM | Water break |
-| 11:10 AM | Footwork and defense fundamentals |
-| 12:00 PM | Lunch break (bring your own) |
-| 12:45 PM | Film review or chalk talk |
-| 1:15 PM | 5-on-5 coached scrimmages |
-| 2:30 PM | Skills competition and cool-down |
-| 3:00 PM | Pickup |
-
-## Camp Packing List
-
-- Court shoes (no black-sole shoes that mark the floor)
-- Athletic shorts and shirt (no jeans)
-- Water bottle — refill stations available
-- Packed lunch and snacks (full-day campers)
-- Optional: personal basketball (labeled with your name)
+Indoor, climate-controlled gym. No sunscreen needed.
 
 ## Register
 
-Ready to lock in your spot? [Register here](/registration/) or [contact us](/contact/) with questions. Spots fill by session — summer sessions and spring break consistently sell out before the start date.
+[Register here](/registration/) or [call 850.961.2323](/contact/).
 
-For families looking for year-round development after camp, explore our [youth basketball programs](/services/youth-basketball/) or [private basketball training](/services/basketball-training/).
-
-**Phone:** 850.961.2323 | **Email:** info@fcpsports.org
+For year-round development, check out our [youth basketball programs](/services/youth-basketball/) or [private training](/services/basketball-training/).

@@ -1,126 +1,71 @@
 ---
 hero_image: /images/fcp-sports-league.jpg
 title: "Youth Basketball League Fort Walton Beach FL | FCP Sports"
-description: "Youth basketball league in Fort Walton Beach with trained refs, stat tracking, and standings. Ages 5–18, co-ed. Fall and summer seasons. From $79."
-h1: "Youth Basketball League in Fort Walton Beach — Competitive & Recreational Leagues at FCP Sports"
+description: "Youth basketball league in Fort Walton Beach. Ages 5–18, real refs, stat tracking, playoffs. Fall and summer seasons from $79."
+h1: "Youth Basketball League"
 keyword: "basketball league fort walton beach"
 age_range: "Ages 5–18"
-price: "Starting at $79"
+price: "From $79"
 frequency: "Weekly games"
 program_name: "Basketball League"
 ghl_tag: "compete"
 faq:
   - q: "Is there a youth basketball league in Fort Walton Beach?"
-    a: "Yes — FCP Sports runs youth basketball leagues in Fort Walton Beach for players ages 5 through 18. We offer both recreational and competitive divisions, with structured seasons, trained referees, standings, and playoff brackets. Games are played in a dedicated basketball facility with a scoreboard, sound system, and paid refs."
-  - q: "What age groups play in the FCP Sports basketball league?"
-    a: "We run four divisions: Mini (K-2nd, ages 5-8), Junior (3rd-5th, ages 8-11), Intermediate (6th-8th, ages 11-14), and Senior (9th-12th, ages 15-18). Each division uses age-appropriate rules — younger divisions play on 8-foot baskets with smaller balls and modified rules. Older divisions play near-regulation FHSAA rules."
-  - q: "How much does youth basketball league cost in Fort Walton Beach?"
-    a: "League registration at FCP Sports ranges from $79 to $149 depending on division: Mini (K-2nd) is $79, Junior (3rd-5th) is $99, Intermediate (6th-8th) is $129, and Senior (9th-12th) is $149. Every registration includes a game jersey — no hidden costs. We also offer $20 off for early bird registration, $20 off for military families, and $20 off per additional sibling."
-  - q: "When does basketball league registration open in Fort Walton Beach?"
-    a: "FCP Sports runs fall (September-November), summer (June-July), and winter/spring (January-March) league seasons. Registration typically opens 4-6 weeks before each season starts. Visit our registration page or check the specific season pages for current availability: Fall League, Summer League, and Little Ballers (K-2nd only)."
-  - q: "Can my child join the basketball league mid-season?"
-    a: "Mid-season roster additions depend on division availability and team roster balance. In some cases we can place a player mid-season; in others, we will add them to the waitlist for next season. Contact us directly and we will work with you to find the best option."
+    a: "Yes. FCP Sports runs leagues for ages 5–18. Trained referees, stat tracking, standings, and playoffs every season."
+  - q: "What age groups play?"
+    a: "Four divisions: Mini (K–2nd), Junior (3rd–5th), Intermediate (6th–8th), and Senior (9th–12th). Each uses age-appropriate rules."
+  - q: "How much does it cost?"
+    a: "Mini: $79. Junior: $99. Intermediate: $129. Senior: $149. Jersey included. $20 off for early bird, military, and siblings — discounts stack."
+  - q: "Can my child join mid-season?"
+    a: "Depends on roster availability. Contact us and we'll work with you."
 ---
 
-## FCP Sports Basketball League: More Than Just Games
+## Show Up Saturday. Practice. Play a Real Game. Go Home Happy.
 
-Our basketball league is played entirely in our dedicated facility in Fort Walton Beach. Real scoreboard. Trained and paid referee crew. Post-game coaching sessions. Standings tracked online. Playoff brackets. This is the basketball league experience that teaches what practice cannot: **decision-making under pressure, handling adversity, competing with teammates, and playing through a real season.**
+That's the whole season. One morning a week for 8 weeks. Your kid gets a team, a jersey, a coach, and a game every Saturday.
 
-Teams include players from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview — representing the full breadth of the Emerald Coast basketball community. Military families from Eglin AFB and Hurlburt Field are welcome and receive a military discount.
+No tryouts. No travel. No five-day-a-week commitment.
 
-## League Seasons & Registration
+## How the Season Works
 
-We run multiple league seasons throughout the year. Each season follows the same format: drafted teams, trained refs, stat tracking, online standings, and playoff brackets.
+1. **Evaluation Night** — every player comes out for a quick session so coaches can build balanced teams
+2. **Draft** — coaches draft balanced teams. No stacked rosters. Every game is competitive.
+3. **6 regular-season Saturdays** — 45 min practice + game each week
+4. **Playoffs + Championship** — single elimination, trophies, awards
 
-### [Fall Basketball League](/leagues/fall-league/)
-**September – November 2026 | 8-week season | Saturday mornings**
-Four divisions (K-12th). Pricing: $79 / $99 / $129 / $149 by division. Jersey included. Saturday morning games avoid school sports conflicts.
+**Equal playing time is mandatory.** Every division, every game, non-negotiable.
 
-### [Summer Basketball League](/leagues/summer-league/)
-**June – July 2026 | 6-week season | Tuesday & Thursday evenings**
-Four divisions (K-12th). Same pricing as fall. Shorter season fits summer schedules. Evening games leave weekends free.
+Your kid can request to play with a friend at registration — we honor buddy requests within draft balance.
 
-### [Little Ballers League](/leagues/little-league/)
-**January – March 2027 | 6-week season | Saturday mornings**
-K-2nd grade only. $79 includes jersey. Modified rules, lower baskets, coaches on the court. Your child's first real basketball experience.
+## Divisions
 
-[Register for any season here](/registration/) or [contact us](/contact/) with questions.
-
-## League Pricing & Registration Packages
-
-We offer two ways to register — League Only, or a League + Training bundle that gives your player 8 skill training classes to use during the season:
-
-| Division | Grades | Ages | League Only | League + Training |
-|----------|--------|------|-------------|-------------------|
-| Mini | K-2nd | 5-8 | $79 | $149 |
-| Junior | 3rd-5th | 8-11 | $99 | $179 |
-| Intermediate | 6th-8th | 11-14 | $129 | $219 |
-| Senior | 9th-12th | 15-18 | $149 | $249 |
+| Division | Grades | Ages | Price | Details |
+|----------|--------|------|-------|---------|
+| Mini | K–2nd | 5–8 | $79 | Lower baskets, smaller ball, learning the game |
+| Junior | 3rd–5th | 8–11 | $99 | Real refs, real stats, 10-ft baskets |
+| Intermediate | 6th–8th | 11–14 | $129 | Full-court, advanced rules |
+| Senior | 9th–12th | 15–18 | $149 | FHSAA-adjacent rules |
 
 All registrations include a game jersey. No hidden fees.
 
-**League + Training Package includes:**
-- Everything in League Only registration
-- 8 skill training classes to use anytime during the season (Tue/Thu/Sat)
-- Skills sessions are grouped by age and ability — not mixed with adults
-- Ideal for players who want to develop between games, not just show up on game day
+## League + Training Bundle
 
-**Available discounts (can be combined):**
+Add 8 weekly training sessions to any league registration for $70–$100 more. Your kid develops between games instead of just showing up Saturdays. [See full pricing →](/pricing/)
+
+## Seasons
+
+**[Fall League](/leagues/fall-league/)** — September–November, Saturday mornings
+
+**[Summer League](/leagues/summer-league/)** — June–July, Tuesday/Thursday evenings
+
+**[Little Ballers](/leagues/little-league/)** — January–March, Saturday mornings (K–2nd only)
+
+## Discounts (They Stack)
+
 - **Early bird:** $20 off (register 4+ weeks before season)
-- **Military:** $20 off (active duty and veterans)
+- **Military:** $20 off
 - **Sibling:** $20 off per additional child
 
-Payment plans available for all divisions. FCP is priced well below travel and AAU programs — and you get a dedicated facility, paid refs, stats, and real coaching included.
+## Register
 
-## League Divisions by Age & Skill Level
-
-We run separate divisions to keep competition fair and developmentally appropriate:
-
-**Mini Division (Ages 5–8):** Modified rules — lower basket (8 ft), smaller ball, no pressing, focus on learning the game. Score is kept but the emphasis is on fun and fundamentals.
-
-**Junior Division (Ages 8–11):** Standard youth rules, 10-foot baskets, zone and man defense allowed. Real refs, real stats. Most players in this division have 1–3 years of experience.
-
-**Intermediate Division (Ages 11–14):** Near-regulation rules. Players are introduced to full-court press, advanced offense, and defensive schemes. Coaching between quarters allowed.
-
-**Senior Division (Ages 15–18):** Full FHSAA-adjacent rules. This division is for high school players and serious athletes. Film is reviewed between games.
-
-## Season Schedule, Format & Game Days
-
-A standard FCP Sports league season runs **6-8 regular-season weeks** plus a single-elimination playoff. Each team plays one or two games per week. Game days vary by season but are structured to avoid conflicts with school sports and family schedules.
-
-- Regular season: 6-8 games depending on the season
-- Playoff bracket: top 4 or top 8 teams per division
-- Awards: trophies and recognition for champions at every level
-
-## Combine Night — Before Every Season
-
-Every FCP Sports league season begins with a **Combine Night** before the first game week. Every registered player goes through a brief on-court evaluation: ball handling, shooting, and 1-on-1 defense. Coaches use those results to draft balanced teams across all divisions.
-
-This matters because:
-- **No stacked teams.** Travel ball families can't stack a roster. Every team is drafted to be competitive.
-- **Your child plays real, close games.** Blowouts kill development. Balanced drafts mean every game matters.
-- **Coaches see every player early.** If a kid has a specific skill or needs extra attention, it shows on Combine Night — not week 5.
-
-Players who want to play with a specific friend or group can request it at registration — we honor reasonable requests within draft balance constraints.
-
-## Team Formation: Drafts and Rosters
-
-We draft teams for **competitive balance**. Players are not self-grouped, which means travel ball parents cannot stack a team. The draft process evaluates skill level and places players across teams to keep games competitive and meaningful.
-
-Players who already have a group (e.g., friends from school or a team that played together before) can request to be on the same roster — subject to draft balance constraints.
-
-## Parent & Spectator Information
-
-FCP Sports games are run with a real game atmosphere: scoreboard, music, and a PA system. Spectator seating is available. We ask parents to let coaches coach and refs ref — we enforce a positive sideline environment at every game. Any behavior that negatively affects the experience is addressed by facility staff immediately.
-
-## Join the League This Season
-
-Ready to register? [Sign up here](/registration/) or [contact us](/contact/) with questions about the upcoming season. View specific league details:
-
-- [Fall Basketball League](/leagues/fall-league/) — September-November, Saturday mornings
-- [Summer Basketball League](/leagues/summer-league/) — June-July, Tuesday/Thursday evenings
-- [Little Ballers League](/leagues/little-league/) — January-March, Saturday mornings (K-2nd only)
-
-For players who want to stay sharp between league seasons, check out our [open gym sessions](/services/open-gym/) for pickup games and our [basketball training programs](/services/basketball-training/) for off-season skill development. We also run [basketball camps](/camps/) throughout the year.
-
-Looking for intensive skill development? Check out our [basketball camps](/camps/) running throughout the year for all ages and skill levels.
+[Register here](/registration/) or [call 850.961.2323](/contact/).

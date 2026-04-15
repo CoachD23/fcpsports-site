@@ -1,34 +1,37 @@
 ---
-title: "About FCP Sports | Basketball Training Fort Walton Beach"
-description: "FCP Sports is the Emerald Coast's premier basketball development facility. Learn about our mission, coaching staff, and why 500+ athletes across 7 cities choose us."
+title: "About FCP Sports | Basketball Fort Walton Beach"
+description: "FCP Sports is Fort Walton Beach's basketball facility. Leagues, camps, training, and open gym for 500+ athletes across 7 cities."
 layout: "about"
 hero_image: "/images/fcp-sports-basketball-coach-sideline-talk-fort-walton-beach.jpg"
 ---
 
-FCP Sports was founded with a single purpose: to bring elite basketball development to the Florida Panhandle.
+## One Gym. One Sport. Your Kid.
 
-For too long, Emerald Coast athletes had to travel hours to access the kind of structured, professional training programs available in larger metro areas. We changed that.
+We're a basketball gym in Fort Walton Beach. That's all we do — leagues, camps, training, open gym. No soccer field out back. No rock wall. Just basketball, done right.
 
-Located in Fort Walton Beach, FL, FCP Sports serves athletes from Destin to Panama City — a region spanning hundreds of miles of coastline and thousands of young athletes who deserve world-class coaching close to home.
+Over 500 kids from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview come here every week. Some are five. Some are trying to make varsity. All of them belong here.
 
-## What Makes FCP Sports Different
+## What We Do
 
-We don't run babysitting camps. We don't run feel-good programs that make kids feel busy but don't move the needle. Every session at FCP Sports has a purpose — a skill being developed, a habit being built, a gap in an athlete's game being closed.
+- **[Youth League](/youth-league/)** — Saturday morning basketball, ages 5–14
+- **[Basketball Camps](/camps/)** — Summer, spring break, girls-only, and holiday sessions
+- **[Training Programs](/services/basketball-training/)** — Weekly skill development with progress tracking
+- **[Private Lessons](/services/basketball-lessons/)** — 1-on-1 coaching for any age
+- **[Basketball Leagues](/leagues/)** — Fall, summer, and little ballers seasons
+- **[Open Gym](/services/open-gym/)** — Drop-in pickup for youth and adults
 
-Our programs are built on a simple philosophy: **develop the whole athlete**. That means physical skill development, basketball IQ, mental toughness, and the character traits that make great teammates and great people.
-
-## Our Community
+## Who Comes Here
 
 ![FCP Sports 2026 SEHAL basketball champions — Fort Walton Beach youth basketball league team photo](/images/fcp-sports-basketball-league-champions-fort-walton-beach-fl.jpg)
 
-FCP Sports serves athletes from Fort Walton Beach, Destin, Niceville, Navarre, Crestview, Pensacola, and Panama City. Athletes come from over 30 schools across Okaloosa, Santa Rosa, Escambia, and Bay Counties.
+Kids from over 30 schools. Beginners who have never dribbled. High schoolers chasing a college offer. They all train under the same roof.
 
-We work with families from all backgrounds — from beginners picking up a basketball for the first time to AAU-level athletes preparing for college recruitment.
+Military families — we know your schedule changes without warning. We'll work with you. Always have.
 
-## Keep Exploring
+## Get in Touch
 
-- [Basketball Camps](/camps/) — Summer day camps, girls-only, holiday, and more
-- [Basketball Leagues](/leagues/) — Fall, summer, and little ballers leagues
-- [Our Facility](/basketball-gym-fort-walton-beach/) — Fort Walton Beach's only dedicated basketball gym
-- [Military Family Discounts](/military-families/) — $20 off all programs for Eglin AFB and Hurlburt Field families
-- [Program Pricing](/pricing/) — Transparent pricing for all FCP Sports programs
+**Phone:** 850.961.2323
+**Email:** info@fcpsports.org
+**Address:** Fort Walton Beach, FL
+
+[Register for a program](/registration/) · [Contact us](/contact/) · [See pricing](/pricing/)

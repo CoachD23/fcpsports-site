@@ -494,7 +494,27 @@
   function esc(s) { const d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
 
   btnNext.addEventListener("click", function() {
-    if (validateStep(step)) goTo(step + 1);
+    if (!validateStep(step)) return;
+    // Save partial lead when leaving Step 1
+    if (step === 1) {
+      try {
+        fetch("/.netlify/functions/register-youth-league", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            partial: true,
+            parentEmail: form.parentEmail.value.trim().toLowerCase(),
+            parentFirst: form.parentFirst.value.trim(),
+            parentLast: form.parentLast.value.trim(),
+            parentPhone: form.parentPhone.value.trim(),
+            parentZip: form.parentZip.value.trim(),
+            smsConsent: form.smsConsent.checked,
+            referralCode: form.referralCode.value.trim(),
+          }),
+        }).catch(function() {}); // fire-and-forget
+      } catch (_) {}
+    }
+    goTo(step + 1);
   });
   btnBack.addEventListener("click", function() { if (step > 1) goTo(step - 1); });
 

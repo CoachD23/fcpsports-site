@@ -91,6 +91,43 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers: cors, body: json({ error: "Invalid request" }) };
   }
 
+  /* --- Partial save (Step 1 lead capture) --- */
+  if (b.partial) {
+    const partialRequired = ["parentEmail", "parentFirst", "parentLast", "parentPhone", "parentZip"];
+    for (const field of partialRequired) {
+      if (!b[field] || !String(b[field]).trim()) {
+        return { statusCode: 400, headers: cors, body: json({ error: `Missing: ${field}` }) };
+      }
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.parentEmail.trim())) {
+      return { statusCode: 400, headers: cors, body: json({ error: "Invalid email" }) };
+    }
+    const hasGhlPartial = process.env.GHL_API_KEY && process.env.GHL_LOCATION_ID;
+    if (hasGhlPartial) {
+      try {
+        const today = new Date().toISOString().slice(0, 10);
+        await fetch(`${GHL_BASE}/contacts/upsert`, {
+          method: "POST",
+          headers: ghlHeaders(),
+          body: json({
+            locationId: process.env.GHL_LOCATION_ID,
+            firstName: b.parentFirst.trim(),
+            lastName: b.parentLast.trim(),
+            email: b.parentEmail.trim().toLowerCase(),
+            phone: normalizePhone(b.parentPhone),
+            postalCode: b.parentZip.trim(),
+            tags: ["fcpsports", "youth-league-partial", `submitted-${today}`],
+            source: "youth-league-partial",
+          }),
+        });
+      } catch (e) {
+        console.warn("[register-youth-league] Partial save GHL error:", e.message);
+      }
+    }
+    console.log(`[register-youth-league] Partial lead: ${b.parentEmail}`);
+    return { statusCode: 200, headers: cors, body: json({ ok: true }) };
+  }
+
   const required = ["parentEmail", "parentFirst", "parentLast", "parentPhone", "parentZip",
     "childFirst", "childLast", "childDob", "division", "jerseySize",
     "emergencyName", "emergencyPhone"];

@@ -1,8 +1,8 @@
 ---
 hero_image: /images/fcp-sports-training.jpg
 title: "Basketball Training Fort Walton Beach FL | FCP Sports"
-description: "Basketball training near me — FCP Sports offers progressive skill development for youth, middle school & high school players in Fort Walton Beach."
-h1: "Basketball Training in Fort Walton Beach — Personalized Skill Development at FCP Sports"
+description: "Basketball training in Fort Walton Beach — progressive skill development for youth, middle school, and high school players at FCP Sports."
+h1: "Basketball Training"
 keyword: "basketball training near me"
 age_range: "Ages 8–18"
 price: "Contact for pricing"
@@ -11,67 +11,49 @@ program_name: "Skills Training"
 ghl_tag: "train"
 course_type: "basketball training"
 faq:
-  - q: "Where can I find basketball training near me on the Emerald Coast?"
-    a: "FCP Sports in Fort Walton Beach is the only dedicated basketball training facility between Pensacola and Panama City. Players from Fort Walton Beach, Destin, Niceville, Navarre, Crestview, and as far as DeFuniak Springs train here weekly. We are located just off US-98 with easy access from across Okaloosa County."
-  - q: "How often should my child do basketball training?"
-    a: "For meaningful skill development, we recommend a minimum of two training sessions per week. Once-a-week players improve slowly; twice-a-week players see real, measurable gains within 4–6 weeks. Our coaches will recommend the right frequency at your child's initial skill assessment."
-  - q: "What is the difference between basketball training and basketball lessons?"
-    a: "Basketball training at FCP Sports refers to our structured, ongoing group development programs — assessment, custom plan, weekly sessions, and progress benchmarking over months. Basketball lessons are individual private sessions focused on specific skills. Training is systematic and long-term; lessons are targeted and flexible. Many players do both."
-  - q: "Does FCP Sports offer basketball training for high school players?"
-    a: "Yes — we have a dedicated high school training track designed around the demands of FHSAA competition and college recruiting. Players from Choctawhatchee High, Niceville High, Navarre High, and Fort Walton Beach High have all trained at FCP Sports to prepare for tryouts, develop their skills, and build recruiting profiles."
-  - q: "How much does basketball training cost in Fort Walton Beach?"
-    a: "Training program pricing depends on the track (group or semi-private), session frequency, and program length. We offer monthly and semester-based packages. Contact us for current pricing or request a free trial session to experience the program before committing."
+  - q: "Where can I find basketball training near me?"
+    a: "FCP Sports in Fort Walton Beach. Players from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview train here weekly."
+  - q: "How often should my child train?"
+    a: "Twice a week minimum for real improvement. Once-a-week players improve slowly. Twice-a-week players see measurable gains in 4–6 weeks."
+  - q: "What's the difference between training and private lessons?"
+    a: "Training is our ongoing group program — assessment, custom plan, weekly sessions, progress reports. Lessons are individual 1-on-1 sessions for specific skills. Many players do both."
+  - q: "Do you train high school players?"
+    a: "Yes. Players from Choctawhatchee, Niceville, Fort Walton Beach High, and Navarre High all train here for tryout prep and off-season development."
+  - q: "How much does training cost?"
+    a: "Depends on the track and frequency. We offer monthly and semester packages. Contact us for pricing or request a free trial session."
 ---
 
-## What Makes FCP Sports Basketball Training Different
+## Your Kid Gets Better Every Week. You Can See It.
 
-There is no other dedicated basketball training facility between Pensacola and Panama City. When families in Fort Walton Beach, Destin, Niceville, or Navarre search for serious basketball development, FCP Sports is the answer — because no comparable alternative exists on the Emerald Coast.
+This isn't a drop-in clinic. It's a plan built around your kid.
 
-But location alone does not make training great. What sets FCP Sports apart is the **systematic approach**. We don't run players through random drills and call it training. Every athlete who enrolls in our training programs goes through:
+We figure out what they need to work on, train it every week, and show you the progress in writing. No guessing. You'll see it at home, too — the way they handle the ball, the confidence when they step on the court.
 
-1. **Baseline skill assessment** — we measure ball handling, shooting percentage, footwork, and basketball IQ before training begins
-2. **Custom development plan** — built around your athlete's specific weaknesses and position goals
-3. **Weekly structured sessions** — progressive overload in skill work, same way strength training builds muscle over time
-4. **Progress benchmarks** — we reassess at 30, 60, and 90 days and share written reports with parents
+## How It Works
 
-Players from 7 Emerald Coast cities train here weekly. This is not a camp. This is not a one-off lesson. This is a program.
+1. **We watch your kid play** — ball handling, shooting, footwork, decision-making
+2. **We build a plan** — focused on what they actually need, not a generic curriculum
+3. **They train every week** — skills build on each other, session by session
+4. **You get a written report** — at 30, 60, and 90 days, so you know it's working
 
-## Training Programs by Skill Level
+## Three Tracks
 
-### Beginner Development Track (Ages 8–11)
-First-time players and raw athletes who have never had structured instruction. We build the foundation: dribbling with both hands, proper shooting form, basic footwork, and learning the rules of the game. Fun-first, confidence-building environment.
+**Beginner (Ages 8–11)** — First-time players learning the fundamentals. Dribbling with both hands, shooting form, basic footwork, rules of the game. Fun-first, confidence-building.
 
-### Intermediate Skills Track (Ages 10–14)
-Players who know the basics but plateau during games. We identify the specific gaps — usually footwork, off-hand dribbling, or decision-making under pressure — and systematically close them. Group training with 6–8 athletes per session.
+**Intermediate (Ages 10–14)** — Players who know the basics but plateau in games. We find the specific gaps — usually footwork, off-hand, or decision-making — and close them. Groups of 6–8 athletes.
 
-### Advanced Performance Track (Ages 13–18)
-High school players and serious athletes preparing for FHSAA tryouts, AAU competition, or college recruiting. Position-specific work, game-speed drills, film review, and conditioning. Choctawhatchee, Niceville, and Navarre High players train on this track regularly.
+**Advanced (Ages 13–18)** — For kids getting ready for high school tryouts or already playing varsity. This is where it gets intense — position-specific work, game-speed reps, film, and conditioning.
 
-## Skills We Develop: Ball Handling, Shooting, Footwork, IQ
+## What We Work On
 
-**Ball Handling:** Both hands, pressure situations, change-of-pace, combo moves. We use ball handling metrics to track improvement — actual measurable counts, not impressions.
+Ball handling. Shooting. Footwork. Basketball IQ. The fundamentals that translate directly to game performance.
 
-**Shooting:** Catch-and-shoot, off-the-dribble, pull-up jumper, mid-range, and three-point range based on age and level. We video shooting mechanics and use slow-motion review.
+Every session is focused on your kid's specific plan — not a one-size-fits-all workout.
 
-**Footwork:** The most undercoached skill in youth basketball. Pivots, jab steps, drop steps, closeouts, defensive slides. Good footwork creates separation; bad footwork creates turnovers.
+## Get Started
 
-**Basketball IQ:** We don't just train bodies — we train minds. When to attack, when to kick, how to read screens, when to help on defense. IQ separates good players from great ones at every level.
+Start with a free baseline assessment. We'll show you where your athlete is and how we'll get them where they want to go.
 
-## How We Track Your Progress
+[Register for training](/registration/) or [call 850.961.2323](/contact/).
 
-Unlike most gyms where your child trains and you have no idea if it's working, FCP Sports provides **written progress reports** at each reassessment. You'll see objective metrics: shooting percentage improvement, dribble speed benchmarks, defensive rating in scrimmages.
-
-Parents deserve to know what they're paying for. We make sure you do.
-
-## Get Started with Basketball Training
-
-If your athlete is serious about getting better, start with a free baseline assessment. We'll show you exactly where they are, where they need to go, and how our training programs will get them there.
-
-[Register for training](/registration/) or [contact us](/contact/) to schedule your athlete's assessment. Already training and want more individualized attention? Explore our [private basketball lessons](/services/basketball-lessons/) for 1-on-1 focused instruction.
-
-## Keep Exploring
-
-- [Basketball Camps](/camps/) — Intensive multi-day skill development camps for all ages
-- [Private Basketball Lessons](/services/basketball-lessons/) — 1-on-1 focused instruction for faster individual progress
-- [Basketball Leagues](/leagues/) — Put your training to work in a real competitive league
-- [Military Family Discounts](/military-families/) — Special rates for Eglin AFB and Hurlburt Field families
+Want 1-on-1 attention? Check out [private basketball lessons](/services/basketball-lessons/).
