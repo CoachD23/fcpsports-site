@@ -43,6 +43,10 @@ function isRateLimited(ip) {
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 
+function escHtml(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 function ghlHeaders() {
   return {
     Authorization: `Bearer ${process.env.GHL_API_KEY}`,
@@ -173,11 +177,11 @@ exports.handler = async function (event) {
     if (safeTag === "gym-rental-inquiry" && contactId) {
       const emailBody = [
         `<h2>GYM RENTAL INQUIRY</h2>`,
-        `<p><strong>Name:</strong> ${parentFirstName.trim()} ${parentLastName.trim()}</p>`,
-        `<p><strong>Email:</strong> ${email.trim()}</p>`,
-        phone.trim() ? `<p><strong>Phone:</strong> ${phone.trim()}</p>` : "",
-        message.trim() ? `<p><strong>Message:</strong> ${message.trim()}</p>` : "",
-        `<p><strong>Source:</strong> ${source}</p>`,
+        `<p><strong>Name:</strong> ${escHtml(parentFirstName.trim())} ${escHtml(parentLastName.trim())}</p>`,
+        `<p><strong>Email:</strong> ${escHtml(email.trim())}</p>`,
+        phone.trim() ? `<p><strong>Phone:</strong> ${escHtml(phone.trim())}</p>` : "",
+        message.trim() ? `<p><strong>Message:</strong> ${escHtml(message.trim())}</p>` : "",
+        `<p><strong>Source:</strong> ${escHtml(source)}</p>`,
       ].filter(Boolean).join("");
 
       await fetch(`${GHL_BASE}/conversations/messages`, {

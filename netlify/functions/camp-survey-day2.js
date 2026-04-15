@@ -35,7 +35,6 @@ function createSmtpTransport() {
       user: "info@fcpsports.org",
       pass: process.env.FCPSPORTS_SMTP_PASS,
     },
-    tls: { ciphers: "SSLv3" },
   });
 }
 
@@ -283,9 +282,9 @@ FCP Sports<br>Fort Walton Beach, FL</p>`,
   const rows = coldLeads.map(c => {
     const date = new Date(c.dateAdded || c.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" });
     return `<tr>
-      <td style="padding:8px 12px;border-bottom:1px solid #eee">${c.firstName || ""} ${c.lastName || ""}</td>
-      <td style="padding:8px 12px;border-bottom:1px solid #eee">${c.email || ""}</td>
-      <td style="padding:8px 12px;border-bottom:1px solid #eee">${c.phone || ""}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${escHtml(c.firstName || "")} ${escHtml(c.lastName || "")}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${escHtml(c.email || "")}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${escHtml(c.phone || "")}</td>
       <td style="padding:8px 12px;border-bottom:1px solid #eee">${date}</td>
     </tr>`;
   }).join("");

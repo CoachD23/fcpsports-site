@@ -22,7 +22,6 @@ function createSmtpTransport() {
       user: "info@fcpsports.org",
       pass: process.env.FCPSPORTS_SMTP_PASS,
     },
-    tls: { ciphers: "SSLv3" },
   });
 }
 const PIPELINE_ID = "YtrqQQ8kE2R3bZjnZxIK"; // FCP Sports Leads

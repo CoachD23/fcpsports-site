@@ -45,7 +45,6 @@ function createSmtpTransport() {
       user: "info@fcpsports.org",
       pass: process.env.FCPSPORTS_SMTP_PASS,
     },
-    tls: { ciphers: "SSLv3" },
   });
 }
 
