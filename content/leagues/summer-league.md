@@ -1,17 +1,17 @@
 ---
 title: "Summer Basketball League Fort Walton Beach | FCP Sports"
-description: "Summer youth basketball league in Fort Walton Beach. 6-week Tue/Thu evening season, trained refs, stat tracking, and playoffs. Ages 5-18 from $59 with jersey."
+description: "Summer youth basketball league in Fort Walton Beach. 6-week Tue/Thu evening season, trained refs, stat tracking, and playoffs. Ages 5-18 from $79 with jersey."
 h1: "Summer Basketball League in Fort Walton Beach"
 keyword: "summer basketball league fort walton beach"
 age_range: "Ages 5-18"
-price: "Starting at $59"
+price: "Starting at $79"
 frequency: "Tue/Thu evenings, 6-8pm"
 layout: "services"
 faq:
   - q: "When does the summer basketball league run in Fort Walton Beach?"
     a: "The FCP Sports summer basketball league runs June through July 2026 -- a 6-week regular season plus a single-elimination playoff. Games are played Tuesday and Thursday evenings from 6-8pm. Registration opens approximately 6 weeks before the season starts."
   - q: "How much does the summer basketball league cost?"
-    a: "Pricing is the same across all our league seasons: Mini (K-2nd) is $59, Junior (3rd-5th) is $79, Intermediate (6th-8th) is $89, and Senior (9th-12th) is $99. Every registration includes a game jersey. We offer $20 off for early bird registration, $20 off for military families, and $20 off per additional sibling. Payment plans are available."
+    a: "Pricing is the same across all our league seasons: Mini (K-2nd) is $79, Junior (3rd-5th) is $99, Intermediate (6th-8th) is $129, and Senior (9th-12th) is $149. Every registration includes a game jersey. We offer $20 off for early bird registration, $20 off for military families, and $20 off per additional sibling. Payment plans are available."
   - q: "Is the summer league shorter than other seasons?"
     a: "Yes. The summer league is a 6-week season (6 regular-season games plus playoffs) compared to our 8-week fall season. We keep the summer season shorter because families travel, kids attend camps, and schedules are less predictable. You still get the full league experience -- stats, standings, refs, playoffs, trophies -- in a tighter window."
   - q: "Why are summer league games on weeknight evenings?"
@@ -38,16 +38,16 @@ Military families from Eglin AFB and Hurlburt Field receive a discount on all le
 
 ## Four Divisions, Age-Appropriate Rules
 
-**Mini Division (K-2nd Grade, Ages 5-8) -- $59**
+**Mini Division (K-2nd Grade, Ages 5-8) -- $79**
 Modified rules with 8-foot baskets, smaller balls, and no full-court press. The emphasis is on fun, fundamentals, and building confidence. Jersey included.
 
-**Junior Division (3rd-5th Grade, Ages 8-11) -- $79**
+**Junior Division (3rd-5th Grade, Ages 8-11) -- $99**
 Standard youth rules with 10-foot baskets. Zone and man-to-man defense allowed. Real refs and real stats from day one. Jersey included.
 
-**Intermediate Division (6th-8th Grade, Ages 11-14) -- $89**
+**Intermediate Division (6th-8th Grade, Ages 11-14) -- $129**
 Near-regulation rules with full-court press, advanced offensive sets, and defensive schemes. Coaching between quarters allowed. Jersey included.
 
-**Senior Division (9th-12th Grade, Ages 15-18) -- $99**
+**Senior Division (9th-12th Grade, Ages 15-18) -- $149**
 Full FHSAA-adjacent rules. Competitive reps for high school athletes who want to stay sharp over the summer. Film review available between games. Jersey included.
 
 ## What Every Registration Includes

@@ -1,6 +1,6 @@
 ---
 title: "Youth Basketball Leagues in Fort Walton Beach — Complete Guide for Parents"
-description: "Everything parents need to know about youth basketball leagues in Fort Walton Beach — rec leagues vs FCP Sports, pricing, refs, schedules, and what to expect."
+description: "Everything parents need to know about youth basketball leagues in Fort Walton Beach — pricing, refs, schedules, divisions, and what to expect at FCP Sports."
 date: 2026-04-05
 category: "Leagues"
 keyword: "youth basketball league fort walton beach"
@@ -17,9 +17,7 @@ There are two primary pathways for youth basketball leagues in Fort Walton Beach
 
 **City of FWB Recreation Leagues** run through the city parks and recreation department. Registration typically runs $30–50 per season. Games are officiated by volunteer referees — often parents of players in the league — and there are no official statistics tracked. The program is a good entry point for young athletes who have never played organized basketball. The quality of competition and instruction varies significantly by season and by who shows up to volunteer.
 
-**FCP Sports Leagues** run out of a dedicated basketball facility in Fort Walton Beach. Registration runs $59–99 per season depending on the division. Every game is officiated by paid referees with assigned officiating experience — not volunteers pulled from the bleachers. Stats are tracked for every game, post-game coaching is built into each session, and the league runs structured playoffs. The competitive level is consistently higher because the program is designed around player development, not just getting kids on a court.
-
-The gap between these two options is significant. If your child is playing in a city rec league and wants to see what organized, competitive youth basketball actually looks like, the transition to an FCP Sports league is usually noticeable within the first session.
+**FCP Sports Leagues** run out of a dedicated basketball facility in Fort Walton Beach. Registration runs $79–149 per season depending on the division. Every game is officiated by paid referees. Stats are tracked for every game, post-game coaching is built into each session, and the league runs structured playoffs. The program is designed around player development with a full season experience.
 
 ## What Age Should My Child Start Playing in a League?
 
@@ -71,7 +69,7 @@ Parents sometimes ask whether their child can play on the same team as a friend.
 
 | Feature | City Rec League | FCP Sports League |
 |---------|-----------------|-------------------|
-| Cost | $30–50 | $59–99 |
+| Cost | $30–50 | $79–149 |
 | Referees | Volunteer (parents) | Paid certified officials |
 | Statistics | None | Tracked every game |
 | Post-game coaching | None | Included |

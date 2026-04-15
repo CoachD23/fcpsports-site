@@ -6,7 +6,7 @@ keyword: "youth basketball league fort walton beach comparison"
 layout: "services"
 faq:
   - q: "How much does youth basketball league cost in Fort Walton Beach?"
-    a: "The Fort Walton Beach city rec league typically runs $30–50 per player per season. FCP Sports leagues are $59–99 per player and include a jersey, paid referees, stats tracking, standings, and playoffs. Military families at Eglin or Hurlburt can use the FCP military discount, which brings the gap much closer."
+    a: "FCP Sports leagues are $79–149 per player per season and include a jersey, paid referees, stats tracking, standings, and playoffs. Military families at Eglin or Hurlburt receive a $20 discount on all programs."
   - q: "What is the difference between FCP Sports and the city rec league?"
     a: "The main differences are facility, officiating, and structure. The rec league uses school gyms with volunteer refs and no stats. FCP Sports uses a dedicated basketball-only gym with paid certified referees, digital standings, individual player stats, and a full playoff bracket at the end of every season."
   - q: "Is the Fort Walton Beach rec league good for young kids?"
@@ -23,7 +23,7 @@ If your child wants to play organized basketball in Fort Walton Beach, there are
 
 | Feature | FWB City Rec League | FCP Sports League |
 |---|---|---|
-| Registration cost | $30–50 | $59–99 |
+| Registration cost | $30–50 | $79–149 |
 | Jersey included | Varies | Yes, included |
 | Facility | School gym (shared) | Dedicated basketball gym |
 | Referees | Volunteer | Paid, certified |
@@ -63,9 +63,9 @@ The result is a youth basketball experience that more closely mirrors what playe
 
 ## A Note on Pricing
 
-The cost difference between rec league and FCP Sports is real. At full price, FCP costs roughly $30–50 more per season. However, FCP includes a jersey (a $15–25 value on its own), so the actual gap is smaller than the listed price difference suggests.
+FCP Sports league registration ranges from $79 to $149 depending on the division. Every registration includes a game jersey. We also offer $20 off for early bird registration, $20 off for military families, and $20 off per additional sibling — discounts can be combined.
 
-For **military families**, the FCP military discount closes the gap further. Many families stationed at Eglin AFB or Hurlburt Field find that FCP ends up costing close to rec league pricing after the discount is applied. Ask about availability when you register.
+For **military families**, the FCP military discount brings pricing down to $59–129 per season. Ask about availability when you register.
 
 ## The Bottom Line
 

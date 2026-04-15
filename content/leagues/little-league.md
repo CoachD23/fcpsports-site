@@ -1,17 +1,17 @@
 ---
 title: "Little Ballers Basketball League Fort Walton Beach | FCP Sports"
-description: "Little Ballers league for K-2nd graders in Fort Walton Beach. 6-week Saturday season, modified rules, lower baskets, focus on fun. $59 includes jersey."
+description: "Little Ballers league for K-2nd graders in Fort Walton Beach. 6-week Saturday season, modified rules, lower baskets, focus on fun. $79 includes jersey."
 h1: "Little Ballers Basketball League in Fort Walton Beach"
 keyword: "little basketball league fort walton beach"
 age_range: "Ages 5-8 (K-2nd Grade)"
-price: "$59 (jersey included)"
+price: "$79 (jersey included)"
 frequency: "Saturday mornings"
 layout: "services"
 faq:
   - q: "What age is the Little Ballers league for?"
     a: "Little Ballers is designed for kindergarten through 2nd grade, typically ages 5-8. This is an introductory league built specifically for younger players who are new to organized basketball or still learning the fundamentals. If your child has never played in a league before, this is the right starting point."
   - q: "How much does the Little Ballers basketball league cost?"
-    a: "Registration is $59 and includes a game jersey -- no additional fees. We offer $20 off for military families (Eglin AFB, Hurlburt Field) and $20 off per additional sibling. Early bird pricing is also available when you register 4+ weeks before the season. Payment plans are available if needed."
+    a: "Registration is $79 and includes a game jersey -- no additional fees. We offer $20 off for military families (Eglin AFB, Hurlburt Field) and $20 off per additional sibling. Early bird pricing is also available when you register 4+ weeks before the season. Payment plans are available if needed."
   - q: "What rules are used in the Little Ballers league?"
     a: "We use modified rules designed for younger players: 8-foot baskets, smaller basketballs, no full-court pressing, and shorter game periods. Score is kept, but the focus is on learning the game, having fun, and building teamwork. Coaches are on the court to guide players during games. Every child gets meaningful playing time."
   - q: "Is this league competitive or recreational?"
@@ -24,7 +24,7 @@ faq:
 
 There is a difference between handing a kid a basketball and giving them a real league experience. Little Ballers at FCP Sports is built for kindergarten through 2nd graders who are ready for their first taste of organized basketball -- real teams, real games, real refs, and real fun.
 
-This is not a chaotic rec center program where 15 kids chase the ball around a shared gym. Little Ballers runs in our dedicated basketball facility in Fort Walton Beach with age-appropriate rules, trained referees, and coaches who understand how to work with young players. We keep score. We have standings. But the emphasis is on fundamentals, teamwork, and making sure every child walks off the court wanting to come back next week.
+Little Ballers runs in our dedicated basketball facility in Fort Walton Beach with age-appropriate rules, trained referees, and coaches who understand how to work with young players. We keep score. We have standings. But the emphasis is on fundamentals, teamwork, and making sure every child walks off the court wanting to come back next week.
 
 Families from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview bring their kids to Little Ballers. Military families stationed at Eglin AFB and Hurlburt Field receive a discount on registration.
 
@@ -34,7 +34,7 @@ Families from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview bring
 - **Duration:** 6 regular-season games + playoff bracket
 - **Game days:** Saturday mornings
 - **Location:** FCP Sports, Fort Walton Beach, FL
-- **Price:** $59 (game jersey included)
+- **Price:** $79 (game jersey included)
 - **Ages:** K-2nd grade (5-8 years old)
 
 ## What Makes Little Ballers Different
@@ -61,7 +61,7 @@ Families from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview bring
 
 ## Pricing and Discounts
 
-**Registration: $59** (jersey included, no hidden fees)
+**Registration: $79** (jersey included, no hidden fees)
 
 - **Early bird:** $20 off when you register 4+ weeks before the season
 - **Military:** $20 off for active-duty and veteran families
