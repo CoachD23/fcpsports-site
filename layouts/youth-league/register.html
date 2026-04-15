@@ -1,0 +1,543 @@
+{{ define "main" }}
+<meta name="robots" content="noindex, nofollow" />
+
+<section class="pt-8 pb-20 bg-gray-50 min-h-screen">
+  <div class="max-w-2xl mx-auto px-4">
+
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <a href="/youth-league/" class="text-gold font-display tracking-widest text-sm uppercase hover:underline">&larr; FCP Sports Youth League</a>
+      <h1 class="font-display text-3xl text-navy mt-2">Registration</h1>
+      <p class="text-gray-400 text-sm">Saturday Youth Basketball &bull; Summer 2026</p>
+    </div>
+
+    <!-- Step Indicator -->
+    <div class="flex items-center justify-between mb-8 max-w-lg mx-auto" id="step-nav">
+      <div class="step-dot active" data-step="1">
+        <div class="w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">1</div>
+        <span class="text-xs mt-1 text-gold font-semibold">Parent</span>
+      </div>
+      <div class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-1-2"></div>
+      <div class="step-dot" data-step="2">
+        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm">2</div>
+        <span class="text-xs mt-1 text-gray-400">Player</span>
+      </div>
+      <div class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-2-3"></div>
+      <div class="step-dot" data-step="3">
+        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm">3</div>
+        <span class="text-xs mt-1 text-gray-400">Uniform</span>
+      </div>
+      <div class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-3-4"></div>
+      <div class="step-dot" data-step="4">
+        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm">4</div>
+        <span class="text-xs mt-1 text-gray-400">Review</span>
+      </div>
+      <div class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-4-5"></div>
+      <div class="step-dot" data-step="5">
+        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm">5</div>
+        <span class="text-xs mt-1 text-gray-400">Payment</span>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10" id="reg-wrap">
+
+      <!-- Error display -->
+      <div id="err-wrap" class="hidden mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3" role="alert" aria-live="assertive">
+        <svg class="w-5 h-5 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span id="err-text" class="text-red-700 text-sm"></span>
+      </div>
+
+      <form id="reg-form" novalidate>
+
+        <!-- STEP 1: Parent Info -->
+        <div class="step-panel" data-step="1">
+          <h2 class="font-display text-xl text-navy mb-6">Parent / Guardian Information</h2>
+          <div class="space-y-4">
+            <div>
+              <label for="p-email" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Email Address <span class="text-red-500">*</span></label>
+              <input type="email" id="p-email" name="parentEmail" required autocomplete="email"
+                placeholder="you@email.com"
+                class="reg-input" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="p-first" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">First Name <span class="text-red-500">*</span></label>
+                <input type="text" id="p-first" name="parentFirst" required autocomplete="given-name"
+                  placeholder="First name"
+                  class="reg-input" />
+              </div>
+              <div>
+                <label for="p-last" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Last Name <span class="text-red-500">*</span></label>
+                <input type="text" id="p-last" name="parentLast" required autocomplete="family-name"
+                  placeholder="Last name"
+                  class="reg-input" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="p-zip" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">ZIP Code <span class="text-red-500">*</span></label>
+                <input type="text" id="p-zip" name="parentZip" required autocomplete="postal-code"
+                  placeholder="32548" inputmode="numeric" maxlength="5"
+                  class="reg-input" />
+              </div>
+              <div>
+                <label for="p-phone" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Primary Phone <span class="text-red-500">*</span></label>
+                <input type="tel" id="p-phone" name="parentPhone" required autocomplete="tel"
+                  placeholder="(850) 555-0100"
+                  class="reg-input" />
+              </div>
+            </div>
+            <div>
+              <label for="p-referral" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Referral Code <span class="text-gray-400 font-normal normal-case">(optional)</span></label>
+              <input type="text" id="p-referral" name="referralCode"
+                placeholder="Enter referral code if you have one"
+                class="reg-input" />
+            </div>
+            <label class="flex items-start gap-3 min-h-[44px] p-3 -mx-3 rounded-lg cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" id="p-sms" name="smsConsent" class="mt-1 w-4 h-4 accent-gold" />
+              <span class="text-xs text-gray-500">I agree to receive text messages from FCP Sports about this registration. Message frequency will vary. Reply STOP to unsubscribe.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 2: Player Info -->
+        <div class="step-panel hidden" data-step="2">
+          <h2 class="font-display text-xl text-navy mb-6">Player Information</h2>
+          <div class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="c-first" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Child's First Name <span class="text-red-500">*</span></label>
+                <input type="text" id="c-first" name="childFirst" required
+                  placeholder="First name"
+                  class="reg-input" />
+              </div>
+              <div>
+                <label for="c-last" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Child's Last Name <span class="text-red-500">*</span></label>
+                <input type="text" id="c-last" name="childLast" required
+                  placeholder="Last name"
+                  class="reg-input" />
+              </div>
+            </div>
+            <div>
+              <label for="c-dob" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Date of Birth <span class="text-red-500">*</span></label>
+              <input type="date" id="c-dob" name="childDob" required
+                class="reg-input" />
+              <div id="division-badge" class="hidden mt-2 inline-flex items-center gap-2 bg-gold/10 border border-gold/30 rounded-lg px-4 py-2">
+                <span class="text-sm text-navy font-semibold" id="division-label"></span>
+                <span class="text-xs text-gray-500" id="division-time"></span>
+              </div>
+            </div>
+            <div>
+              <label for="c-buddy" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Buddy Request <span class="text-gray-400 font-normal normal-case">(optional)</span></label>
+              <input type="text" id="c-buddy" name="buddyRequest"
+                placeholder="Name of a friend you'd like on the same team"
+                class="reg-input" />
+            </div>
+            <hr class="border-gray-100 my-2" />
+            <h3 class="font-display text-lg text-navy">Emergency Contact</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="e-name" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Contact Name <span class="text-red-500">*</span></label>
+                <input type="text" id="e-name" name="emergencyName" required
+                  placeholder="Full name"
+                  class="reg-input" />
+              </div>
+              <div>
+                <label for="e-phone" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Contact Phone <span class="text-red-500">*</span></label>
+                <input type="tel" id="e-phone" name="emergencyPhone" required
+                  placeholder="(850) 555-0100"
+                  class="reg-input" />
+              </div>
+            </div>
+            <div>
+              <label for="c-medical" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Medical / Allergy Notes <span class="text-gray-400 font-normal normal-case">(optional)</span></label>
+              <textarea id="c-medical" name="medicalNotes" rows="2"
+                placeholder="Any allergies, medical conditions, or special needs we should know about"
+                class="reg-input"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: Player Uniform -->
+        <div class="step-panel hidden" data-step="3">
+          <h2 class="font-display text-xl text-navy mb-6">Player Uniform</h2>
+          <p class="text-gray-500 text-sm mb-6">Every registration includes a game jersey. Select the best size for your child.</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="jersey-sizes">
+            <label class="jersey-option">
+              <input type="radio" name="jerseySize" value="YS" class="sr-only" />
+              <div class="jersey-card">
+                <span class="font-display text-2xl text-navy">YS</span>
+                <span class="text-xs text-gray-500">Youth Small</span>
+              </div>
+            </label>
+            <label class="jersey-option">
+              <input type="radio" name="jerseySize" value="YM" class="sr-only" />
+              <div class="jersey-card">
+                <span class="font-display text-2xl text-navy">YM</span>
+                <span class="text-xs text-gray-500">Youth Medium</span>
+              </div>
+            </label>
+            <label class="jersey-option">
+              <input type="radio" name="jerseySize" value="YL" class="sr-only" />
+              <div class="jersey-card">
+                <span class="font-display text-2xl text-navy">YL</span>
+                <span class="text-xs text-gray-500">Youth Large</span>
+              </div>
+            </label>
+            <label class="jersey-option">
+              <input type="radio" name="jerseySize" value="AS" class="sr-only" />
+              <div class="jersey-card">
+                <span class="font-display text-2xl text-navy">AS</span>
+                <span class="text-xs text-gray-500">Adult Small</span>
+              </div>
+            </label>
+            <label class="jersey-option">
+              <input type="radio" name="jerseySize" value="AM" class="sr-only" />
+              <div class="jersey-card">
+                <span class="font-display text-2xl text-navy">AM</span>
+                <span class="text-xs text-gray-500">Adult Medium</span>
+              </div>
+            </label>
+            <label class="jersey-option">
+              <input type="radio" name="jerseySize" value="AL" class="sr-only" />
+              <div class="jersey-card">
+                <span class="font-display text-2xl text-navy">AL</span>
+                <span class="text-xs text-gray-500">Adult Large</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 4: Review -->
+        <div class="step-panel hidden" data-step="4">
+          <h2 class="font-display text-xl text-navy mb-6">Review Your Registration</h2>
+
+          <div class="space-y-4">
+            <div class="bg-gray-50 rounded-xl p-5">
+              <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Parent / Guardian</h3>
+              <div class="text-sm text-navy space-y-1" id="review-parent"></div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-5">
+              <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Player</h3>
+              <div class="text-sm text-navy space-y-1" id="review-player"></div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-5">
+              <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Uniform</h3>
+              <div class="text-sm text-navy" id="review-uniform"></div>
+            </div>
+
+            <div class="bg-gold/10 border border-gold/30 rounded-xl p-5">
+              <div class="flex justify-between items-center">
+                <span class="font-display text-lg text-navy">Total Due</span>
+                <span class="font-display text-3xl text-gold" id="review-price">$149</span>
+              </div>
+              <p class="text-xs text-gray-500 mt-1" id="review-tier">Early bird pricing (by May 15)</p>
+            </div>
+
+            <label class="flex items-start gap-3 min-h-[44px] p-3 -mx-3 rounded-lg cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" id="r-photo" name="photoConsent" class="mt-1 w-4 h-4 accent-gold" />
+              <span class="text-xs text-gray-600">I consent to FCP Sports photographing and filming my child during league activities for promotional use on social media and the FCP Sports website.</span>
+            </label>
+
+            <label class="flex items-start gap-3 min-h-[44px] p-3 -mx-3 rounded-lg cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" id="r-pledge" name="parentPledge" required class="mt-1 w-4 h-4 accent-gold" />
+              <span class="text-xs text-gray-600"><strong>Parental Pledge (required):</strong> I understand this league is for kids. I will support my child, respect the referees and coaches, and model positive sportsmanship at every game. I will let coaches coach and refs ref.</span>
+            </label>
+
+            <label class="flex items-start gap-3 min-h-[44px] p-3 -mx-3 rounded-lg cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" id="r-terms" name="termsAccepted" required class="mt-1 w-4 h-4 accent-gold" />
+              <span class="text-xs text-gray-600"><strong>Terms (required):</strong> I agree that my child will receive equal playing time and that roster assignments are made by draft for competitive balance. Buddy requests are honored when possible but not guaranteed.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 5: Payment -->
+        <div class="step-panel hidden" data-step="5">
+          <h2 class="font-display text-xl text-navy mb-2">Payment</h2>
+          <p class="text-gray-500 text-sm mb-6">Secure payment processing. Your card will be charged immediately.</p>
+
+          <div class="bg-gold/10 border border-gold/30 rounded-xl p-5 mb-6">
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-sm text-navy font-semibold" id="pay-player-name"></span>
+                <span class="text-xs text-gray-500 block" id="pay-division"></span>
+              </div>
+              <span class="font-display text-3xl text-gold" id="pay-price">$149</span>
+            </div>
+          </div>
+
+          <!-- Authorize.net payment form placeholder -->
+          <div id="payment-fields" class="space-y-4">
+            <p class="text-center text-gray-400 text-sm py-8 border-2 border-dashed border-gray-200 rounded-xl">
+              Payment integration (Authorize.net) will be connected here.<br/>
+              <span class="text-xs">For now, registration will be submitted and staff will follow up for payment.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+          <button type="button" id="btn-back" class="hidden text-sm text-gray-500 hover:text-navy transition-colors min-h-[44px] px-4">&larr; Back</button>
+          <div class="flex-1"></div>
+          <button type="button" id="btn-next" class="btn-primary min-h-[44px]">
+            Next Step &rarr;
+          </button>
+          <button type="submit" id="btn-submit" class="hidden btn-primary min-h-[44px]">
+            <span id="submit-label">Complete Registration</span>
+            <svg id="submit-spin" class="hidden animate-spin inline-block w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+          </button>
+        </div>
+      </form>
+
+      <!-- Success -->
+      <div id="success-msg" class="hidden text-center py-12">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4" role="status" aria-live="polite">
+          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h2 class="font-display text-2xl text-navy mb-2">You're Registered!</h2>
+        <p class="text-gray-500 text-sm mb-6">Check your email for a confirmation. We'll see you on the court.</p>
+        <a href="/youth-league/" class="btn-primary">Back to Youth League</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .reg-input {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition;
+  }
+  .step-dot { @apply flex flex-col items-center text-center; }
+  .jersey-card {
+    @apply flex flex-col items-center justify-center border-2 border-gray-200 rounded-xl p-5 cursor-pointer transition-all hover:border-gold;
+  }
+  .jersey-option input:checked + .jersey-card {
+    @apply border-gold bg-gold/10 ring-2 ring-gold/30;
+  }
+</style>
+
+<script>
+(function() {
+  const form = document.getElementById("reg-form");
+  const wrap = document.getElementById("reg-wrap");
+  const panels = document.querySelectorAll(".step-panel");
+  const dots = document.querySelectorAll(".step-dot");
+  const btnNext = document.getElementById("btn-next");
+  const btnBack = document.getElementById("btn-back");
+  const btnSubmit = document.getElementById("btn-submit");
+  const errWrap = document.getElementById("err-wrap");
+  const errText = document.getElementById("err-text");
+  let step = 1;
+  const TOTAL_STEPS = 5;
+
+  function showError(msg, focusEl) {
+    errText.textContent = msg;
+    errWrap.classList.remove("hidden");
+    errWrap.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (focusEl) focusEl.focus();
+  }
+  function clearError() { errWrap.classList.add("hidden"); }
+
+  function goTo(s) {
+    step = s;
+    clearError();
+    panels.forEach(p => {
+      p.classList.toggle("hidden", +p.dataset.step !== step);
+    });
+    // Update step dots
+    dots.forEach((d, i) => {
+      const n = i + 1;
+      const circle = d.querySelector("div");
+      const label = d.querySelector("span");
+      if (n < step) {
+        circle.className = "w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm";
+        label.className = "text-xs mt-1 text-gold font-semibold";
+      } else if (n === step) {
+        circle.className = "w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm";
+        label.className = "text-xs mt-1 text-gold font-semibold";
+      } else {
+        circle.className = "w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm";
+        label.className = "text-xs mt-1 text-gray-400";
+      }
+    });
+    // Update bars
+    for (let i = 1; i < TOTAL_STEPS; i++) {
+      const bar = document.getElementById("bar-" + i + "-" + (i+1));
+      if (bar) bar.className = i < step ? "flex-1 h-0.5 bg-gold mx-1" : "flex-1 h-0.5 bg-gray-200 mx-1";
+    }
+    // Button visibility
+    btnBack.classList.toggle("hidden", step === 1);
+    btnNext.classList.toggle("hidden", step === TOTAL_STEPS);
+    btnSubmit.classList.toggle("hidden", step !== TOTAL_STEPS);
+    // Populate review on step 4
+    if (step === 4) populateReview();
+    if (step === 5) populatePayment();
+    wrap.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // Division calculation from DOB
+  const dobInput = document.getElementById("c-dob");
+  const divBadge = document.getElementById("division-badge");
+  const divLabel = document.getElementById("division-label");
+  const divTime = document.getElementById("division-time");
+
+  function calcDivision(dob) {
+    const today = new Date();
+    const birth = new Date(dob);
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+    if (age >= 5 && age <= 7) return { name: "Juniors (Ages 5–7)", time: "Sat 8:00–10:00 AM", code: "juniors" };
+    if (age >= 8 && age <= 10) return { name: "Youth (Ages 8–10)", time: "Sat 10:00 AM–12:00 PM", code: "youth" };
+    if (age >= 11 && age <= 14) return { name: "Junior Varsity (Ages 11–14)", time: "Sat 12:00–2:00 PM", code: "jv" };
+    return null;
+  }
+
+  dobInput.addEventListener("change", function() {
+    const div = calcDivision(this.value);
+    if (div) {
+      divLabel.textContent = div.name;
+      divTime.textContent = div.time;
+      divBadge.classList.remove("hidden");
+    } else {
+      divBadge.classList.add("hidden");
+    }
+  });
+
+  // Pricing tier
+  function getPriceTier() {
+    const now = new Date();
+    const earlyEnd = new Date("2026-05-16");
+    const regEnd = new Date("2026-05-30");
+    if (now < earlyEnd) return { price: 149, label: "Early bird pricing (by May 15)" };
+    if (now < regEnd) return { price: 164, label: "Regular pricing (May 16–29)" };
+    return { price: 179, label: "Late registration (May 30+)" };
+  }
+
+  // Validation per step
+  function validateStep(s) {
+    if (s === 1) {
+      const email = form.parentEmail.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError("Please enter a valid email address.", form.parentEmail); return false; }
+      if (!form.parentFirst.value.trim()) { showError("First name is required.", form.parentFirst); return false; }
+      if (!form.parentLast.value.trim()) { showError("Last name is required.", form.parentLast); return false; }
+      if (!form.parentZip.value.trim() || !/^\d{5}$/.test(form.parentZip.value.trim())) { showError("Please enter a valid 5-digit ZIP code.", form.parentZip); return false; }
+      if (!form.parentPhone.value.trim() || form.parentPhone.value.replace(/\D/g,"").length < 10) { showError("Please enter a valid phone number.", form.parentPhone); return false; }
+    }
+    if (s === 2) {
+      if (!form.childFirst.value.trim()) { showError("Child's first name is required.", form.childFirst); return false; }
+      if (!form.childLast.value.trim()) { showError("Child's last name is required.", form.childLast); return false; }
+      if (!form.childDob.value) { showError("Date of birth is required.", form.childDob); return false; }
+      const div = calcDivision(form.childDob.value);
+      if (!div) { showError("This league is for ages 5–14. Please check the date of birth.", form.childDob); return false; }
+      if (!form.emergencyName.value.trim()) { showError("Emergency contact name is required.", form.emergencyName); return false; }
+      if (!form.emergencyPhone.value.trim() || form.emergencyPhone.value.replace(/\D/g,"").length < 10) { showError("Please enter a valid emergency contact phone.", form.emergencyPhone); return false; }
+    }
+    if (s === 3) {
+      if (!form.jerseySize.value) { showError("Please select a jersey size."); return false; }
+    }
+    if (s === 4) {
+      if (!form.parentPledge.checked) { showError("Please accept the Parental Pledge to continue.", form.parentPledge); return false; }
+      if (!form.termsAccepted.checked) { showError("Please accept the terms to continue.", form.termsAccepted); return false; }
+    }
+    return true;
+  }
+
+  function populateReview() {
+    const div = calcDivision(form.childDob.value);
+    const tier = getPriceTier();
+    document.getElementById("review-parent").innerHTML =
+      "<p><strong>" + esc(form.parentFirst.value) + " " + esc(form.parentLast.value) + "</strong></p>" +
+      "<p>" + esc(form.parentEmail.value) + "</p>" +
+      "<p>" + esc(form.parentPhone.value) + "</p>" +
+      "<p>ZIP: " + esc(form.parentZip.value) + "</p>";
+    document.getElementById("review-player").innerHTML =
+      "<p><strong>" + esc(form.childFirst.value) + " " + esc(form.childLast.value) + "</strong></p>" +
+      "<p>DOB: " + esc(form.childDob.value) + "</p>" +
+      (div ? "<p>Division: <strong>" + div.name + "</strong> — " + div.time + "</p>" : "") +
+      (form.buddyRequest.value ? "<p>Buddy: " + esc(form.buddyRequest.value) + "</p>" : "") +
+      "<p>Emergency: " + esc(form.emergencyName.value) + " " + esc(form.emergencyPhone.value) + "</p>" +
+      (form.medicalNotes.value ? "<p>Medical: " + esc(form.medicalNotes.value) + "</p>" : "");
+    document.getElementById("review-uniform").textContent = "Jersey Size: " + form.jerseySize.value;
+    document.getElementById("review-price").textContent = "$" + tier.price;
+    document.getElementById("review-tier").textContent = tier.label;
+  }
+
+  function populatePayment() {
+    const div = calcDivision(form.childDob.value);
+    const tier = getPriceTier();
+    document.getElementById("pay-player-name").textContent = form.childFirst.value + " " + form.childLast.value;
+    document.getElementById("pay-division").textContent = div ? div.name : "";
+    document.getElementById("pay-price").textContent = "$" + tier.price;
+  }
+
+  function esc(s) { const d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+
+  btnNext.addEventListener("click", function() {
+    if (validateStep(step)) goTo(step + 1);
+  });
+  btnBack.addEventListener("click", function() { if (step > 1) goTo(step - 1); });
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    if (!validateStep(step)) return;
+
+    const submitLabel = document.getElementById("submit-label");
+    const submitSpin = document.getElementById("submit-spin");
+    btnSubmit.disabled = true;
+    btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+    submitLabel.textContent = "Submitting...";
+    submitSpin.classList.remove("hidden");
+
+    const div = calcDivision(form.childDob.value);
+    const tier = getPriceTier();
+    const payload = {
+      parentEmail: form.parentEmail.value.trim().toLowerCase(),
+      parentFirst: form.parentFirst.value.trim(),
+      parentLast: form.parentLast.value.trim(),
+      parentPhone: form.parentPhone.value.trim(),
+      parentZip: form.parentZip.value.trim(),
+      referralCode: form.referralCode.value.trim(),
+      smsConsent: form.smsConsent.checked,
+      childFirst: form.childFirst.value.trim(),
+      childLast: form.childLast.value.trim(),
+      childDob: form.childDob.value,
+      division: div ? div.code : "",
+      divisionName: div ? div.name : "",
+      buddyRequest: form.buddyRequest.value.trim(),
+      emergencyName: form.emergencyName.value.trim(),
+      emergencyPhone: form.emergencyPhone.value.trim(),
+      medicalNotes: form.medicalNotes.value.trim(),
+      jerseySize: form.jerseySize.value,
+      photoConsent: form.photoConsent.checked,
+      parentPledge: true,
+      priceTier: tier.label,
+      priceAmount: tier.price,
+    };
+
+    try {
+      const res = await fetch("/.netlify/functions/register-youth-league", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || "Registration failed");
+      form.classList.add("hidden");
+      document.getElementById("step-nav").classList.add("hidden");
+      document.getElementById("success-msg").classList.remove("hidden");
+    } catch (err) {
+      showError(err.message || "Something went wrong. Please try again.");
+      btnSubmit.disabled = false;
+      btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+      submitLabel.textContent = "Complete Registration";
+      submitSpin.classList.add("hidden");
+    }
+  });
+
+  goTo(1);
+})();
+</script>
+
+{{ end }}
