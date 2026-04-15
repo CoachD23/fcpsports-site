@@ -15,15 +15,23 @@ const AIRTABLE_BASE = "https://api.airtable.com/v0";
 const TABLE_ID = "tblnbYMOUjAtfb7HV"; // Documents_Signed
 
 const FIELDS = {
-  Doc_Name:        "fldYZxC1DUgdQReDu",
-  Doc_Type:        "fldZimEvFeYDHeMzr",
-  Signed_Date:     "fldJAto0hA99BuZEy",
-  IP_Address:      "fldtCAZsNvyk3D8P2",
-  Signature_Data:  "fldtl9fuqg6m3aEgM",
-  Parent_Email:    "fld21FiPlKQMcIPwD",
-  Parent_Phone:    "fldFkPWcIQEUXXgWN",
-  Minor_Name:      "fldjIx2VsznIUoP1z",
-  Minor_DOB:       "fldjHXc59oFjEkqaC",
+  Doc_Name:          "fldYZxC1DUgdQReDu",
+  Doc_Type:          "fldZimEvFeYDHeMzr",
+  Signed_Date:       "fldJAto0hA99BuZEy",
+  IP_Address:        "fldtCAZsNvyk3D8P2",
+  Signature_Data:    "fldtl9fuqg6m3aEgM",
+  Parent_Email:      "fld21FiPlKQMcIPwD",
+  Parent_Phone:      "fldFkPWcIQEUXXgWN",
+  Minor_Name:        "fldjIx2VsznIUoP1z",
+  // Rental-specific fields
+  Event_Description: "fld0HcRD5QG7cVIK7",
+  Court_Option:      "fld6n52TS6TgAPvuj",
+  Rental_Dates:      "fldfTazhBp712vO6x",
+  Rental_Times:      "fldEJ9wIDSNTbBlXl",
+  Rental_Hours:      "fldfCskXnRTiYnCmk",
+  Rental_Total:      "fldfPySL8CkWWBV0c",
+  Organization:      "fldNhknnzmCu6QAGd",
+  Rental_Notes:      "fld6TJr6zVq3Ht05c",
 };
 
 const rateLimit = {};
@@ -166,29 +174,24 @@ exports.handler = async function (event) {
     const courtLabel = courtOption === "full" ? "Full Court" : "Half Court";
     const docName = `Rental Agreement - ${renterName.trim()} - ${courtLabel} - ${rentalDates}`;
 
-    // Build notes for Airtable
-    const noteLines = [
-      `Event: ${eventDescription}`,
-      `Court: ${courtLabel}`,
-      `Dates: ${rentalDates}`,
-      `Times: ${rentalTimes}`,
-      `Hours: ${hours}`,
-      `Total: $${totalAmount}`,
-      organization ? `Organization: ${organization}` : "",
-      notes ? `Notes: ${notes}` : "",
-    ].filter(Boolean).join("\n");
-
     const record = {
       fields: {
-        [FIELDS.Doc_Name]:       docName,
-        [FIELDS.Doc_Type]:       "Rental Agreement",
-        [FIELDS.Signed_Date]:    signDate || new Date().toISOString(),
-        [FIELDS.IP_Address]:     clientIp,
-        [FIELDS.Signature_Data]: signatureData,
-        [FIELDS.Parent_Email]:   renterEmail.trim().toLowerCase(),
-        [FIELDS.Parent_Phone]:   renterPhone.trim(),
-        [FIELDS.Minor_Name]:     renterName.trim(),
-        [FIELDS.Minor_DOB]:      noteLines,
+        [FIELDS.Doc_Name]:          docName,
+        [FIELDS.Doc_Type]:          "Rental Agreement",
+        [FIELDS.Signed_Date]:       signDate || new Date().toISOString(),
+        [FIELDS.IP_Address]:        clientIp,
+        [FIELDS.Signature_Data]:    signatureData,
+        [FIELDS.Parent_Email]:      renterEmail.trim().toLowerCase(),
+        [FIELDS.Parent_Phone]:      renterPhone.trim(),
+        [FIELDS.Minor_Name]:        renterName.trim(),
+        [FIELDS.Event_Description]: eventDescription.trim(),
+        [FIELDS.Court_Option]:      courtLabel,
+        [FIELDS.Rental_Dates]:      rentalDates.trim(),
+        [FIELDS.Rental_Times]:      rentalTimes.trim(),
+        [FIELDS.Rental_Hours]:      Number(hours),
+        [FIELDS.Rental_Total]:      Number(totalAmount),
+        [FIELDS.Organization]:      organization ? organization.trim() : "",
+        [FIELDS.Rental_Notes]:      notes ? notes.trim() : "",
       },
     };
 
