@@ -14,6 +14,10 @@ const nodemailer = require("nodemailer");
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 
+function escHtml(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 function ghlHeaders() {
   return {
     Authorization: `Bearer ${process.env.GHL_API_KEY}`,
@@ -33,6 +37,88 @@ function createSmtpTransport() {
     },
     tls: { ciphers: "SSLv3" },
   });
+}
+
+async function sendDailyDigest(transporter) {
+  const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+
+  const digestRes = await fetch(
+    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=submitted-${yesterday}&limit=100`,
+    { headers: ghlHeaders() }
+  ).catch(() => null);
+
+  const totalRes = await fetch(
+    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=fcpsports&limit=1`,
+    { headers: ghlHeaders() }
+  ).catch(() => null);
+
+  if (!digestRes || !digestRes.ok) return;
+
+  const digestData = await digestRes.json();
+  const leads = digestData.contacts || [];
+  const totalData = totalRes && totalRes.ok ? await totalRes.json() : {};
+  const totalCount = totalData.meta?.total ?? totalData.total ?? "?";
+
+  console.log(`[day2] Digest: ${leads.length} new, ${totalCount} total`);
+
+  const digestRows = leads.map(c => {
+    const timeStr = new Date(c.dateAdded || c.createdAt).toLocaleString("en-US", {
+      timeZone: "America/Chicago", month: "short", day: "numeric", hour: "numeric", minute: "2-digit",
+    });
+    const tags = (c.tags || []).filter(t => t !== "fcpsports" && t !== "website-inquiry").join(", ");
+    return `<tr>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${escHtml(c.firstName || "")} ${escHtml(c.lastName || "")}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${escHtml(c.email || "")}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${escHtml(c.phone || "")}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${escHtml(tags)}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee">${timeStr} CT</td>
+    </tr>`;
+  }).join("");
+
+  const digestHtml = `<h2 style="font-family:sans-serif;color:#060f22;margin:0 0 8px">FCP Sports — Daily Lead Digest</h2>
+<p style="font-family:sans-serif;font-size:15px;margin:0 0 20px">
+  <strong>${leads.length}</strong> new lead${leads.length !== 1 ? "s" : ""} in the last 24 hours &nbsp;|&nbsp;
+  <strong>${totalCount}</strong> total all-time
+</p>
+${leads.length > 0
+    ? `<table style="border-collapse:collapse;font-family:sans-serif;font-size:14px;width:100%">
+  <thead>
+    <tr style="background:#060f22;color:#fff">
+      <th style="padding:8px 12px;text-align:left">Name</th>
+      <th style="padding:8px 12px;text-align:left">Email</th>
+      <th style="padding:8px 12px;text-align:left">Phone</th>
+      <th style="padding:8px 12px;text-align:left">Source / Tags</th>
+      <th style="padding:8px 12px;text-align:left">Time (CT)</th>
+    </tr>
+  </thead>
+  <tbody>${digestRows}</tbody>
+</table>`
+    : `<p style="font-family:sans-serif;color:#888">No new leads in the last 24 hours.</p>`}
+<p style="font-family:sans-serif;font-size:12px;color:#999;margin-top:24px">FCP Sports automated digest · fcpsports.org</p>`;
+
+  // Count survey completions from yesterday
+  const surveyRes = await fetch(
+    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=camp-survey-part2-complete,submitted-${yesterday}&limit=1`,
+    { headers: ghlHeaders() }
+  ).catch(() => null);
+  const surveyData = surveyRes && surveyRes.ok ? await surveyRes.json() : {};
+  const surveyCount = surveyData.meta?.total ?? surveyData.total ?? (surveyData.contacts || []).length;
+
+  const surveyLine = surveyCount > 0
+    ? `<p style="font-family:sans-serif;font-size:15px;margin:4px 0 20px"><strong>${surveyCount}</strong> camp survey${surveyCount !== 1 ? "s" : ""} completed yesterday</p>`
+    : `<p style="font-family:sans-serif;font-size:13px;color:#888;margin:4px 0 20px">No camp surveys completed yesterday.</p>`;
+
+  try {
+    await transporter.sendMail({
+      from: '"FCP Sports" <info@fcpsports.org>',
+      to: "info@floridacoastalprep.com",
+      subject: `FCP Sports: ${leads.length} new lead${leads.length !== 1 ? "s" : ""} yesterday | ${totalCount} total`,
+      html: digestHtml.replace('</h2>', `</h2>${surveyLine}`),
+    });
+    console.log(`[day2] Daily digest sent: ${leads.length} new, ${totalCount} total, ${surveyCount} surveys`);
+  } catch (e) {
+    console.error("[day2] Digest failed:", e.message);
+  }
 }
 
 exports.handler = async function () {
@@ -180,8 +266,7 @@ FCP Sports<br>Fort Walton Beach, FL</p>`,
   const isMonday = now.getUTCDay() === 1;
   const isMorning = now.getUTCHours() === 13; // 9am ET = 1pm UTC
 
-  if (!isMonday || !isMorning) return { statusCode: 200 };
-
+  if (isMonday && isMorning) {
   const coldRes = await fetch(
     `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=camp-survey-reminder-sent&limit=100`,
     { headers: ghlHeaders() }
@@ -230,6 +315,13 @@ FCP Sports<br>Fort Walton Beach, FL</p>`,
     console.log("[day2] Weekly cold lead report sent");
   } catch (e) {
     console.error("[day2] Weekly report failed:", e.message);
+  }
+  } // end Monday report
+
+  // ── PASS 4: Daily 8am digest to info@fcpsports.org ──
+  // 8am EDT = 12pm UTC (daylight saving, March–November)
+  if (now.getUTCHours() === 12) {
+    await sendDailyDigest(transporter);
   }
 
   return { statusCode: 200 };

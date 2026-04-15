@@ -125,10 +125,11 @@ exports.handler = async function (event) {
     const contactId = data.contact?.id || data.id;
 
     if (contactId) {
+      const today = new Date().toISOString().slice(0, 10);
       await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
         method: "POST",
         headers: ghlHeaders(),
-        body: JSON.stringify({ tags: tagsToApply }),
+        body: JSON.stringify({ tags: [...tagsToApply, `submitted-${today}`] }),
       }).catch((e) => console.warn("[capture-lead] Tag failed:", e.message));
     }
 

@@ -117,11 +117,12 @@ exports.handler = async function (event) {
       return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
     }
 
-    // 2. Apply tags
+    // 2. Apply tags (include daily submission tag for digest)
+    const today = new Date().toISOString().slice(0, 10);
     await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
       method: "POST",
       headers: ghlHeaders(),
-      body: JSON.stringify({ tags: ["fcpsports", "camp-survey-lead", "source-facebook-ad"] }),
+      body: JSON.stringify({ tags: ["fcpsports", "camp-survey-lead", "source-facebook-ad", `submitted-${today}`] }),
     }).catch((e) => console.warn("[camp-survey] Tag failed:", e.message));
 
     // 3. Always create opportunity — triggers GHL workflow to send emails

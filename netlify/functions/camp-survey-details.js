@@ -1,4 +1,6 @@
 const GHL_BASE = "https://services.leadconnectorhq.com";
+const AIRTABLE_BASE = "https://api.airtable.com/v0";
+const SURVEY_TABLE = "tblYWZPPOQAbh6swX"; // Camp_Survey_Responses
 
 function ghlHeaders() {
   return {
@@ -43,8 +45,9 @@ exports.handler = async function (event) {
       return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
     }
 
-    // 2. Apply Part 2 tags
-    const tags = ["camp-survey-part2-complete"];
+    // 2. Apply Part 2 tags (include daily submission tag for digest)
+    const today = new Date().toISOString().slice(0, 10);
+    const tags = ["camp-survey-part2-complete", `submitted-${today}`];
     if (age)      tags.push(`age-${age}`);
     if (interest) tags.push(`interest-${interest}`);
 
@@ -83,6 +86,38 @@ exports.handler = async function (event) {
           body: JSON.stringify({ stageId: process.env.GHL_QUALIFIED_STAGE_ID }),
         }).catch(() => {});
       }
+    }
+
+    // 5. Write to Airtable Camp_Survey_Responses
+    if (process.env.AIRTABLE_PAT && process.env.AIRTABLE_BASE_ID) {
+      const upsertContact = await fetch(`${GHL_BASE}/contacts/${cid}`, { headers: ghlHeaders() })
+        .then(r => r.json()).catch(() => ({}));
+      const firstName = upsertContact.contact?.firstName || upsertContact.firstName || "";
+      const lastName = upsertContact.contact?.lastName || upsertContact.lastName || "";
+
+      await fetch(`${AIRTABLE_BASE}/${process.env.AIRTABLE_BASE_ID}/${SURVEY_TABLE}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.AIRTABLE_PAT}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          records: [{
+            fields: {
+              "Email": email.trim().toLowerCase(),
+              "First Name": firstName,
+              "Last Name": lastName,
+              "Age Range": age || "",
+              "Interest": interest || "",
+              "Best Times": times.length ? times.join(", ") : "",
+              "Submitted At": new Date().toISOString(),
+              "GHL Contact ID": cid,
+              "Source": "camp-survey-details",
+            },
+          }],
+          typecast: true,
+        }),
+      }).catch(e => console.warn("[camp-survey-details] Airtable write failed:", e.message));
     }
 
     console.log(`[camp-survey-details] Part 2 complete for ${email} | cid: ${cid} | tags: ${tags.join(",")}`);

@@ -144,11 +144,12 @@ exports.handler = async function (event) {
     const contactId = data.contact?.id || data.id;
 
     if (contactId) {
-      // Apply tags
+      // Apply tags (include daily submission tag for digest)
+      const today = new Date().toISOString().slice(0, 10);
       await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
         method: "POST",
         headers: ghlHeaders(),
-        body: JSON.stringify({ tags: tagsToApply }),
+        body: JSON.stringify({ tags: [...tagsToApply, `submitted-${today}`] }),
       }).catch((e) => console.warn("[register-inquiry] Tag apply failed:", e.message));
 
       // Create a note with child + program details so staff can see it immediately
