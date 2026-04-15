@@ -328,6 +328,14 @@ exports.handler = async function (event) {
   return {
     statusCode: 200,
     headers: cors,
-    body: json({ ok: true }),
+    body: json({
+      ok: true,
+      _debug: {
+        ghl: !!hasGhl,
+        airtable: !!hasAirtable,
+        authnet: !!hasAuthnet,
+        v: "3f0626c",
+      },
+    }),
   };
 };
