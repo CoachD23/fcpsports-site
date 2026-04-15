@@ -310,14 +310,10 @@ exports.handler = async function (event) {
       );
 
       if (!atRes.ok) {
-        const errBody = await atRes.text();
-        console.error("[register-youth-league] Airtable write failed:", errBody);
-        // Temporary: surface error for debugging
-        return { statusCode: 200, headers: cors, body: json({ ok: true, airtableDebug: errBody }) };
+        console.error("[register-youth-league] Airtable write failed:", await atRes.text());
       }
     } catch (err) {
       console.error("[register-youth-league] Airtable error:", err.message);
-      return { statusCode: 200, headers: cors, body: json({ ok: true, airtableDebug: err.message }) };
     }
   }
 
@@ -328,14 +324,6 @@ exports.handler = async function (event) {
   return {
     statusCode: 200,
     headers: cors,
-    body: json({
-      ok: true,
-      _debug: {
-        ghl: !!hasGhl,
-        airtable: !!hasAirtable,
-        authnet: !!hasAuthnet,
-        v: "3f0626c",
-      },
-    }),
+    body: json({ ok: true }),
   };
 };
