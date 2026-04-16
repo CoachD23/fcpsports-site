@@ -17,7 +17,7 @@ schools:
   - "Choctawhatchee High School"
 faq:
   - q: "Where is FCP Sports located in Fort Walton Beach?"
-    a: "FCP Sports is located in Fort Walton Beach, FL 32547 — just minutes from Uptown Station, the FWB Landing, and the Okaloosa Island bridge. We're easily accessible from Eglin Parkway and Highway 98."
+    a: "FCP Sports is located at 33 Jet Drive NW, Fort Walton Beach, FL 32548 — just minutes from Uptown Station, the FWB Landing, and the Okaloosa Island bridge. We're easily accessible from Eglin Parkway and Highway 98."
   - q: "What are the hours of operation for FCP Sports Fort Walton Beach?"
     a: "We're open Monday through Friday with morning and evening sessions, plus weekend programming on Saturday and Sunday. Hours vary by program. Contact us or check the schedule page for current session times."
   - q: "Is there parking at the FCP Sports facility?"
