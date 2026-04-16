@@ -8,6 +8,7 @@ age_range: "Youth & Adult"
 price: "FREE through May 15"
 frequency: "Weekly schedule"
 program_name: "Open Gym"
+hide_hero_buttons: true
 ghl_tag: "train"
 faq:
   - q: "Where can I play pickup basketball near Fort Walton Beach?"
