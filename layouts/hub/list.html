@@ -1,23 +1,10 @@
 {{ define "main" }}
 
-{{ $heroImg := .Params.hero_image | default "/images/fcp-hero-full-court.jpg" }}
-{{ $accent := .Params.accent | default "#d4af37" }}
-
-<section class="relative py-28 text-center overflow-hidden" style="min-height:420px;">
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ $heroImg }}');"></div>
-  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(6,15,34,0.72) 0%,rgba(6,15,34,0.88) 100%);"></div>
-  <div class="relative z-10 max-w-4xl mx-auto px-4">
-    <span class="text-gold font-display tracking-widest text-sm uppercase">FCP Sports</span>
-    <h1 class="font-display text-6xl md:text-7xl text-white mt-3 mb-6 leading-none">{{ .Params.h1 | default .Title }}</h1>
-    <p class="text-white/70 text-lg max-w-2xl mx-auto leading-relaxed">{{ .Description }}</p>
-  </div>
-</section>
-
-<section style="background:#0a0d14;" class="py-20">
+<section style="background:#0a0d14;" class="pt-12 pb-20">
   <div class="max-w-5xl mx-auto px-4">
 
-    <div class="text-center mb-14">
-      <h2 class="font-display text-4xl md:text-5xl text-white leading-none">{{ .Params.section_heading }}</h2>
+    <div class="text-center mb-12">
+      <h1 class="font-display text-5xl md:text-6xl text-white leading-none">{{ .Params.h1 | default .Title }}</h1>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -25,7 +12,7 @@
       <a href="{{ .url }}" class="block bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-gold/50 hover:bg-white/8 transition-all duration-200 group">
         <div class="flex items-start gap-4">
           <div class="flex-1">
-            <h3 class="font-display text-2xl text-white mb-2 group-hover:text-gold transition-colors">{{ .name }}</h3>
+            <h2 class="font-display text-2xl text-white mb-2 group-hover:text-gold transition-colors">{{ .name }}</h2>
             <p class="text-white/60 text-sm leading-relaxed mb-4">{{ .description }}</p>
             <div class="flex flex-wrap gap-3 text-xs">
               {{ with .ages }}<span class="bg-white/10 text-white/70 px-3 py-1 rounded-full">{{ . }}</span>{{ end }}

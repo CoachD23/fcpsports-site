@@ -1,24 +1,22 @@
 {{ define "main" }}
 
 <!-- Hero -->
-<section class="relative py-28 text-center overflow-hidden" style="min-height:480px;">
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ .Params.hero_image }}');"></div>
-  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(6,15,34,0.72) 0%,rgba(6,15,34,0.92) 100%);"></div>
-  <div class="relative z-10 max-w-3xl mx-auto px-4">
-    <span class="text-gold font-display tracking-widest text-sm uppercase">Ages 5–14 &bull; Fort Walton Beach &bull; Summer 2026</span>
-    <h1 class="font-display text-6xl md:text-8xl text-white mt-3 mb-4 leading-none">Saturday Morning Basketball</h1>
-    <p class="text-white/70 text-xl max-w-2xl mx-auto mb-8">Every Saturday morning, your kid shows up, practices with their team, plays a real game, and goes home happy. That's it.</p>
-    <a href="/youth-league/register/" class="btn-primary text-lg px-12 py-5">Register Now — Summer 2026</a>
+<section class="bg-navy py-16 text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">Ages 5–14 &bull; Summer 2026</span>
+    <h1 class="font-display text-5xl md:text-7xl text-white mt-3 mb-4 leading-none">Saturday Morning Basketball</h1>
+    <p class="text-white/60 text-lg max-w-xl mx-auto mb-8">Eight Saturdays. Real games. Every kid plays.</p>
+    <a href="/youth-league/register/" class="btn-primary text-lg px-10 py-4">Register Now</a>
   </div>
 </section>
 
-<!-- Value Props -->
-<section class="py-16 bg-white">
+<!-- Quick Stats -->
+<section class="py-12 bg-white">
   <div class="max-w-5xl mx-auto px-4">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div class="bg-gray-50 rounded-xl p-6">
         <div class="font-display text-3xl text-gold">8</div>
-        <div class="text-sm text-gray-600 mt-1">Saturday Seasons</div>
+        <div class="text-sm text-gray-600 mt-1">Weeks</div>
       </div>
       <div class="bg-gray-50 rounded-xl p-6">
         <div class="font-display text-3xl text-gold">3</div>
@@ -36,29 +34,46 @@
   </div>
 </section>
 
-<!-- What It Is -->
-<section class="py-20 bg-gray-50">
+<!-- How It Works -->
+<section class="py-16 bg-gray-50">
   <div class="max-w-3xl mx-auto px-4">
-    <span class="section-tag">The League</span>
-    <h2 class="section-heading">One Morning a Week. Real Basketball.</h2>
-    <div class="prose prose-lg max-w-none mt-6 text-gray-700">
-      <p>No tryouts. No travel. No five-day-a-week commitment. Just basketball, friends, and fun — one morning a week for eight weeks.</p>
-      <p>Three age groups so every kid plays with kids their size. Every kid gets equal playing time. Every kid gets a jersey. Every kid plays.</p>
-      <ul>
-        <li><strong>No mandatory fundraising.</strong> No concession duty. Just show up Saturday.</li>
-        <li><strong>Position rotation</strong> every week — every player gets experience at guard, wing, and post.</li>
-        <li><strong>Sportsmanship Value of the Week</strong> — we recognize character alongside competition.</li>
-        <li><strong>Buddy requests</strong> — want your kid on a team with a friend? Just ask at registration.</li>
-      </ul>
+    <h2 class="section-heading">How It Works</h2>
+    <div class="mt-8 space-y-4">
+      <div class="flex items-start gap-4">
+        <div class="w-8 h-8 bg-gold rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+          <span class="font-display text-navy text-sm">1</span>
+        </div>
+        <div>
+          <p class="font-bold text-navy">Register online.</p>
+          <p class="text-gray-600 text-sm">Pick your division. Request a buddy if you want.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4">
+        <div class="w-8 h-8 bg-gold rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+          <span class="font-display text-navy text-sm">2</span>
+        </div>
+        <div>
+          <p class="font-bold text-navy">Show up Saturday morning.</p>
+          <p class="text-gray-600 text-sm">Practice with your team, then play a game. Done by lunch.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4">
+        <div class="w-8 h-8 bg-gold rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+          <span class="font-display text-navy text-sm">3</span>
+        </div>
+        <div>
+          <p class="font-bold text-navy">Every kid plays every game.</p>
+          <p class="text-gray-600 text-sm">Equal time, position rotation, real refs. Season ends with playoffs and trophies.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Divisions -->
-<section class="py-20 bg-white">
+<section class="py-16 bg-white">
   <div class="max-w-5xl mx-auto px-4">
-    <span class="section-tag">Divisions</span>
-    <h2 class="section-heading">Three Divisions, Age-Appropriate Rules</h2>
+    <h2 class="section-heading">Divisions</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
 
       <div class="bg-white border-2 border-gray-100 rounded-2xl p-8 text-center hover:border-gold transition-colors">
@@ -69,7 +84,6 @@
           <li>Half court &bull; 8 ft baskets</li>
           <li>Size 5 ball &bull; 4 &times; 6 min quarters</li>
           <li>8 players per roster</li>
-          <li>Modified rules, focus on fun</li>
         </ul>
         <div class="mt-6 text-sm text-gray-400">Saturdays 8:00–10:00 AM</div>
       </div>
@@ -82,7 +96,6 @@
           <li>Full court &bull; 10 ft baskets</li>
           <li>Size 5/6 ball &bull; 4 &times; 7 min quarters</li>
           <li>10 players per roster</li>
-          <li>Standard youth rules</li>
         </ul>
         <div class="mt-6 text-sm text-gray-400">Saturdays 10:00 AM–12:00 PM</div>
       </div>
@@ -95,7 +108,6 @@
           <li>Full court &bull; 10 ft baskets</li>
           <li>Size 6/7 ball &bull; 4 &times; 8 min quarters</li>
           <li>12 players per roster</li>
-          <li>Near-regulation rules</li>
         </ul>
         <div class="mt-6 text-sm text-gray-400">Saturdays 12:00–2:00 PM</div>
       </div>
@@ -105,11 +117,10 @@
 </section>
 
 <!-- Pricing -->
-<section class="py-20 bg-navy text-white">
+<section class="py-16 bg-navy text-white">
   <div class="max-w-3xl mx-auto px-4 text-center">
-    <span class="text-gold font-display tracking-widest text-sm uppercase">Pricing</span>
-    <h2 class="font-display text-5xl text-white mt-2 mb-4">Simple. One Price. All Divisions.</h2>
-    <p class="text-white/60 mb-10">Jersey included. No hidden fees. No fundraising.</p>
+    <h2 class="font-display text-4xl text-white mb-2">Pricing</h2>
+    <p class="text-white/50 text-sm mb-10">Jersey included. All divisions same price.</p>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <div class="bg-white/10 border border-white/20 rounded-2xl p-8">
@@ -130,60 +141,58 @@
     </div>
 
     <div class="mt-8 text-white/50 text-sm space-y-1">
-      <p><strong class="text-white/70">Multi-child discount:</strong> $15 off each additional child</p>
-      <p><strong class="text-white/70">Military discount:</strong> $20 off (Eglin AFB &amp; Hurlburt Field families)</p>
-      <p><strong class="text-white/70">Referral:</strong> $15 off for every family you refer who registers</p>
+      <p><strong class="text-white/70">Multi-child:</strong> $15 off each additional child</p>
+      <p><strong class="text-white/70">Military:</strong> $20 off (Eglin &amp; Hurlburt families)</p>
+      <p><strong class="text-white/70">Referral:</strong> $15 off per family you refer</p>
     </div>
 
-    <a href="/youth-league/register/" class="btn-primary text-lg px-12 py-5 mt-10 inline-block">Register Now</a>
+    <a href="/youth-league/register/" class="btn-primary text-lg px-10 py-4 mt-10 inline-block">Register Now</a>
   </div>
 </section>
 
-<!-- Season Details -->
-<section class="py-20 bg-white">
+<!-- Season Schedule -->
+<section class="py-16 bg-white">
   <div class="max-w-3xl mx-auto px-4">
-    <span class="section-tag">Summer 2026</span>
-    <h2 class="section-heading">Season Schedule</h2>
+    <h2 class="section-heading">Summer 2026 Schedule</h2>
     <div class="mt-8 space-y-4">
       <div class="flex items-start gap-4 bg-gray-50 rounded-xl p-5">
-        <div class="font-display text-2xl text-gold w-16 shrink-0">JUN 6</div>
-        <div><strong class="text-navy">Season Starts</strong> — First Saturday. Practice + Game.</div>
+        <div class="font-display text-2xl text-gold w-16 shrink-0">JUN 7</div>
+        <div><strong class="text-navy">Season Starts</strong> — First Saturday. Practice + game.</div>
       </div>
       <div class="flex items-start gap-4 bg-gray-50 rounded-xl p-5">
         <div class="font-display text-2xl text-gold w-16 shrink-0">JUN–JUL</div>
-        <div><strong class="text-navy">Regular Season</strong> — 6 Saturdays of games + weekly practice.</div>
+        <div><strong class="text-navy">Regular Season</strong> — 6 Saturdays of games.</div>
       </div>
       <div class="flex items-start gap-4 bg-gray-50 rounded-xl p-5">
-        <div class="font-display text-2xl text-gold w-16 shrink-0">JUL 18</div>
-        <div><strong class="text-navy">Playoffs</strong> — Single elimination bracket.</div>
+        <div class="font-display text-2xl text-gold w-16 shrink-0">JUL 19</div>
+        <div><strong class="text-navy">Playoffs</strong></div>
       </div>
       <div class="flex items-start gap-4 bg-gray-50 rounded-xl p-5">
-        <div class="font-display text-2xl text-gold w-16 shrink-0">JUL 25</div>
-        <div><strong class="text-navy">Championship Saturday</strong> — Awards, trophies, photo day.</div>
+        <div class="font-display text-2xl text-gold w-16 shrink-0">JUL 26</div>
+        <div><strong class="text-navy">Championship Saturday</strong> — Trophies and awards.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- What's Included -->
-<section class="py-20 bg-gray-50">
+<section class="py-16 bg-gray-50">
   <div class="max-w-3xl mx-auto px-4">
-    <span class="section-tag">Included</span>
-    <h2 class="section-heading">What Every Registration Includes</h2>
+    <h2 class="section-heading">What's Included</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
       {{ $items := slice
-        "Game jersey — yours to keep"
-        "8 Saturdays (practice + game each week)"
-        "Trained, paid referees every game"
-        "Equal playing time — guaranteed"
-        "Position rotation each week"
-        "End-of-season playoffs + trophies"
-        "Weekly sportsmanship awards"
-        "Buddy request at registration"
+        "Game jersey"
+        "8 Saturdays (practice + game)"
+        "Paid referees every game"
+        "Equal playing time"
+        "Position rotation"
+        "Playoffs + trophies"
+        "Sportsmanship awards"
+        "Buddy requests"
       }}
       {{ range $items }}
-      <div class="flex items-start gap-3 bg-white rounded-lg p-4 shadow-sm">
-        <svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+      <div class="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm">
+        <svg class="w-5 h-5 text-gold shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
         <span class="text-sm text-gray-700">{{ . }}</span>
       </div>
       {{ end }}
@@ -191,45 +200,11 @@
   </div>
 </section>
 
-<!-- Growth Ladder -->
-<section class="py-20 bg-white">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <span class="section-tag">Development Path</span>
-    <h2 class="section-heading">Where This Leads</h2>
-    <p class="text-gray-500 mt-2 mb-10">The league is just the beginning. There's a clear path forward at every level.</p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0">
-      <div class="bg-gold/10 border-2 border-gold rounded-xl px-6 py-4 text-center">
-        <div class="font-display text-lg text-navy">Youth League</div>
-        <div class="text-xs text-gray-500">Saturday mornings</div>
-      </div>
-      <div class="hidden sm:block text-gold font-display text-2xl px-2">&rarr;</div>
-      <div class="sm:hidden text-gold font-display text-2xl py-1">&darr;</div>
-      <div class="bg-gray-50 border border-gray-200 rounded-xl px-6 py-4 text-center">
-        <div class="font-display text-lg text-navy">Skills Clinic</div>
-        <div class="text-xs text-gray-500">Between seasons</div>
-      </div>
-      <div class="hidden sm:block text-gold font-display text-2xl px-2">&rarr;</div>
-      <div class="sm:hidden text-gold font-display text-2xl py-1">&darr;</div>
-      <div class="bg-gray-50 border border-gray-200 rounded-xl px-6 py-4 text-center">
-        <div class="font-display text-lg text-navy">Select / Travel</div>
-        <div class="text-xs text-gray-500">Competitive</div>
-      </div>
-      <div class="hidden sm:block text-gold font-display text-2xl px-2">&rarr;</div>
-      <div class="sm:hidden text-gold font-display text-2xl py-1">&darr;</div>
-      <div class="bg-navy rounded-xl px-6 py-4 text-center">
-        <div class="font-display text-lg text-gold">Florida Coastal Prep</div>
-        <div class="text-xs text-white/50">College placement</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Trust Footer -->
-<section class="py-16 bg-navy text-center">
+<!-- Bottom CTA -->
+<section class="py-14 bg-navy text-center">
   <div class="max-w-3xl mx-auto px-4">
-    <p class="text-white/50 text-sm mb-6">USA Basketball certified coaches &bull; Fully insured &bull; Background-checked staff &bull; 500+ athletes trained</p>
-    <a href="/youth-league/register/" class="btn-primary text-lg px-12 py-5">Register Now — Summer 2026</a>
-    <p class="text-white/30 text-xs mt-6">FCP Sports &bull; Fort Walton Beach, FL &bull; 850.961.2323 &bull; info@fcpsports.org</p>
+    <p class="text-white/50 text-sm mb-6">USA Basketball certified coaches &bull; Fully insured &bull; Background-checked staff</p>
+    <a href="/youth-league/register/" class="btn-primary text-lg px-10 py-4">Register Now — Summer 2026</a>
   </div>
 </section>
 
