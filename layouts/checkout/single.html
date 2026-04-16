@@ -325,32 +325,44 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // ── Promo codes ──
-  var promoCodes = {
-    'EARLYBIRD': { discount: 0.10, label: '10% Early Bird Discount' },
-    'MILITARY': { discount: 0.15, label: '15% Military Discount' },
-    'SIBLING': { discount: 0.10, label: '10% Sibling Discount' },
-    'FCPFAMILY': { discount: 0.10, label: '10% FCP Family Discount' }
-  };
+  // ── Promo codes (validated server-side, client just shows feedback) ──
+  var appliedPromo = '';
 
   window.applyPromo = function() {
     var code = document.getElementById('promo-code').value.trim().toUpperCase();
     var msg = document.getElementById('promo-msg');
 
-    if (promoCodes[code]) {
-      var promo = promoCodes[code];
-      finalAmount = selectedPrice * (1 - promo.discount);
-      msg.textContent = '✓ ' + promo.label + ' applied — $' + finalAmount.toFixed(2);
-      msg.className = 'text-sm mb-4 text-green-600 font-semibold';
-      msg.classList.remove('hidden');
-      document.getElementById('summary-price').textContent = '$' + finalAmount.toFixed(0);
-      document.getElementById('pay-amount').textContent = '$' + finalAmount.toFixed(2);
-    } else if (code) {
-      finalAmount = selectedPrice;
-      msg.textContent = 'Invalid promo code.';
+    if (!code) return;
+
+    // Validate promo server-side
+    fetch('/.netlify/functions/process-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'validate-promo', program: selectedProgram, promo: code })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.valid) {
+        appliedPromo = code;
+        finalAmount = data.finalPrice;
+        msg.textContent = '✓ ' + data.label + ' — $' + finalAmount.toFixed(2);
+        msg.className = 'text-sm mb-4 text-green-600 font-semibold';
+        msg.classList.remove('hidden');
+        document.getElementById('summary-price').textContent = '$' + finalAmount.toFixed(0);
+        document.getElementById('pay-amount').textContent = '$' + finalAmount.toFixed(2);
+      } else {
+        appliedPromo = '';
+        finalAmount = selectedPrice;
+        msg.textContent = 'Invalid promo code.';
+        msg.className = 'text-sm mb-4 text-red-500';
+        msg.classList.remove('hidden');
+      }
+    })
+    .catch(function() {
+      msg.textContent = 'Could not validate code. Try again.';
       msg.className = 'text-sm mb-4 text-red-500';
       msg.classList.remove('hidden');
-    }
+    });
   };
 
   // ── Card number formatting ──

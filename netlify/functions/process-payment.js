@@ -14,8 +14,12 @@
 const https = require("https");
 
 exports.handler = async function (event) {
+  const allowedOrigins = ["https://fcpsports.org", "https://www.fcpsports.org"];
+  const origin = (event.headers || {}).origin || "";
+  const corsOrigin = allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+
   const headers = {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": corsOrigin,
     "Access-Control-Allow-Headers": "Content-Type",
     "Content-Type": "application/json",
   };
@@ -29,12 +33,53 @@ exports.handler = async function (event) {
 
   try {
     const body = JSON.parse(event.body || "{}");
+
+    // ── Promo code validation endpoint ──
+    if (body.action === "validate-promo") {
+      const PROGRAM_PRICES_CHECK = {
+        "summer-day-camp": 149, "skills-training": 199, "private-lesson": 75,
+        "youth-league": 125, "open-gym": 10, "girls-camp": 149,
+      };
+      const PROMO_CODES_CHECK = {
+        "EARLYBIRD": { discount: 0.10, label: "10% Early Bird Discount" },
+        "MILITARY": { discount: 0.15, label: "15% Military Discount" },
+        "SIBLING": { discount: 0.10, label: "10% Sibling Discount" },
+        "FCPFAMILY": { discount: 0.10, label: "10% FCP Family Discount" },
+      };
+      const basePrice = PROGRAM_PRICES_CHECK[body.program] || 0;
+      const code = (body.promo || "").toUpperCase();
+      const promo = PROMO_CODES_CHECK[code];
+      if (promo && basePrice) {
+        const final = Math.round(basePrice * (1 - promo.discount) * 100) / 100;
+        return { statusCode: 200, headers, body: JSON.stringify({ valid: true, label: promo.label, finalPrice: final }) };
+      }
+      return { statusCode: 200, headers, body: JSON.stringify({ valid: false }) };
+    }
+
     const {
       dataDescriptor, dataValue, amount,
       program, programLabel,
       parentFirst, parentLast, email, phone,
       athleteName, age, grade, notes, zip, promo
     } = body;
+
+    // ── Server-side program prices (source of truth) ──
+    const PROGRAM_PRICES = {
+      "summer-day-camp": 149,
+      "skills-training": 199,
+      "private-lesson": 75,
+      "youth-league": 125,
+      "open-gym": 10,
+      "girls-camp": 149,
+    };
+
+    // ── Server-side promo codes (source of truth) ──
+    const PROMO_CODES = {
+      "EARLYBIRD": 0.10,
+      "MILITARY": 0.15,
+      "SIBLING": 0.10,
+      "FCPFAMILY": 0.10,
+    };
 
     // ── Validate ──
     if (!dataDescriptor || !dataValue) {
@@ -43,9 +88,19 @@ exports.handler = async function (event) {
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid email required." }) };
     }
+    if (!program || !PROGRAM_PRICES[program]) {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid program selected." }) };
+    }
 
-    const numAmount = parseFloat(amount);
-    if (!numAmount || numAmount < 1 || numAmount > 10000) {
+    // ── Calculate price server-side (ignore client amount) ──
+    let numAmount = PROGRAM_PRICES[program];
+    const promoCode = (promo || "").toUpperCase();
+    if (promoCode && PROMO_CODES[promoCode]) {
+      numAmount = numAmount * (1 - PROMO_CODES[promoCode]);
+    }
+    numAmount = Math.round(numAmount * 100) / 100; // avoid floating point
+
+    if (numAmount < 1 || numAmount > 10000) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid amount." }) };
     }
 
@@ -142,7 +197,7 @@ exports.handler = async function (event) {
     }
 
     const transactionId = txnResult.transId || "";
-    console.log("Payment success:", transactionId, numAmount, programLabel, athleteName);
+    console.log("Payment success:", transactionId, numAmount, program);
 
     // ── Upsert to GHL ──
     try {
