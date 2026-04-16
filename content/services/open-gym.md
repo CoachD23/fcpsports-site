@@ -8,7 +8,6 @@ age_range: "Youth & Adult"
 price: "FREE through May 15"
 frequency: "Weekly schedule"
 program_name: "Open Gym"
-show_waiver: true
 ghl_tag: "train"
 faq:
   - q: "Where can I play pickup basketball near Fort Walton Beach?"
@@ -21,9 +20,15 @@ faq:
     a: "No. Show up during posted hours and play. It's free through May 15."
 ---
 
+<div style="background:#fef3c7;border:2px solid #d4af37;border-radius:12px;padding:20px 24px;margin-bottom:32px;">
+  <p style="margin:0 0 4px;font-weight:800;color:#1a1a2e;font-size:1.1rem;">Waiver Required Before You Play</p>
+  <p style="margin:0 0 12px;color:#555;font-size:0.95rem;">All participants must complete the waiver before stepping on the court. Parents sign for anyone under 18. Takes 2 minutes.</p>
+  <a href="/waiver/" style="display:inline-block;background:#d4af37;color:#1a1a2e;font-weight:700;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:0.9rem;letter-spacing:0.05em;text-transform:uppercase;">Complete Waiver →</a>
+</div>
+
 ## Free Open Gym — Now Through May 15
 
-No cost. No registration. No commitment. Just show up and play.
+No cost. No commitment. Just show up and play.
 
 We're opening the court for free through May 15 so you can see what FCP Sports is all about. Youth and adults welcome.
 
@@ -45,10 +50,6 @@ After May 15, standard rates resume — drop-in per session or monthly pass. [Ca
 ## House Rules
 
 Court shoes required. Staff on-site. Clean, safe, air-conditioned. That's it.
-
-## Before You Come
-
-**All participants must [complete the waiver below](#waiver) before stepping on the court.** Parents sign for anyone under 18. Takes 2 minutes.
 
 ## Want More?
 
