@@ -2,7 +2,7 @@
 title: "Basketball Leagues & Competition | FCP Sports"
 description: "Choose how you compete — organized leagues, youth basketball programs, or rent the court for your own team. FCP Sports, Fort Walton Beach."
 h1: "COMPETE"
-layout: "hub"
+type: "hub"
 hero_image: "/images/fcp-hero-league-game.jpg"
 section_heading: "Choose Your Game"
 programs:

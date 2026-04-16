@@ -2,7 +2,7 @@
 title: "Basketball Training Programs | FCP Sports"
 description: "Choose your training path — skills training, private lessons, camps, or open gym. All programs at FCP Sports in Fort Walton Beach."
 h1: "TRAIN"
-layout: "hub"
+type: "hub"
 hero_image: "/images/fcp-hero-coaching.jpg"
 section_heading: "Choose Your Program"
 programs:
