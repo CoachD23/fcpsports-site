@@ -6,13 +6,13 @@
   <div class="max-w-2xl mx-auto px-4">
 
     <!-- Progress Bar -->
-    <div class="flex items-center justify-center gap-2 mb-8">
-      <div class="step-dot active" id="dot-1">1</div>
-      <div class="step-line" id="line-1"></div>
-      <div class="step-dot" id="dot-2">2</div>
-      <div class="step-line" id="line-2"></div>
-      <div class="step-dot" id="dot-3">3</div>
-    </div>
+    <nav aria-label="Checkout progress" class="flex items-center justify-center gap-2 mb-8">
+      <div class="step-dot active" id="dot-1" aria-label="Step 1: Select program" aria-current="step">1</div>
+      <div class="step-line" id="line-1" aria-hidden="true"></div>
+      <div class="step-dot" id="dot-2" aria-label="Step 2: Athlete info">2</div>
+      <div class="step-line" id="line-2" aria-hidden="true"></div>
+      <div class="step-dot" id="dot-3" aria-label="Step 3: Payment">3</div>
+    </nav>
 
     <!-- ═══ STEP 1: Pick a Program ═══ -->
     <div id="step-1" class="checkout-step">
@@ -22,67 +22,67 @@
 
         <div class="space-y-3" id="program-cards">
 
-          <label class="program-card-select">
-            <input type="radio" name="program" value="summer-day-camp" data-price="149" data-label="Summer Day Camp" class="hidden peer">
+          <label class="program-card-select" for="prog-summer-day-camp">
+            <input type="radio" name="program" id="prog-summer-day-camp" value="summer-day-camp" data-price="149" data-label="Summer Day Camp" class="sr-only peer">
             <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
               <div>
                 <div class="font-bold text-navy">Summer Day Camp</div>
-                <div class="text-xs text-gray-500">Ages 8–16 · Full day of training, games, and competition</div>
+                <div class="text-sm text-gray-500">Ages 8–16 · Full day of training, games, and competition</div>
               </div>
               <div class="font-display text-2xl text-gold">$149</div>
             </div>
           </label>
 
-          <label class="program-card-select">
-            <input type="radio" name="program" value="skills-training" data-price="199" data-label="Skills Training (Monthly)" class="hidden peer">
+          <label class="program-card-select" for="prog-skills-training">
+            <input type="radio" name="program" id="prog-skills-training" value="skills-training" data-price="199" data-label="Skills Training (Monthly)" class="sr-only peer">
             <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
               <div>
                 <div class="font-bold text-navy">Skills Training</div>
-                <div class="text-xs text-gray-500">Monthly enrollment · 2x/week group sessions</div>
+                <div class="text-sm text-gray-500">Monthly enrollment · 2x/week group sessions</div>
               </div>
               <div class="font-display text-2xl text-gold">$199</div>
             </div>
           </label>
 
-          <label class="program-card-select">
-            <input type="radio" name="program" value="private-lesson" data-price="75" data-label="Private Lesson (Single)" class="hidden peer">
+          <label class="program-card-select" for="prog-private-lesson">
+            <input type="radio" name="program" id="prog-private-lesson" value="private-lesson" data-price="75" data-label="Private Lesson (Single)" class="sr-only peer">
             <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
               <div>
                 <div class="font-bold text-navy">Private Lesson</div>
-                <div class="text-xs text-gray-500">1-on-1 with a coach · 60 minutes</div>
+                <div class="text-sm text-gray-500">1-on-1 with a coach · 60 minutes</div>
               </div>
               <div class="font-display text-2xl text-gold">$75</div>
             </div>
           </label>
 
-          <label class="program-card-select">
-            <input type="radio" name="program" value="youth-league" data-price="125" data-label="Youth Basketball League" class="hidden peer">
+          <label class="program-card-select" for="prog-youth-league">
+            <input type="radio" name="program" id="prog-youth-league" value="youth-league" data-price="125" data-label="Youth Basketball League" class="sr-only peer">
             <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
               <div>
                 <div class="font-bold text-navy">Youth Basketball League</div>
-                <div class="text-xs text-gray-500">8-week season · Games + practice · All skill levels</div>
+                <div class="text-sm text-gray-500">8-week season · Games + practice · All skill levels</div>
               </div>
               <div class="font-display text-2xl text-gold">$125</div>
             </div>
           </label>
 
-          <label class="program-card-select">
-            <input type="radio" name="program" value="open-gym" data-price="10" data-label="Open Gym (Drop-In)" class="hidden peer">
+          <label class="program-card-select" for="prog-open-gym">
+            <input type="radio" name="program" id="prog-open-gym" value="open-gym" data-price="10" data-label="Open Gym (Drop-In)" class="sr-only peer">
             <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
               <div>
                 <div class="font-bold text-navy">Open Gym</div>
-                <div class="text-xs text-gray-500">Drop-in · Play pickup, shoot around, train on your own</div>
+                <div class="text-sm text-gray-500">Drop-in · Play pickup, shoot around, train on your own</div>
               </div>
               <div class="font-display text-2xl text-gold">$10</div>
             </div>
           </label>
 
-          <label class="program-card-select">
-            <input type="radio" name="program" value="girls-camp" data-price="149" data-label="Girls Basketball Camp" class="hidden peer">
+          <label class="program-card-select" for="prog-girls-camp">
+            <input type="radio" name="program" id="prog-girls-camp" value="girls-camp" data-price="149" data-label="Girls Basketball Camp" class="sr-only peer">
             <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
               <div>
                 <div class="font-bold text-navy">Girls Basketball Camp</div>
-                <div class="text-xs text-gray-500">Ages 8–16 · Girls-only training and competition</div>
+                <div class="text-sm text-gray-500">Ages 8–16 · Girls-only training and competition</div>
               </div>
               <div class="font-display text-2xl text-gold">$149</div>
             </div>
@@ -90,7 +90,7 @@
 
         </div>
 
-        <p id="step1-error" class="text-red-500 text-sm text-center mt-4 hidden">Please select a program.</p>
+        <p id="step1-error" role="alert" class="text-red-500 text-sm text-center mt-4 hidden">Please select a program.</p>
         <button onclick="goToStep(2)" class="w-full bg-gold text-navy font-bold py-3 rounded-lg mt-6 hover:brightness-110 transition text-sm uppercase tracking-wide">Continue →</button>
       </div>
     </div>
@@ -104,40 +104,40 @@
         <form id="info-form" class="space-y-4" novalidate>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="checkout-label">Parent First Name <span class="text-red-500">*</span></label>
-              <input type="text" name="parentFirst" required class="checkout-input" placeholder="First name">
+              <label for="f-parentFirst" class="checkout-label">Parent First Name <span class="text-red-500">*</span></label>
+              <input type="text" id="f-parentFirst" name="parentFirst" required class="checkout-input" placeholder="First name">
             </div>
             <div>
-              <label class="checkout-label">Parent Last Name</label>
-              <input type="text" name="parentLast" class="checkout-input" placeholder="Last name">
+              <label for="f-parentLast" class="checkout-label">Parent Last Name</label>
+              <input type="text" id="f-parentLast" name="parentLast" class="checkout-input" placeholder="Last name">
             </div>
           </div>
 
           <div>
-            <label class="checkout-label">Email <span class="text-red-500">*</span></label>
-            <input type="email" name="email" required class="checkout-input" placeholder="parent@email.com">
+            <label for="f-email" class="checkout-label">Email <span class="text-red-500">*</span></label>
+            <input type="email" id="f-email" name="email" required class="checkout-input" placeholder="parent@email.com">
           </div>
 
           <div>
-            <label class="checkout-label">Phone</label>
-            <input type="tel" name="phone" class="checkout-input" placeholder="(850) 555-1234">
+            <label for="f-phone" class="checkout-label">Phone</label>
+            <input type="tel" id="f-phone" name="phone" class="checkout-input" placeholder="(850) 555-1234">
           </div>
 
           <hr class="my-4 border-gray-100">
 
           <div>
-            <label class="checkout-label">Athlete Name <span class="text-red-500">*</span></label>
-            <input type="text" name="athleteName" required class="checkout-input" placeholder="Child's full name">
+            <label for="f-athleteName" class="checkout-label">Athlete Name <span class="text-red-500">*</span></label>
+            <input type="text" id="f-athleteName" name="athleteName" required class="checkout-input" placeholder="Child's full name">
           </div>
 
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="checkout-label">Age</label>
-              <input type="number" name="age" min="4" max="18" class="checkout-input" placeholder="Age">
+              <label for="f-age" class="checkout-label">Age</label>
+              <input type="number" id="f-age" name="age" min="4" max="18" class="checkout-input" placeholder="Age">
             </div>
             <div>
-              <label class="checkout-label">Grade</label>
-              <select name="grade" class="checkout-input">
+              <label for="f-grade" class="checkout-label">Grade</label>
+              <select id="f-grade" name="grade" class="checkout-input">
                 <option value="">Select grade</option>
                 <option>Pre-K / K</option>
                 <option>1st</option><option>2nd</option><option>3rd</option>
@@ -149,11 +149,11 @@
           </div>
 
           <div>
-            <label class="checkout-label">Notes <span class="text-gray-400 font-normal">(optional)</span></label>
-            <textarea name="notes" rows="2" class="checkout-input" placeholder="Anything we should know? Allergies, buddy requests, etc."></textarea>
+            <label for="f-notes" class="checkout-label">Notes <span class="text-gray-400 font-normal">(optional)</span></label>
+            <textarea id="f-notes" name="notes" rows="2" class="checkout-input" placeholder="Anything we should know? Allergies, buddy requests, etc."></textarea>
           </div>
 
-          <p id="step2-error" class="text-red-500 text-sm text-center hidden"></p>
+          <p id="step2-error" role="alert" class="text-red-500 text-sm text-center hidden"></p>
 
           <div class="flex gap-3 mt-4">
             <button type="button" onclick="goToStep(1)" class="flex-1 border border-gray-300 text-gray-600 font-bold py-3 rounded-lg hover:bg-gray-50 transition text-sm">← Back</button>
@@ -190,26 +190,26 @@
         <!-- Card fields -->
         <div class="space-y-4">
           <div>
-            <label class="checkout-label">Card Number <span class="text-red-500">*</span></label>
+            <label for="cc-number" class="checkout-label">Card Number <span class="text-red-500">*</span></label>
             <input type="text" id="cc-number" inputmode="numeric" maxlength="19" class="checkout-input" placeholder="1234 5678 9012 3456" autocomplete="cc-number">
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="checkout-label">Expiration <span class="text-red-500">*</span></label>
+              <label for="cc-exp" class="checkout-label">Expiration <span class="text-red-500">*</span></label>
               <input type="text" id="cc-exp" maxlength="5" class="checkout-input" placeholder="MM/YY" autocomplete="cc-exp">
             </div>
             <div>
-              <label class="checkout-label">CVV <span class="text-red-500">*</span></label>
+              <label for="cc-cvv" class="checkout-label">CVV <span class="text-red-500">*</span></label>
               <input type="text" id="cc-cvv" inputmode="numeric" maxlength="4" class="checkout-input" placeholder="123" autocomplete="cc-csc">
             </div>
           </div>
           <div>
-            <label class="checkout-label">Billing ZIP <span class="text-red-500">*</span></label>
+            <label for="cc-zip" class="checkout-label">Billing ZIP <span class="text-red-500">*</span></label>
             <input type="text" id="cc-zip" maxlength="10" class="checkout-input" placeholder="32548" autocomplete="postal-code">
           </div>
         </div>
 
-        <p id="payment-error" class="text-red-500 text-sm text-center mt-4 hidden"></p>
+        <p id="payment-error" role="alert" class="text-red-500 text-sm text-center mt-4 hidden"></p>
 
         <div class="flex gap-3 mt-6">
           <button type="button" onclick="goToStep(2)" class="flex-1 border border-gray-300 text-gray-600 font-bold py-3 rounded-lg hover:bg-gray-50 transition text-sm">← Back</button>
@@ -260,6 +260,8 @@
   .checkout-input:focus { outline: none; border-color: #c9a84c; box-shadow: 0 0 0 3px rgba(201,168,76,0.15); }
 
   .bg-gold\/5 { background: rgba(201,168,76,0.05); }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  .sr-only:focus-within + .program-card-inner { border-color: #c9a84c; box-shadow: 0 0 0 3px rgba(201,168,76,0.3); }
 </style>
 
 <script>
@@ -293,9 +295,9 @@
       var athleteName = f.querySelector('[name="athleteName"]').value.trim();
       var errEl = document.getElementById('step2-error');
 
-      if (!parentFirst) { errEl.textContent = 'Please enter your first name.'; errEl.classList.remove('hidden'); return; }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email.'; errEl.classList.remove('hidden'); return; }
-      if (!athleteName) { errEl.textContent = "Please enter the athlete's name."; errEl.classList.remove('hidden'); return; }
+      if (!parentFirst) { errEl.textContent = 'Please enter your first name.'; errEl.classList.remove('hidden'); f.querySelector('[name="parentFirst"]').focus(); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email.'; errEl.classList.remove('hidden'); f.querySelector('[name="email"]').focus(); return; }
+      if (!athleteName) { errEl.textContent = "Please enter the athlete's name."; errEl.classList.remove('hidden'); f.querySelector('[name="athleteName"]').focus(); return; }
       errEl.classList.add('hidden');
 
       // Update summary
@@ -315,6 +317,8 @@
       var dot = document.getElementById('dot-' + i);
       dot.classList.toggle('active', i === step);
       dot.classList.toggle('done', i < step);
+      if (i === step) dot.setAttribute('aria-current', 'step');
+      else dot.removeAttribute('aria-current');
     }
     for (var i = 1; i <= 2; i++) {
       var line = document.getElementById('line-' + i);
