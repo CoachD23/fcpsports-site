@@ -1,5 +1,5 @@
 ---
-hero_image: /images/fcp-sports-facility.jpg
+hero_image: /images/fcp-hero-facility-empty.jpg
 title: "Basketball Gym Rental Fort Walton Beach FL | FCP Sports"
 description: "Rent a private basketball court in Fort Walton Beach. Team practices, birthday parties, tryouts, and private events at FCP Sports."
 h1: "Gym Rental"

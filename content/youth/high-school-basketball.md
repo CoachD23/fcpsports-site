@@ -5,7 +5,7 @@ h1: "High School Basketball Training & Recruiting Prep"
 age_range: "Ages 14–18"
 grade_range: "9th – 12th Grade"
 keyword: "high school basketball training florida panhandle"
-hero_image: "/images/fcp-sports-basketball-player-dribbles-game-action-panhandle.jpg"
+hero_image: "/images/fcp-hero-player-action.jpg"
 schools:
   - "Fort Walton Beach High School"
   - "Choctawhatchee High School"

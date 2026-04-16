@@ -2,6 +2,7 @@
 title: "Basketball Camps Fort Walton Beach | FCP Sports"
 description: "Basketball camps for all ages and skill levels at FCP Sports in Fort Walton Beach, FL. Summer day camps, girls-only camps, spring break camps, and holiday camps."
 h1: "Basketball Camps at FCP Sports"
+hero_image: /images/fcp-hero-camp-talk.jpg
 ---
 
 ## 2026-2027 Camp Schedule

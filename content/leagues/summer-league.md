@@ -7,6 +7,7 @@ age_range: "Ages 5-18"
 price: "Starting at $79"
 frequency: "Tue/Thu evenings, 6-8pm"
 layout: "services"
+hero_image: /images/fcp-hero-game-action.jpg
 faq:
   - q: "When does the summer basketball league run in Fort Walton Beach?"
     a: "The FCP Sports summer basketball league runs June through July 2026 -- a 6-week regular season plus a single-elimination playoff. Games are played Tuesday and Thursday evenings from 6-8pm. Registration opens approximately 6 weeks before the season starts."

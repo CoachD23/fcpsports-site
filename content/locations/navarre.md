@@ -1,5 +1,5 @@
 ---
-hero_image: /images/hero-loc-6.jpg
+hero_image: /images/fcp-hero-full-court.jpg
 title: "Basketball Training Navarre FL | FCP Sports"
 description: "No dedicated basketball training in Navarre? FCP Sports is just 25 minutes away in Fort Walton Beach — the answer Navarre families have been looking for."
 h1: "Basketball Training Near Navarre, FL"

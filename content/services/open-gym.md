@@ -1,5 +1,5 @@
 ---
-hero_image: /images/fcp-hero-court.jpg
+hero_image: /images/fcp-hero-open-gym.jpg
 title: "Open Gym Basketball Fort Walton Beach FL | FCP Sports"
 description: "Open gym basketball in Fort Walton Beach. Drop-in pickup games for youth and adults. No registration required."
 h1: "Open Gym"

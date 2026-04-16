@@ -7,6 +7,7 @@ age_range: "Ages 5-18"
 price: "Starting at $79"
 frequency: "Saturday mornings"
 layout: "services"
+hero_image: /images/fcp-hero-league-game.jpg
 faq:
   - q: "When does the fall basketball league start in Fort Walton Beach?"
     a: "The FCP Sports fall basketball league runs September through November 2026 -- an 8-week regular season plus a single-elimination playoff. Games are played on Saturday mornings, which avoids conflicts with school sports seasons, Friday night football, and weekday schedules. Registration opens approximately 6 weeks before the season starts."

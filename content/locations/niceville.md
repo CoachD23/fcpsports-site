@@ -1,5 +1,5 @@
 ---
-hero_image: /images/hero-loc-4.jpg
+hero_image: /images/fcp-hero-banner-3.jpg
 title: "Basketball Training Niceville FL | FCP Sports"
 description: "Basketball training near Niceville and Eglin AFB. FCP Sports is 20 minutes away with year-round programs for military families and competitive athletes."
 h1: "Basketball Training Near Niceville, FL"

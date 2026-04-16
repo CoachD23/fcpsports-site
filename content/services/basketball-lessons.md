@@ -1,5 +1,5 @@
 ---
-hero_image: /images/fcp-hero-training.jpg
+hero_image: /images/fcp-hero-coaching.jpg
 title: "Private Basketball Lessons Fort Walton Beach FL | FCP Sports"
 description: "Private basketball lessons in Fort Walton Beach. 1-on-1 coaching for all ages and skill levels at FCP Sports."
 h1: "Private Basketball Lessons"

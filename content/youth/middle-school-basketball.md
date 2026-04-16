@@ -5,7 +5,7 @@ h1: "Middle School Basketball Training"
 age_range: "Ages 11–14"
 grade_range: "6th – 8th Grade"
 keyword: "middle school basketball training fort walton beach"
-hero_image: "/images/basketball-film-study-chalk-talk-youth-players-fort-walton-beach.jpg"
+hero_image: "/images/fcp-hero-game-action.jpg"
 schools:
   - "W.C. Pryor Middle School"
   - "Max Bruner Jr. Middle School"

@@ -1,5 +1,5 @@
 ---
-hero_image: /images/fcp-hero-kids.jpg
+hero_image: /images/fcp-hero-game-action.jpg
 title: "Youth Basketball Fort Walton Beach FL | FCP Sports"
 description: "Youth basketball in Fort Walton Beach for ages K–8th grade. Little Ballers, Junior, and Elite Youth tiers with real coaching and development."
 h1: "Youth Basketball"

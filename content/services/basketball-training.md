@@ -1,5 +1,5 @@
 ---
-hero_image: /images/fcp-sports-training.jpg
+hero_image: /images/fcp-hero-coaching.jpg
 title: "Basketball Training Fort Walton Beach FL | FCP Sports"
 description: "Basketball training in Fort Walton Beach — progressive skill development for youth, middle school, and high school players at FCP Sports."
 h1: "Basketball Training"

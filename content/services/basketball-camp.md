@@ -1,5 +1,5 @@
 ---
-hero_image: /images/fcp-hero-camp.jpg
+hero_image: /images/fcp-hero-camp-talk.jpg
 title: "Basketball Camp Fort Walton Beach FL | FCP Sports"
 description: "Basketball camps in Fort Walton Beach for grades 3–12. Summer, spring break, girls-only, and holiday options. From $79."
 h1: "Basketball Camps"

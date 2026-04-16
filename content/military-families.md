@@ -7,7 +7,7 @@ age_range: "Ages 5-18"
 price: "$20 military discount on all programs"
 frequency: "Year-round programs"
 layout: "services"
-hero_image: "/images/fort-walton-beach-basketball-team-florida-panhandle.jpg"
+hero_image: "/images/fcp-hero-coaching.jpg"
 faq:
   - q: "Are there youth sports near Eglin AFB in Fort Walton Beach?"
     a: "Yes — FCP Sports is a dedicated basketball facility located just 10 minutes from the Eglin AFB main gate. We offer year-round programs including summer camps, fall and spring leagues, open gym, private lessons, and clinics. It's one of the closest and most complete youth sports options for families stationed at Eglin."

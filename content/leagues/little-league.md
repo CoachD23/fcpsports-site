@@ -7,6 +7,7 @@ age_range: "Ages 5-8 (K-2nd Grade)"
 price: "$79 (jersey included)"
 frequency: "Saturday mornings"
 layout: "services"
+hero_image: /images/fcp-hero-team-photo.jpg
 faq:
   - q: "What age is the Little Ballers league for?"
     a: "Little Ballers is designed for kindergarten through 2nd grade, typically ages 5-8. This is an introductory league built specifically for younger players who are new to organized basketball or still learning the fundamentals. If your child has never played in a league before, this is the right starting point."

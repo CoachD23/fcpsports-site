@@ -6,7 +6,7 @@ keyword: "spring break basketball camp fort walton beach"
 age_range: "Grades 3–12"
 price: "$129 / 4 days"
 frequency: "Mon–Thu, Two Sessions"
-hero_image: /images/fcp-hero-action2.jpg
+hero_image: /images/fcp-hero-full-court.jpg
 layout: "services"
 course_type: "spring break basketball camp"
 ghl_tag: "train"

@@ -1,5 +1,5 @@
 ---
-hero_image: /images/hero-loc-5.jpg
+hero_image: /images/fcp-hero-banner-1.jpg
 title: "Basketball Training Destin FL | FCP Sports"
 description: "Elite basketball training 15 minutes from Destin. FCP Sports offers year-round programs and drop-in sessions for Destin families and Emerald Coast visitors."
 h1: "Basketball Training in Destin, FL"

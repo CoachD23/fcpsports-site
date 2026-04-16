@@ -6,7 +6,7 @@ keyword: "girls basketball camp fort walton beach"
 age_range: "Grades 6–10 (Girls)"
 price: "$149/week"
 frequency: "Mon–Fri, 9:30am–2pm"
-hero_image: /images/fcp-hero-kids.jpg
+hero_image: /images/fcp-hero-player-action.jpg
 layout: "services"
 course_type: "girls basketball camp"
 ghl_tag: "train"

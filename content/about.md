@@ -2,7 +2,7 @@
 title: "About FCP Sports | Basketball Fort Walton Beach"
 description: "FCP Sports is Fort Walton Beach's basketball facility. Leagues, camps, training, and open gym for 500+ athletes across 7 cities."
 layout: "about"
-hero_image: "/images/fcp-sports-basketball-coach-sideline-talk-fort-walton-beach.jpg"
+hero_image: "/images/fcp-hero-fcp-team.jpg"
 ---
 
 ## One Gym. One Sport. Your Kid.
