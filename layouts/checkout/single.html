@@ -1,0 +1,470 @@
+{{ define "main" }}
+<!-- Accept.js from Authorize.net -->
+<script src="https://js.authorize.net/v1/Accept.js" charset="utf-8"></script>
+
+<section class="py-12 bg-gray-50 min-h-screen">
+  <div class="max-w-2xl mx-auto px-4">
+
+    <!-- Progress Bar -->
+    <div class="flex items-center justify-center gap-2 mb-8">
+      <div class="step-dot active" id="dot-1">1</div>
+      <div class="step-line" id="line-1"></div>
+      <div class="step-dot" id="dot-2">2</div>
+      <div class="step-line" id="line-2"></div>
+      <div class="step-dot" id="dot-3">3</div>
+    </div>
+
+    <!-- ═══ STEP 1: Pick a Program ═══ -->
+    <div id="step-1" class="checkout-step">
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <h1 class="font-display text-3xl text-navy mb-2 text-center">Register & Pay</h1>
+        <p class="text-gray-500 text-sm text-center mb-6">Select your program to get started.</p>
+
+        <div class="space-y-3" id="program-cards">
+
+          <label class="program-card-select">
+            <input type="radio" name="program" value="summer-day-camp" data-price="149" data-label="Summer Day Camp" class="hidden peer">
+            <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
+              <div>
+                <div class="font-bold text-navy">Summer Day Camp</div>
+                <div class="text-xs text-gray-500">Ages 8–16 · Full day of training, games, and competition</div>
+              </div>
+              <div class="font-display text-2xl text-gold">$149</div>
+            </div>
+          </label>
+
+          <label class="program-card-select">
+            <input type="radio" name="program" value="skills-training" data-price="199" data-label="Skills Training (Monthly)" class="hidden peer">
+            <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
+              <div>
+                <div class="font-bold text-navy">Skills Training</div>
+                <div class="text-xs text-gray-500">Monthly enrollment · 2x/week group sessions</div>
+              </div>
+              <div class="font-display text-2xl text-gold">$199</div>
+            </div>
+          </label>
+
+          <label class="program-card-select">
+            <input type="radio" name="program" value="private-lesson" data-price="75" data-label="Private Lesson (Single)" class="hidden peer">
+            <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
+              <div>
+                <div class="font-bold text-navy">Private Lesson</div>
+                <div class="text-xs text-gray-500">1-on-1 with a coach · 60 minutes</div>
+              </div>
+              <div class="font-display text-2xl text-gold">$75</div>
+            </div>
+          </label>
+
+          <label class="program-card-select">
+            <input type="radio" name="program" value="youth-league" data-price="125" data-label="Youth Basketball League" class="hidden peer">
+            <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
+              <div>
+                <div class="font-bold text-navy">Youth Basketball League</div>
+                <div class="text-xs text-gray-500">8-week season · Games + practice · All skill levels</div>
+              </div>
+              <div class="font-display text-2xl text-gold">$125</div>
+            </div>
+          </label>
+
+          <label class="program-card-select">
+            <input type="radio" name="program" value="open-gym" data-price="10" data-label="Open Gym (Drop-In)" class="hidden peer">
+            <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
+              <div>
+                <div class="font-bold text-navy">Open Gym</div>
+                <div class="text-xs text-gray-500">Drop-in · Play pickup, shoot around, train on your own</div>
+              </div>
+              <div class="font-display text-2xl text-gold">$10</div>
+            </div>
+          </label>
+
+          <label class="program-card-select">
+            <input type="radio" name="program" value="girls-camp" data-price="149" data-label="Girls Basketball Camp" class="hidden peer">
+            <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
+              <div>
+                <div class="font-bold text-navy">Girls Basketball Camp</div>
+                <div class="text-xs text-gray-500">Ages 8–16 · Girls-only training and competition</div>
+              </div>
+              <div class="font-display text-2xl text-gold">$149</div>
+            </div>
+          </label>
+
+        </div>
+
+        <p id="step1-error" class="text-red-500 text-sm text-center mt-4 hidden">Please select a program.</p>
+        <button onclick="goToStep(2)" class="w-full bg-gold text-navy font-bold py-3 rounded-lg mt-6 hover:brightness-110 transition text-sm uppercase tracking-wide">Continue →</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 2: Parent + Child Info ═══ -->
+    <div id="step-2" class="checkout-step hidden">
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <h2 class="font-display text-2xl text-navy mb-1">Athlete & Parent Info</h2>
+        <p class="text-gray-500 text-sm mb-6">Tell us about the player and who to contact.</p>
+
+        <form id="info-form" class="space-y-4" novalidate>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="checkout-label">Parent First Name <span class="text-red-500">*</span></label>
+              <input type="text" name="parentFirst" required class="checkout-input" placeholder="First name">
+            </div>
+            <div>
+              <label class="checkout-label">Parent Last Name</label>
+              <input type="text" name="parentLast" class="checkout-input" placeholder="Last name">
+            </div>
+          </div>
+
+          <div>
+            <label class="checkout-label">Email <span class="text-red-500">*</span></label>
+            <input type="email" name="email" required class="checkout-input" placeholder="parent@email.com">
+          </div>
+
+          <div>
+            <label class="checkout-label">Phone</label>
+            <input type="tel" name="phone" class="checkout-input" placeholder="(850) 555-1234">
+          </div>
+
+          <hr class="my-4 border-gray-100">
+
+          <div>
+            <label class="checkout-label">Athlete Name <span class="text-red-500">*</span></label>
+            <input type="text" name="athleteName" required class="checkout-input" placeholder="Child's full name">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="checkout-label">Age</label>
+              <input type="number" name="age" min="4" max="18" class="checkout-input" placeholder="Age">
+            </div>
+            <div>
+              <label class="checkout-label">Grade</label>
+              <select name="grade" class="checkout-input">
+                <option value="">Select grade</option>
+                <option>Pre-K / K</option>
+                <option>1st</option><option>2nd</option><option>3rd</option>
+                <option>4th</option><option>5th</option><option>6th</option>
+                <option>7th</option><option>8th</option><option>9th</option>
+                <option>10th</option><option>11th</option><option>12th</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="checkout-label">Notes <span class="text-gray-400 font-normal">(optional)</span></label>
+            <textarea name="notes" rows="2" class="checkout-input" placeholder="Anything we should know? Allergies, buddy requests, etc."></textarea>
+          </div>
+
+          <p id="step2-error" class="text-red-500 text-sm text-center hidden"></p>
+
+          <div class="flex gap-3 mt-4">
+            <button type="button" onclick="goToStep(1)" class="flex-1 border border-gray-300 text-gray-600 font-bold py-3 rounded-lg hover:bg-gray-50 transition text-sm">← Back</button>
+            <button type="button" onclick="goToStep(3)" class="flex-1 bg-gold text-navy font-bold py-3 rounded-lg hover:brightness-110 transition text-sm uppercase tracking-wide">Continue to Payment →</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 3: Payment ═══ -->
+    <div id="step-3" class="checkout-step hidden">
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <h2 class="font-display text-2xl text-navy mb-1">Payment</h2>
+        <p class="text-gray-500 text-sm mb-6">Secure checkout powered by Authorize.net.</p>
+
+        <!-- Order summary -->
+        <div class="bg-gray-50 rounded-xl p-4 mb-6">
+          <div class="flex justify-between items-center">
+            <div>
+              <div class="font-bold text-navy" id="summary-program">—</div>
+              <div class="text-xs text-gray-500" id="summary-athlete">—</div>
+            </div>
+            <div class="font-display text-3xl text-gold" id="summary-price">$—</div>
+          </div>
+        </div>
+
+        <!-- Promo code -->
+        <div class="flex gap-2 mb-6">
+          <input type="text" id="promo-code" class="checkout-input flex-1" placeholder="Promo code (optional)">
+          <button type="button" onclick="applyPromo()" id="promo-btn" class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-bold text-gray-600 hover:bg-gray-50 transition">Apply</button>
+        </div>
+        <p id="promo-msg" class="text-sm mb-4 hidden"></p>
+
+        <!-- Card fields -->
+        <div class="space-y-4">
+          <div>
+            <label class="checkout-label">Card Number <span class="text-red-500">*</span></label>
+            <input type="text" id="cc-number" inputmode="numeric" maxlength="19" class="checkout-input" placeholder="1234 5678 9012 3456" autocomplete="cc-number">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="checkout-label">Expiration <span class="text-red-500">*</span></label>
+              <input type="text" id="cc-exp" maxlength="5" class="checkout-input" placeholder="MM/YY" autocomplete="cc-exp">
+            </div>
+            <div>
+              <label class="checkout-label">CVV <span class="text-red-500">*</span></label>
+              <input type="text" id="cc-cvv" inputmode="numeric" maxlength="4" class="checkout-input" placeholder="123" autocomplete="cc-csc">
+            </div>
+          </div>
+          <div>
+            <label class="checkout-label">Billing ZIP <span class="text-red-500">*</span></label>
+            <input type="text" id="cc-zip" maxlength="10" class="checkout-input" placeholder="32548" autocomplete="postal-code">
+          </div>
+        </div>
+
+        <p id="payment-error" class="text-red-500 text-sm text-center mt-4 hidden"></p>
+
+        <div class="flex gap-3 mt-6">
+          <button type="button" onclick="goToStep(2)" class="flex-1 border border-gray-300 text-gray-600 font-bold py-3 rounded-lg hover:bg-gray-50 transition text-sm">← Back</button>
+          <button type="button" onclick="submitPayment()" id="pay-btn" class="flex-1 bg-gold text-navy font-bold py-3 rounded-lg hover:brightness-110 transition text-sm uppercase tracking-wide">
+            Pay <span id="pay-amount">$—</span>
+          </button>
+        </div>
+
+        <p class="text-xs text-gray-400 text-center mt-4">
+          🔒 Your card is encrypted and sent directly to Authorize.net. FCP Sports never sees or stores your card info.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .step-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.8rem;
+    background: #e5e7eb; color: #9ca3af;
+    transition: all 0.3s;
+  }
+  .step-dot.active { background: #c9a84c; color: #0f172a; }
+  .step-dot.done { background: #22c55e; color: #fff; }
+  .step-line { flex: 1; height: 3px; background: #e5e7eb; max-width: 80px; border-radius: 2px; transition: background 0.3s; }
+  .step-line.done { background: #22c55e; }
+
+  .program-card-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 1.25rem; border: 2px solid #e5e7eb; border-radius: 12px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .program-card-inner:hover { border-color: #c9a84c; }
+
+  .checkout-label {
+    display: block; font-size: 0.75rem; font-weight: 600;
+    color: #0f172a; margin-bottom: 0.25rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .checkout-input {
+    width: 100%; padding: 0.65rem 0.85rem;
+    border: 1px solid #d1d5db; border-radius: 0.5rem;
+    font-size: 0.9rem; transition: border-color 0.2s;
+  }
+  .checkout-input:focus { outline: none; border-color: #c9a84c; box-shadow: 0 0 0 3px rgba(201,168,76,0.15); }
+
+  .bg-gold\/5 { background: rgba(201,168,76,0.05); }
+</style>
+
+<script>
+(function() {
+  var currentStep = 1;
+  var selectedProgram = null;
+  var selectedPrice = 0;
+  var selectedLabel = '';
+  var finalAmount = 0;
+
+  // ── Step navigation ──
+  window.goToStep = function(step) {
+    // Validate before advancing
+    if (step === 2 && currentStep === 1) {
+      var radio = document.querySelector('input[name="program"]:checked');
+      if (!radio) {
+        document.getElementById('step1-error').classList.remove('hidden');
+        return;
+      }
+      document.getElementById('step1-error').classList.add('hidden');
+      selectedProgram = radio.value;
+      selectedPrice = parseFloat(radio.dataset.price);
+      selectedLabel = radio.dataset.label;
+      finalAmount = selectedPrice;
+    }
+
+    if (step === 3 && currentStep === 2) {
+      var f = document.getElementById('info-form');
+      var parentFirst = f.querySelector('[name="parentFirst"]').value.trim();
+      var email = f.querySelector('[name="email"]').value.trim();
+      var athleteName = f.querySelector('[name="athleteName"]').value.trim();
+      var errEl = document.getElementById('step2-error');
+
+      if (!parentFirst) { errEl.textContent = 'Please enter your first name.'; errEl.classList.remove('hidden'); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email.'; errEl.classList.remove('hidden'); return; }
+      if (!athleteName) { errEl.textContent = "Please enter the athlete's name."; errEl.classList.remove('hidden'); return; }
+      errEl.classList.add('hidden');
+
+      // Update summary
+      document.getElementById('summary-program').textContent = selectedLabel;
+      document.getElementById('summary-athlete').textContent = athleteName;
+      document.getElementById('summary-price').textContent = '$' + finalAmount.toFixed(0);
+      document.getElementById('pay-amount').textContent = '$' + finalAmount.toFixed(2);
+    }
+
+    // Show/hide steps
+    for (var i = 1; i <= 3; i++) {
+      document.getElementById('step-' + i).classList.toggle('hidden', i !== step);
+    }
+
+    // Update dots
+    for (var i = 1; i <= 3; i++) {
+      var dot = document.getElementById('dot-' + i);
+      dot.classList.toggle('active', i === step);
+      dot.classList.toggle('done', i < step);
+    }
+    for (var i = 1; i <= 2; i++) {
+      var line = document.getElementById('line-' + i);
+      if (line) line.classList.toggle('done', i < step);
+    }
+
+    currentStep = step;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // ── Promo codes ──
+  var promoCodes = {
+    'EARLYBIRD': { discount: 0.10, label: '10% Early Bird Discount' },
+    'MILITARY': { discount: 0.15, label: '15% Military Discount' },
+    'SIBLING': { discount: 0.10, label: '10% Sibling Discount' },
+    'FCPFAMILY': { discount: 0.10, label: '10% FCP Family Discount' }
+  };
+
+  window.applyPromo = function() {
+    var code = document.getElementById('promo-code').value.trim().toUpperCase();
+    var msg = document.getElementById('promo-msg');
+
+    if (promoCodes[code]) {
+      var promo = promoCodes[code];
+      finalAmount = selectedPrice * (1 - promo.discount);
+      msg.textContent = '✓ ' + promo.label + ' applied — $' + finalAmount.toFixed(2);
+      msg.className = 'text-sm mb-4 text-green-600 font-semibold';
+      msg.classList.remove('hidden');
+      document.getElementById('summary-price').textContent = '$' + finalAmount.toFixed(0);
+      document.getElementById('pay-amount').textContent = '$' + finalAmount.toFixed(2);
+    } else if (code) {
+      finalAmount = selectedPrice;
+      msg.textContent = 'Invalid promo code.';
+      msg.className = 'text-sm mb-4 text-red-500';
+      msg.classList.remove('hidden');
+    }
+  };
+
+  // ── Card number formatting ──
+  var ccNum = document.getElementById('cc-number');
+  ccNum.addEventListener('input', function() {
+    var v = this.value.replace(/\D/g, '').substring(0, 16);
+    this.value = v.replace(/(\d{4})(?=\d)/g, '$1 ');
+  });
+  var ccExp = document.getElementById('cc-exp');
+  ccExp.addEventListener('input', function() {
+    var v = this.value.replace(/\D/g, '').substring(0, 4);
+    if (v.length >= 3) v = v.substring(0,2) + '/' + v.substring(2);
+    this.value = v;
+  });
+
+  // ── Submit payment ──
+  window.submitPayment = function() {
+    var ccNumber = document.getElementById('cc-number').value.replace(/\s/g, '');
+    var ccExpVal = document.getElementById('cc-exp').value;
+    var ccCvv = document.getElementById('cc-cvv').value.trim();
+    var ccZip = document.getElementById('cc-zip').value.trim();
+    var errEl = document.getElementById('payment-error');
+    var payBtn = document.getElementById('pay-btn');
+
+    if (!ccNumber || ccNumber.length < 13) { errEl.textContent = 'Please enter a valid card number.'; errEl.classList.remove('hidden'); return; }
+    if (!ccExpVal || ccExpVal.length < 5) { errEl.textContent = 'Please enter expiration (MM/YY).'; errEl.classList.remove('hidden'); return; }
+    if (!ccCvv || ccCvv.length < 3) { errEl.textContent = 'Please enter CVV.'; errEl.classList.remove('hidden'); return; }
+    if (!ccZip) { errEl.textContent = 'Please enter billing ZIP.'; errEl.classList.remove('hidden'); return; }
+    errEl.classList.add('hidden');
+
+    if (typeof Accept === 'undefined') {
+      errEl.textContent = 'Payment system is loading. Please wait a moment and try again.';
+      errEl.classList.remove('hidden');
+      return;
+    }
+
+    payBtn.textContent = 'Processing...';
+    payBtn.disabled = true;
+
+    var expParts = ccExpVal.split('/');
+    var authData = {
+      clientKey: '{{ site.Params.authnet_client_key }}',
+      apiLoginID: '{{ site.Params.authnet_login_id }}'
+    };
+    var cardData = {
+      cardNumber: ccNumber,
+      month: expParts[0],
+      year: '20' + expParts[1],
+      cardCode: ccCvv
+    };
+    var secureData = { authData: authData, cardData: cardData };
+
+    Accept.dispatchData(secureData, function(response) {
+      if (response.messages.resultCode === 'Error') {
+        var msg = response.messages.message.map(function(m) { return m.text; }).join('. ');
+        errEl.textContent = msg;
+        errEl.classList.remove('hidden');
+        payBtn.textContent = 'Pay $' + finalAmount.toFixed(2);
+        payBtn.disabled = false;
+        return;
+      }
+
+      // Got token — send to server
+      var f = document.getElementById('info-form');
+      var payload = {
+        dataDescriptor: response.opaqueData.dataDescriptor,
+        dataValue: response.opaqueData.dataValue,
+        amount: finalAmount,
+        program: selectedProgram,
+        programLabel: selectedLabel,
+        parentFirst: f.querySelector('[name="parentFirst"]').value.trim(),
+        parentLast: f.querySelector('[name="parentLast"]').value.trim(),
+        email: f.querySelector('[name="email"]').value.trim(),
+        phone: f.querySelector('[name="phone"]').value.trim(),
+        athleteName: f.querySelector('[name="athleteName"]').value.trim(),
+        age: f.querySelector('[name="age"]').value,
+        grade: f.querySelector('[name="grade"]').value,
+        notes: f.querySelector('[name="notes"]').value.trim(),
+        zip: ccZip,
+        promo: document.getElementById('promo-code').value.trim().toUpperCase()
+      };
+
+      fetch('/.netlify/functions/process-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
+      .then(function(result) {
+        if (result.ok && result.data.success) {
+          // Track conversion
+          if (typeof fbq === 'function') fbq('track', 'Purchase', { value: finalAmount, currency: 'USD', content_name: selectedLabel });
+          if (typeof gtag === 'function') gtag('event', 'purchase', { value: finalAmount, currency: 'USD', items: [{ item_name: selectedLabel }] });
+
+          window.location.href = '/payment-complete/?program=' + encodeURIComponent(selectedLabel) +
+            '&amount=' + finalAmount.toFixed(2) +
+            '&athlete=' + encodeURIComponent(f.querySelector('[name="athleteName"]').value.trim()) +
+            '&tx=' + encodeURIComponent(result.data.transactionId || '');
+        } else {
+          errEl.textContent = result.data.error || 'Payment failed. Please try again.';
+          errEl.classList.remove('hidden');
+          payBtn.textContent = 'Pay $' + finalAmount.toFixed(2);
+          payBtn.disabled = false;
+        }
+      })
+      .catch(function() {
+        errEl.textContent = 'Network error. Please try again.';
+        errEl.classList.remove('hidden');
+        payBtn.textContent = 'Pay $' + finalAmount.toFixed(2);
+        payBtn.disabled = false;
+      });
+    });
+  };
+})();
+</script>
+
+{{ end }}

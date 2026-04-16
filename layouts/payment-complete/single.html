@@ -1,0 +1,48 @@
+{{ define "main" }}
+<section class="py-20 bg-gray-50 min-h-screen">
+  <div class="max-w-lg mx-auto px-4 text-center">
+    <div class="bg-white rounded-2xl shadow-xl p-10">
+      <div class="text-6xl mb-4">🏀</div>
+      <h1 class="font-display text-3xl text-navy mb-2">You're Registered!</h1>
+      <p class="text-gray-500 mb-6">Payment received — welcome to FCP Sports.</p>
+
+      <div class="bg-gray-50 rounded-xl p-5 text-left space-y-2 mb-6">
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500">Program</span>
+          <span class="font-bold text-navy" id="conf-program">—</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500">Athlete</span>
+          <span class="font-bold text-navy" id="conf-athlete">—</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500">Amount Paid</span>
+          <span class="font-bold text-green-600" id="conf-amount">—</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500">Transaction ID</span>
+          <span class="font-mono text-xs text-gray-600" id="conf-tx">—</span>
+        </div>
+      </div>
+
+      <p class="text-sm text-gray-500 mb-6">A confirmation email has been sent. Our coaching staff will reach out within 24 hours with next steps.</p>
+
+      <div class="flex flex-col gap-3">
+        <a href="/" class="bg-gold text-navy font-bold py-3 rounded-lg hover:brightness-110 transition text-sm uppercase tracking-wide block">Back to Home</a>
+        <a href="/contact/" class="border border-gray-300 text-gray-600 font-bold py-3 rounded-lg hover:bg-gray-50 transition text-sm block">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var el = function(id) { return document.getElementById(id); };
+  if (params.get('program')) el('conf-program').textContent = params.get('program');
+  if (params.get('athlete')) el('conf-athlete').textContent = params.get('athlete');
+  if (params.get('amount'))  el('conf-amount').textContent = '$' + parseFloat(params.get('amount')).toFixed(2);
+  if (params.get('tx'))      el('conf-tx').textContent = params.get('tx');
+})();
+</script>
+{{ end }}
