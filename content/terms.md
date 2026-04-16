@@ -2,6 +2,7 @@
 title: "Terms of Service | FCP Sports"
 description: "Terms of Service for FCP Sports programs, camps, leagues, and facility use."
 layout: "legal"
+noindex: true
 ---
 
 ## Terms of Service

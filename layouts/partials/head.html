@@ -18,10 +18,13 @@
 {{ if eq .Section "blog" }}{{ $ogImage = "images/fcp-sports-facility.jpg" }}{{ end }}
 <meta property="og:image" content="{{ site.BaseURL }}{{ $ogImage }}" />
 <meta property="og:site_name" content="FCP Sports" />
+<meta property="og:locale" content="en_US" />
 
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@fcp_sports50588" />
 <meta name="twitter:title" content="{{ .Title }}" />
 <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
+<meta name="twitter:image" content="{{ site.BaseURL }}{{ $ogImage }}" />
 
 <!-- Preconnects -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -15,14 +15,14 @@ enableGitInfo = true
   authnet_client_key = "86pQSp792wbYUgr23u3V5Zajkrz2yPQnsNG8xdHX4aFfc987ZfZuyf45TdPbM3hk"
   instagram = "https://www.instagram.com/playfcpsports/"
   facebook = "https://www.facebook.com/playfcpsports"
-  twitter = "https://twitter.com/fcpsports"
+  twitter = "https://x.com/fcp_sports50588"
 
 [taxonomies]
   tag = "tags"
   category = "categories"
 
 [outputs]
-  home = ["HTML", "RSS"]
+  home = ["HTML", "RSS", "Sitemap"]
   section = ["HTML", "RSS"]
   page = ["HTML"]
 

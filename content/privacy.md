@@ -2,6 +2,7 @@
 title: "Privacy Policy | FCP Sports"
 description: "Privacy Policy for FCP Sports — how we collect, use, and protect your information."
 layout: "legal"
+noindex: true
 ---
 
 ## Privacy Policy

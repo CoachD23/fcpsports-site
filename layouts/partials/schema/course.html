@@ -9,7 +9,7 @@
     "@type": "Organization",
     "name": "FCP Sports",
     "url": "https://fcpsports.org",
-    "sameAs": ["https://instagram.com/fcpsports", "https://facebook.com/fcpsports"]
+    "sameAs": ["{{ site.Params.instagram }}", "{{ site.Params.facebook }}", "{{ site.Params.twitter }}"]
   },
   "courseMode": "{{ .Params.course_mode | default "onsite" }}",
   "educationalLevel": "{{ .Params.age_range | default "All Ages" }}",
