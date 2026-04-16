@@ -78,6 +78,22 @@
   <div class="border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-white/50 text-xs">© {{ now.Year }} FCP Sports. All rights reserved.</p>
+<script>
+window.addEventListener('message', function(e) {
+  if (!e.data || typeof e.data !== 'object') return;
+  var type = e.data.type || e.data.event || '';
+  if (
+    type === 'form_submitted' ||
+    type === 'FORM_SUBMISSION' ||
+    type === 'leadConnector_formSubmitted' ||
+    (typeof type === 'string' && type.toLowerCase().includes('submit'))
+  ) {
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead');
+    }
+  }
+});
+</script>
       <div class="flex gap-6 text-xs text-white/50">
         <a href="/privacy/" class="hover:text-gold transition-colors">Privacy Policy</a>
         <a href="/terms/" class="hover:text-gold transition-colors">Terms of Service</a>
