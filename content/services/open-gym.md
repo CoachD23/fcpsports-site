@@ -5,7 +5,7 @@ description: "Open gym basketball in Fort Walton Beach. Drop-in pickup games for
 h1: "Open Gym"
 keyword: "open gym basketball fort walton beach"
 age_range: "Youth & Adult"
-price: "Drop-in rates available"
+price: "FREE through May 15"
 frequency: "Weekly schedule"
 program_name: "Open Gym"
 ghl_tag: "train"
@@ -15,20 +15,20 @@ faq:
   - q: "Do you have adult open gym?"
     a: "Yes. Dedicated adult sessions separate from youth. Expect real runs — military personnel, former players, competitive hoopers."
   - q: "How much does open gym cost?"
-    a: "Drop-in per session or monthly pass for regulars. Monthly passes save significantly if you come more than twice a week."
+    a: "Open gym is FREE through May 15, 2026. After that, we offer drop-in per session or monthly passes. No registration required — just show up."
   - q: "Do I need to register?"
-    a: "No. Show up during posted hours, pay the drop-in fee, and play."
+    a: "No. Show up during posted hours and play. It's free through May 15."
 ---
 
-## Just Show Up and Play.
+## Free Open Gym — Now Through May 15
 
-Your kid wants to hoop but doesn't want a program? This is it. No registration. No commitment. Just walk in and play.
+No cost. No registration. No commitment. Just show up and play.
 
-For adults: competitive pickup games on a clean, climate-controlled indoor court.
+We're opening the court for free through May 15 so you can see what FCP Sports is all about. Youth and adults welcome.
 
 ## Current Schedule (April 16 – May 15)
 
-**Open Gym**
+**Open Gym — FREE**
 - Tuesday: 3:00 – 5:00 PM
 - Thursday: 3:00 – 5:00 PM
 - Saturday: 10:00 AM – 1:00 PM
@@ -37,10 +37,9 @@ For adults: competitive pickup games on a clean, climate-controlled indoor court
 
 ## Pricing
 
-**Drop-in:** Pay per session.
-**Monthly pass:** Unlimited sessions (youth or adult). Best deal if you come more than twice a week.
+**Now through May 15: FREE.** Just walk in.
 
-[Call 850.961.2323 for current rates.](/contact/)
+After May 15, standard rates resume — drop-in per session or monthly pass. [Call 850.961.2323 for details.](/contact/)
 
 ## House Rules
 
