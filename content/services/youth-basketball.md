@@ -26,45 +26,16 @@ faq:
   <a href="/youth-league/" style="display:inline-block;margin-top:10px;background:#c9a227;color:#0a1628;padding:10px 24px;border-radius:8px;font-weight:700;text-decoration:none;">Register for the Saturday League →</a>
 </div>
 
-## Three Tiers. Your Kid Grows Through All of Them.
+## Programs by Age
 
-### Little Ballers (K–2nd Grade)
+| Program | Grades | What They Learn |
+|---------|--------|----------------|
+| Little Ballers | K–2nd | Coordination, basic dribbling/passing, rules, fun-first |
+| Junior | 3rd–5th | Real games with refs, position play, offensive/defensive concepts |
+| Prep | 6th–8th | Film review, position-specific training, conditioning, tryout prep |
 
-The most important program we run. Get this right and your kid loves basketball for life.
-
-- Fun-first, no scorekeeping
-- Basic dribbling, passing, layups
-- Learning the rules
-- Coaches selected for patience and positivity
-
-**This is where it starts.** Not intensity. Joy.
-
-### Junior Program (3rd–5th Grade)
-
-Basketball gets real — but still fun. Your kid is ready for:
-
-- Real games with referees and scores
-- Position awareness (guard, forward, center)
-- Offensive and defensive concepts
-- Basketball IQ development
-
-First experience with competition. We prepare them for winning *and* losing.
-
-### Prep (6th–8th Grade)
-
-This is where kids get ready for high school ball. More intensity, more structure, more competition:
-
-- Film review and game planning
-- Position-specific training
-- Physical conditioning
-- Tryout preparation
-
-Kids from this program have made varsity at Choctaw, Niceville, and Fort Walton Beach High.
-
-## How Kids Move Between Tiers
-
-By **age and grade**, not tryouts. Every player who ages into the next tier is welcomed. Within each tier, players are grouped by skill level for practice.
+Players move between tiers by age and grade — no tryouts required.
 
 ## Get Started
 
-[Register for the current season](/registration/) or [call us at 850.961.2323](/contact/) to figure out which tier fits your kid.
+[Register for the current season](/registration/) or [call us at 850.961.2323](/contact/).

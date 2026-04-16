@@ -26,10 +26,6 @@ event_dates:
     price: "129"
 ---
 
-## Four Days of Basketball. Friday Free.
-
-Four days of basketball during spring break. Drop them off Monday through Thursday — they play real basketball while you keep Friday and the weekend free.
-
 ## Two Sessions, All Grades
 
 | Session | Grades | Time |
@@ -39,16 +35,14 @@ Four days of basketball during spring break. Drop them off Monday through Thursd
 
 **$129 for all four days.** Same price, both sessions.
 
-Younger kids get fundamentals-first coaching in a lower-pressure environment. Older kids get higher-intensity work — advanced skills, competitive scrimmages, position-specific coaching.
+Younger kids get fundamentals-focused coaching. Older kids get advanced skills and competitive scrimmages.
 
 ## The Four Days
 
-**Monday:** Find out where they are. Ball handling, dribbling, first-day energy.
-**Tuesday:** Layups, passing, footwork. Older kids start scrimmaging.
-**Wednesday:** Shooting form, 3-on-3 games, learning to read the defense.
-**Thursday:** Test again, see the improvement. Skills competition, mini-tournament, and a coach who tells your kid exactly what to work on next.
-
-Every kid leaves Thursday with concrete feedback: here's where you started, here's what improved, here's one thing to work on before summer.
+- **Monday:** Skills assessment, ball handling, dribbling
+- **Tuesday:** Layups, passing, footwork
+- **Wednesday:** Shooting form, 3-on-3 games, defensive reads
+- **Thursday:** Repeat assessment, skills competition, mini-tournament
 
 ## What to Bring
 

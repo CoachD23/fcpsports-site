@@ -20,45 +20,35 @@ faq:
     a: "Depends on roster availability. Contact us and we'll work with you."
 ---
 
-## Show Up Saturday. Practice. Play a Real Game. Go Home Happy.
+## How It Works
 
-That's the whole season. One morning a week for 8 weeks. Your kid gets a team, a jersey, a coach, and a game every Saturday.
+1. **Evaluation night** — Quick session so coaches can build balanced teams
+2. **Draft** — Coaches draft balanced rosters. No stacked teams.
+3. **6 Saturdays** — 45-min practice + game each week
+4. **Playoffs + Championship** — Single elimination, trophies, awards
 
-No tryouts. No travel. No five-day-a-week commitment.
-
-## How the Season Works
-
-1. **Evaluation Night** — every player comes out for a quick session so coaches can build balanced teams
-2. **Draft** — coaches draft balanced teams. No stacked rosters. Every game is competitive.
-3. **6 regular-season Saturdays** — 45 min practice + game each week
-4. **Playoffs + Championship** — single elimination, trophies, awards
-
-**Equal playing time is mandatory.** Every division, every game, non-negotiable.
-
-Your kid can request to play with a friend at registration — we honor buddy requests within draft balance.
+Equal playing time is mandatory. Every division, every game.
 
 ## Divisions
 
 | Division | Grades | Ages | Price | Details |
 |----------|--------|------|-------|---------|
-| Mini | K–2nd | 5–8 | $79 | Lower baskets, smaller ball, learning the game |
+| Mini | K–2nd | 5–8 | $79 | Lower baskets, smaller ball |
 | Junior | 3rd–5th | 8–11 | $99 | Real refs, real stats, 10-ft baskets |
 | Intermediate | 6th–8th | 11–14 | $129 | Full-court, advanced rules |
 | Senior | 9th–12th | 15–18 | $149 | FHSAA-adjacent rules |
 
 All registrations include a game jersey. No hidden fees.
 
-## League + Training Bundle
-
-Add 8 weekly training sessions to any league registration for $70–$100 more. Your kid develops between games instead of just showing up Saturdays. [See full pricing →](/pricing/)
-
 ## Seasons
 
-**[Fall League](/leagues/fall-league/)** — September–November, Saturday mornings
+- **[Fall League](/leagues/fall-league/)** — September–November, Saturday mornings
+- **[Summer League](/leagues/summer-league/)** — June–July, Tuesday/Thursday evenings
+- **[Little Ballers](/leagues/little-league/)** — January–March, Saturday mornings (K–2nd only)
 
-**[Summer League](/leagues/summer-league/)** — June–July, Tuesday/Thursday evenings
+## League + Training Bundle
 
-**[Little Ballers](/leagues/little-league/)** — January–March, Saturday mornings (K–2nd only)
+Add 8 weekly training sessions to any league registration for $70–$100 more. [See full pricing →](/pricing/)
 
 ## Discounts (They Stack)
 

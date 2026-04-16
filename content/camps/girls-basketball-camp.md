@@ -26,28 +26,16 @@ event_dates:
     price: "149"
 ---
 
-## Her Camp. Her Court. Her Week.
+## Details
 
-Five days where your daughter is the focus.
+- **Dates:** June 15–19 (Mon–Fri)
+- **Time:** 9:30 AM – 2:00 PM
+- **Grades:** 6–10, girls only
+- **Price:** $149 ($129 early bird / military)
 
-Every drill. Every rep. Every coaching correction. Built for her.
+The only girls-only basketball camp in the Florida Panhandle.
 
-## The Details
-
-**Dates:** June 15–19 (Monday–Friday)
-**Time:** 9:30 AM – 2:00 PM
-**Grades:** 6–10, girls only
-**Price:** $149 ($129 early bird / military)
-
-## What She Gets
-
-**Every rep is hers.** Every rotation, every scrimmage minute, every coaching correction goes to the players in the building.
-
-**Coaches who get it.** Our staff builds confidence alongside competition. We push hard and build up — both at the same time.
-
-**A peer group of girls who play.** Your daughter trains with other girls who actually love basketball. That environment matters more than any drill.
-
-## The Week
+## Daily Schedule
 
 | Time | Activity |
 |------|----------|
@@ -63,7 +51,7 @@ Every drill. Every rep. Every coaching correction. Built for her.
 | 1:45 PM | Skills competition |
 | 2:00 PM | Pickup |
 
-Monday: baseline skills assessment. Friday: repeat assessment so she can see her improvement.
+Skills assessment on Monday. Repeat on Friday.
 
 ## Pricing
 

@@ -26,10 +26,6 @@ event_dates:
     price: "79"
 ---
 
-## Three Mornings. Real Basketball. No Screens.
-
-Three mornings of basketball during winter break. Your kid stays active, works on real skills, and has fun — all before lunch.
-
 **Dates:** December 28–30 (Mon–Wed)
 **Time:** 9:00 AM – 12:00 PM
 **Grades:** 4–8
@@ -41,14 +37,7 @@ Three mornings of basketball during winter break. Your kid stays active, works o
 **Day 2 — Shooting & Scoring:** Form shooting, layup technique, short-range moves.
 **Day 3 — Game Day:** Everything from Days 1 & 2 tested in coached scrimmages, skills challenges, and awards.
 
-## Who It's For
-
-- Kids who just started playing and want more practice
-- Athletes from other sports who want to try basketball
-- Players who want to stay sharp over break
-- Any kid in grades 4–8 who needs to move
-
-No experience needed. Just court shoes and a good attitude.
+No experience needed. Grades 4–8, boys and girls.
 
 ## What to Bring
 

@@ -21,44 +21,36 @@ faq:
     a: "Yes — semi-private lessons for 2 players run 75–90 minutes. Lower per-player cost, still way more attention than group training. Great for siblings or friends."
 ---
 
-## One Coach. One Kid. All the Attention.
+## 60-Minute Lesson Breakdown
 
-Private lessons are for athletes who want to close a specific gap fast.
-
-The kid who only goes right. The 8th grader who wants to make JV. The player whose shot has a hitch they can't fix on their own. Private lessons are built for exactly this.
-
-## What a 60-Minute Lesson Looks Like
-
-| Time | What Happens |
-|------|-------------|
-| 0–10 min | Warm-up, loose ball handling |
+| Time | Focus |
+|------|-------|
+| 0–10 min | Warm-up, ball handling |
 | 10–25 min | Ball handling — targeted to weaknesses |
 | 25–40 min | Shooting — form, spot work, off-the-dribble |
 | 40–50 min | Game situations — 1-on-0 moves, live reads |
 | 50–60 min | Cool-down, coach feedback, parent debrief |
 
-The last 10 minutes are for you. We tell you exactly what we worked on, what got better, and what to practice before next time. You leave knowing what's next.
-
 ## Common Focus Areas
 
-- **Shooting form** — fixing the hitch, elbow alignment, follow-through
-- **Weak hand** — most players are functionally one-handed
-- **Ball handling under pressure** — combos, change-of-speed, reading defenders
-- **Footwork** — pivots, jab steps, euro steps, drop steps
-- **Confidence** — for players facing a rough patch or a big tryout
-
-## We Match the Right Coach
-
-We factor in your athlete's age, position, learning style, and goals before assigning a coach. If the fit isn't right after the first session, we rematch — no questions asked.
+- Shooting form and consistency
+- Weak hand development
+- Ball handling under pressure
+- Footwork — pivots, jab steps, euro steps
+- Tryout preparation
 
 ## Session Options
 
-- **1-on-1** — 30, 45, or 60 minutes
-- **Semi-private (2 players)** — 75–90 minutes, lower per-player cost
-- **Small group (3–4 players)** — great for teammates preparing for tryouts together
+| Format | Duration |
+|--------|----------|
+| 1-on-1 | 30, 45, or 60 minutes |
+| Semi-private (2 players) | 75–90 minutes |
+| Small group (3–4 players) | 60 minutes |
+
+We match the right coach based on your player's age, position, and goals.
 
 ## Book a Lesson
 
-[Register here](/registration/) or [call 850.961.2323](/contact/) to get matched with the right coach.
+[Register here](/registration/) or [call 850.961.2323](/contact/).
 
-Not sure if private lessons are the right fit? Start with our [group training programs](/services/basketball-training/) — more affordable, still structured.
+Looking for group training instead? See our [basketball training programs](/services/basketball-training/).

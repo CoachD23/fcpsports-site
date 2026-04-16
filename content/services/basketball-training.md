@@ -23,36 +23,32 @@ faq:
     a: "Depends on the track and frequency. We offer monthly and semester packages. Contact us for pricing or request a free trial session."
 ---
 
-## Your Kid Gets Better Every Week. You Can See It.
-
-This isn't a drop-in clinic. It's a plan built around your kid.
-
-We figure out what they need to work on, train it every week, and show you the progress in writing. No guessing. You'll see it at home, too — the way they handle the ball, the confidence when they step on the court.
-
 ## How It Works
 
-1. **We watch your kid play** — ball handling, shooting, footwork, decision-making
-2. **We build a plan** — focused on what they actually need, not a generic curriculum
-3. **They train every week** — skills build on each other, session by session
-4. **You get a written report** — at 30, 60, and 90 days, so you know it's working
+1. **Assessment** — We evaluate ball handling, shooting, footwork, and decision-making
+2. **Custom plan** — Focused on what your player actually needs
+3. **Weekly sessions** — Skills build session by session
+4. **Progress reports** — Written updates at 30, 60, and 90 days
 
 ## Three Tracks
 
-**Beginner (Ages 8–11)** — First-time players learning the fundamentals. Dribbling with both hands, shooting form, basic footwork, rules of the game. Fun-first, confidence-building.
+| Track | Ages | Group Size | Focus |
+|-------|------|-----------|-------|
+| Beginner | 8–11 | Small group | Fundamentals, dribbling, shooting form, rules |
+| Intermediate | 10–14 | 6–8 athletes | Off-hand, footwork, decision-making |
+| Advanced | 13–18 | Small group | Position-specific, game-speed reps, film, conditioning |
 
-**Intermediate (Ages 10–14)** — Players who know the basics but plateau in games. We find the specific gaps — usually footwork, off-hand, or decision-making — and close them. Groups of 6–8 athletes.
+## Skills Covered
 
-**Advanced (Ages 13–18)** — For kids getting ready for high school tryouts or already playing varsity. This is where it gets intense — position-specific work, game-speed reps, film, and conditioning.
-
-## What We Work On
-
-Ball handling. Shooting. Footwork. Basketball IQ. The fundamentals that translate directly to game performance.
-
-Every session is focused on your kid's specific plan — not a one-size-fits-all workout.
+- Ball handling
+- Shooting mechanics
+- Footwork
+- Basketball IQ
+- Defensive fundamentals
 
 ## Get Started
 
-Start with a free baseline assessment. We'll show you where your athlete is and how we'll get them where they want to go.
+Free baseline assessment included.
 
 [Register for training](/registration/) or [call 850.961.2323](/contact/).
 

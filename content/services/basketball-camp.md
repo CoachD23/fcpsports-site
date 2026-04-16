@@ -21,38 +21,21 @@ faq:
     a: "Yes. We assess skills on day one and group by ability. Beginners get fundamentals coaching. Experienced players work on advanced skills. Every kid is met where they are."
 ---
 
-## Your Kid. A Real Court. A Week They'll Talk About.
-
-Every camp runs the same way: show up, learn real basketball, play real games, come home happy. Pick the one that fits your schedule.
-
 ## Camp Options
 
-| Camp | Dates | Grades | Price | |
-|------|-------|--------|-------|-|
-| [Summer Day Camp](/camps/summer-day-camp/) | Jun 8 – Jul 31 (4 sessions) | 3–10 | $149/wk | 9:30 AM – 2:00 PM daily |
-| [Girls Basketball Camp](/camps/girls-basketball-camp/) | June 15–19 | 6–10 (Girls) | $149/wk | The only girls-only camp in the Panhandle |
-| [Spring Break Camp](/camps/spring-break-camp/) | March 15–18 | 3–12 | $129 | Mon–Thu, Friday free |
-| [Holiday Camp](/camps/holiday-camp/) | Dec 28–30 | 4–8 | $79 | 3 half-day mornings |
+| Camp | Dates | Grades | Price |
+|------|-------|--------|-------|
+| [Summer Day Camp](/camps/summer-day-camp/) | Jun 8 – Jul 31 (4 sessions) | 3–10 | $149/wk |
+| [Girls Basketball Camp](/camps/girls-basketball-camp/) | June 15–19 | 6–10 (Girls) | $149/wk |
+| [Spring Break Camp](/camps/spring-break-camp/) | March 15–18 | 3–12 | $129 |
+| [Holiday Camp](/camps/holiday-camp/) | Dec 28–30 | 4–8 | $79 |
 
-## What Your Kid Gets
+## What's Included
 
-**Real coaching.** Your kid works with experienced coaches who teach fundamentals, not just supervise.
-
-**Skills they can measure.** Day one, we test where they are. Last day, we test again. Your kid sees exactly how much they improved — and so do you.
-
-**Games that matter.** Scrimmages are coached, not free-for-all. We stop play, teach the read, then let them run it. That's how basketball IQ gets built.
-
-## 2026–2027 Schedule
-
-| Date | Camp | Grades | Price |
-|------|------|--------|-------|
-| June 8–12 | Summer Camp — Session 1 | 3–5 | $149 |
-| June 15–19 | Girls Basketball Camp | 6–10 (Girls) | $149 |
-| June 22–26 | Summer Camp — Session 2 | 6–8 | $149 |
-| July 13–16 | Summer Camp — Session 3 | 6–10 | $149 |
-| July 27–31 | Summer Camp — Session 4 | 3–8 | $149 |
-| December 28–30 | Holiday Camp | 4–8 | $79 |
-| March 15–18 | Spring Break Camp | 3–12 | $129 |
+- Skills assessment on day one and last day
+- Structured drills and coached scrimmages
+- Experienced coaching staff
+- Indoor, climate-controlled gym
 
 ## What to Bring
 
@@ -61,10 +44,6 @@ Every camp runs the same way: show up, learn real basketball, play real games, c
 - Water bottle
 - Packed lunch
 
-Indoor, climate-controlled gym. No sunscreen needed.
-
 ## Register
 
 [Register here](/registration/) or [call 850.961.2323](/contact/).
-
-For year-round development, check out our [youth basketball programs](/services/youth-basketball/) or [private training](/services/basketball-training/).

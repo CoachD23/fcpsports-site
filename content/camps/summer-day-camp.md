@@ -37,10 +37,6 @@ event_dates:
     price: "149"
 ---
 
-## Drop Off. Pick Up. Watch Them Glow.
-
-Your kid spends the morning learning real basketball from experienced coaches. They come home tired, happy, and asking to go back tomorrow.
-
 ## Sessions & Dates
 
 | Session | Dates | Grades | Hours | Price |
@@ -50,35 +46,22 @@ Your kid spends the morning learning real basketball from experienced coaches. T
 | Session 3 | July 13–16 | Grades 6–10 | 9:30 AM – 2:00 PM | $149 |
 | Session 4 | July 27–31 | Grades 3–8 | 9:30 AM – 2:00 PM | $149 |
 
-Every session runs 9:30 AM to 2:00 PM — long enough for real development, short enough to keep energy and focus high all day. Kids bring their own lunch.
+Drop-off at 9:15 AM. Pickup at 2:00 PM. Bring your own lunch.
 
-Drop-off starts at 9:15 AM. Pickup is at 2:00 PM.
+## Daily Schedule
 
-## What a Day Looks Like
+**Morning:** Warm-up, ball handling stations, shooting clinic, defensive fundamentals
 
-**Morning:**
+**Afternoon:** Lunch break, film review, coached scrimmages, skills competition
 
-- Warm-up and stretching
-- Ball handling stations — dribbling, passing, control
-- Shooting clinic — form, footwork, game-speed reps
-- Water break
-- Defensive fundamentals — slides, closeouts, positioning
-
-**Lunch & Afternoon:**
-
-- Lunch break (bring your own)
-- Film review or chalk talk
-- Coached scrimmages and skills competition
-- Cool-down and pickup at 2:00 PM
-
-Monday starts with a skills assessment. Friday ends with a repeat — so your kid (and you) can see exactly what improved.
+Skills assessment on Monday. Repeat assessment on Friday so your kid can see what improved.
 
 ## Pricing
 
 | Option | Price |
 |--------|-------|
 | Any session | $149/week |
-| Early bird (register before May 1) | $20 off |
+| Early bird (before May 1) | $20 off |
 | Military / DoD families | Early bird rate always |
 | Sibling discount | $20 off per additional child |
 | Multi-week bundle (2 weeks) | $25 off total |
@@ -89,12 +72,9 @@ Monday starts with a skills assessment. Friday ends with a repeat — so your ki
 - Athletic clothes
 - Water bottle
 - Packed lunch
-- Optional: their own basketball
 
-Indoor, climate-controlled gym. No sunscreen needed.
+Indoor, climate-controlled gym.
 
 ## Register
 
-Sessions fill by grade group. [Register now](/registration/) or [call 850.961.2323](/contact/).
-
-Want year-round development? Check out our [youth basketball programs](/services/youth-basketball/) or [private training](/services/basketball-training/).
+[Register now](/registration/) or [call 850.961.2323](/contact/).
