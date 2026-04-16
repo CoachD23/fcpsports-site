@@ -66,6 +66,310 @@
   </div>
 </section>
 
+{{ if .Params.show_waiver }}
+<!-- =====================================================
+     WAIVER — Required for participation
+     ===================================================== -->
+<section class="py-16 bg-gray-50" id="waiver">
+  <div class="max-w-3xl mx-auto px-4">
+
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+      <!-- Header -->
+      <div class="bg-navy px-8 py-6">
+        <h2 class="font-display text-3xl text-white mb-1">Required Waiver</h2>
+        <p class="text-white/70 text-sm">All participants must complete this waiver before stepping on the court.</p>
+      </div>
+
+      <div class="px-8 py-8">
+        <!-- Waiver text -->
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8 max-h-64 overflow-y-auto text-xs text-gray-600 leading-relaxed">
+          <p class="font-bold text-navy text-sm mb-3">FCP Sports — Waiver, Release & Assumption of Risk</p>
+          <p class="mb-2"><strong>ASSUMPTION OF RISK:</strong> I acknowledge that participation in basketball training, camps, leagues, open gym sessions, and related activities at FCP Sports involves inherent risks of physical injury including sprains, fractures, concussions, ligament tears, muscle strains, heat-related illness, and in rare cases, catastrophic injury or death. I voluntarily assume all such risks.</p>
+          <p class="mb-2"><strong>RELEASE OF LIABILITY:</strong> I hereby release, waive, discharge, and agree not to sue FCP Sports, its owners, officers, coaches, employees, volunteers, and agents from any and all claims arising out of participation in Activities, whether caused by negligence or otherwise.</p>
+          <p class="mb-2"><strong>MEDICAL AUTHORIZATION:</strong> In the event of an emergency, I authorize FCP Sports to secure medical treatment including transportation to a medical facility. I am financially responsible for any medical expenses incurred.</p>
+          <p class="mb-2"><strong>MEDIA RELEASE:</strong> I grant FCP Sports permission to use photographs, video recordings, and likenesses taken during Activities for promotional, educational, and marketing purposes without compensation.</p>
+          <p class="mb-2"><strong>RULES & CONDUCT:</strong> I agree to abide by all rules and instructions of FCP Sports coaching staff. FCP Sports reserves the right to dismiss any participant whose conduct is deemed unsafe or disruptive, without refund.</p>
+          <p><strong>GOVERNING LAW:</strong> This waiver shall be governed by the laws of the State of Florida. Disputes shall be resolved in the courts of Okaloosa County, Florida.</p>
+        </div>
+
+        <form id="waiver-form" class="space-y-5" novalidate>
+
+          <!-- Minor / Adult toggle -->
+          <div>
+            <label class="block text-xs font-semibold text-navy mb-2 uppercase tracking-wide">Who is participating?</label>
+            <div class="grid grid-cols-2 gap-3">
+              <button type="button" id="waiver-toggle-minor"
+                class="px-4 py-3 border-2 border-gold bg-gold/10 rounded-lg text-sm font-bold text-navy transition-all">
+                Minor (Under 18)
+              </button>
+              <button type="button" id="waiver-toggle-adult"
+                class="px-4 py-3 border-2 border-gray-200 rounded-lg text-sm font-bold text-gray-500 transition-all hover:border-gray-300">
+                Adult (18+)
+              </button>
+            </div>
+          </div>
+
+          <!-- Minor fields (shown by default) -->
+          <div id="waiver-minor-fields">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="waiver-parent-name" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Parent / Guardian Name <span class="text-red-500">*</span></label>
+                <input type="text" id="waiver-parent-name" name="parentName" required autocomplete="name"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+              </div>
+              <div>
+                <label for="waiver-parent-email" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Email <span class="text-red-500">*</span></label>
+                <input type="email" id="waiver-parent-email" name="parentEmail" required autocomplete="email"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="waiver-parent-phone" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Phone <span class="text-red-500">*</span></label>
+                <input type="tel" id="waiver-parent-phone" name="parentPhone" required autocomplete="tel"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+              </div>
+              <div>
+                <label for="waiver-minor-name" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Participant's Name <span class="text-red-500">*</span></label>
+                <input type="text" id="waiver-minor-name" name="minorName" required
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+              </div>
+            </div>
+            <div class="max-w-xs">
+              <label for="waiver-minor-dob" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Participant's Date of Birth <span class="text-red-500">*</span></label>
+              <input type="date" id="waiver-minor-dob" name="minorDOB" required
+                class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+            </div>
+          </div>
+
+          <!-- Adult fields (hidden by default) -->
+          <div id="waiver-adult-fields" class="hidden">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="waiver-adult-name" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Full Name <span class="text-red-500">*</span></label>
+                <input type="text" id="waiver-adult-name" name="adultName" autocomplete="name"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+              </div>
+              <div>
+                <label for="waiver-adult-email" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Email <span class="text-red-500">*</span></label>
+                <input type="email" id="waiver-adult-email" name="adultEmail" autocomplete="email"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+              </div>
+            </div>
+            <div class="max-w-xs">
+              <label for="waiver-adult-dob" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Date of Birth <span class="text-red-500">*</span></label>
+              <input type="date" id="waiver-adult-dob" name="adultDOB"
+                class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition" />
+            </div>
+          </div>
+
+          <!-- Signature -->
+          <div>
+            <label class="block text-xs font-semibold text-navy mb-2 uppercase tracking-wide">Signature <span class="text-red-500">*</span></label>
+            <div class="relative border-2 border-dashed border-gray-300 rounded-xl bg-white" style="touch-action:none;">
+              <canvas id="waiver-sig-canvas" width="600" height="160" class="w-full cursor-crosshair rounded-xl" style="height:160px;"></canvas>
+              <button type="button" id="waiver-sig-clear"
+                class="absolute top-2 right-2 text-xs text-gray-400 hover:text-red-500 transition-colors font-medium">Clear</button>
+              <p id="waiver-sig-hint" class="absolute inset-0 flex items-center justify-center text-gray-300 text-sm pointer-events-none">Sign here</p>
+            </div>
+          </div>
+
+          <!-- Agreement + Email copy -->
+          <div class="space-y-3">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" id="waiver-agree" required class="mt-1 w-4 h-4 rounded border-gray-300 text-gold focus:ring-gold" />
+              <span class="text-sm text-gray-700">I have read and agree to the Waiver, Release & Assumption of Risk above. <span class="text-red-500">*</span></span>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" id="waiver-email-copy" checked class="mt-1 w-4 h-4 rounded border-gray-300 text-gold focus:ring-gold" />
+              <span class="text-sm text-gray-500">Email me a copy of this signed waiver</span>
+            </label>
+          </div>
+
+          <!-- Error -->
+          <p id="waiver-error" class="hidden text-sm text-red-600 font-medium" role="alert"></p>
+
+          <!-- Submit -->
+          <button type="submit" id="waiver-submit"
+            class="w-full bg-gold text-navy font-bold py-4 rounded-lg hover:brightness-110 transition-all text-sm uppercase tracking-widest">
+            Sign & Submit Waiver
+          </button>
+        </form>
+
+        <!-- Success state -->
+        <div id="waiver-success" class="hidden text-center py-10">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="font-display text-2xl text-navy mb-2">Waiver Signed!</h3>
+          <p class="text-gray-600 text-sm">You're all set. Just show up during open gym hours and play.</p>
+          <p id="waiver-email-note" class="text-gray-400 text-xs mt-2">A copy has been sent to your email.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  var form = document.getElementById('waiver-form');
+  if (!form) return;
+
+  var isMinor = true;
+  var minorBtn = document.getElementById('waiver-toggle-minor');
+  var adultBtn = document.getElementById('waiver-toggle-adult');
+  var minorFields = document.getElementById('waiver-minor-fields');
+  var adultFields = document.getElementById('waiver-adult-fields');
+  var errorEl = document.getElementById('waiver-error');
+
+  function setMode(minor) {
+    isMinor = minor;
+    minorBtn.className = minor
+      ? 'px-4 py-3 border-2 border-gold bg-gold/10 rounded-lg text-sm font-bold text-navy transition-all'
+      : 'px-4 py-3 border-2 border-gray-200 rounded-lg text-sm font-bold text-gray-500 transition-all hover:border-gray-300';
+    adultBtn.className = !minor
+      ? 'px-4 py-3 border-2 border-gold bg-gold/10 rounded-lg text-sm font-bold text-navy transition-all'
+      : 'px-4 py-3 border-2 border-gray-200 rounded-lg text-sm font-bold text-gray-500 transition-all hover:border-gray-300';
+    minorFields.classList.toggle('hidden', !minor);
+    adultFields.classList.toggle('hidden', minor);
+  }
+  minorBtn.addEventListener('click', function() { setMode(true); });
+  adultBtn.addEventListener('click', function() { setMode(false); });
+
+  // Signature pad
+  var canvas = document.getElementById('waiver-sig-canvas');
+  var ctx = canvas.getContext('2d');
+  var hint = document.getElementById('waiver-sig-hint');
+  var drawing = false;
+  var hasSigned = false;
+
+  function resizeCanvas() {
+    var rect = canvas.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    ctx.strokeStyle = '#1a1a2e';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+  }
+  resizeCanvas();
+
+  function getPos(e) {
+    var rect = canvas.getBoundingClientRect();
+    var t = e.touches ? e.touches[0] : e;
+    return { x: t.clientX - rect.left, y: t.clientY - rect.top };
+  }
+
+  function startDraw(e) {
+    e.preventDefault();
+    drawing = true;
+    hasSigned = true;
+    hint.classList.add('hidden');
+    var p = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+  }
+  function draw(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    var p = getPos(e);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+  }
+  function stopDraw() { drawing = false; }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDraw);
+  canvas.addEventListener('mouseleave', stopDraw);
+  canvas.addEventListener('touchstart', startDraw, { passive: false });
+  canvas.addEventListener('touchmove', draw, { passive: false });
+  canvas.addEventListener('touchend', stopDraw);
+
+  document.getElementById('waiver-sig-clear').addEventListener('click', function() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hasSigned = false;
+    hint.classList.remove('hidden');
+  });
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.classList.remove('hidden');
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    errorEl.classList.add('hidden');
+
+    if (!document.getElementById('waiver-agree').checked) {
+      showError('You must agree to the waiver to continue.');
+      return;
+    }
+    if (!hasSigned) {
+      showError('Please sign above before submitting.');
+      return;
+    }
+
+    var payload = { isMinor: isMinor, signatureData: canvas.toDataURL('image/png'), emailCopy: document.getElementById('waiver-email-copy').checked };
+
+    if (isMinor) {
+      var pn = document.getElementById('waiver-parent-name').value.trim();
+      var pe = document.getElementById('waiver-parent-email').value.trim();
+      var pp = document.getElementById('waiver-parent-phone').value.trim();
+      var mn = document.getElementById('waiver-minor-name').value.trim();
+      var md = document.getElementById('waiver-minor-dob').value;
+      if (!pn) { showError('Parent/guardian name is required.'); return; }
+      if (!pe || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(pe)) { showError('A valid email is required.'); return; }
+      if (!pp || pp.replace(/\D/g,'').length < 10) { showError('A valid phone number is required.'); return; }
+      if (!mn) { showError("Participant's name is required."); return; }
+      if (!md) { showError("Participant's date of birth is required."); return; }
+      payload.parentName = pn;
+      payload.parentEmail = pe;
+      payload.parentPhone = pp;
+      payload.minorName = mn;
+      payload.minorDOB = md;
+    } else {
+      var an = document.getElementById('waiver-adult-name').value.trim();
+      var ae = document.getElementById('waiver-adult-email').value.trim();
+      var ad = document.getElementById('waiver-adult-dob').value;
+      if (!an) { showError('Full name is required.'); return; }
+      if (!ae || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ae)) { showError('A valid email is required.'); return; }
+      if (!ad) { showError('Date of birth is required.'); return; }
+      payload.adultName = an;
+      payload.adultEmail = ae;
+      payload.adultDOB = ad;
+    }
+
+    var btn = document.getElementById('waiver-submit');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    fetch('/.netlify/functions/submit-waiver', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+    .then(function(r) {
+      if (!r.ok) { showError(r.data.error || 'Something went wrong. Please try again.'); btn.textContent = 'Sign & Submit Waiver'; btn.disabled = false; return; }
+      form.classList.add('hidden');
+      var successEl = document.getElementById('waiver-success');
+      successEl.classList.remove('hidden');
+      if (!payload.emailCopy) document.getElementById('waiver-email-note').classList.add('hidden');
+    })
+    .catch(function() {
+      showError('Connection error. Please check your internet and try again.');
+      btn.textContent = 'Sign & Submit Waiver';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+{{ end }}
+
 {{ partial "faq-block.html" . }}
 {{ partial "cta-section.html" . }}
 

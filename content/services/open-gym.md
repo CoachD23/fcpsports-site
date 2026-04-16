@@ -8,6 +8,7 @@ age_range: "Youth & Adult"
 price: "FREE through May 15"
 frequency: "Weekly schedule"
 program_name: "Open Gym"
+show_waiver: true
 ghl_tag: "train"
 faq:
   - q: "Where can I play pickup basketball near Fort Walton Beach?"
@@ -45,9 +46,9 @@ After May 15, standard rates resume — drop-in per session or monthly pass. [Ca
 
 Court shoes required. Staff on-site. Clean, safe, air-conditioned. That's it.
 
-## Come This Week
+## Before You Come
 
-No signup needed. Check the schedule, show up, and play. [Call 850.961.2323](/contact/) if you want to confirm today's hours.
+**All participants must [complete the waiver below](#waiver) before stepping on the court.** Parents sign for anyone under 18. Takes 2 minutes.
 
 ## Want More?
 
