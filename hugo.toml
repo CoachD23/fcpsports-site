@@ -15,7 +15,7 @@ enableGitInfo = true
   authnet_client_key = "86pQSp792wbYUgr23u3V5Zajkrz2yPQnsNG8xdHX4aFfc987ZfZuyf45TdPbM3hk"
   instagram = "https://www.instagram.com/playfcpsports/"
   facebook = "https://www.facebook.com/playfcpsports"
-  twitter = "https://x.com/fcp_sports50588"
+  twitter = "https://x.com/playfcpsports"
 
 [taxonomies]
   tag = "tags"
