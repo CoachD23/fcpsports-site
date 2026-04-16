@@ -26,18 +26,14 @@ Your kid wants to hoop but doesn't want a program? This is it. No registration. 
 
 For adults: competitive pickup games on a clean, climate-controlled indoor court.
 
-## Schedule
+## Current Schedule (April 16 – May 15)
 
-**Youth (Ages 6–17)**
-- Tuesday: 5:30 – 7:30 PM
-- Saturday: 9:00 – 11:00 AM
+**Open Gym**
+- Tuesday: 3:00 – 5:00 PM
+- Thursday: 3:00 – 5:00 PM
+- Saturday: 10:00 AM – 1:00 PM
 
-**Adult (18+)**
-- Monday: 6:30 – 8:30 PM
-- Thursday: 6:30 – 8:30 PM
-- Saturday: 1:00 – 3:00 PM
-
-*Schedule may vary — [call to confirm today's hours](/contact/).*
+*Schedule updates seasonally — [call to confirm today's hours](/contact/).*
 
 ## Pricing
 
