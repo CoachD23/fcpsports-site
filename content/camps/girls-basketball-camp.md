@@ -5,7 +5,7 @@ h1: "Girls Basketball Camp"
 keyword: "girls basketball camp fort walton beach"
 age_range: "Grades 6–10 (Girls)"
 price: "$149/week"
-frequency: "Mon–Fri, 9am–3pm"
+frequency: "Mon–Fri, 9:30am–2pm"
 hero_image: /images/fcp-hero-kids.jpg
 layout: "services"
 course_type: "girls basketball camp"
@@ -35,7 +35,7 @@ Every drill. Every rep. Every coaching correction. Built for her.
 ## The Details
 
 **Dates:** June 15–19 (Monday–Friday)
-**Time:** 9:00 AM – 3:00 PM
+**Time:** 9:30 AM – 2:00 PM
 **Grades:** 6–10, girls only
 **Price:** $149 ($129 early bird / military)
 
@@ -51,17 +51,17 @@ Every drill. Every rep. Every coaching correction. Built for her.
 
 | Time | Activity |
 |------|----------|
-| 8:45 AM | Drop-off |
-| 9:00 AM | Warm-up |
-| 9:20 AM | Ball handling stations |
-| 10:15 AM | Shooting mechanics |
-| 11:00 AM | Water break |
-| 11:10 AM | Defensive footwork |
+| 9:15 AM | Drop-off |
+| 9:30 AM | Warm-up |
+| 9:45 AM | Ball handling stations |
+| 10:30 AM | Shooting mechanics |
+| 11:15 AM | Water break |
+| 11:25 AM | Defensive footwork |
 | 12:00 PM | Lunch (bring your own) |
-| 12:45 PM | Film review / basketball IQ |
-| 1:15 PM | Coached scrimmages |
-| 2:30 PM | Skills competition |
-| 3:00 PM | Pickup |
+| 12:30 PM | Film review / basketball IQ |
+| 1:00 PM | Coached scrimmages |
+| 1:45 PM | Skills competition |
+| 2:00 PM | Pickup |
 
 Monday: baseline skills assessment. Friday: repeat assessment so she can see her improvement.
 
