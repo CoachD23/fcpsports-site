@@ -43,7 +43,8 @@
     var mq = window.matchMedia('(min-width: 768px)');
     var conn = navigator.connection;
     var slow = conn && (conn.saveData || /2g/.test(conn.effectiveType));
-    if (mq.matches && !slow) {
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (mq.matches && !slow && !reducedMotion) {
       var v = document.getElementById('hero-video');
       var webm = document.createElement('source');
       webm.src = '/assets/video/hero.webm';
