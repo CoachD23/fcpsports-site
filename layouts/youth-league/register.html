@@ -364,14 +364,33 @@
         </div>
       </form>
 
-      <!-- Success -->
-      <div id="success-msg" class="hidden text-center py-12">
-        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4" role="status" aria-live="polite">
-          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      <!-- Success + Upsell -->
+      <div id="success-msg" class="hidden">
+        <!-- Confirmation -->
+        <div class="text-center pb-8 border-b border-gray-100">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4" role="status" aria-live="polite">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h2 class="font-display text-2xl text-navy mb-2">You're Registered!</h2>
+          <p class="text-gray-500 text-sm">Registered for <strong id="success-session-name" class="text-navy">—</strong>. Check your email for a confirmation.</p>
         </div>
-        <h2 class="font-display text-2xl text-navy mb-2">You're Registered!</h2>
-        <p class="text-gray-500 text-sm mb-6">Check your email for a confirmation. We'll see you on the court.</p>
-        <a href="/youth-league/" class="btn-primary">Back to Youth League</a>
+
+        <!-- Upsell: Add another session -->
+        <div id="upsell-block" class="mt-8">
+          <div class="text-center mb-6">
+            <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2">Save $25</span>
+            <h3 class="font-display text-xl text-navy">Add Another Session — Save $25</h3>
+            <p class="text-gray-500 text-sm mt-1">Register for a second session now and we'll take $25 off. Your info is already saved — it's just a few clicks.</p>
+          </div>
+
+          <div id="upsell-options" class="space-y-3 mb-6">
+            <!-- Injected by JS: cards for the 2 sessions they didn't pick -->
+          </div>
+
+          <div class="text-center">
+            <a href="/youth-league/" class="text-gray-500 text-sm hover:text-gold">No thanks, I'm done →</a>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -400,24 +419,24 @@
   const SESSIONS = {
     "spring-2026": {
       name: "Spring Session",
-      dates: "May 2 – June 13, 2026",
-      earlyEnd: "2026-04-18",   // early bird cutoff
-      regEnd: "2026-04-26",     // regular cutoff
-      lateEnd: "2026-05-02"     // late cutoff (league starts)
+      dates: "May 16 – June 27, 2026",
+      earlyEnd: "2026-05-02",   // early bird cutoff (through May 1)
+      regEnd: "2026-05-10",     // regular cutoff (through May 9)
+      lateEnd: "2026-05-16"     // late cutoff (league starts)
     },
     "mid-summer-2026": {
       name: "Mid-Summer Session",
-      dates: "June 20 – August 8, 2026",
-      earlyEnd: "2026-05-31",
-      regEnd: "2026-06-14",
-      lateEnd: "2026-06-20"
+      dates: "July 11 – August 22, 2026",
+      earlyEnd: "2026-06-21",
+      regEnd: "2026-07-05",
+      lateEnd: "2026-07-11"
     },
     "late-summer-2026": {
       name: "Late Summer Session",
-      dates: "August 15 – September 26, 2026",
-      earlyEnd: "2026-07-26",
-      regEnd: "2026-08-09",
-      lateEnd: "2026-08-15"
+      dates: "September 12 – October 24, 2026",
+      earlyEnd: "2026-08-23",
+      regEnd: "2026-09-06",
+      lateEnd: "2026-09-12"
     }
   };
 
@@ -433,6 +452,62 @@
     if (s && SESSIONS[s]) {
       const radio = form.querySelector('input[name=session][value="' + s + '"]');
       if (radio) radio.checked = true;
+    }
+  })();
+
+  // Autosave form data to sessionStorage so multi-session upsell can pre-fill
+  const SS_KEY = "fcp-youth-reg-data";
+  const FIELDS_TO_SAVE = ["parentEmail","parentFirst","parentLast","parentPhone","parentZip","referralCode","childFirst","childLast","childDob","buddyRequest","emergencyName","emergencyPhone","medicalNotes","jerseySize"];
+
+  function saveFormData() {
+    try {
+      const data = {};
+      FIELDS_TO_SAVE.forEach(function(name) {
+        if (form[name] && form[name].value) data[name] = form[name].value;
+      });
+      sessionStorage.setItem(SS_KEY, JSON.stringify(data));
+    } catch (_) {}
+  }
+
+  function restoreFormData() {
+    try {
+      const raw = sessionStorage.getItem(SS_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      FIELDS_TO_SAVE.forEach(function(name) {
+        if (form[name] && data[name] !== undefined) form[name].value = data[name];
+      });
+      // Trigger DOB change to show division badge
+      if (data.childDob) {
+        const event = new Event("change");
+        form.childDob.dispatchEvent(event);
+      }
+      // Trigger jersey size radio selection
+      if (data.jerseySize) {
+        const jr = form.querySelector('input[name="jerseySize"][value="' + data.jerseySize + '"]');
+        if (jr) jr.checked = true;
+      }
+    } catch (_) {}
+  }
+
+  // Save on every form change (debounced)
+  let saveTimer;
+  form.addEventListener("input", function() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveFormData, 400);
+  });
+
+  // If upsell arrival (promo=ADD25 in URL), restore previous form data
+  (function handleUpsellArrival() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("promo") === "ADD25") {
+      restoreFormData();
+      // Show a notice at the top of the form
+      const notice = document.createElement("div");
+      notice.className = "mb-6 bg-gold/10 border border-gold/30 rounded-lg p-4 text-sm text-navy";
+      notice.innerHTML = '<strong class="text-gold">$25 multi-session discount applied.</strong> Your info from the first registration was pre-filled — review and continue.';
+      const wrap = document.getElementById("reg-wrap");
+      wrap.insertBefore(notice, wrap.firstChild);
     }
   })();
 
@@ -519,6 +594,7 @@
   });
 
   // Pricing tier — depends on which session is selected
+  // Applies $25 off if URL contains ?promo=ADD25 (multi-session upsell)
   function getPriceTier() {
     const sKey = getSelectedSession();
     if (!sKey) return { price: 149, label: "Select a session" };
@@ -526,9 +602,48 @@
     const now = new Date();
     const earlyEnd = new Date(s.earlyEnd);
     const regEnd = new Date(s.regEnd);
-    if (now < earlyEnd) return { price: 149, label: s.name + " — Early bird (by " + formatDate(s.earlyEnd) + ")" };
-    if (now < regEnd) return { price: 164, label: s.name + " — Regular" };
-    return { price: 179, label: s.name + " — Late registration" };
+    let price, label;
+    if (now < earlyEnd) { price = 149; label = s.name + " — Early bird (by " + formatDate(s.earlyEnd) + ")"; }
+    else if (now < regEnd) { price = 164; label = s.name + " — Regular"; }
+    else { price = 179; label = s.name + " — Late registration"; }
+    // Multi-session discount via URL param
+    const promo = new URLSearchParams(window.location.search).get("promo");
+    if (promo === "ADD25") {
+      price -= 25;
+      label += " — $25 multi-session discount";
+    }
+    return { price: price, label: label };
+  }
+
+  // Render upsell cards on success screen
+  function renderSuccessWithUpsell(justRegisteredKey) {
+    const just = SESSIONS[justRegisteredKey];
+    document.getElementById("success-session-name").textContent = just ? just.name : "";
+    const container = document.getElementById("upsell-options");
+    const others = Object.keys(SESSIONS).filter(k => k !== justRegisteredKey);
+    container.innerHTML = others.map(function(key) {
+      const s = SESSIONS[key];
+      // Discounted price preview (early bird $149 - $25 = $124)
+      return '' +
+        '<a href="/youth-league/register/?session=' + key + '&promo=ADD25" class="block border-2 border-gray-200 rounded-xl p-4 hover:border-gold transition-colors">' +
+          '<div class="flex items-center justify-between gap-4">' +
+            '<div class="flex-1 min-w-0">' +
+              '<div class="font-display text-base text-navy">' + esc(s.name) + '</div>' +
+              '<div class="text-xs text-gray-500 mt-0.5">' + esc(s.dates) + ' · 7 Saturdays</div>' +
+            '</div>' +
+            '<div class="text-right shrink-0">' +
+              '<div class="flex items-baseline gap-1 justify-end">' +
+                '<span class="font-bold text-gold text-lg">$124</span>' +
+                '<span class="text-xs text-gray-400 line-through">$149</span>' +
+              '</div>' +
+              '<div class="text-[10px] text-gold font-bold uppercase tracking-wide">Save $25</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="mt-3 text-right">' +
+            '<span class="text-gold font-bold text-xs inline-flex items-center gap-1">Add This Session →</span>' +
+          '</div>' +
+        '</a>';
+    }).join("");
   }
 
   function formatDate(iso) {
@@ -750,6 +865,7 @@
       window.removeEventListener("beforeunload", beforeUnloadHandler);
       form.classList.add("hidden");
       document.getElementById("step-nav").classList.add("hidden");
+      renderSuccessWithUpsell(sKey);
       document.getElementById("success-msg").classList.remove("hidden");
     } catch (err) {
       showError(err.message || "Something went wrong. Please try again.");
