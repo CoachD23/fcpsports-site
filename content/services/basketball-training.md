@@ -14,7 +14,6 @@ summary_card:
   days: "Weekly sessions"
   ages: "Ages 8–18"
   price: "Contact for pricing"
-  location: "Fort Walton Beach, FL"
   note: "Beginner · Intermediate · Advanced tracks"
   register_url: "/registration/"
 faq:

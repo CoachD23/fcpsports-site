@@ -13,7 +13,6 @@ summary_card:
   days: "Flexible booking"
   ages: "All ages"
   price: "Contact for rates"
-  location: "Fort Walton Beach, FL"
   note: "1hr · 2hr · Half-day · Full-day blocks"
   contact_url: "/contact/"
 faq:

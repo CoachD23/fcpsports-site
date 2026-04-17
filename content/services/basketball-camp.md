@@ -14,7 +14,6 @@ summary_card:
   dates: "4 camps throughout the year"
   ages: "Grades 3–12"
   price: "$79–$149 per camp"
-  location: "Fort Walton Beach, FL"
   note: "Summer · Girls · Spring Break · Holiday"
   register_url: "/camps/"
 faq:

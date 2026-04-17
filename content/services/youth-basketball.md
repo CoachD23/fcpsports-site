@@ -13,7 +13,6 @@ summary_card:
   days: "Weekly sessions + Saturday games"
   ages: "Grades K–8 (Ages 5–14)"
   price: "Contact for pricing"
-  location: "Fort Walton Beach, FL"
   note: "Little Ballers · Junior · Prep tiers"
   register_url: "/registration/"
 faq:

@@ -14,7 +14,6 @@ summary_card:
   days: "Saturdays (Fall) · Tue/Thu evenings (Summer)"
   ages: "Grades K–12 (Ages 5–18)"
   price: "From $79 · Divisions K–12"
-  location: "Fort Walton Beach, FL"
   register_url: "/registration/"
 faq:
   - q: "Is there a youth basketball league in Fort Walton Beach?"

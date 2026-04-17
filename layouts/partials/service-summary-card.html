@@ -1,69 +1,73 @@
 {{ with .Params.summary_card }}
-<section class="bg-navy py-6 border-b border-white/10">
+<section class="bg-navy py-8">
   <div class="max-w-5xl mx-auto px-4">
-    <div class="rounded-2xl overflow-hidden" style="background:rgba(255,255,255,0.06);border:1px solid rgba(201,162,39,0.25);">
-      <div class="px-7 pt-6 pb-5">
+    <div class="bg-white rounded-2xl overflow-hidden shadow-xl">
 
-        <!-- Top row: title label + CTA -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
-          <p class="text-gold font-display tracking-widest text-xs uppercase">Quick Info</p>
-          <div class="flex flex-wrap gap-3">
-            {{ with .register_url }}
-            <a href="{{ . }}" class="btn-primary text-sm py-2 px-5">Register Now</a>
-            {{ else }}
-            <a href="/registration/" class="btn-primary text-sm py-2 px-5">Register Now</a>
+      <!-- Gold header bar -->
+      <div class="bg-gold px-6 py-3 flex items-center justify-between flex-wrap gap-3">
+        <span class="font-display text-navy text-lg tracking-wide uppercase">Quick Info</span>
+        <div class="flex gap-2">
+          {{ with .register_url }}
+          <a href="{{ . }}" class="bg-navy text-gold text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide hover:bg-navy-800 transition-colors">Register Now</a>
+          {{ end }}
+          {{ with .contact_url }}
+          <a href="{{ . }}" class="bg-navy text-gold text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide hover:bg-navy-800 transition-colors">Contact Us</a>
+          {{ end }}
+        </div>
+      </div>
+
+      <!-- 3-column info grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+
+        <!-- PROGRAM INFO -->
+        <div class="p-6">
+          <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Program Info</h3>
+          <dl class="space-y-3 text-sm">
+            {{ with .dates }}
+            <div><dt class="font-bold text-navy">Dates</dt><dd class="text-gray-600 mt-0.5">{{ . | safeHTML }}</dd></div>
             {{ end }}
-            {{ with .contact_url }}
-            <a href="{{ . }}" class="btn-outline text-sm py-2 px-5">Contact Us</a>
+            {{ with .days }}
+            <div><dt class="font-bold text-navy">Schedule</dt><dd class="text-gray-600 mt-0.5">{{ . | safeHTML }}</dd></div>
             {{ end }}
-          </div>
+            {{ with .ages }}
+            <div><dt class="font-bold text-navy">Ages / Grades</dt><dd class="text-gray-600 mt-0.5">{{ . | safeHTML }}</dd></div>
+            {{ end }}
+            {{ with .note }}
+            <div><dt class="font-bold text-navy">Options</dt><dd class="text-gray-600 mt-0.5">{{ . | safeHTML }}</dd></div>
+            {{ end }}
+          </dl>
         </div>
 
-        <!-- Info grid -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- LOCATION INFO (static — same venue for every program) -->
+        <div class="p-6">
+          <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Location Info</h3>
+          <dl class="space-y-3 text-sm">
+            <div><dt class="font-bold text-navy">Venue</dt><dd class="text-gray-600 mt-0.5">FCP Sports</dd></div>
+            <div><dt class="font-bold text-navy">Address</dt><dd class="text-gray-600 mt-0.5">33 Jet Drive NW</dd></div>
+            <div><dt class="font-bold text-navy">Phone</dt><dd class="mt-0.5"><a href="tel:8509612323" class="text-gold hover:text-gold-dark">850.961.2323</a></dd></div>
+            <div><dt class="font-bold text-navy">Email</dt><dd class="mt-0.5"><a href="mailto:info@fcpsports.org" class="text-gold hover:text-gold-dark break-all">info@fcpsports.org</a></dd></div>
+          </dl>
+        </div>
 
-          {{ with .dates }}
-          <div class="bg-white/5 rounded-xl px-4 py-3">
-            <p class="text-white/40 text-xs uppercase tracking-wide mb-1">Dates</p>
-            <p class="text-white font-semibold text-sm leading-snug">{{ . }}</p>
-          </div>
-          {{ end }}
-
-          {{ with .days }}
-          <div class="bg-white/5 rounded-xl px-4 py-3">
-            <p class="text-white/40 text-xs uppercase tracking-wide mb-1">Schedule</p>
-            <p class="text-white font-semibold text-sm leading-snug">{{ . }}</p>
-          </div>
-          {{ end }}
-
-          {{ with .ages }}
-          <div class="bg-white/5 rounded-xl px-4 py-3">
-            <p class="text-white/40 text-xs uppercase tracking-wide mb-1">Ages / Grades</p>
-            <p class="text-white font-semibold text-sm leading-snug">{{ . }}</p>
-          </div>
-          {{ end }}
-
+        <!-- REGISTRATION & FEES -->
+        <div class="p-6">
+          <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Registration &amp; Fees</h3>
           {{ with .price }}
-          <div class="bg-gold/10 border border-gold/30 rounded-xl px-4 py-3">
-            <p class="text-gold/70 text-xs uppercase tracking-wide mb-1">Price</p>
-            <p class="text-gold font-bold text-sm leading-snug">{{ . }}</p>
+          <div class="bg-gold/10 border border-gold/30 rounded-lg px-4 py-3 mb-4">
+            <p class="font-bold text-navy text-base leading-tight">{{ . | safeHTML }}</p>
           </div>
           {{ end }}
-
-          {{ with .location }}
-          <div class="bg-white/5 rounded-xl px-4 py-3">
-            <p class="text-white/40 text-xs uppercase tracking-wide mb-1">Location</p>
-            <p class="text-white font-semibold text-sm leading-snug">{{ . }}</p>
-          </div>
+          {{ with .fee_note }}
+          <p class="text-xs text-gray-500 mb-4">{{ . | safeHTML }}</p>
           {{ end }}
-
-          {{ with .note }}
-          <div class="bg-white/5 rounded-xl px-4 py-3 col-span-2 md:col-span-1">
-            <p class="text-white/40 text-xs uppercase tracking-wide mb-1">Note</p>
-            <p class="text-white font-semibold text-sm leading-snug">{{ . }}</p>
+          <div class="space-y-2">
+            {{ with .register_url }}
+            <a href="{{ . }}" class="btn-primary block text-center py-3 text-sm">Register Now</a>
+            {{ end }}
+            {{ with .contact_url }}
+            <a href="{{ . }}" class="btn-outline block text-center py-3 text-sm">Contact Us</a>
+            {{ end }}
           </div>
-          {{ end }}
-
         </div>
 
       </div>

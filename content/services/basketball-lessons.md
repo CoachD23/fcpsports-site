@@ -14,7 +14,6 @@ summary_card:
   days: "Flexible scheduling"
   ages: "Ages 6–Adult"
   price: "Contact for pricing"
-  location: "Fort Walton Beach, FL"
   note: "1-on-1 · Semi-private · Small group"
   contact_url: "/contact/"
 faq:

@@ -15,7 +15,6 @@ summary_card:
   days: "Tue/Thu 3–5 PM · Sat 10 AM–1 PM"
   ages: "Youth &amp; Adult"
   price: "FREE through May 15"
-  location: "Fort Walton Beach, FL"
   note: "No registration required — just show up"
   register_url: "/waiver/"
 faq:
