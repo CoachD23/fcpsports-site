@@ -65,7 +65,7 @@
   <div class="relative z-10 text-center px-4 max-w-5xl mx-auto py-20">
 
     <!-- H1 — keyword-rich for SEO -->
-    <h1 class="hero-h1 text-5xl sm:text-6xl md:text-7xl text-white leading-tight mb-5 fade-in tracking-wide" style="font-family:'Oswald',sans-serif;font-weight:700;font-style:italic;text-shadow:3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
+    <h1 class="hero-h1 font-hero italic text-5xl sm:text-6xl md:text-7xl text-white leading-tight mb-5 fade-in tracking-wide" style="font-weight:700;text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;">
       Youth Basketball Leagues &amp; Programs<br>
       <span class="text-gold">in Fort Walton Beach</span>
     </h1>
@@ -78,8 +78,9 @@
         <p class="text-white font-bold text-base mb-1">Stay Up to Date</p>
         <p class="text-white/60 text-sm mb-3">Get updates on programs, camps &amp; open gym.</p>
         <form id="hero-signup-form" class="flex flex-col sm:flex-row gap-2">
-          <input type="email" name="email" placeholder="Your email address" required
-            class="flex-1 px-4 py-3 rounded-lg text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold" />
+          <label for="hero-email" class="sr-only">Email address</label>
+          <input type="email" id="hero-email" name="email" placeholder="Your email address" required
+            class="flex-1 px-4 py-3 min-h-[44px] rounded-lg text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold" />
           <button type="submit" id="hero-signup-btn"
             class="bg-gold text-navy font-bold px-6 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap w-full sm:w-auto">
             Sign Up
@@ -125,7 +126,7 @@
       </div>
       <a href="/schedule/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
         Full Schedule
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
       </a>
     </div>
 
@@ -154,7 +155,7 @@
 <!-- =====================================================
      TRAIN / COMPETE — Two clear paths
      ===================================================== -->
-<section style="background:#060f22;" class="py-16">
+<section class="bg-navy-deep py-16">
   <div class="max-w-6xl mx-auto px-4">
 
     <div class="split-grid">
@@ -170,7 +171,7 @@
         </div>
         <span class="text-gold font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all">
           View Programs
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </span>
       </a>
 
@@ -185,7 +186,7 @@
         </div>
         <span class="text-gold font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all">
           View Leagues
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </span>
       </a>
 
@@ -242,7 +243,7 @@
 
         <a href="/about/" class="btn-primary inline-flex items-center gap-2">
           Meet The Coaches
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
       </div>
 
@@ -288,7 +289,7 @@
     <div class="text-center mt-12 fade-in">
       <a href="/about/#testimonials" class="text-gold font-bold hover:text-gold-dark transition-colors duration-200 inline-flex items-center gap-2">
         Read More Reviews
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
       </a>
     </div>
 
