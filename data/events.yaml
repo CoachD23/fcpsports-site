@@ -72,17 +72,41 @@
   slug: "/camps/summer-day-camp/"
   badge: "REGISTER NOW"
 
-# ─── FALL LEAGUE ──────────────────────────────────────────────────────────────
+# ─── YOUTH LEAGUE — SPRING SESSION ───────────────────────────────────────────
 
-- title: "Fall Basketball League"
+- title: "Youth Basketball League — Spring Session"
   type: "League"
-  date: "2026-09-12"
-  date_display: "Starts September 2026"
-  time: "Saturdays"
-  age: "Ages 8–18"
-  price: "From $59"
-  slug: "/services/basketball-league/"
-  badge: "REGISTRATION OPEN"
+  date: "2026-05-02"
+  date_display: "May 2 – June 13, 2026 (7 Saturdays)"
+  time: "Ages 5–7: 8–10 AM · Ages 8–10: 10 AM–12 PM · Ages 11–14: 12–2 PM"
+  age: "Ages 5–14"
+  price: "$149 early bird / $164 regular / $174 late"
+  slug: "/youth-league/register/?session=spring-2026"
+  badge: "REGISTER NOW"
+
+# ─── YOUTH LEAGUE — MID-SUMMER SESSION ───────────────────────────────────────
+
+- title: "Youth Basketball League — Mid-Summer Session"
+  type: "League"
+  date: "2026-06-20"
+  date_display: "June 20 – Aug 8, 2026 (7 Saturdays, skip July 4)"
+  time: "Ages 5–7: 8–10 AM · Ages 8–10: 10 AM–12 PM · Ages 11–14: 12–2 PM"
+  age: "Ages 5–14"
+  price: "$149 early bird / $164 regular / $174 late"
+  slug: "/youth-league/register/?session=mid-summer-2026"
+  badge: "REGISTER NOW"
+
+# ─── YOUTH LEAGUE — LATE SUMMER SESSION ──────────────────────────────────────
+
+- title: "Youth Basketball League — Late Summer Session"
+  type: "League"
+  date: "2026-08-15"
+  date_display: "Aug 15 – Sept 26, 2026 (7 Saturdays, skip Sept 5)"
+  time: "Ages 5–7: 8–10 AM · Ages 8–10: 10 AM–12 PM · Ages 11–14: 12–2 PM"
+  age: "Ages 5–14"
+  price: "$149 early bird / $164 regular / $174 late"
+  slug: "/youth-league/register/?session=late-summer-2026"
+  badge: "REGISTER NOW"
 
 # ─── HOLIDAY CAMP ─────────────────────────────────────────────────────────────
 
