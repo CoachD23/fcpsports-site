@@ -65,7 +65,7 @@
               <div class="session-card">
                 <div class="flex-1">
                   <div class="font-display text-base text-navy">Spring Session</div>
-                  <div class="text-xs text-gray-500">May 2 – June 13, 2026 &bull; 7 Saturdays</div>
+                  <div class="text-xs text-gray-500">May 16 – June 27, 2026 &bull; 7 Saturdays</div>
                 </div>
                 <div class="text-right">
                   <div class="font-bold text-navy text-sm">From $149</div>
@@ -78,7 +78,7 @@
               <div class="session-card">
                 <div class="flex-1">
                   <div class="font-display text-base text-navy">Mid-Summer Session</div>
-                  <div class="text-xs text-gray-500">June 20 – August 8, 2026 &bull; 7 Saturdays (skip July 4)</div>
+                  <div class="text-xs text-gray-500">July 11 – August 22, 2026 &bull; 7 Saturdays</div>
                 </div>
                 <div class="text-right">
                   <div class="font-bold text-navy text-sm">From $149</div>
@@ -91,7 +91,7 @@
               <div class="session-card">
                 <div class="flex-1">
                   <div class="font-display text-base text-navy">Late Summer Session</div>
-                  <div class="text-xs text-gray-500">Aug 15 – Sept 26, 2026 &bull; 7 Saturdays (skip Labor Day)</div>
+                  <div class="text-xs text-gray-500">Sept 12 – Oct 24, 2026 &bull; 7 Saturdays</div>
                 </div>
                 <div class="text-right">
                   <div class="font-bold text-navy text-sm">From $149</div>
@@ -289,7 +289,7 @@
                 <span class="font-display text-lg text-navy">Total Due</span>
                 <span class="font-display text-3xl text-gold" id="review-price">$149</span>
               </div>
-              <p class="text-xs text-gray-500 mt-1" id="review-tier">Early bird pricing (by May 15)</p>
+              <p class="text-xs text-gray-500 mt-1" id="review-tier"></p>
             </div>
 
             <label class="flex items-start gap-3 min-h-[44px] p-3 -mx-3 rounded-lg cursor-pointer hover:bg-gray-50">
@@ -416,27 +416,29 @@
   const TOTAL_STEPS = 5;
 
   // Session config — drives pricing tiers, dates, and payload
+  // Dates use ISO with 05:00Z = 12:00 AM Central Time (end-of-day prior to cutoff day).
+  // "earlyEnd: 2026-05-02T05:00Z" means early bird expires end-of-day May 1 Central.
   const SESSIONS = {
     "spring-2026": {
       name: "Spring Session",
       dates: "May 16 – June 27, 2026",
-      earlyEnd: "2026-05-02",   // early bird cutoff (through May 1)
-      regEnd: "2026-05-10",     // regular cutoff (through May 9)
-      lateEnd: "2026-05-16"     // late cutoff (league starts)
+      earlyEnd: "2026-05-02T05:00:00Z",   // through May 1 end-of-day Central
+      regEnd:   "2026-05-10T05:00:00Z",   // through May 9
+      lateEnd:  "2026-05-16T05:00:00Z"    // league starts May 16
     },
     "mid-summer-2026": {
       name: "Mid-Summer Session",
       dates: "July 11 – August 22, 2026",
-      earlyEnd: "2026-06-21",
-      regEnd: "2026-07-05",
-      lateEnd: "2026-07-11"
+      earlyEnd: "2026-06-21T05:00:00Z",
+      regEnd:   "2026-07-05T05:00:00Z",
+      lateEnd:  "2026-07-11T05:00:00Z"
     },
     "late-summer-2026": {
       name: "Late Summer Session",
       dates: "September 12 – October 24, 2026",
-      earlyEnd: "2026-08-23",
-      regEnd: "2026-09-06",
-      lateEnd: "2026-09-12"
+      earlyEnd: "2026-08-23T05:00:00Z",
+      regEnd:   "2026-09-06T05:00:00Z",
+      lateEnd:  "2026-09-12T05:00:00Z"
     }
   };
 
@@ -500,15 +502,17 @@
   // If upsell arrival (promo=ADD25 in URL), restore previous form data
   (function handleUpsellArrival() {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("promo") === "ADD25") {
-      restoreFormData();
-      // Show a notice at the top of the form
-      const notice = document.createElement("div");
-      notice.className = "mb-6 bg-gold/10 border border-gold/30 rounded-lg p-4 text-sm text-navy";
-      notice.innerHTML = '<strong class="text-gold">$25 multi-session discount applied.</strong> Your info from the first registration was pre-filled — review and continue.';
-      const wrap = document.getElementById("reg-wrap");
-      wrap.insertBefore(notice, wrap.firstChild);
-    }
+    if (params.get("promo") !== "ADD25") return;
+    restoreFormData();
+    // Show a notice at the top of the form — built via DOM API to avoid innerHTML
+    const notice = document.createElement("div");
+    notice.className = "mb-6 bg-gold/10 border border-gold/30 rounded-lg p-4 text-sm text-navy";
+    const strong = document.createElement("strong");
+    strong.className = "text-gold";
+    strong.textContent = "$25 multi-session discount applied.";
+    notice.appendChild(strong);
+    notice.appendChild(document.createTextNode(" Your info from the first registration was pre-filled — review and continue."));
+    wrap.insertBefore(notice, wrap.firstChild);
   })();
 
   function showError(msg, focusEl) {
@@ -603,7 +607,10 @@
     const earlyEnd = new Date(s.earlyEnd);
     const regEnd = new Date(s.regEnd);
     let price, label;
-    if (now < earlyEnd) { price = 149; label = s.name + " — Early bird (by " + formatDate(s.earlyEnd) + ")"; }
+    // earlyEnd is the cutoff MOMENT (midnight on the day AFTER the last eligible day),
+    // so subtract 1ms for the display label
+    const earlyDisplay = new Date(earlyEnd.getTime() - 1);
+    if (now < earlyEnd) { price = 149; label = s.name + " — Early bird (by " + formatDate(earlyDisplay) + ")"; }
     else if (now < regEnd) { price = 164; label = s.name + " — Regular"; }
     else { price = 179; label = s.name + " — Late registration"; }
     // Multi-session discount via URL param
@@ -615,39 +622,84 @@
     return { price: price, label: label };
   }
 
-  // Render upsell cards on success screen
+  // Calculate base tier price for a given session (no promo applied)
+  function getBasePriceForSession(sKey) {
+    const s = SESSIONS[sKey];
+    if (!s) return 149;
+    const now = new Date();
+    if (now < new Date(s.earlyEnd)) return 149;
+    if (now < new Date(s.regEnd)) return 164;
+    return 179;
+  }
+
+  // Render upsell cards on success screen — computes real per-session price at render time
   function renderSuccessWithUpsell(justRegisteredKey) {
     const just = SESSIONS[justRegisteredKey];
     document.getElementById("success-session-name").textContent = just ? just.name : "";
     const container = document.getElementById("upsell-options");
-    const others = Object.keys(SESSIONS).filter(k => k !== justRegisteredKey);
-    container.innerHTML = others.map(function(key) {
+    const others = Object.keys(SESSIONS).filter(function(k) { return k !== justRegisteredKey; });
+
+    // Build via DOM APIs (no innerHTML on user data — XSS-safe)
+    container.textContent = "";
+    others.forEach(function(key) {
       const s = SESSIONS[key];
-      // Discounted price preview (early bird $149 - $25 = $124)
-      return '' +
-        '<a href="/youth-league/register/?session=' + key + '&promo=ADD25" class="block border-2 border-gray-200 rounded-xl p-4 hover:border-gold transition-colors">' +
-          '<div class="flex items-center justify-between gap-4">' +
-            '<div class="flex-1 min-w-0">' +
-              '<div class="font-display text-base text-navy">' + esc(s.name) + '</div>' +
-              '<div class="text-xs text-gray-500 mt-0.5">' + esc(s.dates) + ' · 7 Saturdays</div>' +
-            '</div>' +
-            '<div class="text-right shrink-0">' +
-              '<div class="flex items-baseline gap-1 justify-end">' +
-                '<span class="font-bold text-gold text-lg">$124</span>' +
-                '<span class="text-xs text-gray-400 line-through">$149</span>' +
-              '</div>' +
-              '<div class="text-[10px] text-gold font-bold uppercase tracking-wide">Save $25</div>' +
-            '</div>' +
-          '</div>' +
-          '<div class="mt-3 text-right">' +
-            '<span class="text-gold font-bold text-xs inline-flex items-center gap-1">Add This Session →</span>' +
-          '</div>' +
-        '</a>';
-    }).join("");
+      const base = getBasePriceForSession(key);
+      const discounted = base - 25;
+
+      const link = document.createElement("a");
+      link.href = "/youth-league/register/?session=" + encodeURIComponent(key) + "&promo=ADD25";
+      link.className = "block border-2 border-gray-200 rounded-xl p-4 hover:border-gold transition-colors";
+
+      const row = document.createElement("div");
+      row.className = "flex items-center justify-between gap-4";
+
+      const info = document.createElement("div");
+      info.className = "flex-1 min-w-0";
+      const nameEl = document.createElement("div");
+      nameEl.className = "font-display text-base text-navy";
+      nameEl.textContent = s.name;
+      const datesEl = document.createElement("div");
+      datesEl.className = "text-xs text-gray-500 mt-0.5";
+      datesEl.textContent = s.dates + " · 7 Saturdays";
+      info.appendChild(nameEl);
+      info.appendChild(datesEl);
+
+      const priceBox = document.createElement("div");
+      priceBox.className = "text-right shrink-0";
+      const priceRow = document.createElement("div");
+      priceRow.className = "flex items-baseline gap-1 justify-end";
+      const newPrice = document.createElement("span");
+      newPrice.className = "font-bold text-gold text-lg";
+      newPrice.textContent = "$" + discounted;
+      const oldPrice = document.createElement("span");
+      oldPrice.className = "text-xs text-gray-400 line-through";
+      oldPrice.textContent = "$" + base;
+      priceRow.appendChild(newPrice);
+      priceRow.appendChild(oldPrice);
+      const saveLabel = document.createElement("div");
+      saveLabel.className = "text-[10px] text-gold font-bold uppercase tracking-wide";
+      saveLabel.textContent = "Save $25";
+      priceBox.appendChild(priceRow);
+      priceBox.appendChild(saveLabel);
+
+      row.appendChild(info);
+      row.appendChild(priceBox);
+
+      const cta = document.createElement("div");
+      cta.className = "mt-3 text-right";
+      const ctaSpan = document.createElement("span");
+      ctaSpan.className = "text-gold font-bold text-xs inline-flex items-center gap-1";
+      ctaSpan.textContent = "Add This Session →";
+      cta.appendChild(ctaSpan);
+
+      link.appendChild(row);
+      link.appendChild(cta);
+      container.appendChild(link);
+    });
   }
 
-  function formatDate(iso) {
-    const d = new Date(iso);
+  function formatDate(isoOrDate) {
+    const d = isoOrDate instanceof Date ? isoOrDate : new Date(isoOrDate);
     return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
   }
 
@@ -757,8 +809,10 @@
 
       var parts = ccExp.split("/");
       var authData = {};
-      authData.clientKey = "{{ site.Params.authnet_client_key | default "NEEDS_CLIENT_KEY" }}";
-      authData.apiLoginID = "{{ site.Params.authnet_login_id | default "" }}";
+      {{ if not site.Params.authnet_client_key }}{{ errorf "authnet_client_key is required in hugo.toml for the youth-league register page" }}{{ end }}
+      {{ if not site.Params.authnet_login_id }}{{ errorf "authnet_login_id is required in hugo.toml for the youth-league register page" }}{{ end }}
+      authData.clientKey = "{{ site.Params.authnet_client_key }}";
+      authData.apiLoginID = "{{ site.Params.authnet_login_id }}";
 
       var cardData = {};
       cardData.cardNumber = ccNum;
