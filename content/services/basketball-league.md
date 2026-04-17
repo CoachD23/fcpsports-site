@@ -1,67 +1,78 @@
 ---
 hero_image: /images/fcp-hero-league-game.jpg
-title: "Youth Basketball League Fort Walton Beach FL | FCP Sports"
-description: "Youth basketball league in Fort Walton Beach. Ages 5–18, real refs, stat tracking, playoffs. Fall and summer seasons from $79."
-h1: "Youth Basketball League"
+title: "Basketball Leagues Fort Walton Beach FL | FCP Sports"
+description: "FCP Sports runs organized basketball leagues year-round in Fort Walton Beach. Saturday league for ages 5+, plus seasonal Fall, Summer, and Little Ballers programs."
+h1: "Basketball Leagues"
 keyword: "basketball league fort walton beach"
-age_range: "Ages 5–18"
-price: "From $79"
-frequency: "Weekly games"
+age_range: "Ages 5+"
+price: "From $149"
+frequency: "Year-round"
 program_name: "Basketball League"
 ghl_tag: "compete"
 summary_card:
-  dates: "Fall: Sep–Nov · Summer: Jun–Jul"
-  days: "Saturdays (Fall) · Tue/Thu evenings (Summer)"
-  ages: "Grades K–12 (Ages 5–18)"
-  price: "From $79 · Divisions K–12"
-  register_url: "/registration/"
+  dates: "Year-round — Spring, Mid-Summer, Late Summer, Fall"
+  days: "Saturdays &middot; Weekday evenings"
+  ages: "Ages 5+ &middot; Four divisions"
+  price: "From $149"
+  register_url: "/youth-league/"
 faq:
-  - q: "Is there a youth basketball league in Fort Walton Beach?"
-    a: "Yes. FCP Sports runs leagues for ages 5–18. Trained referees, stat tracking, standings, and playoffs every season."
-  - q: "What age groups play?"
-    a: "Four divisions: Mini (K–2nd), Junior (3rd–5th), Intermediate (6th–8th), and Senior (9th–12th). Each uses age-appropriate rules."
+  - q: "What basketball leagues does FCP Sports run?"
+    a: "Our main program is the Saturday League — three 7-week sessions per year (Spring, Mid-Summer, Late Summer) for ages 5 and up, four divisions from Juniors (5–7) through Varsity (15+). We also run seasonal Fall and Summer leagues and a Little Ballers program for K–2nd graders."
+  - q: "Which league should I sign my child up for?"
+    a: "Most players start with the Saturday League — it's year-round, has four age divisions, and every kid gets equal playing time. If you want Tuesday/Thursday evening games, check the Summer League. K–2nd only? Little Ballers."
   - q: "How much does it cost?"
-    a: "Mini: $79. Junior: $99. Intermediate: $129. Senior: $149. Jersey included. $20 off for early bird, military, and siblings — discounts stack."
-  - q: "Can my child join mid-season?"
-    a: "Depends on roster availability. Contact us and we'll work with you."
+    a: "Saturday League: $149 early bird per 7-week session. Seasonal leagues vary — see each league page for current pricing."
+  - q: "Are there tryouts?"
+    a: "No tryouts for the Saturday League. Coaches build balanced rosters via an evaluation night, and every player gets equal playing time."
 ---
 
-## How It Works
+## Three Leagues — Pick Your Format
 
-1. **Evaluation night** — Quick session so coaches can build balanced teams
-2. **Draft** — Coaches draft balanced rosters. No stacked teams.
-3. **6 Saturdays** — 45-min practice + game each week
-4. **Playoffs + Championship** — Single elimination, trophies, awards
+FCP Sports runs basketball leagues year-round. Most families choose the **Saturday League** — three 7-week sessions a year, every skill level, every age from 5 on up.
 
-Equal playing time is mandatory. Every division, every game.
+### Saturday League *(most popular)*
 
-## Divisions
+Our flagship program. Four age divisions from Juniors (5–7) through Varsity (15+). Three 7-week sessions per year — Spring, Mid-Summer, Late Summer. No tryouts, every player plays equal time, jerseys included.
 
-| Division | Grades | Ages | Price | Details |
-|----------|--------|------|-------|---------|
-| Mini | K–2nd | 5–8 | $79 | Lower baskets, smaller ball |
-| Junior | 3rd–5th | 8–11 | $99 | Real refs, real stats, 10-ft baskets |
-| Intermediate | 6th–8th | 11–14 | $129 | Full-court, advanced rules |
-| Senior | 9th–12th | 15–18 | $149 | FHSAA-adjacent rules |
+→ **[See Saturday League details + register](/youth-league/)**
 
-All registrations include a game jersey. No hidden fees.
+### Fall League
 
-## Seasons
+Traditional fall season, September–November, Saturday mornings. Six games + playoffs.
 
-- **[Fall League](/leagues/fall-league/)** — September–November, Saturday mornings
-- **[Summer League](/leagues/summer-league/)** — June–July, Tuesday/Thursday evenings
-- **[Little Ballers](/leagues/little-league/)** — January–March, Saturday mornings (K–2nd only)
+→ **[Fall League details](/leagues/fall-league/)**
 
-## League + Training Bundle
+### Summer League
 
-Add 8 weekly training sessions to any league registration for $70–$100 more. [See full pricing →](/pricing/)
+Tuesday/Thursday evening games, June–July. For families who want a higher-competition summer track.
+
+→ **[Summer League details](/leagues/summer-league/)**
+
+### Little Ballers *(K–2nd only)*
+
+Introduction league for our youngest players. January–March, Saturday mornings.
+
+→ **[Little Ballers details](/leagues/little-league/)**
+
+## What Every League Includes
+
+- Game jersey included in registration
+- Paid, trained referees
+- Equal playing time — mandatory, every game
+- Position rotation
+- Playoffs + championship trophies
+- Sportsmanship awards
+- Buddy requests honored when possible
 
 ## Discounts (They Stack)
 
-- **Early bird:** $20 off (register 4+ weeks before season)
-- **Military:** $20 off
-- **Sibling:** $20 off per additional child
+- **Multi-session:** $25 off for 2 sessions, $50 off for all 3 (Saturday League)
+- **Multi-child:** $15 off each additional child
+- **Military:** $20 off (Eglin & Hurlburt families)
+- **Referral:** $15 off per family you refer
 
 ## Register
 
-[Register here](/registration/) or [call 850.961.2323](/contact/).
+**Looking for the Saturday League?** [Go straight to the session picker →](/youth-league/)
+
+Questions? [Call 850.961.2323](/contact/) or [email info@fcpsports.org](mailto:info@fcpsports.org).

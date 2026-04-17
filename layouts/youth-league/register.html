@@ -503,6 +503,7 @@
     if (age >= 5 && age <= 7) return { name: "Juniors (Ages 5–7)", time: "Sat 8:00–10:00 AM", code: "juniors" };
     if (age >= 8 && age <= 10) return { name: "Youth (Ages 8–10)", time: "Sat 10:00 AM–12:00 PM", code: "youth" };
     if (age >= 11 && age <= 14) return { name: "Junior Varsity (Ages 11–14)", time: "Sat 12:00–2:00 PM", code: "jv" };
+    if (age >= 15) return { name: "Varsity (Ages 15+)", time: "Sat 2:00–4:00 PM", code: "varsity" };
     return null;
   }
 
@@ -551,7 +552,7 @@
       if (!form.childLast.value.trim()) { showError("Child's last name is required.", form.childLast); return false; }
       if (!form.childDob.value) { showError("Date of birth is required.", form.childDob); return false; }
       const div = calcDivision(form.childDob.value);
-      if (!div) { showError("This league is for ages 5–14. Please check the date of birth.", form.childDob); return false; }
+      if (!div) { showError("This league is for ages 5 and up. Please check the date of birth.", form.childDob); return false; }
       if (!form.emergencyName.value.trim()) { showError("Emergency contact name is required.", form.emergencyName); return false; }
       if (!form.emergencyPhone.value.trim() || form.emergencyPhone.value.replace(/\D/g,"").length < 10) { showError("Please enter a valid emergency contact phone.", form.emergencyPhone); return false; }
     }
