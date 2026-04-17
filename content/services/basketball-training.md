@@ -10,6 +10,13 @@ frequency: "Weekly sessions"
 program_name: "Skills Training"
 ghl_tag: "train"
 course_type: "basketball training"
+summary_card:
+  days: "Weekly sessions"
+  ages: "Ages 8–18"
+  price: "Contact for pricing"
+  location: "Fort Walton Beach, FL"
+  note: "Beginner · Intermediate · Advanced tracks"
+  register_url: "/registration/"
 faq:
   - q: "Where can I find basketball training near me?"
     a: "FCP Sports in Fort Walton Beach. Players from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview train here weekly."

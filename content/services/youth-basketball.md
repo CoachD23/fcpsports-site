@@ -9,6 +9,13 @@ price: "Contact for pricing"
 frequency: "Weekly sessions + games"
 program_name: "Youth Basketball"
 ghl_tag: "compete"
+summary_card:
+  days: "Weekly sessions + Saturday games"
+  ages: "Grades K–8 (Ages 5–14)"
+  price: "Contact for pricing"
+  location: "Fort Walton Beach, FL"
+  note: "Little Ballers · Junior · Prep tiers"
+  register_url: "/registration/"
 faq:
   - q: "What age can my child start?"
     a: "Age 5 (kindergarten) in our Little Ballers program. Fun-first, no pressure, designed for kids who have never played organized basketball."

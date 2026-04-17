@@ -9,6 +9,13 @@ price: "Contact for rates"
 frequency: "Flexible booking"
 program_name: "Gym Rental"
 ghl_tag: "gym-rental"
+summary_card:
+  days: "Flexible booking"
+  ages: "All ages"
+  price: "Contact for rates"
+  location: "Fort Walton Beach, FL"
+  note: "1hr · 2hr · Half-day · Full-day blocks"
+  contact_url: "/contact/"
 faq:
   - q: "How much does it cost to rent the gym?"
     a: "Rates depend on time block (1-hour, 2-hour, half-day, full-day) and day of week. Weekday rates are lower. Recurring renters get a discount. Contact us for a quote."

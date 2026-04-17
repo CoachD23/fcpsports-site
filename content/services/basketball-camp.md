@@ -10,6 +10,13 @@ frequency: "Multi-day sessions"
 course_type: "basketball camp"
 program_name: "Basketball Camp"
 ghl_tag: "train"
+summary_card:
+  dates: "4 camps throughout the year"
+  ages: "Grades 3–12"
+  price: "$79–$149 per camp"
+  location: "Fort Walton Beach, FL"
+  note: "Summer · Girls · Spring Break · Holiday"
+  register_url: "/camps/"
 faq:
   - q: "How much does basketball camp cost at FCP Sports?"
     a: "Camps range from $79 to $149 depending on the program: Summer Camp is $149/week, Girls Camp is $149/week, Spring Break Camp is $129, and Holiday Camp is $79. Early bird and military discounts are available on summer and girls camps."

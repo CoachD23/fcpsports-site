@@ -1,0 +1,161 @@
+{{ define "main" }}
+
+<!-- Hero -->
+{{ $heroImg := .Params.hero_image | default "/images/fcp-hero-camp-talk.jpg" }}
+<section class="relative py-28 text-center overflow-hidden" style="min-height:400px;">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ $heroImg }}');"></div>
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(6,15,34,0.72) 0%, rgba(6,15,34,0.88) 100%);"></div>
+  <div class="relative z-10 max-w-4xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">FCP Sports</span>
+    <h1 class="font-display text-6xl md:text-7xl text-white mt-3 mb-4 leading-none">{{ .Params.h1 | default .Title }}</h1>
+    <p class="text-white/70 text-lg max-w-2xl mx-auto leading-relaxed">Basketball camps for all ages and skill levels — Fort Walton Beach, FL.</p>
+  </div>
+</section>
+
+<!-- Camp Cards Grid -->
+<section style="background:#0a0d14;" class="py-16">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <p class="text-white/60 text-center text-base mb-10 max-w-2xl mx-auto">Four camps throughout the year — each one built for a specific age group and skill level, inside our climate-controlled facility in Fort Walton Beach.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Summer Day Camp -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-gold/50 hover:bg-white/8 transition-all duration-200">
+        <div class="p-7">
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <h2 class="font-display text-2xl text-white leading-tight">Summer Day Camp</h2>
+            <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap mt-1">$149/wk</span>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed mb-5">Our flagship summer program — skill assessment on day one, coached scrimmages daily, and real improvement in one week.</p>
+          <div class="space-y-2 text-sm mb-6">
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span>Jun 8–12 · Jun 22–26 · Jul 13–16 · Jul 27–31</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Mon–Fri · 9:30 AM – 2:00 PM</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span>Grades 3–10</span>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <a href="/camps/summer-day-camp/" class="flex-1 text-center text-sm font-semibold text-gold border border-gold/40 hover:border-gold hover:bg-gold/10 py-2 px-4 rounded-lg transition-all duration-150">View Details</a>
+            <a href="/registration/" class="flex-1 text-center text-sm font-semibold text-navy bg-gold hover:bg-gold-dark py-2 px-4 rounded-lg transition-all duration-150">Register Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Girls Basketball Camp -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-gold/50 hover:bg-white/8 transition-all duration-200">
+        <div class="p-7">
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <h2 class="font-display text-2xl text-white leading-tight">Girls Basketball Camp</h2>
+            <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap mt-1">$149/wk</span>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed mb-5">The only girls-only basketball camp in the Florida Panhandle — equal reps, equal coaching, no waiting behind anyone.</p>
+          <div class="space-y-2 text-sm mb-6">
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span>June 15–19, 2026</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Mon–Fri · 9:30 AM – 2:00 PM</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span>Grades 6–10 · Girls Only</span>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <a href="/camps/girls-basketball-camp/" class="flex-1 text-center text-sm font-semibold text-gold border border-gold/40 hover:border-gold hover:bg-gold/10 py-2 px-4 rounded-lg transition-all duration-150">View Details</a>
+            <a href="/registration/" class="flex-1 text-center text-sm font-semibold text-navy bg-gold hover:bg-gold-dark py-2 px-4 rounded-lg transition-all duration-150">Register Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spring Break Camp -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-gold/50 hover:bg-white/8 transition-all duration-200">
+        <div class="p-7">
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <h2 class="font-display text-2xl text-white leading-tight">Spring Break Camp</h2>
+            <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap mt-1">$129 / 4 days</span>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed mb-5">Four connected days of skill progression during Okaloosa County spring break — morning session for grades 3–5, afternoon for grades 6–12.</p>
+          <div class="space-y-2 text-sm mb-6">
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span>March 15–18, 2027 (Mon–Thu)</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>AM: 8:30–12:00 · PM: 12:30–4:00</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span>Grades 3–12</span>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <a href="/camps/spring-break-camp/" class="flex-1 text-center text-sm font-semibold text-gold border border-gold/40 hover:border-gold hover:bg-gold/10 py-2 px-4 rounded-lg transition-all duration-150">View Details</a>
+            <a href="/registration/" class="flex-1 text-center text-sm font-semibold text-navy bg-gold hover:bg-gold-dark py-2 px-4 rounded-lg transition-all duration-150">Register Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Holiday Camp -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-gold/50 hover:bg-white/8 transition-all duration-200">
+        <div class="p-7">
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <h2 class="font-display text-2xl text-white leading-tight">Holiday Camp</h2>
+            <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap mt-1">$79 / 3 days</span>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed mb-5">Our most affordable camp — fun-first with real fundamentals. Three half-days over winter break. No experience needed.</p>
+          <div class="space-y-2 text-sm mb-6">
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span>Dec 28–30, 2026 (Mon–Wed)</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>9:00 AM – 12:00 PM</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/70">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span>Grades 4–8 · Boys &amp; Girls</span>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <a href="/camps/holiday-camp/" class="flex-1 text-center text-sm font-semibold text-gold border border-gold/40 hover:border-gold hover:bg-gold/10 py-2 px-4 rounded-lg transition-all duration-150">View Details</a>
+            <a href="/registration/" class="flex-1 text-center text-sm font-semibold text-navy bg-gold hover:bg-gold-dark py-2 px-4 rounded-lg transition-all duration-150">Register Now</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Discounts callout -->
+    <div class="mt-12 bg-white/5 border border-gold/20 rounded-2xl p-7 text-center">
+      <h3 class="font-display text-xl text-white mb-3">Discounts That Stack</h3>
+      <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-white/60">
+        <span><span class="text-gold font-semibold">Early Bird</span> — $20 off summer camps (register before May 1)</span>
+        <span><span class="text-gold font-semibold">Military/DoD</span> — Early bird rate automatically</span>
+        <span><span class="text-gold font-semibold">Sibling</span> — $20 off per additional child</span>
+        <span><span class="text-gold font-semibold">Multi-Week</span> — 2 weeks for $273 (save $25)</span>
+      </div>
+      <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/registration/" class="btn-primary">Register Now</a>
+        <a href="/contact/" class="btn-outline">Call 850.961.2323</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{ partial "cta-section.html" . }}
+
+{{ end }}

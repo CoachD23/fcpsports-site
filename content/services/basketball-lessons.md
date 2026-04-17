@@ -10,6 +10,13 @@ frequency: "Flexible scheduling"
 program_name: "Private Lessons"
 ghl_tag: "train"
 course_type: "basketball training"
+summary_card:
+  days: "Flexible scheduling"
+  ages: "Ages 6–Adult"
+  price: "Contact for pricing"
+  location: "Fort Walton Beach, FL"
+  note: "1-on-1 · Semi-private · Small group"
+  contact_url: "/contact/"
 faq:
   - q: "How much do private lessons cost?"
     a: "Pricing depends on session length (30, 45, or 60 minutes) and package size. Bundles save significantly over per-session rates. Contact us for current pricing."

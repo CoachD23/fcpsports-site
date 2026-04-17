@@ -10,6 +10,14 @@ frequency: "Weekly schedule"
 program_name: "Open Gym"
 hide_hero_buttons: true
 ghl_tag: "train"
+summary_card:
+  dates: "Now through May 15, 2026"
+  days: "Tue/Thu 3–5 PM · Sat 10 AM–1 PM"
+  ages: "Youth &amp; Adult"
+  price: "FREE through May 15"
+  location: "Fort Walton Beach, FL"
+  note: "No registration required — just show up"
+  register_url: "/waiver/"
 faq:
   - q: "Where can I play pickup basketball near Fort Walton Beach?"
     a: "FCP Sports. Indoor, climate-controlled, hardwood court. We run separate youth and adult sessions weekly."

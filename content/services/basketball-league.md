@@ -9,6 +9,13 @@ price: "From $79"
 frequency: "Weekly games"
 program_name: "Basketball League"
 ghl_tag: "compete"
+summary_card:
+  dates: "Fall: Sep–Nov · Summer: Jun–Jul"
+  days: "Saturdays (Fall) · Tue/Thu evenings (Summer)"
+  ages: "Grades K–12 (Ages 5–18)"
+  price: "From $79 · Divisions K–12"
+  location: "Fort Walton Beach, FL"
+  register_url: "/registration/"
 faq:
   - q: "Is there a youth basketball league in Fort Walton Beach?"
     a: "Yes. FCP Sports runs leagues for ages 5–18. Trained referees, stat tracking, standings, and playoffs every season."
