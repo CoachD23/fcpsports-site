@@ -23,7 +23,7 @@
 
 - name: "Basketball League"
   ages: "Ages 5-18 (K-12th)"
-  price: "From $59"
+  price: "From $79"
   frequency: "per season"
   highlight: true
   features:

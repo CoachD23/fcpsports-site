@@ -16,7 +16,7 @@ programs:
     description: "Saturday morning basketball for ages 5–14. No tryouts, every kid plays. 8-week seasons with jerseys included."
     url: "/youth-league/"
     ages: "Ages 5–14"
-    price: "From $59"
+    price: "From $149"
     image: "/images/fcp-coaches-huddle-players.jpg"
   - name: "Youth Basketball Programs"
     description: "Age-tiered development from kindergarten through 8th grade. Little Ballers, Junior Program, and Prep tracks with year-round coaching."
