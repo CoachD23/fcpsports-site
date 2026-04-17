@@ -12,32 +12,34 @@
     </div>
 
     <!-- Step Indicator -->
-    <div class="flex items-center justify-between mb-8 max-w-lg mx-auto" id="step-nav">
-      <div class="step-dot active" data-step="1">
-        <div class="w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">1</div>
-        <span class="text-xs mt-1 text-gold font-semibold">Parent</span>
-      </div>
-      <div class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-1-2"></div>
-      <div class="step-dot" data-step="2">
-        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm">2</div>
-        <span class="text-xs mt-1 text-gray-400">Player</span>
-      </div>
-      <div class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-2-3"></div>
-      <div class="step-dot" data-step="3">
-        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm">3</div>
-        <span class="text-xs mt-1 text-gray-400">Uniform</span>
-      </div>
-      <div class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-3-4"></div>
-      <div class="step-dot" data-step="4">
-        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm">4</div>
-        <span class="text-xs mt-1 text-gray-400">Review</span>
-      </div>
-      <div class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-4-5"></div>
-      <div class="step-dot" data-step="5">
-        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm">5</div>
-        <span class="text-xs mt-1 text-gray-400">Payment</span>
-      </div>
-    </div>
+    <nav class="flex items-center justify-between mb-8 max-w-lg mx-auto" aria-label="Registration steps" id="step-nav">
+      <ol class="contents">
+        <li class="step-dot active" data-step="1">
+          <div class="w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm" aria-label="Step 1 of 5: Parent" aria-current="step">1</div>
+          <span class="text-xs mt-1 text-gold font-semibold">Parent</span>
+        </li>
+        <li class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-1-2" aria-hidden="true"></li>
+        <li class="step-dot" data-step="2">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 2 of 5: Player">2</div>
+          <span class="text-xs mt-1 text-gray-400">Player</span>
+        </li>
+        <li class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-2-3" aria-hidden="true"></li>
+        <li class="step-dot" data-step="3">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 3 of 5: Uniform">3</div>
+          <span class="text-xs mt-1 text-gray-400">Uniform</span>
+        </li>
+        <li class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-3-4" aria-hidden="true"></li>
+        <li class="step-dot" data-step="4">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 4 of 5: Review">4</div>
+          <span class="text-xs mt-1 text-gray-400">Review</span>
+        </li>
+        <li class="flex-1 h-0.5 bg-gray-200 mx-1" id="bar-4-5" aria-hidden="true"></li>
+        <li class="step-dot" data-step="5">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 5 of 5: Payment">5</div>
+          <span class="text-xs mt-1 text-gray-400">Payment</span>
+        </li>
+      </ol>
+    </nav>
 
     <!-- Form -->
     <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10" id="reg-wrap">
@@ -55,6 +57,8 @@
 
           <!-- Session Selector -->
           <h2 class="font-display text-xl text-navy mb-4">Pick Your Session</h2>
+          <fieldset>
+          <legend class="sr-only">Pick Your Session</legend>
           <div class="space-y-3 mb-8" id="session-options">
             <label class="session-option">
               <input type="radio" name="session" value="spring-2026" class="sr-only" />
@@ -96,6 +100,7 @@
               </div>
             </label>
           </div>
+          </fieldset>
 
           <h2 class="font-display text-xl text-navy mb-6">Parent / Guardian Information</h2>
           <div class="space-y-4">
@@ -128,7 +133,7 @@
               </div>
               <div>
                 <label for="p-phone" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Primary Phone <span class="text-red-500">*</span></label>
-                <input type="tel" id="p-phone" name="parentPhone" required autocomplete="tel"
+                <input type="tel" id="p-phone" name="parentPhone" required autocomplete="tel" inputmode="tel"
                   placeholder="(850) 555-0100"
                   class="reg-input" />
               </div>
@@ -153,13 +158,13 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label for="c-first" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Child's First Name <span class="text-red-500">*</span></label>
-                <input type="text" id="c-first" name="childFirst" required
+                <input type="text" id="c-first" name="childFirst" required autocomplete="off"
                   placeholder="First name"
                   class="reg-input" />
               </div>
               <div>
                 <label for="c-last" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Child's Last Name <span class="text-red-500">*</span></label>
-                <input type="text" id="c-last" name="childLast" required
+                <input type="text" id="c-last" name="childLast" required autocomplete="off"
                   placeholder="Last name"
                   class="reg-input" />
               </div>
@@ -168,7 +173,7 @@
               <label for="c-dob" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Date of Birth <span class="text-red-500">*</span></label>
               <input type="date" id="c-dob" name="childDob" required
                 class="reg-input" />
-              <div id="division-badge" class="hidden mt-2 inline-flex items-center gap-2 bg-gold/10 border border-gold/30 rounded-lg px-4 py-2">
+              <div id="division-badge" class="hidden mt-2 inline-flex items-center gap-2 bg-gold/10 border border-gold/30 rounded-lg px-4 py-2" aria-live="polite">
                 <span class="text-sm text-navy font-semibold" id="division-label"></span>
                 <span class="text-xs text-gray-500" id="division-time"></span>
               </div>
@@ -184,13 +189,13 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label for="e-name" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Contact Name <span class="text-red-500">*</span></label>
-                <input type="text" id="e-name" name="emergencyName" required
+                <input type="text" id="e-name" name="emergencyName" required autocomplete="off"
                   placeholder="Full name"
                   class="reg-input" />
               </div>
               <div>
                 <label for="e-phone" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Contact Phone <span class="text-red-500">*</span></label>
-                <input type="tel" id="e-phone" name="emergencyPhone" required
+                <input type="tel" id="e-phone" name="emergencyPhone" required autocomplete="off" inputmode="tel"
                   placeholder="(850) 555-0100"
                   class="reg-input" />
               </div>
@@ -208,6 +213,8 @@
         <div class="step-panel hidden" data-step="3">
           <h2 class="font-display text-xl text-navy mb-6">Player Uniform</h2>
           <p class="text-gray-500 text-sm mb-6">Every registration includes a game jersey. Select the best size for your child.</p>
+          <fieldset>
+          <legend class="sr-only">Jersey Size</legend>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="jersey-sizes">
             <label class="jersey-option">
               <input type="radio" name="jerseySize" value="YS" class="sr-only" />
@@ -252,6 +259,7 @@
               </div>
             </label>
           </div>
+          </fieldset>
         </div>
 
         <!-- STEP 4: Review -->
@@ -449,7 +457,7 @@
     errText.textContent = msg;
     errWrap.classList.remove("hidden");
     errWrap.scrollIntoView({ behavior: "smooth", block: "center" });
-    if (focusEl) focusEl.focus();
+    if (focusEl) requestAnimationFrame(function() { focusEl.focus(); });
   }
   function clearError() { errWrap.classList.add("hidden"); }
 
@@ -460,18 +468,25 @@
       p.classList.toggle("hidden", +p.dataset.step !== step);
     });
     // Update step dots
+    const stepLabels = ["Parent", "Player", "Uniform", "Review", "Payment"];
     dots.forEach((d, i) => {
       const n = i + 1;
       const circle = d.querySelector("div");
       const label = d.querySelector("span");
       if (n < step) {
         circle.className = "w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm";
+        circle.removeAttribute("aria-current");
+        circle.setAttribute("aria-label", "Step " + n + " of 5: " + stepLabels[i] + " (completed)");
         label.className = "text-xs mt-1 text-gold font-semibold";
       } else if (n === step) {
         circle.className = "w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm";
+        circle.setAttribute("aria-current", "step");
+        circle.setAttribute("aria-label", "Step " + n + " of 5: " + stepLabels[i]);
         label.className = "text-xs mt-1 text-gold font-semibold";
       } else {
         circle.className = "w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm";
+        circle.removeAttribute("aria-current");
+        circle.setAttribute("aria-label", "Step " + n + " of 5: " + stepLabels[i]);
         label.className = "text-xs mt-1 text-gray-400";
       }
     });
@@ -540,7 +555,7 @@
   // Validation per step
   function validateStep(s) {
     if (s === 1) {
-      if (!getSelectedSession()) { showError("Please pick a session (Spring, Mid-Summer, or Late Summer)."); return false; }
+      if (!getSelectedSession()) { showError("Please pick a session (Spring, Mid-Summer, or Late Summer).", form.querySelector('input[name="session"]')); return false; }
       const email = form.parentEmail.value.trim();
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError("Please enter a valid email address.", form.parentEmail); return false; }
       if (!form.parentFirst.value.trim()) { showError("First name is required.", form.parentFirst); return false; }
@@ -558,7 +573,7 @@
       if (!form.emergencyPhone.value.trim() || form.emergencyPhone.value.replace(/\D/g,"").length < 10) { showError("Please enter a valid emergency contact phone.", form.emergencyPhone); return false; }
     }
     if (s === 3) {
-      if (!form.jerseySize.value) { showError("Please select a jersey size."); return false; }
+      if (!form.jerseySize.value) { showError("Please select a jersey size.", form.querySelector('input[name="jerseySize"]')); return false; }
     }
     if (s === 4) {
       if (!form.parentPledge.checked) { showError("Please accept the Parental Pledge to continue.", form.parentPledge); return false; }
@@ -748,6 +763,7 @@
       });
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || "Registration failed");
+      window.removeEventListener("beforeunload", beforeUnloadHandler);
       form.classList.add("hidden");
       document.getElementById("step-nav").classList.add("hidden");
       document.getElementById("success-msg").classList.remove("hidden");
@@ -759,6 +775,14 @@
       submitSpin.classList.add("hidden");
     }
   });
+
+  function beforeUnloadHandler(e) {
+    if (step > 1 || form.parentEmail.value || form.childFirst.value) {
+      e.preventDefault();
+      e.returnValue = "";
+    }
+  }
+  window.addEventListener("beforeunload", beforeUnloadHandler);
 
   goTo(1);
 })();
