@@ -16,8 +16,7 @@
     <h1 class="font-display text-5xl md:text-6xl text-navy mb-6 leading-none">{{ .Title }}</h1>
     <p class="text-xl text-gray-500 mb-4">{{ .Description }}</p>
     <div class="flex items-center gap-4 text-sm text-gray-400 mb-12 pb-12 border-b border-gray-100">
-      <span>{{ .Date.Format "January 2, 2006" }}</span>
-      <span>•</span>
+      {{ if not .Date.IsZero }}<span>{{ .Date.Format "January 2, 2006" }}</span><span>•</span>{{ end }}
       <span>FCP Sports, Fort Walton Beach FL</span>
     </div>
     <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-navy prose-h2:text-3xl prose-a:text-gold prose-strong:text-navy">
