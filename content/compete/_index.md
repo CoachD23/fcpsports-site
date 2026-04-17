@@ -13,7 +13,7 @@ programs:
     price: "From $79"
     image: "/images/fcp-spartans-game-action.jpg"
   - name: "Youth League — Saturday Mornings"
-    description: "Saturday morning basketball for ages 5–14. No tryouts, every kid plays. 8-week seasons with jerseys included."
+    description: "Saturday morning basketball for ages 5–14. No tryouts, every kid plays. Three 7-week seasons: Spring, Mid-Summer, Late Summer. Jerseys included."
     url: "/youth-league/"
     ages: "Ages 5–14"
     price: "From $149"

@@ -3,99 +3,169 @@
 <!-- Hero -->
 <section class="bg-navy py-16 text-center">
   <div class="max-w-3xl mx-auto px-4">
-    <span class="text-gold font-display tracking-widest text-sm uppercase">Ages 5–14 &bull; Summer 2026</span>
+    <span class="text-gold font-display tracking-widest text-sm uppercase">Ages 5–14 &bull; 2026 Seasons</span>
     <h1 class="font-display text-5xl md:text-7xl text-white mt-3 mb-4 leading-none">Saturday Morning Basketball</h1>
-    <p class="text-white/60 text-lg max-w-xl mx-auto mb-8">Eight Saturdays. Real games. Every kid plays.</p>
+    <p class="text-white/60 text-lg max-w-xl mx-auto mb-8">Seven Saturdays. Real games. Every kid plays. Pick the session that fits your calendar.</p>
     <a href="/youth-league/register/" class="btn-primary text-lg px-10 py-4">Register Now</a>
   </div>
 </section>
 
-<!-- Program Info Card — i9 style -->
-<section class="py-12 bg-white">
-  <div class="max-w-5xl mx-auto px-4">
-    <div class="border-2 border-gray-100 rounded-2xl overflow-hidden">
-
-      <!-- Header bar -->
-      <div class="bg-gold px-6 py-3 flex items-center justify-between">
-        <span class="font-display text-navy text-lg tracking-wide uppercase">Saturday Youth League — Summer 2026</span>
-        <span class="bg-navy text-gold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Registration Open</span>
-      </div>
-
-      <!-- 3-column info grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-
-        <!-- PROGRAM INFO -->
-        <div class="p-6">
-          <h2 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Program Info</h2>
-          <dl class="space-y-3 text-sm">
-            <div class="flex justify-between"><dt class="font-bold text-navy">Start Date</dt><dd class="text-gray-600">June 7, 2026</dd></div>
-            <div class="flex justify-between"><dt class="font-bold text-navy">End Date</dt><dd class="text-gray-600">July 26, 2026</dd></div>
-            <div class="flex justify-between"><dt class="font-bold text-navy">Weeks</dt><dd class="text-gray-600">8</dd></div>
-            <div class="flex justify-between"><dt class="font-bold text-navy">Days</dt><dd class="text-gray-600">Saturday</dd></div>
-          </dl>
-          <div class="mt-4 pt-4 border-t border-gray-100 text-sm">
-            <p class="font-bold text-navy mb-2">Start Times by Age</p>
-            <div class="space-y-1 text-gray-600">
-              <p><span class="font-semibold text-navy">Ages 5–7:</span> 8:00 – 10:00 AM</p>
-              <p><span class="font-semibold text-navy">Ages 8–10:</span> 10:00 AM – 12:00 PM</p>
-              <p><span class="font-semibold text-navy">Ages 11–14:</span> 12:00 – 2:00 PM</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- LOCATION INFO -->
-        <div class="p-6">
-          <h2 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Location Info</h2>
-          <dl class="space-y-3 text-sm">
-            <div><dt class="font-bold text-navy">Venue</dt><dd class="text-gray-600">FCP Sports</dd></div>
-            <div><dt class="font-bold text-navy">Address</dt><dd class="text-gray-600">33 Jet Drive NW<br>Fort Walton Beach, FL 32548</dd></div>
-            <div><dt class="font-bold text-navy">Phone</dt><dd><a href="tel:850.961.2323" class="text-gold hover:text-gold-dark">850.961.2323</a></dd></div>
-            <div><dt class="font-bold text-navy">Who Plays</dt><dd class="text-gray-600">Co-ed, Ages 5–14</dd></div>
-          </dl>
-          <div class="mt-4 pt-4 border-t border-gray-100 text-sm text-gray-500">
-            No tryouts. Every kid plays equal time.
-          </div>
-        </div>
-
-        <!-- REGISTRATION INFO -->
-        <div class="p-6">
-          <h2 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Registration &amp; Fees</h2>
-          <div class="space-y-2 text-sm">
-            <div class="bg-gold/10 border border-gold/30 rounded-lg px-4 py-2 flex justify-between items-center">
-              <span class="font-bold text-navy">$149</span>
-              <span class="text-gray-500">by May 15</span>
-            </div>
-            <div class="bg-gray-50 rounded-lg px-4 py-2 flex justify-between items-center">
-              <span class="font-bold text-navy">$164</span>
-              <span class="text-gray-500">May 16 – May 29</span>
-            </div>
-            <div class="bg-gray-50 rounded-lg px-4 py-2 flex justify-between items-center">
-              <span class="font-bold text-navy">$179</span>
-              <span class="text-gray-500">May 30 – June 4</span>
-            </div>
-          </div>
-          <div class="mt-3 text-xs text-gray-500 space-y-1">
-            <p>$15 off each additional child</p>
-            <p>$20 off military families (Eglin &amp; Hurlburt)</p>
-          </div>
-          <div class="mt-4 space-y-2">
-            <a href="/youth-league/register/" class="btn-primary block text-center py-3 text-sm">Register Now</a>
-          </div>
-        </div>
-
-      </div>
+<!-- Session Selector -->
+<section class="py-12 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <h2 class="font-display text-3xl md:text-4xl text-navy">Choose Your Session</h2>
+      <p class="text-gray-500 mt-2">Three 7-week sessions. Same format, same price. Sign up for one, two, or all three.</p>
     </div>
+
+    <div class="space-y-6">
+      {{ $sessions := slice
+        (dict
+          "name" "Spring Session"
+          "dates" "May 2 – June 13, 2026"
+          "startDate" "May 2, 2026"
+          "endDate" "June 13, 2026"
+          "weeks" "7"
+          "status" "Registration Open"
+          "statusColor" "gold"
+          "early" "$149"
+          "earlyBy" "by April 17"
+          "regular" "$164"
+          "regularBy" "April 18 – April 25"
+          "late" "$179"
+          "lateBy" "April 26 – May 1"
+          "registerUrl" "/youth-league/register/?session=spring-2026"
+          "note" ""
+        )
+        (dict
+          "name" "Mid-Summer Session"
+          "dates" "June 20 – August 8, 2026"
+          "startDate" "June 20, 2026"
+          "endDate" "August 8, 2026"
+          "weeks" "7"
+          "status" "Registration Open"
+          "statusColor" "gold"
+          "early" "$149"
+          "earlyBy" "by May 30"
+          "regular" "$164"
+          "regularBy" "May 31 – June 13"
+          "late" "$179"
+          "lateBy" "June 14 – June 19"
+          "registerUrl" "/youth-league/register/?session=mid-summer-2026"
+          "note" "No game July 4 (holiday weekend)"
+        )
+        (dict
+          "name" "Late Summer Session"
+          "dates" "August 15 – September 26, 2026"
+          "startDate" "August 15, 2026"
+          "endDate" "September 26, 2026"
+          "weeks" "7"
+          "status" "Early Registration"
+          "statusColor" "navy"
+          "early" "$149"
+          "earlyBy" "by July 25"
+          "regular" "$164"
+          "regularBy" "July 26 – August 8"
+          "late" "$179"
+          "lateBy" "August 9 – August 14"
+          "registerUrl" "/youth-league/register/?session=late-summer-2026"
+          "note" "No game Labor Day weekend (Sept 5)"
+        )
+      }}
+
+      {{ range $sessions }}
+      <div class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:border-gold transition-colors">
+
+        <!-- Header bar -->
+        <div class="{{ if eq .statusColor "gold" }}bg-gold{{ else }}bg-navy{{ end }} px-6 py-3 flex items-center justify-between flex-wrap gap-2">
+          <span class="font-display {{ if eq .statusColor "gold" }}text-navy{{ else }}text-white{{ end }} text-lg tracking-wide uppercase">{{ .name }} — {{ .dates }}</span>
+          <span class="{{ if eq .statusColor "gold" }}bg-navy text-gold{{ else }}bg-gold text-navy{{ end }} text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">{{ .status }}</span>
+        </div>
+
+        <!-- 3-column info grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+
+          <!-- PROGRAM INFO -->
+          <div class="p-6">
+            <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Program Info</h3>
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between"><dt class="font-bold text-navy">Start Date</dt><dd class="text-gray-600">{{ .startDate }}</dd></div>
+              <div class="flex justify-between"><dt class="font-bold text-navy">End Date</dt><dd class="text-gray-600">{{ .endDate }}</dd></div>
+              <div class="flex justify-between"><dt class="font-bold text-navy">Weeks</dt><dd class="text-gray-600">{{ .weeks }}</dd></div>
+              <div class="flex justify-between"><dt class="font-bold text-navy">Days</dt><dd class="text-gray-600">Saturday</dd></div>
+            </dl>
+            <div class="mt-4 pt-4 border-t border-gray-100 text-sm">
+              <p class="font-bold text-navy mb-2">Start Times by Age</p>
+              <div class="space-y-1 text-gray-600">
+                <p><span class="font-semibold text-navy">Ages 5–7:</span> 8:00 – 10:00 AM</p>
+                <p><span class="font-semibold text-navy">Ages 8–10:</span> 10:00 AM – 12:00 PM</p>
+                <p><span class="font-semibold text-navy">Ages 11–14:</span> 12:00 – 2:00 PM</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- LOCATION INFO -->
+          <div class="p-6">
+            <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Location Info</h3>
+            <dl class="space-y-3 text-sm">
+              <div><dt class="font-bold text-navy">Venue</dt><dd class="text-gray-600">FCP Sports</dd></div>
+              <div><dt class="font-bold text-navy">Address</dt><dd class="text-gray-600">33 Jet Drive NW<br>Fort Walton Beach, FL 32548</dd></div>
+              <div><dt class="font-bold text-navy">Phone</dt><dd><a href="tel:850.961.2323" class="text-gold hover:text-gold-dark">850.961.2323</a></dd></div>
+              <div><dt class="font-bold text-navy">Who Plays</dt><dd class="text-gray-600">Co-ed, Ages 5–14</dd></div>
+            </dl>
+            {{ with .note }}
+            <div class="mt-4 pt-4 border-t border-gray-100 text-xs text-gold italic">{{ . }}</div>
+            {{ end }}
+          </div>
+
+          <!-- REGISTRATION INFO -->
+          <div class="p-6">
+            <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Registration &amp; Fees</h3>
+            <div class="space-y-2 text-sm">
+              <div class="bg-gold/10 border border-gold/30 rounded-lg px-4 py-2 flex justify-between items-center">
+                <span class="font-bold text-navy">{{ .early }}</span>
+                <span class="text-gray-500">{{ .earlyBy }}</span>
+              </div>
+              <div class="bg-gray-50 rounded-lg px-4 py-2 flex justify-between items-center">
+                <span class="font-bold text-navy">{{ .regular }}</span>
+                <span class="text-gray-500">{{ .regularBy }}</span>
+              </div>
+              <div class="bg-gray-50 rounded-lg px-4 py-2 flex justify-between items-center">
+                <span class="font-bold text-navy">{{ .late }}</span>
+                <span class="text-gray-500">{{ .lateBy }}</span>
+              </div>
+            </div>
+            <div class="mt-3 text-xs text-gray-500 space-y-1">
+              <p>$15 off each additional child</p>
+              <p>$20 off military families (Eglin &amp; Hurlburt)</p>
+            </div>
+            <div class="mt-4">
+              <a href="{{ .registerUrl }}" class="btn-primary block text-center py-3 text-sm">Register Now</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    <!-- Multi-session discount callout -->
+    <div class="mt-8 bg-navy text-white rounded-2xl p-6 text-center">
+      <p class="font-display text-lg text-gold uppercase tracking-wide mb-1">Multi-Session Discount</p>
+      <p class="text-white/70 text-sm">Sign up for 2 sessions → $25 off. All 3 sessions → $50 off. Same-family, same-child registrations.</p>
+    </div>
+
   </div>
 </section>
 
 <!-- What's Included -->
-<section class="py-12 bg-gray-50">
+<section class="py-12 bg-white">
   <div class="max-w-5xl mx-auto px-4">
     <h2 class="section-heading">What's Included</h2>
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
       {{ $items := slice
         "Game jersey"
-        "8 Saturdays"
+        "7 Saturdays"
         "Paid referees"
         "Equal playing time"
         "Position rotation"
@@ -104,7 +174,7 @@
         "Buddy requests"
       }}
       {{ range $items }}
-      <div class="flex items-center gap-2 bg-white rounded-lg p-3 shadow-sm">
+      <div class="flex items-center gap-2 bg-gray-50 rounded-lg p-3">
         <svg class="w-4 h-4 text-gold shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
         <span class="text-xs text-gray-700">{{ . }}</span>
       </div>
@@ -117,7 +187,7 @@
 <section class="py-10 bg-navy text-center">
   <div class="max-w-3xl mx-auto px-4">
     <p class="text-white/50 text-xs mb-4">USA Basketball certified coaches &bull; Fully insured &bull; Background-checked staff</p>
-    <a href="/youth-league/register/" class="btn-primary px-10 py-3">Register Now — Summer 2026</a>
+    <a href="/youth-league/register/" class="btn-primary px-10 py-3">Register Now</a>
   </div>
 </section>
 
