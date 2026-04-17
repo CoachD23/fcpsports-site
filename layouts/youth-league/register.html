@@ -8,7 +8,7 @@
     <div class="text-center mb-6">
       <a href="/youth-league/" class="text-gold font-display tracking-widest text-sm uppercase hover:underline">&larr; FCP Sports Youth League</a>
       <h1 class="font-display text-3xl text-navy mt-2">Registration</h1>
-      <p class="text-gray-400 text-sm">Saturday Youth Basketball &bull; Summer 2026</p>
+      <p class="text-gray-400 text-sm">Saturday Youth Basketball &bull; 2026 Seasons</p>
     </div>
 
     <!-- Step Indicator -->
@@ -52,6 +52,51 @@
 
         <!-- STEP 1: Parent Info -->
         <div class="step-panel" data-step="1">
+
+          <!-- Session Selector -->
+          <h2 class="font-display text-xl text-navy mb-4">Pick Your Session</h2>
+          <div class="space-y-3 mb-8" id="session-options">
+            <label class="session-option">
+              <input type="radio" name="session" value="spring-2026" class="sr-only" />
+              <div class="session-card">
+                <div class="flex-1">
+                  <div class="font-display text-base text-navy">Spring Session</div>
+                  <div class="text-xs text-gray-500">May 2 – June 13, 2026 &bull; 7 Saturdays</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-bold text-navy text-sm">From $149</div>
+                  <div class="text-xs text-gray-400">early bird</div>
+                </div>
+              </div>
+            </label>
+            <label class="session-option">
+              <input type="radio" name="session" value="mid-summer-2026" class="sr-only" />
+              <div class="session-card">
+                <div class="flex-1">
+                  <div class="font-display text-base text-navy">Mid-Summer Session</div>
+                  <div class="text-xs text-gray-500">June 20 – August 8, 2026 &bull; 7 Saturdays (skip July 4)</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-bold text-navy text-sm">From $149</div>
+                  <div class="text-xs text-gray-400">early bird</div>
+                </div>
+              </div>
+            </label>
+            <label class="session-option">
+              <input type="radio" name="session" value="late-summer-2026" class="sr-only" />
+              <div class="session-card">
+                <div class="flex-1">
+                  <div class="font-display text-base text-navy">Late Summer Session</div>
+                  <div class="text-xs text-gray-500">Aug 15 – Sept 26, 2026 &bull; 7 Saturdays (skip Labor Day)</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-bold text-navy text-sm">From $149</div>
+                  <div class="text-xs text-gray-400">early bird</div>
+                </div>
+              </div>
+            </label>
+          </div>
+
           <h2 class="font-display text-xl text-navy mb-6">Parent / Guardian Information</h2>
           <div class="space-y-4">
             <div>
@@ -214,6 +259,10 @@
           <h2 class="font-display text-xl text-navy mb-6">Review Your Registration</h2>
 
           <div class="space-y-4">
+            <div class="bg-gold/10 border border-gold/30 rounded-xl p-5">
+              <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Session</h3>
+              <div class="text-sm text-navy font-semibold" id="review-session"></div>
+            </div>
             <div class="bg-gray-50 rounded-xl p-5">
               <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Parent / Guardian</h3>
               <div class="text-sm text-navy space-y-1" id="review-parent"></div>
@@ -334,6 +383,12 @@
   .jersey-option input:checked + .jersey-card {
     @apply border-gold bg-gold/10 ring-2 ring-gold/30;
   }
+  .session-card {
+    @apply flex items-center gap-4 border-2 border-gray-200 rounded-xl p-4 cursor-pointer transition-all hover:border-gold;
+  }
+  .session-option input:checked + .session-card {
+    @apply border-gold bg-gold/10 ring-2 ring-gold/30;
+  }
 </style>
 
 <script>
@@ -349,6 +404,46 @@
   const errText = document.getElementById("err-text");
   let step = 1;
   const TOTAL_STEPS = 5;
+
+  // Session config — drives pricing tiers, dates, and payload
+  const SESSIONS = {
+    "spring-2026": {
+      name: "Spring Session",
+      dates: "May 2 – June 13, 2026",
+      earlyEnd: "2026-04-18",   // early bird cutoff
+      regEnd: "2026-04-26",     // regular cutoff
+      lateEnd: "2026-05-02"     // late cutoff (league starts)
+    },
+    "mid-summer-2026": {
+      name: "Mid-Summer Session",
+      dates: "June 20 – August 8, 2026",
+      earlyEnd: "2026-05-31",
+      regEnd: "2026-06-14",
+      lateEnd: "2026-06-20"
+    },
+    "late-summer-2026": {
+      name: "Late Summer Session",
+      dates: "August 15 – September 26, 2026",
+      earlyEnd: "2026-07-26",
+      regEnd: "2026-08-09",
+      lateEnd: "2026-08-15"
+    }
+  };
+
+  function getSelectedSession() {
+    const r = form.querySelector("input[name=session]:checked");
+    return r ? r.value : null;
+  }
+
+  // Pre-select session from URL ?session= param
+  (function preselectSession() {
+    const params = new URLSearchParams(window.location.search);
+    const s = params.get("session");
+    if (s && SESSIONS[s]) {
+      const radio = form.querySelector('input[name=session][value="' + s + '"]');
+      if (radio) radio.checked = true;
+    }
+  })();
 
   function showError(msg, focusEl) {
     errText.textContent = msg;
@@ -424,19 +519,28 @@
     }
   });
 
-  // Pricing tier
+  // Pricing tier — depends on which session is selected
   function getPriceTier() {
+    const sKey = getSelectedSession();
+    if (!sKey) return { price: 149, label: "Select a session" };
+    const s = SESSIONS[sKey];
     const now = new Date();
-    const earlyEnd = new Date("2026-05-16");
-    const regEnd = new Date("2026-05-30");
-    if (now < earlyEnd) return { price: 149, label: "Early bird pricing (by May 15)" };
-    if (now < regEnd) return { price: 164, label: "Regular pricing (May 16–29)" };
-    return { price: 179, label: "Late registration (May 30+)" };
+    const earlyEnd = new Date(s.earlyEnd);
+    const regEnd = new Date(s.regEnd);
+    if (now < earlyEnd) return { price: 149, label: s.name + " — Early bird (by " + formatDate(s.earlyEnd) + ")" };
+    if (now < regEnd) return { price: 164, label: s.name + " — Regular" };
+    return { price: 179, label: s.name + " — Late registration" };
+  }
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
   }
 
   // Validation per step
   function validateStep(s) {
     if (s === 1) {
+      if (!getSelectedSession()) { showError("Please pick a session (Spring, Mid-Summer, or Late Summer)."); return false; }
       const email = form.parentEmail.value.trim();
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError("Please enter a valid email address.", form.parentEmail); return false; }
       if (!form.parentFirst.value.trim()) { showError("First name is required.", form.parentFirst); return false; }
@@ -466,6 +570,11 @@
   function populateReview() {
     const div = calcDivision(form.childDob.value);
     const tier = getPriceTier();
+    const sKey = getSelectedSession();
+    const sess = sKey ? SESSIONS[sKey] : null;
+    document.getElementById("review-session").innerHTML = sess
+      ? "<p>" + esc(sess.name) + "</p><p class='text-xs text-gray-500 font-normal mt-0.5'>" + esc(sess.dates) + "</p>"
+      : "";
     document.getElementById("review-parent").innerHTML =
       "<p><strong>" + esc(form.parentFirst.value) + " " + esc(form.parentLast.value) + "</strong></p>" +
       "<p>" + esc(form.parentEmail.value) + "</p>" +
@@ -503,6 +612,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             partial: true,
+            session: getSelectedSession(),
             parentEmail: form.parentEmail.value.trim().toLowerCase(),
             parentFirst: form.parentFirst.value.trim(),
             parentLast: form.parentLast.value.trim(),
@@ -596,7 +706,12 @@
 
     var div = calcDivision(form.childDob.value);
     var tier = getPriceTier();
+    var sKey = getSelectedSession();
+    var sess = sKey ? SESSIONS[sKey] : null;
     var payload = {
+      session: sKey,
+      sessionName: sess ? sess.name : "",
+      sessionDates: sess ? sess.dates : "",
       parentEmail: form.parentEmail.value.trim().toLowerCase(),
       parentFirst: form.parentFirst.value.trim(),
       parentLast: form.parentLast.value.trim(),
