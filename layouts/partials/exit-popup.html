@@ -34,6 +34,10 @@
           body: JSON.stringify({ email: email, tag: 'camp-inquiry', source: 'exit-popup' })
         }).catch(function(){});
         if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Camp Early Bird', content_category: 'camp-inquiry' });
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp', 'value': 1.0, 'currency': 'USD'});
+          gtag('event', 'generate_lead', {event_category: 'engagement', event_label: 'exit-popup-camp'});
+        }
         document.getElementById('exit-form').classList.add('hidden');
         document.getElementById('exit-success').classList.remove('hidden');
       });

@@ -459,7 +459,10 @@
         if (result.ok && result.data.success) {
           // Track conversion
           if (typeof fbq === 'function') fbq('track', 'Purchase', { value: finalAmount, currency: 'USD', content_name: selectedLabel });
-          if (typeof gtag === 'function') gtag('event', 'purchase', { value: finalAmount, currency: 'USD', items: [{ item_name: selectedLabel }] });
+          if (typeof gtag === 'function') {
+            gtag('event', 'purchase', { value: finalAmount, currency: 'USD', items: [{ item_name: selectedLabel }] });
+            gtag('event', 'conversion', {'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp', 'value': finalAmount, 'currency': 'USD'});
+          }
 
           window.location.href = '/payment-complete/?program=' + encodeURIComponent(selectedLabel) +
             '&amount=' + finalAmount.toFixed(2) +

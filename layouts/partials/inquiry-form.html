@@ -222,6 +222,10 @@
 
     function afterSubmit() {
       if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: payload.program || payload.tag, content_category: payload.tag });
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp', 'value': 1.0, 'currency': 'USD'});
+        gtag('event', 'generate_lead', {event_category: 'engagement', event_label: payload.tag});
+      }
       var tags = payload.tag.split(',');
       var onlyGym = tags.length === 1 && tags[0] === 'gym-rental-inquiry';
       if (onlyGym) {
