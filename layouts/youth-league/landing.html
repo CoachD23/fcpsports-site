@@ -95,8 +95,11 @@
 
         <!-- Header bar -->
         <div class="{{ if eq .statusColor "gold" }}bg-gold{{ else }}bg-navy{{ end }} px-6 py-3 flex items-center justify-between flex-wrap gap-2">
-          <span class="font-display {{ if eq .statusColor "gold" }}text-navy{{ else }}text-white{{ end }} text-lg tracking-wide uppercase">{{ .name }} — {{ .dates }}</span>
-          <span class="{{ if eq .statusColor "gold" }}bg-navy text-gold{{ else }}bg-gold text-navy{{ end }} text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">{{ .status }}</span>
+          <div class="font-display {{ if eq .statusColor "gold" }}text-navy{{ else }}text-white{{ end }} tracking-wide uppercase min-w-0">
+            <span class="text-lg">{{ .name }}</span>
+            <span class="block sm:inline sm:ml-2 text-sm opacity-80 normal-case tracking-normal">{{ .dates }}</span>
+          </div>
+          <span class="{{ if eq .statusColor "gold" }}bg-navy text-gold{{ else }}bg-gold text-navy{{ end }} text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shrink-0">{{ .status }}</span>
         </div>
 
         <!-- 2-column info grid -->
@@ -128,9 +131,9 @@
           <div class="p-6">
             <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Registration &amp; Fees</h3>
             <div class="space-y-2 text-sm">
-              <div class="bg-gold/10 border border-gold/30 rounded-lg px-4 py-2 flex justify-between items-center">
-                <span class="font-bold text-navy">{{ .early }}</span>
-                <span class="text-gray-500 flex items-center gap-1">{{ .earlyBy }}<span class="bg-gold text-navy text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide ml-1">Early Bird — Best Price</span></span>
+              <div class="bg-gold/10 border border-gold/30 rounded-lg px-4 py-2 flex flex-wrap justify-between items-center gap-2">
+                <span class="font-bold text-navy flex items-center gap-2">{{ .early }}<span class="bg-gold text-navy text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide">Best Price</span></span>
+                <span class="text-gray-500 text-xs">{{ .earlyBy }}</span>
               </div>
               <div class="bg-gray-50 rounded-lg px-4 py-2 flex justify-between items-center">
                 <span class="font-bold text-navy">{{ .regular }}</span>
