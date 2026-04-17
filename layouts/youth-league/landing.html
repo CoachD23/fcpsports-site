@@ -1,11 +1,14 @@
 {{ define "main" }}
 
 <!-- Hero -->
-<section class="bg-navy py-16 text-center">
-  <div class="max-w-3xl mx-auto px-4">
+{{ $heroImg := .Params.hero_image | default "/images/fcp-hero-team-photo.jpg" }}
+<section class="relative py-20 md:py-28 text-center overflow-hidden" style="min-height:380px;">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ $heroImg }}');"></div>
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(6,15,34,0.72) 0%, rgba(6,15,34,0.88) 100%);"></div>
+  <div class="relative z-10 max-w-3xl mx-auto px-4">
     <span class="text-gold font-display tracking-widest text-sm uppercase">Ages 5–14 &bull; 2026 Seasons</span>
-    <h1 class="font-display text-5xl md:text-7xl text-white mt-3 mb-4 leading-none">Saturday Morning Basketball</h1>
-    <p class="text-white/60 text-lg max-w-xl mx-auto mb-8">Seven Saturdays. Real games. Every kid plays. Pick the session that fits your calendar.</p>
+    <h1 class="font-display text-4xl sm:text-5xl md:text-7xl text-white mt-3 mb-4 leading-none">Saturday Morning Basketball</h1>
+    <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-8">Seven Saturdays. Real games. Every kid plays. Pick the session that fits your calendar.</p>
     <a href="/youth-league/register/" class="btn-primary text-lg px-10 py-4">Register Now</a>
   </div>
 </section>

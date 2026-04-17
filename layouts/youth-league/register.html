@@ -380,24 +380,7 @@
 
 <script type="text/javascript" src="https://js.authorize.net/v1/Accept.js" charset="utf-8"></script>
 
-<style>
-  .reg-input {
-    @apply w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold focus:outline-none transition bg-white;
-  }
-  .step-dot { @apply flex flex-col items-center text-center; }
-  .jersey-card {
-    @apply flex flex-col items-center justify-center border-2 border-gray-200 rounded-xl p-5 cursor-pointer transition-all hover:border-gold;
-  }
-  .jersey-option input:checked + .jersey-card {
-    @apply border-gold bg-gold/10 ring-2 ring-gold/30;
-  }
-  .session-card {
-    @apply flex items-center gap-4 border-2 border-gray-200 rounded-xl p-4 cursor-pointer transition-all hover:border-gold;
-  }
-  .session-option input:checked + .session-card {
-    @apply border-gold bg-gold/10 ring-2 ring-gold/30;
-  }
-</style>
+<!-- Form component styles live in assets/css/main.css (Tailwind @apply only processes there) -->
 
 <script>
 (function() {
