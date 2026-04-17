@@ -22,7 +22,7 @@ faq:
 
 <div style="background:#fdf8e8;border:2px solid #c9a227;border-radius:12px;padding:20px 24px;margin-bottom:28px;text-align:center;">
   <strong style="color:#0a1628;font-size:1.1rem;">NEW — Saturday Youth League!</strong><br>
-  <span style="color:#444;font-size:0.95rem;">No tryouts, every kid plays. 8-week seasons starting June 2026 for ages 5–14.</span><br>
+  <span style="color:#444;font-size:0.95rem;">No tryouts, every kid plays. Three 7-week sessions in 2026 — Spring, Mid-Summer, and Late Summer — for ages 5–14.</span><br>
   <a href="/youth-league/" style="display:inline-block;margin-top:10px;background:#c9a227;color:#0a1628;padding:10px 24px;border-radius:8px;font-weight:700;text-decoration:none;">Register for the Saturday League →</a>
 </div>
 
