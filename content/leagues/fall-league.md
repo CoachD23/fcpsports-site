@@ -25,7 +25,7 @@ When school is back in session, your child's basketball development should not s
 
 It is an 8-week season with standings, playoffs, and trophies. Every game is played in our dedicated basketball facility with a scoreboard, PA system, and trained referees. Military families from Eglin AFB and Hurlburt Field are welcome and receive a discount.
 
-## Season Details
+### Season Details
 
 - **Season:** September -- November 2026
 - **Duration:** 8 regular-season games + single-elimination playoff

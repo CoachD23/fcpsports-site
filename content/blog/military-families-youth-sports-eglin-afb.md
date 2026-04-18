@@ -1,5 +1,5 @@
 ---
-title: "Youth Sports for Military Families at Eglin AFB — A Parent's Guide"
+title: "Youth Sports for Military Families at Eglin AFB"
 description: "Guide for military families at Eglin AFB and Hurlburt Field looking for youth basketball and sports programs in Fort Walton Beach, FL."
 date: 2026-04-05
 category: "Community"

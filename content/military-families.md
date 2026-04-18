@@ -1,7 +1,7 @@
 ---
-title: "Military Family Basketball Programs Fort Walton Beach | FCP Sports"
+title: "Military Family Basketball Programs — FCP Sports"
 description: "Basketball camps, leagues, and training for military families at Eglin AFB and Hurlburt Field. $20 off all FCP Sports programs in Fort Walton Beach, FL."
-h1: "Basketball Programs for Military Families — Eglin AFB & Hurlburt Field"
+h1: "Basketball Programs for Military Families — Eglin & Hurlburt"
 keyword: "basketball camp near eglin afb"
 age_range: "Ages 5-18"
 price: "$20 military discount on all programs"

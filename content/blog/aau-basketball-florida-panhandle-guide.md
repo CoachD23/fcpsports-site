@@ -1,5 +1,5 @@
 ---
-title: "AAU Basketball in the Florida Panhandle: A Local Guide | FCP Sports"
+title: "AAU Basketball Florida Panhandle Guide | FCP Sports"
 description: "A local guide to AAU basketball in the Florida Panhandle — circuits, events, costs, and how FCP Sports athletes compete at the regional and national level."
 date: 2026-02-01
 category: "AAU & Recruiting"

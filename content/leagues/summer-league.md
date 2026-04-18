@@ -29,7 +29,7 @@ This is the same quality you get in our fall and winter leagues: trained, paid r
 
 Military families from Eglin AFB and Hurlburt Field receive a discount on all league registrations.
 
-## Season Details
+### Season Details
 
 - **Season:** June -- July 2026
 - **Duration:** 6 regular-season games + single-elimination playoff

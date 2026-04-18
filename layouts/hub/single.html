@@ -22,7 +22,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {{ range .Params.programs }}
-      <a href="{{ .url }}" class="block bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-gold/50 hover:bg-white/8 transition-all duration-200 group">
+      <a href="{{ .url }}" aria-label="{{ .name }}" class="block bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-gold/50 hover:bg-white/8 transition-all duration-200 group">
         <div class="flex items-start gap-4">
           <div class="flex-1">
             <h3 class="font-display text-2xl text-white mb-2 group-hover:text-gold transition-colors">{{ .name }}</h3>

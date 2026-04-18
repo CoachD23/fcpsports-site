@@ -29,7 +29,7 @@ Little Ballers runs in our dedicated basketball facility in Fort Walton Beach wi
 
 Families from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview bring their kids to Little Ballers. Military families stationed at Eglin AFB and Hurlburt Field receive a discount on registration.
 
-## Season Details
+### Season Details
 
 - **Season:** January -- March 2027
 - **Duration:** 6 regular-season games + playoff bracket

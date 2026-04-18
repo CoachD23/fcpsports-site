@@ -10,10 +10,10 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {{ range .Params.programs }}
       {{ $program := . }}
-      <a href="{{ .url }}" class="block bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-gold/50 hover:bg-white/8 transition-all duration-200 group">
+      <a href="{{ .url }}" aria-label="{{ .name }}" class="block bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-gold/50 hover:bg-white/8 transition-all duration-200 group">
         {{ with .image }}
         <div class="h-40 overflow-hidden">
-          <img src="{{ . }}" alt="{{ $program.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async">
+          <img src="{{ . }}" alt="{{ $program.name }}" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async">
         </div>
         {{ end }}
         <div class="p-8 {{ with .image }}pt-5{{ end }}">
