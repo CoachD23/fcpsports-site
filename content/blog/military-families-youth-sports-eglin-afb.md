@@ -17,7 +17,7 @@ That said, on-base programs have capacity constraints, seasonal availability lim
 
 ## FCP Sports: 10 Minutes from Eglin Gate 1
 
-![FCP Sports basketball team huddle with coaches and players — Fort Walton Beach youth basketball program](/images/fcp-sports-basketball-team-huddle-coaches-players.jpg)
+![FCP Sports team huddle — Fort Walton Beach youth basketball](/images/fcp-sports-basketball-team-huddle-coaches-players.jpg)
 
 FCP Sports is located in Fort Walton Beach, approximately 10 minutes from Eglin's primary gate. It's a dedicated basketball facility — not a shared community center or school gym — built specifically for youth basketball development year-round.
 

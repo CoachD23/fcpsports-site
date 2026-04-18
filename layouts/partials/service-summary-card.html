@@ -21,7 +21,7 @@
 
         <!-- PROGRAM INFO -->
         <div class="p-6">
-          <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Program Info</h3>
+          <p class="font-display text-sm text-gold tracking-widest uppercase mb-4">Program Info</p>
           <dl class="space-y-3 text-sm">
             {{ with .dates }}
             <div><dt class="font-bold text-navy">Dates</dt><dd class="text-gray-600 mt-0.5">{{ . | safeHTML }}</dd></div>
@@ -40,7 +40,7 @@
 
         <!-- LOCATION INFO (static — same venue for every program) -->
         <div class="p-6">
-          <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Location Info</h3>
+          <p class="font-display text-sm text-gold tracking-widest uppercase mb-4">Location Info</p>
           <dl class="space-y-3 text-sm">
             <div><dt class="font-bold text-navy">Venue</dt><dd class="text-gray-600 mt-0.5">FCP Sports</dd></div>
             <div><dt class="font-bold text-navy">Address</dt><dd class="text-gray-600 mt-0.5">33 Jet Drive NW</dd></div>
@@ -51,7 +51,7 @@
 
         <!-- REGISTRATION & FEES -->
         <div class="p-6">
-          <h3 class="font-display text-sm text-gold tracking-widest uppercase mb-4">Registration &amp; Fees</h3>
+          <p class="font-display text-sm text-gold tracking-widest uppercase mb-4">Registration &amp; Fees</p>
           {{ with .price }}
           <div class="bg-gold/10 border border-gold/30 rounded-lg px-4 py-3 mb-4">
             <p class="font-bold text-navy text-base leading-tight">{{ . | safeHTML }}</p>
