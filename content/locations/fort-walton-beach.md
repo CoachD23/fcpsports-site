@@ -1,7 +1,7 @@
 ---
 hero_image: /images/fcp-hero-banner-2.jpg
-title: "Basketball Training Fort Walton Beach FL | FCP Sports"
-description: "Fort Walton Beach's only dedicated basketball training facility. Programs for youth, middle, and high school athletes at FCP Sports — located in the heart of FWB."
+title: "Fort Walton Beach Basketball Camps, Leagues & Training | FCP Sports"
+description: "Fort Walton Beach's only dedicated basketball facility. Youth programs, leagues, camps, and training for all skill levels — located in the heart of FWB."
 h1: "Basketball Training in Fort Walton Beach, FL"
 city: "Fort Walton Beach"
 keyword: "basketball training fort walton beach"

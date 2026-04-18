@@ -1,6 +1,6 @@
 ---
 title: "Basketball Gym Fort Walton Beach | FCP Sports"
-description: "Indoor basketball gym in Fort Walton Beach — regulation court, climate-controlled, open for gym sessions, training, leagues, camps, and rentals. Near Destin."
+description: "Indoor basketball gym in Fort Walton Beach — regulation court, climate-controlled. Open for gym sessions, training, leagues, camps, and rentals."
 h1: "Fort Walton Beach's Only Dedicated Indoor Basketball Gym"
 keyword: "basketball gym fort walton beach"
 age_range: "All Ages"

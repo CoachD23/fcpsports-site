@@ -1,6 +1,6 @@
 ---
 title: "Summer Basketball League Fort Walton Beach | FCP Sports"
-description: "Summer youth basketball league in Fort Walton Beach. 6-week Tue/Thu evening season, trained refs, stat tracking, and playoffs. Ages 5-18 from $79 with jersey."
+description: "Summer youth basketball league in Fort Walton Beach. 6-week Tue/Thu evening season, trained refs, stat tracking, and playoffs. Ages 5–18 from $79."
 h1: "Summer Basketball League in Fort Walton Beach"
 keyword: "summer basketball league fort walton beach"
 age_range: "Ages 5-18"

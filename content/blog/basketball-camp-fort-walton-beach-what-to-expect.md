@@ -1,6 +1,6 @@
 ---
 title: "What to Expect at Basketball Camp in Fort Walton Beach | FCP Sports"
-description: "First time at a basketball camp? Here's exactly what to expect at FCP Sports — daily schedule, skill groups, scrimmages, and what your child will take home."
+description: "First time at basketball camp? Here's exactly what to expect at FCP Sports — daily schedule, skill groups, scrimmages, and what your child takes home."
 date: 2026-01-15
 category: "Camps & Programs"
 keyword: "basketball camp fort walton beach"

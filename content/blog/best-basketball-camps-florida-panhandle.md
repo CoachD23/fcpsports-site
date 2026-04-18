@@ -1,6 +1,6 @@
 ---
 title: "Best Basketball Camps in the Florida Panhandle [2026 Guide]"
-description: "Complete guide to basketball camps in the Florida Panhandle — Fort Walton Beach, Destin, Niceville, Pensacola, Panama City. Pricing, ages, formats compared."
+description: "Complete guide to basketball camps in the Florida Panhandle — Fort Walton Beach, Destin, Niceville, Pensacola, Panama City. Pricing, ages, formats."
 date: 2026-04-05
 category: "Camps & Programs"
 keyword: "best basketball camps florida panhandle"

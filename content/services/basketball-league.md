@@ -1,7 +1,7 @@
 ---
 hero_image: /images/fcp-hero-league-game.jpg
 title: "Basketball Leagues Fort Walton Beach FL | FCP Sports"
-description: "FCP Sports runs organized basketball leagues year-round in Fort Walton Beach. Saturday league for ages 5+, plus seasonal Fall, Summer, and Little Ballers programs."
+description: "Organized basketball leagues year-round in Fort Walton Beach. Saturday league for ages 5+, plus Fall, Summer, and Little Ballers programs. FCP Sports."
 h1: "Basketball Leagues"
 keyword: "basketball league fort walton beach"
 age_range: "Ages 5+"
