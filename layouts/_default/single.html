@@ -31,5 +31,24 @@
     </div>
   </div>
 </article>
+{{ if eq .Section "blog" }}
+{{ $related := where (where site.RegularPages "Section" "blog") "Permalink" "!=" .Permalink | first 3 }}
+{{ if $related }}
+<section class="bg-gray-50 py-16">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="font-display text-3xl text-navy mb-8 text-center">Related Posts</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {{ range $related }}
+      <a href="{{ .Permalink }}" class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-gold hover:shadow-md transition-all p-6">
+        <p class="text-gold text-xs font-semibold uppercase tracking-widest mb-2">{{ if not .Date.IsZero }}{{ .Date.Format "Jan 2, 2006" }}{{ end }}</p>
+        <h3 class="font-display text-lg text-navy mb-2 leading-tight">{{ .Title }}</h3>
+        <p class="text-gray-500 text-sm line-clamp-2">{{ .Description }}</p>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
 {{ partial "cta-section.html" . }}
 {{ end }}
