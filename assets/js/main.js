@@ -44,7 +44,7 @@ if (fadeEls.length && 'IntersectionObserver' in window) {
   if (sessionStorage.getItem(sessionKey)) return;
 
   let eligible = false;
-  setTimeout(() => { eligible = true; }, 3000);
+  setTimeout(() => { eligible = true; }, 15000); // 15s before popup can fire
 
   function showPopup() {
     if (!eligible || sessionStorage.getItem(sessionKey)) return;
@@ -58,11 +58,13 @@ if (fadeEls.length && 'IntersectionObserver' in window) {
     document.body.style.overflow = '';
   }
 
+  // Desktop: exit intent (mouse leaves top of viewport)
   document.addEventListener('mouseleave', (e) => {
     if (e.clientY < 20) showPopup();
   });
 
-  setTimeout(showPopup, 40000);
+  // Mobile: show after 45s (they've been browsing, about to leave)
+  setTimeout(showPopup, 45000);
 
   document.getElementById('exit-close')?.addEventListener('click', closePopup);
   document.getElementById('exit-overlay')?.addEventListener('click', closePopup);
