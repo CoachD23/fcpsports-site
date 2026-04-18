@@ -41,7 +41,7 @@ The tournament picture is improving locally. In recent years, Pensacola, Destin,
 
 Okaloosa County — where FCP Sports is located — has emerging infrastructure for competitive basketball events. As the only dedicated basketball-specific facility in the county, FCP Sports is positioned to host and co-host local events that reduce travel burden for Panhandle families.
 
-Watch our [events page](/events/) for scheduled local tournaments and showcases that FCP Sports participates in or hosts throughout the year.
+Watch our [schedule page](/schedule/) for scheduled local tournaments and showcases that FCP Sports participates in or hosts throughout the year.
 
 ## The July Live Period: Why It Matters Most
 

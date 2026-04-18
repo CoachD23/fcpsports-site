@@ -2,9 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | FCP Sports{{ end }}</title>
+<title>{{ if .IsHome }}{{ site.Title }}{{ else if in .Title "FCP Sports" }}{{ .Title }}{{ else }}{{ .Title }} | FCP Sports{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
-<link rel="canonical" href="{{ .Permalink }}" />
+{{ if not .Params.noindex }}<link rel="canonical" href="{{ .Permalink }}" />{{ end }}
 {{ if .Params.noindex }}<meta name="robots" content="noindex, nofollow" />{{ end }}
 
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
