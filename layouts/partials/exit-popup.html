@@ -31,7 +31,7 @@
         fetch('/.netlify/functions/capture-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, tag: 'camp-inquiry', source: 'exit-popup' })
+          body: JSON.stringify(Object.assign({ email: email, tag: 'camp-inquiry', source: 'exit-popup' }, { utm: (window.fcpUTM && window.fcpUTM()) || {} }))
         }).catch(function(){});
         if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Camp Early Bird', content_category: 'camp-inquiry' });
         if (typeof gtag === 'function') {

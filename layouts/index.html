@@ -106,7 +106,7 @@
       fetch('/.netlify/functions/capture-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, tag: 'camp-inquiry', source: 'hero' })
+        body: JSON.stringify(Object.assign({ email: email, tag: 'camp-inquiry', source: 'hero' }, { utm: (window.fcpUTM && window.fcpUTM()) || {} }))
       }).catch(function(){});
       if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Homepage Signup', content_category: 'camp-inquiry' });
       this.classList.add('hidden');

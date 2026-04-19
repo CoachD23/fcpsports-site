@@ -1,0 +1,38 @@
+<!-- UTM capture — reads URL params on first visit, persists for the session. -->
+<!-- Makes window.fcpUTM() available to all form handlers. -->
+<script>
+(function() {
+  var SS_KEY = "fcp_utm";
+  var FIELDS = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"];
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var captured = {};
+    var hasNew = false;
+    FIELDS.forEach(function(k) {
+      var v = params.get(k);
+      if (v) { captured[k] = v; hasNew = true; }
+    });
+    if (hasNew) {
+      captured._ts = Date.now();
+      captured._landing = window.location.pathname;
+      sessionStorage.setItem(SS_KEY, JSON.stringify(captured));
+    }
+    // Also capture the referrer once (external only)
+    if (document.referrer && !document.referrer.includes(location.host)) {
+      var existing = sessionStorage.getItem(SS_KEY);
+      var obj = existing ? JSON.parse(existing) : {};
+      if (!obj.referrer) {
+        obj.referrer = document.referrer;
+        sessionStorage.setItem(SS_KEY, JSON.stringify(obj));
+      }
+    }
+  } catch (e) { /* sessionStorage disabled — silently skip */ }
+
+  window.fcpUTM = function() {
+    try {
+      var raw = sessionStorage.getItem(SS_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  };
+})();
+</script>

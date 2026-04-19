@@ -3,9 +3,13 @@
  * Captures email from newsletter / program inquiry forms.
  * Upserts contact in GoHighLevel and applies a program-specific tag.
  *
- * POST body: { email, tag, source }
+ * POST body: { email, tag, source, utm }
  *   tag    - e.g. "general-inquiry", "camp-inquiry", "gym-rental-inquiry"
  *   source - optional string for tracking (e.g. "exit-popup", "homepage")
+ *   utm    - optional object: { utm_source, utm_medium, utm_campaign,
+ *            utm_content, utm_term, gclid, fbclid, referrer }
+ *            If utm.utm_source is present, the GHL source field will
+ *            reflect it (e.g. "instagram" instead of generic "Facebook Ad").
  *
  * Env vars required:
  *   GHL_API_KEY      - GoHighLevel Private Integration token
@@ -92,7 +96,7 @@ exports.handler = async function (event) {
   }
 
   try {
-    const { email, tag = "general-inquiry", source = "website" } = JSON.parse(event.body || "{}");
+    const { email, tag = "general-inquiry", source = "website", utm = {} } = JSON.parse(event.body || "{}");
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid email required" }) };
@@ -104,14 +108,41 @@ exports.handler = async function (event) {
       ? ["fcpsports", "general-inquiry"]
       : ["fcpsports", safeTag, "general-inquiry"];
 
-    // Upsert contact in GHL
+    // Compute channel-specific source from UTMs (Instagram vs Facebook vs Google etc)
+    // Priority: utm_source > fbclid → facebook > gclid → google > fallback source
+    let resolvedSource = source;
+    const utmSource = (utm.utm_source || "").toLowerCase().trim();
+    if (utmSource === "instagram" || utmSource === "ig") resolvedSource = "Instagram Ad";
+    else if (utmSource === "facebook" || utmSource === "fb") resolvedSource = "Facebook Ad";
+    else if (utmSource === "google" || utmSource === "youtube") resolvedSource = "Google Ad";
+    else if (utmSource === "tiktok") resolvedSource = "TikTok Ad";
+    else if (utmSource) resolvedSource = `${utm.utm_source} Ad`;
+    else if (utm.fbclid) resolvedSource = "Facebook Ad";
+    else if (utm.gclid) resolvedSource = "Google Ad";
+
+    // Build attributionSource for GHL — tracked per contact
+    const attributionSource = {};
+    if (utm.utm_source) attributionSource.utmSource = String(utm.utm_source).slice(0, 100);
+    if (utm.utm_medium) attributionSource.utmMedium = String(utm.utm_medium).slice(0, 100);
+    if (utm.utm_campaign) attributionSource.campaign = String(utm.utm_campaign).slice(0, 100);
+    if (utm.utm_content) attributionSource.utmContent = String(utm.utm_content).slice(0, 100);
+    if (utm.utm_term) attributionSource.utmKeyword = String(utm.utm_term).slice(0, 100);
+    if (utm.referrer) attributionSource.referrer = String(utm.referrer).slice(0, 200);
+    attributionSource.sessionSource = source;
+
+    // Upsert contact in GHL — include source + attribution on first insert
+    const upsertPayload = {
+      locationId: process.env.GHL_LOCATION_ID,
+      email: email.trim().toLowerCase(),
+      source: resolvedSource,
+    };
+    if (Object.keys(attributionSource).length > 0) {
+      upsertPayload.attributionSource = attributionSource;
+    }
     const upsertRes = await fetch(`${GHL_BASE}/contacts/upsert`, {
       method: "POST",
       headers: ghlHeaders(),
-      body: JSON.stringify({
-        locationId: process.env.GHL_LOCATION_ID,
-        email: email.trim().toLowerCase(),
-      }),
+      body: JSON.stringify(upsertPayload),
     });
 
     if (!upsertRes.ok) {
@@ -132,7 +163,7 @@ exports.handler = async function (event) {
       }).catch((e) => console.warn("[capture-lead] Tag failed:", e.message));
     }
 
-    console.log(`[capture-lead] Lead captured: ${email} | tag: ${safeTag} | source: ${source}`);
+    console.log(`[capture-lead] Lead captured: ${email} | tag: ${safeTag} | source: ${resolvedSource} | utm: ${JSON.stringify(utm)}`);
 
     // Send confirmation email + enroll in day-2 sequence for camp/league tags
     if (CAMP_LEAGUE_TAGS.has(safeTag) && process.env.FCPSPORTS_SMTP_PASS) {
