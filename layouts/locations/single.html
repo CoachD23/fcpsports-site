@@ -67,7 +67,7 @@
 <section class="py-16 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4">
     <span class="section-tag">School Community</span>
-    <h2 class="section-heading">Is Your School on Our Roster?</h2>
+    <h2 class="section-heading">{{ .Params.city }} Schools We Serve</h2>
     <p class="text-gray-600 mb-8 max-w-2xl">Athletes from these {{ .Params.city }} schools train at FCP Sports. Ask about our school partner program and group discounts.</p>
     <div class="flex flex-wrap gap-3">
       {{ range .Params.schools }}
@@ -85,7 +85,7 @@
 <section class="py-20 bg-white">
   <div class="max-w-4xl mx-auto px-4 text-center">
     <span class="section-tag">Get Started</span>
-    <h2 class="section-heading">Ready to Train? Let's Talk.</h2>
+    <h2 class="section-heading">Start Training in {{ .Params.city }} Today</h2>
     <p class="text-gray-500 mb-10 max-w-xl mx-auto">Fill out the form below and our coaching staff will reach out within 24 hours to discuss the best program for your athlete.</p>
     {{ partial "inquiry-form.html" (dict "tag" "general-inquiry" "title" "" "subtitle" "") }}
   </div>
