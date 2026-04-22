@@ -242,7 +242,8 @@ exports.handler = async function (event) {
           source,
           attributionSource: att,
           tags: ["fcpsports", "camp-registered", `camp-${b.camp}`, `paid-${today}`,
-                 b.promoApplied ? `promo-${b.promoApplied}` : null].filter(Boolean),
+                 b.promoApplied ? `promo-${b.promoApplied}` : null,
+                 b.promoApplied === "SIBLING20" ? "sibling-discount" : null].filter(Boolean),
           customFields: [
             { key: "camp_week", field_value: b.campName || b.camp },
             { key: "camp_dates", field_value: b.campDates || "" },
@@ -265,7 +266,8 @@ exports.handler = async function (event) {
           `Photo consent: ${b.photoConsent ? "Yes" : "No"}\n` +
           `Paid: $${b.priceAmount} (${b.priceTier})` +
           (transactionId ? ` — Authnet txn ${transactionId}` : "") +
-          (b.promoApplied ? `\nPromo: ${b.promoApplied}` : "");
+          (b.promoApplied ? `\nPromo: ${b.promoApplied}` : "") +
+          (b.promoApplied === "SIBLING20" ? "\nSibling discount applied: $20 off" : "");
 
         await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
           method: "POST",
