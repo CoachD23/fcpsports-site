@@ -1,64 +1,54 @@
 ---
 hero_image: /images/fcp-hero-open-gym.jpg
 title: "Open Gym Basketball Fort Walton Beach FL | FCP Sports"
-description: "Open gym basketball in Fort Walton Beach. Drop-in pickup games for youth and adults. No registration required."
+description: "FCP Sports open gym pickup basketball in Fort Walton Beach. Currently on break for summer — returns when school resumes in August."
 h1: "Open Gym"
 keyword: "open gym basketball fort walton beach"
 age_range: "Youth & Adult"
-price: "FREE through May 15"
-frequency: "Weekly schedule"
+price: "On break for summer"
+frequency: "Returns August 2026"
 program_name: "Open Gym"
 hide_hero_buttons: true
 ghl_tag: "train"
 summary_card:
-  dates: "Now through May 15, 2026"
-  days: "Tue/Thu 3–5 PM · Sat 10 AM–1 PM"
+  dates: "Returns August 2026"
+  days: "On break for summer"
   ages: "Youth &amp; Adult"
-  price: "FREE through May 15"
-  note: "No registration required — just show up"
-  register_url: "/waiver/"
+  price: "On break"
+  note: "Summer camps + Saturday league running through August"
+  register_url: "/camps/"
 faq:
-  - q: "Where can I play pickup basketball near Fort Walton Beach?"
-    a: "FCP Sports. Indoor, climate-controlled, hardwood court. We run separate youth and adult sessions weekly."
-  - q: "Do you have adult open gym?"
-    a: "Yes. Dedicated adult sessions separate from youth. Expect real runs — military personnel, former players, competitive hoopers."
-  - q: "How much does open gym cost?"
-    a: "Open gym is FREE through May 15, 2026. After that, we offer drop-in per session or monthly passes. No registration required — just show up."
-  - q: "Do I need to register?"
-    a: "No. Show up during posted hours and play. It's free through May 15."
+  - q: "Is open gym running this summer?"
+    a: "No. Open gym is on break through the summer while we run camps and the Saturday league. It returns in August 2026 when school is back in session."
+  - q: "Can I still play basketball at FCP Sports this summer?"
+    a: "Yes — through our programs. Summer camps run every week June through early August (Mon–Fri 9:30–2). Saturday League runs three 7-week sessions May–October. Or book a private lesson or gym rental anytime."
+  - q: "When does open gym return?"
+    a: "August 2026. We'll post exact dates and times here once school schedules are finalized."
+  - q: "Where else can I pickup this summer?"
+    a: "Most rec centers in Okaloosa County run summer open gyms. We focus summer capacity on our structured camps and league so every court-time is coached."
 ---
 
-<div style="background:#fef3c7;border:2px solid #d4af37;border-radius:12px;padding:20px 24px;margin-bottom:32px;">
-  <p style="margin:0 0 4px;font-weight:800;color:#1a1a2e;font-size:1.1rem;">Waiver Required Before You Play</p>
-  <p style="margin:0 0 12px;color:#555;font-size:0.95rem;">All participants must complete the waiver before stepping on the court. Parents sign for anyone under 18. Takes 2 minutes.</p>
-  <a href="/waiver/" style="display:inline-block;background:#d4af37;color:#1a1a2e;font-weight:700;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:0.9rem;letter-spacing:0.05em;text-transform:uppercase;">Complete Waiver →</a>
-</div>
+## Open Gym Is On Break
 
-## Free Open Gym — Now Through May 15
+We ran free open gym April through May 15, 2026 — **and it's now done for the summer**.
 
-No cost. No commitment. Just show up and play.
+Our gym is running full-time through August with Summer Camps and Saturday League. Open gym returns when school is back in session.
 
-We're opening the court for free through May 15 so you can see what FCP Sports is all about. Youth and adults welcome.
+## What's Running This Summer Instead
 
-## Current Schedule (April 16 – May 15)
+| Program | When | Ages | Price |
+|---------|------|------|-------|
+| [**Summer Camps**](/camps/) | Every week, Jun 1 – Aug 7 | K–12 | $79–$149 |
+| [**Saturday League**](/youth-league/) | May–October (3 sessions) | 5+ | $149/session |
+| [**Private Lessons**](/services/basketball-lessons/) | Flexible | 6+ | From $50/session |
+| [**Gym Rental**](/services/gym-rental/) | Flexible | All | From $75/hr |
 
-**Open Gym — FREE**
-- Tuesday: 3:00 – 5:00 PM
-- Thursday: 3:00 – 5:00 PM
-- Saturday: 10:00 AM – 1:00 PM
+## When Open Gym Returns
 
-*Schedule updates seasonally — [call to confirm today's hours](/contact/).*
+**August 2026** — once Okaloosa County schools are back in session. We'll post the exact schedule on this page.
 
-## Pricing
+Want to hear first? [Drop your email below](/schedule/#notify) and we'll notify you.
 
-**Now through May 15: FREE.** Just walk in.
+## Questions?
 
-After May 15, standard rates resume — drop-in per session or monthly pass. [Call 850.961.2323 for details.](/contact/)
-
-## House Rules
-
-Court shoes required. Staff on-site. Clean, safe, air-conditioned. That's it.
-
-## Want More?
-
-If open gym has you wanting structure, check out [basketball training](/services/basketball-training/) or [private lessons](/services/basketball-lessons/). Want the court to yourself? [Rent the gym](/services/gym-rental/).
+[Call 850.961.2323](/contact/) or [email info@fcpsports.org](mailto:info@fcpsports.org).

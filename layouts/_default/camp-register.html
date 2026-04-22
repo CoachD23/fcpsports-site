@@ -13,22 +13,17 @@
     <nav class="flex items-center justify-between mb-8 max-w-lg mx-auto" aria-label="Registration steps" id="step-nav">
       <ol class="contents">
         <li class="step-dot active" data-step="1">
-          <div class="w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm" aria-label="Step 1 of 4: Pick Camp" aria-current="step">1</div>
-          <span class="hidden sm:inline text-xs mt-1 text-gold font-semibold">Camp</span>
+          <div class="w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm" aria-label="Step 1 of 3: Camp + Parent" aria-current="step">1</div>
+          <span class="hidden sm:inline text-xs mt-1 text-gold font-semibold">Camp + Parent</span>
         </li>
         <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
         <li class="step-dot" data-step="2">
-          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 2 of 4: Parent">2</div>
-          <span class="hidden sm:inline text-xs mt-1 text-gray-400">Parent</span>
-        </li>
-        <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
-        <li class="step-dot" data-step="3">
-          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 3 of 4: Camper">3</div>
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 2 of 3: Camper">2</div>
           <span class="hidden sm:inline text-xs mt-1 text-gray-400">Camper</span>
         </li>
         <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
-        <li class="step-dot" data-step="4">
-          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 4 of 4: Payment">4</div>
+        <li class="step-dot" data-step="3">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 3 of 3: Payment">3</div>
           <span class="hidden sm:inline text-xs mt-1 text-gray-400">Payment</span>
         </li>
       </ol>
@@ -72,13 +67,11 @@
             </div>
           </fieldset>
 
-          <div class="bg-gold/10 border border-gold/30 rounded-lg p-4 text-xs text-gray-600">
+          <div class="bg-gold/10 border border-gold/30 rounded-lg p-4 text-xs text-gray-600 mb-8">
             <p><strong class="text-navy">Multi-week bundle:</strong> Register for 2 weeks and get $20 off. 3 weeks = $50 off. 4 weeks = $100 off. Discount applied at the review step.</p>
           </div>
-        </div>
 
-        <!-- STEP 2: Parent Info -->
-        <div class="step-panel hidden" data-step="2">
+          <!-- Parent info merged into Step 1 — captures email earlier in flow -->
           <h2 class="font-display text-xl text-navy mb-6">Parent / Guardian Information</h2>
           <div class="space-y-4">
             <div>
@@ -112,8 +105,8 @@
           </div>
         </div>
 
-        <!-- STEP 3: Camper Info -->
-        <div class="step-panel hidden" data-step="3">
+        <!-- STEP 2: Camper Info (was Step 3) -->
+        <div class="step-panel hidden" data-step="2">
           <h2 class="font-display text-xl text-navy mb-6">Camper Information</h2>
           <div class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -188,8 +181,8 @@
           </div>
         </div>
 
-        <!-- STEP 4: Payment -->
-        <div class="step-panel hidden" data-step="4">
+        <!-- STEP 3: Payment (was Step 4) -->
+        <div class="step-panel hidden" data-step="3">
           <h2 class="font-display text-xl text-navy mb-2">Payment</h2>
           <p class="text-gray-500 text-sm mb-6">Secure payment. Card tokenized by Authorize.net — never touches our servers.</p>
 
@@ -294,7 +287,7 @@
   const errWrap = document.getElementById("err-wrap");
   const errText = document.getElementById("err-text");
   let step = 1;
-  const TOTAL_STEPS = 4;
+  const TOTAL_STEPS = 3;
 
   // Camp catalog from Hugo data — built at template render time
   const CAMPS = {
@@ -373,7 +366,7 @@
     btnBack.classList.toggle("hidden", step === 1);
     btnNext.classList.toggle("hidden", step === TOTAL_STEPS);
     btnSubmit.classList.toggle("hidden", step !== TOTAL_STEPS);
-    if (step === 4) populatePayment();
+    if (step === 3) populatePayment();
     wrap.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -450,19 +443,19 @@
     wrap.insertBefore(notice, wrap.firstChild);
   })();
 
-  // Validation per step
+  // Validation per step (3-step flow: Step 1 = Camp + Parent, Step 2 = Camper, Step 3 = Payment)
   function validateStep(s) {
     if (s === 1) {
+      // Camp + Parent merged
       if (!getSelectedCamp()) { showError("Please pick a camp week.", form.querySelector('input[name=camp]')); return false; }
-    }
-    if (s === 2) {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.parentEmail.value.trim())) { showError("Valid email is required.", form.parentEmail); return false; }
       if (!form.parentFirst.value.trim()) { showError("Parent first name is required.", form.parentFirst); return false; }
       if (!form.parentLast.value.trim()) { showError("Parent last name is required.", form.parentLast); return false; }
       if (!/^\d{5}$/.test(form.parentZip.value.trim())) { showError("5-digit ZIP code required.", form.parentZip); return false; }
       if (form.parentPhone.value.replace(/\D/g, "").length < 10) { showError("Valid phone number required.", form.parentPhone); return false; }
     }
-    if (s === 3) {
+    if (s === 2) {
+      // Camper (was Step 3)
       if (!form.childFirst.value.trim()) { showError("Camper first name is required.", form.childFirst); return false; }
       if (!form.childLast.value.trim()) { showError("Camper last name is required.", form.childLast); return false; }
       if (!form.childDob.value) { showError("Camper DOB is required.", form.childDob); return false; }
@@ -502,8 +495,9 @@
 
   btnNext.addEventListener("click", function() {
     if (!validateStep(step)) return;
-    if (step === 2) {
-      // Partial lead save
+    if (step === 1) {
+      // Partial lead save — fires as soon as parent info is entered alongside camp selection.
+      // Captures email + intent before any further drop-off.
       try {
         fetch("/.netlify/functions/register-camp", {
           method: "POST",
