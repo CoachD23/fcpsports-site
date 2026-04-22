@@ -326,18 +326,151 @@ exports.handler = async function (event) {
   if (process.env.FCPSPORTS_SMTP_PASS) {
     try {
       const t = createSmtp();
+      const campName = b.campName || b.camp;
+      const campDates = b.campDates || "";
+      const txnLine = transactionId ? `<tr><td style="padding:6px 12px;color:#666666;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;border-bottom:1px solid #e8e8e8;">Transaction ID</td><td style="padding:6px 12px;color:#0a1628;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;border-bottom:1px solid #e8e8e8;">${transactionId}</td></tr>` : "";
+
       await t.sendMail({
         from: '"FCP Sports" <info@fcpsports.org>',
         to: b.parentEmail.trim().toLowerCase(),
         bcc: "info@fcpsports.org",
-        subject: `Registration Confirmed — ${b.campName || b.camp}`,
-        html: `<p>Hi ${b.parentFirst},</p>
-<p><strong>${b.childFirst} ${b.childLast}</strong> is registered for <strong>${b.campName || b.camp}</strong> — ${b.campDates || ""}.</p>
-<p><strong>Amount paid:</strong> $${b.priceAmount}${transactionId ? ` (txn ${transactionId})` : ""}</p>
-<p><strong>What to bring:</strong> court shoes, athletic clothes, water bottle, packed lunch.</p>
-<p>We'll send a reminder 48 hours before camp starts with arrival details.</p>
-<p>Questions? Reply to this email or call 850.961.2323.</p>
-<p>— FCP Sports, Fort Walton Beach</p>`,
+        subject: `Registration Confirmed — ${campName}`,
+        text: `Hi ${b.parentFirst},\n\n${b.childFirst} ${b.childLast} is registered for ${campName}${campDates ? " — " + campDates : ""}.\n\nAmount paid: $${b.priceAmount}${transactionId ? ` (txn ${transactionId})` : ""}\n\nWHAT TO BRING\n- Court shoes\n- Athletic clothes\n- Water bottle\n- Packed lunch\n\nWHAT HAPPENS NEXT\n1. You'll get a reminder 48 hours before camp starts\n2. Day 1 arrival: 9:15 AM for 9:30 start\n3. Pick up: 2:00 PM\n\nQuestions? Reply to this email or call 850.961.2323.\ninfo@fcpsports.org | 33 Jet Drive NW, Fort Walton Beach, FL 32548\n\nView all camp details: https://fcpsports.org/camps/\n\n— FCP Sports`,
+        html: `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background-color:#f4f4f4;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;">
+  <tr>
+    <td align="center" style="padding:24px 16px;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;">
+
+        <!-- Header -->
+        <tr>
+          <td style="background-color:#0a1628;padding:24px 32px;text-align:center;">
+            <span style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:28px;font-weight:800;letter-spacing:2px;color:#ffffff;">FCP</span><span style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:28px;font-weight:800;letter-spacing:2px;color:#f5a623;"> SPORTS</span>
+          </td>
+        </tr>
+
+        <!-- Hero -->
+        <tr>
+          <td style="background-color:#0a1628;padding:32px 32px 40px;text-align:center;border-bottom:4px solid #f5a623;">
+            <div style="font-size:48px;line-height:1;">&#9989;</div>
+            <h1 style="margin:16px 0 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:26px;font-weight:700;color:#ffffff;">You're Registered!</h1>
+            <p style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;color:#a0b0c8;">Hi ${b.parentFirst}, we've got ${b.childFirst} locked in. See you at camp!</p>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:32px;">
+
+            <!-- Registration Details -->
+            <h2 style="margin:0 0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#f5a623;">Registration Details</h2>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e8e8e8;border-radius:6px;overflow:hidden;">
+              <tr>
+                <td style="padding:10px 12px;background-color:#f8f9fa;color:#666666;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:600;border-bottom:1px solid #e8e8e8;width:140px;">Camper</td>
+                <td style="padding:10px 12px;background-color:#f8f9fa;color:#0a1628;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:700;border-bottom:1px solid #e8e8e8;">${b.childFirst} ${b.childLast}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 12px;color:#666666;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;border-bottom:1px solid #e8e8e8;">Camp</td>
+                <td style="padding:10px 12px;color:#0a1628;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:600;border-bottom:1px solid #e8e8e8;">${campName}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 12px;background-color:#f8f9fa;color:#666666;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;border-bottom:1px solid #e8e8e8;">Dates</td>
+                <td style="padding:10px 12px;background-color:#f8f9fa;color:#0a1628;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;border-bottom:1px solid #e8e8e8;">${campDates || "See confirmation details"}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 12px;color:#666666;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;border-bottom:1px solid #e8e8e8;">Amount Paid</td>
+                <td style="padding:10px 12px;color:#0a1628;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:700;border-bottom:1px solid #e8e8e8;">$${b.priceAmount}</td>
+              </tr>
+              ${txnLine}
+            </table>
+
+            <!-- What to Bring -->
+            <h2 style="margin:28px 0 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#f5a623;">What to Bring</h2>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8f9fa;border-radius:6px;border:1px solid #e8e8e8;">
+              <tr><td style="padding:10px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#0a1628;border-bottom:1px solid #e8e8e8;">&#x1F45F;&nbsp; Court shoes</td></tr>
+              <tr><td style="padding:10px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#0a1628;border-bottom:1px solid #e8e8e8;">&#x1F3C3;&nbsp; Athletic clothes</td></tr>
+              <tr><td style="padding:10px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#0a1628;border-bottom:1px solid #e8e8e8;">&#x1F4A7;&nbsp; Water bottle</td></tr>
+              <tr><td style="padding:10px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#0a1628;">&#x1F96A;&nbsp; Packed lunch</td></tr>
+            </table>
+
+            <!-- What Happens Next -->
+            <h2 style="margin:28px 0 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#f5a623;">What Happens Next</h2>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:0 0 12px;vertical-align:top;width:28px;">
+                  <div style="width:24px;height:24px;background-color:#0a1628;border-radius:50%;text-align:center;line-height:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12px;font-weight:700;color:#f5a623;">1</div>
+                </td>
+                <td style="padding:0 0 12px 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#333333;">You'll get a reminder 48 hours before camp starts</td>
+              </tr>
+              <tr>
+                <td style="padding:0 0 12px;vertical-align:top;width:28px;">
+                  <div style="width:24px;height:24px;background-color:#0a1628;border-radius:50%;text-align:center;line-height:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12px;font-weight:700;color:#f5a623;">2</div>
+                </td>
+                <td style="padding:0 0 12px 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#333333;">Day 1 arrival: <strong>9:15 AM</strong> for a 9:30 start</td>
+              </tr>
+              <tr>
+                <td style="padding:0;vertical-align:top;width:28px;">
+                  <div style="width:24px;height:24px;background-color:#0a1628;border-radius:50%;text-align:center;line-height:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12px;font-weight:700;color:#f5a623;">3</div>
+                </td>
+                <td style="padding:0 0 0 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#333333;">Pick up: <strong>2:00 PM</strong></td>
+              </tr>
+            </table>
+
+            <!-- CTA Button -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px;">
+              <tr>
+                <td align="center">
+                  <a href="https://fcpsports.org/camps/" style="display:inline-block;background-color:#f5a623;color:#0a1628;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;font-weight:700;text-decoration:none;padding:14px 32px;border-radius:6px;letter-spacing:0.5px;">View All Camp Details</a>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Contact -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:32px;border-top:1px solid #e8e8e8;padding-top:24px;">
+              <tr>
+                <td style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:13px;color:#666666;line-height:1.6;">
+                  <strong style="color:#0a1628;">Questions?</strong> Reply to this email or reach us at:<br>
+                  &#128222; <a href="tel:8509612323" style="color:#0a1628;text-decoration:none;">850.961.2323</a>&nbsp;&nbsp;
+                  &#9993; <a href="mailto:info@fcpsports.org" style="color:#0a1628;text-decoration:none;">info@fcpsports.org</a><br>
+                  33 Jet Drive NW, Fort Walton Beach, FL 32548
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background-color:#0a1628;padding:20px 32px;text-align:center;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td align="center" style="padding-bottom:12px;">
+                  <a href="https://www.instagram.com/playfcpsports/" style="display:inline-block;margin:0 6px;"><img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" width="24" height="24" alt="Instagram" style="border:0;display:block;"></a>
+                  <a href="https://www.facebook.com/playfcpsports" style="display:inline-block;margin:0 6px;"><img src="https://cdn-icons-png.flaticon.com/24/5968/5968764.png" width="24" height="24" alt="Facebook" style="border:0;display:block;"></a>
+                  <a href="https://x.com/playfcpsports" style="display:inline-block;margin:0 6px;"><img src="https://cdn-icons-png.flaticon.com/24/5969/5969020.png" width="24" height="24" alt="X" style="border:0;display:block;"></a>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:11px;color:#6080a0;line-height:1.6;">
+                  &copy; 2025 FCP Sports &bull; 33 Jet Drive NW, Fort Walton Beach, FL 32548<br>
+                  You received this because you registered for an FCP Sports camp.<br>
+                  Questions? <a href="mailto:info@fcpsports.org" style="color:#f5a623;text-decoration:none;">Contact us</a> to unsubscribe from future emails.
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>`,
       });
     } catch (e) {
       console.warn("[register-camp] Confirmation email failed:", e.message);
