@@ -1,0 +1,543 @@
+{{ define "main" }}
+<style>
+  /* ── Reset / base ───────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
+  .adm {
+    max-width: 960px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #111;
+  }
+
+  /* ── Cards ──────────────────────────────────────────────────── */
+  .adm-card {
+    background: #fff;
+    border: 1px solid #e2e6ea;
+    border-radius: 10px;
+    padding: 1.75rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: 1.5rem;
+  }
+  .adm-card h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0a1628;
+    margin: 0 0 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Auth section ───────────────────────────────────────────── */
+  #auth-section h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0a1628;
+    margin: 0 0 0.35rem;
+  }
+  #auth-section p.sub {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 1.5rem;
+  }
+  .adm-input {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    margin-bottom: 0.85rem;
+    color: #111;
+    background: #fff;
+  }
+  .adm-input:focus { outline: none; border-color: #c9a227; box-shadow: 0 0 0 2px rgba(201,162,39,0.2); }
+  .adm-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: #0a1628;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .adm-btn:hover { background: #1a2e50; }
+  .adm-btn:disabled { background: #aaa; cursor: not-allowed; }
+
+  /* ── Stat cards grid ────────────────────────────────────────── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 680px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 380px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat-card {
+    background: #fff;
+    border: 1px solid #e2e6ea;
+    border-radius: 10px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #888;
+    margin-bottom: 0.4rem;
+  }
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0a1628;
+    line-height: 1.1;
+  }
+  .stat-value.gold { color: #c9a227; }
+  .stat-sub {
+    font-size: 0.72rem;
+    color: #999;
+    margin-top: 0.25rem;
+  }
+
+  /* ── Table ──────────────────────────────────────────────────── */
+  .adm-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  .adm-table th {
+    background: #0a1628;
+    color: #fff;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .adm-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #222;
+  }
+  .adm-table tr:nth-child(even) td { background: #fafafa; }
+  .adm-table tr:hover td { background: #fffbef; }
+  .adm-table .highlight td { border: 2px solid #c9a227; background: #fffbef !important; }
+
+  /* ── UTM bars ───────────────────────────────────────────────── */
+  .utm-list { list-style: none; padding: 0; margin: 0; }
+  .utm-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.875rem;
+  }
+  .utm-label { min-width: 90px; color: #444; font-weight: 600; text-transform: capitalize; }
+  .utm-bar-wrap { flex: 1; background: #eee; border-radius: 4px; height: 8px; overflow: hidden; }
+  .utm-bar { height: 100%; background: #c9a227; border-radius: 4px; transition: width 0.4s; }
+  .utm-count { min-width: 24px; text-align: right; font-weight: 700; color: #0a1628; }
+
+  /* ── Toast ──────────────────────────────────────────────────── */
+  #adm-toast {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 9999;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    max-width: 90vw;
+    pointer-events: none;
+  }
+  #adm-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  #adm-toast.success { background: #1b5e20; color: #fff; }
+  #adm-toast.error   { background: #c0392b; color: #fff; }
+  #adm-toast.info    { background: #0a1628; color: #fff; }
+
+  /* ── Spinner ────────────────────────────────────────────────── */
+  .spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner.dark {
+    border-color: rgba(10,22,40,0.2);
+    border-top-color: #0a1628;
+  }
+
+  /* ── Loading state ──────────────────────────────────────────── */
+  .loading-msg {
+    text-align: center;
+    padding: 2rem;
+    color: #888;
+    font-size: 0.9rem;
+  }
+
+  /* ── Header row ─────────────────────────────────────────────── */
+  .dash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .dash-header h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0a1628;
+    margin: 0;
+  }
+  .dash-meta {
+    font-size: 0.8rem;
+    color: #999;
+  }
+  .btn-refresh {
+    padding: 0.45rem 1rem;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #444;
+    transition: background 0.15s;
+  }
+  .btn-refresh:hover { background: #eee; }
+
+  /* ── Responsive overflow for tables ─────────────────────────── */
+  .table-wrap { overflow-x: auto; }
+</style>
+
+<div id="adm-toast"></div>
+
+<div class="adm">
+
+  <!-- ── Auth Section ───────────────────────────────────────────── -->
+  <div id="auth-section" class="adm-card">
+    <h1>Camp Dashboard</h1>
+    <p class="sub">FCP Sports internal tool — enter your admin password to view registration stats.</p>
+    <label for="adm-pw" style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:0.35rem;">Password</label>
+    <input type="password" id="adm-pw" class="adm-input" placeholder="Admin password" autocomplete="current-password" />
+    <button class="adm-btn" id="adm-login-btn" onclick="doLogin()">View Dashboard</button>
+    <p id="adm-login-err" style="color:#c0392b;font-size:0.85rem;margin:0.75rem 0 0;display:none;"></p>
+  </div>
+
+  <!-- ── Dashboard (hidden until authenticated) ─────────────────── -->
+  <div id="dashboard" style="display:none;">
+
+    <div class="dash-header">
+      <h1>Camp Dashboard</h1>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="dash-meta" id="last-updated"></span>
+        <button class="btn-refresh" onclick="loadStats(true)">&#8635; Refresh</button>
+      </div>
+    </div>
+
+    <!-- Stat cards -->
+    <div class="stat-grid" id="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Registrations</div>
+        <div class="stat-value" id="stat-total">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Revenue This Month</div>
+        <div class="stat-value gold" id="stat-revenue">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Today</div>
+        <div class="stat-value" id="stat-today">—</div>
+        <div class="stat-sub" id="stat-today-rev"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Partial Leads</div>
+        <div class="stat-value" id="stat-leads">—</div>
+        <div class="stat-sub">camp-partial tag</div>
+      </div>
+    </div>
+
+    <!-- By camp -->
+    <div class="adm-card">
+      <h2>Enrollment by Camp</h2>
+      <div class="table-wrap">
+        <table class="adm-table" id="camp-table">
+          <thead>
+            <tr>
+              <th>Camp</th>
+              <th style="text-align:center;">Registered</th>
+              <th style="text-align:right;">Revenue</th>
+            </tr>
+          </thead>
+          <tbody id="camp-tbody">
+            <tr><td colspan="3" class="loading-msg"><span class="spinner dark"></span> Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Recent registrations -->
+    <div class="adm-card">
+      <h2>Recent Registrations</h2>
+      <div class="table-wrap">
+        <table class="adm-table" id="recent-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Parent</th>
+              <th>Camper</th>
+              <th>Camp</th>
+              <th style="text-align:right;">Amount</th>
+            </tr>
+          </thead>
+          <tbody id="recent-tbody">
+            <tr><td colspan="5" class="loading-msg"><span class="spinner dark"></span> Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- UTM attribution -->
+    <div class="adm-card">
+      <h2>Traffic Attribution</h2>
+      <ul class="utm-list" id="utm-list">
+        <li class="loading-msg"><span class="spinner dark"></span> Loading…</li>
+      </ul>
+    </div>
+
+  </div><!-- /dashboard -->
+</div><!-- /adm -->
+
+<script>
+(function () {
+  'use strict';
+
+  var CACHE_KEY = 'fcp_dash_cache';
+  var CACHE_TTL = 60 * 1000; // 60 seconds
+  var pw = '';
+
+  /* ── Saved session ─────────────────────────────────────────── */
+  (function init() {
+    var saved = sessionStorage.getItem('fcp_dash_pw');
+    if (saved) {
+      pw = saved;
+      showDashboard();
+      loadStats(false);
+    }
+    document.getElementById('adm-pw').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') doLogin();
+    });
+  })();
+
+  /* ── Login ─────────────────────────────────────────────────── */
+  window.doLogin = function () {
+    var val = document.getElementById('adm-pw').value.trim();
+    if (!val) { showLoginErr('Enter your password.'); return; }
+    var btn = document.getElementById('adm-login-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Checking…';
+    hideLoginErr();
+
+    fetch('/.netlify/functions/admin-stats', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: val })
+    })
+      .then(function (r) {
+        if (r.status === 429) throw new Error('Too many attempts. Wait a minute and try again.');
+        if (r.status === 401) throw new Error('Incorrect password.');
+        if (!r.ok) throw new Error('Server error (' + r.status + ').');
+        return r.json();
+      })
+      .then(function (data) {
+        if (!data.ok) throw new Error(data.error || 'Unauthorized.');
+        pw = val;
+        sessionStorage.setItem('fcp_dash_pw', val);
+        cacheSet(data);
+        showDashboard();
+        renderData(data);
+      })
+      .catch(function (err) {
+        showLoginErr(err.message);
+        btn.disabled = false;
+        btn.textContent = 'View Dashboard';
+      });
+  };
+
+  function showDashboard() {
+    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+  }
+
+  function showLoginErr(msg) {
+    var el = document.getElementById('adm-login-err');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+  function hideLoginErr() {
+    document.getElementById('adm-login-err').style.display = 'none';
+  }
+
+  /* ── Load / refresh stats ──────────────────────────────────── */
+  window.loadStats = function (force) {
+    if (!force) {
+      var cached = cacheGet();
+      if (cached) { renderData(cached); return; }
+    }
+
+    fetch('/.netlify/functions/admin-stats', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw })
+    })
+      .then(function (r) {
+        if (r.status === 401) {
+          sessionStorage.removeItem('fcp_dash_pw');
+          location.reload();
+          return;
+        }
+        if (!r.ok) throw new Error('Server error (' + r.status + ').');
+        return r.json();
+      })
+      .then(function (data) {
+        if (!data || !data.ok) throw new Error(data && data.error ? data.error : 'Failed to load data.');
+        cacheSet(data);
+        renderData(data);
+      })
+      .catch(function (err) {
+        showToast('Error: ' + err.message, 'error');
+      });
+  };
+
+  /* ── Render ────────────────────────────────────────────────── */
+  function renderData(d) {
+    var reg = d.registrations || {};
+
+    // Stat cards
+    setText('stat-total', reg.total != null ? reg.total : '—');
+    setText('stat-revenue', reg.revenue_total != null ? '$' + fmt(reg.revenue_total) : '—');
+    setText('stat-today', reg.today != null ? reg.today : '—');
+    if (reg.revenue_today != null && reg.revenue_today > 0) {
+      setText('stat-today-rev', '$' + fmt(reg.revenue_today) + ' today');
+    }
+    setText('stat-leads', reg.partial_leads != null ? reg.partial_leads : '—');
+
+    // By camp
+    var camps = d.by_camp || [];
+    var tbody = document.getElementById('camp-tbody');
+    if (!camps.length) {
+      tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#999;padding:1rem;">No camp data</td></tr>';
+    } else {
+      tbody.innerHTML = camps.map(function (c) {
+        var isCurrent = /session\s*4/i.test(c.camp);
+        return '<tr' + (isCurrent ? ' class="highlight"' : '') + '>' +
+          '<td>' + esc(c.camp) + (isCurrent ? ' <span style="font-size:0.7rem;color:#c9a227;font-weight:700;">&#9733; CURRENT</span>' : '') + '</td>' +
+          '<td style="text-align:center;">' + (c.count || 0) + '</td>' +
+          '<td style="text-align:right;">$' + fmt(c.revenue || 0) + '</td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    // Recent
+    var recent = d.recent || [];
+    var rbody = document.getElementById('recent-tbody');
+    if (!recent.length) {
+      rbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#999;padding:1rem;">No registrations yet</td></tr>';
+    } else {
+      rbody.innerHTML = recent.map(function (r) {
+        return '<tr>' +
+          '<td style="white-space:nowrap;">' + esc(r.date) + '</td>' +
+          '<td>' + esc(r.parent) + '</td>' +
+          '<td>' + esc(r.camper) + '</td>' +
+          '<td>' + esc(r.camp) + '</td>' +
+          '<td style="text-align:right;font-weight:600;">$' + fmt(r.amount || 0) + '</td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    // UTM
+    var utm = d.utm_breakdown || {};
+    var sources = ['instagram', 'facebook', 'google', 'direct'];
+    var max = 0;
+    sources.forEach(function (s) { if ((utm[s] || 0) > max) max = utm[s] || 0; });
+
+    var utmList = document.getElementById('utm-list');
+    utmList.innerHTML = sources.map(function (s) {
+      var count = utm[s] || 0;
+      var pct = max > 0 ? Math.round((count / max) * 100) : 0;
+      return '<li class="utm-row">' +
+        '<span class="utm-label">' + s.charAt(0).toUpperCase() + s.slice(1) + '</span>' +
+        '<div class="utm-bar-wrap"><div class="utm-bar" style="width:' + pct + '%"></div></div>' +
+        '<span class="utm-count">' + count + '</span>' +
+        '</li>';
+    }).join('');
+
+    // Last updated
+    var now = new Date();
+    setText('last-updated', 'Updated ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+
+    if (d.note) showToast(d.note, 'info');
+  }
+
+  /* ── Cache helpers ─────────────────────────────────────────── */
+  function cacheSet(data) {
+    try {
+      sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data }));
+    } catch (e) { /* ignore */ }
+  }
+  function cacheGet() {
+    try {
+      var raw = sessionStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      var entry = JSON.parse(raw);
+      if (Date.now() - entry.ts > CACHE_TTL) return null;
+      return entry.data;
+    } catch (e) { return null; }
+  }
+
+  /* ── Utilities ─────────────────────────────────────────────── */
+  var toastTimer;
+  window.showToast = function (msg, type) {
+    var el = document.getElementById('adm-toast');
+    el.textContent = msg;
+    el.className = 'show ' + (type || 'info');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.className = type || 'info'; }, 4000);
+  };
+
+  function setText(id, val) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+
+  function esc(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function fmt(n) {
+    var num = parseFloat(n) || 0;
+    return num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
+
+})();
+</script>
+{{ end }}
