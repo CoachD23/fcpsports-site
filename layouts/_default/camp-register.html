@@ -30,7 +30,7 @@
     </nav>
 
     <!-- Form -->
-    <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10" id="reg-wrap">
+    <div class="bg-white rounded-2xl shadow-xl p-5 sm:p-8 md:p-10" id="reg-wrap">
 
       <!-- Error display -->
       <div id="err-wrap" class="hidden mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3" role="alert" aria-live="assertive">
@@ -51,10 +51,14 @@
               <label class="camp-option">
                 <input type="radio" name="camp" value="{{ $c.id }}" class="sr-only" />
                 <div class="camp-card">
-                  <div class="flex-1">
+                  <div class="flex-1 min-w-0">
                     <div class="font-display text-base text-navy">{{ $c.name }}</div>
-                    <div class="text-xs text-gray-500 mt-0.5">{{ $c.dates_display }} &bull; {{ $c.days }} &bull; {{ $c.times }}</div>
-                    <div class="text-xs text-gray-400 mt-0.5">{{ $c.summary }} &bull; Grades {{ $c.grades }}</div>
+                    <div class="text-xs text-gray-500 mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5">
+                      <span>{{ $c.dates_display }}</span>
+                      <span>{{ $c.days }}</span>
+                      <span>{{ $c.times }}</span>
+                    </div>
+                    <div class="text-xs text-gray-400 mt-0.5">Grades {{ $c.grades }} &bull; {{ $c.summary }}</div>
                   </div>
                   <div class="text-right shrink-0 ml-3">
                     <div class="font-bold text-navy text-sm">${{ $c.price }}</div>
