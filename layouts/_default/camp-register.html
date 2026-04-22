@@ -632,6 +632,36 @@
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || "Registration failed");
       window.removeEventListener("beforeunload", beforeUnloadHandler);
+      // Conversion tracking — fires only on successful paid registration
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', {
+          value: finalPrice,
+          currency: 'USD',
+          content_name: camp.name,
+          content_category: 'camp-registration',
+          content_ids: [campId]
+        });
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp',
+          'value': finalPrice,
+          'currency': 'USD',
+          'transaction_id': data.transactionId || ''
+        });
+        gtag('event', 'purchase', {
+          transaction_id: data.transactionId || '',
+          value: finalPrice,
+          currency: 'USD',
+          items: [{
+            item_id: campId,
+            item_name: camp.name,
+            item_category: 'camp',
+            price: finalPrice,
+            quantity: 1
+          }]
+        });
+      }
       form.classList.add("hidden");
       document.getElementById("step-nav").classList.add("hidden");
       renderSuccessWithUpsell(campId);

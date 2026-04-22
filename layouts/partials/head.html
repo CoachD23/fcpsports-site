@@ -82,6 +82,7 @@ fbq('track','PageView');
 {{ if not .IsHome }}{{ partial "schema/breadcrumb.html" . }}{{ end }}
 {{ if eq .Section "services" }}{{ partial "schema/service.html" . }}{{ end }}
 {{ partial "schema/event.html" . }}
+{{ if or (and .IsSection (eq .Section "camps")) (and .IsPage (eq .Section "camps")) }}{{ partial "schema/camp-event.html" . }}{{ end }}
 {{ partial "schema/course.html" . }}
 {{ if .Params.faq }}{{ partial "schema/faqpage.html" . }}{{ end }}
 {{ partial "schema/article.html" . }}

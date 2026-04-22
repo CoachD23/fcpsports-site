@@ -1,0 +1,48 @@
+{{/* Emit JSON-LD Event schema for every active camp from data/camps.yaml.
+     Called from head.html on /camps/ (IsSection) and individual camp detail pages. */}}
+{{ range site.Data.camps.camps }}
+{{ if .active }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": {{ .name | jsonify }},
+  "description": {{ .summary | jsonify }},
+  "startDate": {{ .start_date | jsonify }},
+  "endDate": {{ .end_date | jsonify }},
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "FCP Sports",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "33 Jet Drive NW",
+      "addressLocality": "Fort Walton Beach",
+      "addressRegion": "FL",
+      "postalCode": "32548",
+      "addressCountry": "US"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "FCP Sports",
+    "url": "https://fcpsports.org"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ .price }}",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "url": "https://fcpsports.org/register/?camp={{ .id }}"
+  },
+  "image": "https://fcpsports.org{{ .detail_url }}",
+  "performer": {
+    "@type": "Organization",
+    "name": "FCP Sports",
+    "url": "https://fcpsports.org"
+  }
+}
+</script>
+{{ end }}
+{{ end }}

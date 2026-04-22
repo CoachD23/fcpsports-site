@@ -895,6 +895,36 @@
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || "Registration failed");
       window.removeEventListener("beforeunload", beforeUnloadHandler);
+      // Conversion tracking — fires only on successful paid registration
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', {
+          value: tier.price,
+          currency: 'USD',
+          content_name: sess ? sess.name : 'Youth League',
+          content_category: 'league-registration',
+          content_ids: [sKey]
+        });
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp',
+          'value': tier.price,
+          'currency': 'USD',
+          'transaction_id': data.transactionId || ''
+        });
+        gtag('event', 'purchase', {
+          transaction_id: data.transactionId || '',
+          value: tier.price,
+          currency: 'USD',
+          items: [{
+            item_id: sKey,
+            item_name: sess ? sess.name : 'Youth League',
+            item_category: 'league',
+            price: tier.price,
+            quantity: 1
+          }]
+        });
+      }
       form.classList.add("hidden");
       document.getElementById("step-nav").classList.add("hidden");
       renderSuccessWithUpsell(sKey);
