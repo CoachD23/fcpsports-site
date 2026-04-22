@@ -27,10 +27,8 @@
         <div>Ages 11–14 &nbsp;&bull;&nbsp; 12:00 – 2:00 PM</div>
         <div>Ages 15+ &nbsp;&bull;&nbsp; 2:00 – 4:00 PM</div>
       </div>
-      <div class="mt-4 flex justify-center gap-6 text-sm text-gray-600">
-        <span><strong class="text-navy">Early Bird:</strong> $149</span>
-        <span><strong class="text-navy">Regular:</strong> $164</span>
-        <span><strong class="text-navy">Late:</strong> $179</span>
+      <div class="mt-4 text-sm text-gray-600">
+        <strong class="text-navy">$149 per session</strong> &nbsp;&bull;&nbsp; jerseys included &nbsp;&bull;&nbsp; multi-session discount available
       </div>
     </div>
 
@@ -71,11 +69,58 @@
   </div>
 </section>
 
+<!-- Camp Calendar -->
+<section class="bg-white py-16 border-b border-gray-100">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <div class="text-center mb-10">
+      <span class="text-gold font-display tracking-widest text-sm uppercase">Summer 2026</span>
+      <h2 class="font-display text-4xl md:text-5xl text-navy mt-2">Camp Calendar</h2>
+      <p class="text-gray-500 mt-2 max-w-xl mx-auto">9 weeks of summer camp + Holiday + Spring Break. Pick a week, register online, done.</p>
+    </div>
+
+    <div class="space-y-3">
+      {{ $camps := sort (where (index site.Data.camps "camps") "active" true) "start_date" }}
+      {{ range $camps }}
+      <div class="bg-gray-50 border border-gray-100 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:border-gold/40 hover:bg-gold/5 transition-colors">
+
+        <div class="flex-shrink-0 text-center bg-navy rounded-lg px-4 py-3 min-w-[80px]">
+          <div class="font-display text-gold text-2xl leading-none">{{ dateFormat "02" .start_date }}</div>
+          <div class="text-white/70 text-xs uppercase tracking-widest mt-1">{{ dateFormat "Jan" .start_date }}</div>
+        </div>
+
+        <div class="flex-1 min-w-0">
+          <h3 class="font-display text-lg text-navy leading-tight">{{ .name }}</h3>
+          <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-600 mt-1">
+            <span>{{ .dates_display }}</span>
+            <span>{{ .days }} &bull; {{ .times }}</span>
+            <span>Grades {{ .grades }}</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <span class="font-display text-2xl text-gold leading-none">${{ .price }}</span>
+          <a href="/register/?camp={{ .id }}" class="btn-primary text-xs px-4 py-2 whitespace-nowrap">Register</a>
+        </div>
+
+      </div>
+      {{ end }}
+    </div>
+
+    <!-- Multi-week bundle note -->
+    <div class="mt-6 bg-gold/10 border border-gold/30 rounded-xl p-4 text-center text-sm text-gray-700">
+      <strong class="text-navy">Multi-week bundle:</strong> $20 off per additional week registered. Auto-applied on confirmation.
+    </div>
+
+  </div>
+</section>
+
 <section class="bg-gray-50 py-20">
   <div class="max-w-5xl mx-auto px-4">
 
     <div class="text-center mb-10">
-      <h2 class="font-display text-4xl text-navy">All Upcoming Events</h2>
+      <h2 class="font-display text-4xl text-navy">Other Upcoming Events</h2>
+      <p class="text-gray-500 mt-2">Open gym, one-off clinics, and special events.</p>
     </div>
 
     <div class="space-y-4">
