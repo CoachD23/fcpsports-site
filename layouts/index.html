@@ -158,6 +158,46 @@
 
 
 <!-- =====================================================
+     UPCOMING CAMPS — Next 3 weeks, dynamic from data/camps.yaml
+     ===================================================== -->
+<section class="bg-gray-50 py-16">
+  <div class="max-w-7xl mx-auto px-4">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-in">
+      <div>
+        <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-2">Register Now</span>
+        <h2 class="font-display text-4xl md:text-5xl text-navy leading-none">Upcoming Camps</h2>
+      </div>
+      <a href="/camps/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
+        View All Camps
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {{ $today := now.Format "2006-01-02" }}
+      {{ $upcoming := where (sort (where (index site.Data.camps "camps") "active" true) "start_date") "start_date" ">=" $today }}
+      {{ range first 3 $upcoming }}
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:border-gold hover:shadow-md transition-all duration-200 fade-in flex flex-col">
+        <div class="flex items-start justify-between mb-4 gap-3">
+          <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none shrink-0">
+            {{ dateFormat "Jan 02" .start_date }}
+          </span>
+          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">${{ .price }}</span>
+        </div>
+        <h3 class="font-display text-xl text-navy mb-1 leading-tight">{{ .name }}</h3>
+        <p class="text-gray-500 text-sm mb-1">{{ .dates_display }}</p>
+        <p class="text-gray-500 text-sm flex-1">{{ .days }} &bull; {{ .times }} &bull; Grades {{ .grades }}</p>
+        <a href="/register/?camp={{ .id }}" class="mt-4 btn-primary text-sm text-center py-3">Register</a>
+      </div>
+      {{ end }}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =====================================================
      TRAIN / COMPETE — Two clear paths
      ===================================================== -->
 <section class="bg-navy-deep py-16">

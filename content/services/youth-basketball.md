@@ -1,47 +1,67 @@
 ---
 hero_image: /images/fcp-hero-game-action.jpg
 title: "Youth Basketball Fort Walton Beach FL | FCP Sports"
-description: "Youth basketball in Fort Walton Beach for ages K–8th grade. Little Ballers, Junior, and Elite Youth tiers with real coaching and development."
+description: "Youth basketball in Fort Walton Beach for ages 5–14. Saturday league, camps, skills training, and private lessons. Pick the program that fits."
 h1: "Youth Basketball"
 keyword: "youth basketball fort walton beach"
 age_range: "Ages 5–14"
-price: "Contact for pricing"
-frequency: "Weekly sessions + games"
+price: "From $79"
+frequency: "Year-round"
 program_name: "Youth Basketball"
 ghl_tag: "compete"
 summary_card:
-  days: "Weekly sessions + Saturday games"
-  ages: "Grades K–8 (Ages 5–14)"
-  price: "Contact for pricing"
-  note: "Little Ballers · Junior · Prep tiers"
-  register_url: "/registration/"
+  days: "Year-round programs"
+  ages: "Ages 5–14"
+  price: "From $79"
+  note: "League · Training · Camps · Lessons"
+  register_url: "/youth-league/"
 faq:
   - q: "What age can my child start?"
-    a: "Age 5 (kindergarten) in our Little Ballers program. Fun-first, no pressure, designed for kids who have never played organized basketball."
-  - q: "How much does youth basketball cost?"
-    a: "Pricing varies by tier and season. Monthly and full-season options available. Sibling discounts and military family rates for Eglin AFB and Hurlburt Field families."
+    a: "Age 5 (kindergarten). Our Saturday League Juniors division and Little Hoopers Mini-Camp both welcome first-time players with no experience."
   - q: "Does my child need experience?"
-    a: "No. Beginners are grouped with beginners. Every kid gets the same quality coaching regardless of skill level."
-  - q: "What's the difference between Little Ballers and Junior?"
-    a: "Little Ballers (K–2nd) is fun-first with no scorekeeping. Junior (3rd–5th) introduces real games with referees, scores, and standings."
+    a: "No. Every FCP program assesses skill on day one and groups by ability — beginners aren't lost in the shuffle."
+  - q: "Which program should I pick?"
+    a: "Want games every Saturday? The league. Want a week of intensive training? A camp. Want weekly practice + skill work? Training. Want 1-on-1 focused work? Private lessons."
+  - q: "Is there a girls-only option?"
+    a: "Yes. Our Girls Basketball Camp (June 15–19, grades 6–10) is girls-only. The Saturday League and other programs are co-ed."
+  - q: "Do you offer discounts for multiple kids?"
+    a: "Yes — $20 off per additional child in the same family across all programs. Military families (Eglin + Hurlburt) also get $20 off."
 ---
 
-<div style="background:#fdf8e8;border:2px solid #c9a227;border-radius:12px;padding:20px 24px;margin-bottom:28px;text-align:center;">
-  <strong style="color:#0a1628;font-size:1.1rem;">NEW — Saturday Youth League!</strong><br>
-  <span style="color:#444;font-size:0.95rem;">No tryouts, every kid plays. Three 7-week sessions in 2026 — Spring, Mid-Summer, and Late Summer — for ages 5–14.</span><br>
-  <a href="/youth-league/" style="display:inline-block;margin-top:10px;background:#c9a227;color:#0a1628;padding:10px 24px;border-radius:8px;font-weight:700;text-decoration:none;">Register for the Saturday League →</a>
-</div>
+## Four Ways Your Kid Plays at FCP
 
-## Programs by Age
+Youth basketball at FCP Sports isn't one program. It's four — pick the one that fits your kid and your family's schedule.
 
-| Program | Grades | What They Learn |
-|---------|--------|----------------|
-| Little Ballers | K–2nd | Coordination, basic dribbling/passing, rules, fun-first |
-| Junior | 3rd–5th | Real games with refs, position play, offensive/defensive concepts |
-| Prep | 6th–8th | Film review, position-specific training, conditioning, tryout prep |
+### Saturday League — Every Kid Plays
 
-Players move between tiers by age and grade — no tryouts required.
+Seven weeks of real games, no tryouts. Four age divisions from Juniors (5–7) through Varsity (15+). Three sessions a year — Spring, Mid-Summer, Late Summer. Jerseys included.
 
-## Get Started
+**$149 per session.**  
+→ [See the Saturday League](/youth-league/)
 
-[Register for the current season](/registration/) or [call us at 850.961.2323](/contact/).
+### Basketball Camps
+
+Week-long intensive camps June through August, plus Holiday and Spring Break. Mon–Fri 9:30 AM – 2:00 PM for ages 8+, or the Little Hoopers Mini-Camp for ages 5–7.
+
+**$79–$149 per week.**  
+→ [See all camps](/camps/)
+
+### Skills Training
+
+Weekly group training — Beginner, Intermediate, or Advanced track. Free baseline assessment, custom plan, progress reports every 30 days.
+
+**From $89/month** (4 sessions).  
+→ [See training details](/services/basketball-training/)
+
+### Private Lessons
+
+1-on-1 coaching with a certified coach. 30, 45, or 60-minute options. Great for ages 6+ and for kids prepping for tryouts.
+
+**From $50/session.**  
+→ [See lesson pricing](/services/basketball-lessons/)
+
+## Not Sure Which Is Right?
+
+Most families start with either the **Saturday League** (if they want games) or a **Summer Camp** (if they want to see real progress in one week).
+
+[Call 850.961.2323](/contact/) or [send a note](/contact/) and we'll point you to the right fit.
