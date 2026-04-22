@@ -48,12 +48,7 @@
           "weeks" "7"
           "status" "Registration Open"
           "statusColor" "navy"
-          "early" "$149"
-          "earlyBy" "by May 1"
-          "regular" "$164"
-          "regularBy" "May 2 – May 9"
-          "late" "$179"
-          "lateBy" "May 10 – May 15"
+          "price" "$149"
           "registerUrl" "/youth-league/register/?session=spring-2026"
           "note" ""
           "badge" ""
@@ -66,12 +61,7 @@
           "weeks" "7"
           "status" "Registration Open"
           "statusColor" "navy"
-          "early" "$149"
-          "earlyBy" "by June 20"
-          "regular" "$164"
-          "regularBy" "June 21 – July 4"
-          "late" "$179"
-          "lateBy" "July 5 – July 10"
+          "price" "$149"
           "registerUrl" "/youth-league/register/?session=mid-summer-2026"
           "note" ""
           "badge" ""
@@ -82,14 +72,9 @@
           "startDate" "September 12, 2026"
           "endDate" "October 24, 2026"
           "weeks" "7"
-          "status" "Early Registration"
+          "status" "Registration Open"
           "statusColor" "navy"
-          "early" "$149"
-          "earlyBy" "by August 22"
-          "regular" "$164"
-          "regularBy" "August 23 – September 5"
-          "late" "$179"
-          "lateBy" "September 6 – September 11"
+          "price" "$149"
           "registerUrl" "/youth-league/register/?session=late-summer-2026"
           "note" ""
           "badge" ""
@@ -142,18 +127,10 @@
           <!-- REGISTRATION INFO -->
           <div class="p-7 bg-gray-50/50">
             <p class="font-display text-sm text-gold tracking-widest uppercase mb-5">Registration &amp; Fees</p>
-            <div class="space-y-2 text-sm">
-              <div class="bg-gold/10 border border-gold/30 rounded-xl px-4 py-3 flex flex-wrap justify-between items-center gap-2">
-                <span class="font-bold text-navy flex items-center gap-2 text-base">{{ .early }}<span class="bg-gold text-navy text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Best Price</span></span>
-                <span class="text-gray-500 text-xs">{{ .earlyBy }}</span>
-              </div>
-              <div class="bg-white border border-gray-200 rounded-xl px-4 py-3 flex justify-between items-center">
-                <span class="font-bold text-navy">{{ .regular }}</span>
-                <span class="text-gray-500 text-xs">{{ .regularBy }}</span>
-              </div>
-              <div class="bg-white border border-gray-200 rounded-xl px-4 py-3 flex justify-between items-center">
-                <span class="font-bold text-navy">{{ .late }}</span>
-                <span class="text-gray-500 text-xs">{{ .lateBy }}</span>
+            <div class="text-sm">
+              <div class="bg-gold/10 border border-gold/30 rounded-xl px-4 py-4 flex items-center gap-3">
+                <span class="font-bold text-navy text-2xl">{{ .price }}</span>
+                <span class="text-gray-500 text-sm">per session</span>
               </div>
             </div>
             <div class="mt-4 text-xs text-gray-500 space-y-1.5">

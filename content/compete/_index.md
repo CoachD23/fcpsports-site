@@ -16,7 +16,7 @@ programs:
     description: "Saturday basketball for ages 5 and up — four divisions from Juniors (5–7) through Varsity (15+). No tryouts, every player plays. Three 7-week seasons: Spring, Mid-Summer, Late Summer. Jerseys included."
     url: "/youth-league/"
     ages: "Ages 5+"
-    price: "From $149"
+    price: "$149"
     image: "/images/fcp-coaches-huddle-players.jpg"
   - name: "Youth Basketball Programs"
     description: "Age-tiered development from kindergarten through 8th grade. Little Ballers, Junior Program, and Prep tracks with year-round coaching."

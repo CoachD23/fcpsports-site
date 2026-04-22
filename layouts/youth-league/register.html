@@ -66,8 +66,8 @@
                   <div class="text-xs text-gray-500">May 16 – June 27, 2026 &bull; 7 Saturdays</div>
                 </div>
                 <div class="text-right">
-                  <div class="font-bold text-navy text-sm">From $149</div>
-                  <div class="text-xs text-gray-400">early bird</div>
+                  <div class="font-bold text-navy text-sm">$149</div>
+                  <div class="text-xs text-gray-400">per session</div>
                 </div>
               </div>
             </label>
@@ -79,8 +79,8 @@
                   <div class="text-xs text-gray-500">July 11 – August 22, 2026 &bull; 7 Saturdays</div>
                 </div>
                 <div class="text-right">
-                  <div class="font-bold text-navy text-sm">From $149</div>
-                  <div class="text-xs text-gray-400">early bird</div>
+                  <div class="font-bold text-navy text-sm">$149</div>
+                  <div class="text-xs text-gray-400">per session</div>
                 </div>
               </div>
             </label>
@@ -92,8 +92,8 @@
                   <div class="text-xs text-gray-500">Sept 12 – Oct 24, 2026 &bull; 7 Saturdays</div>
                 </div>
                 <div class="text-right">
-                  <div class="font-bold text-navy text-sm">From $149</div>
-                  <div class="text-xs text-gray-400">early bird</div>
+                  <div class="font-bold text-navy text-sm">$149</div>
+                  <div class="text-xs text-gray-400">per session</div>
                 </div>
               </div>
             </label>
@@ -413,30 +413,22 @@
   let step = 1;
   const TOTAL_STEPS = 5;
 
-  // Session config — drives pricing tiers, dates, and payload
-  // Dates use ISO with 05:00Z = 12:00 AM Central Time (end-of-day prior to cutoff day).
-  // "earlyEnd: 2026-05-02T05:00Z" means early bird expires end-of-day May 1 Central.
+  // Session config — drives pricing and payload
   const SESSIONS = {
     "spring-2026": {
       name: "Spring Session",
       dates: "May 16 – June 27, 2026",
-      earlyEnd: "2026-05-02T05:00:00Z",   // through May 1 end-of-day Central
-      regEnd:   "2026-05-10T05:00:00Z",   // through May 9
-      lateEnd:  "2026-05-16T05:00:00Z"    // league starts May 16
+      price: 149
     },
     "mid-summer-2026": {
       name: "Mid-Summer Session",
       dates: "July 11 – August 22, 2026",
-      earlyEnd: "2026-06-21T05:00:00Z",
-      regEnd:   "2026-07-05T05:00:00Z",
-      lateEnd:  "2026-07-11T05:00:00Z"
+      price: 149
     },
     "late-summer-2026": {
       name: "Late Summer Session",
       dates: "September 12 – October 24, 2026",
-      earlyEnd: "2026-08-23T05:00:00Z",
-      regEnd:   "2026-09-06T05:00:00Z",
-      lateEnd:  "2026-09-12T05:00:00Z"
+      price: 149
     }
   };
 
@@ -595,22 +587,14 @@
     }
   });
 
-  // Pricing tier — depends on which session is selected
+  // Pricing — flat $149 per session
   // Applies $25 off if URL contains ?promo=ADD25 (multi-session upsell)
   function getPriceTier() {
     const sKey = getSelectedSession();
     if (!sKey) return { price: 149, label: "Select a session" };
     const s = SESSIONS[sKey];
-    const now = new Date();
-    const earlyEnd = new Date(s.earlyEnd);
-    const regEnd = new Date(s.regEnd);
-    let price, label;
-    // earlyEnd is the cutoff MOMENT (midnight on the day AFTER the last eligible day),
-    // so subtract 1ms for the display label
-    const earlyDisplay = new Date(earlyEnd.getTime() - 1);
-    if (now < earlyEnd) { price = 149; label = s.name + " — Early bird (by " + formatDate(earlyDisplay) + ")"; }
-    else if (now < regEnd) { price = 164; label = s.name + " — Regular"; }
-    else { price = 179; label = s.name + " — Late registration"; }
+    let price = s.price;
+    let label = s.name + " — Registration";
     // Multi-session discount via URL param
     const promo = new URLSearchParams(window.location.search).get("promo");
     if (promo === "ADD25") {
@@ -620,14 +604,10 @@
     return { price: price, label: label };
   }
 
-  // Calculate base tier price for a given session (no promo applied)
+  // Base price for a given session (no promo applied)
   function getBasePriceForSession(sKey) {
     const s = SESSIONS[sKey];
-    if (!s) return 149;
-    const now = new Date();
-    if (now < new Date(s.earlyEnd)) return 149;
-    if (now < new Date(s.regEnd)) return 164;
-    return 179;
+    return s ? s.price : 149;
   }
 
   // Render upsell cards on success screen — computes real per-session price at render time
