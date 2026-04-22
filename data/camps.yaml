@@ -1,0 +1,291 @@
+# Camp catalog — single source of truth for camp registration.
+# Each entry drives the register form, camp pages, /camps/ hub, and schedule.
+#
+# Field reference:
+#   id              — URL slug (used in /register/?camp=<id>)
+#   name            — display name on cards + form
+#   summary         — one-line description under the name
+#   start_date      — ISO date (YYYY-MM-DD)
+#   end_date        — ISO date
+#   dates_display   — human-readable for cards ("June 1–5, 2026")
+#   days            — "Mon–Fri", "Mon–Thu", "Tue–Thu"
+#   times           — "9:30 AM – 2:00 PM"
+#   hours           — "4.5 hours/day"
+#   grades          — "3–8"
+#   age_min         — int (for validation)
+#   age_max         — int
+#   price_early     — early bird price
+#   price_regular   — regular price
+#   price_late      — late price
+#   early_end       — ISO datetime (Central Time midnight)
+#   regular_end     — ISO datetime
+#   late_end        — ISO datetime (camp starts)
+#   min_enrollment  — minimum kids for the week to run (else refund)
+#   detail_url      — /camps/<slug>/ for "View Details" button
+#   active          — true/false (hide from register flow if false)
+
+camps:
+  - id: summer-kickoff-2026
+    name: "Summer Kickoff Camp"
+    summary: "First week of summer — skill assessment + coached scrimmages"
+    start_date: "2026-06-01"
+    end_date: "2026-06-05"
+    dates_display: "June 1 – 5, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 2:00 PM"
+    hours: "4.5 hours/day"
+    grades: "3–8"
+    age_min: 8
+    age_max: 14
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2026-05-02T05:00:00Z"
+    regular_end: "2026-05-26T05:00:00Z"
+    late_end: "2026-06-01T05:00:00Z"
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: summer-s1-jun08
+    name: "Summer Camp — Session 1"
+    summary: "Grades 3–5 — fundamentals focus"
+    start_date: "2026-06-08"
+    end_date: "2026-06-12"
+    dates_display: "June 8 – 12, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 2:00 PM"
+    hours: "4.5 hours/day"
+    grades: "3–5"
+    age_min: 8
+    age_max: 11
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2026-05-02T05:00:00Z"
+    regular_end: "2026-06-02T05:00:00Z"
+    late_end: "2026-06-08T05:00:00Z"
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: girls-camp-2026
+    name: "Girls Basketball Camp"
+    summary: "Girls only — grades 6–10"
+    start_date: "2026-06-15"
+    end_date: "2026-06-19"
+    dates_display: "June 15 – 19, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 2:00 PM"
+    hours: "4.5 hours/day"
+    grades: "6–10 (girls)"
+    age_min: 11
+    age_max: 16
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2026-05-09T05:00:00Z"
+    regular_end: "2026-06-09T05:00:00Z"
+    late_end: "2026-06-15T05:00:00Z"
+    min_enrollment: 8
+    detail_url: "/camps/girls-basketball-camp/"
+    gender: "girls"
+    active: true
+
+  - id: summer-s2-jun22
+    name: "Summer Camp — Session 2"
+    summary: "Grades 6–8 — position work + scrimmages"
+    start_date: "2026-06-22"
+    end_date: "2026-06-26"
+    dates_display: "June 22 – 26, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 2:00 PM"
+    hours: "4.5 hours/day"
+    grades: "6–8"
+    age_min: 11
+    age_max: 14
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2026-05-16T05:00:00Z"
+    regular_end: "2026-06-16T05:00:00Z"
+    late_end: "2026-06-22T05:00:00Z"
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: little-hoopers-jun30
+    name: "Little Hoopers Mini-Camp"
+    summary: "K–2 intro camp — 3 days, half-day mornings"
+    start_date: "2026-06-30"
+    end_date: "2026-07-02"
+    dates_display: "June 30 – July 2, 2026"
+    days: "Tue–Thu"
+    times: "9:30 AM – 12:30 PM"
+    hours: "3 hours/day"
+    grades: "K–2"
+    age_min: 5
+    age_max: 7
+    price_early: 59
+    price_regular: 69
+    price_late: 79
+    early_end: "2026-05-23T05:00:00Z"
+    regular_end: "2026-06-24T05:00:00Z"
+    late_end: "2026-06-30T05:00:00Z"
+    min_enrollment: 8
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: summer-s3-jul06
+    name: "Summer Camp — Session 3"
+    summary: "Grades 3–8 — post-holiday return week"
+    start_date: "2026-07-06"
+    end_date: "2026-07-10"
+    dates_display: "July 6 – 10, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 2:00 PM"
+    hours: "4.5 hours/day"
+    grades: "3–8"
+    age_min: 8
+    age_max: 14
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2026-05-30T05:00:00Z"
+    regular_end: "2026-06-30T05:00:00Z"
+    late_end: "2026-07-06T05:00:00Z"
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: summer-s4-jul13
+    name: "Summer Camp — Session 4"
+    summary: "Grades 6–10 — advanced skills"
+    start_date: "2026-07-13"
+    end_date: "2026-07-17"
+    dates_display: "July 13 – 17, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 2:00 PM"
+    hours: "4.5 hours/day"
+    grades: "6–10"
+    age_min: 11
+    age_max: 16
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2026-06-06T05:00:00Z"
+    regular_end: "2026-07-07T05:00:00Z"
+    late_end: "2026-07-13T05:00:00Z"
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: summer-s5-jul20
+    name: "Summer Camp — Session 5"
+    summary: "Grades 3–8 — mid-summer week"
+    start_date: "2026-07-20"
+    end_date: "2026-07-24"
+    dates_display: "July 20 – 24, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 2:00 PM"
+    hours: "4.5 hours/day"
+    grades: "3–8"
+    age_min: 8
+    age_max: 14
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2026-06-13T05:00:00Z"
+    regular_end: "2026-07-14T05:00:00Z"
+    late_end: "2026-07-20T05:00:00Z"
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: summer-s6-jul27
+    name: "Summer Camp — Session 6"
+    summary: "Grades 3–8 — skills challenge week"
+    start_date: "2026-07-27"
+    end_date: "2026-07-31"
+    dates_display: "July 27 – 31, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 2:00 PM"
+    hours: "4.5 hours/day"
+    grades: "3–8"
+    age_min: 8
+    age_max: 14
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2026-06-20T05:00:00Z"
+    regular_end: "2026-07-21T05:00:00Z"
+    late_end: "2026-07-27T05:00:00Z"
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: back-to-school-2026
+    name: "Back to School Week"
+    summary: "Grades 6–12 — pre-season prep + scrimmages"
+    start_date: "2026-08-03"
+    end_date: "2026-08-07"
+    dates_display: "August 3 – 7, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 2:00 PM"
+    hours: "4.5 hours/day"
+    grades: "6–12"
+    age_min: 11
+    age_max: 18
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2026-06-27T05:00:00Z"
+    regular_end: "2026-07-28T05:00:00Z"
+    late_end: "2026-08-03T05:00:00Z"
+    min_enrollment: 8
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: holiday-camp-2026
+    name: "Holiday Basketball Camp"
+    summary: "Grades 4–8 — winter break half-days"
+    start_date: "2026-12-28"
+    end_date: "2026-12-30"
+    dates_display: "December 28 – 30, 2026"
+    days: "Mon–Wed"
+    times: "9:00 AM – 12:00 PM"
+    hours: "3 hours/day"
+    grades: "4–8"
+    age_min: 9
+    age_max: 14
+    price_early: 69
+    price_regular: 79
+    price_late: 89
+    early_end: "2026-11-15T05:00:00Z"
+    regular_end: "2026-12-20T05:00:00Z"
+    late_end: "2026-12-28T05:00:00Z"
+    min_enrollment: 8
+    detail_url: "/camps/holiday-camp/"
+    active: true
+
+  - id: spring-break-camp-2027
+    name: "Spring Break Basketball Camp"
+    summary: "Grades 3–12 — Mon–Thu morning & afternoon sessions"
+    start_date: "2027-03-15"
+    end_date: "2027-03-18"
+    dates_display: "March 15 – 18, 2027"
+    days: "Mon–Thu"
+    times: "AM 8:30–12 · PM 12:30–4"
+    hours: "3.5 hours/day"
+    grades: "3–12"
+    age_min: 8
+    age_max: 18
+    price_early: 109
+    price_regular: 129
+    price_late: 149
+    early_end: "2027-02-01T05:00:00Z"
+    regular_end: "2027-03-08T05:00:00Z"
+    late_end: "2027-03-15T05:00:00Z"
+    min_enrollment: 10
+    detail_url: "/camps/spring-break-camp/"
+    active: true

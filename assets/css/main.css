@@ -55,4 +55,10 @@
   .session-option input:checked + .session-card {
     @apply border-gold bg-gold/10 ring-2 ring-gold/30;
   }
+  .camp-card {
+    @apply flex items-start gap-4 border-2 border-gray-200 rounded-xl p-4 cursor-pointer transition-all hover:border-gold;
+  }
+  .camp-option input:checked + .camp-card {
+    @apply border-gold bg-gold/10 ring-2 ring-gold/30;
+  }
 }

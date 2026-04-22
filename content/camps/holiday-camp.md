@@ -50,4 +50,4 @@ Indoor, climate-controlled gym.
 
 ## Register
 
-[Register here](/registration/) or [call 850.961.2323](/contact/).
+[Register here](/register/?camp=holiday-camp-2026) or [call 850.961.2323](/contact/).

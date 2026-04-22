@@ -55,4 +55,4 @@ Indoor, climate-controlled gym.
 
 ## Register
 
-[Register here](/registration/) or [call 850.961.2323](/contact/).
+[Register here](/register/?camp=spring-break-camp-2027) or [call 850.961.2323](/contact/).

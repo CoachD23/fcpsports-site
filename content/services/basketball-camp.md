@@ -52,4 +52,4 @@ faq:
 
 ## Register
 
-[Register here](/registration/) or [call 850.961.2323](/contact/).
+[Register here](/register/) or [call 850.961.2323](/contact/).

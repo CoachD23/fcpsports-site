@@ -77,4 +77,4 @@ Indoor, climate-controlled gym.
 
 ## Register
 
-[Register now](/registration/) or [call 850.961.2323](/contact/).
+[Register now](/register/?camp=summer-s1-jun08) or [call 850.961.2323](/contact/).

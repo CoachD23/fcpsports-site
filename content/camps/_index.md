@@ -25,4 +25,4 @@ All camps run at our indoor, climate-controlled facility in Fort Walton Beach.
 - **Sibling:** $20 off per additional child
 - **Multi-Week:** 2 weeks of summer camp for $273 (save $25)
 
-[Register here](/registration/) or [call 850.961.2323](/contact/).
+[Register here](/register/) or [call 850.961.2323](/contact/).

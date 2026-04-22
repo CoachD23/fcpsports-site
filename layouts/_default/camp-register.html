@@ -1,0 +1,690 @@
+{{ define "main" }}
+<section class="pt-8 pb-20 bg-gray-50 min-h-screen">
+  <div class="max-w-2xl mx-auto px-4">
+
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <a href="/camps/" class="text-gold font-display tracking-widest text-sm uppercase hover:underline">&larr; FCP Sports Camps</a>
+      <h1 class="font-display text-3xl text-navy mt-2">Camp Registration</h1>
+      <p class="text-gray-400 text-sm">Basketball Camps &bull; Fort Walton Beach</p>
+    </div>
+
+    <!-- Step Indicator -->
+    <nav class="flex items-center justify-between mb-8 max-w-lg mx-auto" aria-label="Registration steps" id="step-nav">
+      <ol class="contents">
+        <li class="step-dot active" data-step="1">
+          <div class="w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm" aria-label="Step 1 of 4: Pick Camp" aria-current="step">1</div>
+          <span class="hidden sm:inline text-xs mt-1 text-gold font-semibold">Camp</span>
+        </li>
+        <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
+        <li class="step-dot" data-step="2">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 2 of 4: Parent">2</div>
+          <span class="hidden sm:inline text-xs mt-1 text-gray-400">Parent</span>
+        </li>
+        <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
+        <li class="step-dot" data-step="3">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 3 of 4: Camper">3</div>
+          <span class="hidden sm:inline text-xs mt-1 text-gray-400">Camper</span>
+        </li>
+        <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
+        <li class="step-dot" data-step="4">
+          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 4 of 4: Payment">4</div>
+          <span class="hidden sm:inline text-xs mt-1 text-gray-400">Payment</span>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Form -->
+    <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10" id="reg-wrap">
+
+      <!-- Error display -->
+      <div id="err-wrap" class="hidden mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3" role="alert" aria-live="assertive">
+        <svg class="w-5 h-5 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span id="err-text" class="text-red-700 text-sm"></span>
+      </div>
+
+      <form id="camp-form" novalidate>
+
+        <!-- STEP 1: Pick Camp -->
+        <div class="step-panel" data-step="1">
+          <h2 class="font-display text-xl text-navy mb-4">Pick Your Camp Week</h2>
+          <fieldset>
+            <legend class="sr-only">Pick Your Camp Week</legend>
+            <div class="space-y-3 mb-6" id="camp-options">
+              {{ range $i, $c := (index site.Data.camps "camps") }}
+              {{ if $c.active }}
+              <label class="camp-option">
+                <input type="radio" name="camp" value="{{ $c.id }}" class="sr-only" />
+                <div class="camp-card">
+                  <div class="flex-1">
+                    <div class="font-display text-base text-navy">{{ $c.name }}</div>
+                    <div class="text-xs text-gray-500 mt-0.5">{{ $c.dates_display }} &bull; {{ $c.days }} &bull; {{ $c.times }}</div>
+                    <div class="text-xs text-gray-400 mt-0.5">{{ $c.summary }} &bull; Grades {{ $c.grades }}</div>
+                  </div>
+                  <div class="text-right shrink-0 ml-3">
+                    <div class="font-bold text-navy text-sm">From ${{ $c.price_early }}</div>
+                    <div class="text-xs text-gray-400">early bird</div>
+                  </div>
+                </div>
+              </label>
+              {{ end }}
+              {{ end }}
+            </div>
+          </fieldset>
+
+          <div class="bg-gold/10 border border-gold/30 rounded-lg p-4 text-xs text-gray-600">
+            <p><strong class="text-navy">Multi-week bundle:</strong> Register for 2 weeks and get $20 off. 3 weeks = $50 off. 4 weeks = $100 off. Discount applied at the review step.</p>
+          </div>
+        </div>
+
+        <!-- STEP 2: Parent Info -->
+        <div class="step-panel hidden" data-step="2">
+          <h2 class="font-display text-xl text-navy mb-6">Parent / Guardian Information</h2>
+          <div class="space-y-4">
+            <div>
+              <label for="p-email" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Email Address <span class="text-red-500">*</span></label>
+              <input type="email" id="p-email" name="parentEmail" required autocomplete="email" placeholder="you@email.com" class="reg-input" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="p-first" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">First Name <span class="text-red-500">*</span></label>
+                <input type="text" id="p-first" name="parentFirst" required autocomplete="given-name" placeholder="First name" class="reg-input" />
+              </div>
+              <div>
+                <label for="p-last" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Last Name <span class="text-red-500">*</span></label>
+                <input type="text" id="p-last" name="parentLast" required autocomplete="family-name" placeholder="Last name" class="reg-input" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="p-zip" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">ZIP Code <span class="text-red-500">*</span></label>
+                <input type="text" id="p-zip" name="parentZip" required autocomplete="postal-code" placeholder="32548" inputmode="numeric" maxlength="5" class="reg-input" />
+              </div>
+              <div>
+                <label for="p-phone" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Primary Phone <span class="text-red-500">*</span></label>
+                <input type="tel" id="p-phone" name="parentPhone" required autocomplete="tel" inputmode="tel" placeholder="(850) 555-0100" class="reg-input" />
+              </div>
+            </div>
+            <label class="flex items-start gap-3 p-3 -mx-3 rounded-lg cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" id="p-sms" name="smsConsent" class="mt-1 w-4 h-4 accent-gold" />
+              <span class="text-xs text-gray-500">I agree to receive text messages from FCP Sports about this registration. Reply STOP to unsubscribe.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 3: Camper Info -->
+        <div class="step-panel hidden" data-step="3">
+          <h2 class="font-display text-xl text-navy mb-6">Camper Information</h2>
+          <div class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="c-first" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Camper First Name <span class="text-red-500">*</span></label>
+                <input type="text" id="c-first" name="childFirst" required autocomplete="off" placeholder="First name" class="reg-input" />
+              </div>
+              <div>
+                <label for="c-last" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Camper Last Name <span class="text-red-500">*</span></label>
+                <input type="text" id="c-last" name="childLast" required autocomplete="off" placeholder="Last name" class="reg-input" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="c-dob" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Date of Birth <span class="text-red-500">*</span></label>
+                <input type="date" id="c-dob" name="childDob" required class="reg-input" />
+              </div>
+              <div>
+                <label for="c-grade" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Grade (fall 2026) <span class="text-red-500">*</span></label>
+                <select id="c-grade" name="childGrade" required class="reg-input">
+                  <option value="">Select</option>
+                  <option value="K">Kindergarten</option>
+                  <option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option>
+                  <option value="4">4th</option><option value="5">5th</option><option value="6">6th</option>
+                  <option value="7">7th</option><option value="8">8th</option><option value="9">9th</option>
+                  <option value="10">10th</option><option value="11">11th</option><option value="12">12th</option>
+                </select>
+              </div>
+            </div>
+            <div id="grade-warning" class="hidden bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800"></div>
+
+            <div>
+              <label for="c-shirt" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Camper T-Shirt Size <span class="text-red-500">*</span></label>
+              <select id="c-shirt" name="shirtSize" required class="reg-input">
+                <option value="">Select</option>
+                <option value="YS">Youth Small</option>
+                <option value="YM">Youth Medium</option>
+                <option value="YL">Youth Large</option>
+                <option value="AS">Adult Small</option>
+                <option value="AM">Adult Medium</option>
+                <option value="AL">Adult Large</option>
+                <option value="AXL">Adult XL</option>
+              </select>
+            </div>
+
+            <hr class="border-gray-100 my-2" />
+            <h3 class="font-display text-lg text-navy">Emergency Contact</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="e-name" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Contact Name <span class="text-red-500">*</span></label>
+                <input type="text" id="e-name" name="emergencyName" required autocomplete="off" placeholder="Full name" class="reg-input" />
+              </div>
+              <div>
+                <label for="e-phone" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Contact Phone <span class="text-red-500">*</span></label>
+                <input type="tel" id="e-phone" name="emergencyPhone" required autocomplete="off" inputmode="tel" placeholder="(850) 555-0100" class="reg-input" />
+              </div>
+            </div>
+
+            <div>
+              <label for="c-medical" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Medical / Allergies / Notes <span class="text-gray-400 font-normal normal-case">(optional)</span></label>
+              <textarea id="c-medical" name="medicalNotes" rows="2" placeholder="Allergies, medical conditions, medications, or special needs" class="reg-input"></textarea>
+            </div>
+
+            <label class="flex items-start gap-3 p-3 -mx-3 rounded-lg cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" id="r-photo" name="photoConsent" class="mt-1 w-4 h-4 accent-gold" />
+              <span class="text-xs text-gray-600">I consent to FCP Sports photographing my child during camp for promotional use on social media and the FCP Sports website.</span>
+            </label>
+            <label class="flex items-start gap-3 p-3 -mx-3 rounded-lg cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" id="r-waiver" name="waiverAccepted" required class="mt-1 w-4 h-4 accent-gold" />
+              <span class="text-xs text-gray-600"><strong>Waiver &amp; release (required):</strong> I accept the <a href="/waiver/" target="_blank" class="text-gold underline">FCP Sports waiver</a> and release FCP Sports from liability for minor injuries incurred during normal camp activities.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 4: Payment -->
+        <div class="step-panel hidden" data-step="4">
+          <h2 class="font-display text-xl text-navy mb-2">Payment</h2>
+          <p class="text-gray-500 text-sm mb-6">Secure payment. Card tokenized by Authorize.net — never touches our servers.</p>
+
+          <div class="bg-gold/10 border border-gold/30 rounded-xl p-5 mb-6">
+            <div id="pay-summary" class="space-y-1 text-sm text-navy"></div>
+            <div class="flex justify-between items-center mt-3 pt-3 border-t border-gold/30">
+              <span class="font-display text-lg text-navy">Total</span>
+              <span class="font-display text-3xl text-gold" id="pay-price">$0</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-1" id="pay-tier"></p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label for="cc-name" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Name on Card <span class="text-red-500">*</span></label>
+              <input type="text" id="cc-name" autocomplete="cc-name" placeholder="Full name" class="reg-input" />
+            </div>
+            <div>
+              <label for="cc-number" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Card Number <span class="text-red-500">*</span></label>
+              <input type="text" id="cc-number" autocomplete="cc-number" inputmode="numeric" maxlength="19" placeholder="4111 1111 1111 1111" class="reg-input" />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="cc-exp" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Exp (MM/YYYY) <span class="text-red-500">*</span></label>
+                <input type="text" id="cc-exp" autocomplete="cc-exp" inputmode="numeric" maxlength="7" placeholder="MM/YYYY" class="reg-input" />
+              </div>
+              <div>
+                <label for="cc-cvv" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">CVV <span class="text-red-500">*</span></label>
+                <input type="text" id="cc-cvv" autocomplete="cc-csc" inputmode="numeric" maxlength="4" placeholder="123" class="reg-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+          <button type="button" id="btn-back" class="hidden text-sm text-gray-500 hover:text-navy min-h-[44px] px-4">&larr; Back</button>
+          <div class="flex-1"></div>
+          <button type="button" id="btn-next" class="btn-primary min-h-[44px]">Next Step &rarr;</button>
+          <button type="submit" id="btn-submit" class="hidden btn-primary min-h-[44px]">
+            <span id="submit-label">Complete Registration</span>
+            <svg id="submit-spin" class="hidden animate-spin inline-block w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+          </button>
+        </div>
+      </form>
+
+      <!-- Success + Upsell -->
+      <div id="success-msg" class="hidden">
+        <div class="text-center pb-8 border-b border-gray-100">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4" role="status" aria-live="polite">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h2 class="font-display text-2xl text-navy mb-2">You're Registered!</h2>
+          <p class="text-gray-500 text-sm">Registered for <strong id="success-camp-name" class="text-navy">—</strong>. Check your email for a confirmation.</p>
+        </div>
+        <div class="mt-8">
+          <div class="text-center mb-6">
+            <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2">Save $20</span>
+            <h3 class="font-display text-xl text-navy">Add Another Camp Week</h3>
+            <p class="text-gray-500 text-sm mt-1">Multi-week bundle — your info is already saved.</p>
+          </div>
+          <div id="upsell-options" class="space-y-3 mb-6"></div>
+          <div class="text-center">
+            <a href="/camps/" class="text-gray-500 text-sm hover:text-gold">No thanks, I'm done →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript" src="https://js.authorize.net/v1/Accept.js" charset="utf-8"></script>
+
+<style>
+  .camp-card {
+    @apply flex items-start gap-4 border-2 border-gray-200 rounded-xl p-4 cursor-pointer transition-all hover:border-gold;
+  }
+  .camp-option input:checked + .camp-card {
+    @apply border-gold bg-gold/10 ring-2 ring-gold/30;
+  }
+</style>
+
+<script>
+(function() {
+  const form = document.getElementById("camp-form");
+  const wrap = document.getElementById("reg-wrap");
+  const panels = document.querySelectorAll(".step-panel");
+  const dots = document.querySelectorAll(".step-dot");
+  const btnNext = document.getElementById("btn-next");
+  const btnBack = document.getElementById("btn-back");
+  const btnSubmit = document.getElementById("btn-submit");
+  const errWrap = document.getElementById("err-wrap");
+  const errText = document.getElementById("err-text");
+  let step = 1;
+  const TOTAL_STEPS = 4;
+
+  // Camp catalog from Hugo data — built at template render time
+  const CAMPS = {
+    {{ range $i, $c := (index site.Data.camps "camps") }}
+    {{ if $c.active }}
+    {{ if $i }},{{ end }}
+    "{{ $c.id }}": {
+      name: {{ $c.name | jsonify }},
+      summary: {{ $c.summary | jsonify }},
+      datesDisplay: {{ $c.dates_display | jsonify }},
+      days: {{ $c.days | jsonify }},
+      times: {{ $c.times | jsonify }},
+      grades: {{ $c.grades | jsonify }},
+      ageMin: {{ $c.age_min }},
+      ageMax: {{ $c.age_max }},
+      priceEarly: {{ $c.price_early }},
+      priceRegular: {{ $c.price_regular }},
+      priceLate: {{ $c.price_late }},
+      earlyEnd: {{ $c.early_end | jsonify }},
+      regularEnd: {{ $c.regular_end | jsonify }},
+      lateEnd: {{ $c.late_end | jsonify }},
+      {{ with $c.gender }}gender: {{ . | jsonify }},{{ end }}
+    }
+    {{ end }}
+    {{ end }}
+  };
+
+  // Pre-select camp from ?camp= URL param
+  (function preselectCamp() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("camp");
+    if (id && CAMPS[id]) {
+      const radio = form.querySelector('input[name=camp][value="' + id + '"]');
+      if (radio) radio.checked = true;
+    }
+  })();
+
+  function getSelectedCamp() {
+    const r = form.querySelector("input[name=camp]:checked");
+    return r ? r.value : null;
+  }
+
+  function getCurrentTier(campId) {
+    const c = CAMPS[campId];
+    if (!c) return null;
+    const now = new Date();
+    if (now < new Date(c.earlyEnd))   return { price: c.priceEarly,   label: "Early bird" };
+    if (now < new Date(c.regularEnd)) return { price: c.priceRegular, label: "Regular" };
+    return { price: c.priceLate, label: "Late registration" };
+  }
+
+  // UTMs captured sitewide via utm-capture.html
+  function getUTM() { return (window.fcpUTM && window.fcpUTM()) || {}; }
+
+  function showError(msg, focusEl) {
+    errText.textContent = msg;
+    errWrap.classList.remove("hidden");
+    errWrap.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (focusEl) requestAnimationFrame(function() { focusEl.focus(); });
+  }
+  function clearError() { errWrap.classList.add("hidden"); }
+
+  function goTo(s) {
+    step = s;
+    clearError();
+    panels.forEach(p => { p.classList.toggle("hidden", +p.dataset.step !== step); });
+    dots.forEach((d, i) => {
+      const n = i + 1;
+      const circle = d.querySelector("div");
+      const label = d.querySelector("span");
+      if (n <= step) {
+        circle.className = "w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm";
+        if (label) label.className = "hidden sm:inline text-xs mt-1 text-gold font-semibold";
+        circle.setAttribute("aria-current", n === step ? "step" : "false");
+      } else {
+        circle.className = "w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm";
+        if (label) label.className = "hidden sm:inline text-xs mt-1 text-gray-400";
+        circle.removeAttribute("aria-current");
+      }
+    });
+    btnBack.classList.toggle("hidden", step === 1);
+    btnNext.classList.toggle("hidden", step === TOTAL_STEPS);
+    btnSubmit.classList.toggle("hidden", step !== TOTAL_STEPS);
+    if (step === 4) populatePayment();
+    wrap.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // Grade / age validation for selected camp
+  const gradeWarning = document.getElementById("grade-warning");
+  const dobInput = document.getElementById("c-dob");
+  const gradeInput = document.getElementById("c-grade");
+
+  function checkAgeFit() {
+    const campId = getSelectedCamp();
+    const dob = dobInput.value;
+    if (!campId || !dob) { gradeWarning.classList.add("hidden"); return true; }
+    const c = CAMPS[campId];
+    const today = new Date();
+    const b = new Date(dob);
+    let age = today.getFullYear() - b.getFullYear();
+    if (today < new Date(today.getFullYear(), b.getMonth(), b.getDate())) age--;
+    if (age < c.ageMin - 1 || age > c.ageMax + 1) {
+      gradeWarning.textContent = "Heads up: this camp is typically for ages " + c.ageMin + "–" + c.ageMax + ". We'll still register your camper but they may be grouped with a different age bracket.";
+      gradeWarning.classList.remove("hidden");
+    } else {
+      gradeWarning.classList.add("hidden");
+    }
+    return true;
+  }
+  dobInput.addEventListener("change", checkAgeFit);
+  gradeInput.addEventListener("change", checkAgeFit);
+
+  // Autosave to sessionStorage for multi-week upsell
+  const SS_KEY = "fcp-camp-reg-data";
+  const FIELDS = ["parentEmail","parentFirst","parentLast","parentPhone","parentZip","childFirst","childLast","childDob","childGrade","shirtSize","emergencyName","emergencyPhone","medicalNotes"];
+  function saveFormData() {
+    try {
+      const data = {};
+      FIELDS.forEach(n => { if (form[n] && form[n].value) data[n] = form[n].value; });
+      sessionStorage.setItem(SS_KEY, JSON.stringify(data));
+    } catch (_) {}
+  }
+  function restoreFormData() {
+    try {
+      const raw = sessionStorage.getItem(SS_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      FIELDS.forEach(n => { if (form[n] && data[n] !== undefined) form[n].value = data[n]; });
+    } catch (_) {}
+  }
+  let saveTimer;
+  form.addEventListener("input", function() { clearTimeout(saveTimer); saveTimer = setTimeout(saveFormData, 400); });
+
+  // Multi-week upsell arrival
+  (function handleUpsellArrival() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("promo") !== "ADD20") return;
+    restoreFormData();
+    const notice = document.createElement("div");
+    notice.className = "mb-6 bg-gold/10 border border-gold/30 rounded-lg p-4 text-sm text-navy";
+    const strong = document.createElement("strong");
+    strong.className = "text-gold";
+    strong.textContent = "$20 multi-week discount applied.";
+    notice.appendChild(strong);
+    notice.appendChild(document.createTextNode(" Your info from the first camp was pre-filled — review and continue."));
+    wrap.insertBefore(notice, wrap.firstChild);
+  })();
+
+  // Validation per step
+  function validateStep(s) {
+    if (s === 1) {
+      if (!getSelectedCamp()) { showError("Please pick a camp week.", form.querySelector('input[name=camp]')); return false; }
+    }
+    if (s === 2) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.parentEmail.value.trim())) { showError("Valid email is required.", form.parentEmail); return false; }
+      if (!form.parentFirst.value.trim()) { showError("Parent first name is required.", form.parentFirst); return false; }
+      if (!form.parentLast.value.trim()) { showError("Parent last name is required.", form.parentLast); return false; }
+      if (!/^\d{5}$/.test(form.parentZip.value.trim())) { showError("5-digit ZIP code required.", form.parentZip); return false; }
+      if (form.parentPhone.value.replace(/\D/g, "").length < 10) { showError("Valid phone number required.", form.parentPhone); return false; }
+    }
+    if (s === 3) {
+      if (!form.childFirst.value.trim()) { showError("Camper first name is required.", form.childFirst); return false; }
+      if (!form.childLast.value.trim()) { showError("Camper last name is required.", form.childLast); return false; }
+      if (!form.childDob.value) { showError("Camper DOB is required.", form.childDob); return false; }
+      if (!form.childGrade.value) { showError("Camper grade is required.", form.childGrade); return false; }
+      if (!form.shirtSize.value) { showError("T-shirt size is required.", form.shirtSize); return false; }
+      if (!form.emergencyName.value.trim()) { showError("Emergency contact name required.", form.emergencyName); return false; }
+      if (form.emergencyPhone.value.replace(/\D/g, "").length < 10) { showError("Valid emergency phone required.", form.emergencyPhone); return false; }
+      if (!form.waiverAccepted.checked) { showError("Please accept the waiver to continue.", form.waiverAccepted); return false; }
+    }
+    return true;
+  }
+
+  function populatePayment() {
+    const campId = getSelectedCamp();
+    const c = CAMPS[campId];
+    const tier = getCurrentTier(campId);
+    const params = new URLSearchParams(window.location.search);
+    const promo = params.get("promo") === "ADD20" ? 20 : 0;
+    const finalPrice = tier.price - promo;
+    const summary = document.getElementById("pay-summary");
+    summary.innerHTML = "";
+    const line = function(label, value) {
+      const p = document.createElement("p");
+      p.innerHTML = '<span>' + label + '</span> <span class="float-right">' + value + '</span>';
+      return p;
+    };
+    summary.appendChild(line(c.name, "$" + tier.price));
+    if (promo) summary.appendChild(line("Multi-week discount", "-$" + promo));
+    document.getElementById("pay-price").textContent = "$" + finalPrice;
+    document.getElementById("pay-tier").textContent = tier.label + " pricing" + (promo ? " · multi-week discount applied" : "");
+  }
+
+  btnNext.addEventListener("click", function() {
+    if (!validateStep(step)) return;
+    if (step === 2) {
+      // Partial lead save
+      try {
+        fetch("/.netlify/functions/register-camp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            partial: true,
+            camp: getSelectedCamp(),
+            parentEmail: form.parentEmail.value.trim().toLowerCase(),
+            parentFirst: form.parentFirst.value.trim(),
+            parentLast: form.parentLast.value.trim(),
+            parentPhone: form.parentPhone.value.trim(),
+            parentZip: form.parentZip.value.trim(),
+            smsConsent: form.smsConsent.checked,
+            utm: getUTM(),
+          }),
+        }).catch(function() {});
+      } catch (_) {}
+    }
+    goTo(step + 1);
+  });
+  btnBack.addEventListener("click", function() { if (step > 1) goTo(step - 1); });
+
+  // Accept.js tokenization
+  function tokenizeCard() {
+    return new Promise(function(resolve, reject) {
+      const ccNum = document.getElementById("cc-number").value.replace(/\s/g, "");
+      const ccExp = document.getElementById("cc-exp").value.trim();
+      const ccCvv = document.getElementById("cc-cvv").value.trim();
+      const ccName = document.getElementById("cc-name").value.trim();
+      if (!ccName) return reject(new Error("Name on card required."));
+      if (ccNum.length < 13) return reject(new Error("Valid card number required."));
+      if (!/^\d{2}\/\d{4}$/.test(ccExp)) return reject(new Error("Expiration must be MM/YYYY."));
+      if (ccCvv.length < 3) return reject(new Error("Valid CVV required."));
+      const parts = ccExp.split("/");
+      {{ if not site.Params.authnet_client_key }}{{ errorf "authnet_client_key missing in hugo.toml" }}{{ end }}
+      {{ if not site.Params.authnet_login_id }}{{ errorf "authnet_login_id missing in hugo.toml" }}{{ end }}
+      const secureData = {
+        authData: { clientKey: "{{ site.Params.authnet_client_key }}", apiLoginID: "{{ site.Params.authnet_login_id }}" },
+        cardData: { cardNumber: ccNum, month: parts[0], year: parts[1], cardCode: ccCvv, fullName: ccName }
+      };
+      Accept.dispatchData(secureData, function(response) {
+        if (response.messages.resultCode === "Error") {
+          reject(new Error(response.messages.message.map(m => m.text).join(" ")));
+        } else {
+          resolve({ dataDescriptor: response.opaqueData.dataDescriptor, dataValue: response.opaqueData.dataValue });
+        }
+      });
+    });
+  }
+
+  // Card number + exp formatters
+  document.getElementById("cc-number").addEventListener("input", function(e) {
+    const v = e.target.value.replace(/\D/g, "").substring(0, 16);
+    e.target.value = v.replace(/(.{4})/g, "$1 ").trim();
+  });
+  document.getElementById("cc-exp").addEventListener("input", function(e) {
+    let v = e.target.value.replace(/\D/g, "").substring(0, 6);
+    if (v.length > 2) v = v.substring(0, 2) + "/" + v.substring(2);
+    e.target.value = v;
+  });
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    if (!validateStep(step)) return;
+    const submitLabel = document.getElementById("submit-label");
+    const submitSpin = document.getElementById("submit-spin");
+    btnSubmit.disabled = true;
+    btnSubmit.classList.add("opacity-50");
+    submitLabel.textContent = "Processing…";
+    submitSpin.classList.remove("hidden");
+
+    let paymentNonce;
+    try { paymentNonce = await tokenizeCard(); }
+    catch (err) {
+      showError(err.message);
+      btnSubmit.disabled = false;
+      btnSubmit.classList.remove("opacity-50");
+      submitLabel.textContent = "Complete Registration";
+      submitSpin.classList.add("hidden");
+      return;
+    }
+
+    const campId = getSelectedCamp();
+    const camp = CAMPS[campId];
+    const tier = getCurrentTier(campId);
+    const params = new URLSearchParams(window.location.search);
+    const promo = params.get("promo") === "ADD20" ? 20 : 0;
+    const finalPrice = tier.price - promo;
+
+    const payload = {
+      camp: campId,
+      campName: camp.name,
+      campDates: camp.datesDisplay,
+      parentEmail: form.parentEmail.value.trim().toLowerCase(),
+      parentFirst: form.parentFirst.value.trim(),
+      parentLast: form.parentLast.value.trim(),
+      parentPhone: form.parentPhone.value.trim(),
+      parentZip: form.parentZip.value.trim(),
+      smsConsent: form.smsConsent.checked,
+      childFirst: form.childFirst.value.trim(),
+      childLast: form.childLast.value.trim(),
+      childDob: form.childDob.value,
+      childGrade: form.childGrade.value,
+      shirtSize: form.shirtSize.value,
+      emergencyName: form.emergencyName.value.trim(),
+      emergencyPhone: form.emergencyPhone.value.trim(),
+      medicalNotes: form.medicalNotes.value.trim(),
+      photoConsent: form.photoConsent.checked,
+      waiverAccepted: true,
+      priceTier: tier.label,
+      priceAmount: finalPrice,
+      promoApplied: promo > 0 ? "ADD20" : "",
+      utm: getUTM(),
+      payment: {
+        dataDescriptor: paymentNonce.dataDescriptor,
+        dataValue: paymentNonce.dataValue,
+        cardholderName: document.getElementById("cc-name").value.trim(),
+      },
+    };
+
+    try {
+      const res = await fetch("/.netlify/functions/register-camp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || "Registration failed");
+      window.removeEventListener("beforeunload", beforeUnloadHandler);
+      form.classList.add("hidden");
+      document.getElementById("step-nav").classList.add("hidden");
+      renderSuccessWithUpsell(campId);
+      document.getElementById("success-msg").classList.remove("hidden");
+    } catch (err) {
+      showError(err.message || "Something went wrong. Please try again.");
+      btnSubmit.disabled = false;
+      btnSubmit.classList.remove("opacity-50");
+      submitLabel.textContent = "Complete Registration";
+      submitSpin.classList.add("hidden");
+    }
+  });
+
+  function renderSuccessWithUpsell(justRegisteredId) {
+    const just = CAMPS[justRegisteredId];
+    document.getElementById("success-camp-name").textContent = just ? (just.name + " — " + just.datesDisplay) : "";
+    const container = document.getElementById("upsell-options");
+    container.textContent = "";
+    const others = Object.keys(CAMPS).filter(id => id !== justRegisteredId).slice(0, 4);
+    others.forEach(id => {
+      const c = CAMPS[id];
+      const tier = getCurrentTier(id);
+      const discounted = tier.price - 20;
+      const link = document.createElement("a");
+      link.href = "/register/?camp=" + encodeURIComponent(id) + "&promo=ADD20";
+      link.className = "block border-2 border-gray-200 rounded-xl p-4 hover:border-gold transition-colors";
+      link.innerHTML = '';
+      const row = document.createElement("div");
+      row.className = "flex items-center justify-between gap-4";
+      const info = document.createElement("div");
+      info.className = "flex-1 min-w-0";
+      const name = document.createElement("div");
+      name.className = "font-display text-base text-navy";
+      name.textContent = c.name;
+      const dates = document.createElement("div");
+      dates.className = "text-xs text-gray-500 mt-0.5";
+      dates.textContent = c.datesDisplay + " · Grades " + c.grades;
+      info.appendChild(name);
+      info.appendChild(dates);
+      const priceBox = document.createElement("div");
+      priceBox.className = "text-right shrink-0";
+      const priceRow = document.createElement("div");
+      priceRow.className = "flex items-baseline gap-1 justify-end";
+      const nw = document.createElement("span");
+      nw.className = "font-bold text-gold text-lg";
+      nw.textContent = "$" + discounted;
+      const old = document.createElement("span");
+      old.className = "text-xs text-gray-400 line-through";
+      old.textContent = "$" + tier.price;
+      priceRow.appendChild(nw);
+      priceRow.appendChild(old);
+      priceBox.appendChild(priceRow);
+      const save = document.createElement("div");
+      save.className = "text-[10px] text-gold font-bold uppercase tracking-wide";
+      save.textContent = "Save $20";
+      priceBox.appendChild(save);
+      row.appendChild(info);
+      row.appendChild(priceBox);
+      link.appendChild(row);
+      container.appendChild(link);
+    });
+  }
+
+  function beforeUnloadHandler(e) {
+    if (step > 1 || form.parentEmail.value || form.childFirst.value) {
+      e.preventDefault();
+      e.returnValue = "";
+    }
+  }
+  window.addEventListener("beforeunload", beforeUnloadHandler);
+
+  goTo(1);
+})();
+</script>
+
+{{ end }}

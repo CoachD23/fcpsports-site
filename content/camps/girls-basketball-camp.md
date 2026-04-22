@@ -73,4 +73,4 @@ Indoor, climate-controlled gym.
 
 ## Register
 
-This camp runs once a year — one week in June. [Register now](/registration/) or [call 850.961.2323](/contact/).
+This camp runs once a year — one week in June. [Register now](/register/?camp=girls-camp-2026) or [call 850.961.2323](/contact/).
