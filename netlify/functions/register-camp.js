@@ -431,6 +431,11 @@ exports.handler = async function (event) {
             <!-- Contact -->
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:32px;border-top:1px solid #e8e8e8;padding-top:24px;">
               <tr>
+                <td style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12px;color:#666666;padding-bottom:12px;">
+                  Review our <a href="https://fcpsports.org/refund-policy/" style="color:#f5a623;text-decoration:none;">refund and cancellation policy</a>.
+                </td>
+              </tr>
+              <tr>
                 <td style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:13px;color:#666666;line-height:1.6;">
                   <strong style="color:#0a1628;">Questions?</strong> Reply to this email or reach us at:<br>
                   &#128222; <a href="tel:8509612323" style="color:#0a1628;text-decoration:none;">850.961.2323</a>&nbsp;&nbsp;

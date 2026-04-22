@@ -183,7 +183,7 @@
             </label>
             <label class="flex items-start gap-3 p-3 -mx-3 rounded-lg cursor-pointer hover:bg-gray-50">
               <input type="checkbox" id="r-waiver" name="waiverAccepted" required class="mt-1 w-4 h-4 accent-gold" />
-              <span class="text-xs text-gray-600"><strong>Waiver &amp; release (required):</strong> I accept the <a href="/waiver/" target="_blank" class="text-gold underline">FCP Sports waiver</a> and release FCP Sports from liability for minor injuries incurred during normal camp activities.</span>
+              <span class="text-xs text-gray-600"><strong>Waiver &amp; release (required):</strong> I accept the <a href="/waiver/" target="_blank" class="text-gold underline">FCP Sports waiver</a> and <a href="/refund-policy/" target="_blank" class="text-gold underline">refund/cancellation policy</a>, and release FCP Sports from liability for minor injuries incurred during normal camp activities.</span>
             </label>
           </div>
         </div>
@@ -244,6 +244,7 @@
           </div>
           <h2 class="font-display text-2xl text-navy mb-2">You're Registered!</h2>
           <p class="text-gray-500 text-sm">Registered for <strong id="success-camp-name" class="text-navy">—</strong>. Check your email for a confirmation.</p>
+          <p class="text-xs text-gray-400 mt-3">Review our <a href="/refund-policy/" class="text-gold hover:underline">refund policy</a> &middot; See you on the court.</p>
         </div>
         <div class="mt-8">
           <div class="text-center mb-6">
@@ -252,7 +253,15 @@
             <p class="text-gray-500 text-sm mt-1">Multi-week bundle — your info is already saved.</p>
           </div>
           <div id="upsell-options" class="space-y-3 mb-6"></div>
-          <div class="text-center">
+          <div id="sibling-cta" class="hidden mt-8 pt-8 border-t border-gray-100">
+            <div class="text-center mb-4">
+              <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2">Save $20</span>
+              <h3 class="font-display text-xl text-navy">Register a Sibling</h3>
+              <p class="text-gray-500 text-sm mt-1">Second child? Save $20 on this camp week.</p>
+            </div>
+            <div id="sibling-link-wrap"></div>
+          </div>
+          <div class="text-center mt-6">
             <a href="/camps/" class="text-gray-500 text-sm hover:text-gold">No thanks, I'm done →</a>
           </div>
         </div>
@@ -322,6 +331,9 @@
     const r = form.querySelector("input[name=camp]:checked");
     return r ? r.value : null;
   }
+
+  const PARENT_FIELDS = ["parentEmail","parentFirst","parentLast","parentPhone","parentZip"];
+  const CHILD_FIELDS = ["childFirst","childLast","childDob","childGrade","shirtSize","medicalNotes"];
 
   function getCurrentTier(campId) {
     const c = CAMPS[campId];
@@ -400,29 +412,41 @@
       sessionStorage.setItem(SS_KEY, JSON.stringify(data));
     } catch (_) {}
   }
-  function restoreFormData() {
+  function restoreFormData(fieldsToRestore) {
     try {
       const raw = sessionStorage.getItem(SS_KEY);
       if (!raw) return;
       const data = JSON.parse(raw);
-      FIELDS.forEach(n => { if (form[n] && data[n] !== undefined) form[n].value = data[n]; });
+      const list = fieldsToRestore || FIELDS;
+      list.forEach(n => { if (form[n] && data[n] !== undefined) form[n].value = data[n]; });
     } catch (_) {}
   }
   let saveTimer;
   form.addEventListener("input", function() { clearTimeout(saveTimer); saveTimer = setTimeout(saveFormData, 400); });
 
-  // Multi-week upsell arrival
+  // Multi-week / sibling upsell arrival
   (function handleUpsellArrival() {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("promo") !== "ADD20") return;
-    restoreFormData();
+    const promo = params.get("promo");
+    if (promo !== "ADD20" && promo !== "SIBLING20") return;
+    if (promo === "SIBLING20") {
+      restoreFormData(PARENT_FIELDS);
+    } else {
+      restoreFormData();
+    }
     const notice = document.createElement("div");
     notice.className = "mb-6 bg-gold/10 border border-gold/30 rounded-lg p-4 text-sm text-navy";
     const strong = document.createElement("strong");
     strong.className = "text-gold";
-    strong.textContent = "$20 multi-week discount applied.";
-    notice.appendChild(strong);
-    notice.appendChild(document.createTextNode(" Your info from the first camp was pre-filled — review and continue."));
+    if (promo === "SIBLING20") {
+      strong.textContent = "$20 sibling discount applied.";
+      notice.appendChild(strong);
+      notice.appendChild(document.createTextNode(" Parent info pre-filled — just add the new camper's details."));
+    } else {
+      strong.textContent = "$20 multi-week discount applied.";
+      notice.appendChild(strong);
+      notice.appendChild(document.createTextNode(" Your info from the first camp was pre-filled — review and continue."));
+    }
     wrap.insertBefore(notice, wrap.firstChild);
   })();
 
@@ -456,8 +480,9 @@
     const c = CAMPS[campId];
     const tier = getCurrentTier(campId);
     const params = new URLSearchParams(window.location.search);
-    const promo = params.get("promo") === "ADD20" ? 20 : 0;
-    const finalPrice = tier.price - promo;
+    const promoCode = params.get("promo");
+    const promoAmt = (promoCode === "ADD20" || promoCode === "SIBLING20") ? 20 : 0;
+    const finalPrice = tier.price - promoAmt;
     const summary = document.getElementById("pay-summary");
     summary.innerHTML = "";
     const line = function(label, value) {
@@ -466,9 +491,13 @@
       return p;
     };
     summary.appendChild(line(c.name, "$" + tier.price));
-    if (promo) summary.appendChild(line("Multi-week discount", "-$" + promo));
+    if (promoAmt) {
+      const promoLabel = promoCode === "SIBLING20" ? "Sibling discount" : "Multi-week discount";
+      summary.appendChild(line(promoLabel, "-$" + promoAmt));
+    }
     document.getElementById("pay-price").textContent = "$" + finalPrice;
-    document.getElementById("pay-tier").textContent = tier.label + " pricing" + (promo ? " · multi-week discount applied" : "");
+    const tierSuffix = promoCode === "SIBLING20" ? " · sibling discount applied" : promoAmt ? " · multi-week discount applied" : "";
+    document.getElementById("pay-tier").textContent = tier.label + " pricing" + tierSuffix;
   }
 
   btnNext.addEventListener("click", function() {
@@ -561,8 +590,9 @@
     const camp = CAMPS[campId];
     const tier = getCurrentTier(campId);
     const params = new URLSearchParams(window.location.search);
-    const promo = params.get("promo") === "ADD20" ? 20 : 0;
-    const finalPrice = tier.price - promo;
+    const promoCode = params.get("promo");
+    const promoAmt = (promoCode === "ADD20" || promoCode === "SIBLING20") ? 20 : 0;
+    const finalPrice = tier.price - promoAmt;
 
     const payload = {
       camp: campId,
@@ -586,7 +616,7 @@
       waiverAccepted: true,
       priceTier: tier.label,
       priceAmount: finalPrice,
-      promoApplied: promo > 0 ? "ADD20" : "",
+      promoApplied: promoAmt > 0 ? promoCode : "",
       utm: getUTM(),
       payment: {
         dataDescriptor: paymentNonce.dataDescriptor,
@@ -620,6 +650,50 @@
   function renderSuccessWithUpsell(justRegisteredId) {
     const just = CAMPS[justRegisteredId];
     document.getElementById("success-camp-name").textContent = just ? (just.name + " — " + just.datesDisplay) : "";
+
+    // Sibling CTA — same camp, different child
+    if (justRegisteredId && just) {
+      const siblingTier = getCurrentTier(justRegisteredId);
+      const siblingDiscounted = siblingTier.price - 20;
+      const siblingLink = document.createElement("a");
+      siblingLink.href = "/register/?camp=" + encodeURIComponent(justRegisteredId) + "&promo=SIBLING20";
+      siblingLink.className = "block border-2 border-gray-200 rounded-xl p-4 hover:border-gold transition-colors";
+      const sibRow = document.createElement("div");
+      sibRow.className = "flex items-center justify-between gap-4";
+      const sibInfo = document.createElement("div");
+      sibInfo.className = "flex-1 min-w-0";
+      const sibName = document.createElement("div");
+      sibName.className = "font-display text-base text-navy";
+      sibName.textContent = just.name;
+      const sibDates = document.createElement("div");
+      sibDates.className = "text-xs text-gray-500 mt-0.5";
+      sibDates.textContent = just.datesDisplay + " · Grades " + just.grades;
+      sibInfo.appendChild(sibName);
+      sibInfo.appendChild(sibDates);
+      const sibPriceBox = document.createElement("div");
+      sibPriceBox.className = "text-right shrink-0";
+      const sibPriceRow = document.createElement("div");
+      sibPriceRow.className = "flex items-baseline gap-1 justify-end";
+      const sibNw = document.createElement("span");
+      sibNw.className = "font-bold text-gold text-lg";
+      sibNw.textContent = "$" + siblingDiscounted;
+      const sibOld = document.createElement("span");
+      sibOld.className = "text-xs text-gray-400 line-through";
+      sibOld.textContent = "$" + siblingTier.price;
+      sibPriceRow.appendChild(sibNw);
+      sibPriceRow.appendChild(sibOld);
+      sibPriceBox.appendChild(sibPriceRow);
+      const sibSave = document.createElement("div");
+      sibSave.className = "text-[10px] text-gold font-bold uppercase tracking-wide";
+      sibSave.textContent = "Save $20";
+      sibPriceBox.appendChild(sibSave);
+      sibRow.appendChild(sibInfo);
+      sibRow.appendChild(sibPriceBox);
+      siblingLink.appendChild(sibRow);
+      document.getElementById("sibling-link-wrap").appendChild(siblingLink);
+      document.getElementById("sibling-cta").classList.remove("hidden");
+    }
+
     const container = document.getElementById("upsell-options");
     container.textContent = "";
     const others = Object.keys(CAMPS).filter(id => id !== justRegisteredId).slice(0, 4);
