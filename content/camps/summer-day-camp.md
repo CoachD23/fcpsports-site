@@ -13,7 +13,7 @@ ghl_tag: "train"
 program_name: "Summer Day Camp"
 faq:
   - q: "How much does summer basketball camp cost at FCP Sports?"
-    a: "Every full-week summer camp is $149. Little Hoopers Mini (K–2, 3 days half-day) is $79. Multi-week bundle: register for 2 or more weeks and save $20 per additional week."
+    a: "Every full-week summer camp is $149. Little Hoopers Mini (K–2, 3 days half-day) is $79. Military families (Eglin/Hurlburt) save $20 and siblings save $20 each on camp weeks."
   - q: "What are the summer 2026 camp dates?"
     a: "Nine weeks of camp from June 1 through August 7, 2026. Every week is grouped by grade — Session 1 (Jun 8–12) is grades 3–5, Session 4 (Jul 13–17) is grades 6–10, Back to School Week (Aug 3–7) is grades 6–12. Full schedule below."
   - q: "Is there a summer basketball camp near Destin FL?"
@@ -88,7 +88,6 @@ Skills assessment on Monday. Re-assessed Friday so your camper sees what improve
 
 ## Discounts
 
-- **Multi-week bundle:** $20 off per additional week (auto-applied on registration confirmation)
 - **Military / DoD families:** $20 off (Eglin + Hurlburt)
 - **Sibling:** $20 off per additional child
 

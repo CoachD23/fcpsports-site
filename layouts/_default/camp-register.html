@@ -72,7 +72,7 @@
           </fieldset>
 
           <div class="bg-gold/10 border border-gold/30 rounded-lg p-4 text-xs text-gray-600 mb-8">
-            <p><strong class="text-navy">Multi-week bundle:</strong> Register for 2 weeks and get $20 off. 3 weeks = $50 off. 4 weeks = $100 off. Discount applied at the review step.</p>
+            <p><strong class="text-navy">Discounts:</strong> $20 off per additional sibling &bull; $20 off military families (Eglin &amp; Hurlburt). Stacking allowed.</p>
           </div>
 
           <!-- Parent info merged into Step 1 — captures email earlier in flow -->
@@ -243,24 +243,16 @@
           <p class="text-gray-500 text-sm">Registered for <strong id="success-camp-name" class="text-navy">—</strong>. Check your email for a confirmation.</p>
           <p class="text-xs text-gray-400 mt-3">Review our <a href="/refund-policy/" class="text-gold hover:underline">refund policy</a> &middot; See you on the court.</p>
         </div>
-        <div class="mt-8">
-          <div class="text-center mb-6">
+        <div id="sibling-cta" class="hidden mt-8">
+          <div class="text-center mb-4">
             <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2">Save $20</span>
-            <h3 class="font-display text-xl text-navy">Add Another Camp Week</h3>
-            <p class="text-gray-500 text-sm mt-1">Multi-week bundle — your info is already saved.</p>
+            <h3 class="font-display text-xl text-navy">Register a Sibling</h3>
+            <p class="text-gray-500 text-sm mt-1">Second child? Save $20 on this camp week.</p>
           </div>
-          <div id="upsell-options" class="space-y-3 mb-6"></div>
-          <div id="sibling-cta" class="hidden mt-8 pt-8 border-t border-gray-100">
-            <div class="text-center mb-4">
-              <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2">Save $20</span>
-              <h3 class="font-display text-xl text-navy">Register a Sibling</h3>
-              <p class="text-gray-500 text-sm mt-1">Second child? Save $20 on this camp week.</p>
-            </div>
-            <div id="sibling-link-wrap"></div>
-          </div>
-          <div class="text-center mt-6">
-            <a href="/camps/" class="text-gray-500 text-sm hover:text-gold">No thanks, I'm done →</a>
-          </div>
+          <div id="sibling-link-wrap"></div>
+        </div>
+        <div class="text-center mt-8">
+          <a href="/camps/" class="text-gray-500 text-sm hover:text-gold">Browse other camps →</a>
         </div>
       </div>
 
@@ -399,7 +391,7 @@
   dobInput.addEventListener("change", checkAgeFit);
   gradeInput.addEventListener("change", checkAgeFit);
 
-  // Autosave to sessionStorage for multi-week upsell
+  // Autosave to sessionStorage for sibling upsell (parent registers second child)
   const SS_KEY = "fcp-camp-reg-data";
   const FIELDS = ["parentEmail","parentFirst","parentLast","parentPhone","parentZip","childFirst","childLast","childDob","childGrade","shirtSize","emergencyName","emergencyPhone","medicalNotes"];
   function saveFormData() {
@@ -421,29 +413,19 @@
   let saveTimer;
   form.addEventListener("input", function() { clearTimeout(saveTimer); saveTimer = setTimeout(saveFormData, 400); });
 
-  // Multi-week / sibling upsell arrival
+  // Sibling upsell arrival (ADD20 multi-week was removed — SIBLING20 only)
   (function handleUpsellArrival() {
     const params = new URLSearchParams(window.location.search);
     const promo = params.get("promo");
-    if (promo !== "ADD20" && promo !== "SIBLING20") return;
-    if (promo === "SIBLING20") {
-      restoreFormData(PARENT_FIELDS);
-    } else {
-      restoreFormData();
-    }
+    if (promo !== "SIBLING20") return;
+    restoreFormData(PARENT_FIELDS);
     const notice = document.createElement("div");
     notice.className = "mb-6 bg-gold/10 border border-gold/30 rounded-lg p-4 text-sm text-navy";
     const strong = document.createElement("strong");
     strong.className = "text-gold";
-    if (promo === "SIBLING20") {
-      strong.textContent = "$20 sibling discount applied.";
-      notice.appendChild(strong);
-      notice.appendChild(document.createTextNode(" Parent info pre-filled — just add the new camper's details."));
-    } else {
-      strong.textContent = "$20 multi-week discount applied.";
-      notice.appendChild(strong);
-      notice.appendChild(document.createTextNode(" Your info from the first camp was pre-filled — review and continue."));
-    }
+    strong.textContent = "$20 sibling discount applied.";
+    notice.appendChild(strong);
+    notice.appendChild(document.createTextNode(" Parent info pre-filled — just add the new camper's details."));
     wrap.insertBefore(notice, wrap.firstChild);
   })();
 
@@ -478,7 +460,8 @@
     const tier = getCurrentTier(campId);
     const params = new URLSearchParams(window.location.search);
     const promoCode = params.get("promo");
-    const promoAmt = (promoCode === "ADD20" || promoCode === "SIBLING20") ? 20 : 0;
+    // Only SIBLING20 is a valid promo now (multi-week ADD20 was removed)
+    const promoAmt = (promoCode === "SIBLING20") ? 20 : 0;
     const finalPrice = tier.price - promoAmt;
     const summary = document.getElementById("pay-summary");
     summary.innerHTML = "";
@@ -489,11 +472,10 @@
     };
     summary.appendChild(line(c.name, "$" + tier.price));
     if (promoAmt) {
-      const promoLabel = promoCode === "SIBLING20" ? "Sibling discount" : "Multi-week discount";
-      summary.appendChild(line(promoLabel, "-$" + promoAmt));
+      summary.appendChild(line("Sibling discount", "-$" + promoAmt));
     }
     document.getElementById("pay-price").textContent = "$" + finalPrice;
-    const tierSuffix = promoCode === "SIBLING20" ? " · sibling discount applied" : promoAmt ? " · multi-week discount applied" : "";
+    const tierSuffix = promoAmt ? " · sibling discount applied" : "";
     document.getElementById("pay-tier").textContent = tier.label + " pricing" + tierSuffix;
   }
 
@@ -589,7 +571,8 @@
     const tier = getCurrentTier(campId);
     const params = new URLSearchParams(window.location.search);
     const promoCode = params.get("promo");
-    const promoAmt = (promoCode === "ADD20" || promoCode === "SIBLING20") ? 20 : 0;
+    // Only SIBLING20 is a valid promo now (multi-week ADD20 was removed)
+    const promoAmt = (promoCode === "SIBLING20") ? 20 : 0;
     const finalPrice = tier.price - promoAmt;
 
     const payload = {
@@ -721,52 +704,7 @@
       document.getElementById("sibling-link-wrap").appendChild(siblingLink);
       document.getElementById("sibling-cta").classList.remove("hidden");
     }
-
-    const container = document.getElementById("upsell-options");
-    container.textContent = "";
-    const others = Object.keys(CAMPS).filter(id => id !== justRegisteredId).slice(0, 4);
-    others.forEach(id => {
-      const c = CAMPS[id];
-      const tier = getCurrentTier(id);
-      const discounted = tier.price - 20;
-      const link = document.createElement("a");
-      link.href = "/register/?camp=" + encodeURIComponent(id) + "&promo=ADD20";
-      link.className = "block border-2 border-gray-200 rounded-xl p-4 hover:border-gold transition-colors";
-      link.innerHTML = '';
-      const row = document.createElement("div");
-      row.className = "flex items-center justify-between gap-4";
-      const info = document.createElement("div");
-      info.className = "flex-1 min-w-0";
-      const name = document.createElement("div");
-      name.className = "font-display text-base text-navy";
-      name.textContent = c.name;
-      const dates = document.createElement("div");
-      dates.className = "text-xs text-gray-500 mt-0.5";
-      dates.textContent = c.datesDisplay + " · Grades " + c.grades;
-      info.appendChild(name);
-      info.appendChild(dates);
-      const priceBox = document.createElement("div");
-      priceBox.className = "text-right shrink-0";
-      const priceRow = document.createElement("div");
-      priceRow.className = "flex items-baseline gap-1 justify-end";
-      const nw = document.createElement("span");
-      nw.className = "font-bold text-gold text-lg";
-      nw.textContent = "$" + discounted;
-      const old = document.createElement("span");
-      old.className = "text-xs text-gray-400 line-through";
-      old.textContent = "$" + tier.price;
-      priceRow.appendChild(nw);
-      priceRow.appendChild(old);
-      priceBox.appendChild(priceRow);
-      const save = document.createElement("div");
-      save.className = "text-[10px] text-gold font-bold uppercase tracking-wide";
-      save.textContent = "Save $20";
-      priceBox.appendChild(save);
-      row.appendChild(info);
-      row.appendChild(priceBox);
-      link.appendChild(row);
-      container.appendChild(link);
-    });
+    // Multi-week upsell removed — kept simple. Sibling discount is the only promo.
   }
 
   function beforeUnloadHandler(e) {
