@@ -1,5 +1,7 @@
 # Camp catalog — single source of truth for camp registration.
-# Each entry drives the register form, camp pages, /camps/ hub, and schedule.
+# Drives the register form, camp pages, /camps/ hub, and schedule.
+#
+# Flat pricing — no tiered early-bird/regular/late. One price per camp.
 #
 # Field reference:
 #   id              — URL slug (used in /register/?camp=<id>)
@@ -14,13 +16,8 @@
 #   grades          — "3–8"
 #   age_min         — int (for validation)
 #   age_max         — int
-#   price_early     — early bird price
-#   price_regular   — regular price
-#   price_late      — late price
-#   early_end       — ISO datetime (Central Time midnight)
-#   regular_end     — ISO datetime
-#   late_end        — ISO datetime (camp starts)
-#   min_enrollment  — minimum kids for the week to run (else refund)
+#   price           — flat price (no early-bird tiers)
+#   min_enrollment  — minimum kids for the week to run
 #   detail_url      — /camps/<slug>/ for "View Details" button
 #   active          — true/false (hide from register flow if false)
 
@@ -37,12 +34,7 @@ camps:
     grades: "3–8"
     age_min: 8
     age_max: 14
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2026-05-02T05:00:00Z"
-    regular_end: "2026-05-26T05:00:00Z"
-    late_end: "2026-06-01T05:00:00Z"
+    price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
@@ -59,12 +51,7 @@ camps:
     grades: "3–5"
     age_min: 8
     age_max: 11
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2026-05-02T05:00:00Z"
-    regular_end: "2026-06-02T05:00:00Z"
-    late_end: "2026-06-08T05:00:00Z"
+    price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
@@ -81,12 +68,7 @@ camps:
     grades: "6–10 (girls)"
     age_min: 11
     age_max: 16
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2026-05-09T05:00:00Z"
-    regular_end: "2026-06-09T05:00:00Z"
-    late_end: "2026-06-15T05:00:00Z"
+    price: 149
     min_enrollment: 8
     detail_url: "/camps/girls-basketball-camp/"
     gender: "girls"
@@ -104,12 +86,7 @@ camps:
     grades: "6–8"
     age_min: 11
     age_max: 14
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2026-05-16T05:00:00Z"
-    regular_end: "2026-06-16T05:00:00Z"
-    late_end: "2026-06-22T05:00:00Z"
+    price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
@@ -126,12 +103,7 @@ camps:
     grades: "K–2"
     age_min: 5
     age_max: 7
-    price_early: 59
-    price_regular: 69
-    price_late: 79
-    early_end: "2026-05-23T05:00:00Z"
-    regular_end: "2026-06-24T05:00:00Z"
-    late_end: "2026-06-30T05:00:00Z"
+    price: 79
     min_enrollment: 8
     detail_url: "/camps/summer-day-camp/"
     active: true
@@ -148,16 +120,12 @@ camps:
     grades: "3–8"
     age_min: 8
     age_max: 14
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2026-05-30T05:00:00Z"
-    regular_end: "2026-06-30T05:00:00Z"
-    late_end: "2026-07-06T05:00:00Z"
+    price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
 
+  # LOCKED DATES — first paid registration (Davi Heriquez, Auth.net txn 81577868576)
   - id: summer-s4-jul13
     name: "Summer Camp — Session 4"
     summary: "Grades 6–10 — advanced skills"
@@ -170,15 +138,11 @@ camps:
     grades: "6–10"
     age_min: 11
     age_max: 16
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2026-06-06T05:00:00Z"
-    regular_end: "2026-07-07T05:00:00Z"
-    late_end: "2026-07-13T05:00:00Z"
+    price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
+    locked: true  # Real enrollments exist — do not change dates or price
 
   - id: summer-s5-jul20
     name: "Summer Camp — Session 5"
@@ -192,12 +156,7 @@ camps:
     grades: "3–8"
     age_min: 8
     age_max: 14
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2026-06-13T05:00:00Z"
-    regular_end: "2026-07-14T05:00:00Z"
-    late_end: "2026-07-20T05:00:00Z"
+    price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
@@ -214,12 +173,7 @@ camps:
     grades: "3–8"
     age_min: 8
     age_max: 14
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2026-06-20T05:00:00Z"
-    regular_end: "2026-07-21T05:00:00Z"
-    late_end: "2026-07-27T05:00:00Z"
+    price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
@@ -236,12 +190,7 @@ camps:
     grades: "6–12"
     age_min: 11
     age_max: 18
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2026-06-27T05:00:00Z"
-    regular_end: "2026-07-28T05:00:00Z"
-    late_end: "2026-08-03T05:00:00Z"
+    price: 149
     min_enrollment: 8
     detail_url: "/camps/summer-day-camp/"
     active: true
@@ -258,12 +207,7 @@ camps:
     grades: "4–8"
     age_min: 9
     age_max: 14
-    price_early: 69
-    price_regular: 79
-    price_late: 89
-    early_end: "2026-11-15T05:00:00Z"
-    regular_end: "2026-12-20T05:00:00Z"
-    late_end: "2026-12-28T05:00:00Z"
+    price: 79
     min_enrollment: 8
     detail_url: "/camps/holiday-camp/"
     active: true
@@ -280,12 +224,7 @@ camps:
     grades: "3–12"
     age_min: 8
     age_max: 18
-    price_early: 109
-    price_regular: 129
-    price_late: 149
-    early_end: "2027-02-01T05:00:00Z"
-    regular_end: "2027-03-08T05:00:00Z"
-    late_end: "2027-03-15T05:00:00Z"
+    price: 129
     min_enrollment: 10
     detail_url: "/camps/spring-break-camp/"
     active: true

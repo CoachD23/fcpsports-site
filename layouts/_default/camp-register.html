@@ -62,8 +62,8 @@
                     <div class="text-xs text-gray-400 mt-0.5">{{ $c.summary }} &bull; Grades {{ $c.grades }}</div>
                   </div>
                   <div class="text-right shrink-0 ml-3">
-                    <div class="font-bold text-navy text-sm">From ${{ $c.price_early }}</div>
-                    <div class="text-xs text-gray-400">early bird</div>
+                    <div class="font-bold text-navy text-sm">${{ $c.price }}</div>
+                    <div class="text-xs text-gray-400">{{ $c.hours }}</div>
                   </div>
                 </div>
               </label>
@@ -301,12 +301,7 @@
       grades: {{ $c.grades | jsonify }},
       ageMin: {{ $c.age_min }},
       ageMax: {{ $c.age_max }},
-      priceEarly: {{ $c.price_early }},
-      priceRegular: {{ $c.price_regular }},
-      priceLate: {{ $c.price_late }},
-      earlyEnd: {{ $c.early_end | jsonify }},
-      regularEnd: {{ $c.regular_end | jsonify }},
-      lateEnd: {{ $c.late_end | jsonify }},
+      price: {{ $c.price }},
       {{ with $c.gender }}gender: {{ . | jsonify }},{{ end }}
     }
     {{ end }}
@@ -331,10 +326,7 @@
   function getCurrentTier(campId) {
     const c = CAMPS[campId];
     if (!c) return null;
-    const now = new Date();
-    if (now < new Date(c.earlyEnd))   return { price: c.priceEarly,   label: "Early bird" };
-    if (now < new Date(c.regularEnd)) return { price: c.priceRegular, label: "Regular" };
-    return { price: c.priceLate, label: "Late registration" };
+    return { price: c.price, label: "Camp registration" };
   }
 
   // UTMs captured sitewide via utm-capture.html
