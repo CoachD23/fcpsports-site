@@ -13,7 +13,7 @@
       <a href="{{ .url }}" aria-label="{{ .name }}" class="block bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-gold/50 hover:bg-white/8 transition-all duration-200 group">
         {{ with .image }}
         <div class="h-40 overflow-hidden">
-          <img src="{{ . }}" alt="{{ $program.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async">
+          <img src="{{ . }}" alt="{{ $program.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" width="800" height="534">
         </div>
         {{ end }}
         <div class="p-8 {{ with .image }}pt-5{{ end }}">
