@@ -23,6 +23,33 @@
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const AIRTABLE_BASE = "https://api.airtable.com/v0";
 
+/* --- SERVER-SIDE LEAGUE PRICE MAP (source of truth) ---
+   Saturday League: flat $149/session for all divisions, all 3 sessions of 2026. */
+const LEAGUE_PRICES = {
+  "spring-2026": 149,
+  "mid-summer-2026": 149,
+  "late-summer-2026": 149,
+  "fall-2026": 149,
+  // Future sessions — add as they're scheduled
+};
+
+/* --- VALID PROMOS (flat $20 off each, stackable) --- */
+const LEAGUE_PROMOS = {
+  "SIBLING20": 20,
+  "MILITARY20": 20,
+};
+
+function computeLeaguePrice(sessionId, promos) {
+  const base = LEAGUE_PRICES[sessionId];
+  if (base === undefined) return null;
+  let price = base;
+  const applied = [];
+  for (const code of (promos || [])) {
+    if (LEAGUE_PROMOS[code]) { price -= LEAGUE_PROMOS[code]; applied.push(code); }
+  }
+  return { base, price: Math.max(price, 0), applied };
+}
+
 /* --- Rate limiting --- */
 const rateLimit = {};
 const RATE_WINDOW = 60_000;
@@ -141,6 +168,22 @@ exports.handler = async function (event) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.parentEmail.trim())) {
     return { statusCode: 400, headers: cors, body: json({ error: "Invalid email address" }) };
   }
+
+  /* --- SERVER-SIDE PRICE VALIDATION (ignore client's priceAmount) --- */
+  const sessionKey = (b.session || b.sessionId || "").toLowerCase();
+  const clientPromos = [];
+  if (b.promoApplied) clientPromos.push(String(b.promoApplied).toUpperCase());
+  if (b.siblingDiscount) clientPromos.push("SIBLING20");
+  if (b.militaryDiscount) clientPromos.push("MILITARY20");
+
+  const priced = computeLeaguePrice(sessionKey, clientPromos);
+  if (!priced) {
+    console.error(`[register-youth-league] Unknown session: ${sessionKey}`);
+    return { statusCode: 400, headers: cors, body: json({ error: `Unknown league session: ${sessionKey}` }) };
+  }
+  b.priceAmount = priced.price;
+  b.priceTier = priced.applied.length ? `$${priced.price} (${priced.applied.join(", ")})` : `$${priced.price}`;
+  console.log(`[register-youth-league] Server-validated price: session=${sessionKey} base=$${priced.base} final=$${priced.price} promos=${priced.applied.join(",") || "none"}`);
 
   const hasGhl = process.env.GHL_API_KEY && process.env.GHL_LOCATION_ID;
   const hasAirtable = process.env.AIRTABLE_PAT && process.env.AIRTABLE_BASE_ID;

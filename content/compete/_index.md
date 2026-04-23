@@ -1,33 +1,37 @@
 ---
 title: "Basketball Leagues & Competition | FCP Sports"
-description: "Choose how you compete — organized leagues, youth basketball programs, or rent the court for your own team. FCP Sports, Fort Walton Beach."
-h1: "COMPETE"
+description: "Every kid deserves to know what it feels like to compete for something real."
+h1: "Where Kids Learn to Compete"
 type: "hub"
 hero_image: "/images/fcp-hero-league-game.jpg"
 section_heading: "Choose Your Game"
 programs:
   - name: "Basketball League"
-    description: "Organized league play with real refs, stat tracking, standings, and playoffs. Fall and summer seasons for ages 5–18."
+    description: "This is where your kid stops being a player and starts becoming a competitor. Full seasons with rivalries, playoff stakes, and the feeling of earning every win."
     url: "/services/basketball-league/"
     ages: "Ages 5–18"
     price: "From $79"
     image: "/images/fcp-spartans-game-action.jpg"
   - name: "Saturday League"
-    description: "Saturday basketball for ages 5 and up — four divisions from Juniors (5–7) through Varsity (15+). No tryouts, every player plays. Three 7-week seasons: Spring, Mid-Summer, Late Summer. Jerseys included."
+    description: "Saturday mornings look different here. No warming the bench. No sitting out. Your child walks onto a real court playing real minutes against kids their own age. No tryouts."
     url: "/youth-league/"
     ages: "Ages 5+"
     price: "$149"
     image: "/images/fcp-coaches-huddle-players.jpg"
   - name: "Youth Basketball Programs"
-    description: "Age-tiered development from kindergarten through 8th grade. Little Ballers, Junior Program, and Prep tracks with year-round coaching."
+    description: "A year-round development path from kindergarten through 8th grade. Little Ballers, Junior Program, and Prep tracks built to grow with your athlete."
     url: "/services/youth-basketball/"
     ages: "K – 8th Grade"
     price: "Varies by program"
     image: "/images/fcp-team-photo-brazil.jpg"
   - name: "Gym Rental"
-    description: "Book the full regulation court for team practices, tryouts, birthday parties, or private events. Climate-controlled, professionally maintained."
+    description: "Book the full regulation court for your team, tryouts, or event. 14,000 sq ft, climate-controlled, professionally maintained."
     url: "/services/gym-rental/"
     ages: "All Ages"
     price: "Hourly rates"
     image: "/images/fcp-gym-full-court-empty.jpg"
 ---
+
+Every kid deserves to know what it feels like to compete for something. Not drills in a parking lot. Not a trophy just for showing up. Real games, real growth, real moments they'll talk about on the ride home.
+
+FCP Sports runs the Emerald Coast's most structured youth basketball seasons inside our 14,000 sq ft Spartan Training Center — a program advised by NBA veteran Kenny Anderson and built for families who want their kids to love the game for life.

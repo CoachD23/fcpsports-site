@@ -13,12 +13,12 @@ Over 500 kids from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview 
 
 ## What We Do
 
-- **[Youth League](/youth-league/)** — Saturday morning basketball, ages 5–14
-- **[Basketball Camps](/camps/)** — Summer, spring break, girls-only, and holiday sessions
-- **[Training Programs](/services/basketball-training/)** — Weekly skill development with progress tracking
+- **[Saturday League](/youth-league/)** — Saturday basketball, ages 5+, three 2026 sessions
+- **[Basketball Camps](/camps/)** — Summer day camps (AM + PM), spring break, and holiday sessions
+- **[Skills Training](/services/basketball-training/)** — $149/mo unlimited, Mon–Thu afternoons
 - **[Private Lessons](/services/basketball-lessons/)** — 1-on-1 coaching for any age
-- **[Basketball Leagues](/leagues/)** — Fall, summer, and little ballers seasons
-- **[Open Gym](/services/open-gym/)** — Drop-in pickup for youth and adults
+- **[Sunday MS League](/services/basketball-league/)** — i9-style practice + game, grades 5–8
+- **[Open Gym](/services/open-gym/)** — Drop-in pickup for HS and adults
 
 ## Who Comes Here
 

@@ -47,11 +47,11 @@ FCP Sports runs out of a **dedicated basketball facility** in Fort Walton Beach 
 
 At $149 for a full five-day camp, FCP Sports sits in a position no other Panhandle camp occupies: full-day structured curriculum at an affordable price in a dedicated facility. The programming covers ball handling, shooting mechanics, finishing, defensive positioning, and basketball IQ — with athletes grouped by age and skill level, not just age. Coach-to-player ratios stay at 8:1 or better.
 
-Military families receive a **$20 discount** at registration. **Early bird pricing** drops the cost further when you register more than 30 days out from the camp start date.
+Military families receive a **$20 discount** at registration. Sibling discount is **$20 off per additional child**. Discounts stack.
 
 [View the summer camp schedule and register here.](/camps/summer-day-camp/)
 
-FCP Sports also runs a dedicated [Girls Basketball Camp](/camps/girls-basketball-camp/) for female athletes who want instruction in an environment built around their development rather than a co-ed catch-all program.
+FCP Sports splits every summer week into a Morning session (K–5) and Afternoon session (Grades 6–12) so athletes train with peers at a similar level. Both sessions are $149/week — register for one or both.
 
 ## What to Look for When Choosing a Basketball Camp
 
@@ -77,7 +77,7 @@ If your child plays rec ball and wants to improve: FCP Sports at $149 offers the
 
 If your child plays AAU or school ball and wants elite development: NWFSC Raider Camp or Nike Panama City are worth the higher price and commute.
 
-If cost is the primary constraint: FCP Sports early bird pricing and military discounts make the dedicated facility option more accessible than the sticker price suggests.
+If cost is the primary constraint: FCP Sports military and sibling discounts ($20 off each, stackable) make the dedicated facility option more accessible than the sticker price suggests.
 
 The goal of any good basketball camp is improvement the athlete can measure and use the next time they step on a court. The best camp is the one that delivers that — at a price and location that works for your family.
 

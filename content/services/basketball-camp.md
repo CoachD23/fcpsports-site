@@ -1,7 +1,7 @@
 ---
 hero_image: /images/fcp-hero-camp-talk.jpg
 title: "Basketball Camp Fort Walton Beach FL | FCP Sports"
-description: "Basketball camps in Fort Walton Beach for grades 3–12. Summer, spring break, girls-only, and holiday options. From $79."
+description: "Basketball camps in Fort Walton Beach for grades K–12. Summer day camps (AM + PM), spring break, and holiday options. From $79."
 h1: "Basketball Camps"
 keyword: "basketball camp fort walton beach"
 age_range: "Grades 3–12"
@@ -11,14 +11,14 @@ course_type: "basketball camp"
 program_name: "Basketball Camp"
 ghl_tag: "train"
 summary_card:
-  dates: "4 camps throughout the year"
-  ages: "Grades 3–12"
+  dates: "Year-round camp schedule"
+  ages: "Grades K–12"
   price: "$79–$149 per camp"
-  note: "Summer · Girls · Spring Break · Holiday"
+  note: "Summer · Spring Break · Holiday"
   register_url: "/camps/"
 faq:
   - q: "How much does basketball camp cost at FCP Sports?"
-    a: "Camps range from $79 to $149 depending on the program: Summer Camp is $149/week, Girls Camp is $149/week, Spring Break Camp is $129, and Holiday Camp is $79. Early bird and military discounts are available on summer and girls camps."
+    a: "Camps range from $79 to $149 depending on the program: Summer Camp is $149/week (Morning or Afternoon), Little Hoopers Mini is $79 (K–2 half-day), Spring Break Camp is $129, and Holiday Camp is $79. Military and sibling discounts ($20 off each, stack) are available on summer camps."
   - q: "What ages can attend basketball camp?"
     a: "Our camps serve grades 3 through 12. Each camp is built for a specific age group so your child trains with kids at a similar level."
   - q: "Is there a basketball camp near Destin?"
@@ -27,14 +27,21 @@ faq:
     a: "Yes. We assess skills on day one and group by ability. Beginners get fundamentals coaching. Experienced players work on advanced skills. Every kid is met where they are."
 ---
 
+Your child gets coached at FCP Camps. Really coached. Inside our 14,000 sq ft Spartan Training Center, every camper is assessed on Day 1, coached all week, and re-assessed on the final day — so you walk out with a real picture of what improved. Our program is advised by NBA veteran Kenny Anderson, and the standards show up in every drill, every scrimmage, every rep.
+
+### Why FCP Camps
+
+- **Measurable progress.** Day 1 assessment. Final-day re-assessment. Your child leaves with proof of what they learned.
+- **Advised by an NBA pro.** Kenny Anderson — 14 NBA seasons, 2nd overall pick — shapes our program's approach and standards.
+- **Built for full-pace work.** 14,000 sq ft, climate-controlled, indoors. Fort Walton Beach weather stays outside.
+
 ## Camp Options
 
 | Camp | Dates | Grades | Price |
 |------|-------|--------|-------|
-| [Summer Day Camp](/camps/summer-day-camp/) | Jun 8 – Jul 31 (4 sessions) | 3–10 | $149/wk |
-| [Girls Basketball Camp](/camps/girls-basketball-camp/) | June 15–19 | 6–10 (Girls) | $149/wk |
-| [Spring Break Camp](/camps/spring-break-camp/) | March 15–18 | 3–12 | $129 |
-| [Holiday Camp](/camps/holiday-camp/) | Dec 28–30 | 4–8 | $79 |
+| [Summer Day Camp](/camps/summer-day-camp/) | Jun 1 – Jul 31 (9 weeks, AM + PM) | K–12 | $149/wk |
+| [Spring Break Camp](/camps/spring-break-camp/) | March 15–18, 2027 | 3–12 | $129 |
+| [Holiday Camp](/camps/holiday-camp/) | Dec 28–30, 2026 | 4–8 | $79 |
 
 ## What's Included
 

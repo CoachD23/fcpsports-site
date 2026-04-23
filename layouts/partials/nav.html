@@ -9,19 +9,76 @@
       <nav class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
         <a href="/" class="text-white/80 hover:text-gold px-3 py-2 text-sm font-medium transition-colors">Home</a>
 
-        <a href="/train/" class="text-white/80 hover:text-gold px-3 py-2 text-sm font-medium transition-colors">Train</a>
-        <a href="/compete/" class="text-white/80 hover:text-gold px-3 py-2 text-sm font-medium transition-colors">Compete</a>
+        <!-- Train dropdown -->
+        <div class="relative group">
+          <button class="text-white/80 hover:text-gold px-3 py-2 text-sm font-medium transition-colors flex items-center gap-1">
+            Train <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="absolute top-full left-0 bg-white rounded-xl shadow-xl p-4 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 mt-1 z-50">
+            <a href="/services/basketball-training/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Skills Training</span>
+              <span class="block text-xs text-gray-500">$149/mo unlimited</span>
+            </a>
+            <a href="/services/basketball-lessons/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Private Lessons</span>
+              <span class="block text-xs text-gray-500">From $50/session</span>
+            </a>
+            <a href="/services/homeschool-pe/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Homeschool PE</span>
+              <span class="block text-xs text-gray-500">$99/mo · Tue/Thu mornings</span>
+            </a>
+            <div class="border-t border-gray-100 mt-3 pt-3">
+              <a href="/train/" class="block px-3 py-2 text-gold hover:text-navy text-sm font-semibold rounded-lg hover:bg-gray-50">View All Training →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compete dropdown -->
+        <div class="relative group">
+          <button class="text-white/80 hover:text-gold px-3 py-2 text-sm font-medium transition-colors flex items-center gap-1">
+            Compete <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="absolute top-full left-0 bg-white rounded-xl shadow-xl p-4 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 mt-1 z-50">
+            <a href="/youth-league/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Saturday League</span>
+              <span class="block text-xs text-gray-500">Ages 5+ · $149/session</span>
+            </a>
+            <a href="/services/basketball-league/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Sunday MS League</span>
+              <span class="block text-xs text-gray-500">i9-style · $179/8 weeks</span>
+            </a>
+            <a href="/leagues/winter-ms-league/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Winter MS League</span>
+              <span class="block text-xs text-gray-500">Jan–Mar · $199/season</span>
+            </a>
+            <a href="/leagues/mens-league/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Men's League</span>
+              <span class="block text-xs text-gray-500">Waitlist · Sundays</span>
+            </a>
+            <div class="border-t border-gray-100 mt-3 pt-3">
+              <a href="/compete/" class="block px-3 py-2 text-gold hover:text-navy text-sm font-semibold rounded-lg hover:bg-gray-50">View All Leagues →</a>
+            </div>
+          </div>
+        </div>
 
         <!-- Camps dropdown -->
         <div class="relative group">
           <button class="text-white/80 hover:text-gold px-3 py-2 text-sm font-medium transition-colors flex items-center gap-1">
             Camps <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
-          <div class="absolute top-full left-0 bg-white rounded-xl shadow-xl p-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 mt-1 z-50">
-            <a href="/camps/summer-day-camp/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">Summer Day Camp</a>
-            <a href="/camps/girls-basketball-camp/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">Girls Basketball Camp</a>
-            <a href="/camps/spring-break-camp/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">Spring Break Camp</a>
-            <a href="/camps/holiday-camp/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">Holiday Camp</a>
+          <div class="absolute top-full left-0 bg-white rounded-xl shadow-xl p-4 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 mt-1 z-50">
+            <a href="/camps/summer-day-camp/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Summer Day Camp</span>
+              <span class="block text-xs text-gray-500">9 weeks · AM + PM · $149/wk</span>
+            </a>
+            <a href="/camps/spring-break-camp/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Spring Break Camp</span>
+              <span class="block text-xs text-gray-500">March 2027 · $129</span>
+            </a>
+            <a href="/camps/holiday-camp/" class="block px-3 py-2 text-navy hover:text-gold text-sm rounded-lg hover:bg-gray-50">
+              <span class="font-semibold">Holiday Camp</span>
+              <span class="block text-xs text-gray-500">Dec 2026 · $79</span>
+            </a>
             <div class="border-t border-gray-100 mt-3 pt-3">
               <a href="/camps/" class="block px-3 py-2 text-gold hover:text-navy text-sm font-semibold rounded-lg hover:bg-gray-50">View All Camps →</a>
             </div>
@@ -30,8 +87,7 @@
 
         <a href="/schedule/" class="text-white/80 hover:text-gold px-3 py-2 text-sm font-medium transition-colors">Schedule</a>
         <a href="/about/" class="text-white/80 hover:text-gold px-3 py-2 text-sm font-medium transition-colors">About</a>
-        <a href="/pricing/" class="text-white/80 hover:text-gold px-3 py-2 text-sm font-medium transition-colors">Pricing</a>
-        <a href="/contact/" class="ml-4 bg-gold text-navy font-bold px-6 py-3 rounded-lg hover:brightness-110 transition-all duration-200 text-sm">Contact Us</a>
+        <a href="/registration/" class="ml-4 bg-gold text-navy font-bold px-6 py-3 rounded-lg hover:brightness-110 transition-all duration-200 text-sm">Register</a>
       </nav>
 
       <button class="lg:hidden p-2 text-white nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -45,20 +101,30 @@
   <div class="mobile-nav hidden lg:hidden bg-navy-900 border-t border-white/10 pb-6 px-4 max-h-screen overflow-y-auto">
     <a href="/" class="block py-3 text-white border-b border-white/10 font-medium">Home</a>
 
-    <a href="/train/" class="block py-3 text-white border-b border-white/10 font-medium">Train</a>
-    <a href="/compete/" class="block py-3 text-white border-b border-white/10 font-medium">Compete</a>
+    <p class="text-gold text-xs font-display tracking-widest mt-4 mb-1">TRAIN</p>
+    <a href="/services/basketball-training/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Skills Training — $149/mo</a>
+    <a href="/services/basketball-lessons/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Private Lessons</a>
+    <a href="/services/homeschool-pe/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Homeschool PE</a>
+    <a href="/train/" class="block py-2 text-gold pl-3 text-sm font-semibold">View All Training →</a>
+
+    <p class="text-gold text-xs font-display tracking-widest mt-4 mb-1">COMPETE</p>
+    <a href="/youth-league/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Saturday League</a>
+    <a href="/services/basketball-league/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Sunday MS League</a>
+    <a href="/leagues/winter-ms-league/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Winter MS League</a>
+    <a href="/leagues/mens-league/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Men's League (waitlist)</a>
+    <a href="/compete/" class="block py-2 text-gold pl-3 text-sm font-semibold">View All Leagues →</a>
 
     <p class="text-gold text-xs font-display tracking-widest mt-4 mb-1">CAMPS</p>
     <a href="/camps/summer-day-camp/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Summer Day Camp</a>
-    <a href="/camps/girls-basketball-camp/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Girls Basketball Camp</a>
     <a href="/camps/spring-break-camp/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Spring Break Camp</a>
     <a href="/camps/holiday-camp/" class="block py-2 text-white/80 hover:text-gold pl-3 text-sm">Holiday Camp</a>
+    <a href="/camps/" class="block py-2 text-gold pl-3 text-sm font-semibold">View All Camps →</a>
 
     <div class="mt-4 border-t border-white/10 pt-4 space-y-2">
       <a href="/schedule/" class="block py-2 text-white font-medium">Schedule</a>
       <a href="/about/" class="block py-2 text-white font-medium">About</a>
-      <a href="/pricing/" class="block py-2 text-white font-medium">Pricing</a>
-      <a href="/contact/" class="block text-center bg-gold text-navy font-bold px-6 py-3 rounded-lg mt-4">Contact Us</a>
+      <a href="/contact/" class="block py-2 text-white/80 hover:text-gold text-sm">Contact Us</a>
+      <a href="/registration/" class="block text-center bg-gold text-navy font-bold px-6 py-3 rounded-lg mt-4">Register</a>
     </div>
   </div>
 </header>

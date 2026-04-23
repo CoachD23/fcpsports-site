@@ -21,7 +21,7 @@ faq:
   - q: "Is open gym running this summer?"
     a: "No. Open gym is on break through the summer while we run camps and the Saturday league. It returns in August 2026 when school is back in session."
   - q: "Can I still play basketball at FCP Sports this summer?"
-    a: "Yes — through our programs. Summer camps run every week June through early August (Mon–Fri 9:30–2). Saturday League runs three 7-week sessions May–October. Or book a private lesson or gym rental anytime."
+    a: "Yes — through our programs. Summer camps run every week June 1 – July 31 (Morning 9:30 AM – 1:00 PM for K–5, Afternoon 2:00 PM – 5:30 PM for grades 6–12, $149/week each). Saturday League runs three 2026 sessions (Spring 6 Saturdays, Mid-Summer 7 Saturdays, Fall 7 Saturdays). Or book a private lesson or gym rental anytime."
   - q: "When does open gym return?"
     a: "August 2026. We'll post exact dates and times here once school schedules are finalized."
   - q: "Where else can I pickup this summer?"
@@ -38,7 +38,7 @@ Our gym is running full-time through August with Summer Camps and Saturday Leagu
 
 | Program | When | Ages | Price |
 |---------|------|------|-------|
-| [**Summer Camps**](/camps/) | Every week, Jun 1 – Aug 7 | K–12 | $79–$149 |
+| [**Summer Camps**](/camps/) | Every week, Jun 1 – Jul 31 (AM + PM) | K–12 | $79–$149 |
 | [**Saturday League**](/youth-league/) | May–October (3 sessions) | 5+ | $149/session |
 | [**Private Lessons**](/services/basketball-lessons/) | Flexible | 6+ | From $50/session |
 | [**Gym Rental**](/services/gym-rental/) | Flexible | All | From $75/hr |

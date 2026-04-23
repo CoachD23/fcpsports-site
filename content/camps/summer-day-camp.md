@@ -1,11 +1,11 @@
 ---
 title: "Summer Basketball Camp Fort Walton Beach | FCP Sports"
-description: "Summer basketball camp in Fort Walton Beach. 9 weeks June–August for grades K–12. $149/week, Mon–Fri 9:30–2. Military + sibling discounts."
+description: "Summer basketball camp in Fort Walton Beach. 9 weeks June–July 2026 for grades K–12. Morning or afternoon sessions, $149/week. Military + sibling discounts."
 h1: "Summer Basketball Camp"
 keyword: "summer basketball camp fort walton beach"
 age_range: "Grades K–12"
 price: "$149/week"
-frequency: "9 weeks, Jun–Aug 2026"
+frequency: "9 weeks, Jun–Jul 2026"
 hero_image: /images/fcp-hero-camp-talk.jpg
 layout: "services"
 course_type: "summer basketball camp"
@@ -15,7 +15,7 @@ faq:
   - q: "How much does summer basketball camp cost at FCP Sports?"
     a: "Every full-week summer camp is $149. Little Hoopers Mini (K–2, 3 days half-day) is $79. Military families (Eglin/Hurlburt) save $20 and siblings save $20 each on camp weeks."
   - q: "What are the summer 2026 camp dates?"
-    a: "Nine weeks of camp from June 1 through August 7, 2026. Every week is grouped by grade — Session 1 (Jun 8–12) is grades 3–5, Session 4 (Jul 13–17) is grades 6–10, Back to School Week (Aug 3–7) is grades 6–12. Full schedule below."
+    a: "Nine weeks of camp from June 1 through July 31, 2026. Every week runs a Morning Camp (9:30 AM – 1:00 PM) for grades K–5 and an Afternoon Camp (2:00 PM – 5:30 PM) for grades 6–12. Both are $149/week. Register for one or both. Full schedule below."
   - q: "Is there a summer basketball camp near Destin FL?"
     a: "Yes. FCP Sports in Fort Walton Beach is about 15 minutes from Destin via US-98. Families from Destin, Niceville, Navarre, and Crestview attend every summer."
   - q: "What should my child bring to summer basketball camp?"
@@ -52,29 +52,35 @@ event_dates:
   - start: "2026-07-27"
     end: "2026-07-31"
     price: "149"
-  - start: "2026-08-03"
-    end: "2026-08-07"
-    price: "149"
 ---
 
-## Summer 2026 — 9 Weeks of Camp
+## Five Days. Real Coaching. Measurable Improvement.
 
-Every week runs Mon–Fri from 9:30 AM to 2:00 PM (Little Hoopers is Tue–Thu half-day). Each camp is grouped by grade level — your camper trains with kids at a similar age and skill.
+Summer Camp at FCP Sports is nine weeks of professional coaching for grades K–12 inside our 14,000 sq ft Spartan Training Center. Your child is assessed Monday, coached all week, and re-assessed Friday — so you see exactly what they learned. This is not a week of babysitting in a gym. This is a week of real training.
 
-| Camp | Dates | Grades | Price | Register |
-|------|-------|--------|-------|----------|
-| **Summer Kickoff** | June 1–5 | 3–8 | $149 | [Register →](/register/?camp=summer-kickoff-2026) |
-| **Session 1** | June 8–12 | 3–5 | $149 | [Register →](/register/?camp=summer-s1-jun08) |
-| **Girls Camp** | June 15–19 | 6–10 girls | $149 | [Register →](/register/?camp=girls-camp-2026) |
-| **Session 2** | June 22–26 | 6–8 | $149 | [Register →](/register/?camp=summer-s2-jun22) |
-| **Little Hoopers Mini** | Jun 30 – Jul 2 *(Tue–Thu, half-day)* | K–2 | $79 | [Register →](/register/?camp=little-hoopers-jun30) |
-| **Session 3** | July 6–10 | 3–8 | $149 | [Register →](/register/?camp=summer-s3-jul06) |
-| **Session 4** | July 13–17 | 6–10 | $149 | [Register →](/register/?camp=summer-s4-jul13) |
-| **Session 5** | July 20–24 | 3–8 | $149 | [Register →](/register/?camp=summer-s5-jul20) |
-| **Session 6** | July 27–31 | 3–8 | $149 | [Register →](/register/?camp=summer-s6-jul27) |
-| **Back to School Week** | August 3–7 | 6–12 | $149 | [Register →](/register/?camp=back-to-school-2026) |
+### Why Families Pick FCP Summer Camp
 
-Drop-off 9:15 AM. Pickup 2:00 PM. Bring your own lunch.
+- **You'll see the progress.** Every camper gets a Day 1 skill assessment and a Day 5 re-assessment. You don't leave wondering if it was worth it — you see what improved.
+- **Advised by an NBA pro.** Kenny Anderson — 14 NBA seasons, 2nd overall pick — advises our program. His standards shape the way we coach every camper.
+- **Built for your athlete's level.** Every week is grouped by grade so your kid trains with peers at a similar age and ability. Beginners get fundamentals. Experienced players get sharpened.
+
+## Summer 2026 Schedule
+
+Every week runs **Morning Camp (K–5, 9:30 AM – 1:00 PM)** and **Afternoon Camp (Grades 6–12, 2:00 PM – 5:30 PM)** — both $149/week. Families can register for one or both. Little Hoopers Mini is a Tue–Thu half-day for grades K–2.
+
+| Week | Dates | Morning (K–5) | Afternoon (6–12) | Register |
+|------|-------|---------------|------------------|----------|
+| **Summer Kickoff** | June 1–5 | $149 | $149 | [AM →](/register/?camp=summer-kickoff-2026) · [PM →](/register/?camp=summer-kickoff-2026-pm) |
+| **Session 1** | June 8–12 | $149 | $149 | [AM →](/register/?camp=summer-s1-jun08) · [PM →](/register/?camp=summer-s1-jun08-pm) |
+| **Summer Prep Week** | June 15–19 | $149 | $149 | [AM →](/register/?camp=summer-prep-2026) · [PM →](/register/?camp=summer-prep-2026-pm) |
+| **Session 2** | June 22–26 | $149 | $149 | [AM →](/register/?camp=summer-s2-jun22) · [PM →](/register/?camp=summer-s2-jun22-pm) |
+| **Little Hoopers Mini** *(K–2, Tue–Thu half-day)* | Jun 30 – Jul 2 | $79 | — | [Register →](/register/?camp=little-hoopers-jun30) |
+| **Session 3** | July 6–10 | $149 | $149 | [AM →](/register/?camp=summer-s3-jul06) · [PM →](/register/?camp=summer-s3-jul06-pm) |
+| **Session 4** ⭐ | July 13–17 | $149 | $149 | [AM →](/register/?camp=summer-s4-jul13) · [PM →](/register/?camp=summer-s4-jul13-pm) |
+| **Session 5** | July 20–24 | $149 | $149 | [AM →](/register/?camp=summer-s5-jul20) · [PM →](/register/?camp=summer-s5-jul20-pm) |
+| **Session 6** | July 27–31 | $149 | $149 | [AM →](/register/?camp=summer-s6-jul27) · [PM →](/register/?camp=summer-s6-jul27-pm) |
+
+Morning drop-off 9:15 AM, pickup 1:00 PM. Afternoon drop-off 1:45 PM, pickup 5:30 PM. Bring your own lunch/snack. Register for both sessions = $298/week full day of basketball.
 
 ## Daily Schedule
 

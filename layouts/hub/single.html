@@ -16,6 +16,12 @@
 <section class="bg-navy-deep py-20">
   <div class="max-w-5xl mx-auto px-4">
 
+    {{ if .Content }}
+    <div class="max-w-3xl mx-auto mb-14 prose prose-invert prose-lg prose-headings:font-display prose-headings:text-white prose-p:text-white/75 prose-p:leading-relaxed prose-strong:text-gold prose-a:text-gold text-center">
+      {{ .Content }}
+    </div>
+    {{ end }}
+
     <div class="text-center mb-14">
       <h2 class="font-display text-4xl md:text-5xl text-white leading-none">{{ .Params.section_heading }}</h2>
     </div>

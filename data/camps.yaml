@@ -1,99 +1,198 @@
 # Camp catalog — single source of truth for camp registration.
 # Drives the register form, camp pages, /camps/ hub, and schedule.
 #
+# Summer 2026 structure: every week runs TWO camps (morning + afternoon).
+# Morning = K–5 focus, Afternoon = grades 6–12 focus. Both $149/week.
+# Families can register for one or both (both = $298).
+# Little Hoopers Mini is the only K–2 half-day camp (no afternoon).
+#
 # Flat pricing — no tiered early-bird/regular/late. One price per camp.
 #
 # Field reference:
 #   id              — URL slug (used in /register/?camp=<id>)
 #   name            — display name on cards + form
 #   summary         — one-line description under the name
+#   session         — "AM" or "PM" (for weeks with two camps)
 #   start_date      — ISO date (YYYY-MM-DD)
 #   end_date        — ISO date
 #   dates_display   — human-readable for cards ("June 1–5, 2026")
 #   days            — "Mon–Fri", "Mon–Thu", "Tue–Thu"
-#   times           — "9:30 AM – 2:00 PM"
-#   hours           — "4.5 hours/day"
-#   grades          — "3–8"
+#   times           — "9:30 AM – 1:00 PM"
+#   hours           — "3.5 hours/day"
+#   grades          — "K–5"
 #   age_min         — int (for validation)
 #   age_max         — int
-#   price           — flat price (no early-bird tiers)
+#   price           — flat price
 #   min_enrollment  — minimum kids for the week to run
 #   detail_url      — /camps/<slug>/ for "View Details" button
 #   active          — true/false (hide from register flow if false)
+#   locked          — true if real enrollments exist (do not change dates/price)
 
 camps:
+  # ========================================================================
+  # WEEK 1 — June 1–5, 2026 — Summer Kickoff
+  # ========================================================================
   - id: summer-kickoff-2026
-    name: "Summer Kickoff Camp"
-    summary: "First week of summer — skill assessment + coached scrimmages"
+    name: "Summer Kickoff — Morning"
+    summary: "First week of summer. Skill assessment + coached scrimmages. K–5 focus."
+    session: "AM"
     start_date: "2026-06-01"
     end_date: "2026-06-05"
     dates_display: "June 1 – 5, 2026"
     days: "Mon–Fri"
-    times: "9:30 AM – 2:00 PM"
-    hours: "4.5 hours/day"
-    grades: "3–8"
-    age_min: 8
-    age_max: 14
-    price: 149
-    min_enrollment: 10
-    detail_url: "/camps/summer-day-camp/"
-    active: true
-
-  - id: summer-s1-jun08
-    name: "Summer Camp — Session 1"
-    summary: "Grades 3–5 — fundamentals focus"
-    start_date: "2026-06-08"
-    end_date: "2026-06-12"
-    dates_display: "June 8 – 12, 2026"
-    days: "Mon–Fri"
-    times: "9:30 AM – 2:00 PM"
-    hours: "4.5 hours/day"
-    grades: "3–5"
-    age_min: 8
+    times: "9:30 AM – 1:00 PM"
+    hours: "3.5 hours/day"
+    grades: "K–5"
+    age_min: 5
     age_max: 11
     price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
 
-  - id: girls-camp-2026
-    name: "Girls Basketball Camp"
-    summary: "Girls only — grades 6–10"
-    start_date: "2026-06-15"
-    end_date: "2026-06-19"
-    dates_display: "June 15 – 19, 2026"
+  - id: summer-kickoff-2026-pm
+    name: "Summer Kickoff — Afternoon"
+    summary: "First week of summer. Position work + coached scrimmages. Grades 6–12."
+    session: "PM"
+    start_date: "2026-06-01"
+    end_date: "2026-06-05"
+    dates_display: "June 1 – 5, 2026"
     days: "Mon–Fri"
-    times: "9:30 AM – 2:00 PM"
-    hours: "4.5 hours/day"
-    grades: "6–10 (girls)"
+    times: "2:00 PM – 5:30 PM"
+    hours: "3.5 hours/day"
+    grades: "6–12"
     age_min: 11
-    age_max: 16
+    age_max: 18
     price: 149
     min_enrollment: 8
-    detail_url: "/camps/girls-basketball-camp/"
-    gender: "girls"
+    detail_url: "/camps/summer-day-camp/"
     active: true
 
-  - id: summer-s2-jun22
-    name: "Summer Camp — Session 2"
-    summary: "Grades 6–8 — position work + scrimmages"
-    start_date: "2026-06-22"
-    end_date: "2026-06-26"
-    dates_display: "June 22 – 26, 2026"
+  # ========================================================================
+  # WEEK 2 — June 8–12, 2026 — Session 1
+  # ========================================================================
+  - id: summer-s1-jun08
+    name: "Session 1 — Morning"
+    summary: "Fundamentals focus for younger athletes. Ball handling, shooting form, footwork."
+    session: "AM"
+    start_date: "2026-06-08"
+    end_date: "2026-06-12"
+    dates_display: "June 8 – 12, 2026"
     days: "Mon–Fri"
-    times: "9:30 AM – 2:00 PM"
-    hours: "4.5 hours/day"
-    grades: "6–8"
-    age_min: 11
-    age_max: 14
+    times: "9:30 AM – 1:00 PM"
+    hours: "3.5 hours/day"
+    grades: "K–5"
+    age_min: 5
+    age_max: 11
     price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
 
+  - id: summer-s1-jun08-pm
+    name: "Session 1 — Afternoon"
+    summary: "Grades 6–12 — position work, game IQ, full-court concepts."
+    session: "PM"
+    start_date: "2026-06-08"
+    end_date: "2026-06-12"
+    dates_display: "June 8 – 12, 2026"
+    days: "Mon–Fri"
+    times: "2:00 PM – 5:30 PM"
+    hours: "3.5 hours/day"
+    grades: "6–12"
+    age_min: 11
+    age_max: 18
+    price: 149
+    min_enrollment: 8
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  # ========================================================================
+  # WEEK 3 — June 15–19, 2026 — Summer Prep Week (was Girls Camp, renamed)
+  # ========================================================================
+  - id: summer-prep-2026
+    name: "Summer Prep Week — Morning"
+    summary: "Pre-season prep for K–5 athletes. Skill assessment + coached drills."
+    session: "AM"
+    start_date: "2026-06-15"
+    end_date: "2026-06-19"
+    dates_display: "June 15 – 19, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 1:00 PM"
+    hours: "3.5 hours/day"
+    grades: "K–5"
+    age_min: 5
+    age_max: 11
+    price: 149
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: summer-prep-2026-pm
+    name: "Summer Prep Week — Afternoon"
+    summary: "Grades 6–12 — advanced skills, competitive scrimmages, film review."
+    session: "PM"
+    start_date: "2026-06-15"
+    end_date: "2026-06-19"
+    dates_display: "June 15 – 19, 2026"
+    days: "Mon–Fri"
+    times: "2:00 PM – 5:30 PM"
+    hours: "3.5 hours/day"
+    grades: "6–12"
+    age_min: 11
+    age_max: 18
+    price: 149
+    min_enrollment: 8
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  # ========================================================================
+  # WEEK 4 — June 22–26, 2026 — Session 2
+  # ========================================================================
+  - id: summer-s2-jun22
+    name: "Session 2 — Morning"
+    summary: "K–5 — ball handling stations, shooting clinic, skills challenge."
+    session: "AM"
+    start_date: "2026-06-22"
+    end_date: "2026-06-26"
+    dates_display: "June 22 – 26, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 1:00 PM"
+    hours: "3.5 hours/day"
+    grades: "K–5"
+    age_min: 5
+    age_max: 11
+    price: 149
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: summer-s2-jun22-pm
+    name: "Session 2 — Afternoon"
+    summary: "Grades 6–12 — position work and scrimmages."
+    session: "PM"
+    start_date: "2026-06-22"
+    end_date: "2026-06-26"
+    dates_display: "June 22 – 26, 2026"
+    days: "Mon–Fri"
+    times: "2:00 PM – 5:30 PM"
+    hours: "3.5 hours/day"
+    grades: "6–12"
+    age_min: 11
+    age_max: 18
+    price: 149
+    min_enrollment: 8
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  # ========================================================================
+  # WEEK 5 — June 30 – July 2, 2026 — Little Hoopers Mini (K–2 only)
+  # Closed July 3–5 for Independence Day weekend.
+  # ========================================================================
   - id: little-hoopers-jun30
     name: "Little Hoopers Mini-Camp"
-    summary: "K–2 intro camp — 3 days, half-day mornings"
+    summary: "K–2 intro camp — 3 days, half-day mornings. Basics of the game."
+    session: "AM"
     start_date: "2026-06-30"
     end_date: "2026-07-02"
     dates_display: "June 30 – July 2, 2026"
@@ -108,85 +207,37 @@ camps:
     detail_url: "/camps/summer-day-camp/"
     active: true
 
+  # ========================================================================
+  # WEEK 6 — July 6–10, 2026 — Session 3
+  # ========================================================================
   - id: summer-s3-jul06
-    name: "Summer Camp — Session 3"
-    summary: "Grades 3–8 — post-holiday return week"
+    name: "Session 3 — Morning"
+    summary: "K–5 — post-holiday return week. Fundamentals + scrimmages."
+    session: "AM"
     start_date: "2026-07-06"
     end_date: "2026-07-10"
     dates_display: "July 6 – 10, 2026"
     days: "Mon–Fri"
-    times: "9:30 AM – 2:00 PM"
-    hours: "4.5 hours/day"
-    grades: "3–8"
-    age_min: 8
-    age_max: 14
+    times: "9:30 AM – 1:00 PM"
+    hours: "3.5 hours/day"
+    grades: "K–5"
+    age_min: 5
+    age_max: 11
     price: 149
     min_enrollment: 10
     detail_url: "/camps/summer-day-camp/"
     active: true
 
-  # LOCKED DATES — first paid registration (Davi Heriquez, Auth.net txn 81577868576)
-  - id: summer-s4-jul13
-    name: "Summer Camp — Session 4"
-    summary: "Grades 6–10 — advanced skills"
-    start_date: "2026-07-13"
-    end_date: "2026-07-17"
-    dates_display: "July 13 – 17, 2026"
+  - id: summer-s3-jul06-pm
+    name: "Session 3 — Afternoon"
+    summary: "Grades 6–12 — competitive week back from the holiday."
+    session: "PM"
+    start_date: "2026-07-06"
+    end_date: "2026-07-10"
+    dates_display: "July 6 – 10, 2026"
     days: "Mon–Fri"
-    times: "9:30 AM – 2:00 PM"
-    hours: "4.5 hours/day"
-    grades: "6–10"
-    age_min: 11
-    age_max: 16
-    price: 149
-    min_enrollment: 10
-    detail_url: "/camps/summer-day-camp/"
-    active: true
-    locked: true  # Real enrollments exist — do not change dates or price
-
-  - id: summer-s5-jul20
-    name: "Summer Camp — Session 5"
-    summary: "Grades 3–8 — mid-summer week"
-    start_date: "2026-07-20"
-    end_date: "2026-07-24"
-    dates_display: "July 20 – 24, 2026"
-    days: "Mon–Fri"
-    times: "9:30 AM – 2:00 PM"
-    hours: "4.5 hours/day"
-    grades: "3–8"
-    age_min: 8
-    age_max: 14
-    price: 149
-    min_enrollment: 10
-    detail_url: "/camps/summer-day-camp/"
-    active: true
-
-  - id: summer-s6-jul27
-    name: "Summer Camp — Session 6"
-    summary: "Grades 3–8 — skills challenge week"
-    start_date: "2026-07-27"
-    end_date: "2026-07-31"
-    dates_display: "July 27 – 31, 2026"
-    days: "Mon–Fri"
-    times: "9:30 AM – 2:00 PM"
-    hours: "4.5 hours/day"
-    grades: "3–8"
-    age_min: 8
-    age_max: 14
-    price: 149
-    min_enrollment: 10
-    detail_url: "/camps/summer-day-camp/"
-    active: true
-
-  - id: back-to-school-2026
-    name: "Back to School Week"
-    summary: "Grades 6–12 — pre-season prep + scrimmages"
-    start_date: "2026-08-03"
-    end_date: "2026-08-07"
-    dates_display: "August 3 – 7, 2026"
-    days: "Mon–Fri"
-    times: "9:30 AM – 2:00 PM"
-    hours: "4.5 hours/day"
+    times: "2:00 PM – 5:30 PM"
+    hours: "3.5 hours/day"
     grades: "6–12"
     age_min: 11
     age_max: 18
@@ -195,9 +246,131 @@ camps:
     detail_url: "/camps/summer-day-camp/"
     active: true
 
+  # ========================================================================
+  # WEEK 7 — July 13–17, 2026 — Session 4 ⭐ LOCKED
+  # First paid registration (Davi Heriquez, Auth.net txn 81577868576)
+  # ========================================================================
+  - id: summer-s4-jul13
+    name: "Session 4 — Morning"
+    summary: "K–5 — mid-summer skills week. Advanced drills for returning campers."
+    session: "AM"
+    start_date: "2026-07-13"
+    end_date: "2026-07-17"
+    dates_display: "July 13 – 17, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 1:00 PM"
+    hours: "3.5 hours/day"
+    grades: "K–5"
+    age_min: 5
+    age_max: 11
+    price: 149
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+    locked: true  # Real enrollments exist — do not change dates or price
+
+  - id: summer-s4-jul13-pm
+    name: "Session 4 — Afternoon"
+    summary: "Grades 6–12 — mid-summer advanced week. Davi's signature week."
+    session: "PM"
+    start_date: "2026-07-13"
+    end_date: "2026-07-17"
+    dates_display: "July 13 – 17, 2026"
+    days: "Mon–Fri"
+    times: "2:00 PM – 5:30 PM"
+    hours: "3.5 hours/day"
+    grades: "6–12"
+    age_min: 11
+    age_max: 18
+    price: 149
+    min_enrollment: 8
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  # ========================================================================
+  # WEEK 8 — July 20–24, 2026 — Session 5
+  # ========================================================================
+  - id: summer-s5-jul20
+    name: "Session 5 — Morning"
+    summary: "K–5 — shooting clinic + skills challenge week."
+    session: "AM"
+    start_date: "2026-07-20"
+    end_date: "2026-07-24"
+    dates_display: "July 20 – 24, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 1:00 PM"
+    hours: "3.5 hours/day"
+    grades: "K–5"
+    age_min: 5
+    age_max: 11
+    price: 149
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: summer-s5-jul20-pm
+    name: "Session 5 — Afternoon"
+    summary: "Grades 6–12 — skills challenge + 5v5 scrimmages."
+    session: "PM"
+    start_date: "2026-07-20"
+    end_date: "2026-07-24"
+    dates_display: "July 20 – 24, 2026"
+    days: "Mon–Fri"
+    times: "2:00 PM – 5:30 PM"
+    hours: "3.5 hours/day"
+    grades: "6–12"
+    age_min: 11
+    age_max: 18
+    price: 149
+    min_enrollment: 8
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  # ========================================================================
+  # WEEK 9 — July 27–31, 2026 — Session 6 (final summer week)
+  # ========================================================================
+  - id: summer-s6-jul27
+    name: "Session 6 — Morning"
+    summary: "K–5 — summer finale. Showcase scrimmages + Friday awards."
+    session: "AM"
+    start_date: "2026-07-27"
+    end_date: "2026-07-31"
+    dates_display: "July 27 – 31, 2026"
+    days: "Mon–Fri"
+    times: "9:30 AM – 1:00 PM"
+    hours: "3.5 hours/day"
+    grades: "K–5"
+    age_min: 5
+    age_max: 11
+    price: 149
+    min_enrollment: 10
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  - id: summer-s6-jul27-pm
+    name: "Session 6 — Afternoon"
+    summary: "Grades 6–12 — summer finale. Competitive week, Friday showcase."
+    session: "PM"
+    start_date: "2026-07-27"
+    end_date: "2026-07-31"
+    dates_display: "July 27 – 31, 2026"
+    days: "Mon–Fri"
+    times: "2:00 PM – 5:30 PM"
+    hours: "3.5 hours/day"
+    grades: "6–12"
+    age_min: 11
+    age_max: 18
+    price: 149
+    min_enrollment: 8
+    detail_url: "/camps/summer-day-camp/"
+    active: true
+
+  # ========================================================================
+  # OFF-SEASON CAMPS (unchanged — kept for year-round catalog)
+  # ========================================================================
   - id: holiday-camp-2026
     name: "Holiday Basketball Camp"
-    summary: "Grades 4–8 — winter break half-days"
+    summary: "Grades 4–8 — winter break half-days."
     start_date: "2026-12-28"
     end_date: "2026-12-30"
     dates_display: "December 28 – 30, 2026"
@@ -214,7 +387,7 @@ camps:
 
   - id: spring-break-camp-2027
     name: "Spring Break Basketball Camp"
-    summary: "Grades 3–12 — Mon–Thu morning & afternoon sessions"
+    summary: "Grades 3–12 — Mon–Thu morning & afternoon sessions."
     start_date: "2027-03-15"
     end_date: "2027-03-18"
     dates_display: "March 15 – 18, 2027"

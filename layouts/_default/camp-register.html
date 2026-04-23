@@ -199,6 +199,19 @@
             <p class="text-xs text-gray-500 mt-1" id="pay-tier"></p>
           </div>
 
+          <!-- Discount checkboxes (server validates, stackable $20 each) -->
+          <div class="border border-gray-200 rounded-xl p-4 mb-6 space-y-3 bg-gray-50">
+            <p class="text-xs font-semibold text-navy uppercase tracking-wide">Discounts ($20 off each, stack)</p>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" id="disc-sibling" name="siblingDiscount" class="mt-0.5 w-4 h-4 accent-gold" />
+              <span class="text-sm text-gray-700"><strong class="text-navy">Sibling discount</strong> — additional child from the same family</span>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" id="disc-military" name="militaryDiscount" class="mt-0.5 w-4 h-4 accent-gold" />
+              <span class="text-sm text-gray-700"><strong class="text-navy">Military / DoD family</strong> — Eglin, Hurlburt, Duke Field, any branch active duty/reserve</span>
+            </label>
+          </div>
+
           <div class="space-y-4">
             <div>
               <label for="cc-name" class="block text-sm font-semibold text-navy mb-1 uppercase tracking-wide">Name on Card <span class="text-red-500">*</span></label>
@@ -285,10 +298,10 @@
   let step = 1;
   const TOTAL_STEPS = 3;
 
-  // Camp catalog from Hugo data — built at template render time
+  // Camp catalog from Hugo data — filter to active BEFORE ranging so $i is contiguous
   const CAMPS = {
-    {{ range $i, $c := (index site.Data.camps "camps") }}
-    {{ if $c.active }}
+    {{ $active := where (index site.Data.camps "camps") "active" true }}
+    {{ range $i, $c := $active }}
     {{ if $i }},{{ end }}
     "{{ $c.id }}": {
       name: {{ $c.name | jsonify }},
@@ -300,9 +313,8 @@
       ageMin: {{ $c.age_min }},
       ageMax: {{ $c.age_max }},
       price: {{ $c.price }},
-      {{ with $c.gender }}gender: {{ . | jsonify }},{{ end }}
+      {{ with $c.session }}session: {{ . | jsonify }},{{ end }}
     }
-    {{ end }}
     {{ end }}
   };
 
@@ -459,10 +471,20 @@
     const c = CAMPS[campId];
     const tier = getCurrentTier(campId);
     const params = new URLSearchParams(window.location.search);
-    const promoCode = params.get("promo");
-    // Only SIBLING20 is a valid promo now (multi-week ADD20 was removed)
-    const promoAmt = (promoCode === "SIBLING20") ? 20 : 0;
-    const finalPrice = tier.price - promoAmt;
+
+    // Promo from URL (sibling upsell flow) or user-checked boxes
+    const urlPromo = params.get("promo");
+    const urlSibling = urlPromo === "SIBLING20";
+    const sibCheckbox = document.getElementById("disc-sibling");
+    const milCheckbox = document.getElementById("disc-military");
+    // Auto-check sibling if URL promo
+    if (urlSibling && sibCheckbox && !sibCheckbox.checked) sibCheckbox.checked = true;
+
+    const sibOn = sibCheckbox && sibCheckbox.checked;
+    const milOn = milCheckbox && milCheckbox.checked;
+    const promoAmt = (sibOn ? 20 : 0) + (milOn ? 20 : 0);
+    const finalPrice = Math.max(tier.price - promoAmt, 0);
+
     const summary = document.getElementById("pay-summary");
     summary.innerHTML = "";
     const line = function(label, value) {
@@ -471,13 +493,21 @@
       return p;
     };
     summary.appendChild(line(c.name, "$" + tier.price));
-    if (promoAmt) {
-      summary.appendChild(line("Sibling discount", "-$" + promoAmt));
-    }
+    if (sibOn) summary.appendChild(line("Sibling discount", "-$20"));
+    if (milOn) summary.appendChild(line("Military discount", "-$20"));
     document.getElementById("pay-price").textContent = "$" + finalPrice;
-    const tierSuffix = promoAmt ? " · sibling discount applied" : "";
-    document.getElementById("pay-tier").textContent = tier.label + " pricing" + tierSuffix;
+    const suffix = [];
+    if (sibOn) suffix.push("sibling");
+    if (milOn) suffix.push("military");
+    document.getElementById("pay-tier").textContent = tier.label + " pricing" + (suffix.length ? " · " + suffix.join(" + ") + " discount applied" : "");
   }
+
+  // Re-run populatePayment whenever discount checkboxes change
+  document.addEventListener("change", function(e) {
+    if (e.target && (e.target.id === "disc-sibling" || e.target.id === "disc-military")) {
+      if (step === 3) populatePayment();
+    }
+  });
 
   btnNext.addEventListener("click", function() {
     if (!validateStep(step)) return;
@@ -569,11 +599,12 @@
     const campId = getSelectedCamp();
     const camp = CAMPS[campId];
     const tier = getCurrentTier(campId);
-    const params = new URLSearchParams(window.location.search);
-    const promoCode = params.get("promo");
-    // Only SIBLING20 is a valid promo now (multi-week ADD20 was removed)
-    const promoAmt = (promoCode === "SIBLING20") ? 20 : 0;
-    const finalPrice = tier.price - promoAmt;
+
+    // Client-side discount state (server re-validates and recomputes price)
+    const sibOn = document.getElementById("disc-sibling") && document.getElementById("disc-sibling").checked;
+    const milOn = document.getElementById("disc-military") && document.getElementById("disc-military").checked;
+    const promoAmt = (sibOn ? 20 : 0) + (milOn ? 20 : 0);
+    const finalPrice = Math.max(tier.price - promoAmt, 0);
 
     const payload = {
       camp: campId,
@@ -596,8 +627,10 @@
       photoConsent: form.photoConsent.checked,
       waiverAccepted: true,
       priceTier: tier.label,
-      priceAmount: finalPrice,
-      promoApplied: promoAmt > 0 ? promoCode : "",
+      priceAmount: finalPrice,              // server will overwrite with validated price
+      siblingDiscount: sibOn,                // server flag
+      militaryDiscount: milOn,               // server flag
+      promoApplied: "",                      // deprecated URL-promo path; discounts now via checkbox flags
       utm: getUTM(),
       payment: {
         dataDescriptor: paymentNonce.dataDescriptor,

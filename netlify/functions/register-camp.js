@@ -28,6 +28,47 @@ const GHL_BASE = "https://services.leadconnectorhq.com";
 const AIRTABLE_BASE = "https://api.airtable.com/v0";
 const nodemailer = require("nodemailer");
 
+/* --- SERVER-SIDE CAMP PRICE MAP (source of truth — must match data/camps.yaml) --- */
+const CAMP_PRICES = {
+  "summer-kickoff-2026": 149,
+  "summer-kickoff-2026-pm": 149,
+  "summer-s1-jun08": 149,
+  "summer-s1-jun08-pm": 149,
+  "summer-prep-2026": 149,
+  "summer-prep-2026-pm": 149,
+  "summer-s2-jun22": 149,
+  "summer-s2-jun22-pm": 149,
+  "little-hoopers-jun30": 79,
+  "summer-s3-jul06": 149,
+  "summer-s3-jul06-pm": 149,
+  "summer-s4-jul13": 149,
+  "summer-s4-jul13-pm": 149,
+  "summer-s5-jul20": 149,
+  "summer-s5-jul20-pm": 149,
+  "summer-s6-jul27": 149,
+  "summer-s6-jul27-pm": 149,
+  "holiday-camp-2026": 79,
+  "spring-break-camp-2027": 129,
+};
+
+/* --- VALID PROMOS (each flat $20 off, stackable) --- */
+const VALID_PROMOS = {
+  "SIBLING20": { discount: 20, label: "Sibling discount" },
+  "MILITARY20": { discount: 20, label: "Military/DoD family discount" },
+};
+
+function computeServerPrice(campId, promos) {
+  const base = CAMP_PRICES[campId];
+  if (base === undefined) return null;
+  let price = base;
+  const applied = [];
+  for (const code of (promos || [])) {
+    const p = VALID_PROMOS[code];
+    if (p) { price -= p.discount; applied.push(code); }
+  }
+  return { base, price: Math.max(price, 0), applied };
+}
+
 /* --- Rate limiting --- */
 const rateLimit = {};
 const RATE_WINDOW = 60_000;
@@ -139,7 +180,7 @@ exports.handler = async function (event) {
   /* ------------------------------------------------------------------ */
   const required = ["camp", "parentEmail", "parentFirst", "parentLast", "parentPhone", "parentZip",
     "childFirst", "childLast", "childDob", "childGrade", "shirtSize",
-    "emergencyName", "emergencyPhone", "priceAmount"];
+    "emergencyName", "emergencyPhone"];
   for (const f of required) {
     if (!b[f] || !String(b[f]).trim()) {
       return { statusCode: 400, headers: cors, body: json({ error: `Missing required field: ${f}` }) };
@@ -148,6 +189,24 @@ exports.handler = async function (event) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.parentEmail.trim())) {
     return { statusCode: 400, headers: cors, body: json({ error: "Invalid email" }) };
   }
+
+  /* --- SERVER-SIDE PRICE VALIDATION (ignore client's priceAmount) --- */
+  // Collect promo codes from any of these client fields (backward-compatible)
+  const clientPromos = [];
+  if (b.promoApplied) clientPromos.push(String(b.promoApplied).toUpperCase());
+  if (b.siblingDiscount) clientPromos.push("SIBLING20");
+  if (b.militaryDiscount) clientPromos.push("MILITARY20");
+
+  const priced = computeServerPrice(b.camp, clientPromos);
+  if (!priced) {
+    console.error(`[register-camp] Unknown camp ID: ${b.camp}`);
+    return { statusCode: 400, headers: cors, body: json({ error: `Unknown camp: ${b.camp}` }) };
+  }
+
+  // Overwrite client-supplied price with server-computed price
+  b.priceAmount = priced.price;
+  b.promoApplied = priced.applied.length ? priced.applied.join(",") : null;
+  console.log(`[register-camp] Server-validated price: camp=${b.camp} base=$${priced.base} final=$${priced.price} promos=${priced.applied.join(",") || "none"}`);
 
   const hasGhl = process.env.GHL_API_KEY && process.env.GHL_LOCATION_ID;
   const hasAirtable = process.env.AIRTABLE_PAT && process.env.AIRTABLE_BASE_ID;
@@ -417,7 +476,7 @@ exports.handler = async function (event) {
                 <td style="padding:0;vertical-align:top;width:28px;">
                   <div style="width:24px;height:24px;background-color:#0a1628;border-radius:50%;text-align:center;line-height:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12px;font-weight:700;color:#f5a623;">3</div>
                 </td>
-                <td style="padding:0 0 0 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#333333;">Pick up: <strong>2:00 PM</strong></td>
+                <td style="padding:0 0 0 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#333333;">Pick up: <strong>1:00 PM (AM camp) or 5:30 PM (PM camp)</strong></td>
               </tr>
             </table>
 

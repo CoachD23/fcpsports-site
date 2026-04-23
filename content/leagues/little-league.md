@@ -12,59 +12,60 @@ faq:
   - q: "What age is the Little Ballers league for?"
     a: "Little Ballers is designed for kindergarten through 2nd grade, typically ages 5-8. This is an introductory league built specifically for younger players who are new to organized basketball or still learning the fundamentals. If your child has never played in a league before, this is the right starting point."
   - q: "How much does the Little Ballers basketball league cost?"
-    a: "Registration is $79 and includes a game jersey -- no additional fees. We offer $20 off for military families (Eglin AFB, Hurlburt Field) and $20 off per additional sibling. Early bird pricing is also available when you register 4+ weeks before the season. Payment plans are available if needed."
+    a: "Registration is $79 and includes a uniform. $20 off for military families (Eglin AFB, Hurlburt Field, any branch) and $20 off per additional sibling. Discounts stack. Payment plans available if needed."
   - q: "What rules are used in the Little Ballers league?"
-    a: "We use modified rules designed for younger players: 8-foot baskets, smaller basketballs, no full-court pressing, and shorter game periods. Score is kept, but the focus is on learning the game, having fun, and building teamwork. Coaches are on the court to guide players during games. Every child gets meaningful playing time."
-  - q: "Is this league competitive or recreational?"
-    a: "It is both -- in the right way. Score is kept and there are standings and a playoff bracket, so kids learn what it feels like to compete. But the emphasis is on fun, fundamentals, and positive experiences. Our referees and coaches prioritize development over winning. No child sits on the bench for an entire half. This is your child's first real basketball experience, and we make sure it is a good one."
+    a: "We use modified rules designed for younger players: 8-foot baskets, smaller basketballs, no full-court pressing, and shorter game periods. Coaches are on the court to guide players during games. Every child gets meaningful playing time. This is a teaching environment first and a competition second."
+  - q: "Is this league the right level for my 5 or 6 year old?"
+    a: "Yes. Little Ballers is built for your child's first experience with organized basketball. No bench-warming, no pressure, no confusion. Every child gets the ball, hears their name, and leaves feeling like an athlete. We meet them exactly where they are."
   - q: "What happens after my child finishes Little Ballers?"
     a: "Little Ballers graduates move into the Junior Division (3rd-5th grade) in our fall or summer leagues. Many families also enroll their kids in our basketball camps and training programs between seasons. This league is designed to be the entry point into organized basketball at FCP Sports -- once your child falls in love with the game here, there is a clear path forward."
 ---
 
 ## Your Child's First Real Basketball Experience
 
-There is a difference between handing a kid a basketball and giving them a real league experience. Little Ballers at FCP Sports is built for kindergarten through 2nd graders who are ready for their first taste of organized basketball -- real teams, real games, real refs, and real fun.
+You'll know the moment when it happens. They dribble around a defender for the first time and look up to find you. Their face says it all — *I did that*.
 
-Little Ballers runs in our dedicated basketball facility in Fort Walton Beach with age-appropriate rules, trained referees, and coaches who understand how to work with young players. We keep score. We have standings. But the emphasis is on fundamentals, teamwork, and making sure every child walks off the court wanting to come back next week.
+Little Ballers at FCP Sports is built entirely for that moment. For the 5, 6, and 7-year-old who isn't ready for pressure, but is absolutely ready to fall in love with the game. Small groups. Patient coaching. A gym where every kid gets the ball, hears their name called, and leaves feeling like an athlete.
+
+We don't sort them by skill and move on. We meet every child exactly where they are — and we make basketball feel like theirs.
 
 Families from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview bring their kids to Little Ballers. Military families stationed at Eglin AFB and Hurlburt Field receive a discount on registration.
 
 ### Season Details
 
-- **Season:** January -- March 2027
+- **Season:** January – March 2027
 - **Duration:** 6 regular-season games + playoff bracket
 - **Game days:** Saturday mornings
 - **Location:** FCP Sports, Fort Walton Beach, FL
-- **Price:** $79 (game jersey included)
-- **Ages:** K-2nd grade (5-8 years old)
+- **Price:** $79
+- **Ages:** K–2nd grade (5–8 years old)
 
-## What Makes Little Ballers Different
+## What Your 5-Year-Old Actually Needs From Basketball
 
-**Modified rules that make sense for young players.** Eight-foot baskets so kids can actually make shots. Smaller basketballs that fit their hands. No full-court pressing. Shorter game periods. These are not arbitrary changes -- they are intentional design decisions that make the game fun and developmentally appropriate.
+**A game built for how they actually play.** Eight-foot baskets so they can actually make shots. Smaller basketballs that fit their hands. Shorter periods. Rules that reward learning, not just winning. This is how kids fall in love with the sport instead of dreading it.
 
-**Coaches on the court.** During Little Ballers games, coaches are allowed on the floor to guide players through positioning, passing, and basic plays. This is a teaching league first.
+**Coaches who teach during the game.** Our coaches are on the floor during every game — guiding positioning, passing, decision-making. This isn't a competition dressed up as a clinic. It's a teaching environment that happens to include a scoreboard.
 
-**Every child plays.** There is no bench-warming in Little Ballers. Playing time is distributed so every child gets meaningful minutes in every game.
+**Every child plays. Every game.** No bench-warming. Playing time is distributed so every child gets meaningful minutes in every game — not because we have to, but because this is how kids grow.
 
-**Real game atmosphere.** Scoreboard, PA system, and referees. Your child will feel like they are playing in a real game -- because they are. The difference is that the environment is built for their age and ability level.
+**They leave feeling like an athlete.** Your child plays in a real environment, wearing a real uniform, on a real court. When they get in the car after, they'll talk about it for days.
 
-**Post-game coaching.** After each game, players get a short coaching session that reinforces what they practiced that day. This helps connect game experience to skill development.
+**Post-game coaching.** After each game, players get a short coaching session that connects what just happened on the court to what they're working on. The lessons stick.
 
 ## What Registration Includes
 
-- 6 regular-season games + playoff eligibility
-- Game jersey (included -- no extra cost)
-- Trained, paid referees
+- 6 regular-season games + playoff bracket
+- Uniform
 - On-court coaching during games
 - Post-game coaching sessions
-- Real scoreboard and game atmosphere
-- Standings and playoff bracket
+- A real game experience built for 5–8 year olds
+- A coaching program advised by NBA veteran Kenny Anderson
 
 ## Pricing and Discounts
 
 **Registration: $79** (jersey included, no hidden fees)
 
-- **Early bird:** $20 off when you register 4+ weeks before the season
+- **Sibling:** $20 off per additional child in the same family
 - **Military:** $20 off for active-duty and veteran families
 - **Sibling:** $20 off per additional child
 

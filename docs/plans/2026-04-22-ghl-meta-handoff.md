@@ -69,8 +69,8 @@ What to bring:
 ✓ Water bottle
 ✓ Packed lunch
 
-Drop-off: 9:15 AM at 33 Jet Drive NW
-Pickup: 2:00 PM same spot
+Drop-off: 9:15 AM at 33 Jet Drive NW (Morning Camp) or 1:45 PM (Afternoon Camp)
+Pickup: 1:00 PM (Morning) or 5:30 PM (Afternoon)
 
 Questions? Reply to this email or call 850.961.2323.
 
@@ -80,7 +80,7 @@ FCP Sports
 
 **SMS template:**
 ```
-Hi {{contact.first_name}}! Reminder: {{contact.camper_name}}'s FCP Sports camp starts Monday. Drop-off 9:15 AM, pickup 2 PM. Bring court shoes + lunch + water. Questions? Reply to this text. -FCP Sports
+Hi {{contact.first_name}}! Reminder: {{contact.camper_name}}'s FCP Sports camp starts Monday. AM Camp: drop 9:15, pickup 1:00. PM Camp: drop 1:45, pickup 5:30. Bring court shoes + water + lunch/snack. Questions? Reply. -FCP Sports
 ```
 
 ### Workflow B — Abandoned cart (partial lead follow-up)

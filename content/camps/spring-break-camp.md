@@ -26,7 +26,17 @@ event_dates:
     price: "129"
 ---
 
-## Two Sessions, All Grades
+## Four Days of Real Training Over Spring Break
+
+Most kids spend spring break on a couch. Yours can spend it getting better. FCP Spring Break Camp is a structured four-day progression inside our 14,000 sq ft Spartan Training Center — from Monday's skill assessment to Thursday's mini-tournament. Your athlete walks out sharper than they walked in. $129 for four days of coached basketball is the best investment you'll make in their game all spring.
+
+### Why It Works
+
+- **A four-day build, not four days of random drills.** Each day layers on the last — assessment → footwork → shooting → live competition.
+- **Two age-separated sessions.** Your 4th grader isn't sharing the floor with a high schooler. Your 10th grader isn't doing beginner drills.
+- **Advised by NBA veteran Kenny Anderson.** The standards and curriculum are shaped by 14 years in the league.
+
+## Morning and Afternoon Sessions by Age
 
 | Session | Grades | Time |
 |---------|--------|------|
@@ -35,7 +45,7 @@ event_dates:
 
 **$129 for all four days.** Same price, both sessions.
 
-Younger kids get fundamentals-focused coaching. Older kids get advanced skills and competitive scrimmages.
+Younger athletes get fundamentals-focused coaching. Older athletes get advanced skills and competitive scrimmages.
 
 ## The Four Days
 

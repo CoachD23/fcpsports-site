@@ -73,6 +73,6 @@ FCP Sports is also **15 minutes from Destin** via US-98, making it the most conv
 
 ## Register for FCP Sports Camp
 
-Ready to book? [Summer Day Camp details and registration](/camps/summer-day-camp/) | [Girls Basketball Camp](/camps/girls-basketball-camp/)
+Ready to book? [Summer Day Camp details and registration](/camps/summer-day-camp/) — choose Morning (K–5), Afternoon (Grades 6–12), or both.
 
 Not sure which camp format fits your child? [Contact us](/contact/) and we'll help you find the right fit.

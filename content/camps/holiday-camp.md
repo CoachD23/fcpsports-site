@@ -26,6 +26,16 @@ event_dates:
     price: "79"
 ---
 
+## Three Days Between Christmas and New Year's. Best Decision of the Break.
+
+While most kids are winding down, yours can be getting better. FCP Holiday Camp runs December 28–30 inside our 14,000 sq ft Spartan Training Center for grades 4–8. Three days, three hours a day, $79. Every session is coached and structured. On Day 3, your athlete tests everything they learned in live scrimmages and a skills competition.
+
+### Why Holiday Camp Is Worth the Three Days
+
+- **A clear curriculum, not filler.** Day 1: ball handling. Day 2: shooting and finishing. Day 3: live competition.
+- **Indoors, climate-controlled.** No cancellations, no weather. Three guaranteed days of full-pace basketball.
+- **Advised by NBA veteran Kenny Anderson.** The standards are real, even over the holidays.
+
 **Dates:** December 28–30 (Mon–Wed)
 **Time:** 9:00 AM – 12:00 PM
 **Grades:** 4–8

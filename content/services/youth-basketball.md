@@ -22,8 +22,6 @@ faq:
     a: "No. Every FCP program assesses skill on day one and groups by ability — beginners aren't lost in the shuffle."
   - q: "Which program should I pick?"
     a: "Want games every Saturday? The league. Want a week of intensive training? A camp. Want weekly practice + skill work? Training. Want 1-on-1 focused work? Private lessons."
-  - q: "Is there a girls-only option?"
-    a: "Yes. Our Girls Basketball Camp (June 15–19, grades 6–10) is girls-only. The Saturday League and other programs are co-ed."
   - q: "Do you offer discounts for multiple kids?"
     a: "Yes — $20 off per additional child in the same family across all programs. Military families (Eglin + Hurlburt) also get $20 off."
 ---
@@ -41,16 +39,16 @@ Seven weeks of real games, no tryouts. Four age divisions from Juniors (5–7) t
 
 ### Basketball Camps
 
-Week-long intensive camps June through August, plus Holiday and Spring Break. Mon–Fri 9:30 AM – 2:00 PM for ages 8+, or the Little Hoopers Mini-Camp for ages 5–7.
+Week-long intensive camps June through July, plus Holiday and Spring Break. Morning Camp (K–5, 9:30 AM – 1:00 PM) and Afternoon Camp (Grades 6–12, 2:00 PM – 5:30 PM) — register for one or both. Little Hoopers Mini-Camp is the K–2 option.
 
 **$79–$149 per week.**  
 → [See all camps](/camps/)
 
 ### Skills Training
 
-Weekly group training — Beginner, Intermediate, or Advanced track. Free baseline assessment, custom plan, progress reports every 30 days.
+Unlimited group training Mon–Thu afternoons. K–5 block 3:00–4:30 PM, Grades 6–12 block 4:30–6:00 PM. Free baseline assessment, progress reports every 30 days.
 
-**From $89/month** (4 sessions).  
+**$149/month unlimited** · $25 drop-in.  
 → [See training details](/services/basketball-training/)
 
 ### Private Lessons

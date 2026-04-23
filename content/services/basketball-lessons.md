@@ -1,8 +1,8 @@
 ---
 hero_image: /images/fcp-hero-coaching.jpg
 title: "Private Basketball Lessons Fort Walton Beach FL | FCP Sports"
-description: "Private basketball lessons in Fort Walton Beach. 1-on-1 coaching from $50/session. Packages available. All ages and skill levels."
-h1: "Private Basketball Lessons"
+description: "One coach. One athlete. One goal: get there faster. Private lessons from $50/session."
+h1: "One Coach. One Athlete. One Goal."
 keyword: "basketball lessons fort walton beach"
 age_range: "Ages 6–Adult"
 price: "From $50/session"
@@ -26,6 +26,12 @@ faq:
   - q: "Can two kids share a lesson?"
     a: "Yes — semi-private lessons for 2 players run 75–90 minutes. Lower per-player cost, still way more attention than group training. Great for siblings or friends."
 ---
+
+Private lessons at the Spartan Training Center are the fastest path to a specific result — making the school team, fixing a shooting habit, developing an off hand, getting ready for tryouts. Your athlete works 1-on-1 with a coach who gives them 100% of the attention for 60 minutes, inside a 14,000 sq ft professional facility built for exactly this kind of focused work.
+
+### An NBA Advisor Shapes Our Standards
+
+Our program is advised by Kenny Anderson — 2nd overall pick, 14-year NBA veteran. The way we coach, what we look for, and the standards we hold every athlete to are all shaped by someone who played this game at the highest level. That's a perspective most athletes in this region will never get access to anywhere else.
 
 ## 60-Minute Lesson Breakdown
 

@@ -21,7 +21,7 @@ faq:
   - q: "Which league should I sign my child up for?"
     a: "Most players start with the Saturday League — it's year-round, has four age divisions, and every kid gets equal playing time. If you want Tuesday/Thursday evening games, check the Summer League. K–2nd only? Little Ballers."
   - q: "How much does it cost?"
-    a: "Saturday League: $149 early bird per 7-week session. Seasonal leagues vary — see each league page for current pricing."
+    a: "Saturday League is $149 per session, flat. Sunday MS League (i9-style) is $179 for 8 weeks. Winter MS League is $199 per season. Men's League (waitlist) is $120/player or $600/team."
   - q: "Are there tryouts?"
     a: "No tryouts for the Saturday League. Coaches build balanced rosters via an evaluation night, and every player gets equal playing time."
 ---
@@ -66,10 +66,8 @@ Introduction league for our youngest players. January–March, Saturday mornings
 
 ## Discounts (They Stack)
 
-- **Multi-session:** $25 off for 2 sessions, $50 off for all 3 (Saturday League)
-- **Multi-child:** $15 off each additional child
-- **Military:** $20 off (Eglin & Hurlburt families)
-- **Referral:** $15 off per family you refer
+- **Military/DoD:** $20 off (Eglin, Hurlburt, any branch)
+- **Sibling:** $20 off per additional child
 
 ## Register
 

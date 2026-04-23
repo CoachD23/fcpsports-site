@@ -12,54 +12,54 @@ faq:
   - q: "When does the fall basketball league start in Fort Walton Beach?"
     a: "The FCP Sports fall basketball league runs September through November 2026 -- an 8-week regular season plus a single-elimination playoff. Games are played on Saturday mornings, which avoids conflicts with school sports seasons, Friday night football, and weekday schedules. Registration opens approximately 6 weeks before the season starts."
   - q: "How much does the fall basketball league cost?"
-    a: "Pricing depends on division: Mini (K-2nd) is $79, Junior (3rd-5th) is $99, Intermediate (6th-8th) is $129, and Senior (9th-12th) is $149. Every registration includes a game jersey -- no hidden fees. We also offer $20 off for early bird registration (4+ weeks before the season), $20 off for military families, and $20 off per additional sibling. Payment plans are available."
+    a: "Pricing depends on division: Mini (K-2nd) is $79, Junior (3rd-5th) is $99, Intermediate (6th-8th) is $129, and Senior (9th-12th) is $149. Uniform is included. $20 off for military families (Eglin/Hurlburt), $20 off per additional sibling. Discounts stack."
   - q: "How are teams formed in the fall league?"
     a: "Teams are drafted for competitive balance. Players are evaluated and distributed across teams so that games stay competitive and meaningful throughout the season. You can request to play with a friend or teammate, but all requests are subject to draft balance. This prevents travel ball parents from stacking a single team and keeps the league fair for everyone."
   - q: "Can my child play fall basketball league and school sports at the same time?"
     a: "Yes. We schedule fall league games on Saturday mornings specifically to avoid conflicts with school sports. Most middle and high school sports practice during the week and compete on weekday evenings or Friday nights. Saturday mornings give your child a way to get additional competitive basketball reps without interfering with their school team commitments."
 ---
 
-## Fall League: Saturday Morning Basketball Done Right
+## The League Your Kid Will Ask to Come Back To
 
-When school is back in session, your child's basketball development should not stop. The FCP Sports fall basketball league gives players from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview a structured, competitive season with real refs, real stats, and real coaching -- all on Saturday mornings so it fits around school sports and family schedules.
+There's a moment, sometime around week three, when something clicks. The plays start making sense. Your kid is talking strategy at dinner. They know their teammates by nickname. They want to win — not because you told them to, but because they've built something worth protecting.
 
-It is an 8-week season with standings, playoffs, and trophies. Every game is played in our dedicated basketball facility with a scoreboard, PA system, and trained referees. Military families from Eglin AFB and Hurlburt Field are welcome and receive a discount.
+That's what Fall League at FCP Sports creates. Not just games on a Saturday, but a season — with rivalries, playoff stakes, and coaching that makes kids grow whether they notice it or not. All on Saturday mornings so it fits around school sports and family life.
+
+Our program is advised by NBA veteran Kenny Anderson, and that standard shows up in how every division is coached. Players come from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview. Military families stationed at Eglin AFB and Hurlburt Field receive a discount.
 
 ### Season Details
 
-- **Season:** September -- November 2026
+- **Season:** September – November 2026
 - **Duration:** 8 regular-season games + single-elimination playoff
 - **Game days:** Saturday mornings
 - **Location:** FCP Sports, Fort Walton Beach, FL
-- **Awards:** Championship trophies for every division
 
-## Four Divisions, Age-Appropriate Rules
+## Four Divisions, Built for Where Your Athlete Actually Is
 
-**Mini Division (K-2nd Grade, Ages 5-8) -- $79**
-Modified rules designed for younger players. 8-foot baskets, smaller balls, no full-court press. Score is kept, but the emphasis is on learning the game, having fun, and building confidence. Jersey included.
+**Mini Division (K–2nd Grade, Ages 5–8) — $79**
+Where the love of the game gets built. 8-foot baskets so kids can actually make shots. Smaller balls that fit their hands. Coaching on the floor during every game. Your child leaves every Saturday wanting to come back.
 
-**Junior Division (3rd-5th Grade, Ages 8-11) -- $99**
-Standard youth rules with 10-foot baskets. Zone and man-to-man defense allowed. Real refs, real stats. Most players in this division have 1-3 years of basketball experience. Jersey included.
+**Junior Division (3rd–5th Grade, Ages 8–11) — $99**
+This is where basketball starts to feel like basketball. Real plays, real teamwork, real competition at an age when it actually sticks. Coached by people who know how to grow kids at this level.
 
-**Intermediate Division (6th-8th Grade, Ages 11-14) -- $129**
-Near-regulation rules. Players are introduced to full-court press, advanced offensive sets, and defensive schemes. Coaching between quarters is allowed. This is where serious development happens. Jersey included.
+**Intermediate Division (6th–8th Grade, Ages 11–14) — $129**
+The division where athletes separate. Full-court pressure, real offensive sets, defensive schemes. If your athlete is eyeing the middle school team or trying to become a starter, this is the season that gets them there.
 
-**Senior Division (9th-12th Grade, Ages 15-18) -- $149**
-Full FHSAA-adjacent rules for high school players and serious athletes. This division draws players who want competitive reps outside their school season. Film review available between games. Jersey included.
+**Senior Division (9th–12th Grade, Ages 15–18) — $149**
+Competitive reps for high school players who take the game seriously. Off-season work that translates to tryout performance, varsity minutes, and the kind of game film worth sending.
 
 ## What Every Registration Includes
 
-- 8 regular-season games + playoff eligibility
-- Game jersey (included in the registration fee)
-- Trained, paid referees at every game
-- Per-game stat tracking with online standings
+- 8 regular-season games + playoff bracket
+- Uniform
+- On-court coaching
 - Post-game coaching sessions
-- Championship trophies for winners
-- Real game atmosphere: scoreboard, PA system, music
+- A coaching program advised by NBA veteran Kenny Anderson
+- A full season experience at the 14,000 sq ft Spartan Training Center
 
 ## Discounts
 
-- **Early bird:** $20 off when you register 4+ weeks before the season starts
+- **Sibling:** $20 off per additional child in the same family
 - **Military:** $20 off for active-duty service members and veterans
 - **Sibling:** $20 off per additional child from the same family
 

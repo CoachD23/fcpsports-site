@@ -21,29 +21,25 @@ Groups are assigned by a combination of age and skill — so a naturally athleti
 
 ![FCP Sports basketball film study session — youth players watching chalk talk in Fort Walton Beach](/images/basketball-film-study-chalk-talk-youth-players-fort-walton-beach.jpg)
 
-**7:30 AM — Doors open, drop-off begins.** Athletes arrive and get settled. Coaches are on the floor, not in the office. We greet every athlete by name.
+FCP Sports runs **two camps every weekday** — Morning Camp (K–5, 9:30 AM – 1:00 PM) and Afternoon Camp (Grades 6–12, 2:00 PM – 5:30 PM). Each camp is $149/week. Families can register for one or both. Below is a typical Morning Camp day; the Afternoon Camp follows the same structure on a 2:00–5:30 timeline.
 
-**8:00 AM — Warm-up and dynamic movement.** Camp starts with 15 minutes of dynamic stretching, agility ladder work, and light ball-handling to get the body ready for training. This is also when coaches begin learning names and personalities.
+**9:15 AM — Doors open, drop-off begins.** Athletes arrive and get settled. Coaches are on the floor, not in the office. We greet every athlete by name.
 
-**8:15 AM — Skill stations, Block 1.** Athletes rotate through four stations: ball handling, shooting form, defensive footwork, and finishing at the rim. Each station runs 12 minutes. Coaches give individual corrections — this is where the real teaching happens.
+**9:30 AM — Warm-up and dynamic movement.** Camp starts with 15 minutes of dynamic stretching, agility ladder work, and light ball-handling to get the body ready for training. This is also when coaches begin learning names and personalities.
 
-**9:45 AM — Water break and individual feedback.** A brief rest with coaches circulating to give each athlete one specific thing to focus on for the rest of the morning.
+**9:45 AM — Skill stations, Block 1.** Athletes rotate through four stations: ball handling, shooting form, defensive footwork, and finishing at the rim. Each station runs 12 minutes. Coaches give individual corrections — this is where the real teaching happens.
 
-**10:00 AM — Skill stations, Block 2.** More advanced skill work: pick-and-roll reads, shot creation off the dribble, help-side defensive positioning, and transition offense/defense. Groups work at their level.
+**10:45 AM — Water break and individual feedback.** A brief rest with coaches circulating to give each athlete one specific thing to focus on for the rest of the morning.
 
-**11:30 AM — 3-on-3 competitions.** Small-sided games allow athletes to apply skills in competitive reps without the chaos of a full 5-on-5. Coaches coach in real-time during stoppages.
+**11:00 AM — 3-on-3 competitions.** Small-sided games allow athletes to apply skills in competitive reps without the chaos of a full 5-on-5. Coaches coach in real-time during stoppages.
 
-**12:00 PM — Lunch break (full-day camps).** Athletes eat, rest, and often talk hoops. This downtime is genuinely important — kids bond over shared experience, and friendships built at camp often carry into AAU seasons.
+**11:45 AM — Position-specific training.** Athletes split by position for targeted instruction. Guards work on ball screens and pull-up shooting. Forwards work on face-up games and post entry. Bigs work on footwork and screen-setting.
 
-**12:45 PM — Film or chalk talk.** We watch 10–15 minutes of instructional footage together — a college or NBA clip illustrating a skill worked on in the morning. Athletes are surprised how much they pick up by watching the game analytically.
+**12:15 PM — 5-on-5 scrimmages.** Full-court games with structured rules. Coaches observe and take notes. The competitive fire that shows up in these scrimmages is often the best indicator of a player's long-term potential.
 
-**1:00 PM — Position-specific training.** Athletes split by position for targeted instruction. Guards work on ball screens and pull-up shooting. Forwards work on face-up games and post entry. Bigs work on footwork and screen-setting.
+**12:45 PM — Cool-down and daily debrief.** Each athlete gets written feedback on the day — two things they did well and one focus for tomorrow. Parents receive a summary at pickup.
 
-**2:30 PM — 5-on-5 scrimmages.** Full-court games with referee-standard rules. Coaches observe and take notes. The competitive fire that shows up in these scrimmages is often the best indicator of a player's long-term potential.
-
-**4:00 PM — Cool-down and daily debrief.** Each athlete gets written feedback on the day — two things they did well and one focus for tomorrow. Parents receive a summary at pickup.
-
-**4:30 PM — Pickup.** Doors close for regular camp. Extended care is available through 5:30 PM.
+**1:00 PM — Pickup.** Morning camp ends. Families registered for both Morning + Afternoon camp have a lunch break until Afternoon Camp starts at 2:00 PM.
 
 ## How Kids Are Grouped
 

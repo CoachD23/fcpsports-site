@@ -1,6 +1,6 @@
 ---
 title: "Basketball Leagues Fort Walton Beach | FCP Sports"
-description: "Youth basketball leagues in Fort Walton Beach — trained refs, stat tracking, online standings, and playoffs. Fall, summer, and Little Ballers. Ages 5–18."
+description: "Full-season youth basketball on the Emerald Coast — built to make kids love the game. Ages 5–18."
 h1: "FCP Sports Basketball Leagues"
 keyword: "basketball leagues fort walton beach"
 ---
@@ -12,60 +12,62 @@ keyword: "basketball leagues fort walton beach"
 
 ---
 
-## Organized Basketball Leagues for Every Age and Season
+## Full-Season Basketball for Every Age
 
-FCP Sports runs structured basketball leagues out of our dedicated facility in Fort Walton Beach. Every game features trained, paid referees, a real scoreboard, PA system, and post-game coaching sessions. Stats are tracked per game and standings are posted online throughout the season.
+FCP Sports leagues are designed to do one thing: make your kid love this game for life. Full seasons, coached and advised by NBA veteran Kenny Anderson, inside our 14,000 sq ft Spartan Training Center. Your child leaves every week wanting to come back.
 
-We serve families from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview, along with military families stationed at Eglin AFB and Hurlburt Field.
+We serve families from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview — including military families stationed at Eglin AFB and Hurlburt Field.
 
 ---
 
 ## Current League Seasons
 
 ### [Fall Basketball League](/leagues/fall-league/)
-**September -- November 2026 | 8-Week Season**
-Saturday morning games across four divisions (K-12). Pricing starts at $79 and all fees include a game jersey. Early bird, military, and sibling discounts available.
+**September – November 2026 | 8-Week Season**
+Saturday morning games across four divisions (K–12). The league your kid will ask to come back to. Military and sibling discounts available ($20 off each, stack).
 
 [View Fall League Details](/leagues/fall-league/)
 
 ---
 
 ### [Summer Basketball League](/leagues/summer-league/)
-**June -- July 2026 | 6-Week Season**
-Tuesday and Thursday evening games, 6-8pm. Same four divisions and pricing as our fall season. A great way to stay sharp and competitive during summer break.
+**June – July 2026 | 6-Week Season**
+Tuesday and Thursday evenings, 6–8pm. The summer that changes their game — full-season reps while other programs go quiet.
 
 [View Summer League Details](/leagues/summer-league/)
 
 ---
 
 ### [Little Ballers Basketball League](/leagues/little-league/)
-**January -- March 2027 | 6-Week Season**
-Saturday morning games for K-2nd grade (ages 5-8). $79 including jersey. Modified rules, lower baskets, smaller balls, and a focus on fun, fundamentals, and teamwork. Your child's first real basketball experience.
+**January – March 2027 | 6-Week Season**
+Saturday mornings for K–2nd grade (ages 5–8). $79. Your child's first real basketball experience — the one that makes them fall in love with the game.
 
 [View Little Ballers Details](/leagues/little-league/)
 
 ---
 
-## League Pricing at a Glance
+## League Pricing
 
-| Division | Ages | Price (includes jersey) |
-|----------|------|------------------------|
-| Mini (K-2nd) | 5-8 | $79 |
-| Junior (3rd-5th) | 8-11 | $99 |
-| Intermediate (6th-8th) | 11-14 | $129 |
-| Senior (9th-12th) | 15-18 | $149 |
+| Division | Ages | Price |
+|----------|------|-------|
+| Mini (K–2nd) | 5–8 | $79 |
+| Junior (3rd–5th) | 8–11 | $99 |
+| Intermediate (6th–8th) | 11–14 | $129 |
+| Senior (9th–12th) | 15–18 | $149 |
+
+Uniform is included in every registration.
 
 **Discounts available:**
-- **Early bird:** $20 off when you register 4+ weeks before the season
+- **Sibling:** $20 off per additional child in the same family
 - **Military:** $20 off for active duty and veterans (Eglin AFB, Hurlburt Field families)
 - **Sibling:** $20 off per additional child
 
-Payment plans are available for all divisions. No hidden costs -- the jersey is included in every registration fee.
+Payment plans are available for all divisions.
 
 ---
 
 ## Ready to Register?
 
-[Register now](/registration/) to secure your spot, or [contact us](/contact/) with questions about any upcoming season. Registration fills up -- especially in the Mini and Junior divisions -- so do not wait until the last week.
+[Register now](/registration/) to secure your spot, or [contact us](/contact/) with questions. The Mini and Junior divisions fill first.
 
-For players looking to develop between seasons, check out our [basketball training programs](/services/basketball-training/), [camps](/camps/), and [open gym sessions](/services/open-gym/).
+Between seasons, keep your athlete developing with our [basketball training programs](/services/basketball-training/), [camps](/camps/), and [open gym sessions](/services/open-gym/).

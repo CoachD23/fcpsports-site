@@ -37,20 +37,18 @@ exports.handler = async function (event) {
     // ── Promo code validation endpoint ──
     if (body.action === "validate-promo") {
       const PROGRAM_PRICES_CHECK = {
-        "summer-day-camp": 149, "skills-training": 199, "private-lesson": 75,
-        "youth-league": 125, "open-gym": 10, "girls-camp": 149,
+        "summer-day-camp": 149, "skills-training": 149, "private-lesson": 75,
+        "youth-league": 149, "open-gym": 10,
       };
       const PROMO_CODES_CHECK = {
-        "EARLYBIRD": { discount: 0.10, label: "10% Early Bird Discount" },
-        "MILITARY": { discount: 0.15, label: "15% Military Discount" },
-        "SIBLING": { discount: 0.10, label: "10% Sibling Discount" },
-        "FCPFAMILY": { discount: 0.10, label: "10% FCP Family Discount" },
+        "MILITARY20": { flatDiscount: 20, label: "$20 Military/DoD Discount" },
+        "SIBLING20": { flatDiscount: 20, label: "$20 Sibling Discount" },
       };
       const basePrice = PROGRAM_PRICES_CHECK[body.program] || 0;
       const code = (body.promo || "").toUpperCase();
       const promo = PROMO_CODES_CHECK[code];
       if (promo && basePrice) {
-        const final = Math.round(basePrice * (1 - promo.discount) * 100) / 100;
+        const final = Math.max(basePrice - (promo.flatDiscount || 0), 0);
         return { statusCode: 200, headers, body: JSON.stringify({ valid: true, label: promo.label, finalPrice: final }) };
       }
       return { statusCode: 200, headers, body: JSON.stringify({ valid: false }) };
@@ -66,19 +64,16 @@ exports.handler = async function (event) {
     // ── Server-side program prices (source of truth) ──
     const PROGRAM_PRICES = {
       "summer-day-camp": 149,
-      "skills-training": 199,
+      "skills-training": 149,
       "private-lesson": 75,
-      "youth-league": 125,
+      "youth-league": 149,
       "open-gym": 10,
-      "girls-camp": 149,
     };
 
-    // ── Server-side promo codes (source of truth) ──
+    // ── Server-side promo codes (source of truth) — flat $20 each, stackable ──
     const PROMO_CODES = {
-      "EARLYBIRD": 0.10,
-      "MILITARY": 0.15,
-      "SIBLING": 0.10,
-      "FCPFAMILY": 0.10,
+      "MILITARY20": 20,
+      "SIBLING20": 20,
     };
 
     // ── Validate ──
@@ -92,13 +87,13 @@ exports.handler = async function (event) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid program selected." }) };
     }
 
-    // ── Calculate price server-side (ignore client amount) ──
+    // ── Calculate price server-side (ignore client amount) — flat $20 discounts ──
     let numAmount = PROGRAM_PRICES[program];
     const promoCode = (promo || "").toUpperCase();
     if (promoCode && PROMO_CODES[promoCode]) {
-      numAmount = numAmount * (1 - PROMO_CODES[promoCode]);
+      numAmount = Math.max(numAmount - PROMO_CODES[promoCode], 0);
     }
-    numAmount = Math.round(numAmount * 100) / 100; // avoid floating point
+    numAmount = Math.round(numAmount * 100) / 100;
 
     if (numAmount < 1 || numAmount > 10000) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid amount." }) };

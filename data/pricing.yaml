@@ -1,58 +1,70 @@
 - name: "Summer Day Camp"
-  ages: "Grades 3-10 (Ages 8-16)"
+  ages: "Grades K-12"
   price: "$149"
-  frequency: "per week"
+  frequency: "per week (AM or PM)"
   highlight: true
   features:
-    - "5-day camp (Mon-Fri, 9am-3pm)"
+    - "Morning Camp (K–5): 9:30 AM – 1:00 PM"
+    - "Afternoon Camp (Grades 6–12): 2:00 PM – 5:30 PM"
+    - "Register for one session ($149) or both ($298)"
     - "Structured drills, scrimmages & film review"
-    - "Grouped by age and skill level"
-    - "Early bird: $129 (before May 1)"
-    - "Military & sibling discounts available"
+    - "Military & sibling discounts: $20 off each, stack"
 
-- name: "Girls-Only Camp"
-  ages: "Grades 6-10"
-  price: "$149"
-  frequency: "per week"
+- name: "Little Hoopers Mini"
+  ages: "Grades K-2"
+  price: "$79"
+  frequency: "3 days half-day"
   highlight: false
   features:
-    - "The only girls basketball camp in the Panhandle"
-    - "5-day camp (Mon-Fri, 9am-3pm)"
-    - "June 15-19, 2026"
-    - "Early bird: $129 (before May 1)"
-
-- name: "Basketball League"
-  ages: "Ages 5-18 (K-12th)"
-  price: "From $79"
-  frequency: "per season"
-  highlight: true
-  features:
-    - "Fall, summer & little league seasons"
-    - "Jersey included in registration"
-    - "Trained refs, stats & standings"
-    - "Playoff brackets & champion trophies"
+    - "Tue–Thu, 9:30 AM – 12:30 PM"
+    - "K–2 intro to basketball"
+    - "June 30 – July 2, 2026"
     - "Military & sibling discounts available"
 
+- name: "Skills Training"
+  ages: "Ages 5-18"
+  price: "$149"
+  frequency: "per month (unlimited)"
+  highlight: true
+  features:
+    - "Mon–Thu afternoons — unlimited access"
+    - "K–5 block: 3:00–4:30 PM · Grades 6–12 block: 4:30–6:00 PM"
+    - "Drop-in $25/session (3+ drop-ins prorate to monthly)"
+    - "Free baseline skill assessment"
+    - "Military & sibling discounts: $20 off each"
+
+- name: "Saturday League"
+  ages: "Ages 5+"
+  price: "$149"
+  frequency: "per session"
+  highlight: true
+  features:
+    - "Three 2026 sessions: Spring, Mid-Summer, Fall"
+    - "Age-appropriate time slots (5–7, 8–10, 11–14, 15+)"
+    - "Jerseys included"
+    - "No tryouts — every kid plays"
+    - "Military & sibling discounts: $20 off each"
+
 - name: "Holiday & Spring Break Camps"
-  ages: "Grades 3-12"
+  ages: "Grades K-12"
   price: "From $79"
   frequency: "per camp"
   highlight: false
   features:
-    - "Holiday Camp: $79 (Dec 28-30)"
-    - "Spring Break Camp: $129 (Mar 15-18)"
+    - "Holiday Camp: $79 (Dec 28–30, 2026)"
+    - "Spring Break Camp: $129 (Mar 15–18, 2027)"
     - "Perfect for school breaks"
     - "Military & sibling discounts available"
 
 - name: "Private Lessons"
   ages: "All ages"
-  price: "Contact for rates"
-  frequency: "Flexible scheduling"
+  price: "From $50"
+  frequency: "per session"
   highlight: false
   features:
     - "1-on-1 coaching"
     - "Custom curriculum"
-    - "Video analysis included"
+    - "30, 45, or 60-minute sessions"
     - "Parent progress reports"
 
 - name: "Gym Rental"

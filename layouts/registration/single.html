@@ -1,24 +1,114 @@
 {{ define "main" }}
-<section class="pt-12 pb-20 bg-gray-50">
-  <div class="max-w-2xl mx-auto px-4">
-    <h1 class="font-display text-3xl text-navy text-center mb-8">Register for a Program</h1>
-    <div class="bg-white rounded-2xl shadow-xl p-10">
-      {{ partial "inquiry-form.html" (dict "tag" "general-inquiry") }}
-    </div>
-    <div class="grid grid-cols-3 gap-4 mt-8 text-center">
-      <div class="bg-white rounded-xl p-4 shadow-sm">
-        <div class="font-display text-2xl text-gold">24hr</div>
-        <div class="text-xs text-gray-500 mt-1">Response Time</div>
-      </div>
-      <div class="bg-white rounded-xl p-4 shadow-sm">
-        <div class="font-display text-2xl text-gold">Free</div>
-        <div class="text-xs text-gray-500 mt-1">Consultation</div>
-      </div>
-      <div class="bg-white rounded-xl p-4 shadow-sm">
-        <div class="font-display text-2xl text-gold">5★</div>
-        <div class="text-xs text-gray-500 mt-1">Rated Coaches</div>
-      </div>
-    </div>
+
+<!-- Hero -->
+{{ $heroImg := .Params.hero_image | default "/images/fcp-hero-sideline.jpg" }}
+<section class="relative py-20 text-center overflow-hidden" style="min-height:320px;">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ $heroImg }}');"></div>
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(6,15,34,0.72) 0%,rgba(6,15,34,0.88) 100%);"></div>
+  <div class="relative z-10 max-w-3xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">FCP Sports</span>
+    <h1 class="font-display text-4xl sm:text-5xl text-white mt-3 mb-4 leading-tight">Register for a Program</h1>
+    <p class="text-white/70 text-base max-w-xl mx-auto">Pick your path — camp, skills, league, or private lesson. All registration flows are secure.</p>
   </div>
 </section>
+
+<!-- Product picker -->
+<section class="bg-navy-deep py-16">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+      <!-- Summer Camps -->
+      <a href="/register/" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Camps</p>
+            <h2 class="font-display text-2xl text-white leading-tight">Summer Day Camp</h2>
+          </div>
+          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">$149/wk</span>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed mb-4">9 weeks, June 1 – July 31, 2026. Morning (K–5) and Afternoon (Grades 6–12) sessions. Little Hoopers K–2 mini-camp. Also Spring Break and Holiday camps.</p>
+        <span class="text-gold text-sm font-semibold group-hover:underline">Pick a week →</span>
+      </a>
+
+      <!-- Skills Training -->
+      <a href="/services/basketball-training/" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Train</p>
+            <h2 class="font-display text-2xl text-white leading-tight">Skills Training</h2>
+          </div>
+          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">$149/mo</span>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed mb-4">Unlimited access Mon–Thu afternoons. K–5 block 3:00–4:30 PM, Grades 6–12 block 4:30–6:00 PM. Drop-in $25. Free baseline assessment.</p>
+        <span class="text-gold text-sm font-semibold group-hover:underline">Start training →</span>
+      </a>
+
+      <!-- Saturday League -->
+      <a href="/youth-league/register/" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Compete</p>
+            <h2 class="font-display text-2xl text-white leading-tight">Saturday League</h2>
+          </div>
+          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">$149/session</span>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed mb-4">Ages 5+ play age-appropriate time slots. Three 2026 sessions: Spring, Mid-Summer, Fall. Jerseys included. No tryouts.</p>
+        <span class="text-gold text-sm font-semibold group-hover:underline">Register for a session →</span>
+      </a>
+
+      <!-- Private Lessons -->
+      <a href="/services/basketball-lessons/" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Train</p>
+            <h2 class="font-display text-2xl text-white leading-tight">Private Lessons</h2>
+          </div>
+          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">From $50</span>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed mb-4">1-on-1 coaching. 30, 45, or 60-minute sessions. The fastest path from where your athlete is to where they want to be.</p>
+        <span class="text-gold text-sm font-semibold group-hover:underline">Book a lesson →</span>
+      </a>
+
+      <!-- Homeschool PE -->
+      <a href="/services/homeschool-pe/" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Train</p>
+            <h2 class="font-display text-2xl text-white leading-tight">Homeschool PE</h2>
+          </div>
+          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">$99/mo</span>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed mb-4">Tue/Thu mornings, grades K–8. Fulfills Florida PE requirement. Certificate of completion.</p>
+        <span class="text-gold text-sm font-semibold group-hover:underline">Enroll →</span>
+      </a>
+
+      <!-- Sunday MS League -->
+      <a href="/services/basketball-league/" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Compete</p>
+            <h2 class="font-display text-2xl text-white leading-tight">Sunday MS League</h2>
+          </div>
+          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">$179/8 wks</span>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed mb-4">Practice + game same day, i9-style. Grades 5–8, split brackets. For kids who can't commit weeknights.</p>
+        <span class="text-gold text-sm font-semibold group-hover:underline">Join the league →</span>
+      </a>
+
+    </div>
+
+    <!-- Not sure / Contact fallback -->
+    <div class="mt-12 bg-gold/10 border border-gold/30 rounded-2xl p-8 text-center">
+      <h3 class="font-display text-2xl text-white mb-2">Not Sure Which Program Fits?</h3>
+      <p class="text-white/70 text-sm max-w-xl mx-auto mb-5">Every program starts with a free skill assessment. We'll help you pick based on your athlete's age, ability, and goals.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="tel:8509612323" class="btn-primary">Call 850.961.2323</a>
+        <a href="/contact/" class="inline-flex items-center px-6 py-3 rounded-lg border border-gold text-gold font-semibold hover:bg-gold/10 transition-colors">Send a Message</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 {{ end }}

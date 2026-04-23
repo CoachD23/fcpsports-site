@@ -6,7 +6,7 @@ keyword: "youth basketball league fort walton beach"
 layout: "services"
 faq:
   - q: "How much does youth basketball cost at FCP Sports?"
-    a: "League registration is $79–$149 per season depending on division. Jersey included. Military, early bird, and sibling discounts available."
+    a: "League registration is $79–$149 per season depending on division. Jersey included. Military and sibling discounts available ($20 off each, stack)."
   - q: "What ages can play?"
     a: "Ages 5–18 across four divisions: Mini (K–2nd), Junior (3rd–5th), Intermediate (6th–8th), and Senior (9th–12th)."
 ---
