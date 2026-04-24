@@ -6,15 +6,15 @@ h1: "Most Kids Train. FCP Athletes Improve."
 keyword: "basketball training near me"
 age_range: "Ages 8–18"
 price: "$149/month unlimited"
-frequency: "Mon–Thu afternoons, unlimited access"
+frequency: "Mon–Thu afternoons · School year (Sept–May)"
 program_name: "Skills Training"
 ghl_tag: "train"
 course_type: "basketball training"
 summary_card:
-  days: "Mon–Thu, 3:00–6:00 PM"
+  days: "Mon–Thu, 3:00–6:00 PM (Sept–May)"
   ages: "Ages 5–18"
   price: "$149/month unlimited"
-  note: "K–5 block 3:00–4:30 · 6–12 block 4:30–6:00"
+  note: "K–5 block 3:00–4:30 · 6–12 block 4:30–6:00 · Summer = camps"
   register_url: "/register/"
 faq:
   - q: "Where can I find basketball training near me?"
@@ -27,6 +27,8 @@ faq:
     a: "Yes. Players from Choctawhatchee, Niceville, Fort Walton Beach High, and Navarre High all train here for tryout prep and off-season development."
   - q: "How much does training cost?"
     a: "$149/month for unlimited access — come every day Mon–Thu if your athlete wants to. Drop-in rate is $25/session (3+ drop-ins in a month prorate to the monthly rate). Baseline assessment included."
+  - q: "When does Skills Training run?"
+    a: "Skills Training is a school-year program — Mon–Thu, 3:00–6:00 PM, September through May. During summer (June–August), the floor belongs to our camps. Year-round skills development happens through camps in summer + skills training in the school year."
 ---
 
 Every session at the Spartan Training Center is built around one question: what does your athlete need to get to the next level? Our program — advised by NBA veteran Kenny Anderson — is structured, position-specific, and built to produce measurable results in ball handling, shooting, and basketball IQ. Progress reports at 30, 60, and 90 days so you always know exactly where your athlete stands.
@@ -57,7 +59,9 @@ Kenny Anderson — 2nd overall pick in the 1991 NBA Draft, 14 NBA seasons, All-R
 | **Monthly Unlimited** | Unlimited access to your age block Mon–Thu | **$149/month** |
 | **Drop-in** | Any single session *(3+ drop-ins in a month → prorates to monthly)* | **$25/session** |
 
-**Schedule:** K–5 block 3:00–4:30 PM · Grades 6–12 block 4:30–6:00 PM · Mon–Thu.
+**Schedule:** K–5 block 3:00–4:30 PM · Grades 6–12 block 4:30–6:00 PM · Mon–Thu · **September through May**.
+
+**Summer (June–August):** Skills Training is paused. Athletes who want to keep developing in summer should register for [Summer Camp](/camps/summer-day-camp/) — same coaches, week-long intensive format, $149/week.
 
 Baseline assessment included. Sibling discount: $20 off each additional player. Military families (Eglin + Hurlburt): $20 off.
 

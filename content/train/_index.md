@@ -7,7 +7,7 @@ hero_image: "/images/fcp-hero-coaching.jpg"
 section_heading: "Choose Your Program"
 programs:
   - name: "Skills Training"
-    description: "Unlimited access, Mon–Thu afternoons. K–5 block 3:00–4:30 PM, Grades 6–12 block 4:30–6:00 PM. Show up every day if your athlete wants to. Measurable improvement within 30 days."
+    description: "Unlimited access, Mon–Thu afternoons. K–5 block 3:00–4:30 PM, Grades 6–12 block 4:30–6:00 PM. School year only (Sept–May) — summer development happens through camps."
     url: "/services/basketball-training/"
     ages: "Ages 5–18"
     price: "$149/mo unlimited"
