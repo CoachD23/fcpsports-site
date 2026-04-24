@@ -21,7 +21,7 @@ faq:
   - q: "Which league should I sign my child up for?"
     a: "Most players start with the Saturday League — it's year-round, has four age divisions, and every kid gets equal playing time. If you want Tuesday/Thursday evening games, check the Summer League. K–2nd only? Little Ballers."
   - q: "How much does it cost?"
-    a: "Saturday League is $149 per session, flat. Sunday MS League (i9-style) is $179 for 8 weeks. Winter MS League is $199 per season. Men's League (waitlist) is $120/player or $600/team."
+    a: "Saturday League is $149 per session, flat. Sunday MS League is $179 for 8 weeks. Winter MS League is $199 per season. Men's League (waitlist) is $120/player or $600/team."
   - q: "Are there tryouts?"
     a: "No tryouts for the Saturday League. Coaches build balanced rosters via an evaluation night, and every player gets equal playing time."
 ---

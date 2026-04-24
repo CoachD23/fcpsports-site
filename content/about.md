@@ -17,7 +17,7 @@ Over 500 kids from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview 
 - **[Basketball Camps](/camps/)** — Summer day camps (AM + PM), spring break, and holiday sessions
 - **[Skills Training](/services/basketball-training/)** — $149/mo unlimited, Mon–Thu afternoons
 - **[Private Lessons](/services/basketball-lessons/)** — 1-on-1 coaching for any age
-- **[Sunday MS League](/services/basketball-league/)** — i9-style practice + game, grades 5–8
+- **[Sunday MS League](/services/basketball-league/)** — practice + game same day, grades 5–8
 - **[Open Gym](/services/open-gym/)** — Drop-in pickup for HS and adults
 
 ## Who Comes Here
