@@ -30,7 +30,7 @@ faq:
 
 ## Open Gym Is On Break
 
-We ran free open gym April through May 15, 2026 — **and it's now done for the summer**.
+Our April–May 15 open gym run is **now done for the summer**.
 
 Our gym is running full-time through August with Summer Camps and Saturday League. Open gym returns when school is back in session.
 

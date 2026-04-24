@@ -1,14 +1,14 @@
-# ─── FREE OPEN GYM — APRIL/MAY 2026 ──────────────────────────────────────────
+# ─── OPEN GYM — APRIL/MAY 2026 ──────────────────────────────────────────
 
-- title: "Free Open Gym — Tue & Thu"
+- title: "Open Gym — Tue & Thu"
   type: "Open Gym"
   date: "2026-04-21"
   date_display: "Tuesdays & Thursdays through May 15, 2026"
   time: "Tue & Thu, 3:00 – 5:00 PM"
   age: "All Ages"
-  price: "FREE"
+  price: "Drop-in"
   slug: "/services/open-gym/"
-  badge: "FREE"
+  badge: "DROP-IN"
 
 # ─── SUMMER 2026 CAMPS ────────────────────────────────────────────────────────
 

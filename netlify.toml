@@ -5,6 +5,9 @@
 [functions]
   directory = "netlify/functions"
 
+[functions."camp-survey-day2"]
+  schedule = "0 * * * *"
+
 [build.environment]
   HUGO_VERSION = "0.157.0"
   NODE_VERSION = "20"

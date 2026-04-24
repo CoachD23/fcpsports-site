@@ -1,6 +1,6 @@
 ---
 title: "Spring Break Basketball Camp Fort Walton Beach | FCP Sports"
-description: "Spring break basketball camp in Fort Walton Beach, March 15–18. Grades 3–5 mornings, grades 6–12 afternoons. $129 for 4 days. Friday free."
+description: "Spring break basketball camp in Fort Walton Beach, March 15–18. Grades 3–5 mornings, grades 6–12 afternoons. $129 for 4 days. Friday open for families."
 h1: "Spring Break Basketball Camp"
 keyword: "spring break basketball camp fort walton beach"
 age_range: "Grades 3–12"
@@ -13,7 +13,7 @@ ghl_tag: "train"
 program_name: "Spring Break Camp"
 faq:
   - q: "When is spring break camp?"
-    a: "March 15–18, 2027 — Monday through Thursday during Okaloosa County spring break. Friday is free for your family."
+    a: "March 15–18, 2027 — Monday through Thursday during Okaloosa County spring break. Friday is left open for your family."
   - q: "How much does it cost?"
     a: "$129 for all four days. No per-day pricing — the camp is a connected four-day progression."
   - q: "What grades?"

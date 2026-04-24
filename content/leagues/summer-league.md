@@ -16,7 +16,7 @@ faq:
   - q: "Is the summer league shorter than other seasons?"
     a: "Yes. The summer league is a 6-week season (6 regular-season games plus playoffs) compared to our 8-week fall season. We keep the summer season shorter because families travel, kids attend camps, and schedules are less predictable. You still get the full league experience in a tighter window."
   - q: "Why are summer league games on weeknight evenings?"
-    a: "Summer days in Northwest Florida are hot. By scheduling games Tuesday and Thursday evenings from 6-8pm, we avoid the worst of the heat and give families their weekends free for beach trips, vacations, and other summer activities. Our facility is climate-controlled, but evening games just work better for summer schedules."
+    a: "Summer days in Northwest Florida are hot. By scheduling games Tuesday and Thursday evenings from 6-8pm, we avoid the worst of the heat and give families their weekends open for beach trips, vacations, and other summer activities. Our facility is climate-controlled, but evening games just work better for summer schedules."
   - q: "Can my child do summer basketball league and summer camp at the same time?"
     a: "Absolutely. Our summer league games are Tuesday and Thursday evenings, so they do not conflict with daytime camps -- including our own FCP Sports basketball camps. Many families combine league play with camp attendance for a full summer of development. Check our camps page for current camp schedules."
 ---
@@ -73,7 +73,7 @@ Same as all FCP Sports leagues: teams are drafted for competitive balance. Playe
 
 ## Why Tuesday and Thursday Evenings?
 
-Summer in Northwest Florida means heat. Our facility is climate-controlled, but evening games from 6-8pm just fit summer life better. You get your days free for the beach, family trips, or daytime camps. And your weekends stay open -- no Saturday morning alarms during the one time of year you do not need them.
+Summer in Northwest Florida means heat. Our facility is climate-controlled, but evening games from 6-8pm just fit summer life better. You get your days open for the beach, family trips, or daytime camps. And your weekends stay open -- no Saturday morning alarms during the one time of year you do not need them.
 
 ## Pair It With Summer Camp
 

@@ -70,7 +70,7 @@ Fort Walton Beach has rec leagues, church leagues, and guys who miss playing rea
 
 ### Facility
 
-14,000 sq ft climate-controlled, regulation hardwood, scoreboard with shot clock, PA system. 33 Jet Drive NW, Fort Walton Beach. Free parking.
+14,000 sq ft climate-controlled, regulation hardwood, scoreboard with shot clock, PA system. 33 Jet Drive NW, Fort Walton Beach. On-site parking.
 
 ## Status: Waitlist Open
 

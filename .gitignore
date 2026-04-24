@@ -16,3 +16,6 @@ npm-debug.log
 # Secrets
 .env
 .env.local
+
+# Local Netlify folder
+.netlify

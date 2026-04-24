@@ -40,7 +40,7 @@ League spots are limited. Late cancellations prevent other players from joining,
 
 ## Private Lessons
 
-- **24+ hours notice:** Reschedule at no charge. One free reschedule per booking window.
+- **24+ hours notice:** Reschedule at no charge. One complimentary reschedule per booking window.
 - **Less than 24 hours notice:** Lesson is forfeited. Full charge applies.
 - **No-show:** Lesson is forfeited. Full charge applies. No exceptions.
 

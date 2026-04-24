@@ -26,7 +26,7 @@ faq:
   - q: "Do you train high school players?"
     a: "Yes. Players from Choctawhatchee, Niceville, Fort Walton Beach High, and Navarre High all train here for tryout prep and off-season development."
   - q: "How much does training cost?"
-    a: "$149/month for unlimited access — come every day Mon–Thu if your athlete wants to. Drop-in rate is $25/session (3+ drop-ins in a month prorate to the monthly rate). Free baseline assessment included."
+    a: "$149/month for unlimited access — come every day Mon–Thu if your athlete wants to. Drop-in rate is $25/session (3+ drop-ins in a month prorate to the monthly rate). Baseline assessment included."
 ---
 
 Every session at the Spartan Training Center is built around one question: what does your athlete need to get to the next level? Our program — advised by NBA veteran Kenny Anderson — is structured, position-specific, and built to produce measurable results in ball handling, shooting, and basketball IQ. Progress reports at 30, 60, and 90 days so you always know exactly where your athlete stands.
@@ -37,7 +37,7 @@ Kenny Anderson — 2nd overall pick in the 1991 NBA Draft, 14 NBA seasons, All-R
 
 ## From First Session to Real Results
 
-1. **Free skill assessment** — We evaluate ball handling, shooting, footwork, and decision-making before your athlete ever pays for a session.
+1. **Skill assessment** — We evaluate ball handling, shooting, footwork, and decision-making at the start so we can measure growth.
 2. **A plan built for your athlete** — Based on the assessment, we place your athlete in the right track with specific goals for the first 30 days.
 3. **Coached reps at the Spartan Training Center** — 14,000 sq ft of professional court space, climate-controlled, with small groups so every athlete gets real attention.
 4. **Proof of progress** — Written progress reports at 30, 60, and 90 days. You'll know exactly what improved and what's next.
@@ -59,7 +59,7 @@ Kenny Anderson — 2nd overall pick in the 1991 NBA Draft, 14 NBA seasons, All-R
 
 **Schedule:** K–5 block 3:00–4:30 PM · Grades 6–12 block 4:30–6:00 PM · Mon–Thu.
 
-Free baseline assessment included. Sibling discount: $20 off each additional player. Military families (Eglin + Hurlburt): $20 off.
+Baseline assessment included. Sibling discount: $20 off each additional player. Military families (Eglin + Hurlburt): $20 off.
 
 ## Skills Covered
 
@@ -71,7 +71,7 @@ Free baseline assessment included. Sibling discount: $20 off each additional pla
 
 ## Get Started
 
-[Contact us to book your free assessment](/contact/) or [call 850.961.2323](/contact/).
+[Contact us to book your assessment](/contact/) or [call 850.961.2323](/contact/).
 
 Want 1-on-1 attention? Check out [private basketball lessons](/services/basketball-lessons/).
 

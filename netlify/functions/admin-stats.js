@@ -121,12 +121,19 @@ async function fetchPartialLeadCount() {
   if (!key || !loc) return 0;
 
   try {
-    const url = `${GHL_BASE}/contacts/?locationId=${encodeURIComponent(loc)}&tags=camp-partial&limit=1`;
-    const res = await fetch(url, { headers: ghlHeaders() });
+    const res = await fetch(`${GHL_BASE}/contacts/search`, {
+      method: "POST",
+      headers: ghlHeaders(),
+      body: JSON.stringify({
+        locationId: loc,
+        page: 1,
+        pageLimit: 1,
+        filters: [{ field: "tags", operator: "contains", value: "camp-partial" }],
+      }),
+    });
     if (!res.ok) return 0;
     const data = await res.json();
-    // GHL returns total in meta.total or contacts.length
-    return data.meta?.total ?? data.total ?? (data.contacts ? data.contacts.length : 0);
+    return data.total ?? data.meta?.total ?? (data.contacts ? data.contacts.length : 0);
   } catch {
     return 0;
   }

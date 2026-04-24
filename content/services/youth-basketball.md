@@ -46,7 +46,7 @@ Week-long intensive camps June through July, plus Holiday and Spring Break. Morn
 
 ### Skills Training
 
-Unlimited group training Mon–Thu afternoons. K–5 block 3:00–4:30 PM, Grades 6–12 block 4:30–6:00 PM. Free baseline assessment, progress reports every 30 days.
+Unlimited group training Mon–Thu afternoons. K–5 block 3:00–4:30 PM, Grades 6–12 block 4:30–6:00 PM. Baseline assessment, progress reports every 30 days.
 
 **$149/month unlimited** · $25 drop-in.  
 → [See training details](/services/basketball-training/)

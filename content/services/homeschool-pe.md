@@ -28,7 +28,7 @@ faq:
   - q: "Is there a sibling discount?"
     a: "Yes — $20 off per additional child per month. Military families (Eglin + Hurlburt) save $20 too. Discounts stack."
   - q: "How do I register?"
-    a: "Drop us a note via the registration page or call 850.961.2323. First session is free so you can see how your kid fits before committing monthly."
+    a: "Drop us a note via the registration page or call 850.961.2323. We'll answer every question before you commit."
 ---
 
 ## Basketball PE That Actually Counts
@@ -55,7 +55,7 @@ Summer months: transition into our Summer Camps and Saturday League if you want 
 | Plan | Price |
 |------|-------|
 | **Monthly** | **$99/month** (8 sessions) |
-| **First session** | **FREE** — try it before committing |
+| **Drop-in rate** | **$15/session** |
 
 Sibling discount: $20 off per additional child. Military (Eglin + Hurlburt): $20 off. Discounts stack.
 
@@ -76,6 +76,6 @@ We provide the basketballs. Gym is climate-controlled — Fort Walton Beach weat
 
 ## Questions?
 
-[Call 850.961.2323](/contact/) or [send us a note](/contact/) — first session is free so you can see how your athlete fits before committing.
+[Call 850.961.2323](/contact/) or [send us a note](/contact/) — we'll answer every question before you commit.
 
 [Register →](/registration/)

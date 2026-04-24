@@ -150,7 +150,7 @@
         <p class="text-gray-500 text-sm mb-1">{{ .time }}</p>
         <p class="text-gray-500 text-sm flex-1">{{ .age }}</p>
         {{ if .price }}<p class="font-bold text-navy text-sm mt-3">{{ .price }}</p>{{ end }}
-        <a href="{{ .slug }}" class="mt-4 btn-primary text-sm text-center py-3">{{ if eq .price "FREE" }}Come Play{{ else }}Register{{ end }}</a>
+        <a href="{{ .slug }}" class="mt-4 btn-primary text-sm text-center py-3">{{ if eq .price "Drop-in" }}Come Play{{ else }}Register{{ end }}</a>
       </div>
       {{ end }}
     </div>

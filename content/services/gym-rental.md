@@ -48,7 +48,7 @@ Book the gym and it's yours. No sharing with other groups. No scheduling around 
 - Game balls
 - Locker rooms
 - Climate control
-- Free parking
+- On-site parking
 
 ## Popular Uses
 

@@ -71,7 +71,7 @@ We draft teams for competitive balance. Every player is evaluated and placed on 
 
 ## Why Saturday Mornings?
 
-Fall is a busy season. Between school sports, Friday night football, and family commitments, weeknight leagues create conflicts. Saturday mornings give your child dedicated basketball time without stepping on anything else. Games are finished by early afternoon, leaving the rest of your weekend free.
+Fall is a busy season. Between school sports, Friday night football, and family commitments, weeknight leagues create conflicts. Saturday mornings give your child dedicated basketball time without stepping on anything else. Games are finished by early afternoon, leaving the rest of your weekend open.
 
 ## Register for Fall League
 

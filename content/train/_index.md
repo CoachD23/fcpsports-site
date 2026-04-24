@@ -25,13 +25,13 @@ programs:
     price: "From $79"
     image: "/images/fcp-team-huddle-center-court.jpg"
   - name: "Open Gym"
-    description: "Drop-in court time for pickup games and individual work. No registration required — just show up and play. Free through May 15."
+    description: "Drop-in court time for pickup games and individual work. No registration required — just show up and play. Open through May 15."
     url: "/services/open-gym/"
     ages: "All Ages"
-    price: "FREE thru May 15"
+    price: "Open thru May 15"
     image: "/images/fcp-open-gym-courtside.jpg"
 ---
 
-At the 14,000 sq ft Spartan Training Center in Fort Walton Beach, Emerald Coast athletes are making school teams, earning starting spots, and building the kind of confidence that shows up everywhere — not just on the court. Every program starts with a free skill assessment. Your athlete isn't just training. They're training with a plan.
+At the 14,000 sq ft Spartan Training Center in Fort Walton Beach, Emerald Coast athletes are making school teams, earning starting spots, and building the kind of confidence that shows up everywhere — not just on the court. Every program starts with a skill assessment. Your athlete isn't just training. They're training with a plan.
 
 **Our program is advised by Kenny Anderson** — 14-year NBA veteran, 2nd overall pick — whose perspective shapes how we coach, what we measure, and the standards we hold every athlete to.

@@ -38,18 +38,39 @@ function createSmtpTransport() {
   });
 }
 
+async function searchContactsByTag(tag, pageLimit = 100) {
+  return fetch(`${GHL_BASE}/contacts/search`, {
+    method: "POST",
+    headers: ghlHeaders(),
+    body: JSON.stringify({
+      locationId: process.env.GHL_LOCATION_ID,
+      page: 1,
+      pageLimit,
+      filters: [{ field: "tags", operator: "contains", value: tag }],
+    }),
+  });
+}
+
+async function searchContactsByTags(tags, pageLimit = 100) {
+  const filters = tags.map((tag) => ({ field: "tags", operator: "contains", value: tag }));
+  return fetch(`${GHL_BASE}/contacts/search`, {
+    method: "POST",
+    headers: ghlHeaders(),
+    body: JSON.stringify({
+      locationId: process.env.GHL_LOCATION_ID,
+      page: 1,
+      pageLimit,
+      filters,
+    }),
+  });
+}
+
 async function sendDailyDigest(transporter) {
   const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
-  const digestRes = await fetch(
-    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=submitted-${yesterday}&limit=100`,
-    { headers: ghlHeaders() }
-  ).catch(() => null);
+  const digestRes = await searchContactsByTag(`submitted-${yesterday}`).catch(() => null);
 
-  const totalRes = await fetch(
-    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=fcpsports&limit=1`,
-    { headers: ghlHeaders() }
-  ).catch(() => null);
+  const totalRes = await searchContactsByTag("fcpsports", 1).catch(() => null);
 
   if (!digestRes || !digestRes.ok) return;
 
@@ -96,10 +117,7 @@ ${leads.length > 0
 <p style="font-family:sans-serif;font-size:12px;color:#999;margin-top:24px">FCP Sports automated digest · fcpsports.org</p>`;
 
   // Count survey completions from yesterday
-  const surveyRes = await fetch(
-    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=camp-survey-part2-complete,submitted-${yesterday}&limit=1`,
-    { headers: ghlHeaders() }
-  ).catch(() => null);
+  const surveyRes = await searchContactsByTags(["camp-survey-part2-complete", `submitted-${yesterday}`], 1).catch(() => null);
   const surveyData = surveyRes && surveyRes.ok ? await surveyRes.json() : {};
   const surveyCount = surveyData.meta?.total ?? surveyData.total ?? (surveyData.contacts || []).length;
 
@@ -129,10 +147,7 @@ exports.handler = async function () {
   const cutoff = Date.now() - 24 * 60 * 60 * 1000; // 24 hours ago
 
   // Search GHL for contacts with camp-survey-lead tag
-  const searchRes = await fetch(
-    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=camp-survey-lead&limit=100`,
-    { headers: ghlHeaders() }
-  ).catch((e) => { console.error("[day2] Search failed:", e.message); return null; });
+  const searchRes = await searchContactsByTag("camp-survey-lead").catch((e) => { console.error("[day2] Search failed:", e.message); return null; });
 
   if (!searchRes || !searchRes.ok) {
     console.error("[day2] GHL search error");
@@ -196,10 +211,7 @@ exports.handler = async function () {
   // Condition: camp-survey-day2-sent + NO camp-survey-part2-complete + NO camp-survey-reminder-sent + 48h+ since signup
 
   const reminderCutoff = Date.now() - 48 * 60 * 60 * 1000;
-  const remindRes = await fetch(
-    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=camp-survey-day2-sent&limit=100`,
-    { headers: ghlHeaders() }
-  ).catch((e) => { console.error("[day2] Reminder search failed:", e.message); return null; });
+  const remindRes = await searchContactsByTag("camp-survey-day2-sent").catch((e) => { console.error("[day2] Reminder search failed:", e.message); return null; });
 
   if (!remindRes || !remindRes.ok) {
     console.error("[day2] Reminder GHL search error");
@@ -266,10 +278,7 @@ FCP Sports<br>Fort Walton Beach, FL</p>`,
   const isMorning = now.getUTCHours() === 13; // 9am ET = 1pm UTC
 
   if (isMonday && isMorning) {
-  const coldRes = await fetch(
-    `${GHL_BASE}/contacts/?locationId=${process.env.GHL_LOCATION_ID}&tags=camp-survey-reminder-sent&limit=100`,
-    { headers: ghlHeaders() }
-  ).catch(() => null);
+  const coldRes = await searchContactsByTag("camp-survey-reminder-sent").catch(() => null);
 
   if (!coldRes || !coldRes.ok) return { statusCode: 200 };
 
