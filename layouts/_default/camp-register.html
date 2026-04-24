@@ -606,6 +606,11 @@
     const promoAmt = (sibOn ? 20 : 0) + (milOn ? 20 : 0);
     const finalPrice = Math.max(tier.price - promoAmt, 0);
 
+    // Generate event_id for Meta CAPI / Pixel dedup (both fire the same event with this ID)
+    const metaEventId = (window.crypto && window.crypto.randomUUID)
+      ? window.crypto.randomUUID()
+      : ('evt-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10));
+
     const payload = {
       camp: campId,
       campName: camp.name,
@@ -631,6 +636,7 @@
       siblingDiscount: sibOn,                // server flag
       militaryDiscount: milOn,               // server flag
       promoApplied: "",                      // deprecated URL-promo path; discounts now via checkbox flags
+      eventId: metaEventId,                  // Meta CAPI + Pixel dedup
       utm: getUTM(),
       payment: {
         dataDescriptor: paymentNonce.dataDescriptor,
@@ -656,7 +662,7 @@
           content_name: camp.name,
           content_category: 'camp-registration',
           content_ids: [campId]
-        });
+        }, { eventID: metaEventId });  // server CAPI fires same event_id → Meta dedupes
       }
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {

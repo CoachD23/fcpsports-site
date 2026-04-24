@@ -857,10 +857,16 @@
     var tier = getPriceTier();
     var sKey = getSelectedSession();
     var sess = sKey ? SESSIONS[sKey] : null;
+    // Generate event_id for Meta CAPI / Pixel dedup
+    var metaEventId = (window.crypto && window.crypto.randomUUID)
+      ? window.crypto.randomUUID()
+      : ('evt-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10));
+
     var payload = {
       session: sKey,
       sessionName: sess ? sess.name : "",
       sessionDates: sess ? sess.dates : "",
+      eventId: metaEventId,
       parentEmail: form.parentEmail.value.trim().toLowerCase(),
       parentFirst: form.parentFirst.value.trim(),
       parentLast: form.parentLast.value.trim(),
@@ -906,7 +912,7 @@
           content_name: sess ? sess.name : 'Youth League',
           content_category: 'league-registration',
           content_ids: [sKey]
-        });
+        }, { eventID: metaEventId });  // server CAPI fires same event_id → Meta dedupes
       }
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {

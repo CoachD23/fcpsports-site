@@ -22,6 +22,55 @@
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const AIRTABLE_BASE = "https://api.airtable.com/v0";
+const META_GRAPH = "https://graph.facebook.com/v21.0";
+const crypto = require("crypto");
+
+/* --- Meta CAPI helper --- */
+function sha256lower(v) {
+  if (!v) return undefined;
+  return crypto.createHash("sha256").update(String(v).trim().toLowerCase()).digest("hex");
+}
+async function sendMetaCAPI({ eventName, eventId, eventSourceUrl, userData, customData, clientIp, clientUserAgent }) {
+  const pixelId = process.env.META_PIXEL_ID;
+  const token = process.env.META_CAPI_TOKEN;
+  if (!pixelId || !token) return { ok: false, skipped: true };
+  const payload = {
+    data: [{
+      event_name: eventName,
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: eventId,
+      event_source_url: eventSourceUrl || "https://fcpsports.org/youth-league/register/",
+      action_source: "website",
+      user_data: {
+        em: userData.email ? [sha256lower(userData.email)] : undefined,
+        ph: userData.phone ? [sha256lower(String(userData.phone).replace(/\D/g, ""))] : undefined,
+        fn: userData.firstName ? [sha256lower(userData.firstName)] : undefined,
+        ln: userData.lastName ? [sha256lower(userData.lastName)] : undefined,
+        zp: userData.zip ? [sha256lower(userData.zip)] : undefined,
+        client_ip_address: clientIp || undefined,
+        client_user_agent: clientUserAgent || undefined,
+      },
+      custom_data: customData || {},
+    }],
+  };
+  try {
+    const r = await fetch(`${META_GRAPH}/${pixelId}/events?access_token=${token}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!r.ok) {
+      const txt = await r.text();
+      console.warn(`[meta-capi] ${eventName} non-2xx: ${r.status} ${txt.slice(0, 200)}`);
+      return { ok: false };
+    }
+    console.log(`[meta-capi] ${eventName} sent · event_id=${eventId}`);
+    return { ok: true };
+  } catch (e) {
+    console.warn(`[meta-capi] ${eventName} failed:`, e.message);
+    return { ok: false };
+  }
+}
 
 /* --- SERVER-SIDE LEAGUE PRICE MAP (source of truth) ---
    Saturday League: flat $149/session for all divisions, all 3 sessions of 2026. */
@@ -401,9 +450,37 @@ exports.handler = async function (event) {
     `[register-youth-league] Registration: ${b.parentEmail} | ${b.childFirst} ${b.childLast} | ${b.division} | $${b.priceAmount}`
   );
 
+  /* --- Meta CAPI: server-side Purchase event --- */
+  const metaEventId = b.eventId || crypto.randomUUID();
+  const capiClientIp = event.headers["x-forwarded-for"]?.split(",")[0].trim();
+  const capiClientUa = event.headers["user-agent"];
+  sendMetaCAPI({
+    eventName: "Purchase",
+    eventId: metaEventId,
+    eventSourceUrl: event.headers.referer || "https://fcpsports.org/youth-league/register/",
+    userData: {
+      email: b.parentEmail.trim().toLowerCase(),
+      phone: b.parentPhone,
+      firstName: b.parentFirst.trim(),
+      lastName: b.parentLast.trim(),
+      zip: b.parentZip.trim(),
+    },
+    customData: {
+      currency: "USD",
+      value: Number(b.priceAmount),
+      content_name: `Saturday League — ${b.division || "TBD"}`,
+      content_category: "league-registration",
+      content_ids: [b.session || b.sessionId || "unknown"],
+      content_type: "product",
+      order_id: transactionId || undefined,
+    },
+    clientIp: capiClientIp,
+    clientUserAgent: capiClientUa,
+  }).catch(() => {});
+
   return {
     statusCode: 200,
     headers: cors,
-    body: json({ ok: true }),
+    body: json({ ok: true, eventId: metaEventId }),
   };
 };

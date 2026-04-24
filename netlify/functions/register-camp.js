@@ -26,7 +26,9 @@
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const AIRTABLE_BASE = "https://api.airtable.com/v0";
+const META_GRAPH = "https://graph.facebook.com/v21.0";
 const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 
 /* --- SERVER-SIDE CAMP PRICE MAP (source of truth — must match data/camps.yaml) --- */
 const CAMP_PRICES = {
@@ -117,6 +119,57 @@ function createSmtp() {
     host: "smtp.office365.com", port: 587, secure: false,
     auth: { user: "info@fcpsports.org", pass: process.env.FCPSPORTS_SMTP_PASS },
   });
+}
+
+/* --- Meta CAPI: server-side Purchase event (iOS 14+ safe, ad-blocker safe) --- */
+function sha256lower(v) {
+  if (!v) return undefined;
+  return crypto.createHash("sha256").update(String(v).trim().toLowerCase()).digest("hex");
+}
+async function sendMetaCAPI({ eventName, eventId, eventSourceUrl, userData, customData, clientIp, clientUserAgent }) {
+  const pixelId = process.env.META_PIXEL_ID;
+  const token = process.env.META_CAPI_TOKEN;
+  if (!pixelId || !token) {
+    console.log("[meta-capi] Skipped — META_PIXEL_ID or META_CAPI_TOKEN not set");
+    return { ok: false, skipped: true };
+  }
+  const payload = {
+    data: [{
+      event_name: eventName,
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: eventId,
+      event_source_url: eventSourceUrl || "https://fcpsports.org/register/",
+      action_source: "website",
+      user_data: {
+        em: userData.email ? [sha256lower(userData.email)] : undefined,
+        ph: userData.phone ? [sha256lower(String(userData.phone).replace(/\D/g, ""))] : undefined,
+        fn: userData.firstName ? [sha256lower(userData.firstName)] : undefined,
+        ln: userData.lastName ? [sha256lower(userData.lastName)] : undefined,
+        zp: userData.zip ? [sha256lower(userData.zip)] : undefined,
+        client_ip_address: clientIp || undefined,
+        client_user_agent: clientUserAgent || undefined,
+      },
+      custom_data: customData || {},
+    }],
+  };
+  try {
+    const url = `${META_GRAPH}/${pixelId}/events?access_token=${token}`;
+    const r = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: json(payload),
+    });
+    const txt = await r.text();
+    if (!r.ok) {
+      console.warn(`[meta-capi] ${eventName} non-2xx: ${r.status} ${txt.slice(0, 200)}`);
+      return { ok: false, error: txt };
+    }
+    console.log(`[meta-capi] ${eventName} sent · event_id=${eventId}`);
+    return { ok: true };
+  } catch (e) {
+    console.warn(`[meta-capi] ${eventName} failed:`, e.message);
+    return { ok: false, error: e.message };
+  }
 }
 
 exports.handler = async function (event) {
@@ -543,5 +596,35 @@ exports.handler = async function (event) {
     }
   }
 
-  return { statusCode: 200, headers: cors, body: json({ ok: true, transactionId }) };
+  /* --- 5. Meta CAPI: server-side Purchase event (non-blocking, best-effort) --- */
+  // Client must pass b.eventId (UUID) and fire fbq with the same event_id for dedup.
+  // If eventId is absent, we generate one server-side — client-side dedup won't happen.
+  const eventId = b.eventId || crypto.randomUUID();
+  const clientIp = event.headers["x-forwarded-for"]?.split(",")[0].trim();
+  const clientUa = event.headers["user-agent"];
+  sendMetaCAPI({
+    eventName: "Purchase",
+    eventId,
+    eventSourceUrl: event.headers.referer || "https://fcpsports.org/register/",
+    userData: {
+      email: b.parentEmail.trim().toLowerCase(),
+      phone: b.parentPhone,
+      firstName: b.parentFirst.trim(),
+      lastName: b.parentLast.trim(),
+      zip: b.parentZip.trim(),
+    },
+    customData: {
+      currency: "USD",
+      value: Number(b.priceAmount),
+      content_name: b.campName || b.camp,
+      content_category: "camp-registration",
+      content_ids: [b.camp],
+      content_type: "product",
+      order_id: transactionId || undefined,
+    },
+    clientIp,
+    clientUserAgent: clientUa,
+  }).catch(() => {}); // fire-and-forget
+
+  return { statusCode: 200, headers: cors, body: json({ ok: true, transactionId, eventId }) };
 };
