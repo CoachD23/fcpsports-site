@@ -136,7 +136,9 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {{ range first 3 site.Data.events }}
+      {{ $today := now.Format "2006-01-02" }}
+      {{ $upcoming := where site.Data.events "date" ">=" $today }}
+      {{ range first 3 (sort $upcoming "date") }}
       <div class="border border-gray-100 rounded-2xl p-6 hover:border-gold hover:shadow-md transition-all duration-200 fade-in flex flex-col">
         <div class="flex items-center justify-between mb-4">
           <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none">

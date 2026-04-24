@@ -1,0 +1,15 @@
+{{/*
+  staytuned shortcode — renders a "Stay Up to Date" signup form inline in content.
+  Usage: {{< staytuned source="skills-page" tag="skills-inquiry" headline="Stay in the Loop" subhead="Get updates on schedule, availability, and coach bios." >}}
+  Params (all optional except source + tag):
+    source    – string, identifies signup origin (GHL source field)
+    tag       – string, GHL tag applied to the contact
+    headline  – custom headline (default "Stay Up to Date")
+    subhead   – custom subhead (default generic)
+*/}}
+{{ $source := .Get "source" }}
+{{ $tag := .Get "tag" }}
+{{ $headline := .Get "headline" | default "Stay Up to Date" }}
+{{ $subhead := .Get "subhead" | default "Get updates on programs, camps &amp; open gym." }}
+{{ $theme := .Get "theme" | default "navy" }}
+{{ partial "stay-up-to-date.html" (dict "source" $source "tag" $tag "headline" $headline "subhead" $subhead "theme" $theme) }}

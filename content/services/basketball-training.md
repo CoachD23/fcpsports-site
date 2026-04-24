@@ -74,3 +74,5 @@ Free baseline assessment included. Sibling discount: $20 off each additional pla
 [Contact us to book your free assessment](/contact/) or [call 850.961.2323](/contact/).
 
 Want 1-on-1 attention? Check out [private basketball lessons](/services/basketball-lessons/).
+
+{{< staytuned source="skills-page" tag="skills-inquiry" headline="Stay Up to Date" subhead="Get updates on skills training schedule and availability." >}}

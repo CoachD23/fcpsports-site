@@ -111,3 +111,5 @@ Indoor, climate-controlled gym. T-shirt provided.
 ## Register
 
 [See all camp weeks](/camps/) or [call 850.961.2323](/contact/) with questions.
+
+{{< staytuned source="camp-page" tag="camp-inquiry" headline="Stay Up to Date" subhead="Get updates on summer camps — dates, availability, and new sessions." >}}

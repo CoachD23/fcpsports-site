@@ -1,0 +1,77 @@
+{{/*
+  Stay Up to Date inline signup form.
+  Usage: {{ partial "stay-up-to-date.html" (dict "source" "skills-page" "tag" "skills-inquiry" "headline" "Stay Up to Date" "subhead" "Get updates on skills training schedule and availability.") }}
+  Required params:
+    - source  : GHL source identifier (e.g. "skills-page", "camp-page", "saturday-league-page")
+    - tag     : GHL tag to apply (e.g. "skills-inquiry", "camp-inquiry", "league-inquiry")
+  Optional params:
+    - headline : headline text (default "Stay Up to Date")
+    - subhead  : subhead text (default "Get updates on programs, camps & open gym.")
+    - theme    : "navy" (default, dark bg) or "light" (for light-bg sections)
+*/}}
+{{ $source := .source }}
+{{ $tag := .tag }}
+{{ $headline := .headline | default "Stay Up to Date" }}
+{{ $subhead := .subhead | default "Get updates on programs, camps & open gym." }}
+{{ $theme := .theme | default "navy" }}
+{{ $id := printf "sud-%s" $source }}
+
+<div class="max-w-xl mx-auto my-10">
+  {{ if eq $theme "light" }}
+  <div class="bg-navy rounded-2xl p-6 shadow-lg">
+    <p class="text-white font-display text-xl mb-1">{{ $headline }}</p>
+    <p class="text-white/70 text-sm mb-4">{{ $subhead }}</p>
+    <form id="{{ $id }}-form" class="flex flex-col sm:flex-row gap-2">
+      <label for="{{ $id }}-email" class="sr-only">Email address</label>
+      <input type="email" id="{{ $id }}-email" name="email" placeholder="Your email address" required
+        class="flex-1 px-4 py-3 min-h-[44px] rounded-lg text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold" />
+      <button type="submit" id="{{ $id }}-btn"
+        class="bg-gold text-navy font-bold px-6 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap w-full sm:w-auto">
+        Sign Up
+      </button>
+    </form>
+    <p id="{{ $id }}-success" class="hidden text-green-400 font-semibold text-sm mt-3">You&rsquo;re in! We&rsquo;ll keep you posted.</p>
+  </div>
+  {{ else }}
+  <div class="bg-navy/95 rounded-2xl p-6 shadow-lg border border-white/10">
+    <p class="text-white font-display text-xl mb-1">{{ $headline }}</p>
+    <p class="text-white/70 text-sm mb-4">{{ $subhead }}</p>
+    <form id="{{ $id }}-form" class="flex flex-col sm:flex-row gap-2">
+      <label for="{{ $id }}-email" class="sr-only">Email address</label>
+      <input type="email" id="{{ $id }}-email" name="email" placeholder="Your email address" required
+        class="flex-1 px-4 py-3 min-h-[44px] rounded-lg text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold" />
+      <button type="submit" id="{{ $id }}-btn"
+        class="bg-gold text-navy font-bold px-6 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap w-full sm:w-auto">
+        Sign Up
+      </button>
+    </form>
+    <p id="{{ $id }}-success" class="hidden text-green-400 font-semibold text-sm mt-3">You&rsquo;re in! We&rsquo;ll keep you posted.</p>
+  </div>
+  {{ end }}
+</div>
+
+<script>
+(function() {
+  var form = document.getElementById('{{ $id }}-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('{{ $id }}-btn');
+    var email = this.email.value.trim();
+    if (!email) return;
+    btn.textContent = 'Signing up...';
+    btn.disabled = true;
+    fetch('/.netlify/functions/capture-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.assign(
+        { email: email, tag: {{ $tag | jsonify }}, source: {{ $source | jsonify }} },
+        { utm: (window.fcpUTM && window.fcpUTM()) || {} }
+      ))
+    }).catch(function(){});
+    if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: {{ (printf "%s signup" $source) | jsonify }}, content_category: {{ $tag | jsonify }} });
+    this.classList.add('hidden');
+    document.getElementById('{{ $id }}-success').classList.remove('hidden');
+  });
+})();
+</script>
