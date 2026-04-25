@@ -1,20 +1,20 @@
 ---
 hero_image: /images/fcp-hero-coaching.jpg
 title: "Basketball Training Fort Walton Beach FL | FCP Sports"
-description: "Most kids train. FCP athletes improve. Measurable progress in 30, 60, 90 days."
+description: "Skill-level basketball training in Fort Walton Beach. Foundation, Rising, Competitive, and HS Prep tracks with measurable progress in 30, 60, 90 days."
 h1: "Most Kids Train. FCP Athletes Improve."
 keyword: "basketball training near me"
 age_range: "Ages 8–18"
-price: "$149/month unlimited"
-frequency: "Mon–Thu afternoons · School year (Sept–May)"
+price: "$149/month"
+frequency: "Mon–Thu school year · Summer evenings"
 program_name: "Skills Training"
 ghl_tag: "train"
 course_type: "basketball training"
 summary_card:
-  days: "Mon–Thu, 3:00–6:00 PM (Sept–May)"
+  days: "Mon–Thu school year · Summer evenings"
   ages: "Ages 5–18"
-  price: "$149/month unlimited"
-  note: "K–5 block 3:00–4:30 · 6–12 block 4:30–6:00 · Summer = camps"
+  price: "$149/month"
+  note: "Grouped by skill level first, with age and safety considered"
   register_url: "/register/"
 faq:
   - q: "Where can I find basketball training near me?"
@@ -26,9 +26,9 @@ faq:
   - q: "Do you train high school players?"
     a: "Yes. Players from Choctawhatchee, Niceville, Fort Walton Beach High, and Navarre High all train here for tryout prep and off-season development."
   - q: "How much does training cost?"
-    a: "$149/month for unlimited access — come every day Mon–Thu if your athlete wants to. Drop-in rate is $25/session (3+ drop-ins in a month prorate to the monthly rate). Baseline assessment included."
+    a: "$149/month for the right skill-level track. Drop-in rate is $25/session (3+ drop-ins in a month prorate to the monthly rate). Baseline assessment included."
   - q: "When does Skills Training run?"
-    a: "Skills Training is a school-year program — Mon–Thu, 3:00–6:00 PM, September through May. During summer (June–August), the floor belongs to our camps. Year-round skills development happens through camps in summer + skills training in the school year."
+    a: "School-year Skills runs Mon–Thu afternoons, September through May. Summer Skills moves to evenings after camp: Foundation/Rising on Mon/Wed and Competitive/HS Prep on Tue/Thu, 6:00–7:30 PM."
 ---
 
 Every session at the Spartan Training Center is built around one question: what does your athlete need to get to the next level? Our program — advised by NBA veteran Kenny Anderson — is structured, position-specific, and built to produce measurable results in ball handling, shooting, and basketball IQ. Progress reports at 30, 60, and 90 days so you always know exactly where your athlete stands.
@@ -46,22 +46,23 @@ Kenny Anderson — 2nd overall pick in the 1991 NBA Draft, 14 NBA seasons, All-R
 
 ## Built for Every Level — From First-Timer to Varsity Hopeful
 
-| Track | Ages | Group Size | What Your Athlete Becomes |
-|-------|------|-----------|---------------------------|
-| Beginner | 8–11 | Small group | The kid who surprises people by middle school — correct form, confident handle, real understanding of the game before bad habits set in |
-| Intermediate | 10–14 | 6–8 athletes | Hard to guard — off-hand development, footwork, decision-making under pressure. The skills that separate players who make the school team from players who almost did |
-| Advanced | 13–18 | Small group | Varsity-ready — position-specific reps, game-speed reads, the physical and mental edge that coaches notice |
+| Track | Best Fit | Group Size | What Your Athlete Becomes |
+|-------|----------|-----------|---------------------------|
+| Foundation | Newer players | Small group | Correct form, confident handle, footwork, layups, and real understanding before bad habits set in |
+| Rising | Developing players | 6–8 athletes | More consistent under pressure — off-hand development, shooting reps, defensive habits, and decision-making |
+| Competitive | League, travel, and school hopefuls | Small group | Hard to guard — game-speed reads, contact finishes, passing decisions, and pace |
+| HS Prep | Serious middle school and high school players | Small group | Varsity-ready — position-specific reps, conditioning, live reads, and the physical and mental edge coaches notice |
 
 ## Pricing — Simple and Flat
 
 | Plan | What You Get | Price |
 |------|--------------|-------|
-| **Monthly Unlimited** | Unlimited access to your age block Mon–Thu | **$149/month** |
+| **Monthly Membership** | Access to the right skill-level track | **$149/month** |
 | **Drop-in** | Any single session *(3+ drop-ins in a month → prorates to monthly)* | **$25/session** |
 
-**Schedule:** K–5 block 3:00–4:30 PM · Grades 6–12 block 4:30–6:00 PM · Mon–Thu · **September through May**.
+**School-year schedule:** Mon–Thu afternoons, September through May. Players are placed by skill level first, with age and safety considered.
 
-**Summer (June–August):** Skills Training is paused. Athletes who want to keep developing in summer should register for [Summer Camp](/camps/summer-day-camp/) — same coaches, week-long intensive format, $149/week.
+**Summer schedule:** Skills moves to evenings after camp. Foundation/Rising trains Mon/Wed, 6:00–7:30 PM. Competitive/HS Prep trains Tue/Thu, 6:00–7:30 PM. Summer camp runs during the day for athletes who want the week-long intensive format.
 
 Baseline assessment included. Sibling discount: $20 off each additional player. Military families (Eglin + Hurlburt): $20 off.
 

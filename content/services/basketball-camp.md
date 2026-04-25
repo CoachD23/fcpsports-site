@@ -1,7 +1,7 @@
 ---
 hero_image: /images/fcp-hero-camp-talk.jpg
 title: "Basketball Camp Fort Walton Beach FL | FCP Sports"
-description: "Basketball camps in Fort Walton Beach for grades K–12. Summer day camps (AM + PM), spring break, and holiday options. From $79."
+description: "Basketball camps in Fort Walton Beach for grades K–12. Summer day camps (AM + PM), skill-level groups, spring break, and holiday options. From $79."
 h1: "Basketball Camps"
 keyword: "basketball camp fort walton beach"
 age_range: "Grades 3–12"
@@ -20,7 +20,7 @@ faq:
   - q: "How much does basketball camp cost at FCP Sports?"
     a: "Camps range from $79 to $149 depending on the program: Summer Camp is $149/week (Morning or Afternoon), Little Hoopers Mini is $79 (K–2 half-day), Spring Break Camp is $129, and Holiday Camp is $79. Military and sibling discounts ($20 off each, stack) are available on summer camps."
   - q: "What ages can attend basketball camp?"
-    a: "Our camps serve grades 3 through 12. Each camp is built for a specific age group so your child trains with kids at a similar level."
+    a: "Our camps serve grades K through 12 in summer, with Little Hoopers Mini for K–2 and break camps for older age bands. Campers are grouped by skill level with age and safety considered."
   - q: "Is there a basketball camp near Destin?"
     a: "Yes. FCP Sports is about 15 minutes from Destin via US-98. Families from Destin, Niceville, Navarre, and Crestview attend every session."
   - q: "Are camps good for beginners?"
@@ -33,6 +33,7 @@ Your child gets coached at FCP Camps. Really coached. Inside our 14,000 sq ft Sp
 
 - **Measurable progress.** Day 1 assessment. Final-day re-assessment. Your child leaves with proof of what they learned.
 - **Advised by an NBA pro.** Kenny Anderson — 14 NBA seasons, 2nd overall pick — shapes our program's approach and standards.
+- **Grouped by level.** Players are placed by skill level first, with age and safety considered, so beginners build confidence and advanced players are challenged.
 - **Built for full-pace work.** 14,000 sq ft, climate-controlled, indoors. Fort Walton Beach weather stays outside.
 
 ## Camp Options

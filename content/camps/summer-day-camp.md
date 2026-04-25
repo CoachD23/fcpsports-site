@@ -1,6 +1,6 @@
 ---
 title: "Summer Basketball Camp Fort Walton Beach | FCP Sports"
-description: "Summer basketball camp in Fort Walton Beach. 9 weeks June–July 2026 for grades K–12. Morning or afternoon sessions, $149/week. Military + sibling discounts."
+description: "Summer basketball camp in Fort Walton Beach. 9 weeks June–July 2026 for grades K–12. Morning or afternoon sessions, skill-level groups, $149/week. Military + sibling discounts."
 h1: "Summer Basketball Camp"
 keyword: "summer basketball camp fort walton beach"
 age_range: "Grades K–12"
@@ -15,7 +15,7 @@ faq:
   - q: "How much does summer basketball camp cost at FCP Sports?"
     a: "Every full-week summer camp is $149. Little Hoopers Mini (K–2, 3 days half-day) is $79. Military families (Eglin/Hurlburt) save $20 and siblings save $20 each on camp weeks."
   - q: "What are the summer 2026 camp dates?"
-    a: "Nine weeks of camp from June 1 through July 31, 2026. Every week runs a Morning Camp (9:30 AM – 1:00 PM) for grades K–5 and an Afternoon Camp (2:00 PM – 5:30 PM) for grades 6–12. Both are $149/week. Register for one or both. Full schedule below."
+    a: "Nine weeks of camp from June 1 through July 31, 2026. Every week runs Morning Camp (9:30 AM – 1:00 PM) and Afternoon Camp (2:00 PM – 5:30 PM). Both are $149/week. Players are grouped by skill level with age and safety considered. Register for one or both. Full schedule below."
   - q: "Is there a summer basketball camp near Destin FL?"
     a: "Yes. FCP Sports in Fort Walton Beach is about 15 minutes from Destin via US-98. Families from Destin, Niceville, Navarre, and Crestview attend every summer."
   - q: "What should my child bring to summer basketball camp?"
@@ -56,19 +56,19 @@ event_dates:
 
 ## Five Days. Real Coaching. Measurable Improvement.
 
-Summer Camp at FCP Sports is nine weeks of professional coaching for grades K–12 inside our 14,000 sq ft Spartan Training Center. Your child is assessed Monday, coached all week, and re-assessed Friday — so you see exactly what they learned. This is not a week of babysitting in a gym. This is a week of real training.
+Summer Camp at FCP Sports is nine weeks of professional coaching for grades K–12 inside our 14,000 sq ft Spartan Training Center. Your child is assessed Monday, coached all week, and re-assessed Friday — so you see exactly what they learned. Friday is part of the camp: competition day, skills challenges, re-assessment, and awards. This is not a week of babysitting in a gym. This is a week of real training.
 
 ### Why Families Pick FCP Summer Camp
 
 - **You'll see the progress.** Every camper gets a Day 1 skill assessment and a Day 5 re-assessment. You don't leave wondering if it was worth it — you see what improved.
 - **Advised by an NBA pro.** Kenny Anderson — 14 NBA seasons, 2nd overall pick — advises our program. His standards shape the way we coach every camper.
-- **Built for your athlete's level.** Every week is grouped by grade so your kid trains with peers at a similar age and ability. Beginners get fundamentals. Experienced players get sharpened.
+- **Built for your athlete's level.** Campers are placed by skill level first, with age and safety considered. Beginners get fundamentals. Experienced players get sharpened.
 
 ## Summer 2026 Schedule
 
-Every week runs **Morning Camp (K–5, 9:30 AM – 1:00 PM)** and **Afternoon Camp (Grades 6–12, 2:00 PM – 5:30 PM)** — both $149/week. Families can register for one or both. Little Hoopers Mini is a Tue–Thu half-day for grades K–2.
+Every week runs **Morning Camp (9:30 AM – 1:00 PM)** and **Afternoon Camp (2:00 PM – 5:30 PM)** — both $149/week. Players are grouped by skill level with age and safety considered, so beginners are not lost and advanced players are challenged. Families can register for one or both. Little Hoopers Mini is a Tue–Thu half-day for grades K–2.
 
-| Week | Dates | Morning (K–5) | Afternoon (6–12) | Register |
+| Week | Dates | Morning | Afternoon | Register |
 |------|-------|---------------|------------------|----------|
 | **Summer Kickoff** | June 1–5 | $149 | $149 | [AM →](/register/?camp=summer-kickoff-2026) · [PM →](/register/?camp=summer-kickoff-2026-pm) |
 | **Session 1** | June 8–12 | $149 | $149 | [AM →](/register/?camp=summer-s1-jun08) · [PM →](/register/?camp=summer-s1-jun08-pm) |
@@ -89,6 +89,8 @@ Morning drop-off 9:15 AM, pickup 1:00 PM. Afternoon drop-off 1:45 PM, pickup 5:3
 **Midday:** Lunch break, film review
 
 **Afternoon:** Coached scrimmages, skills competition
+
+**Friday:** Competition day, skills challenge, re-assessment, and awards.
 
 Skills assessment on Monday. Re-assessed Friday so your camper sees what improved.
 

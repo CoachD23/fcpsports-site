@@ -7,6 +7,7 @@
     - "Morning Camp (K–5): 9:30 AM – 1:00 PM"
     - "Afternoon Camp (Grades 6–12): 2:00 PM – 5:30 PM"
     - "Register for one session ($149) or both ($298)"
+    - "Grouped by skill level with age & safety considered"
     - "Structured drills, scrimmages & film review"
     - "Military & sibling discounts: $20 off each, stack"
 
@@ -24,13 +25,13 @@
 - name: "Skills Training"
   ages: "Ages 5-18"
   price: "$149"
-  frequency: "per month (Sept–May)"
+  frequency: "per month"
   highlight: true
   features:
-    - "Mon–Thu afternoons — unlimited access"
-    - "K–5 block: 3:00–4:30 PM · Grades 6–12 block: 4:30–6:00 PM"
+    - "School year: Mon–Thu afternoons"
+    - "Summer: Mon–Thu evenings after camp"
+    - "Foundation, Rising, Competitive & HS Prep tracks"
     - "Drop-in $25/session (3+ drop-ins prorate to monthly)"
-    - "School year only — summer development happens through camps"
     - "Baseline skill assessment included"
     - "Military & sibling discounts: $20 off each"
 

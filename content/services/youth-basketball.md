@@ -39,16 +39,16 @@ Seven weeks of real games, no tryouts. Four age divisions from Juniors (5–7) t
 
 ### Basketball Camps
 
-Week-long intensive camps June through July, plus Holiday and Spring Break. Morning Camp (K–5, 9:30 AM – 1:00 PM) and Afternoon Camp (Grades 6–12, 2:00 PM – 5:30 PM) — register for one or both. Little Hoopers Mini-Camp is the K–2 option.
+Week-long intensive camps June through July, plus Holiday and Spring Break. Morning Camp runs 9:30 AM – 1:00 PM and Afternoon Camp runs 2:00 PM – 5:30 PM — register for one or both. Campers are grouped by skill level with age and safety considered. Little Hoopers Mini-Camp is the K–2 option.
 
 **$79–$149 per week.**  
 → [See all camps](/camps/)
 
 ### Skills Training
 
-Unlimited group training Mon–Thu afternoons. K–5 block 3:00–4:30 PM, Grades 6–12 block 4:30–6:00 PM. School year only (Sept–May) — summer = camps. Baseline assessment, progress reports every 30 days.
+Skill-level group training for Foundation, Rising, Competitive, and HS Prep athletes. School-year sessions run Mon–Thu afternoons; summer sessions move to evenings after camp. Baseline assessment, progress reports every 30 days.
 
-**$149/month unlimited** · $25 drop-in.  
+**$149/month** · $25 drop-in.
 → [See training details](/services/basketball-training/)
 
 ### Private Lessons
