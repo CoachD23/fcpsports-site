@@ -29,11 +29,22 @@
   .card {
     @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden;
   }
+  /* CSS-only "fade-in" — visually slides up, but element is opaque from frame 1.
+     This way Chrome records LCP immediately on first paint, instead of waiting
+     700ms for an opacity:0→1 transition. Keeps the on-load motion effect. */
   .fade-in {
-    @apply opacity-0 translate-y-6 transition-all duration-700;
+    animation: slideUp 500ms ease-out both;
   }
   .fade-in.is-visible {
-    @apply opacity-100 translate-y-0;
+    /* Legacy: JS may still add this; matches animation end-state. */
+    transform: none;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(1rem); }
+    to   { transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { animation: none; }
   }
 
   /* Registration form components */
