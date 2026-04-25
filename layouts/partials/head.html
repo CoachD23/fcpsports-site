@@ -31,6 +31,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://www.googletagmanager.com" />
 <link rel="preconnect" href="https://widgets.leadconnectorhq.com" />
+<link rel="preconnect" href="https://connect.facebook.net" />
 
 <!-- Preload Oswald italic 700 woff2 (latin) to eliminate FOUT on hero H1 -->
 <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/oswald/v57/TK3_WkUHHAIjg75cFRf3bXL8LICs1xZosUZiZSSUhiCXAA.woff2" crossorigin />
@@ -48,33 +49,68 @@
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{ with site.Params.gtm_id }}
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','{{ . }}');</script>
-<!-- End Google Tag Manager -->
-{{ end }}
-
-<!-- Google Ads conversion tracking (direct gtag — independent of GTM) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11158472206"></script>
+<!-- Google Tag Manager — deferred until idle/interaction to unblock LCP -->
+<!-- dataLayer stub: queues pushes synchronously before GTM loads -->
 <script>
 window.dataLayer = window.dataLayer || [];
+// gtag shim routes Google Ads events through dataLayer (GTM handles the rest)
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'AW-11158472206');
-</script>
 
-<!-- Meta Pixel -->
+(function(gtmId) {
+  function loadGTM() {
+    if (window._gtmLoaded) return;
+    window._gtmLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId + '&l=dataLayer';
+    document.head.appendChild(s);
+  }
+
+  // Fire on first user interaction
+  var events = ['click', 'scroll', 'keydown', 'touchstart', 'mousemove'];
+  function onInteraction() {
+    loadGTM();
+    events.forEach(function(e) { document.removeEventListener(e, onInteraction, {once: true, passive: true}); });
+  }
+  events.forEach(function(e) { document.addEventListener(e, onInteraction, {once: true, passive: true}); });
+
+  // Also fire after 3 seconds idle — catches users who don't interact
+  setTimeout(loadGTM, 3000);
+})('{{ . }}');
+</script>
+<!-- End Google Tag Manager -->
+{{ end }}
+
+<!-- Meta Pixel — deferred until idle/interaction to unblock LCP -->
 <script>
+// fbq stub: queues all calls until fbevents.js loads
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','976838797426205');
 fbq('track','PageView');
+
+(function() {
+  function loadFBPixel() {
+    if (window._fbLoaded) return;
+    window._fbLoaded = true;
+    var t = document.createElement('script');
+    t.async = true;
+    t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(t);
+  }
+
+  var events = ['click', 'scroll', 'keydown', 'touchstart', 'mousemove'];
+  function onInteraction() {
+    loadFBPixel();
+    events.forEach(function(e) { document.removeEventListener(e, onInteraction, {once: true, passive: true}); });
+  }
+  events.forEach(function(e) { document.addEventListener(e, onInteraction, {once: true, passive: true}); });
+
+  setTimeout(loadFBPixel, 3000);
+})();
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=976838797426205&ev=PageView&noscript=1"/></noscript>
 
