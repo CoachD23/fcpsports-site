@@ -23,7 +23,7 @@ faq:
   - q: "How much does it cost?"
     a: "Saturday League is $149 per session, flat. Sunday MS League is $179 for 8 weeks. Winter MS League is $199 per season. Men's League (waitlist) is $120/player or $600/team."
   - q: "Are there tryouts?"
-    a: "No tryouts for the Saturday League. Coaches build balanced rosters via an evaluation night, and every player gets equal playing time."
+    a: "No tryouts for the Saturday League. Players start in age-based divisions, then coaches balance rosters by age, size, and ability. Staff may move a player to a better-fit group when safety, confidence, or competition level calls for it."
 ---
 
 ## Three Leagues — Pick Your Format
@@ -33,6 +33,8 @@ FCP Sports runs basketball leagues year-round. Most families choose the **Saturd
 ### Saturday League *(most popular)*
 
 Our flagship program. Four age divisions from Juniors (5–7) through Varsity (15+). Three 7-week sessions per year — Spring, Mid-Summer, Late Summer. No tryouts, every player plays equal time, jerseys included.
+
+Teams are balanced by age, size, and ability. Players start in their age division, and staff can recommend a better-fit placement when safety, confidence, or competition level calls for it.
 
 → **[See Saturday League details + register](/youth-league/)**
 

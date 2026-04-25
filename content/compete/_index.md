@@ -13,7 +13,7 @@ programs:
     price: "From $79"
     image: "/images/fcp-spartans-game-action.jpg"
   - name: "Saturday League"
-    description: "Saturday mornings look different here. No warming the bench. No sitting out. Your child walks onto a real court playing real minutes against kids their own age. No tryouts."
+    description: "Saturday mornings look different here. Age-based divisions, balanced teams, real minutes, and no tryouts. Every player plays."
     url: "/youth-league/"
     ages: "Ages 5+"
     price: "$149"
