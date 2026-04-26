@@ -48,6 +48,10 @@ if (fadeEls.length && 'IntersectionObserver' in window) {
 
   function showPopup() {
     if (!eligible || sessionStorage.getItem(sessionKey)) return;
+    const popupImage = popup.querySelector('img[data-src]');
+    if (popupImage && !popupImage.getAttribute('src')) {
+      popupImage.setAttribute('src', popupImage.dataset.src);
+    }
     popup.classList.remove('hidden');
     sessionStorage.setItem(sessionKey, '1');
     document.body.style.overflow = 'hidden';

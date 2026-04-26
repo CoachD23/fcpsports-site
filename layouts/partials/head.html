@@ -27,35 +27,52 @@
 <meta name="twitter:image" content="{{ site.BaseURL }}{{ $ogImage }}" />
 
 <!-- Preconnects -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://www.googletagmanager.com" />
-<link rel="preconnect" href="https://widgets.leadconnectorhq.com" />
 <link rel="preconnect" href="https://connect.facebook.net" />
 
-<!-- Preload Oswald italic 700 woff2 (latin) to eliminate FOUT on hero H1 -->
-<link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/oswald/v57/TK3_WkUHHAIjg75cFRf3bXL8LICs1xZosUZiZSSUhiCXAA.woff2" crossorigin />
-
-<!-- Google Fonts — async (non-render-blocking) -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Oswald:ital,wght@1,600;1,700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<!-- Google Fonts load after first paint; the homepage LCP heading uses a system stack. -->
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Oswald:ital,wght@1,600;1,700&display=swap" /></noscript>
+<script>
+(function() {
+  function loadFonts() {
+    if (window._fcpFontsLoaded) return;
+    window._fcpFontsLoaded = true;
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Oswald:ital,wght@1,600;1,700&display=swap';
+    document.head.appendChild(l);
+  }
+  function scheduleFonts() {
+    setTimeout(function() {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadFonts, {timeout: 2500});
+      } else {
+        loadFonts();
+      }
+    }, 4500);
+  }
+  if (document.readyState === 'complete') {
+    scheduleFonts();
+  } else {
+    window.addEventListener('load', scheduleFonts, {once: true});
+  }
+})();
+</script>
 
 {{ with .Params.hero_image }}
 <!-- Preload LCP hero image -->
 <link rel="preload" as="image" href="{{ . }}" fetchpriority="high" />
+{{ end }}
+{{ if .IsHome }}
+<link rel="preload" as="image" href="/assets/img/hero-poster-mobile.webp" type="image/webp" fetchpriority="high" media="(min-width: 640px) and (max-width: 767px)" />
 {{ end }}
 
 {{ $css := resources.Get "css/main.css" | css.PostCSS | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
 {{ with site.Params.gtm_id }}
-<!-- Google Tag Manager — dataLayer/gtag stub fires synchronously so all
-     PageView events queue immediately. The actual gtm.js script loads after
-     DOMContentLoaded (HTML fully parsed, ~1-2s on mobile 4G). This unblocks
-     LCP while still loading early enough to catch ~95% of users (only
-     sub-1-second bouncers escape, which is mostly bots/misclicks).
-     dataLayer.push() events queued before gtm.js arrives are processed
-     when the script executes — no PageView data is lost. -->
+<!-- Google Tag Manager — queue events immediately, then load the network script
+     after window load so it cannot compete with the mobile LCP path. -->
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -72,20 +89,21 @@ window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
     s.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId + '&l=dataLayer';
     document.head.appendChild(s);
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadGTM, {once: true});
+  function scheduleGTM() {
+    setTimeout(loadGTM, 4500);
+  }
+  if (document.readyState === 'complete') {
+    scheduleGTM();
   } else {
-    loadGTM();
+    window.addEventListener('load', scheduleGTM, {once: true});
   }
 })('{{ . }}');
 </script>
 <!-- End Google Tag Manager -->
 {{ end }}
 
-<!-- Meta Pixel — fbq stub queues PageView synchronously, fbevents.js loads
-     on window.load (fires after page fully painted, before user has a chance
-     to bounce silently). All PageView events still queue and fire when
-     fbevents.js arrives. -->
+<!-- Meta Pixel — queue PageView synchronously, then load fbevents after window
+     load so it stays out of the first viewport's critical path. -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -102,13 +120,13 @@ fbq('track','PageView');
     t.src = 'https://connect.facebook.net/en_US/fbevents.js';
     document.head.appendChild(t);
   }
-  // Fire on window.load — guarantees firing for all users who don't navigate away
-  // before the page finishes loading. Earlier than 'first interaction' approach
-  // which missed bouncing users entirely.
+  function scheduleFBPixel() {
+    setTimeout(loadFBPixel, 4500);
+  }
   if (document.readyState === 'complete') {
-    loadFBPixel();
+    scheduleFBPixel();
   } else {
-    window.addEventListener('load', loadFBPixel, {once: true});
+    window.addEventListener('load', scheduleFBPixel, {once: true});
   }
 })();
 </script>

@@ -4,8 +4,21 @@
 /* ── Homepage mobile responsive ── */
 
 /* Hero H1 */
+.hero-h1 {
+  font-family: Impact, "Arial Narrow", system-ui, sans-serif !important;
+}
+@media (min-width: 640px) and (max-width: 767px) {
+  .hero-tablet-poster {
+    background-image: url('/assets/img/hero-poster-mobile.webp');
+    background-size: cover;
+    background-position: center;
+  }
+}
 @media (max-width: 479px) {
-  .hero-h1 { font-size: 2.5rem !important; letter-spacing: normal !important; }
+  .hero-h1 {
+    font-size: 2.5rem !important;
+    letter-spacing: normal !important;
+  }
 }
 
 /* TRAIN / COMPETE split */
@@ -30,12 +43,14 @@
      ===================================================== -->
 <section class="relative flex items-center justify-center overflow-hidden" style="min-height:60vh;">
 
+  <!-- Tablet poster is gated in CSS so phone-sized mobile does not fetch it. -->
+  <div class="hero-tablet-poster absolute inset-0 hidden sm:block md:hidden" aria-hidden="true"></div>
+
   <!-- Video background — lazy loaded on desktop with fast connection only -->
   <video
     id="hero-video"
-    class="absolute inset-0 w-full h-full object-cover"
+    class="absolute inset-0 hidden md:block w-full h-full object-cover"
     autoplay muted loop playsinline
-    poster="/assets/img/hero-poster.jpg"
     preload="none"
   ></video>
   <script>
@@ -46,6 +61,7 @@
     var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (mq.matches && !slow && !reducedMotion) {
       var v = document.getElementById('hero-video');
+      v.poster = '/assets/img/hero-poster.jpg';
       var webm = document.createElement('source');
       webm.src = '/assets/video/hero.webm';
       webm.type = 'video/webm';
@@ -66,19 +82,19 @@
   <div class="relative z-10 text-center px-4 max-w-5xl mx-auto py-20">
 
     <!-- Location pill -->
-    <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5 fade-in">
+    <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5">
       Fort Walton Beach, FL
     </span>
 
     <!-- H1 — keyword-rich for SEO -->
-    <h1 class="hero-h1 font-hero italic text-5xl sm:text-6xl md:text-7xl text-white leading-tight mb-5 fade-in tracking-wide" style="font-weight:700;text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;">
+    <h1 class="hero-h1 italic text-5xl sm:text-6xl md:text-7xl text-white leading-tight mb-5 tracking-wide" style="font-weight:700;text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;">
       Youth Basketball Leagues &amp; Programs
     </h1>
 
-    <p class="text-white/70 text-lg uppercase tracking-widest mb-8 max-w-2xl mx-auto fade-in">Camps, Leagues, Training &amp; Open Gym</p>
+    <p class="text-white/70 text-lg uppercase tracking-widest mb-8 max-w-2xl mx-auto">Camps, Leagues, Training &amp; Open Gym</p>
 
     <!-- CTAs + Lead Form -->
-    <div class="fade-in max-w-xl mx-auto">
+    <div class="max-w-xl mx-auto">
       <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5">
         <p class="text-white font-bold text-base mb-1">Stay Up to Date</p>
         <p class="text-white/60 text-sm mb-3">Get updates on programs, camps &amp; open gym.</p>
