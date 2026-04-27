@@ -8,7 +8,8 @@ enableGitInfo = true
   phone = "850.961.2323"
   email = "info@fcpsports.org"
   address = "33 Jet Drive NW, Fort Walton Beach, FL 32548"
-  ghl_chat_widget = "jBDUi7Sma6tCl3eXKBmX"
+  # Floating chat is disabled until a valid LeadConnector chat widget ID is available.
+  ghl_chat_widget = ""
   ghl_form_id = "41vI0yGp6HJG0JBllaVt"
   gtm_id = "GTM-K7M5HNW6"
   authnet_login_id = "3E9jKC5pF"

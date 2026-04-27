@@ -6,6 +6,7 @@
 /* Hero H1 */
 .hero-h1 {
   font-family: "Bebas Neue", Impact, "Arial Narrow", system-ui, sans-serif !important;
+  letter-spacing: .02em;
 }
 @media (max-width: 767px) {
   .hero-mobile-poster {
@@ -14,10 +15,17 @@
     background-position: center;
   }
 }
+@media (min-width: 768px) {
+  .hero-desktop-poster {
+    background-image: url('/assets/img/hero-poster.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+}
 @media (max-width: 479px) {
   .hero-h1 {
-    font-size: 2.5rem !important;
-    letter-spacing: normal !important;
+    font-size: 2.85rem !important;
+    letter-spacing: .01em !important;
   }
 }
 
@@ -39,18 +47,20 @@
 </style>
 
 <!-- =====================================================
-     HERO — Compact (60vh), video background
+     HERO — polished, fast, action-forward
      ===================================================== -->
-<section class="relative flex items-center justify-center overflow-hidden" style="min-height:60vh;">
+<section class="relative flex items-center overflow-hidden" style="min-height:calc(92svh - 5rem);">
 
   <!-- Mobile poster covers phone and tablet sizes where the video is intentionally disabled. -->
   <div class="hero-mobile-poster absolute inset-0 md:hidden" aria-hidden="true"></div>
+  <div class="hero-desktop-poster absolute inset-0 hidden md:block" aria-hidden="true"></div>
 
   <!-- Video background — lazy loaded on desktop with fast connection only -->
   <video
     id="hero-video"
     class="absolute inset-0 hidden md:block w-full h-full object-cover"
     autoplay muted loop playsinline
+    poster="/assets/img/hero-poster.jpg"
     preload="none"
   ></video>
   <script>
@@ -76,38 +86,59 @@
   </script>
 
   <!-- Dark navy overlay -->
-  <div class="absolute inset-0 bg-navy/75"></div>
+  <div class="absolute inset-0 bg-navy/70"></div>
+  <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-navy-deep to-transparent"></div>
 
   <!-- Content -->
-  <div class="relative z-10 text-center px-4 max-w-5xl mx-auto py-20">
+  <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-20">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl">
 
-    <!-- Location pill -->
-    <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5">
-      Fort Walton Beach, FL
-    </span>
+        <span class="inline-flex items-center gap-2 bg-gold text-navy text-xs font-black tracking-widest uppercase px-4 py-2 rounded-md mb-5 shadow-lg shadow-black/20">
+          Fort Walton Beach Basketball
+        </span>
 
-    <!-- H1 — keyword-rich for SEO -->
-    <h1 class="hero-h1 text-5xl sm:text-6xl md:text-7xl text-white leading-tight mb-5 tracking-wide" style="font-weight:700;text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;">
-      Youth Basketball Leagues &amp; Programs
-    </h1>
+        <!-- H1 — keyword-rich for SEO -->
+        <h1 class="hero-h1 text-6xl sm:text-7xl md:text-8xl text-white leading-none mb-4 sm:mb-5" style="font-weight:700;text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;">
+          Train. Compete. Get Better.
+        </h1>
 
-    <p class="text-white/70 text-lg uppercase tracking-widest mb-8 max-w-2xl mx-auto">Camps, Leagues, Training &amp; Open Gym</p>
+        <p class="text-white/85 text-base sm:text-xl leading-relaxed max-w-2xl mb-5 sm:mb-8">
+          Camps, leagues, private lessons, open gym, and year-round player development inside Fort Walton Beach&rsquo;s dedicated basketball facility.
+        </p>
 
-    <!-- CTAs + Lead Form -->
-    <div class="max-w-xl mx-auto">
-      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5">
-        <p class="text-white font-bold text-base mb-1">Stay Up to Date</p>
-        <p class="text-white/60 text-sm mb-3">Get updates on programs, camps &amp; open gym.</p>
-        <form id="hero-signup-form" class="flex flex-col sm:flex-row gap-2">
-          <label for="hero-email" class="sr-only">Email address</label>
-          <input type="email" id="hero-email" name="email" placeholder="Your email address" required
-            class="flex-1 px-4 py-3 min-h-[44px] rounded-lg text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold" />
-          <button type="submit" id="hero-signup-btn"
-            class="bg-gold text-navy font-bold px-6 py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide whitespace-nowrap w-full sm:w-auto">
-            Sign Up
-          </button>
+        <div class="flex flex-col sm:flex-row gap-3 mb-5 sm:mb-8">
+          <a href="/registration/" class="bg-gold text-navy font-black px-7 py-4 rounded-md hover:bg-gold-light transition-colors text-sm uppercase tracking-wide text-center shadow-lg shadow-black/20">Register Now</a>
+          <a href="/schedule/" class="border border-white/40 text-white font-bold px-7 py-4 rounded-md hover:bg-white hover:text-navy transition-colors text-sm uppercase tracking-wide text-center">View Schedule</a>
+        </div>
+
+        <div class="grid grid-cols-3 gap-px max-w-2xl bg-white/15 border border-white/15 mb-5 sm:mb-8">
+          <div class="bg-navy/70 px-3 sm:px-4 py-3 sm:py-4">
+            <p class="font-display text-2xl sm:text-3xl text-gold leading-none">500+</p>
+            <p class="text-white/65 text-[11px] uppercase tracking-wide mt-1">Athletes Trained</p>
+          </div>
+          <div class="bg-navy/70 px-3 sm:px-4 py-3 sm:py-4">
+            <p class="font-display text-2xl sm:text-3xl text-gold leading-none">Ages 5+</p>
+            <p class="text-white/65 text-[11px] uppercase tracking-wide mt-1">Programs</p>
+          </div>
+          <div class="bg-navy/70 px-3 sm:px-4 py-3 sm:py-4">
+            <p class="font-display text-2xl sm:text-3xl text-gold leading-none">Year</p>
+            <p class="text-white/65 text-[11px] uppercase tracking-wide mt-1">Round Hoops</p>
+          </div>
+        </div>
+
+        <form id="hero-signup-form" class="max-w-xl">
+          <label for="hero-email" class="block text-white font-bold text-sm mb-2">Get camp, league, and open gym updates.</label>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input type="email" id="hero-email" name="email" placeholder="Your email address" required
+              class="flex-1 px-4 py-3 min-h-[46px] rounded-md text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold" />
+            <button type="submit" id="hero-signup-btn"
+              class="bg-white text-navy font-black px-6 py-3 rounded-md hover:bg-gold transition-colors text-sm uppercase tracking-wide whitespace-nowrap w-full sm:w-auto">
+              Keep Me Posted
+            </button>
+          </div>
         </form>
-        <p id="hero-signup-success" class="hidden text-green-400 font-semibold text-sm mt-3">You&rsquo;re in! We&rsquo;ll keep you posted.</p>
+        <p id="hero-signup-success" class="hidden text-green-300 font-semibold text-sm mt-3">You&rsquo;re in. We&rsquo;ll keep you posted.</p>
       </div>
     </div>
 
