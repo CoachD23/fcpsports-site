@@ -29,6 +29,13 @@
   .card {
     @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden;
   }
+  .mobile-nav {
+    max-height: calc(100vh - 5rem);
+    max-height: calc(100dvh - 5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
   /* CSS-only "fade-in" — visually slides up, but element is opaque from frame 1.
      This way Chrome records LCP immediately on first paint, instead of waiting
      700ms for an opacity:0→1 transition. Keeps the on-load motion effect. */

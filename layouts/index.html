@@ -5,10 +5,10 @@
 
 /* Hero H1 */
 .hero-h1 {
-  font-family: Impact, "Arial Narrow", system-ui, sans-serif !important;
+  font-family: "Bebas Neue", Impact, "Arial Narrow", system-ui, sans-serif !important;
 }
-@media (min-width: 640px) and (max-width: 767px) {
-  .hero-tablet-poster {
+@media (max-width: 767px) {
+  .hero-mobile-poster {
     background-image: url('/assets/img/hero-poster-mobile.webp');
     background-size: cover;
     background-position: center;
@@ -43,8 +43,8 @@
      ===================================================== -->
 <section class="relative flex items-center justify-center overflow-hidden" style="min-height:60vh;">
 
-  <!-- Tablet poster is gated in CSS so phone-sized mobile does not fetch it. -->
-  <div class="hero-tablet-poster absolute inset-0 hidden sm:block md:hidden" aria-hidden="true"></div>
+  <!-- Mobile poster covers phone and tablet sizes where the video is intentionally disabled. -->
+  <div class="hero-mobile-poster absolute inset-0 md:hidden" aria-hidden="true"></div>
 
   <!-- Video background — lazy loaded on desktop with fast connection only -->
   <video
@@ -87,7 +87,7 @@
     </span>
 
     <!-- H1 — keyword-rich for SEO -->
-    <h1 class="hero-h1 italic text-5xl sm:text-6xl md:text-7xl text-white leading-tight mb-5 tracking-wide" style="font-weight:700;text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;">
+    <h1 class="hero-h1 text-5xl sm:text-6xl md:text-7xl text-white leading-tight mb-5 tracking-wide" style="font-weight:700;text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;">
       Youth Basketball Leagues &amp; Programs
     </h1>
 

@@ -23,7 +23,6 @@ module.exports = {
       fontFamily: {
         display: ['"Bebas Neue"', 'cursive'],
         body: ['"DM Sans"', 'sans-serif'],
-        hero: ['"Oswald"', 'sans-serif'], // italic hero H1 only
       },
     },
   },

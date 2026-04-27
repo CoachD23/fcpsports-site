@@ -29,42 +29,17 @@
 <!-- Preconnects -->
 <link rel="preconnect" href="https://www.googletagmanager.com" />
 <link rel="preconnect" href="https://connect.facebook.net" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Google Fonts load after first paint; the homepage LCP heading uses a system stack. -->
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Oswald:ital,wght@1,600;1,700&display=swap" /></noscript>
-<script>
-(function() {
-  function loadFonts() {
-    if (window._fcpFontsLoaded) return;
-    window._fcpFontsLoaded = true;
-    var l = document.createElement('link');
-    l.rel = 'stylesheet';
-    l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Oswald:ital,wght@1,600;1,700&display=swap';
-    document.head.appendChild(l);
-  }
-  function scheduleFonts() {
-    setTimeout(function() {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadFonts, {timeout: 2500});
-      } else {
-        loadFonts();
-      }
-    }, 4500);
-  }
-  if (document.readyState === 'complete') {
-    scheduleFonts();
-  } else {
-    window.addEventListener('load', scheduleFonts, {once: true});
-  }
-})();
-</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" />
 
 {{ with .Params.hero_image }}
 <!-- Preload LCP hero image -->
 <link rel="preload" as="image" href="{{ . }}" fetchpriority="high" />
 {{ end }}
 {{ if .IsHome }}
-<link rel="preload" as="image" href="/assets/img/hero-poster-mobile.webp" type="image/webp" fetchpriority="high" media="(min-width: 640px) and (max-width: 767px)" />
+<link rel="preload" as="image" href="/assets/img/hero-poster-mobile.webp" type="image/webp" fetchpriority="high" media="(max-width: 767px)" />
 {{ end }}
 
 {{ $css := resources.Get "css/main.css" | css.PostCSS | resources.Minify | resources.Fingerprint }}

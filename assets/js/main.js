@@ -48,6 +48,7 @@ if (fadeEls.length && 'IntersectionObserver' in window) {
 
   function showPopup() {
     if (!eligible || sessionStorage.getItem(sessionKey)) return;
+    if (mobileNav && !mobileNav.classList.contains('hidden')) return;
     const popupImage = popup.querySelector('img[data-src]');
     if (popupImage && !popupImage.getAttribute('src')) {
       popupImage.setAttribute('src', popupImage.dataset.src);
