@@ -25,6 +25,7 @@ const ALLOWED_TAGS = new Set([
   "train",
   "camp-inquiry",
   "gym-rental-inquiry",
+  "sponsor-inquiry",
   "general-inquiry",
 ]);
 
@@ -173,13 +174,16 @@ exports.handler = async function (event) {
       }
     }
 
-    // Gym rental: email staff directly
-    if (safeTag === "gym-rental-inquiry" && contactId) {
+    // Gym rental and sponsor inquiries: email staff directly
+    if ((safeTag === "gym-rental-inquiry" || safeTag === "sponsor-inquiry") && contactId) {
+      const isSponsor = safeTag === "sponsor-inquiry";
+      const subject = isSponsor ? "SPONSOR INQUIRY" : "GYM RENTAL INQUIRY";
       const emailBody = [
-        `<h2>GYM RENTAL INQUIRY</h2>`,
+        `<h2>${subject}</h2>`,
         `<p><strong>Name:</strong> ${escHtml(parentFirstName.trim())} ${escHtml(parentLastName.trim())}</p>`,
         `<p><strong>Email:</strong> ${escHtml(email.trim())}</p>`,
         phone.trim() ? `<p><strong>Phone:</strong> ${escHtml(phone.trim())}</p>` : "",
+        program.trim() ? `<p><strong>Program:</strong> ${escHtml(program.trim())}</p>` : "",
         message.trim() ? `<p><strong>Message:</strong> ${escHtml(message.trim())}</p>` : "",
         `<p><strong>Source:</strong> ${escHtml(source)}</p>`,
       ].filter(Boolean).join("");
@@ -190,11 +194,11 @@ exports.handler = async function (event) {
         body: JSON.stringify({
           type: "Email",
           contactId,
-          subject: "GYM RENTAL INQUIRY",
+          subject,
           html: emailBody,
           emailTo: "info@fcpsports.org",
         }),
-      }).catch((e) => console.warn("[register-inquiry] Gym rental email failed:", e.message));
+      }).catch((e) => console.warn("[register-inquiry] Staff email failed:", e.message));
     }
 
     console.log(`[register-inquiry] Lead: ${email} | tag: ${safeTag} | program: ${program} | source: ${source}`);

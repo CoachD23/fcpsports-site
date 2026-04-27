@@ -1,0 +1,327 @@
+{{ define "main" }}
+{{ $heroImg := .Params.hero_image | default "/images/fcp-hero-court-pano.jpg" }}
+<section class="relative overflow-hidden bg-navy text-white">
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('{{ $heroImg }}');"></div>
+  <div class="absolute inset-0 bg-navy/85"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+    <div class="max-w-3xl">
+      <span class="inline-flex bg-gold text-navy text-xs font-black tracking-widest uppercase px-3 py-2 rounded-md mb-5">Community Partners</span>
+      <h1 class="font-display text-5xl md:text-7xl leading-none mb-5">Partner With FCP Sports</h1>
+      <p class="text-lg md:text-xl text-white/75 leading-relaxed max-w-2xl">Support youth basketball in Fort Walton Beach through camps, leagues, scholarships, equipment, and facility improvements that serve athletes across the Emerald Coast.</p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="#sponsor-form" class="btn-primary">Become a Sponsor</a>
+        <a href="tel:{{ site.Params.phone }}" class="btn-outline">Call {{ site.Params.phone }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+      <div>
+        <span class="section-tag">Why Sponsor</span>
+        <h2 class="section-heading">Your Business Helps More Kids Get On The Court</h2>
+        <p class="text-gray-600 leading-relaxed mb-6">FCP Sports is a basketball home for beginners, league players, camp athletes, military families, and serious hoopers chasing the next level. Sponsorship keeps programs accessible and gives local businesses a visible role in growing the game.</p>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="border border-gray-100 rounded-lg p-4">
+            <p class="font-display text-3xl text-navy leading-none">500+</p>
+            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">Local Athletes</p>
+          </div>
+          <div class="border border-gray-100 rounded-lg p-4">
+            <p class="font-display text-3xl text-navy leading-none">30+</p>
+            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">Schools Reached</p>
+          </div>
+          <div class="border border-gray-100 rounded-lg p-4">
+            <p class="font-display text-3xl text-navy leading-none">K-12</p>
+            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">Age Range</p>
+          </div>
+          <div class="border border-gray-100 rounded-lg p-4">
+            <p class="font-display text-3xl text-navy leading-none">1</p>
+            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">Basketball Home</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-display text-3xl text-navy mb-5">Where Sponsorship Goes</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-white rounded-lg p-5 border border-gray-100">
+            <p class="font-bold text-navy mb-1">Scholarships</p>
+            <p class="text-sm text-gray-500">Help athletes attend camps, leagues, and training when cost is a barrier.</p>
+          </div>
+          <div class="bg-white rounded-lg p-5 border border-gray-100">
+            <p class="font-bold text-navy mb-1">Equipment</p>
+            <p class="text-sm text-gray-500">Basketballs, training tools, camp shirts, league supplies, and player development gear.</p>
+          </div>
+          <div class="bg-white rounded-lg p-5 border border-gray-100">
+            <p class="font-bold text-navy mb-1">Facility Improvements</p>
+            <p class="text-sm text-gray-500">Court, seating, signage, and operational upgrades for a better game-day experience.</p>
+          </div>
+          <div class="bg-white rounded-lg p-5 border border-gray-100">
+            <p class="font-bold text-navy mb-1">Community Events</p>
+            <p class="text-sm text-gray-500">Clinics, showcases, youth league support, and basketball opportunities for more families.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tiers" class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="section-tag">Sponsor Levels</span>
+      <h2 class="section-heading">Choose The Partnership Level That Fits</h2>
+      <p class="text-gray-600">Each level can be adjusted around your business goals, season timing, and the programs you want to support.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
+      <article class="bg-white rounded-lg border border-gray-100 p-6 flex flex-col">
+        <p class="text-xs font-black uppercase tracking-widest text-gold mb-3">Premier</p>
+        <h3 class="font-display text-3xl text-navy leading-none">Court Partner</h3>
+        <p class="font-display text-4xl text-navy mt-4">$5,000</p>
+        <ul class="space-y-3 text-sm text-gray-600 mt-5 mb-6 flex-1">
+          <li>Prime logo placement on sponsor page</li>
+          <li>Facility or court-area recognition</li>
+          <li>Dedicated social media feature</li>
+          <li>Email recognition to FCP families</li>
+          <li>Scholarship impact story</li>
+        </ul>
+        <a href="#sponsor-form" class="btn-dark text-sm px-4 py-3">Start Conversation</a>
+      </article>
+
+      <article class="bg-white rounded-lg border-2 border-gold p-6 flex flex-col shadow-lg">
+        <p class="text-xs font-black uppercase tracking-widest text-gold mb-3">Most Flexible</p>
+        <h3 class="font-display text-3xl text-navy leading-none">Program Partner</h3>
+        <p class="font-display text-4xl text-navy mt-4">$2,500</p>
+        <ul class="space-y-3 text-sm text-gray-600 mt-5 mb-6 flex-1">
+          <li>Support a camp, league, or training program</li>
+          <li>Logo on sponsor page</li>
+          <li>Social media recognition</li>
+          <li>Program announcement mention</li>
+          <li>Optional scholarship designation</li>
+        </ul>
+        <a href="#sponsor-form" class="btn-primary text-sm px-4 py-3">Sponsor A Program</a>
+      </article>
+
+      <article class="bg-white rounded-lg border border-gray-100 p-6 flex flex-col">
+        <p class="text-xs font-black uppercase tracking-widest text-gold mb-3">League</p>
+        <h3 class="font-display text-3xl text-navy leading-none">League Partner</h3>
+        <p class="font-display text-4xl text-navy mt-4">$1,000</p>
+        <ul class="space-y-3 text-sm text-gray-600 mt-5 mb-6 flex-1">
+          <li>Support youth league operations</li>
+          <li>Logo on sponsor page</li>
+          <li>Game-day sponsor recognition</li>
+          <li>Social mention during season</li>
+          <li>Family-facing visibility</li>
+        </ul>
+        <a href="#sponsor-form" class="btn-dark text-sm px-4 py-3">Support A League</a>
+      </article>
+
+      <article class="bg-white rounded-lg border border-gray-100 p-6 flex flex-col">
+        <p class="text-xs font-black uppercase tracking-widest text-gold mb-3">Access</p>
+        <h3 class="font-display text-3xl text-navy leading-none">Scholarship Sponsor</h3>
+        <p class="font-display text-4xl text-navy mt-4">$500</p>
+        <ul class="space-y-3 text-sm text-gray-600 mt-5 mb-6 flex-1">
+          <li>Help cover athlete participation costs</li>
+          <li>Logo or name on sponsor page</li>
+          <li>Thank-you social mention</li>
+          <li>Can be directed to camps or leagues</li>
+        </ul>
+        <a href="#sponsor-form" class="btn-dark text-sm px-4 py-3">Fund Access</a>
+      </article>
+
+      <article class="bg-white rounded-lg border border-gray-100 p-6 flex flex-col">
+        <p class="text-xs font-black uppercase tracking-widest text-gold mb-3">Local</p>
+        <h3 class="font-display text-3xl text-navy leading-none">Community Supporter</h3>
+        <p class="font-display text-4xl text-navy mt-4">$250</p>
+        <ul class="space-y-3 text-sm text-gray-600 mt-5 mb-6 flex-1">
+          <li>Support equipment and youth programs</li>
+          <li>Name listed on sponsor page</li>
+          <li>Thank-you mention from FCP Sports</li>
+          <li>Simple way to get involved</li>
+        </ul>
+        <a href="#sponsor-form" class="btn-dark text-sm px-4 py-3">Get Involved</a>
+      </article>
+    </div>
+
+    <p class="text-center text-xs text-gray-400 mt-6">Sponsorship packages are promotional partnerships with FCP Sports. Tax treatment depends on your business and should be confirmed with your advisor.</p>
+  </div>
+</section>
+
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-10 items-start">
+      <div>
+        <span class="section-tag">What You Receive</span>
+        <h2 class="section-heading">Visibility With Families Who Care About Local Sports</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="border border-gray-100 rounded-lg p-5">
+            <p class="font-bold text-navy mb-1">Website Recognition</p>
+            <p class="text-sm text-gray-500">Logo or business name featured on the sponsor page based on package level.</p>
+          </div>
+          <div class="border border-gray-100 rounded-lg p-5">
+            <p class="font-bold text-navy mb-1">Social Media</p>
+            <p class="text-sm text-gray-500">Dedicated or grouped recognition through FCP Sports social channels.</p>
+          </div>
+          <div class="border border-gray-100 rounded-lg p-5">
+            <p class="font-bold text-navy mb-1">Facility Visibility</p>
+            <p class="text-sm text-gray-500">Signage or in-facility recognition options for higher-level partners.</p>
+          </div>
+          <div class="border border-gray-100 rounded-lg p-5">
+            <p class="font-bold text-navy mb-1">Direct Community Impact</p>
+            <p class="text-sm text-gray-500">Support can be tied to scholarships, camps, leagues, equipment, or events.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="bg-navy text-white rounded-lg p-6 sm:p-8">
+        <h3 class="font-display text-3xl leading-none mb-4">Not Sure Which Level Fits?</h3>
+        <p class="text-white/70 text-sm leading-relaxed mb-6">Tell us your budget, timing, and what you want your business connected to. We can shape a package around a specific camp, league season, scholarship pool, or facility need.</p>
+        <div class="space-y-3 text-sm">
+          <a href="tel:{{ site.Params.phone }}" class="block bg-gold text-navy font-bold text-center rounded-lg px-4 py-3">Call {{ site.Params.phone }}</a>
+          <a href="mailto:{{ site.Params.email }}?subject=FCP%20Sports%20Sponsorship" class="block border border-white/20 text-white font-bold text-center rounded-lg px-4 py-3 hover:bg-white hover:text-navy transition-colors">Email {{ site.Params.email }}</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="sponsor-form" class="py-16 bg-gray-50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-lg shadow-xl border border-gray-100 p-6 sm:p-8">
+      <span class="section-tag">Become A Sponsor</span>
+      <h2 class="font-display text-4xl md:text-5xl text-navy leading-none mb-3">Start The Partnership</h2>
+      <p class="text-gray-500 mb-8">Send your info and we will follow up with sponsor options, availability, and next steps.</p>
+
+      <form id="sponsor-inquiry-form" class="space-y-4" novalidate>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="sponsor-first" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">First Name <span class="text-red-500">*</span></label>
+            <input type="text" id="sponsor-first" name="firstName" required autocomplete="given-name" class="reg-input" />
+          </div>
+          <div>
+            <label for="sponsor-last" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Last Name</label>
+            <input type="text" id="sponsor-last" name="lastName" autocomplete="family-name" class="reg-input" />
+          </div>
+        </div>
+
+        <div>
+          <label for="sponsor-company" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Business / Organization <span class="text-red-500">*</span></label>
+          <input type="text" id="sponsor-company" name="company" required autocomplete="organization" class="reg-input" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="sponsor-email" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Email <span class="text-red-500">*</span></label>
+            <input type="email" id="sponsor-email" name="email" required autocomplete="email" class="reg-input" />
+          </div>
+          <div>
+            <label for="sponsor-phone" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Phone</label>
+            <input type="tel" id="sponsor-phone" name="phone" autocomplete="tel" class="reg-input" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="sponsor-tier" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Interested Level</label>
+            <select id="sponsor-tier" name="tier" class="reg-input">
+              <option value="">Help me choose</option>
+              <option value="Court Partner - $5,000">Court Partner - $5,000</option>
+              <option value="Program Partner - $2,500">Program Partner - $2,500</option>
+              <option value="League Partner - $1,000">League Partner - $1,000</option>
+              <option value="Scholarship Sponsor - $500">Scholarship Sponsor - $500</option>
+              <option value="Community Supporter - $250">Community Supporter - $250</option>
+              <option value="Custom Partnership">Custom Partnership</option>
+            </select>
+          </div>
+          <div>
+            <label for="sponsor-website" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">Website / Social</label>
+            <input type="text" id="sponsor-website" name="website" autocomplete="url" placeholder="https://" class="reg-input" />
+          </div>
+        </div>
+
+        <div>
+          <label for="sponsor-message" class="block text-xs font-semibold text-navy mb-1 uppercase tracking-wide">What would you like to support?</label>
+          <textarea id="sponsor-message" name="message" rows="4" class="reg-input resize-none" placeholder="Scholarships, summer camp, youth league, facility upgrades, a custom idea, etc."></textarea>
+        </div>
+
+        <p id="sponsor-error" class="hidden text-sm text-red-600 font-medium"></p>
+        <button type="submit" class="w-full btn-primary">Send Sponsor Inquiry</button>
+        <p class="text-xs text-gray-400 text-center">We will follow up directly. Payment and final sponsorship details are handled after confirmation.</p>
+      </form>
+
+      <div id="sponsor-success" class="hidden text-center py-8">
+        <h3 class="font-display text-3xl text-navy mb-2">Thanks For Reaching Out</h3>
+        <p class="text-gray-600">FCP Sports will follow up with sponsorship options and next steps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var form = document.getElementById('sponsor-inquiry-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var errorEl = document.getElementById('sponsor-error');
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var firstName = form.firstName.value.trim();
+    var company = form.company.value.trim();
+    var email = form.email.value.trim();
+    var tier = form.tier.value.trim();
+    var website = form.website.value.trim();
+    var note = form.message.value.trim();
+
+    if (!firstName) return showError('Please enter your first name.');
+    if (!company) return showError('Please enter your business or organization name.');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError('Please enter a valid email address.');
+
+    errorEl.classList.add('hidden');
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    var messageParts = [
+      'Company: ' + company,
+      tier ? 'Interested Level: ' + tier : '',
+      website ? 'Website / Social: ' + website : '',
+      note ? 'Message: ' + note : ''
+    ].filter(Boolean);
+
+    var payload = {
+      parentFirstName: firstName,
+      parentLastName: form.lastName.value.trim(),
+      email: email,
+      phone: form.phone.value.trim(),
+      program: tier ? 'Sponsorship: ' + tier : 'FCP Sports Sponsorship',
+      message: messageParts.join('\\n'),
+      tag: 'sponsor-inquiry',
+      source: window.location.pathname
+    };
+
+    fetch('/.netlify/functions/register-inquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function() { showSuccess(); })
+    .catch(function() { showSuccess(); });
+
+    function showError(message) {
+      errorEl.textContent = message;
+      errorEl.classList.remove('hidden');
+    }
+
+    function showSuccess() {
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Sponsor Inquiry', content_category: 'sponsor-inquiry' });
+      if (typeof gtag === 'function') gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'sponsor-inquiry' });
+      form.classList.add('hidden');
+      document.getElementById('sponsor-success').classList.remove('hidden');
+    }
+  });
+})();
+</script>
+{{ end }}
