@@ -49,7 +49,7 @@
 <!-- =====================================================
      HERO — polished, fast, action-forward
      ===================================================== -->
-<section class="relative flex items-center overflow-hidden" style="min-height:calc(92svh - 5rem);">
+<section class="relative flex items-center overflow-hidden" style="min-height:calc(82svh - 5rem);">
 
   <!-- Mobile poster covers phone and tablet sizes where the video is intentionally disabled. -->
   <div class="hero-mobile-poster absolute inset-0 md:hidden" aria-hidden="true"></div>
@@ -112,137 +112,10 @@
           <a href="/schedule/" class="border border-white/40 text-white font-bold px-7 py-4 rounded-md hover:bg-white hover:text-navy transition-colors text-sm uppercase tracking-wide text-center">View Schedule</a>
         </div>
 
-        <div class="grid grid-cols-3 gap-px max-w-2xl bg-white/15 border border-white/15 mb-5 sm:mb-8">
-          <div class="bg-navy/70 px-3 sm:px-4 py-3 sm:py-4">
-            <p class="font-display text-2xl sm:text-3xl text-gold leading-none">500+</p>
-            <p class="text-white/65 text-[11px] uppercase tracking-wide mt-1">Athletes Trained</p>
-          </div>
-          <div class="bg-navy/70 px-3 sm:px-4 py-3 sm:py-4">
-            <p class="font-display text-2xl sm:text-3xl text-gold leading-none">Ages 5+</p>
-            <p class="text-white/65 text-[11px] uppercase tracking-wide mt-1">Programs</p>
-          </div>
-          <div class="bg-navy/70 px-3 sm:px-4 py-3 sm:py-4">
-            <p class="font-display text-2xl sm:text-3xl text-gold leading-none">Year</p>
-            <p class="text-white/65 text-[11px] uppercase tracking-wide mt-1">Round Hoops</p>
-          </div>
-        </div>
-
-        <form id="hero-signup-form" class="max-w-xl">
-          <label for="hero-email" class="block text-white font-bold text-sm mb-2">Get camp, league, and open gym updates.</label>
-          <div class="flex flex-col sm:flex-row gap-2">
-            <input type="email" id="hero-email" name="email" placeholder="Your email address" required
-              class="flex-1 px-4 py-3 min-h-[46px] rounded-md text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold" />
-            <button type="submit" id="hero-signup-btn"
-              class="bg-white text-navy font-black px-6 py-3 rounded-md hover:bg-gold transition-colors text-sm uppercase tracking-wide whitespace-nowrap w-full sm:w-auto">
-              Keep Me Posted
-            </button>
-          </div>
-        </form>
-        <p id="hero-signup-success" class="hidden text-green-300 font-semibold text-sm mt-3">You&rsquo;re in. We&rsquo;ll keep you posted.</p>
       </div>
     </div>
-
-    <script>
-    document.getElementById('hero-signup-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var btn = document.getElementById('hero-signup-btn');
-      var email = this.email.value.trim();
-      if (!email) return;
-      btn.textContent = 'Signing up...';
-      btn.disabled = true;
-      fetch('/.netlify/functions/capture-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.assign({ email: email, tag: 'camp-inquiry', source: 'hero' }, { utm: (window.fcpUTM && window.fcpUTM()) || {} }))
-      }).catch(function(){});
-      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Homepage Signup', content_category: 'camp-inquiry' });
-      this.classList.add('hidden');
-      document.getElementById('hero-signup-success').classList.remove('hidden');
-    });
-    </script>
   </div>
 
-</section>
-
-
-<!-- =====================================================
-     UPCOMING EVENTS — Right below the hero
-     ===================================================== -->
-<section class="bg-white py-16">
-  <div class="max-w-7xl mx-auto px-4">
-
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-in">
-      <div>
-        <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-2">What&rsquo;s Happening</span>
-        <h2 class="font-display text-4xl md:text-5xl text-navy leading-none">This Week &amp; Beyond</h2>
-      </div>
-      <a href="/schedule/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
-        Full Schedule
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-      </a>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {{ $today := now.Format "2006-01-02" }}
-      {{ $upcoming := where site.Data.events "date" ">=" $today }}
-      {{ range first 3 (sort $upcoming "date") }}
-      <div class="border border-gray-100 rounded-2xl p-6 hover:border-gold hover:shadow-md transition-all duration-200 fade-in flex flex-col">
-        <div class="flex items-center justify-between mb-4">
-          <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none">
-            {{ dateFormat "Jan 02" .date }}
-          </span>
-          <span class="text-xs font-bold uppercase tracking-wide text-gold">{{ .badge }}</span>
-        </div>
-        <h3 class="font-display text-xl text-navy mb-1">{{ .title }}</h3>
-        <p class="text-gray-500 text-sm mb-1">{{ .time }}</p>
-        <p class="text-gray-500 text-sm flex-1">{{ .age }}</p>
-        {{ if .price }}<p class="font-bold text-navy text-sm mt-3">{{ .price }}</p>{{ end }}
-        <a href="{{ .slug }}" class="mt-4 btn-primary text-sm text-center py-3">{{ if eq .price "Drop-in" }}Come Play{{ else }}Register{{ end }}</a>
-      </div>
-      {{ end }}
-    </div>
-
-  </div>
-</section>
-
-
-<!-- =====================================================
-     UPCOMING CAMPS — Next 3 weeks, dynamic from data/camps.yaml
-     ===================================================== -->
-<section class="bg-gray-50 py-16">
-  <div class="max-w-7xl mx-auto px-4">
-
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-in">
-      <div>
-        <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-2">Register Now</span>
-        <h2 class="font-display text-4xl md:text-5xl text-navy leading-none">Upcoming Camps</h2>
-      </div>
-      <a href="/camps/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
-        View All Camps
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-      </a>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {{ $today := now.Format "2006-01-02" }}
-      {{ $upcoming := where (sort (where (index site.Data.camps "camps") "active" true) "start_date") "start_date" ">=" $today }}
-      {{ range first 3 $upcoming }}
-      <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:border-gold hover:shadow-md transition-all duration-200 fade-in flex flex-col">
-        <div class="flex items-start justify-between mb-4 gap-3">
-          <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none shrink-0">
-            {{ dateFormat "Jan 02" .start_date }}
-          </span>
-          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">${{ .price }}</span>
-        </div>
-        <h3 class="font-display text-xl text-navy mb-1 leading-tight">{{ .name }}</h3>
-        <p class="text-gray-500 text-sm mb-1">{{ .dates_display }}</p>
-        <p class="text-gray-500 text-sm flex-1">{{ .days }} &bull; {{ .times }} &bull; Grades {{ .grades }}</p>
-        <a href="/register/?camp={{ .id }}" class="mt-4 btn-primary text-sm text-center py-3">Register</a>
-      </div>
-      {{ end }}
-    </div>
-
-  </div>
 </section>
 
 
@@ -346,6 +219,87 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     UPCOMING EVENTS — Schedule after value proposition
+     ===================================================== -->
+<section class="bg-white py-16">
+  <div class="max-w-7xl mx-auto px-4">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-in">
+      <div>
+        <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-2">What&rsquo;s Happening</span>
+        <h2 class="font-display text-4xl md:text-5xl text-navy leading-none">This Week &amp; Beyond</h2>
+      </div>
+      <a href="/schedule/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
+        Full Schedule
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {{ $today := now.Format "2006-01-02" }}
+      {{ $upcoming := where site.Data.events "date" ">=" $today }}
+      {{ range first 3 (sort $upcoming "date") }}
+      <div class="border border-gray-100 rounded-2xl p-6 hover:border-gold hover:shadow-md transition-all duration-200 fade-in flex flex-col">
+        <div class="flex items-center justify-between mb-4">
+          <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none">
+            {{ dateFormat "Jan 02" .date }}
+          </span>
+          <span class="text-xs font-bold uppercase tracking-wide text-gold">{{ .badge }}</span>
+        </div>
+        <h3 class="font-display text-xl text-navy mb-1">{{ .title }}</h3>
+        <p class="text-gray-500 text-sm mb-1">{{ .time }}</p>
+        <p class="text-gray-500 text-sm flex-1">{{ .age }}</p>
+        {{ if .price }}<p class="font-bold text-navy text-sm mt-3">{{ .price }}</p>{{ end }}
+        <a href="{{ .slug }}" class="mt-4 btn-primary text-sm text-center py-3">{{ if eq .price "Drop-in" }}Come Play{{ else }}Register{{ end }}</a>
+      </div>
+      {{ end }}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =====================================================
+     UPCOMING CAMPS — Next 3 weeks, dynamic from data/camps.yaml
+     ===================================================== -->
+<section class="bg-gray-50 py-16">
+  <div class="max-w-7xl mx-auto px-4">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-in">
+      <div>
+        <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-2">Register Now</span>
+        <h2 class="font-display text-4xl md:text-5xl text-navy leading-none">Upcoming Camps</h2>
+      </div>
+      <a href="/camps/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
+        View All Camps
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {{ $today := now.Format "2006-01-02" }}
+      {{ $upcoming := where (sort (where (index site.Data.camps "camps") "active" true) "start_date") "start_date" ">=" $today }}
+      {{ range first 3 $upcoming }}
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:border-gold hover:shadow-md transition-all duration-200 fade-in flex flex-col">
+        <div class="flex items-start justify-between mb-4 gap-3">
+          <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none shrink-0">
+            {{ dateFormat "Jan 02" .start_date }}
+          </span>
+          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">${{ .price }}</span>
+        </div>
+        <h3 class="font-display text-xl text-navy mb-1 leading-tight">{{ .name }}</h3>
+        <p class="text-gray-500 text-sm mb-1">{{ .dates_display }}</p>
+        <p class="text-gray-500 text-sm flex-1">{{ .days }} &bull; {{ .times }} &bull; Grades {{ .grades }}</p>
+        <a href="/register/?camp={{ .id }}" class="mt-4 btn-primary text-sm text-center py-3">Register</a>
+      </div>
+      {{ end }}
+    </div>
+
   </div>
 </section>
 
