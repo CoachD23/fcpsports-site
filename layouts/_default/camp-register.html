@@ -1,36 +1,77 @@
 {{ define "main" }}
 <section class="pt-8 pb-20 bg-gray-50 min-h-screen">
-  <div class="max-w-2xl mx-auto px-4">
+  <div class="max-w-5xl mx-auto px-4">
 
     <!-- Header -->
-    <div class="text-center mb-6">
+    <div class="text-center mb-6 max-w-2xl mx-auto">
       <a href="/camps/" class="text-gold font-display tracking-widest text-sm uppercase hover:underline">&larr; FCP Sports Camps</a>
-      <h1 class="font-display text-3xl text-navy mt-2">Camp Registration</h1>
-      <p class="text-gray-400 text-sm">Basketball Camps &bull; Fort Walton Beach</p>
+      <h1 class="font-display text-4xl sm:text-5xl text-navy mt-2 leading-none">Summer Basketball Camp Registration</h1>
+      <p class="text-gray-500 text-sm sm:text-base mt-2">Choose a camp week, add parent and camper info, then pay securely.</p>
     </div>
 
-    <!-- Step Indicator -->
-    <nav class="flex items-center justify-between mb-8 max-w-lg mx-auto" aria-label="Registration steps" id="step-nav">
-      <ol class="contents">
-        <li class="step-dot active" data-step="1">
-          <div class="w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm" aria-label="Step 1 of 3: Camp + Parent" aria-current="step">1</div>
-          <span class="hidden sm:inline text-xs mt-1 text-gold font-semibold">Camp + Parent</span>
-        </li>
-        <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
-        <li class="step-dot" data-step="2">
-          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 2 of 3: Camper">2</div>
-          <span class="hidden sm:inline text-xs mt-1 text-gray-400">Camper</span>
-        </li>
-        <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
-        <li class="step-dot" data-step="3">
-          <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 3 of 3: Payment">3</div>
-          <span class="hidden sm:inline text-xs mt-1 text-gray-400">Payment</span>
-        </li>
-      </ol>
-    </nav>
+    <!-- Parent-facing camp info -->
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] items-start gap-5 mb-8">
+      <div class="bg-navy text-white rounded-2xl p-6 sm:p-8">
+        <span class="inline-block bg-gold text-navy text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-md mb-4">Summer 2026</span>
+        <h2 class="font-display text-3xl sm:text-4xl leading-none mb-4">Pick The Week That Fits Your Athlete</h2>
+        <p class="text-white/75 leading-relaxed mb-6">FCP Sports camps run June 1 through July 31 in Fort Walton Beach. Morning sessions are built for K-5 athletes, afternoon sessions are built for grades 6-12, and each camp is grouped by age, ability, and safety.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="border border-white/15 rounded-xl p-3">
+            <p class="font-display text-2xl text-gold leading-none">$149</p>
+            <p class="text-white/55 text-[11px] uppercase tracking-wide mt-1">Per Session</p>
+          </div>
+          <div class="border border-white/15 rounded-xl p-3">
+            <p class="font-display text-2xl text-gold leading-none">K-12</p>
+            <p class="text-white/55 text-[11px] uppercase tracking-wide mt-1">Grade Range</p>
+          </div>
+          <div class="border border-white/15 rounded-xl p-3">
+            <p class="font-display text-2xl text-gold leading-none">3.5</p>
+            <p class="text-white/55 text-[11px] uppercase tracking-wide mt-1">Hours/Day</p>
+          </div>
+          <div class="border border-white/15 rounded-xl p-3">
+            <p class="font-display text-2xl text-gold leading-none">$20</p>
+            <p class="text-white/55 text-[11px] uppercase tracking-wide mt-1">Discounts</p>
+          </div>
+        </div>
+      </div>
+      <aside class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+        <h2 class="font-display text-2xl text-navy mb-4">What&rsquo;s Included</h2>
+        <ul class="space-y-3 text-sm text-gray-600">
+          <li class="flex gap-3"><span class="text-gold font-black">&check;</span><span>Skill development, drills, and coached games</span></li>
+          <li class="flex gap-3"><span class="text-gold font-black">&check;</span><span>Full-court basketball facility at 33 Jet Drive NW</span></li>
+          <li class="flex gap-3"><span class="text-gold font-black">&check;</span><span>Camp T-shirt and safe skill-based grouping</span></li>
+          <li class="flex gap-3"><span class="text-gold font-black">&check;</span><span>$20 sibling and $20 military discounts can stack</span></li>
+        </ul>
+        <div class="mt-5 pt-5 border-t border-gray-100">
+          <p class="text-xs font-bold text-navy uppercase tracking-wide">Need help choosing?</p>
+          <a href="tel:8509612323" class="mt-2 inline-flex w-full items-center justify-center bg-gold text-navy font-bold px-4 py-3 rounded-lg">Call 850.961.2323</a>
+        </div>
+      </aside>
+    </div>
 
-    <!-- Form -->
-    <div class="bg-white rounded-2xl shadow-xl p-5 sm:p-8 md:p-10" id="reg-wrap">
+    <div class="max-w-2xl mx-auto">
+      <!-- Step Indicator -->
+      <nav class="flex items-center justify-between mb-8 max-w-lg mx-auto" aria-label="Registration steps" id="step-nav">
+        <ol class="contents">
+          <li class="step-dot active" data-step="1">
+            <div class="w-10 h-10 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm" aria-label="Step 1 of 3: Camp + Parent" aria-current="step">1</div>
+            <span class="hidden sm:inline text-xs mt-1 text-gold font-semibold">Camp + Parent</span>
+          </li>
+          <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
+          <li class="step-dot" data-step="2">
+            <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 2 of 3: Camper">2</div>
+            <span class="hidden sm:inline text-xs mt-1 text-gray-400">Camper</span>
+          </li>
+          <li class="flex-1 h-0.5 bg-gray-200 mx-1" aria-hidden="true"></li>
+          <li class="step-dot" data-step="3">
+            <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-400 font-bold flex items-center justify-center text-sm" aria-label="Step 3 of 3: Payment">3</div>
+            <span class="hidden sm:inline text-xs mt-1 text-gray-400">Payment</span>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Form -->
+      <div class="bg-white rounded-2xl shadow-xl p-5 sm:p-8 md:p-10" id="reg-wrap">
 
       <!-- Error display -->
       <div id="err-wrap" class="hidden mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3" role="alert" aria-live="assertive">
@@ -42,19 +83,33 @@
 
         <!-- STEP 1: Pick Camp -->
         <div class="step-panel" data-step="1">
-          <h2 class="font-display text-xl text-navy mb-4">Pick Your Camp Week</h2>
+          <h2 class="font-display text-2xl text-navy mb-2">Pick Your Camp Week</h2>
+          <p class="text-gray-500 text-sm mb-5">Weeks are grouped by date. Choose the morning or afternoon session that matches your camper&rsquo;s grade.</p>
           <fieldset>
             <legend class="sr-only">Pick Your Camp Week</legend>
             <div class="space-y-3 mb-6" id="camp-options">
-              {{ range $i, $c := (index site.Data.camps "camps") }}
-              {{ if $c.active }}
+              {{ $activeCamps := sort (where (index site.Data.camps "camps") "active" true) "start_date" }}
+              {{ $.Scratch.Set "lastCampStart" "" }}
+              {{ range $i, $c := $activeCamps }}
+              {{ if ne ($.Scratch.Get "lastCampStart") $c.start_date }}
+              <div class="pt-3 first:pt-0">
+                <div class="flex items-center gap-3">
+                  <div class="h-px flex-1 bg-gray-100"></div>
+                  <p class="text-[11px] font-black uppercase tracking-widest text-gray-400">{{ $c.dates_display }}</p>
+                  <div class="h-px flex-1 bg-gray-100"></div>
+                </div>
+              </div>
+              {{ $.Scratch.Set "lastCampStart" $c.start_date }}
+              {{ end }}
               <label class="camp-option">
                 <input type="radio" name="camp" value="{{ $c.id }}" class="sr-only" />
                 <div class="camp-card">
                   <div class="flex-1 min-w-0">
-                    <div class="font-display text-base text-navy">{{ $c.name }}</div>
+                    <div class="flex flex-wrap items-center gap-2">
+                      {{ with $c.session }}<span class="bg-gold/15 text-gold text-[10px] font-black tracking-widest uppercase px-2 py-1 rounded">{{ . }}</span>{{ end }}
+                      <div class="font-display text-base text-navy">{{ $c.name }}</div>
+                    </div>
                     <div class="text-xs text-gray-500 mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5">
-                      <span>{{ $c.dates_display }}</span>
                       <span>{{ $c.days }}</span>
                       <span>{{ $c.times }}</span>
                     </div>
@@ -66,7 +121,6 @@
                   </div>
                 </div>
               </label>
-              {{ end }}
               {{ end }}
             </div>
           </fieldset>
