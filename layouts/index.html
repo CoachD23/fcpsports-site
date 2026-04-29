@@ -9,7 +9,7 @@
   letter-spacing: .02em;
 }
 .hero-lead-form {
-  max-width: 420px;
+  max-width: 520px;
 }
 @media (max-width: 767px) {
   .hero-mobile-poster {
@@ -27,11 +27,19 @@
 }
 @media (max-width: 479px) {
   .hero-h1 {
-    font-size: 2.85rem !important;
+    font-size: 3rem !important;
     letter-spacing: .01em !important;
   }
   .hero-lead-form {
     max-width: none;
+  }
+  .hero-lead-title {
+    font-size: 1.5rem !important;
+  }
+  .hero-cta-row a,
+  .hero-lead-form input,
+  .hero-lead-form button {
+    min-height: 46px;
   }
 }
 
@@ -55,7 +63,7 @@
 <!-- =====================================================
      HERO — polished, fast, action-forward
      ===================================================== -->
-<section class="relative flex items-center overflow-hidden" style="min-height:calc(82svh - 5rem);">
+<section class="relative flex items-center overflow-hidden" style="min-height:calc(78svh - 5rem);">
 
   <!-- Mobile poster covers phone and tablet sizes where the video is intentionally disabled. -->
   <div class="hero-mobile-poster absolute inset-0 md:hidden" aria-hidden="true"></div>
@@ -92,17 +100,13 @@
   </script>
 
   <!-- Dark navy overlay -->
-  <div class="absolute inset-0 bg-navy/70"></div>
-  <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-navy-deep to-transparent"></div>
+  <div class="absolute inset-0 bg-navy/68"></div>
+  <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-transparent"></div>
 
   <!-- Content -->
-  <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-20">
+  <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
     <div class="max-w-7xl mx-auto">
       <div class="max-w-3xl">
-
-        <span class="inline-flex items-center gap-2 bg-gold text-navy text-xs font-black tracking-widest uppercase px-4 py-2 rounded-md mb-5 shadow-lg shadow-black/20">
-          Fort Walton Beach Basketball
-        </span>
 
         <!-- H1 — keyword-rich for SEO -->
         <h1 class="hero-h1 text-6xl sm:text-7xl md:text-8xl text-white leading-none mb-4 sm:mb-5" style="font-weight:700;text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;">
@@ -113,20 +117,21 @@
           Camps, Leagues, and Training for beginners to pros.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-3 mb-5 sm:mb-8">
+        <div class="hero-cta-row flex flex-col sm:flex-row gap-3 mb-5 sm:mb-7">
           <a href="/registration/" class="bg-gold text-navy font-black px-7 py-4 rounded-md hover:bg-gold-light transition-colors text-sm uppercase tracking-wide text-center shadow-lg shadow-black/20">Register Now</a>
           <a href="/schedule/" class="border border-white/40 text-white font-bold px-7 py-4 rounded-md hover:bg-white hover:text-navy transition-colors text-sm uppercase tracking-wide text-center">View Schedule</a>
         </div>
 
-        <div class="hero-lead-form bg-white/95 border border-white/40 rounded-lg p-4 shadow-2xl shadow-black/25 backdrop-blur-sm">
-          <p class="font-display text-2xl text-navy leading-none mb-1">Latest from FCP Sports</p>
-          <form id="hero-lead-form" class="flex flex-col sm:flex-row gap-2" novalidate>
+        <div class="hero-lead-form bg-white/95 border border-white/40 rounded-lg p-4 sm:p-5 shadow-2xl shadow-black/25 backdrop-blur-sm">
+          <p class="hero-lead-title font-display text-3xl text-navy leading-none mb-1">Don&rsquo;t Miss Program Openings</p>
+          <p class="text-gray-500 text-sm mb-3">Get notified when camps, leagues, and training spots open.</p>
+          <form id="hero-lead-form" class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2" novalidate>
             <label for="hero-lead-email" class="sr-only">Email address</label>
             <input type="email" id="hero-lead-email" name="email" autocomplete="email" required placeholder="Email address" class="min-h-[44px] flex-1 rounded-md border border-gray-200 px-4 py-3 text-sm text-navy placeholder:text-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40" />
-            <button type="submit" id="hero-lead-btn" class="min-h-[44px] rounded-md bg-gold px-5 py-3 text-sm font-black uppercase tracking-wide text-navy hover:bg-gold-light transition-colors">Submit</button>
+            <button type="submit" id="hero-lead-btn" class="min-h-[44px] rounded-md bg-gold px-5 py-3 text-sm font-black uppercase tracking-wide text-navy hover:bg-gold-light transition-colors">Notify Me</button>
           </form>
           <p id="hero-lead-error" class="hidden text-red-600 text-xs font-semibold mt-2"></p>
-          <p id="hero-lead-success" class="hidden text-navy text-sm font-bold mt-2">You&rsquo;re on the list.</p>
+          <p id="hero-lead-success" class="hidden text-navy text-sm font-bold mt-2">You&rsquo;re on the list. We&rsquo;ll keep you posted.</p>
         </div>
 
       </div>
