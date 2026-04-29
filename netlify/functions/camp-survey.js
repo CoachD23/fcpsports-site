@@ -80,11 +80,15 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid JSON" }) };
   }
 
-  const { name = "", email = "", phone = "" } = body;
+  const { name = "", email = "", phone = "", age = "", seasons = [], times = [], interests = [] } = body;
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid email required" }) };
   }
+
+  // Audit log: capture full response in Netlify function logs (so future ones are recoverable
+  // from logs even if downstream writes fail). DO NOT remove this line.
+  console.log(`[camp-survey] Submission: email=${email} age=${age} seasons=${JSON.stringify(seasons)} times=${JSON.stringify(times)} interests=${JSON.stringify(interests)}`);
 
   const [firstName, ...rest] = (name || "").trim().split(" ");
   const lastName = rest.join(" ") || "";
@@ -146,11 +150,23 @@ exports.handler = async function (event) {
       console.log(`[camp-survey] Opportunity created: ${oppData.opportunity?.id}`);
     }
 
-    // 4. Add internal note
+    // 4. Add internal note WITH the actual survey responses
+    const fmtArr = (arr) => Array.isArray(arr) && arr.length ? arr.join(", ") : "—";
+    const noteBody = [
+      "Camp survey form submitted.",
+      `Name: ${name || "—"}`,
+      `Phone: ${phone || "—"}`,
+      `Email: ${email}`,
+      `Age: ${age || "—"}`,
+      `Seasons interested: ${fmtArr(seasons)}`,
+      `Times preferred: ${fmtArr(times)}`,
+      `Specific interests: ${fmtArr(interests)}`,
+      `Source: Facebook Ad`,
+    ].join("\n");
     await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
       method: "POST",
       headers: ghlHeaders(),
-      body: JSON.stringify({ body: `Camp survey form submitted.\nName: ${name}\nPhone: ${phone}\nSource: Facebook Ad`, userId: "" }),
+      body: JSON.stringify({ body: noteBody, userId: "" }),
     }).catch((e) => console.warn("[camp-survey] Note failed:", e.message));
 
     // 5. Send emails via SMTP (Office 365 / info@fcpsports.org)
