@@ -19,7 +19,13 @@
 const ALLOWED_TAGS = new Set([
   "compete",
   "train",
+  "skills-inquiry",
   "camp-inquiry",
+  "league-inquiry",
+  "mens-league-waitlist",
+  "aau-inquiry",
+  "youth-inquiry",
+  "gym-rental",
   "gym-rental-inquiry",
   "homepage-lead",
   "general-inquiry",

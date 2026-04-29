@@ -24,6 +24,7 @@ const ALLOWED_TAGS = new Set([
   "compete",
   "train",
   "camp-inquiry",
+  "gym-rental",
   "gym-rental-inquiry",
   "sponsor-inquiry",
   "general-inquiry",
@@ -175,7 +176,7 @@ exports.handler = async function (event) {
     }
 
     // Gym rental and sponsor inquiries: email staff directly
-    if ((safeTag === "gym-rental-inquiry" || safeTag === "sponsor-inquiry") && contactId) {
+    if ((safeTag === "gym-rental" || safeTag === "gym-rental-inquiry" || safeTag === "sponsor-inquiry") && contactId) {
       const isSponsor = safeTag === "sponsor-inquiry";
       const subject = isSponsor ? "SPONSOR INQUIRY" : "GYM RENTAL INQUIRY";
       const emailBody = [
