@@ -6,11 +6,24 @@
 const navToggle = document.querySelector('.nav-toggle');
 const mobileNav = document.querySelector('.mobile-nav');
 if (navToggle && mobileNav) {
+  function setMobileNavOpen(open) {
+    mobileNav.classList.toggle('hidden', !open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('nav-open', open);
+  }
+
   navToggle.addEventListener('click', () => {
     const isOpen = !mobileNav.classList.contains('hidden');
-    mobileNav.classList.toggle('hidden', isOpen);
-    navToggle.setAttribute('aria-expanded', String(!isOpen));
+    setMobileNavOpen(!isOpen);
   });
+
+  mobileNav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMobileNavOpen(false);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) setMobileNavOpen(false);
+  }, { passive: true });
 }
 
 // ── Nav: scroll shadow ───────────────────────

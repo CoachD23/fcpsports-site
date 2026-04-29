@@ -36,6 +36,20 @@
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
   }
+  body.nav-open {
+    overflow: hidden;
+  }
+  @media (max-width: 1023px) {
+    .mobile-nav:not(.hidden) {
+      position: fixed;
+      top: 5rem;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-height: none;
+      padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+  }
   /* CSS-only "fade-in" — visually slides up, but element is opaque from frame 1.
      This way Chrome records LCP immediately on first paint, instead of waiting
      700ms for an opacity:0→1 transition. Keeps the on-load motion effect. */

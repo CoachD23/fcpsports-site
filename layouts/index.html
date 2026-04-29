@@ -9,13 +9,24 @@
   letter-spacing: .02em;
 }
 .hero-lead-form {
-  max-width: 520px;
+  max-width: 540px;
+}
+.hero-path-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 @media (max-width: 767px) {
   .hero-mobile-poster {
     background-image: url('/assets/img/hero-poster-mobile.webp');
     background-size: cover;
     background-position: center;
+  }
+  .hero-lead-form {
+    background: rgba(10,22,40,.94) !important;
+    border-color: rgba(255,255,255,.16) !important;
+    box-shadow: 0 18px 36px rgba(0,0,0,.32) !important;
+  }
+  .hero-path-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (min-width: 768px) {
@@ -27,14 +38,19 @@
 }
 @media (max-width: 479px) {
   .hero-h1 {
-    font-size: 3rem !important;
+    font-size: 2.55rem !important;
+    line-height: .92 !important;
     letter-spacing: .01em !important;
   }
   .hero-lead-form {
     max-width: none;
   }
   .hero-lead-title {
-    font-size: 1.5rem !important;
+    font-size: 1.35rem !important;
+  }
+  .hero-subcopy {
+    font-size: .95rem !important;
+    max-width: 18rem;
   }
   .hero-cta-row a,
   .hero-lead-form input,
@@ -63,7 +79,7 @@
 <!-- =====================================================
      HERO — polished, fast, action-forward
      ===================================================== -->
-<section class="relative flex items-center overflow-hidden" style="min-height:calc(78svh - 5rem);">
+<section class="relative flex items-center overflow-hidden" style="min-height:calc(72svh - 5rem);">
 
   <!-- Mobile poster covers phone and tablet sizes where the video is intentionally disabled. -->
   <div class="hero-mobile-poster absolute inset-0 md:hidden" aria-hidden="true"></div>
@@ -100,11 +116,11 @@
   </script>
 
   <!-- Dark navy overlay -->
-  <div class="absolute inset-0 bg-navy/68"></div>
-  <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-transparent"></div>
+  <div class="absolute inset-0 bg-navy/76 md:bg-navy/68"></div>
+  <div class="absolute inset-x-0 bottom-0 h-full md:h-2/3 bg-gradient-to-t from-navy-deep via-navy-deep/65 md:via-navy-deep/55 to-transparent"></div>
 
   <!-- Content -->
-  <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+  <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-7 sm:py-16">
     <div class="max-w-7xl mx-auto">
       <div class="max-w-3xl">
 
@@ -113,31 +129,50 @@
           Fun. Train. Improve.
         </h1>
 
-        <p class="text-white/85 text-base sm:text-xl leading-relaxed max-w-2xl mb-5 sm:mb-8">
-          Camps, Leagues, and Training for beginners to pros.
+        <p class="hero-subcopy text-white/85 text-base sm:text-xl leading-relaxed max-w-2xl mb-4 sm:mb-8">
+          Camps, leagues, and training for beginners to pros.
         </p>
 
-        <div class="hero-cta-row flex flex-col sm:flex-row gap-3 mb-5 sm:mb-7">
-          <a href="/registration/" class="bg-gold text-navy font-black px-7 py-4 rounded-md hover:bg-gold-light transition-colors text-sm uppercase tracking-wide text-center shadow-lg shadow-black/20">Register Now</a>
-          <a href="/schedule/" class="border border-white/40 text-white font-bold px-7 py-4 rounded-md hover:bg-white hover:text-navy transition-colors text-sm uppercase tracking-wide text-center">View Schedule</a>
+        <div class="hero-cta-row grid grid-cols-2 sm:flex sm:flex-row gap-3 mb-4 sm:mb-7">
+          <a href="/registration/" class="bg-gold text-navy font-black px-4 sm:px-7 py-3.5 sm:py-4 rounded-md hover:bg-gold-light transition-colors text-xs sm:text-sm uppercase tracking-wide text-center shadow-lg shadow-black/20">Register Now</a>
+          <a href="/schedule/" class="border border-white/40 text-white font-bold px-4 sm:px-7 py-3.5 sm:py-4 rounded-md hover:bg-white hover:text-navy transition-colors text-xs sm:text-sm uppercase tracking-wide text-center">View Schedule</a>
         </div>
 
-        <div class="hero-lead-form bg-white/95 border border-white/40 rounded-lg p-4 sm:p-5 shadow-2xl shadow-black/25 backdrop-blur-sm">
-          <p class="hero-lead-title font-display text-3xl text-navy leading-none mb-1">Don&rsquo;t Miss Program Openings</p>
-          <p class="text-gray-500 text-sm mb-3">Get notified when camps, leagues, and training spots open.</p>
+        <div class="hero-lead-form bg-navy/95 md:bg-white/95 border border-white/15 md:border-white/40 rounded-lg p-4 md:p-5 shadow-xl md:shadow-2xl shadow-black/25 backdrop-blur-sm">
+          <p class="hero-lead-title font-display text-3xl text-white md:text-navy leading-none mb-1">Don&rsquo;t Miss Program Openings</p>
+          <p class="text-white/70 md:text-gray-500 text-sm mb-3">Get notified when camps, leagues, and training spots open.</p>
           <form id="hero-lead-form" class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2" novalidate>
             <label for="hero-lead-email" class="sr-only">Email address</label>
             <input type="email" id="hero-lead-email" name="email" autocomplete="email" required placeholder="Email address" class="min-h-[44px] flex-1 rounded-md border border-gray-200 px-4 py-3 text-sm text-navy placeholder:text-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40" />
             <button type="submit" id="hero-lead-btn" class="min-h-[44px] rounded-md bg-gold px-5 py-3 text-sm font-black uppercase tracking-wide text-navy hover:bg-gold-light transition-colors">Notify Me</button>
           </form>
           <p id="hero-lead-error" class="hidden text-red-600 text-xs font-semibold mt-2"></p>
-          <p id="hero-lead-success" class="hidden text-navy text-sm font-bold mt-2">You&rsquo;re on the list. We&rsquo;ll keep you posted.</p>
+          <p id="hero-lead-success" class="hidden text-white md:text-navy text-sm font-bold mt-2">You&rsquo;re on the list. We&rsquo;ll keep you posted.</p>
         </div>
 
       </div>
     </div>
   </div>
 
+</section>
+
+
+<!-- =====================================================
+     CHOOSE YOUR PATH — compact program shortcuts
+     ===================================================== -->
+<section class="bg-navy-deep border-t border-white/10 py-5">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between gap-4 mb-3">
+      <p class="font-display text-white text-2xl leading-none">Choose Your Path</p>
+      <a href="/registration/" class="hidden sm:inline-flex text-gold text-xs font-black uppercase tracking-widest hover:text-gold-light">Start Here</a>
+    </div>
+    <div class="hero-path-grid grid gap-2">
+      <a href="/camps/" class="rounded-md border border-white/10 bg-white/5 px-3 py-3 text-center text-white font-bold text-sm hover:border-gold hover:text-gold transition-colors">Camps</a>
+      <a href="/train/" class="rounded-md border border-white/10 bg-white/5 px-3 py-3 text-center text-white font-bold text-sm hover:border-gold hover:text-gold transition-colors">Training</a>
+      <a href="/compete/" class="rounded-md border border-white/10 bg-white/5 px-3 py-3 text-center text-white font-bold text-sm hover:border-gold hover:text-gold transition-colors">Leagues</a>
+      <a href="/schedule/" class="rounded-md border border-white/10 bg-white/5 px-3 py-3 text-center text-white font-bold text-sm hover:border-gold hover:text-gold transition-colors">Schedule</a>
+    </div>
+  </div>
 </section>
 
 
