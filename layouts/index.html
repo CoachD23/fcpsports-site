@@ -8,6 +8,9 @@
   font-family: "Bebas Neue", Impact, "Arial Narrow", system-ui, sans-serif !important;
   letter-spacing: .02em;
 }
+.hero-lead-form {
+  max-width: 420px;
+}
 @media (max-width: 767px) {
   .hero-mobile-poster {
     background-image: url('/assets/img/hero-poster-mobile.webp');
@@ -26,6 +29,9 @@
   .hero-h1 {
     font-size: 2.85rem !important;
     letter-spacing: .01em !important;
+  }
+  .hero-lead-form {
+    max-width: none;
   }
 }
 
@@ -100,16 +106,27 @@
 
         <!-- H1 — keyword-rich for SEO -->
         <h1 class="hero-h1 text-6xl sm:text-7xl md:text-8xl text-white leading-none mb-4 sm:mb-5" style="font-weight:700;text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;">
-          Train. Compete. Get Better.
+          Fun. Train. Improve.
         </h1>
 
         <p class="text-white/85 text-base sm:text-xl leading-relaxed max-w-2xl mb-5 sm:mb-8">
-          Camps, leagues, private lessons, open gym, and year-round player development inside Fort Walton Beach&rsquo;s dedicated basketball facility.
+          Camps, Leagues, and Training for beginners to pros.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 mb-5 sm:mb-8">
           <a href="/registration/" class="bg-gold text-navy font-black px-7 py-4 rounded-md hover:bg-gold-light transition-colors text-sm uppercase tracking-wide text-center shadow-lg shadow-black/20">Register Now</a>
           <a href="/schedule/" class="border border-white/40 text-white font-bold px-7 py-4 rounded-md hover:bg-white hover:text-navy transition-colors text-sm uppercase tracking-wide text-center">View Schedule</a>
+        </div>
+
+        <div class="hero-lead-form bg-white/95 border border-white/40 rounded-lg p-4 shadow-2xl shadow-black/25 backdrop-blur-sm">
+          <p class="font-display text-2xl text-navy leading-none mb-1">Latest from FCP Sports</p>
+          <form id="hero-lead-form" class="flex flex-col sm:flex-row gap-2" novalidate>
+            <label for="hero-lead-email" class="sr-only">Email address</label>
+            <input type="email" id="hero-lead-email" name="email" autocomplete="email" required placeholder="Email address" class="min-h-[44px] flex-1 rounded-md border border-gray-200 px-4 py-3 text-sm text-navy placeholder:text-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40" />
+            <button type="submit" id="hero-lead-btn" class="min-h-[44px] rounded-md bg-gold px-5 py-3 text-sm font-black uppercase tracking-wide text-navy hover:bg-gold-light transition-colors">Submit</button>
+          </form>
+          <p id="hero-lead-error" class="hidden text-red-600 text-xs font-semibold mt-2"></p>
+          <p id="hero-lead-success" class="hidden text-navy text-sm font-bold mt-2">You&rsquo;re on the list.</p>
         </div>
 
       </div>
@@ -392,6 +409,46 @@
 <!-- Scroll-reveal JS (IntersectionObserver for .fade-in) -->
 <script>
 (function () {
+  var heroLeadForm = document.getElementById('hero-lead-form');
+  if (heroLeadForm) {
+    heroLeadForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var emailInput = document.getElementById('hero-lead-email');
+      var btn = document.getElementById('hero-lead-btn');
+      var error = document.getElementById('hero-lead-error');
+      var success = document.getElementById('hero-lead-success');
+      var email = emailInput.value.trim();
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        error.textContent = 'Enter a valid email address.';
+        error.classList.remove('hidden');
+        success.classList.add('hidden');
+        emailInput.focus();
+        return;
+      }
+
+      error.classList.add('hidden');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      fetch('/.netlify/functions/capture-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          tag: 'homepage-lead',
+          source: 'homepage-hero',
+          utm: (window.fcpUTM && window.fcpUTM()) || {}
+        })
+      }).catch(function () {}).then(function () {
+        if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Homepage hero email', content_category: 'homepage-lead' });
+        if (typeof gtag === 'function') gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'homepage-hero' });
+        heroLeadForm.classList.add('hidden');
+        success.classList.remove('hidden');
+      });
+    });
+  }
+
   var els = document.querySelectorAll('.fade-in');
   if (!('IntersectionObserver' in window)) {
     els.forEach(function (el) { el.classList.add('is-visible'); });

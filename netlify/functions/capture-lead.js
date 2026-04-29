@@ -1,6 +1,6 @@
 /**
  * capture-lead.js
- * Captures email from newsletter / program inquiry forms.
+ * Captures email from homepage and program inquiry forms.
  * Upserts contact in GoHighLevel and applies a program-specific tag.
  *
  * POST body: { email, tag, source, utm }
@@ -21,6 +21,7 @@ const ALLOWED_TAGS = new Set([
   "train",
   "camp-inquiry",
   "gym-rental-inquiry",
+  "homepage-lead",
   "general-inquiry",
 ]);
 
@@ -59,7 +60,6 @@ const CAMP_LEAGUE_TAGS = new Set([
   "aau-inquiry",
   "youth-inquiry",
   "general-inquiry",
-  "newsletter-signup",
 ]);
 
 function ghlHeaders() {
