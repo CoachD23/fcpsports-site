@@ -127,8 +127,8 @@
         </p>
 
         <div class="hero-lead-form bg-navy/95 md:bg-white/95 border border-white/15 md:border-white/40 rounded-lg p-4 md:p-5 shadow-xl md:shadow-2xl shadow-black/25 backdrop-blur-sm">
-          <p class="hero-lead-title font-display text-3xl text-white md:text-navy leading-none mb-1">Don&rsquo;t Miss Program Openings</p>
-          <p class="text-white/70 md:text-gray-500 text-sm mb-3">Get notified when camps, leagues, and training spots open.</p>
+          <p class="hero-lead-title font-display text-3xl text-white md:text-navy leading-none mb-1">Stay Up to Date</p>
+          <p class="text-white/70 md:text-gray-500 text-sm mb-3">Get updates on camps, leagues, training, and new openings.</p>
           <form id="hero-lead-form" class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2" novalidate>
             <label for="hero-lead-email" class="sr-only">Email address</label>
             <input type="email" id="hero-lead-email" name="email" autocomplete="email" required placeholder="Email address" class="min-h-[44px] flex-1 rounded-md border border-gray-200 px-4 py-3 text-sm text-navy placeholder:text-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40" />
@@ -142,25 +142,6 @@
     </div>
   </div>
 
-</section>
-
-
-<!-- =====================================================
-     HOMEPAGE ACTIONS — moved below hero for mobile breathing room
-     ===================================================== -->
-<section class="bg-navy-deep border-t border-white/10 py-5 sm:py-6">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-      <div>
-        <p class="font-display text-white text-2xl sm:text-3xl leading-none">Ready to get started?</p>
-        <p class="text-white/60 text-sm mt-1">Register for a program or check what&rsquo;s coming up next.</p>
-      </div>
-      <div class="grid grid-cols-1 sm:flex gap-3 sm:justify-end">
-        <a href="/registration/" class="bg-gold text-navy font-black px-5 py-3.5 rounded-md hover:bg-gold-light transition-colors text-sm uppercase tracking-wide text-center shadow-lg shadow-black/20">Register Now</a>
-        <a href="/schedule/" class="border border-white/30 text-white font-bold px-5 py-3.5 rounded-md hover:bg-white hover:text-navy transition-colors text-sm uppercase tracking-wide text-center">View Schedule</a>
-      </div>
-    </div>
-  </div>
 </section>
 
 
@@ -310,46 +291,6 @@
 
 
 <!-- =====================================================
-     UPCOMING CAMPS — Next 3 weeks, dynamic from data/camps.yaml
-     ===================================================== -->
-<section class="bg-gray-50 py-16">
-  <div class="max-w-7xl mx-auto px-4">
-
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-in">
-      <div>
-        <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-2">Register Now</span>
-        <h2 class="font-display text-4xl md:text-5xl text-navy leading-none">Upcoming Camps</h2>
-      </div>
-      <a href="/camps/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
-        View All Camps
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-      </a>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {{ $today := now.Format "2006-01-02" }}
-      {{ $upcoming := where (sort (where (index site.Data.camps "camps") "active" true) "start_date") "start_date" ">=" $today }}
-      {{ range first 3 $upcoming }}
-      <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:border-gold hover:shadow-md transition-all duration-200 fade-in flex flex-col">
-        <div class="flex items-start justify-between mb-4 gap-3">
-          <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none shrink-0">
-            {{ dateFormat "Jan 02" .start_date }}
-          </span>
-          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">${{ .price }}</span>
-        </div>
-        <h3 class="font-display text-xl text-navy mb-1 leading-tight">{{ .name }}</h3>
-        <p class="text-gray-500 text-sm mb-1">{{ .dates_display }}</p>
-        <p class="text-gray-500 text-sm flex-1">{{ .days }} &bull; {{ .times }} &bull; Grades {{ .grades }}</p>
-        <a href="/register/?camp={{ .id }}" class="mt-4 btn-primary text-sm text-center py-3">Register</a>
-      </div>
-      {{ end }}
-    </div>
-
-  </div>
-</section>
-
-
-<!-- =====================================================
      TESTIMONIALS
      ===================================================== -->
 <section class="bg-white py-16">
@@ -388,40 +329,6 @@
         Read More Reviews
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
       </a>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- =====================================================
-     LOCATIONS TEASER
-     ===================================================== -->
-<section class="bg-navy py-14">
-  <div class="max-w-5xl mx-auto px-4 text-center">
-
-    <span class="section-tag fade-in">Service Area</span>
-    <h2 class="section-heading--white mb-4 fade-in">We Serve The Entire Emerald Coast</h2>
-    <p class="text-white/70 text-lg mb-12 fade-in">Athletes from across the region train at FCP Sports.</p>
-
-    <div class="flex flex-wrap justify-center gap-3 fade-in">
-      {{ $cities := slice
-        (dict "name" "Fort Walton Beach" "slug" "fort-walton-beach")
-        (dict "name" "Destin"            "slug" "destin")
-        (dict "name" "Niceville"         "slug" "niceville")
-        (dict "name" "Navarre"           "slug" "navarre")
-        (dict "name" "Crestview"         "slug" "crestview")
-        (dict "name" "Pensacola"         "slug" "pensacola")
-        (dict "name" "Panama City"       "slug" "panama-city")
-      }}
-      {{ range $cities }}
-      <a
-        href="/locations/{{ .slug }}/"
-        class="inline-block bg-white/10 hover:bg-gold hover:text-navy text-white border border-white/20 hover:border-gold font-bold px-6 py-3 rounded-full transition-all duration-200 text-sm"
-      >
-        {{ .name }}
-      </a>
-      {{ end }}
     </div>
 
   </div>
