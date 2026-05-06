@@ -8,17 +8,17 @@
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
         <img data-src="/images/fcp-exit-popup.jpg" alt="FCP Sports Basketball" width="1200" height="375" class="w-full h-32 object-cover rounded-lg mb-3" />
-        <p id="exit-popup-title" class="font-display text-3xl text-white leading-tight">CAMP SPOTS FILL UP FAST</p>
-        <p class="text-gold font-bold tracking-wide mt-2">$149/week · Morning + Afternoon Sessions</p>
+        <p id="exit-popup-title" class="font-display text-3xl text-white leading-tight">Stay Up to Date</p>
+        <p class="text-gold font-bold tracking-wide mt-2">FCP Sports programs, events, and openings</p>
       </div>
       <div class="p-8">
-        <p class="text-gray-600 text-center mb-6">Drop your email and we'll send you camp dates, schedule, and registration details before spots fill.</p>
+        <p class="text-gray-600 text-center mb-6">Drop your email and we&rsquo;ll keep you posted on camps, leagues, training, and new program openings.</p>
         <form id="exit-form" class="space-y-3">
           <input type="email" name="email" placeholder="Your Email Address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:outline-none" />
-          <button type="submit" id="exit-submit-btn" class="w-full bg-gold text-navy font-bold py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide">Send Me Camp Details</button>
+          <button type="submit" id="exit-submit-btn" class="w-full bg-gold text-navy font-bold py-3 rounded-lg hover:bg-gold-dark transition-colors text-sm uppercase tracking-wide">Keep Me Updated</button>
         </form>
-        <p id="exit-success" class="hidden text-center text-green-600 font-semibold py-4">You're in! Check your email for camp details.</p>
-        <p class="text-center text-xs text-gray-400 mt-3">No spam. Just camp info.</p>
+        <p id="exit-success" class="hidden text-center text-green-600 font-semibold py-4">You&rsquo;re on the list. We&rsquo;ll keep you posted.</p>
+        <p class="text-center text-xs text-gray-400 mt-3">No spam. Just FCP Sports updates.</p>
       </div>
       <script>
       document.getElementById('exit-form').addEventListener('submit', function(e) {
@@ -26,17 +26,17 @@
         var btn = document.getElementById('exit-submit-btn');
         var email = this.email.value.trim();
         if (!email) return;
-        btn.textContent = 'Subscribing...';
+        btn.textContent = 'Sending...';
         btn.disabled = true;
         fetch('/.netlify/functions/capture-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(Object.assign({ email: email, tag: 'camp-inquiry', source: 'exit-popup' }, { utm: (window.fcpUTM && window.fcpUTM()) || {} }))
+          body: JSON.stringify(Object.assign({ email: email, tag: 'homepage-lead', source: 'exit-popup' }, { utm: (window.fcpUTM && window.fcpUTM()) || {} }))
         }).catch(function(){});
-        if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Camp Info Request', content_category: 'camp-inquiry' });
+        if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Stay Up to Date', content_category: 'homepage-lead' });
         if (typeof gtag === 'function') {
           gtag('event', 'conversion', {'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp', 'value': 1.0, 'currency': 'USD'});
-          gtag('event', 'generate_lead', {event_category: 'engagement', event_label: 'exit-popup-camp'});
+          gtag('event', 'generate_lead', {event_category: 'engagement', event_label: 'exit-popup'});
         }
         document.getElementById('exit-form').classList.add('hidden');
         document.getElementById('exit-success').classList.remove('hidden');

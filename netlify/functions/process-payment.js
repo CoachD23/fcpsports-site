@@ -37,8 +37,8 @@ exports.handler = async function (event) {
     // ── Promo code validation endpoint ──
     if (body.action === "validate-promo") {
       const PROGRAM_PRICES_CHECK = {
-        "summer-day-camp": 149, "skills-training": 149, "private-lesson": 75,
-        "youth-league": 149, "open-gym": 10,
+        "summer-day-camp": 149, "skills-training": 149, "private-lesson": 50,
+        "youth-league": 149, "homeschool-pe": 99, "open-gym": 10,
       };
       const PROMO_CODES_CHECK = {
         "MILITARY20": { flatDiscount: 20, label: "$20 Military/DoD Discount" },
@@ -65,8 +65,9 @@ exports.handler = async function (event) {
     const PROGRAM_PRICES = {
       "summer-day-camp": 149,
       "skills-training": 149,
-      "private-lesson": 75,
+      "private-lesson": 50,
       "youth-league": 149,
+      "homeschool-pe": 99,
       "open-gym": 10,
     };
 
@@ -205,7 +206,7 @@ exports.handler = async function (event) {
           email: email,
           phone: phone || "",
           locationId: ghlLoc,
-          tags: ["paid", program || "fcpsports"],
+          tags: ["fcpsports", "paid", program || "general-paid"],
           customFields: [
             { key: "athlete_name", field_value: athleteName || "" },
             { key: "program", field_value: programLabel || program || "" },

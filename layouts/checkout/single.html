@@ -45,24 +45,35 @@
           </label>
 
           <label class="program-card-select" for="prog-private-lesson">
-            <input type="radio" name="program" id="prog-private-lesson" value="private-lesson" data-price="75" data-label="Private Lesson (Single)" class="sr-only peer">
+            <input type="radio" name="program" id="prog-private-lesson" value="private-lesson" data-price="50" data-label="Private Lesson (Single)" class="sr-only peer">
             <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
               <div>
                 <div class="font-bold text-navy">Private Lesson</div>
                 <div class="text-sm text-gray-500">1-on-1 with a coach · 60 minutes</div>
               </div>
-              <div class="font-display text-2xl text-gold">$75</div>
+              <div class="font-display text-2xl text-gold">$50</div>
             </div>
           </label>
 
           <label class="program-card-select" for="prog-youth-league">
-            <input type="radio" name="program" id="prog-youth-league" value="youth-league" data-price="125" data-label="Youth Basketball League" class="sr-only peer">
+            <input type="radio" name="program" id="prog-youth-league" value="youth-league" data-price="149" data-label="Youth Basketball League" class="sr-only peer">
             <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
               <div>
                 <div class="font-bold text-navy">Youth Basketball League</div>
                 <div class="text-sm text-gray-500">7-week sessions · 3 per year · Games + practice · All skill levels</div>
               </div>
-              <div class="font-display text-2xl text-gold">$125</div>
+              <div class="font-display text-2xl text-gold">$149</div>
+            </div>
+          </label>
+
+          <label class="program-card-select" for="prog-homeschool-pe">
+            <input type="radio" name="program" id="prog-homeschool-pe" value="homeschool-pe" data-price="99" data-label="Homeschool PE (Monthly)" class="sr-only peer">
+            <div class="program-card-inner peer-checked:border-gold peer-checked:bg-gold/5">
+              <div>
+                <div class="font-bold text-navy">Homeschool PE</div>
+                <div class="text-sm text-gray-500">Monthly program · Tue/Thu mornings · grades K-8</div>
+              </div>
+              <div class="font-display text-2xl text-gold">$99</div>
             </div>
           </label>
 
@@ -260,6 +271,22 @@
   var selectedPrice = 0;
   var selectedLabel = '';
   var finalAmount = 0;
+
+  function preselectProgramFromQuery() {
+    var params = new URLSearchParams(window.location.search);
+    var program = params.get('program');
+    if (!program) return;
+
+    var radios = document.querySelectorAll('input[name="program"]');
+    radios.forEach(function(radio) {
+      if (radio.value === program) {
+        radio.checked = true;
+        document.getElementById('step1-error').classList.add('hidden');
+      }
+    });
+  }
+
+  preselectProgramFromQuery();
 
   // ── Step navigation ──
   window.goToStep = function(step) {

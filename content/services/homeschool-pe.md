@@ -8,6 +8,8 @@ age_range: "Grades K–8"
 price: "$99/month"
 frequency: "Tue/Thu mornings"
 program_name: "Homeschool PE"
+register_url: "/checkout/?program=homeschool-pe"
+register_text: "Enroll Now"
 ghl_tag: "train"
 course_type: "homeschool physical education"
 summary_card:
@@ -15,7 +17,7 @@ summary_card:
   ages: "Grades K–8"
   price: "$99/month"
   note: "Fulfills Florida PE requirement · Certificate provided"
-  register_url: "/registration/"
+  register_url: "/checkout/?program=homeschool-pe"
 faq:
   - q: "Does this program count as PE for Florida homeschool requirements?"
     a: "Yes. We provide a certificate of completion each semester documenting instructional hours, skills covered, and attendance. Florida homeschool families can use this as documentation that the PE requirement was met. Always confirm with your umbrella school or county what they accept."
@@ -78,4 +80,4 @@ We provide the basketballs. Gym is climate-controlled — Fort Walton Beach weat
 
 [Call 850.961.2323](/contact/) or [send us a note](/contact/) — we'll answer every question before you commit.
 
-[Register →](/registration/)
+[Register →](/checkout/?program=homeschool-pe)

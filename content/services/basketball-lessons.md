@@ -8,6 +8,8 @@ age_range: "Ages 6–Adult"
 price: "From $50/session"
 frequency: "Flexible scheduling"
 program_name: "Private Lessons"
+register_url: "/checkout/?program=private-lesson"
+register_text: "Book a Lesson"
 ghl_tag: "train"
 course_type: "basketball training"
 summary_card:
@@ -15,6 +17,7 @@ summary_card:
   ages: "Ages 6–Adult"
   price: "From $50/session"
   note: "1-on-1 · Semi-private · Small group"
+  register_url: "/checkout/?program=private-lesson"
   contact_url: "/contact/"
 faq:
   - q: "How much do private lessons cost?"

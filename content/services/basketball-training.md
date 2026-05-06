@@ -8,6 +8,8 @@ age_range: "Ages 8–18"
 price: "$149/month"
 frequency: "Mon–Thu school year · Summer evenings"
 program_name: "Skills Training"
+register_url: "/checkout/?program=skills-training"
+register_text: "Start Training"
 ghl_tag: "train"
 course_type: "basketball training"
 summary_card:
@@ -15,7 +17,7 @@ summary_card:
   ages: "Ages 5–18"
   price: "$149/month"
   note: "Grouped by skill level first, with age and safety considered"
-  register_url: "/register/"
+  register_url: "/checkout/?program=skills-training"
 faq:
   - q: "Where can I find basketball training near me?"
     a: "FCP Sports in Fort Walton Beach. Players from Fort Walton Beach, Destin, Niceville, Navarre, and Crestview train here weekly."

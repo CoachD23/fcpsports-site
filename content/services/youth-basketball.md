@@ -14,7 +14,7 @@ summary_card:
   ages: "Ages 5–14"
   price: "From $79"
   note: "League · Training · Camps · Lessons"
-  register_url: "/youth-league/"
+  register_url: "/youth-league/register/"
 faq:
   - q: "What age can my child start?"
     a: "Age 5 (kindergarten). Our Saturday League Juniors division and Little Hoopers Mini-Camp both welcome first-time players with no experience."
