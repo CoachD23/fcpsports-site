@@ -494,7 +494,7 @@ exports.handler = async function (event) {
     }
   }
 
-  /* --- 3. Airtable: Write registration --- */
+  /* --- 3. Airtable: Mirror registration --- */
   if (hasAirtable) {
     try {
       // Table: Youth_League_Registrations (create via Airtable UI or API)
@@ -540,26 +540,26 @@ exports.handler = async function (event) {
         const text = await atRes.text();
         console.error("[register-youth-league] Airtable write failed:", text);
         await recordIssue({
-          severity: "error",
-          eventType: "paid_followup_failed",
+          severity: "warning",
+          eventType: "airtable_sync_failed",
           statusCode: 200,
           amount: b.priceAmount,
           transactionId,
           contactId,
-          error: `Airtable write failed: ${text.slice(0, 240)}`,
-        }, true);
+          error: `Payment captured; internal Airtable roster sync failed: ${text.slice(0, 240)}`,
+        }, false);
       }
     } catch (err) {
       console.error("[register-youth-league] Airtable error:", err.message);
       await recordIssue({
-        severity: "error",
-        eventType: "paid_followup_failed",
+        severity: "warning",
+        eventType: "airtable_sync_failed",
         statusCode: 200,
         amount: b.priceAmount,
         transactionId,
         contactId,
-        error: "Airtable error: " + err.message,
-      }, true);
+        error: "Payment captured; internal Airtable roster sync failed: " + err.message,
+      }, false);
     }
   }
 

@@ -5,7 +5,7 @@
  * 1. Charges card via Authorize.net (Accept.js nonce → auth+capture)
  * 2. Upserts parent contact in GoHighLevel with UTM attribution
  * 3. Applies camp-specific tags + creates a registration note
- * 4. Writes registration to Airtable "Camp_Registrations" table
+ * 4. Mirrors registration to Airtable "Camp_Registrations" table
  * 5. Sends confirmation email via Office365 SMTP
  *
  * POST body (from 4-step form):
@@ -450,7 +450,7 @@ exports.handler = async function (event) {
     }
   }
 
-  /* --- 3. Airtable: write to Camp_Registrations --- */
+  /* --- 3. Airtable: mirror to Camp_Registrations --- */
   if (hasAirtable) {
     try {
       const atRes = await fetch(`${AIRTABLE_BASE}/${process.env.AIRTABLE_BASE_ID}/Camp_Registrations`, {
@@ -494,13 +494,13 @@ exports.handler = async function (event) {
     } catch (e) {
       console.warn("[register-camp] Airtable write failed:", e.message);
       await recordIssue({
-        severity: "error",
-        eventType: "paid_followup_failed",
+        severity: "warning",
+        eventType: "airtable_sync_failed",
         statusCode: 200,
         amount: b.priceAmount,
         transactionId,
-        error: e.message,
-      }, true);
+        error: "Payment captured; internal Airtable roster sync failed: " + e.message,
+      }, false);
     }
   }
 
