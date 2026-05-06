@@ -24,6 +24,10 @@ const GHL_BASE = "https://services.leadconnectorhq.com";
 const AIRTABLE_BASE = "https://api.airtable.com/v0";
 const META_GRAPH = "https://graph.facebook.com/v21.0";
 const crypto = require("crypto");
+const {
+  recordPaymentIssue,
+  sendPaymentAlert,
+} = require("./lib/checkout-reliability");
 
 /* --- Meta CAPI helper --- */
 function sha256lower(v) {
@@ -167,6 +171,24 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers: cors, body: json({ error: "Invalid request" }) };
   }
 
+  const requestId = event.headers?.["x-nf-request-id"] || event.headers?.["x-request-id"] || "";
+  const issueContext = (extra) => Object.assign({
+    flow: "league-registration",
+    programId: b.session || b.sessionId || "",
+    programName: b.sessionName || b.session || b.sessionId || "Saturday League",
+    email: b.parentEmail || "",
+    parentName: [b.parentFirst, b.parentLast].filter(Boolean).join(" ").trim(),
+    athleteName: [b.childFirst, b.childLast].filter(Boolean).join(" ").trim(),
+    amount: b.priceAmount || "",
+    requestId,
+  }, extra || {});
+
+  async function recordIssue(extra, immediate) {
+    const issue = issueContext(extra);
+    await recordPaymentIssue(issue);
+    if (immediate) await sendPaymentAlert(issue);
+  }
+
   /* --- Partial save (Step 1 lead capture) --- */
   if (b.partial) {
     const partialRequired = ["parentEmail", "parentFirst", "parentLast", "parentPhone", "parentZip"];
@@ -240,6 +262,12 @@ exports.handler = async function (event) {
 
   if (!hasGhl && !hasAirtable) {
     console.error("[register-youth-league] No GHL or Airtable credentials configured");
+    await recordIssue({
+      severity: "error",
+      eventType: "system_error",
+      statusCode: 500,
+      error: "No GHL or Airtable credentials configured",
+    }, true);
     return { statusCode: 500, headers: cors, body: json({ error: "Registration system not configured" }) };
   }
 
@@ -310,6 +338,13 @@ exports.handler = async function (event) {
           || payData.messages?.message?.[0]?.text
           || "Payment declined";
         console.error("[register-youth-league] Payment failed:", errMsg);
+        await recordIssue({
+          severity: "warning",
+          eventType: "payment_failed",
+          statusCode: 402,
+          amount: b.priceAmount,
+          error: errMsg,
+        }, false);
         return {
           statusCode: 402,
           headers: cors,
@@ -318,6 +353,13 @@ exports.handler = async function (event) {
       }
     } catch (err) {
       console.error("[register-youth-league] Authorize.net error:", err.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "processor_error",
+        statusCode: 502,
+        amount: b.priceAmount,
+        error: err.message,
+      }, true);
       return {
         statusCode: 502,
         headers: cors,
@@ -331,6 +373,15 @@ exports.handler = async function (event) {
         ? "[register-youth-league] Payment token missing"
         : "[register-youth-league] Authorize.net not configured"
     );
+    if (!missingPayment) {
+      await recordIssue({
+        severity: "error",
+        eventType: "system_error",
+        statusCode: 500,
+        amount: b.priceAmount,
+        error: "Authorize.net not configured",
+      }, true);
+    }
     return {
       statusCode: missingPayment ? 400 : 500,
       headers: cors,
@@ -374,10 +425,27 @@ exports.handler = async function (event) {
         const data = await upsertRes.json();
         contactId = data.contact?.id || data.id;
       } else {
-        console.error("[register-youth-league] GHL upsert failed:", await upsertRes.text());
+        const text = await upsertRes.text();
+        console.error("[register-youth-league] GHL upsert failed:", text);
+        await recordIssue({
+          severity: "error",
+          eventType: "paid_followup_failed",
+          statusCode: 200,
+          amount: b.priceAmount,
+          transactionId,
+          error: `GHL upsert failed: ${text.slice(0, 240)}`,
+        }, true);
       }
     } catch (err) {
       console.error("[register-youth-league] GHL upsert error:", err.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "paid_followup_failed",
+        statusCode: 200,
+        amount: b.priceAmount,
+        transactionId,
+        error: "GHL upsert error: " + err.message,
+      }, true);
     }
 
     /* --- 2. GHL: Create note --- */
@@ -404,11 +472,25 @@ exports.handler = async function (event) {
         `Submitted: ${new Date().toISOString()}`,
       ].filter(Boolean).join("\n");
 
-      await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
-        method: "POST",
-        headers: ghlHeaders(),
-        body: json({ body: noteLines }),
-      }).catch((e) => console.warn("[register-youth-league] Note failed:", e.message));
+      try {
+        const noteRes = await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
+          method: "POST",
+          headers: ghlHeaders(),
+          body: json({ body: noteLines }),
+        });
+        if (!noteRes.ok) throw new Error(`GHL note failed: ${noteRes.status} ${(await noteRes.text()).slice(0, 240)}`);
+      } catch (e) {
+        console.warn("[register-youth-league] Note failed:", e.message);
+        await recordIssue({
+          severity: "error",
+          eventType: "paid_followup_failed",
+          statusCode: 200,
+          amount: b.priceAmount,
+          transactionId,
+          contactId,
+          error: e.message,
+        }, true);
+      }
     }
   }
 
@@ -455,10 +537,29 @@ exports.handler = async function (event) {
       );
 
       if (!atRes.ok) {
-        console.error("[register-youth-league] Airtable write failed:", await atRes.text());
+        const text = await atRes.text();
+        console.error("[register-youth-league] Airtable write failed:", text);
+        await recordIssue({
+          severity: "error",
+          eventType: "paid_followup_failed",
+          statusCode: 200,
+          amount: b.priceAmount,
+          transactionId,
+          contactId,
+          error: `Airtable write failed: ${text.slice(0, 240)}`,
+        }, true);
       }
     } catch (err) {
       console.error("[register-youth-league] Airtable error:", err.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "paid_followup_failed",
+        statusCode: 200,
+        amount: b.priceAmount,
+        transactionId,
+        contactId,
+        error: "Airtable error: " + err.message,
+      }, true);
     }
   }
 
@@ -497,6 +598,6 @@ exports.handler = async function (event) {
   return {
     statusCode: 200,
     headers: cors,
-    body: json({ ok: true, eventId: metaEventId }),
+    body: json({ ok: true, eventId: metaEventId, transactionId }),
   };
 };

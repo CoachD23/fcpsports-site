@@ -328,6 +328,7 @@
 </section>
 
 <script type="text/javascript" src="https://js.authorize.net/v1/Accept.js" charset="utf-8"></script>
+{{ partial "checkout-tracking.html" . }}
 
 <style>
   .camp-card {
@@ -351,6 +352,10 @@
   const errText = document.getElementById("err-text");
   let step = 1;
   const TOTAL_STEPS = 3;
+  const tracking = window.fcpCheckoutTracking || {
+    track: function() { return ""; },
+    newEventId: function(prefix) { return (prefix || "evt") + "-" + Date.now(); }
+  };
 
   // Camp catalog from Hugo data — filter to active BEFORE ranging so $i is contiguous
   const CAMPS = {
@@ -399,6 +404,19 @@
   // UTMs captured sitewide via utm-capture.html
   function getUTM() { return (window.fcpUTM && window.fcpUTM()) || {}; }
 
+  function trackCamp(eventName, extra) {
+    const campId = getSelectedCamp();
+    const camp = CAMPS[campId] || {};
+    const tier = campId ? getCurrentTier(campId) : null;
+    return tracking.track(eventName, Object.assign({
+      program_id: campId,
+      program_name: camp.name || campId || "Summer Camp",
+      flow: "camp-registration",
+      value: tier ? tier.price : 0,
+      currency: "USD"
+    }, extra || {}));
+  }
+
   function showError(msg, focusEl) {
     errText.textContent = msg;
     errWrap.classList.remove("hidden");
@@ -428,7 +446,10 @@
     btnBack.classList.toggle("hidden", step === 1);
     btnNext.classList.toggle("hidden", step === TOTAL_STEPS);
     btnSubmit.classList.toggle("hidden", step !== TOTAL_STEPS);
-    if (step === 3) populatePayment();
+    if (step === 3) {
+      populatePayment();
+      trackCamp("payment_step_viewed");
+    }
     wrap.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -566,6 +587,7 @@
   btnNext.addEventListener("click", function() {
     if (!validateStep(step)) return;
     if (step === 1) {
+      trackCamp("checkout_started");
       // Partial lead save — fires as soon as parent info is entered alongside camp selection.
       // Captures email + intent before any further drop-off.
       try {
@@ -643,6 +665,7 @@
     try { paymentNonce = await tokenizeCard(); }
     catch (err) {
       showError(err.message);
+      trackCamp("payment_failed", { error_message: err.message });
       btnSubmit.disabled = false;
       btnSubmit.classList.remove("opacity-50");
       submitLabel.textContent = "Complete Registration";
@@ -661,9 +684,7 @@
     const finalPrice = Math.max(tier.price - promoAmt, 0);
 
     // Generate event_id for Meta CAPI / Pixel dedup (both fire the same event with this ID)
-    const metaEventId = (window.crypto && window.crypto.randomUUID)
-      ? window.crypto.randomUUID()
-      : ('evt-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10));
+    const metaEventId = tracking.newEventId("purchase");
 
     const payload = {
       camp: campId,
@@ -708,34 +729,29 @@
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || "Registration failed");
       window.removeEventListener("beforeunload", beforeUnloadHandler);
-      // Conversion tracking — fires only on successful paid registration
-      if (typeof fbq === 'function') {
-        fbq('track', 'Purchase', {
-          value: finalPrice,
-          currency: 'USD',
-          content_name: camp.name,
-          content_category: 'camp-registration',
-          content_ids: [campId]
-        }, { eventID: metaEventId });  // server CAPI fires same event_id → Meta dedupes
-      }
+      tracking.track("purchase", {
+        event_id: metaEventId,
+        program_id: campId,
+        program_name: camp.name,
+        flow: "camp-registration",
+        value: finalPrice,
+        transaction_id: data.transactionId || "",
+        item_category: "camp",
+        items: [{
+          item_id: campId,
+          item_name: camp.name,
+          item_category: "camp",
+          price: finalPrice,
+          quantity: 1
+        }]
+      });
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
           'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp',
           'value': finalPrice,
           'currency': 'USD',
-          'transaction_id': data.transactionId || ''
-        });
-        gtag('event', 'purchase', {
-          transaction_id: data.transactionId || '',
-          value: finalPrice,
-          currency: 'USD',
-          items: [{
-            item_id: campId,
-            item_name: camp.name,
-            item_category: 'camp',
-            price: finalPrice,
-            quantity: 1
-          }]
+          'transaction_id': data.transactionId || '',
+          'event_id': metaEventId
         });
       }
       form.classList.add("hidden");
@@ -744,6 +760,7 @@
       document.getElementById("success-msg").classList.remove("hidden");
     } catch (err) {
       showError(err.message || "Something went wrong. Please try again.");
+      trackCamp("payment_failed", { error_message: err.message || "Registration failed", value: finalPrice });
       btnSubmit.disabled = false;
       btnSubmit.classList.remove("opacity-50");
       submitLabel.textContent = "Complete Registration";

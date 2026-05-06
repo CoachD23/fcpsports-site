@@ -1,6 +1,7 @@
 {{ define "main" }}
 <!-- Accept.js from Authorize.net -->
 <script src="https://js.authorize.net/v1/Accept.js" charset="utf-8"></script>
+{{ partial "checkout-tracking.html" . }}
 
 <section class="py-12 bg-gray-50 min-h-screen">
   <div class="max-w-2xl mx-auto px-4">
@@ -238,6 +239,21 @@
   var selectedPrice = 0;
   var selectedLabel = '';
   var finalAmount = 0;
+  var tracking = window.fcpCheckoutTracking || {
+    track: function() { return ''; },
+    newEventId: function(prefix) { return (prefix || 'evt') + '-' + Date.now(); },
+    getCheckoutId: function() { return ''; }
+  };
+
+  function trackCheckout(eventName, extra) {
+    return tracking.track(eventName, Object.assign({
+      program_id: selectedProgram,
+      program_name: selectedLabel,
+      flow: 'generic-checkout',
+      value: finalAmount || selectedPrice || 0,
+      currency: 'USD'
+    }, extra || {}));
+  }
 
   function preselectProgramFromQuery() {
     var params = new URLSearchParams(window.location.search);
@@ -269,6 +285,7 @@
       selectedPrice = parseFloat(radio.dataset.price);
       selectedLabel = radio.dataset.label;
       finalAmount = selectedPrice;
+      trackCheckout('checkout_started');
     }
 
     if (step === 3 && currentStep === 2) {
@@ -288,6 +305,7 @@
       document.getElementById('summary-athlete').textContent = athleteName;
       document.getElementById('summary-price').textContent = '$' + finalAmount.toFixed(0);
       document.getElementById('pay-amount').textContent = '$' + finalAmount.toFixed(2);
+      trackCheckout('payment_step_viewed');
     }
 
     // Show/hide steps
@@ -407,6 +425,7 @@
         var msg = response.messages.message.map(function(m) { return m.text; }).join('. ');
         errEl.textContent = msg;
         errEl.classList.remove('hidden');
+        trackCheckout('payment_failed', { error_message: msg });
         payBtn.textContent = 'Pay $' + finalAmount.toFixed(2);
         payBtn.disabled = false;
         return;
@@ -429,7 +448,8 @@
         grade: f.querySelector('[name="grade"]').value,
         notes: f.querySelector('[name="notes"]').value.trim(),
         zip: ccZip,
-        promo: document.getElementById('promo-code').value.trim().toUpperCase()
+        promo: document.getElementById('promo-code').value.trim().toUpperCase(),
+        checkoutId: tracking.getCheckoutId()
       };
 
       fetch('/.netlify/functions/process-payment', {
@@ -440,20 +460,38 @@
       .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
       .then(function(result) {
         if (result.ok && result.data.success) {
-          // Track conversion
-          if (typeof fbq === 'function') fbq('track', 'Purchase', { value: finalAmount, currency: 'USD', content_name: selectedLabel });
+          var eventId = trackCheckout('purchase', {
+            transaction_id: result.data.transactionId || '',
+            value: parseFloat(result.data.amount || finalAmount),
+            items: [{
+              item_id: selectedProgram,
+              item_name: selectedLabel,
+              item_category: 'generic-checkout',
+              price: parseFloat(result.data.amount || finalAmount),
+              quantity: 1
+            }]
+          });
           if (typeof gtag === 'function') {
-            gtag('event', 'purchase', { value: finalAmount, currency: 'USD', items: [{ item_name: selectedLabel }] });
-            gtag('event', 'conversion', {'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp', 'value': finalAmount, 'currency': 'USD'});
+            gtag('event', 'conversion', {
+              'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp',
+              'value': parseFloat(result.data.amount || finalAmount),
+              'currency': 'USD',
+              'transaction_id': result.data.transactionId || '',
+              'event_id': eventId
+            });
           }
 
           window.location.href = '/payment-complete/?program=' + encodeURIComponent(selectedLabel) +
+            '&program_id=' + encodeURIComponent(selectedProgram) +
             '&amount=' + finalAmount.toFixed(2) +
             '&athlete=' + encodeURIComponent(f.querySelector('[name="athleteName"]').value.trim()) +
-            '&tx=' + encodeURIComponent(result.data.transactionId || '');
+            '&tx=' + encodeURIComponent(result.data.transactionId || '') +
+            '&next_url=' + encodeURIComponent(result.data.nextStepUrl || '/contact/') +
+            '&next_label=' + encodeURIComponent(result.data.nextStepLabel || 'Schedule Next Step');
         } else {
           errEl.textContent = result.data.error || 'Payment failed. Please try again.';
           errEl.classList.remove('hidden');
+          trackCheckout('payment_failed', { error_message: errEl.textContent });
           payBtn.textContent = 'Pay $' + finalAmount.toFixed(2);
           payBtn.disabled = false;
         }
@@ -461,6 +499,7 @@
       .catch(function() {
         errEl.textContent = 'Network error. Please try again.';
         errEl.classList.remove('hidden');
+        trackCheckout('payment_failed', { error_message: 'Network error' });
         payBtn.textContent = 'Pay $' + finalAmount.toFixed(2);
         payBtn.disabled = false;
       });

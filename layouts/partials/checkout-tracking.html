@@ -1,0 +1,108 @@
+<script>
+(function() {
+  if (window.fcpCheckoutTracking) return;
+
+  var CHECKOUT_KEY = 'fcp_checkout_id';
+
+  function randomPart() {
+    return Math.random().toString(36).slice(2, 10);
+  }
+
+  function newEventId(prefix) {
+    if (window.crypto && window.crypto.randomUUID) {
+      return (prefix || 'evt') + '-' + window.crypto.randomUUID();
+    }
+    return (prefix || 'evt') + '-' + Date.now() + '-' + randomPart();
+  }
+
+  function getCheckoutId() {
+    try {
+      var existing = sessionStorage.getItem(CHECKOUT_KEY);
+      if (existing) return existing;
+      var id = newEventId('checkout');
+      sessionStorage.setItem(CHECKOUT_KEY, id);
+      return id;
+    } catch (_) {
+      return newEventId('checkout');
+    }
+  }
+
+  function compact(value) {
+    return value === undefined || value === null ? '' : value;
+  }
+
+  function buildParams(eventName, payload, eventId) {
+    payload = payload || {};
+    var params = {
+      checkout_id: payload.checkout_id || getCheckoutId(),
+      event_id: eventId,
+      program_id: compact(payload.program_id || payload.programId),
+      program_name: compact(payload.program_name || payload.programName),
+      flow: compact(payload.flow),
+      value: payload.value === undefined ? undefined : Number(payload.value),
+      currency: payload.currency || 'USD'
+    };
+    if (payload.transaction_id || payload.transactionId) params.transaction_id = payload.transaction_id || payload.transactionId;
+    if (payload.item_category) params.item_category = payload.item_category;
+    if (payload.items) params.items = payload.items;
+    if (eventName !== 'purchase') params.event_category = 'checkout';
+    Object.keys(payload).forEach(function(key) {
+      if (params[key] === undefined && !/^(programId|programName|eventId|checkout_id)$/.test(key)) {
+        params[key] = payload[key];
+      }
+    });
+    return params;
+  }
+
+  function track(eventName, payload) {
+    payload = payload || {};
+    var eventId = payload.event_id || payload.eventId || newEventId(eventName);
+    var params = buildParams(eventName, payload, eventId);
+
+    if (typeof gtag === 'function') {
+      if (eventName === 'purchase') {
+        gtag('event', 'purchase', {
+          transaction_id: params.transaction_id || '',
+          value: params.value || 0,
+          currency: params.currency,
+          checkout_id: params.checkout_id,
+          event_id: params.event_id,
+          items: params.items || [{
+            item_id: params.program_id,
+            item_name: params.program_name,
+            item_category: params.item_category || params.flow,
+            price: params.value || 0,
+            quantity: 1
+          }]
+        });
+      } else {
+        gtag('event', eventName, params);
+      }
+    }
+
+    if (typeof fbq === 'function') {
+      var fbParams = {
+        value: params.value || 0,
+        currency: params.currency,
+        content_name: params.program_name,
+        content_category: params.flow,
+        content_ids: params.program_id ? [params.program_id] : undefined,
+        checkout_id: params.checkout_id
+      };
+      if (eventName === 'purchase') {
+        fbq('track', 'Purchase', fbParams, { eventID: eventId });
+      } else {
+        fbq('trackCustom', eventName, fbParams, { eventID: eventId });
+      }
+    }
+
+    return eventId;
+  }
+
+  window.fcpCheckoutTracking = {
+    getCheckoutId: getCheckoutId,
+    newEventId: newEventId,
+    track: track
+  };
+})();
+</script>

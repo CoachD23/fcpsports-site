@@ -396,6 +396,7 @@
 </section>
 
 <script type="text/javascript" src="https://js.authorize.net/v1/Accept.js" charset="utf-8"></script>
+{{ partial "checkout-tracking.html" . }}
 
 <!-- Form component styles live in assets/css/main.css (Tailwind @apply only processes there) -->
 
@@ -412,6 +413,10 @@
   const errText = document.getElementById("err-text");
   let step = 1;
   const TOTAL_STEPS = 5;
+  const tracking = window.fcpCheckoutTracking || {
+    track: function() { return ""; },
+    newEventId: function(prefix) { return (prefix || "evt") + "-" + Date.now(); }
+  };
 
   // Session config — drives pricing and payload
   const SESSIONS = {
@@ -556,7 +561,10 @@
     btnSubmit.classList.toggle("hidden", step !== TOTAL_STEPS);
     // Populate review on step 4
     if (step === 4) populateReview();
-    if (step === 5) populatePayment();
+    if (step === 5) {
+      populatePayment();
+      trackLeague("payment_step_viewed");
+    }
     wrap.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -605,6 +613,19 @@
       label += " — $25 multi-session discount";
     }
     return { price: price, label: label };
+  }
+
+  function trackLeague(eventName, extra) {
+    const sKey = getSelectedSession();
+    const session = SESSIONS[sKey] || {};
+    const tier = getPriceTier();
+    return tracking.track(eventName, Object.assign({
+      program_id: sKey,
+      program_name: session.name || "Saturday League",
+      flow: "league-registration",
+      value: tier.price || 0,
+      currency: "USD"
+    }, extra || {}));
   }
 
   // Base price for a given session (no promo applied)
@@ -753,6 +774,7 @@
     if (!validateStep(step)) return;
     // Save partial lead when leaving Step 1
     if (step === 1) {
+      trackLeague("checkout_started");
       try {
         fetch("/.netlify/functions/register-youth-league", {
           method: "POST",
@@ -846,6 +868,7 @@
       paymentNonce = await tokenizeCard();
     } catch (err) {
       showError(err.message || "Card validation failed.");
+      trackLeague("payment_failed", { error_message: err.message || "Card validation failed." });
       btnSubmit.disabled = false;
       btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
       submitLabel.textContent = "Complete Registration";
@@ -858,9 +881,7 @@
     var sKey = getSelectedSession();
     var sess = sKey ? SESSIONS[sKey] : null;
     // Generate event_id for Meta CAPI / Pixel dedup
-    var metaEventId = (window.crypto && window.crypto.randomUUID)
-      ? window.crypto.randomUUID()
-      : ('evt-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10));
+    var metaEventId = tracking.newEventId("purchase");
 
     var payload = {
       session: sKey,
@@ -904,34 +925,29 @@
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || "Registration failed");
       window.removeEventListener("beforeunload", beforeUnloadHandler);
-      // Conversion tracking — fires only on successful paid registration
-      if (typeof fbq === 'function') {
-        fbq('track', 'Purchase', {
-          value: tier.price,
-          currency: 'USD',
-          content_name: sess ? sess.name : 'Youth League',
-          content_category: 'league-registration',
-          content_ids: [sKey]
-        }, { eventID: metaEventId });  // server CAPI fires same event_id → Meta dedupes
-      }
+      tracking.track("purchase", {
+        event_id: metaEventId,
+        program_id: sKey,
+        program_name: sess ? sess.name : "Youth League",
+        flow: "league-registration",
+        value: tier.price,
+        transaction_id: data.transactionId || "",
+        item_category: "league",
+        items: [{
+          item_id: sKey,
+          item_name: sess ? sess.name : "Youth League",
+          item_category: "league",
+          price: tier.price,
+          quantity: 1
+        }]
+      });
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
           'send_to': 'AW-11158472206/ZWusCJLcmv0DEI6M48gp',
           'value': tier.price,
           'currency': 'USD',
-          'transaction_id': data.transactionId || ''
-        });
-        gtag('event', 'purchase', {
-          transaction_id: data.transactionId || '',
-          value: tier.price,
-          currency: 'USD',
-          items: [{
-            item_id: sKey,
-            item_name: sess ? sess.name : 'Youth League',
-            item_category: 'league',
-            price: tier.price,
-            quantity: 1
-          }]
+          'transaction_id': data.transactionId || '',
+          'event_id': metaEventId
         });
       }
       form.classList.add("hidden");
@@ -940,6 +956,7 @@
       document.getElementById("success-msg").classList.remove("hidden");
     } catch (err) {
       showError(err.message || "Something went wrong. Please try again.");
+      trackLeague("payment_failed", { error_message: err.message || "Registration failed", value: tier.price });
       btnSubmit.disabled = false;
       btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
       submitLabel.textContent = "Complete Registration";

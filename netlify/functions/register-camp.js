@@ -29,6 +29,10 @@ const AIRTABLE_BASE = "https://api.airtable.com/v0";
 const META_GRAPH = "https://graph.facebook.com/v21.0";
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const {
+  recordPaymentIssue,
+  sendPaymentAlert,
+} = require("./lib/checkout-reliability");
 
 /* --- SERVER-SIDE CAMP PRICE MAP (source of truth — must match data/camps.yaml) --- */
 const CAMP_PRICES = {
@@ -192,6 +196,24 @@ exports.handler = async function (event) {
 
   const utm = b.utm || {};
   const source = resolveSource(utm, b.partial ? "camp-partial" : "camp-registration");
+  const requestId = event.headers?.["x-nf-request-id"] || event.headers?.["x-request-id"] || "";
+
+  const issueContext = (extra) => Object.assign({
+    flow: "camp-registration",
+    programId: b.camp || "",
+    programName: b.campName || b.camp || "",
+    email: b.parentEmail || "",
+    parentName: [b.parentFirst, b.parentLast].filter(Boolean).join(" ").trim(),
+    athleteName: [b.childFirst, b.childLast].filter(Boolean).join(" ").trim(),
+    amount: b.priceAmount || "",
+    requestId,
+  }, extra || {});
+
+  async function recordIssue(extra, immediate) {
+    const issue = issueContext(extra);
+    await recordPaymentIssue(issue);
+    if (immediate) await sendPaymentAlert(issue);
+  }
 
   /* ------------------------------------------------------------------ */
   /* PARTIAL LEAD — save contact only, no payment                        */
@@ -267,6 +289,12 @@ exports.handler = async function (event) {
 
   if (!hasGhl && !hasAirtable) {
     console.error("[register-camp] No GHL or Airtable configured");
+    await recordIssue({
+      severity: "error",
+      eventType: "system_error",
+      statusCode: 500,
+      error: "No GHL or Airtable configured",
+    }, true);
     return { statusCode: 500, headers: cors, body: json({ error: "Registration system not configured" }) };
   }
 
@@ -318,15 +346,36 @@ exports.handler = async function (event) {
       } else {
         const err = tx?.errors?.[0]?.errorText || pd.messages?.message?.[0]?.text || "Payment declined";
         console.error("[register-camp] Payment failed:", err);
+        await recordIssue({
+          severity: "warning",
+          eventType: "payment_failed",
+          statusCode: 402,
+          amount: b.priceAmount,
+          error: err,
+        }, false);
         return { statusCode: 402, headers: cors, body: json({ error: `Payment failed: ${err}` }) };
       }
     } catch (e) {
       console.error("[register-camp] Authnet error:", e.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "processor_error",
+        statusCode: 500,
+        amount: b.priceAmount,
+        error: e.message,
+      }, true);
       return { statusCode: 500, headers: cors, body: json({ error: "Payment processor unavailable" }) };
     }
   } else {
     // No payment creds configured — bail out. Registration is meaningless without payment.
     console.error("[register-camp] Authorize.net not configured");
+    await recordIssue({
+      severity: "error",
+      eventType: "system_error",
+      statusCode: 500,
+      amount: b.priceAmount,
+      error: "Authorize.net not configured",
+    }, true);
     return { statusCode: 500, headers: cors, body: json({ error: "Payment system not configured" }) };
   }
 
@@ -389,6 +438,14 @@ exports.handler = async function (event) {
       }
     } catch (e) {
       console.error("[register-camp] GHL sync failed:", e.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "paid_followup_failed",
+        statusCode: 200,
+        amount: b.priceAmount,
+        transactionId,
+        error: "GHL sync failed: " + e.message,
+      }, true);
       // Non-fatal — payment is already captured
     }
   }
@@ -396,7 +453,7 @@ exports.handler = async function (event) {
   /* --- 3. Airtable: write to Camp_Registrations --- */
   if (hasAirtable) {
     try {
-      await fetch(`${AIRTABLE_BASE}/${process.env.AIRTABLE_BASE_ID}/Camp_Registrations`, {
+      const atRes = await fetch(`${AIRTABLE_BASE}/${process.env.AIRTABLE_BASE_ID}/Camp_Registrations`, {
         method: "POST",
         headers: airtableHeaders(),
         body: json({
@@ -431,8 +488,19 @@ exports.handler = async function (event) {
           },
         }),
       });
+      if (!atRes.ok) {
+        throw new Error(`Airtable write failed: ${atRes.status} ${(await atRes.text()).slice(0, 240)}`);
+      }
     } catch (e) {
       console.warn("[register-camp] Airtable write failed:", e.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "paid_followup_failed",
+        statusCode: 200,
+        amount: b.priceAmount,
+        transactionId,
+        error: e.message,
+      }, true);
     }
   }
 
@@ -593,7 +661,24 @@ exports.handler = async function (event) {
       });
     } catch (e) {
       console.warn("[register-camp] Confirmation email failed:", e.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "paid_followup_failed",
+        statusCode: 200,
+        amount: b.priceAmount,
+        transactionId,
+        error: "Confirmation email failed: " + e.message,
+      }, true);
     }
+  } else {
+    await recordIssue({
+      severity: "error",
+      eventType: "paid_followup_failed",
+      statusCode: 200,
+      amount: b.priceAmount,
+      transactionId,
+      error: "Confirmation email skipped because FCPSPORTS_SMTP_PASS is missing",
+    }, true);
   }
 
   /* --- 5. Meta CAPI: server-side Purchase event (non-blocking, best-effort) --- */

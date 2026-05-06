@@ -4,7 +4,7 @@
     <div class="bg-white rounded-2xl shadow-xl p-10">
       <div class="text-6xl mb-4">🏀</div>
       <h1 class="font-display text-3xl text-navy mb-2">You're Registered!</h1>
-      <p class="text-gray-500 mb-6">Payment received — welcome to FCP Sports.</p>
+      <p class="text-gray-500 mb-6">Payment received. Your next step is below.</p>
 
       <div class="bg-gray-50 rounded-xl p-5 text-left space-y-2 mb-6">
         <div class="flex justify-between text-sm">
@@ -25,11 +25,11 @@
         </div>
       </div>
 
-      <p class="text-sm text-gray-500 mb-6">A confirmation email has been sent. Our coaching staff will reach out within 24 hours with next steps.</p>
+      <p class="text-sm text-gray-500 mb-6">A confirmation email has been sent with the same scheduling link. If you need help, call 850.961.2323.</p>
 
       <div class="flex flex-col gap-3">
-        <a href="/" class="bg-gold text-navy font-bold py-3 rounded-lg hover:brightness-110 transition text-sm uppercase tracking-wide block">Back to Home</a>
-        <a href="/contact/" class="border border-gray-300 text-gray-600 font-bold py-3 rounded-lg hover:bg-gray-50 transition text-sm block">Contact Us</a>
+        <a href="/contact/" id="next-step-link" class="bg-gold text-navy font-bold py-3 rounded-lg hover:brightness-110 transition text-sm uppercase tracking-wide block">Schedule Next Step</a>
+        <a href="/" class="border border-gray-300 text-gray-600 font-bold py-3 rounded-lg hover:bg-gray-50 transition text-sm block">Back to Home</a>
       </div>
     </div>
   </div>
@@ -43,6 +43,16 @@
   if (params.get('athlete')) el('conf-athlete').textContent = params.get('athlete');
   if (params.get('amount'))  el('conf-amount').textContent = '$' + parseFloat(params.get('amount')).toFixed(2);
   if (params.get('tx'))      el('conf-tx').textContent = params.get('tx');
+  var nextUrl = params.get('next_url') || '/contact/';
+  var nextLabel = params.get('next_label') || 'Schedule Next Step';
+  try {
+    var resolved = new URL(nextUrl, window.location.origin);
+    if (resolved.protocol !== 'http:' && resolved.protocol !== 'https:') throw new Error('Invalid URL');
+    el('next-step-link').href = resolved.href;
+  } catch (_) {
+    el('next-step-link').href = '/contact/';
+  }
+  el('next-step-link').textContent = nextLabel;
 })();
 </script>
 {{ end }}

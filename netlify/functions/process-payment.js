@@ -9,9 +9,61 @@
  *   AUTHNET_TRANSACTION_KEY   Authorize.net Transaction Key
  *   GHL_API_KEY               GoHighLevel API key
  *   GHL_LOCATION_ID           GoHighLevel location ID
+ *   FCPSPORTS_SMTP_PASS       Office365 SMTP password for confirmation emails
+ *   PAYMENT_ALERT_TO          Optional comma-separated alert recipients
+ *   SKILLS_TRAINING_SCHEDULE_URL, PRIVATE_LESSON_SCHEDULE_URL, HOMESCHOOL_PE_SCHEDULE_URL
  */
 
 const https = require("https");
+const {
+  createSchedulingFollowUpTask,
+  getProgramNextStep,
+  recordPaymentIssue,
+  sendGenericConfirmationEmail,
+  sendPaymentAlert,
+} = require("./lib/checkout-reliability");
+
+const GHL_BASE = "https://services.leadconnectorhq.com";
+
+function fullName(first, last) {
+  return [first, last].filter(Boolean).join(" ").trim();
+}
+
+async function upsertPaidContact({ body, amount, transactionId }) {
+  const ghlKey = process.env.GHL_API_KEY;
+  const ghlLoc = process.env.GHL_LOCATION_ID;
+  if (!ghlKey || !ghlLoc) return { ok: false, skipped: true };
+
+  const ghlBody = {
+    firstName: body.parentFirst || "",
+    lastName: body.parentLast || "",
+    email: body.email,
+    phone: body.phone || "",
+    locationId: ghlLoc,
+    tags: ["fcpsports", "paid", body.program || "general-paid"],
+    customFields: [
+      { key: "athlete_name", field_value: body.athleteName || "" },
+      { key: "program", field_value: body.programLabel || body.program || "" },
+      { key: "payment_amount", field_value: "$" + Number(amount).toFixed(2) },
+      { key: "transaction_id", field_value: transactionId },
+    ],
+  };
+
+  const res = await fetch(`${GHL_BASE}/contacts/upsert`, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + ghlKey,
+      "Content-Type": "application/json",
+      Version: "2021-07-28",
+    },
+    body: JSON.stringify(ghlBody),
+  });
+  const text = await res.text();
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch (_) {}
+  if (!res.ok) throw new Error(`GHL upsert failed: ${res.status} ${text.slice(0, 240)}`);
+  return { ok: true, contactId: data?.contact?.id || data?.id || "", data };
+}
 
 exports.handler = async function (event) {
   const allowedOrigins = ["https://fcpsports.org", "https://www.fcpsports.org"];
@@ -31,8 +83,27 @@ exports.handler = async function (event) {
     return { statusCode: 405, headers, body: JSON.stringify({ error: "POST only" }) };
   }
 
+  let body = {};
+  const requestId = event.headers?.["x-nf-request-id"] || event.headers?.["x-request-id"] || "";
+  const issueContext = (extra) => Object.assign({
+    flow: "generic-checkout",
+    programId: body.program || "",
+    programName: body.programLabel || body.program || "",
+    email: body.email || "",
+    parentName: fullName(body.parentFirst, body.parentLast),
+    athleteName: body.athleteName || "",
+    amount: body.amount || "",
+    requestId,
+  }, extra || {});
+
+  async function recordIssue(extra, immediate) {
+    const issue = issueContext(extra);
+    await recordPaymentIssue(issue);
+    if (immediate) await sendPaymentAlert(issue);
+  }
+
   try {
-    const body = JSON.parse(event.body || "{}");
+    body = JSON.parse(event.body || "{}");
 
     // ── Promo code validation endpoint ──
     if (body.action === "validate-promo") {
@@ -104,6 +175,12 @@ exports.handler = async function (event) {
 
     if (!apiLoginId || !transactionKey) {
       console.error("Missing Authorize.net credentials");
+      await recordIssue({
+        severity: "error",
+        eventType: "system_error",
+        statusCode: 500,
+        error: "Missing Authorize.net credentials",
+      }, true);
       return { statusCode: 500, headers, body: JSON.stringify({ error: "Payment system error. Call 850-961-2323." }) };
     }
 
@@ -143,32 +220,58 @@ exports.handler = async function (event) {
     const authnetHostname = process.env.AUTHNET_ENV === "sandbox"
       ? "apitest.authorize.net"
       : "api.authorize.net";
-    const authResponse = await new Promise((resolve, reject) => {
-      const reqBody = JSON.stringify(txnRequest);
-      const req = https.request(
-        {
-          hostname: authnetHostname,
-          path: "/xml/v1/request.api",
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Content-Length": Buffer.byteLength(reqBody),
+    let authResponse;
+    try {
+      authResponse = await new Promise((resolve, reject) => {
+        const reqBody = JSON.stringify(txnRequest);
+        const req = https.request(
+          {
+            hostname: authnetHostname,
+            path: "/xml/v1/request.api",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Content-Length": Buffer.byteLength(reqBody),
+            },
           },
-        },
-        (res) => {
-          let data = "";
-          res.on("data", (chunk) => (data += chunk));
-          res.on("end", () => resolve(data));
-        }
-      );
-      req.on("error", reject);
-      req.write(reqBody);
-      req.end();
-    });
+          (res) => {
+            let data = "";
+            res.on("data", (chunk) => (data += chunk));
+            res.on("end", () => resolve(data));
+          }
+        );
+        req.on("error", reject);
+        req.write(reqBody);
+        req.end();
+      });
+    } catch (authErr) {
+      console.error("Authorize.net network error:", authErr.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "processor_error",
+        statusCode: 502,
+        amount: numAmount.toFixed(2),
+        error: authErr.message,
+      }, true);
+      return { statusCode: 502, headers, body: JSON.stringify({ error: "Payment processor unavailable. Please try again or call 850-961-2323." }) };
+    }
 
     // Parse response (may have BOM)
     const cleanJson = authResponse.replace(/^\uFEFF/, "");
-    const parsed = JSON.parse(cleanJson);
+    let parsed;
+    try {
+      parsed = JSON.parse(cleanJson);
+    } catch (parseErr) {
+      console.error("Authorize.net parse error:", parseErr.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "processor_error",
+        statusCode: 502,
+        amount: numAmount.toFixed(2),
+        error: "Authorize.net returned an unreadable response: " + parseErr.message,
+      }, true);
+      return { statusCode: 502, headers, body: JSON.stringify({ error: "Payment processor returned an unreadable response. Please call 850-961-2323." }) };
+    }
     const txnResult = parsed.transactionResponse || {};
     const messages = parsed.messages || {};
 
@@ -180,6 +283,13 @@ exports.handler = async function (event) {
 
       // Duplicate transaction
       if (errMsg.includes("duplicate")) {
+        await recordIssue({
+          severity: "warning",
+          eventType: "payment_failed",
+          statusCode: 400,
+          amount: numAmount.toFixed(2),
+          error: errMsg,
+        }, false);
         return {
           statusCode: 400,
           headers,
@@ -190,64 +300,93 @@ exports.handler = async function (event) {
       }
 
       console.error("Authorize.net error:", errMsg);
+      await recordIssue({
+        severity: "warning",
+        eventType: "payment_failed",
+        statusCode: 400,
+        amount: numAmount.toFixed(2),
+        error: errMsg,
+      }, false);
       return { statusCode: 400, headers, body: JSON.stringify({ error: errMsg }) };
     }
 
     const transactionId = txnResult.transId || "";
     console.log("Payment success:", transactionId, numAmount, program);
 
+    const nextStep = getProgramNextStep(program);
+    let contactId = "";
+
     // ── Upsert to GHL ──
     try {
-      const ghlKey = process.env.GHL_API_KEY;
-      const ghlLoc = process.env.GHL_LOCATION_ID;
-      if (ghlKey && ghlLoc) {
-        const ghlBody = JSON.stringify({
-          firstName: parentFirst || "",
-          lastName: parentLast || "",
-          email: email,
-          phone: phone || "",
-          locationId: ghlLoc,
-          tags: ["fcpsports", "paid", program || "general-paid"],
-          customFields: [
-            { key: "athlete_name", field_value: athleteName || "" },
-            { key: "program", field_value: programLabel || program || "" },
-            { key: "payment_amount", field_value: "$" + numAmount.toFixed(2) },
-            { key: "transaction_id", field_value: transactionId },
-          ],
-        });
+      const upsert = await upsertPaidContact({ body, amount: numAmount, transactionId });
+      contactId = upsert.contactId || "";
+      if (upsert.skipped) {
+        throw new Error("GHL credentials missing for paid checkout follow-up");
+      }
+    } catch (followErr) {
+      console.error("GHL upsert failed (non-blocking):", followErr.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "paid_followup_failed",
+        statusCode: 200,
+        amount: numAmount.toFixed(2),
+        transactionId,
+        error: followErr.message,
+      }, true);
+    }
 
-        await new Promise((resolve) => {
-          const req = https.request(
-            {
-              hostname: "services.leadconnectorhq.com",
-              path: "/contacts/upsert",
-              method: "POST",
-              headers: {
-                Authorization: "Bearer " + ghlKey,
-                "Content-Type": "application/json",
-                Version: "2021-07-28",
-                "Content-Length": Buffer.byteLength(ghlBody),
-              },
-            },
-            (res) => {
-              let d = "";
-              res.on("data", (c) => (d += c));
-              res.on("end", () => {
-                console.log("GHL upsert:", res.statusCode);
-                resolve(d);
-              });
-            }
-          );
-          req.on("error", (e) => {
-            console.error("GHL error:", e.message);
-            resolve("");
-          });
-          req.write(ghlBody);
-          req.end();
+    try {
+      const emailResult = await sendGenericConfirmationEmail({
+        email,
+        parentFirst,
+        programId: program,
+        programName: programLabel || program,
+        athleteName,
+        amount: numAmount,
+        transactionId,
+        nextStep,
+      });
+      if (emailResult.skipped) {
+        throw new Error("Confirmation email skipped because FCPSPORTS_SMTP_PASS is missing");
+      }
+    } catch (emailErr) {
+      console.error("Confirmation email failed (non-blocking):", emailErr.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "paid_followup_failed",
+        statusCode: 200,
+        amount: numAmount.toFixed(2),
+        transactionId,
+        contactId,
+        error: emailErr.message,
+      }, true);
+    }
+
+    try {
+      if (contactId) {
+        await createSchedulingFollowUpTask({
+          contactId,
+          programId: program,
+          programName: programLabel || program,
+          athleteName,
+          parentName: fullName(parentFirst, parentLast),
+          email,
+          phone,
+          amount: numAmount.toFixed(2),
+          transactionId,
         });
       }
-    } catch (ghlErr) {
-      console.error("GHL upsert failed (non-blocking):", ghlErr.message);
+    } catch (taskErr) {
+      console.error("GHL scheduling task failed (non-blocking):", taskErr.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "paid_followup_failed",
+        statusCode: 200,
+        amount: numAmount.toFixed(2),
+        transactionId,
+        contactId,
+        error: taskErr.message,
+      }, true);
     }
 
     return {
@@ -257,10 +396,19 @@ exports.handler = async function (event) {
         success: true,
         transactionId: transactionId,
         amount: numAmount.toFixed(2),
+        programId: program,
+        nextStepUrl: nextStep.nextStepUrl,
+        nextStepLabel: nextStep.nextStepLabel,
       }),
     };
   } catch (err) {
     console.error("process-payment error:", err);
+    await recordIssue({
+      severity: "error",
+      eventType: "function_error",
+      statusCode: 500,
+      error: err.message,
+    }, true);
     return {
       statusCode: 500,
       headers,
