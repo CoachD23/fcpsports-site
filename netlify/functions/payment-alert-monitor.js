@@ -16,9 +16,12 @@ exports.handler = async function () {
   const issues = await listRecentPaymentIssues(windowMinutes);
 
   const paymentFailures = issues.filter((issue) => issue.eventType === "payment_failed");
-  const systemErrors = issues.filter((issue) =>
-    ["system_error", "processor_error", "function_error", "paid_followup_failed"].includes(issue.eventType)
-  );
+  const systemErrors = issues.filter((issue) => {
+    if (!["system_error", "processor_error", "function_error", "paid_followup_failed"].includes(issue.eventType)) {
+      return false;
+    }
+    return !(issue.eventType === "paid_followup_failed" && /Airtable write failed/i.test(issue.error || ""));
+  });
 
   const bucket = new Date().toISOString().slice(0, 15).replace(/[-:T]/g, "");
   const alerts = [];

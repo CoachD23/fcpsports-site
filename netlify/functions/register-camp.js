@@ -19,6 +19,8 @@
  * Env vars required:
  *   GHL_API_KEY, GHL_LOCATION_ID           (GHL contact sync)
  *   AIRTABLE_PAT, AIRTABLE_BASE_ID          (registrations table)
+ *   AIRTABLE_CAMP_REGISTRATIONS_ENABLED    (optional: "false" disables Airtable mirror)
+ *   AIRTABLE_CAMP_REGISTRATIONS_TABLE      (optional: defaults to "Camp_Registrations")
  *   AUTHNET_API_LOGIN, AUTHNET_TRANSACTION_KEY (card charging)
  *   AUTHNET_ENV (optional: "sandbox" for testing)
  *   FCPSPORTS_SMTP_PASS                     (confirmation email)
@@ -284,7 +286,9 @@ exports.handler = async function (event) {
   console.log(`[register-camp] Server-validated price: camp=${b.camp} base=$${priced.base} final=$${priced.price} promos=${priced.applied.join(",") || "none"}`);
 
   const hasGhl = process.env.GHL_API_KEY && process.env.GHL_LOCATION_ID;
-  const hasAirtable = process.env.AIRTABLE_PAT && process.env.AIRTABLE_BASE_ID;
+  const campAirtableEnabled = process.env.AIRTABLE_CAMP_REGISTRATIONS_ENABLED !== "false";
+  const campAirtableTable = process.env.AIRTABLE_CAMP_REGISTRATIONS_TABLE || "Camp_Registrations";
+  const hasAirtable = campAirtableEnabled && process.env.AIRTABLE_PAT && process.env.AIRTABLE_BASE_ID;
   const hasAuthnet = process.env.AUTHNET_API_LOGIN && process.env.AUTHNET_TRANSACTION_KEY;
 
   if (!hasGhl && !hasAirtable) {
@@ -450,10 +454,10 @@ exports.handler = async function (event) {
     }
   }
 
-  /* --- 3. Airtable: mirror to Camp_Registrations --- */
+  /* --- 3. Airtable: mirror to camp registrations table --- */
   if (hasAirtable) {
     try {
-      const atRes = await fetch(`${AIRTABLE_BASE}/${process.env.AIRTABLE_BASE_ID}/Camp_Registrations`, {
+      const atRes = await fetch(`${AIRTABLE_BASE}/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(campAirtableTable)}`, {
         method: "POST",
         headers: airtableHeaders(),
         body: json({
