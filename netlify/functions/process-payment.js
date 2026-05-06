@@ -37,8 +37,9 @@ exports.handler = async function (event) {
     // ── Promo code validation endpoint ──
     if (body.action === "validate-promo") {
       const PROGRAM_PRICES_CHECK = {
-        "summer-day-camp": 149, "skills-training": 149, "private-lesson": 50,
-        "youth-league": 149, "homeschool-pe": 99, "open-gym": 10,
+        "skills-training": 149,
+        "private-lesson": 50,
+        "homeschool-pe": 99,
       };
       const PROMO_CODES_CHECK = {
         "MILITARY20": { flatDiscount: 20, label: "$20 Military/DoD Discount" },
@@ -63,12 +64,9 @@ exports.handler = async function (event) {
 
     // ── Server-side program prices (source of truth) ──
     const PROGRAM_PRICES = {
-      "summer-day-camp": 149,
       "skills-training": 149,
       "private-lesson": 50,
-      "youth-league": 149,
       "homeschool-pe": 99,
-      "open-gym": 10,
     };
 
     // ── Server-side promo codes (source of truth) — flat $20 each, stackable ──
@@ -142,11 +140,14 @@ exports.handler = async function (event) {
     };
 
     // ── Call Authorize.net ──
+    const authnetHostname = process.env.AUTHNET_ENV === "sandbox"
+      ? "apitest.authorize.net"
+      : "api.authorize.net";
     const authResponse = await new Promise((resolve, reject) => {
       const reqBody = JSON.stringify(txnRequest);
       const req = https.request(
         {
-          hostname: "api.authorize.net",
+          hostname: authnetHostname,
           path: "/xml/v1/request.api",
           method: "POST",
           headers: {

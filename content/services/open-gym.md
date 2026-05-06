@@ -9,6 +9,7 @@ price: "On break for summer"
 frequency: "Returns August 2026"
 program_name: "Open Gym"
 hide_hero_buttons: true
+register_text: "View Camps"
 ghl_tag: "train"
 summary_card:
   dates: "Returns August 2026"

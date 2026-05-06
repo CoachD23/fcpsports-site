@@ -324,6 +324,22 @@ exports.handler = async function (event) {
         body: json({ error: "Payment processing error. Please try again." }),
       };
     }
+  } else {
+    const missingPayment = !b.payment || !b.payment.dataValue;
+    console.error(
+      missingPayment
+        ? "[register-youth-league] Payment token missing"
+        : "[register-youth-league] Authorize.net not configured"
+    );
+    return {
+      statusCode: missingPayment ? 400 : 500,
+      headers: cors,
+      body: json({
+        error: missingPayment
+          ? "Payment token missing. Please try again."
+          : "Payment system not configured",
+      }),
+    };
   }
 
   /* --- 1. GHL: Upsert contact --- */
