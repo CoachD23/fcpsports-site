@@ -29,10 +29,8 @@
 <!-- Preconnects -->
 <link rel="preconnect" href="https://www.googletagmanager.com" />
 <link rel="preconnect" href="https://connect.facebook.net" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" />
+<link rel="preload" as="font" href="/fonts/dm-sans-latin.woff2" type="font/woff2" crossorigin />
+<link rel="preload" as="font" href="/fonts/bebas-neue-latin.woff2" type="font/woff2" crossorigin />
 
 {{ with .Params.hero_image }}
 <!-- Preload LCP hero image -->

@@ -6,24 +6,31 @@
 /* Hero H1 */
 .hero-h1 {
   font-family: "Bebas Neue", Impact, "Arial Narrow", system-ui, sans-serif !important;
-  letter-spacing: .02em;
+  letter-spacing: 0;
 }
 .hero-lead-form {
   max-width: 540px;
 }
+.hero-picture,
+.hero-picture img {
+  width: 100%;
+  height: 100%;
+}
+.hero-picture img {
+  object-fit: cover;
+  object-position: center 42%;
+}
 .hero-subcopy {
-  color: rgba(255,255,255,.98) !important;
-  font-weight: 600;
+  color: #fff !important;
+  font-weight: 700;
   text-shadow: 0 2px 12px rgba(0,0,0,.9), 0 1px 2px rgba(0,0,0,.95);
+}
+.home-light-accent {
+  color: #8a5600 !important;
 }
 @media (max-width: 767px) {
   .hero-section {
     min-height: calc(82svh - 5rem) !important;
-  }
-  .hero-mobile-poster {
-    background-image: url('/assets/img/hero-poster-mobile.webp');
-    background-size: cover;
-    background-position: center 42%;
   }
   .hero-content {
     padding-top: 3rem !important;
@@ -37,17 +44,16 @@
   }
 }
 @media (min-width: 768px) {
-  .hero-desktop-poster {
-    background-image: url('/assets/img/hero-poster.jpg');
-    background-size: cover;
+  .hero-picture img {
     background-position: center;
+    object-position: center;
   }
 }
 @media (max-width: 479px) {
   .hero-h1 {
     font-size: 2.55rem !important;
     line-height: .92 !important;
-    letter-spacing: .01em !important;
+    letter-spacing: 0 !important;
   }
   .hero-lead-form {
     max-width: none;
@@ -87,9 +93,11 @@
      ===================================================== -->
 <section class="hero-section relative flex items-center overflow-hidden" style="min-height:calc(72svh - 5rem);">
 
-  <!-- Mobile poster covers phone and tablet sizes where the video is intentionally disabled. -->
-  <div class="hero-mobile-poster absolute inset-0 md:hidden" aria-hidden="true"></div>
-  <div class="hero-desktop-poster absolute inset-0 hidden md:block" aria-hidden="true"></div>
+  <!-- Responsive poster covers phone and tablet sizes where the video is intentionally disabled. -->
+  <picture class="hero-picture absolute inset-0 block" aria-hidden="true">
+    <source media="(max-width: 767px)" srcset="/assets/img/hero-poster-mobile.webp" type="image/webp">
+    <img src="/assets/img/hero-poster.jpg" alt="" width="1280" height="685" loading="eager" decoding="async" fetchpriority="high">
+  </picture>
 
   <!-- Video background — lazy loaded on desktop with fast connection only -->
   <video
@@ -135,8 +143,8 @@
           Fun. Train. Improve.
         </h1>
 
-        <p class="hero-subcopy text-white/85 text-base sm:text-xl leading-relaxed max-w-2xl mb-4 sm:mb-8">
-          Camps, leagues, and training for beginners to pros.
+        <p class="hero-subcopy text-base sm:text-xl leading-relaxed max-w-2xl mb-4 sm:mb-8">
+          Basketball camps, leagues, and training in Fort Walton Beach for beginners to pros.
         </p>
 
         <div class="hero-lead-form bg-navy/95 md:bg-white/95 border border-white/15 md:border-white/40 rounded-lg p-4 md:p-5 shadow-xl md:shadow-2xl shadow-black/25 backdrop-blur-sm">
@@ -169,7 +177,7 @@
       <!-- TRAIN -->
       <div class="split-panel fade-in group block rounded-2xl border border-white/10 hover:border-gold/40 transition-all duration-200" style="padding:48px 40px;">
         <a href="/train/" class="block">
-          <h2 class="split-heading font-display text-white group-hover:text-gold transition-colors" style="font-size:3.5rem;line-height:1;margin-bottom:20px;letter-spacing:-.02em">TRAIN</h2>
+          <h2 class="split-heading font-display text-white group-hover:text-gold transition-colors" style="font-size:3.5rem;line-height:1;margin-bottom:20px;letter-spacing:0">TRAIN</h2>
         </a>
         <div class="flex flex-wrap gap-2 mb-8">
           <a href="/services/basketball-training/" class="bg-white/10 text-white/80 hover:bg-gold/20 hover:text-gold text-xs font-semibold px-3 py-1.5 rounded-full transition-colors">Basketball Training</a>
@@ -186,7 +194,7 @@
       <!-- COMPETE -->
       <div class="split-panel fade-in group block rounded-2xl border border-white/10 hover:border-gold/40 transition-all duration-200" style="padding:48px 40px;background:rgba(212,175,55,.04);">
         <a href="/compete/" class="block">
-          <h2 class="split-heading font-display text-gold" style="font-size:3.5rem;line-height:1;margin-bottom:20px;letter-spacing:-.02em">COMPETE</h2>
+          <h2 class="split-heading font-display text-gold" style="font-size:3.5rem;line-height:1;margin-bottom:20px;letter-spacing:0">COMPETE</h2>
         </a>
         <div class="flex flex-wrap gap-2 mb-8">
           <a href="/services/basketball-league/" class="bg-gold/15 text-gold/90 hover:bg-gold/30 hover:text-gold text-xs font-semibold px-3 py-1.5 rounded-full transition-colors">Basketball Leagues</a>
@@ -225,7 +233,7 @@
 
       <!-- Text -->
       <div class="fade-in">
-        <span class="section-tag">About FCP Sports</span>
+        <span class="section-tag home-light-accent">About FCP Sports</span>
         <h2 class="font-display text-4xl md:text-5xl text-navy leading-tight mb-4">Built for Basketball</h2>
 
         <p class="text-gray-600 leading-relaxed mb-6">
@@ -270,10 +278,10 @@
 
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-in">
       <div>
-        <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-2">What&rsquo;s Happening</span>
+        <span class="inline-block home-light-accent font-bold tracking-widest text-xs uppercase mb-2">What&rsquo;s Happening</span>
         <h2 class="font-display text-4xl md:text-5xl text-navy leading-none">This Week &amp; Beyond</h2>
       </div>
-      <a href="/schedule/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
+      <a href="/schedule/" class="home-light-accent font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
         Full Schedule
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
       </a>
@@ -288,7 +296,7 @@
           <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none">
             {{ dateFormat "Jan 02" .date }}
           </span>
-          <span class="text-xs font-bold uppercase tracking-wide text-gold">{{ .badge }}</span>
+          <span class="text-xs font-bold uppercase tracking-wide home-light-accent">{{ .badge }}</span>
         </div>
         <h3 class="font-display text-xl text-navy mb-1">{{ .title }}</h3>
         <p class="text-gray-500 text-sm mb-1">{{ .time }}</p>
@@ -311,10 +319,10 @@
 
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-in">
       <div>
-        <span class="inline-block text-gold font-bold tracking-widest text-xs uppercase mb-2">Register Now</span>
+        <span class="inline-block home-light-accent font-bold tracking-widest text-xs uppercase mb-2">Register Now</span>
         <h2 class="font-display text-4xl md:text-5xl text-navy leading-none">Upcoming Camps</h2>
       </div>
-      <a href="/camps/" class="text-gold font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
+      <a href="/camps/" class="home-light-accent font-bold text-sm hover:text-gold-dark inline-flex items-center gap-1 transition-colors shrink-0">
         View All Camps
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
       </a>
@@ -329,7 +337,7 @@
           <span class="bg-navy text-white font-display text-lg px-4 py-2 rounded-lg leading-none shrink-0">
             {{ dateFormat "Jan 02" .start_date }}
           </span>
-          <span class="bg-gold/15 text-gold text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">${{ .price }}</span>
+          <span class="bg-gold/15 home-light-accent text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">${{ .price }}</span>
         </div>
         <h3 class="font-display text-xl text-navy mb-1 leading-tight">{{ .name }}</h3>
         <p class="text-gray-500 text-sm mb-1">{{ .dates_display }}</p>
@@ -351,7 +359,7 @@
 
     <!-- Header -->
     <div class="text-center mb-10 fade-in">
-      <span class="section-tag">What Families Say</span>
+      <span class="section-tag home-light-accent">What Families Say</span>
       <h2 class="section-heading text-center">Real Results From Real Families</h2>
     </div>
 
@@ -378,7 +386,7 @@
 
     <!-- Bottom CTA -->
     <div class="text-center mt-12 fade-in">
-      <a href="/about/#testimonials" class="text-gold font-bold hover:text-gold-dark transition-colors duration-200 inline-flex items-center gap-2">
+      <a href="/about/#testimonials" class="home-light-accent font-bold hover:text-gold-dark transition-colors duration-200 inline-flex items-center gap-2">
         Read More Reviews
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
       </a>

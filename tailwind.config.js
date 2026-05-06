@@ -21,8 +21,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['"Bebas Neue"', 'cursive'],
-        body: ['"DM Sans"', 'sans-serif'],
+        display: ['"Bebas Neue"', 'Impact', '"Arial Narrow"', 'sans-serif'],
+        body: ['"DM Sans"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
       },
     },
   },
