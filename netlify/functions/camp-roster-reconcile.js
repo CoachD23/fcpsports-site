@@ -5,6 +5,7 @@ const {
   sendPaymentAlert,
 } = require("./lib/checkout-reliability");
 const {
+  connectCampRosterLedger,
   listCampRosterRecords,
 } = require("./lib/camp-roster-ledger");
 const {
@@ -20,7 +21,8 @@ function json(body, statusCode = 200) {
   };
 }
 
-exports.handler = async function () {
+exports.handler = async function (event) {
+  connectCampRosterLedger(event);
   if (!process.env.AUTHNET_API_LOGIN || !process.env.AUTHNET_TRANSACTION_KEY) {
     return json({ ok: true, skipped: true, reason: "Authorize.net not configured" });
   }

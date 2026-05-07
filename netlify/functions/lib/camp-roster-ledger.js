@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const { getStore } = require("@netlify/blobs");
+const { connectLambda, getStore } = require("@netlify/blobs");
 
 const STORE_NAME = "camp-roster-ledger";
 const REGISTRATION_PREFIX = "registrations/";
@@ -18,6 +18,11 @@ function personName(first, last, fallback) {
 
 function rosterStore() {
   return getStore(STORE_NAME);
+}
+
+function connectCampRosterLedger(event) {
+  if (!event || !event.blobs) return;
+  connectLambda(event);
 }
 
 function fallbackId(input) {
@@ -287,6 +292,7 @@ module.exports = {
   STORE_NAME,
   applyCampRosterMove,
   buildCampRosterRecord,
+  connectCampRosterLedger,
   getCampRosterRecord,
   listCampRosterRecords,
   registrationId,

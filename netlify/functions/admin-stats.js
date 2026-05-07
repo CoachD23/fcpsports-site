@@ -13,6 +13,7 @@
 
 const crypto = require("crypto");
 const {
+  connectCampRosterLedger,
   listCampRosterRecords,
   summarizeCampRosterRecords,
 } = require("./lib/camp-roster-ledger");
@@ -90,6 +91,7 @@ async function fetchPartialLeadCount() {
 
 /* ── Main handler ───────────────────────────────────────────── */
 exports.handler = async function (event, context) {
+  connectCampRosterLedger(event);
   if (event.httpMethod !== "POST") {
     return json({ ok: false, error: "Method not allowed" }, 405);
   }

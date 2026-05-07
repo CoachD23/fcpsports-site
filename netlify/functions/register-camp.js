@@ -37,6 +37,7 @@ const {
 } = require("./lib/checkout-reliability");
 const {
   buildCampRosterRecord,
+  connectCampRosterLedger,
   saveCampRosterRecord,
 } = require("./lib/camp-roster-ledger");
 
@@ -183,6 +184,7 @@ async function sendMetaCAPI({ eventName, eventId, eventSourceUrl, userData, cust
 }
 
 exports.handler = async function (event) {
+  connectCampRosterLedger(event);
   const cors = {
     "Access-Control-Allow-Origin": "https://fcpsports.org",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
