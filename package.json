@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "test:roster": "node tests/camp-roster-ledger.test.js",
     "test:checkout": "node tests/checkout-smoke.js"
   },
   "repository": {

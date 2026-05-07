@@ -445,7 +445,10 @@
       tbody.innerHTML = camps.map(function (c) {
         var isCurrent = /session\s*4/i.test(c.camp);
         return '<tr' + (isCurrent ? ' class="highlight"' : '') + '>' +
-          '<td>' + esc(c.camp) + (isCurrent ? ' <span style="font-size:0.7rem;color:#c9a227;font-weight:700;">&#9733; CURRENT</span>' : '') + '</td>' +
+          '<td><strong>' + esc(c.camp) + '</strong>' +
+          (isCurrent ? ' <span style="font-size:0.7rem;color:#c9a227;font-weight:700;">&#9733; CURRENT</span>' : '') +
+          (c.dates ? '<div style="font-size:0.78rem;color:#6b7280;margin-top:2px;">' + esc(c.dates) + '</div>' : '') +
+          '</td>' +
           '<td style="text-align:center;">' + (c.count || 0) + '</td>' +
           '<td style="text-align:right;">$' + fmt(c.revenue || 0) + '</td>' +
           '</tr>';
@@ -459,11 +462,14 @@
       rbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#999;padding:1rem;">No registrations yet</td></tr>';
     } else {
       rbody.innerHTML = recent.map(function (r) {
+        var campDetail = '<strong>' + esc(r.camp) + '</strong>' +
+          (r.dates ? '<div style="font-size:0.78rem;color:#6b7280;margin-top:2px;">' + esc(r.dates) + '</div>' : '') +
+          (r.moved_from ? '<div style="font-size:0.72rem;color:#b45309;margin-top:2px;">Moved from ' + esc(r.moved_from) + '</div>' : '');
         return '<tr>' +
           '<td style="white-space:nowrap;">' + esc(r.date) + '</td>' +
           '<td>' + esc(r.parent) + '</td>' +
           '<td>' + esc(r.camper) + '</td>' +
-          '<td>' + esc(r.camp) + '</td>' +
+          '<td>' + campDetail + '</td>' +
           '<td style="text-align:right;font-weight:600;">$' + fmt(r.amount || 0) + '</td>' +
           '</tr>';
       }).join('');

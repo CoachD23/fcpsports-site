@@ -35,6 +35,10 @@ const {
   recordPaymentIssue,
   sendPaymentAlert,
 } = require("./lib/checkout-reliability");
+const {
+  buildCampRosterRecord,
+  saveCampRosterRecord,
+} = require("./lib/camp-roster-ledger");
 
 /* --- SERVER-SIDE CAMP PRICE MAP (source of truth — must match data/camps.yaml) --- */
 const CAMP_PRICES = {
@@ -290,6 +294,7 @@ exports.handler = async function (event) {
   const campAirtableTable = process.env.AIRTABLE_CAMP_REGISTRATIONS_TABLE || "Camp_Registrations";
   const hasAirtable = campAirtableEnabled && process.env.AIRTABLE_PAT && process.env.AIRTABLE_BASE_ID;
   const hasAuthnet = process.env.AUTHNET_API_LOGIN && process.env.AUTHNET_TRANSACTION_KEY;
+  let ghlContactId = "";
 
   if (!hasGhl && !hasAirtable) {
     console.error("[register-camp] No GHL or Airtable configured");
@@ -419,6 +424,7 @@ exports.handler = async function (event) {
       });
       const up = await upsertRes.json();
       const contactId = up.contact?.id || up.id;
+      ghlContactId = contactId || "";
 
       if (contactId) {
         // Registration note
@@ -454,7 +460,31 @@ exports.handler = async function (event) {
     }
   }
 
-  /* --- 3. Airtable: mirror to camp registrations table --- */
+  /* --- 3. Roster ledger: source of truth for paid camper counts --- */
+  try {
+    await saveCampRosterRecord(buildCampRosterRecord({
+      ...b,
+      source,
+      attributionSource: source,
+      transactionId,
+      paymentStatus,
+      registeredAt: new Date().toISOString(),
+      contactId: ghlContactId,
+    }));
+  } catch (e) {
+    console.error("[register-camp] Roster ledger write failed:", e.message);
+    await recordIssue({
+      severity: "error",
+      eventType: "roster_ledger_write_failed",
+      statusCode: 200,
+      amount: b.priceAmount,
+      transactionId,
+      contactId: ghlContactId,
+      error: "Payment captured; roster ledger write failed: " + e.message,
+    }, true);
+  }
+
+  /* --- 4. Airtable: optional mirror to camp registrations table --- */
   if (hasAirtable) {
     try {
       const atRes = await fetch(`${AIRTABLE_BASE}/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(campAirtableTable)}`, {
@@ -508,7 +538,7 @@ exports.handler = async function (event) {
     }
   }
 
-  /* --- 4. Confirmation email --- */
+  /* --- 5. Confirmation email --- */
   if (process.env.FCPSPORTS_SMTP_PASS) {
     try {
       const t = createSmtp();
@@ -685,7 +715,7 @@ exports.handler = async function (event) {
     }, true);
   }
 
-  /* --- 5. Meta CAPI: server-side Purchase event (non-blocking, best-effort) --- */
+  /* --- 6. Meta CAPI: server-side Purchase event (non-blocking, best-effort) --- */
   // Client must pass b.eventId (UUID) and fire fbq with the same event_id for dedup.
   // If eventId is absent, we generate one server-side — client-side dedup won't happen.
   const eventId = b.eventId || crypto.randomUUID();
