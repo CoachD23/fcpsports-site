@@ -17,7 +17,7 @@ function personName(first, last, fallback) {
 }
 
 function rosterStore() {
-  return getStore({ name: STORE_NAME, consistency: "strong" });
+  return getStore(STORE_NAME);
 }
 
 function fallbackId(input) {
