@@ -86,7 +86,7 @@ function buildHomepageLeadEmail() {
     subject: "FCP Sports next step",
     html: `<p>Hey,</p>
 <p>Thanks for reaching out to FCP Sports. Tyler helps families find the right fit for camps, leagues, training, private lessons, and gym options.</p>
-<p>Reply to this email or call/text Tyler at <a href="tel:+18509612323">850.961.2323</a>, and we&rsquo;ll point you to the best next step.</p>
+<p>Reply to this email or call/text Tyler at <a href="tel:+19015708901">901.570.8901</a>, and we&rsquo;ll point you to the best next step.</p>
 <p>Talk soon,<br>FCP Sports</p>`,
   };
 }

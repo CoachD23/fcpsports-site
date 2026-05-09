@@ -34,7 +34,7 @@ async function run() {
   const homepageEmail = _test.buildHomepageLeadEmail();
   assert.equal(homepageEmail.subject, "FCP Sports next step");
   assert.match(homepageEmail.html, /Tyler/);
-  assert.match(homepageEmail.html, /850\.961\.2323/);
+  assert.match(homepageEmail.html, /901\.570\.8901/);
   assert.doesNotMatch(homepageEmail.html, /before spots open/i);
   assert.doesNotMatch(homepageEmail.html, /newsletter/i);
 
