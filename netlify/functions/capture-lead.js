@@ -46,6 +46,8 @@ function isRateLimited(ip) {
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const nodemailer = require("nodemailer");
+const HOMEPAGE_CAPTURE_TAG = "stay-up-to-date-lead";
+const HOMEPAGE_AUTORESPONDER_SENT_TAG = "homepage-autoresponder-sent";
 
 function createSmtpTransport() {
   return nodemailer.createTransport({
@@ -67,6 +69,41 @@ const CAMP_LEAGUE_TAGS = new Set([
   "youth-inquiry",
   "general-inquiry",
 ]);
+
+function tagsForLead(safeTag, submittedDate) {
+  const submittedTag = `submitted-${submittedDate}`;
+  if (safeTag === "homepage-lead") {
+    return ["fcpsports", HOMEPAGE_CAPTURE_TAG, submittedTag];
+  }
+  return safeTag === "general-inquiry"
+    ? ["fcpsports", "general-inquiry", submittedTag]
+    : ["fcpsports", safeTag, "general-inquiry", submittedTag];
+}
+
+function buildHomepageLeadEmail() {
+  return {
+    from: '"FCP Sports" <info@fcpsports.org>',
+    subject: "FCP Sports next step",
+    html: `<p>Hey,</p>
+<p>Thanks for reaching out to FCP Sports. Tyler helps families find the right fit for camps, leagues, training, private lessons, and gym options.</p>
+<p>Reply to this email or call/text Tyler at <a href="tel:+18509612323">850.961.2323</a>, and we&rsquo;ll point you to the best next step.</p>
+<p>Talk soon,<br>FCP Sports</p>`,
+  };
+}
+
+async function fetchContactTags(contactId) {
+  if (!contactId) return [];
+  const res = await fetch(`${GHL_BASE}/contacts/${contactId}`, {
+    method: "GET",
+    headers: ghlHeaders(),
+  }).catch((e) => {
+    console.warn("[capture-lead] Contact lookup failed:", e.message);
+    return null;
+  });
+  if (!res || !res.ok) return [];
+  const data = await res.json().catch(() => ({}));
+  return Array.isArray(data.contact?.tags) ? data.contact.tags : [];
+}
 
 function ghlHeaders() {
   return {
@@ -110,9 +147,6 @@ exports.handler = async function (event) {
 
     // Only allow known tags to prevent tag pollution
     const safeTag = ALLOWED_TAGS.has(tag) ? tag : "general-inquiry";
-    const tagsToApply = safeTag === "general-inquiry"
-      ? ["fcpsports", "general-inquiry"]
-      : ["fcpsports", safeTag, "general-inquiry"];
 
     // Compute channel-specific source from UTMs (Instagram vs Facebook vs Google etc)
     // Priority: utm_source > fbclid → facebook > gclid → google > fallback source
@@ -165,11 +199,35 @@ exports.handler = async function (event) {
       await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
         method: "POST",
         headers: ghlHeaders(),
-        body: JSON.stringify({ tags: [...tagsToApply, `submitted-${today}`] }),
+        body: JSON.stringify({ tags: tagsForLead(safeTag, today) }),
       }).catch((e) => console.warn("[capture-lead] Tag failed:", e.message));
     }
 
     console.log(`[capture-lead] Lead captured: ${email} | tag: ${safeTag} | source: ${resolvedSource} | utm: ${JSON.stringify(utm)}`);
+
+    if (safeTag === "homepage-lead" && process.env.FCPSPORTS_SMTP_PASS) {
+      const currentTags = await fetchContactTags(contactId);
+      if (!currentTags.includes(HOMEPAGE_AUTORESPONDER_SENT_TAG)) {
+        try {
+          const transporter = createSmtpTransport();
+          const emailOptions = buildHomepageLeadEmail();
+          await transporter.sendMail({
+            ...emailOptions,
+            to: email.trim().toLowerCase(),
+          });
+          if (contactId) {
+            await fetch(`${GHL_BASE}/contacts/${contactId}/tags`, {
+              method: "POST",
+              headers: ghlHeaders(),
+              body: JSON.stringify({ tags: [HOMEPAGE_AUTORESPONDER_SENT_TAG] }),
+            }).catch((e) => console.warn("[capture-lead] homepage autoresponder tag failed:", e.message));
+          }
+          console.log(`[capture-lead] Homepage autoresponder sent to ${email}`);
+        } catch (e) {
+          console.error("[capture-lead] Homepage autoresponder failed:", e.message);
+        }
+      }
+    }
 
     // Send confirmation email + enroll in day-2 sequence for camp/league tags
     if (CAMP_LEAGUE_TAGS.has(safeTag) && process.env.FCPSPORTS_SMTP_PASS) {
@@ -205,4 +263,11 @@ exports.handler = async function (event) {
     console.error("[capture-lead] Error:", err.message);
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
   }
+};
+
+exports._test = {
+  HOMEPAGE_AUTORESPONDER_SENT_TAG,
+  HOMEPAGE_CAPTURE_TAG,
+  buildHomepageLeadEmail,
+  tagsForLead,
 };
