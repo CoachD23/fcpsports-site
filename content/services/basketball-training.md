@@ -88,4 +88,19 @@ Baseline assessment included. Sibling discount: $20 off each additional player. 
 
 Want 1-on-1 attention? Check out [private basketball lessons](/services/basketball-lessons/).
 
+
+## Where Families Drive From
+
+FCP Sports is the dedicated basketball facility on the Emerald Coast. Skills training families drive in from across Northwest Florida — short routes from every direction:
+
+- **[Fort Walton Beach](/locations/fort-walton-beach/)** — Home of the gym
+- **[Destin](/locations/destin/)** — ~15 minutes via US-98 W
+- **[Niceville](/locations/niceville/)** — ~15 minutes via Hwy 85 S
+- **[Navarre](/locations/navarre/)** — ~25 minutes via US-98
+- **[Crestview](/locations/crestview/)** — ~30 minutes via Hwy 85 N
+- **[Pensacola](/locations/pensacola/)** — ~40 minutes via I-10 W
+- **[Panama City](/locations/panama-city/)** — ~50 minutes via US-98 E
+
+See the [full list of areas we serve](/locations/) for city-specific FAQ, drive routes, and schools we partner with.
+
 {{< staytuned source="skills-page" tag="skills-inquiry" headline="Stay Up to Date" subhead="Get updates on skills training schedule and availability." >}}

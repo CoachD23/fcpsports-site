@@ -63,3 +63,17 @@ Skill-level group training for Foundation, Rising, Competitive, and HS Prep athl
 Most families start with either the **Saturday League** (if they want games) or a **Summer Camp** (if they want to see real progress in one week).
 
 [Call 850.961.2323](/contact/) or [send a note](/contact/) and we'll point you to the right fit.
+
+## Where Families Drive From
+
+FCP Sports is the dedicated basketball facility on the Emerald Coast. Youth basketball families drive in from across Northwest Florida — short routes from every direction:
+
+- **[Fort Walton Beach](/locations/fort-walton-beach/)** — Home of the gym
+- **[Destin](/locations/destin/)** — ~15 minutes via US-98 W
+- **[Niceville](/locations/niceville/)** — ~15 minutes via Hwy 85 S
+- **[Navarre](/locations/navarre/)** — ~25 minutes via US-98
+- **[Crestview](/locations/crestview/)** — ~30 minutes via Hwy 85 N
+- **[Pensacola](/locations/pensacola/)** — ~40 minutes via I-10 W
+- **[Panama City](/locations/panama-city/)** — ~50 minutes via US-98 E
+
+See the [full list of areas we serve](/locations/) for city-specific FAQ, drive routes, and schools we partner with.
