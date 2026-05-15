@@ -7,7 +7,7 @@ keyword: "aau basketball florida panhandle"
 featured_image: "/images/basketball-college-recruiting-showcase-coaches-only-fcp.jpg"
 ---
 
-If you're raising a serious basketball player in the Florida Panhandle, you already know the competitive landscape looks different here than it does in Orlando or Miami. We don't have the same density of elite programs. Tournaments aren't in our backyard. And the path from Fort Walton Beach to a college scholarship requires more intentional planning than it does for athletes living in Florida's population centers.
+If you're raising a serious basketball player in the Florida Panhandle, you already know the competitive landscape looks different here than it does in Orlando or Miami. We don't have the same density of top-tier programs. Tournaments aren't in our backyard. And the path from Fort Walton Beach to a college scholarship requires more intentional planning than it does for athletes living in Florida's population centers.
 
 This guide is for Panhandle parents who want an honest, local perspective on how AAU basketball works in our market — and how FCP Sports helps athletes bridge the gap between the Emerald Coast and the bigger stages.
 
@@ -19,7 +19,7 @@ The major circuits operating in Florida include:
 
 **Florida Scholastic Basketball Association (FSBA):** One of the most prominent Florida-based circuits, running tournaments throughout the state from spring through summer. FSBA events draw programs from across Florida and the Southeast.
 
-**Nike EYBL and Adidas 3SSB:** The elite national circuits occasionally have Florida-based qualifying events and run major summer showcases that Florida programs attend. These are primarily for 15U–17U elite players with genuine college interest.
+**Nike EYBL and Adidas 3SSB:** The highest-tier national circuits occasionally have Florida-based qualifying events and run major summer showcases that Florida programs attend. These are primarily for 15U–17U high-major-tracked players with genuine college interest.
 
 **Independent Florida AAU circuits:** Dozens of smaller regional circuits run events in Central and North Florida that are accessible for Panhandle teams with a few hours of drive time.
 

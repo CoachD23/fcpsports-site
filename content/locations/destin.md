@@ -1,7 +1,7 @@
 ---
 hero_image: /images/fcp-hero-banner-1.jpg
 title: "Basketball Training Destin FL | FCP Sports"
-description: "Elite basketball training 15 minutes from Destin. Year-round programs and drop-in sessions for Destin families and Emerald Coast visitors at FCP Sports."
+description: "top-tier basketball training 15 minutes from Destin. Year-round programs and drop-in sessions for Destin families and Emerald Coast visitors at FCP Sports."
 h1: "Basketball Training in Destin, FL"
 city: "Destin"
 keyword: "basketball training destin fl"
@@ -12,7 +12,7 @@ schools:
   - "Fort Walton Beach High School"
 faq:
   - q: "Is there basketball training in Destin FL?"
-    a: "There is no dedicated basketball training facility in Destin itself. The closest elite option is FCP Sports in Fort Walton Beach — just 15 minutes west on Highway 98. We offer year-round programming and short-term options for Destin residents and visitors."
+    a: "There is no dedicated basketball training facility in Destin itself. The closest dedicated option is FCP Sports in Fort Walton Beach — just 15 minutes west on Highway 98. We offer year-round programming and short-term options for Destin residents and visitors."
   - q: "How far is FCP Sports from Destin?"
     a: "FCP Sports is approximately 15 minutes from Destin via Highway 98 West. You can also take the Mid-Bay Bridge to connect to Fort Walton Beach. Most Destin families find the drive quick and straightforward, especially compared to the quality of training available locally."
   - q: "Does FCP Sports offer basketball programs for kids visiting Destin on vacation?"
@@ -47,7 +47,7 @@ Past HarborWalk Village, straight shot on 98 West: that's how simple the drive i
 
 **Back roads via Commons Drive:** A quieter alternative avoiding the main highway strip during peak tourist season.
 
-Destin kids deserve elite basketball training. At 15 minutes from HarborWalk Village, FCP Sports is close enough to make it a routine — and good enough to make it worth it.
+Destin kids deserve specialized basketball training. At 15 minutes from HarborWalk Village, FCP Sports is close enough to make it a routine — and good enough to make it worth it.
 
 ## Programs Available Near Destin
 

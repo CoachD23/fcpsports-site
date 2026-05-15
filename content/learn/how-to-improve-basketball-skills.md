@@ -87,7 +87,7 @@ Basketball is an interval sport — explosive bursts of 3–5 seconds separated 
 
 The mental side of basketball is the great equalizer. Athletes with identical physical skills consistently perform differently based on their mental approach. Work on:
 
-**Routine:** Elite shooters have a consistent pre-shot routine. Elite free throw shooters have an identical routine every single time. Build yours and never break it.
+**Routine:** top-tier shooters have a consistent pre-shot routine. top-tier free throw shooters have an identical routine every single time. Build yours and never break it.
 
 **Mistake recovery:** The best players have short memories. When you turn the ball over, miss a shot, or get beat on defense, the only productive response is to reset and compete on the next play. Practice this consciously.
 

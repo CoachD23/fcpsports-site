@@ -75,7 +75,7 @@ If your child has never played organized basketball: start with the city rec cam
 
 If your child plays rec ball and wants to improve: FCP Sports at $149 offers the best combination of facility quality, structured curriculum, small-group coaching, and price available on the Panhandle.
 
-If your child plays AAU or school ball and wants elite development: NWFSC Raider Camp or Nike Panama City are worth the higher price and commute.
+If your child plays AAU or school ball and wants high-level development: NWFSC Raider Camp or Nike Panama City are worth the higher price and commute.
 
 If cost is the primary constraint: FCP Sports military and sibling discounts ($20 off each, stackable) make the dedicated facility option more accessible than the sticker price suggests.
 

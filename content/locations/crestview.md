@@ -20,7 +20,7 @@ faq:
   - q: "Does FCP Sports offer payment plans for Crestview families?"
     a: "Yes. We offer flexible payment plans across most of our programs. We believe every motivated athlete should have access to quality training, and we work with families to find a format and payment schedule that fits their budget."
   - q: "Are there basketball programs for kids in North Okaloosa County?"
-    a: "FCP Sports is the premier option for North Okaloosa County athletes. We offer programs for elementary through high school age players, including skills training, private lessons, youth leagues, and summer camps. The 30-minute drive from Crestview to Fort Walton Beach gives your athlete access to the best basketball development program in the region."
+    a: "FCP Sports is the natural choice for North Okaloosa County athletes. We offer programs for elementary through high school age players, including skills training, private lessons, youth leagues, and summer camps. The 30-minute drive from Crestview to Fort Walton Beach gives your athlete access to the best basketball development program in the region."
   - q: "Can my child from Crestview join a basketball league at FCP Sports?"
     a: "Absolutely. Our basketball leagues regularly include athletes from Crestview who compete alongside players from Fort Walton Beach, Destin, Niceville, and beyond. It's a great way for Crestview kids to measure themselves against a wider competitive field — and win."
 ---

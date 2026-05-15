@@ -1,7 +1,7 @@
 ---
 hero_image: /images/fcp-hero-open-gym.jpg
 title: "Basketball Training Panama City FL | FCP Sports"
-description: "Elite basketball training one hour from Panama City, FL. Weekend intensives, week-long camps, and year-round programs for serious Bay County athletes."
+description: "top-tier basketball training one hour from Panama City, FL. Weekend intensives, week-long camps, and year-round programs for serious Bay County athletes."
 h1: "Basketball Training for Panama City Athletes"
 city: "Panama City"
 keyword: "basketball training panama city fl"
@@ -14,7 +14,7 @@ schools:
   - "Arnold High School"
   - "Mosley High School"
 faq:
-  - q: "Is there elite basketball training near Panama City FL?"
+  - q: "Is there specialized basketball training near Panama City FL?"
     a: "Bay County has basketball programs, but no dedicated basketball-only training facility at the level FCP Sports offers. For Panama City athletes serious about skill development, FCP Sports in Fort Walton Beach — one hour west — provides coaching, facilities, and programming that Bay County cannot currently match."
   - q: "How far is FCP Sports from Panama City?"
     a: "FCP Sports is approximately one hour from Panama City via Highway 98 West. You can also travel via Highway 79 North to I-10 West, then south on Highway 85 — roughly the same time. Most Panama City families plan it as a dedicated training day rather than a weeknight commute."

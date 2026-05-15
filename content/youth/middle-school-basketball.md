@@ -1,6 +1,6 @@
 ---
 title: "Middle School Basketball Training Fort Walton Beach | FCP Sports"
-description: "Elite basketball training for 6th–8th grade athletes on the Emerald Coast. High school tryout prep and position-specific coaching at FCP Sports."
+description: "top-tier basketball training for 6th–8th grade athletes on the Emerald Coast. High school tryout prep and position-specific coaching at FCP Sports."
 h1: "Middle School Basketball Training"
 age_range: "Ages 11–14"
 grade_range: "6th – 8th Grade"

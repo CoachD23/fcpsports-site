@@ -7,7 +7,7 @@ faq:
   - q: "What position should my child play?"
     a: "At the youth level, position assignments should be flexible and based on current skill strengths — not locked in by height alone. A naturally quick, ball-dominant kid often gravitates to point guard; a bigger, stronger child may fit power forward or center. However, the best development approach is to teach all players foundational skills across positions, then specialize as they mature. FCP Sports coaches assess each athlete individually and recommend positions based on a combination of physical attributes, skill set, and basketball IQ."
   - q: "How do I know if my kid is a point guard?"
-    a: "Point guard tendencies show up early: kids who instinctively look to pass before shoot, who enjoy controlling the pace of play, who read the defense and make decisions quickly, and who take pride in setting teammates up for easy scores. Physically, point guards tend to be quicker than they are tall, but elite point guards exist at every height. If your child is always seeing the whole floor and making teammates better, they likely have a point guard's mind."
+    a: "Point guard tendencies show up early: kids who instinctively look to pass before shoot, who enjoy controlling the pace of play, who read the defense and make decisions quickly, and who take pride in setting teammates up for easy scores. Physically, point guards tend to be quicker than they are tall, but top-tier point guards exist at every height. If your child is always seeing the whole floor and making teammates better, they likely have a point guard's mind."
   - q: "What skills does a center need?"
     a: "A center needs: post footwork (drop step, jump hook, up-and-under), screen-setting technique, defensive positioning and boxing out, interior passing out of double teams, rebounding instincts and physicality, and increasingly in modern basketball, the ability to shoot a mid-range or even three-point shot to stretch defenses. Centers at the youth level should also develop handle and perimeter skills to avoid positional limitations as they age."
   - q: "Does position matter for youth basketball?"
@@ -26,7 +26,7 @@ At FCP Sports, we teach positional responsibility first, then build the versatil
 
 **Role on the court:** The point guard is the quarterback of the offense — the primary ball-handler, the initiator of plays, and the coach's voice on the floor. Point guards run the pick-and-roll, push in transition, and orchestrate the team's half-court sets.
 
-**Key skills:** Elite dribbling in traffic, court vision and passing accuracy, decision-making under pressure, leadership and communication, pull-up jumpers, and the ability to get into the paint and create for others.
+**Key skills:** top-tier dribbling in traffic, court vision and passing accuracy, decision-making under pressure, leadership and communication, pull-up jumpers, and the ability to get into the paint and create for others.
 
 **Physical attributes:** Point guards come in all sizes, but quickness and change-of-direction ability are paramount. Lateral speed on defense and first-step explosiveness on offense matter more than height.
 

@@ -7,7 +7,7 @@ faq:
   - q: "How much does AAU basketball cost?"
     a: "AAU basketball costs vary widely depending on the program's level and travel demands. Entry-level local programs may run $500–$1,500 per season, while competitive programs that travel regionally or nationally can cost $3,000–$8,000 or more per year when you factor in team fees, tournament registration, travel, hotels, and gear. At FCP Sports, we work to keep our pipeline programs accessible for Emerald Coast families while still competing at a high level."
   - q: "What age should my child start AAU basketball?"
-    a: "Most experts recommend starting recreational AAU basketball around ages 8–10, when kids are developmentally ready for structured team play. Competitive AAU play — with significant travel and higher coaching expectations — is generally more appropriate starting at age 12. Rushing into elite competition too early can lead to burnout. FCP Sports coaches assess each athlete individually and recommend the right entry point based on skill, maturity, and goals."
+    a: "Most experts recommend starting recreational AAU basketball around ages 8–10, when kids are developmentally ready for structured team play. Competitive AAU play — with significant travel and higher coaching expectations — is generally more appropriate starting at age 12. Rushing into high-level competition too early can lead to burnout. FCP Sports coaches assess each athlete individually and recommend the right entry point based on skill, maturity, and goals."
   - q: "Is AAU basketball worth it?"
     a: "AAU basketball is worth it for athletes who want to compete at a higher level than school or rec ball, get exposure to college recruiters, and develop advanced skills year-round. It requires a significant investment of time and money, so families should evaluate the child's passion for the game and realistic college aspirations. For casual players, a strong local training program at FCP Sports may deliver more development per dollar."
   - q: "How does AAU help with college recruiting?"
@@ -40,7 +40,7 @@ Many parents wonder whether AAU and school ball conflict. Here's the key differe
 
 In practice, the best high school players do both — they play for their school team in the winter and their AAU team in the spring and summer. The two programs are complementary. School ball builds team cohesion and in-state identity; AAU builds individual skill and national exposure.
 
-The coaching philosophies sometimes diverge. School coaches often prioritize winning and system-based play. AAU coaches at the elite level prioritize player development and college exposure. Understanding this distinction helps parents set realistic expectations for both.
+The coaching philosophies sometimes diverge. School coaches often prioritize winning and system-based play. AAU coaches at the highest level prioritize player development and college exposure. Understanding this distinction helps parents set realistic expectations for both.
 
 ## What Does AAU Basketball Cost?
 
@@ -67,7 +67,7 @@ Developmental experts and experienced coaches generally recommend:
 - **Ages 12–14:** Competitive AAU with travel becomes meaningful for athletes serious about long-term development.
 - **Ages 15–17:** The recruiting years. High-level AAU exposure during the July live period is critical for college-bound athletes.
 
-The biggest mistake parents make is pushing elite competition before a child has developed love for the game. FCP Sports coaches evaluate every athlete holistically — skill level, mental readiness, and genuine passion — before recommending a competitive AAU path.
+The biggest mistake parents make is pushing high-level competition before a child has developed love for the game. FCP Sports coaches evaluate every athlete holistically — skill level, mental readiness, and genuine passion — before recommending a competitive AAU path.
 
 ## The July Live Period and College Recruiting
 

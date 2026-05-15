@@ -71,4 +71,4 @@ Every high school athlete gets film review built into training. We maintain rela
 
 ---
 
-*FCP Sports shares its 14,000 sq ft facility at 33 Jet Drive NW with **[Florida Coastal Prep](https://floridacoastalprep.com/)** — an elite post-graduate program that has placed athletes from 43 states and 22 countries into college programs at every level.*
+*FCP Sports shares its 14,000 sq ft facility at 33 Jet Drive NW with **[Florida Coastal Prep](https://floridacoastalprep.com/)** — an selective post-graduate program that has placed athletes from 43 states and 22 countries into college programs at every level.*
