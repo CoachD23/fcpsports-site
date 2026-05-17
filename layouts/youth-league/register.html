@@ -62,8 +62,8 @@
               <input type="radio" name="session" value="spring-2026" class="sr-only" />
               <div class="session-card">
                 <div class="flex-1">
-                  <div class="font-display text-base text-navy">Spring Session</div>
-                  <div class="text-xs text-gray-500">May 16 – June 27, 2026 &bull; 6 Saturdays (skip Memorial Day)</div>
+                  <div class="font-display text-base text-navy">Summer Spring League — Session 1</div>
+                  <div class="text-xs text-gray-500">June 6 – July 25, 2026 &bull; 7 Saturdays (skip July 4)</div>
                 </div>
                 <div class="text-right">
                   <div class="font-bold text-navy text-sm">$149</div>
@@ -75,8 +75,8 @@
               <input type="radio" name="session" value="mid-summer-2026" class="sr-only" />
               <div class="session-card">
                 <div class="flex-1">
-                  <div class="font-display text-base text-navy">Mid-Summer Session</div>
-                  <div class="text-xs text-gray-500">July 11 – August 22, 2026 &bull; 7 Saturdays · $149</div>
+                  <div class="font-display text-base text-navy">Saturday Summer League — Session 2</div>
+                  <div class="text-xs text-gray-500">August 1 – September 12, 2026 &bull; 7 Saturdays · $149</div>
                 </div>
                 <div class="text-right">
                   <div class="font-bold text-navy text-sm">$149</div>
@@ -88,8 +88,8 @@
               <input type="radio" name="session" value="late-summer-2026" class="sr-only" />
               <div class="session-card">
                 <div class="flex-1">
-                  <div class="font-display text-base text-navy">Late Summer Session</div>
-                  <div class="text-xs text-gray-500">Sept 12 – Oct 24, 2026 &bull; 7 Saturdays</div>
+                  <div class="font-display text-base text-navy">Back to School Fall League — Session 3</div>
+                  <div class="text-xs text-gray-500">Sept 19 – Oct 31, 2026 &bull; 7 Saturdays</div>
                 </div>
                 <div class="text-right">
                   <div class="font-bold text-navy text-sm">$149</div>
@@ -421,20 +421,20 @@
   // Session config — drives pricing and payload
   const SESSIONS = {
     "spring-2026": {
-      name: "Spring Session",
-      dates: "May 16 – June 27, 2026",
-      saturdays: 6,
+      name: "Summer Spring League — Session 1",
+      dates: "June 6 – July 25, 2026",
+      saturdays: 7,
       price: 149
     },
     "mid-summer-2026": {
-      name: "Mid-Summer Session",
-      dates: "July 11 – August 22, 2026",
+      name: "Saturday Summer League — Session 2",
+      dates: "August 1 – September 12, 2026",
       saturdays: 7,
       price: 149
     },
     "late-summer-2026": {
-      name: "Late Summer Session",
-      dates: "September 12 – October 24, 2026",
+      name: "Back to School Fall League — Session 3",
+      dates: "September 19 – October 31, 2026",
       saturdays: 7,
       price: 149
     }
@@ -708,7 +708,7 @@
   // Validation per step
   function validateStep(s) {
     if (s === 1) {
-      if (!getSelectedSession()) { showError("Please pick a session (Spring, Mid-Summer, or Late Summer).", form.querySelector('input[name="session"]')); return false; }
+      if (!getSelectedSession()) { showError("Please pick a session (Session 1, Session 2, or Back to School Fall).", form.querySelector('input[name="session"]')); return false; }
       const email = form.parentEmail.value.trim();
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError("Please enter a valid email address.", form.parentEmail); return false; }
       if (!form.parentFirst.value.trim()) { showError("First name is required.", form.parentFirst); return false; }

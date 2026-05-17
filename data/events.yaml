@@ -62,36 +62,36 @@
   slug: "/camps/summer-day-camp/"
   badge: "REGISTER NOW"
 
-# ─── SATURDAY LEAGUE — SPRING SESSION ────────────────────────────────────────
+# ─── SATURDAY LEAGUE — SUMMER SPRING SESSION 1 ───────────────────────────────
 
-- title: "Saturday League — Spring Session"
+- title: "Summer Spring League — Session 1"
   type: "League"
-  date: "2026-05-16"
-  date_display: "May 16 – June 27, 2026 (6 Saturdays — skip Memorial Day May 23)"
+  date: "2026-06-06"
+  date_display: "June 6 – July 25, 2026 (7 Saturdays — skip July 4)"
   time: "Ages 5–7: 8–10 AM · 8–10: 10 AM–12 PM · 11–14: 12–2 PM · 15+: 2–4 PM"
   age: "Ages 5+"
   price: "$149/session"
   slug: "/youth-league/register/?session=spring-2026"
   badge: "REGISTER NOW"
 
-# ─── SATURDAY LEAGUE — MID-SUMMER SESSION ────────────────────────────────────
+# ─── SATURDAY LEAGUE — SUMMER SESSION 2 ──────────────────────────────────────
 
-- title: "Saturday League — Mid-Summer Session"
+- title: "Saturday Summer League — Session 2"
   type: "League"
-  date: "2026-07-11"
-  date_display: "July 11 – August 22, 2026 (7 Saturdays)"
+  date: "2026-08-01"
+  date_display: "August 1 – September 12, 2026 (7 Saturdays)"
   time: "Ages 5–7: 8–10 AM · 8–10: 10 AM–12 PM · 11–14: 12–2 PM · 15+: 2–4 PM"
   age: "Ages 5+"
   price: "$149/session"
   slug: "/youth-league/register/?session=mid-summer-2026"
   badge: "REGISTER NOW"
 
-# ─── SATURDAY LEAGUE — FALL SESSION ───────────────────────────────────────────
+# ─── SATURDAY LEAGUE — BACK TO SCHOOL FALL SESSION 3 ─────────────────────────
 
-- title: "Saturday League — Fall Session"
+- title: "Back to School Fall League — Session 3"
   type: "League"
-  date: "2026-09-12"
-  date_display: "September 12 – October 24, 2026 (7 Saturdays)"
+  date: "2026-09-19"
+  date_display: "September 19 – October 31, 2026 (7 Saturdays)"
   time: "Ages 5–7: 8–10 AM · 8–10: 10 AM–12 PM · 11–14: 12–2 PM · 15+: 2–4 PM"
   age: "Ages 5+"
   price: "$149/session"

@@ -12,14 +12,14 @@ register_url: "/youth-league/register/"
 register_text: "Register for League"
 ghl_tag: "compete"
 summary_card:
-  dates: "Year-round — Spring, Mid-Summer, Late Summer, Fall"
+  dates: "Year-round — Session 1, Session 2, Back to School Fall"
   days: "Saturdays &middot; Weekday evenings"
   ages: "Ages 5+ &middot; Four divisions"
   price: "From $149"
   register_url: "/youth-league/register/"
 faq:
   - q: "What basketball leagues does FCP Sports run?"
-    a: "Our main program is the Saturday League — three 7-week sessions per year (Spring, Mid-Summer, Late Summer) for ages 5 and up, four divisions from Juniors (5–7) through Varsity (15+). We also run seasonal Fall and Summer leagues and a Little Ballers program for K–2nd graders."
+    a: "Our main program is the Saturday League — three 7-week sessions per year (Session 1, Session 2, and Back to School Fall) for ages 5 and up, four divisions from Juniors (5–7) through Varsity (15+). We also run seasonal Fall and Summer leagues and a Little Ballers program for K–2nd graders."
   - q: "Which league should I sign my child up for?"
     a: "Most players start with the Saturday League — it's year-round, has four age divisions, and every kid gets equal playing time. If you want Tuesday/Thursday evening games, check the Summer League. K–2nd only? Little Ballers."
   - q: "How much does it cost?"
@@ -34,7 +34,7 @@ FCP Sports runs basketball leagues year-round. Most families choose the **Saturd
 
 ### Saturday League *(most popular)*
 
-Our flagship program. Four age divisions from Juniors (5–7) through Varsity (15+). Three 7-week sessions per year — Spring, Mid-Summer, Late Summer. No tryouts, every player plays equal time, jerseys included.
+Our flagship program. Four age divisions from Juniors (5–7) through Varsity (15+). Three 7-week sessions per year — Session 1, Session 2, and Back to School Fall. No tryouts, every player plays equal time, jerseys included.
 
 Teams are balanced by age, size, and ability. Players start in their age division, and staff can recommend a better-fit placement when safety, confidence, or competition level calls for it.
 

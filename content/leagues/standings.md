@@ -10,4 +10,4 @@ Check the latest standings for all FCP Sports basketball league divisions. Stand
 
 Tiebreakers are resolved in this order: head-to-head record, point differential (capped at +/- 20 per game), then total points scored. In the rare case of a three-way tie, the same tiebreaker rules apply sequentially.
 
-The 2026 Spring Session is currently underway. Games run through mid-June, with playoff brackets posted following the final regular-season week. Want to compete next season? [Register for an upcoming league](/registration/).
+The 2026 Summer Spring League Session 1 begins June 6 and runs through July 25, skipping July 4. Playoff brackets post following the final regular-season week. Want to compete next season? [Register for an upcoming league](/registration/).

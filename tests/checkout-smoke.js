@@ -217,7 +217,7 @@ async function functionSmokeChecks() {
 
   const leaguePayload = {
     session: "mid-summer-2026",
-    sessionName: "Mid-Summer Session",
+    sessionName: "Saturday Summer League — Session 2",
     parentEmail: "league-fake-token@example.com",
     parentFirst: "Audit",
     parentLast: "Parent",
