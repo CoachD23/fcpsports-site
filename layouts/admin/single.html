@@ -3,7 +3,7 @@
   /* ── Reset / base ───────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; }
   .adm {
-    max-width: 960px;
+    max-width: 1120px;
     margin: 2.5rem auto;
     padding: 0 1rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -26,6 +26,12 @@
     margin: 0 0 1.25rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+  .card-sub {
+    margin: 0.35rem 0 0;
+    color: #6b7280;
+    font-size: 0.82rem;
+    line-height: 1.45;
   }
 
   /* ── Auth section ───────────────────────────────────────────── */
@@ -154,6 +160,9 @@
   .status-pill.partial { background: #fff7ed; color: #9a3412; }
   .status-pill.inquiry { background: #eef2ff; color: #3730a3; }
   .status-pill.waitlist { background: #fdf2f8; color: #9d174d; }
+  .status-pill.general { background: #f3f4f6; color: #374151; }
+  .status-pill.rental { background: #eff6ff; color: #1d4ed8; }
+  .status-pill.sponsor { background: #fef3c7; color: #92400e; }
 
   .dashboard-grid {
     display: grid;
@@ -216,9 +225,21 @@
     text-decoration: none;
     cursor: pointer;
   }
+  .action-btn.primary,
+  .action-link.primary {
+    background: #0a1628;
+    border-color: #0a1628;
+    color: #fff;
+  }
   .filter-btn:hover,
   .action-link:hover,
   .action-btn:hover { border-color: #c9a227; background: #fffbef; }
+  .action-btn.primary:hover,
+  .action-link.primary:hover {
+    background: #152640;
+    border-color: #152640;
+    color: #fff;
+  }
   .filter-btn.active { background: #0a1628; border-color: #0a1628; color: #fff; }
   .action-link.disabled,
   .action-btn:disabled {
@@ -227,15 +248,42 @@
   }
   .lead-controls {
     display: grid;
-    grid-template-columns: minmax(180px, 1fr) 180px auto;
+    grid-template-columns: minmax(220px, 1fr) 190px auto;
     gap: 0.6rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   @media (max-width: 760px) { .lead-controls { grid-template-columns: 1fr; } }
   .lead-controls .adm-input {
     margin-bottom: 0;
     min-height: 38px;
   }
+  .lead-type-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 0.75rem;
+  }
+  .lead-ops {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid #eef0f3;
+    border-bottom: 1px solid #eef0f3;
+    margin-bottom: 0.85rem;
+  }
+  @media (max-width: 860px) {
+    .lead-ops { align-items: stretch; flex-direction: column; }
+    .lead-ops .toolbar-group { width: 100%; }
+    .lead-ops .action-btn { flex: 1; }
+  }
+  .lead-countline {
+    color: #4b5563;
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+  .lead-countline strong { color: #0a1628; }
   .lead-tags {
     display: flex;
     flex-wrap: wrap;
@@ -265,8 +313,14 @@
     gap: 0.35rem;
     justify-content: flex-end;
   }
+  .lead-action-note {
+    color: #6b7280;
+    font-size: 0.72rem;
+    margin-top: 0.35rem;
+    text-align: right;
+  }
   #program-table { min-width: 1120px; }
-  #lead-table { min-width: 980px; }
+  #lead-table { min-width: 1040px; }
   #program-table th,
   #program-table td,
   #lead-table th,
@@ -289,6 +343,16 @@
   #program-table td:nth-child(10) {
     white-space: nowrap;
   }
+  #lead-table th:last-child,
+  #lead-table td:last-child {
+    position: sticky;
+    right: 0;
+    box-shadow: -8px 0 14px rgba(10,22,40,0.06);
+  }
+  #lead-table th:last-child { background: #0a1628; }
+  #lead-table td:last-child { background: #fff; }
+  #lead-table tr:nth-child(even) td:last-child { background: #fafafa; }
+  #lead-table tr:hover td:last-child { background: #fffbef; }
 
   /* ── UTM bars ───────────────────────────────────────────────── */
   .utm-list { list-style: none; padding: 0; margin: 0; }
@@ -488,8 +552,14 @@
     <!-- Lead dashboard -->
     <div class="adm-card">
       <div class="toolbar">
-        <h2 style="margin:0;">Lead Dashboard</h2>
-        <button class="btn-refresh" id="lead-refresh-btn" onclick="loadLeads(true)">&#8635; Refresh Leads</button>
+        <div>
+          <h2 style="margin:0;">Lead Dashboard</h2>
+          <p class="card-sub">Filter by intent, export the full list, and launch the right follow-up for league leads, camp leads, rentals, sponsors, or general inquiries.</p>
+        </div>
+        <div class="toolbar-group">
+          <button class="action-btn primary" type="button" id="lead-export-all-btn">Export Entire List</button>
+          <button class="btn-refresh" id="lead-refresh-btn" onclick="loadLeads(true)">&#8635; Refresh Leads</button>
+        </div>
       </div>
 
       <div class="dashboard-grid">
@@ -511,6 +581,15 @@
         </div>
       </div>
 
+      <div class="lead-type-tabs" aria-label="Lead type filters">
+        <button type="button" class="filter-btn active" data-lead-type="all">All</button>
+        <button type="button" class="filter-btn" data-lead-type="league">League</button>
+        <button type="button" class="filter-btn" data-lead-type="camp">Camp</button>
+        <button type="button" class="filter-btn" data-lead-type="general">General</button>
+        <button type="button" class="filter-btn" data-lead-type="rental">Rental</button>
+        <button type="button" class="filter-btn" data-lead-type="sponsor">Sponsor</button>
+      </div>
+
       <div class="lead-controls">
         <input id="lead-search" class="adm-input" type="search" placeholder="Search leads" autocomplete="off" />
         <select id="lead-filter" class="adm-input" aria-label="Lead filter">
@@ -524,11 +603,25 @@
         <button class="action-btn" type="button" id="lead-clear-btn">Clear</button>
       </div>
 
+      <div class="lead-ops">
+        <div class="lead-countline">
+          <strong id="lead-visible-count">0</strong> visible from <strong id="lead-loaded-count">0</strong> loaded leads.
+          <span id="lead-truncated-note"></span>
+        </div>
+        <div class="toolbar-group">
+          <button class="action-btn" type="button" id="lead-export-filtered-btn">Export Filtered</button>
+          <button class="action-btn" type="button" id="lead-email-filtered-btn">Email Filtered</button>
+          <button class="action-btn" type="button" id="lead-copy-emails-btn">Copy Emails</button>
+          <button class="action-btn" type="button" id="lead-copy-phones-btn">Copy Phones</button>
+        </div>
+      </div>
+
       <div class="table-wrap">
         <table class="adm-table" id="lead-table">
           <thead>
             <tr>
               <th>Lead</th>
+              <th>Type</th>
               <th>Interest</th>
               <th>Contact</th>
               <th>Source</th>
@@ -537,7 +630,7 @@
             </tr>
           </thead>
           <tbody id="lead-tbody">
-            <tr><td colspan="6" class="loading-msg">Authenticate to load leads.</td></tr>
+            <tr><td colspan="7" class="loading-msg">Authenticate to load leads.</td></tr>
           </tbody>
         </table>
       </div>
@@ -588,7 +681,9 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
   var CACHE_TTL = 60 * 1000; // 60 seconds
   var pw = '';
   var currentProgramFilter = 'all';
+  var currentLeadType = 'all';
   var currentLeads = [];
+  var currentLeadMeta = { total: null, truncated: false };
 
   /* ── Saved session ─────────────────────────────────────────── */
   (function init() {
@@ -671,13 +766,46 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
     var leadSearch = document.getElementById('lead-search');
     var leadFilter = document.getElementById('lead-filter');
     var leadClear = document.getElementById('lead-clear-btn');
+    var leadExportAll = document.getElementById('lead-export-all-btn');
+    var leadExportFiltered = document.getElementById('lead-export-filtered-btn');
+    var leadEmailFiltered = document.getElementById('lead-email-filtered-btn');
+    var leadCopyEmails = document.getElementById('lead-copy-emails-btn');
+    var leadCopyPhones = document.getElementById('lead-copy-phones-btn');
+    document.querySelectorAll('[data-lead-type]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        currentLeadType = btn.getAttribute('data-lead-type') || 'all';
+        document.querySelectorAll('[data-lead-type]').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        renderLeads();
+      });
+    });
     if (leadSearch) leadSearch.addEventListener('input', renderLeads);
     if (leadFilter) leadFilter.addEventListener('change', renderLeads);
     if (leadClear) {
       leadClear.addEventListener('click', function () {
         if (leadSearch) leadSearch.value = '';
         if (leadFilter) leadFilter.value = 'all';
+        currentLeadType = 'all';
+        document.querySelectorAll('[data-lead-type]').forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-lead-type') === 'all');
+        });
         renderLeads();
+      });
+    }
+    if (leadExportAll) leadExportAll.addEventListener('click', function () { exportLeads(currentLeads, 'fcp-leads-all.csv'); });
+    if (leadExportFiltered) leadExportFiltered.addEventListener('click', function () { exportLeads(getFilteredLeads(), 'fcp-leads-filtered.csv'); });
+    if (leadEmailFiltered) leadEmailFiltered.addEventListener('click', emailFilteredLeads);
+    if (leadCopyEmails) leadCopyEmails.addEventListener('click', function () { copyLeadField('email'); });
+    if (leadCopyPhones) leadCopyPhones.addEventListener('click', function () { copyLeadField('phone'); });
+    var leadBody = document.getElementById('lead-tbody');
+    if (leadBody) {
+      leadBody.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-copy-lead]');
+        if (!btn) return;
+        var key = btn.getAttribute('data-copy-lead');
+        var lead = currentLeads.find(function (item) { return leadKey(item) === key; });
+        if (lead) copyToClipboard(messageTemplateFor(lead).text, 'Text message copied.');
       });
     }
   }
@@ -724,6 +852,7 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
       var cached = leadsCacheGet();
       if (cached) {
         currentLeads = cached.leads || [];
+        currentLeadMeta = { total: cached.total, truncated: !!cached.truncated };
         renderLeads();
         return;
       }
@@ -754,12 +883,13 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
         if (!data) return;
         if (!data.ok) throw new Error(data.error || 'Failed to load leads.');
         currentLeads = data.leads || [];
+        currentLeadMeta = { total: data.total, truncated: !!data.truncated };
         leadsCacheSet(data);
         renderLeads();
       })
       .catch(function (err) {
         var tbody = document.getElementById('lead-tbody');
-        if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#c0392b;padding:1rem;">' + esc(err.message) + '</td></tr>';
+        if (tbody) tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#c0392b;padding:1rem;">' + esc(err.message) + '</td></tr>';
         showToast('Lead dashboard: ' + err.message, 'error');
       })
       .finally(function () {
@@ -929,20 +1059,62 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
     var tbody = document.getElementById('lead-tbody');
     if (!tbody) return;
 
-    var search = (document.getElementById('lead-search')?.value || '').toLowerCase().trim();
-    var filter = document.getElementById('lead-filter')?.value || 'all';
-    var leads = currentLeads.slice();
-
-    var total = leads.length;
-    var needsFollowup = leads.filter(function (lead) { return lead.needs_followup; }).length;
-    var textable = leads.filter(function (lead) { return lead.phone; }).length;
-    var emailed = leads.filter(function (lead) { return lead.tags && lead.tags.some(function (tag) { return /email|autoresponder/i.test(tag); }); }).length;
+    var total = currentLeads.length;
+    var needsFollowup = currentLeads.filter(function (lead) { return lead.needs_followup; }).length;
+    var textable = currentLeads.filter(function (lead) { return lead.phone; }).length;
+    var emailed = currentLeads.filter(function (lead) { return lead.tags && lead.tags.some(function (tag) { return /email|autoresponder/i.test(tag); }); }).length;
     setText('lead-total', total);
     setText('lead-followup', needsFollowup);
     setText('lead-textable', textable);
     setText('lead-emailed', emailed);
 
-    leads = leads.filter(function (lead) {
+    var leads = getFilteredLeads();
+    updateLeadOps(leads);
+
+    if (!leads.length) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#999;padding:1rem;">No matching leads</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = leads.map(function (lead) {
+      var email = lead.email || '';
+      var phone = lead.phone || '';
+      var category = leadCategory(lead);
+      var template = messageTemplateFor(lead);
+      var tags = (lead.tags || []).filter(function (tag) {
+        return !/^submitted-\d{4}-\d{2}-\d{2}$/.test(tag) && tag !== 'fcpsports';
+      }).slice(0, 4);
+      var emailHref = email ? 'mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent(template.subject) + '&body=' + encodeURIComponent(template.email) : '';
+      var smsHref = phone ? 'sms:' + smsRecipient(phone) + '?&body=' + encodeURIComponent(template.text) : '';
+      return '<tr>' +
+        '<td><strong>' + esc(lead.name || 'Unknown') + '</strong>' +
+          (lead.needs_followup ? ' <span class="status-pill partial">Follow up</span>' : '') +
+          '<div class="lead-tags">' + tags.map(function (tag) { return '<span class="tag-chip">' + esc(tag) + '</span>'; }).join('') + '</div>' +
+        '</td>' +
+        '<td><span class="status-pill ' + esc(category) + '">' + esc(categoryLabel(category)) + '</span></td>' +
+        '<td><span class="status-pill ' + esc(lead.bucket || 'inquiry') + '">' + esc(lead.interest || 'Lead') + '</span></td>' +
+        '<td><div class="contact-stack">' +
+          (email ? '<a href="mailto:' + esc(email) + '">' + esc(email) + '</a>' : '<span class="empty-cell">No email</span>') +
+          (phone ? '<a href="tel:' + esc(phone) + '">' + esc(formatPhone(phone)) + '</a>' : '<span class="empty-cell">No phone</span>') +
+        '</div></td>' +
+        '<td>' + esc(lead.source || '—') + '</td>' +
+        '<td style="white-space:nowrap;">' + esc(formatDateTime(lead.created_at)) + '</td>' +
+        '<td><div class="actions-row">' +
+          (email ? '<a class="action-link primary" href="' + esc(emailHref) + '">Email</a>' : '<span class="action-link disabled">Email</span>') +
+          (phone ? '<a class="action-link" href="' + esc(smsHref) + '">Text</a>' : '<span class="action-link disabled">Text</span>') +
+          '<button class="action-btn" type="button" data-copy-lead="' + esc(leadKey(lead)) + '">Copy</button>' +
+          (lead.crm_url ? '<a class="action-link" href="' + esc(lead.crm_url) + '" target="_blank" rel="noopener">CRM</a>' : '') +
+        '</div><div class="lead-action-note">' + esc(template.note) + '</div></td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  function getFilteredLeads() {
+    var search = (document.getElementById('lead-search')?.value || '').toLowerCase().trim();
+    var filter = document.getElementById('lead-filter')?.value || 'all';
+
+    return currentLeads.filter(function (lead) {
+      if (currentLeadType !== 'all' && leadCategory(lead) !== currentLeadType) return false;
       if (filter !== 'all') {
         if (filter === 'followup' && !lead.needs_followup) return false;
         if (filter !== 'followup' && lead.bucket !== filter) return false;
@@ -954,44 +1126,241 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
         lead.phone,
         lead.source,
         lead.interest,
+        leadCategory(lead),
         (lead.tags || []).join(' ')
       ].join(' ').toLowerCase().indexOf(search) !== -1;
     });
+  }
 
+  function updateLeadOps(leads) {
+    setText('lead-visible-count', leads.length);
+    setText('lead-loaded-count', currentLeads.length);
+    var note = document.getElementById('lead-truncated-note');
+    if (note) {
+      note.textContent = currentLeadMeta.truncated && currentLeadMeta.total
+        ? 'GHL has ' + currentLeadMeta.total + ' matching contacts; export includes the loaded set.'
+        : '';
+    }
+    [
+      ['lead-export-all-btn', currentLeads.length],
+      ['lead-export-filtered-btn', leads.length],
+      ['lead-email-filtered-btn', leads.some(function (lead) { return lead.email; })],
+      ['lead-copy-emails-btn', leads.some(function (lead) { return lead.email; })],
+      ['lead-copy-phones-btn', leads.some(function (lead) { return lead.phone; })]
+    ].forEach(function (item) {
+      var el = document.getElementById(item[0]);
+      if (el) el.disabled = !item[1];
+    });
+  }
+
+  function leadCategory(lead) {
+    var direct = String(lead.category || '').toLowerCase();
+    if (/^(league|camp|general|rental|sponsor)$/.test(direct)) return direct;
+    var joined = [
+      lead.interest,
+      lead.source,
+      (lead.tags || []).join(' ')
+    ].join(' ').toLowerCase();
+    if (/youth-league|mens-league|league|compete|aau-inquiry/.test(joined)) return 'league';
+    if (/camp|summer|holiday|spring-break/.test(joined)) return 'camp';
+    if (/rental|gym-rental/.test(joined)) return 'rental';
+    if (/sponsor/.test(joined)) return 'sponsor';
+    return 'general';
+  }
+
+  function categoryLabel(category) {
+    return {
+      league: 'League',
+      camp: 'Camp',
+      general: 'General',
+      rental: 'Rental',
+      sponsor: 'Sponsor'
+    }[category] || 'General';
+  }
+
+  function messageTemplateFor(lead) {
+    var first = lead.first_name || (lead.name || '').split(' ')[0] || 'there';
+    var category = leadCategory(lead);
+    if (category === 'league') {
+      return {
+        subject: 'FCP Sports Saturday League follow-up',
+        email: 'Hi ' + first + ',\n\nThanks for starting a Saturday League registration with FCP Sports. Session 1 starts June 6 and runs 7 Saturdays, skipping July 4. We also have Session 2 starting August 1 and Back to School Fall starting September 19.\n\nWant me to help finish registration or answer age-division questions?\n\n- FCP Sports',
+        text: 'Hi ' + first + ', this is FCP Sports. Following up on Saturday League: Session 1 starts June 6, skips July 4, Session 2 starts Aug 1, and Back to School Fall starts Sep 19. Want help finishing registration?',
+        note: 'League template'
+      };
+    }
+    if (category === 'camp') {
+      return {
+        subject: 'FCP Sports camp follow-up',
+        email: 'Hi ' + first + ',\n\nThanks for reaching out about FCP Sports camps. We can help pick the right week, age group, and morning or afternoon option.\n\nWhat grade is your athlete going into, and which week are you considering?\n\n- FCP Sports',
+        text: 'Hi ' + first + ', this is FCP Sports following up about camp. What grade is your athlete going into, and which week are you looking at?',
+        note: 'Camp template'
+      };
+    }
+    if (category === 'rental') {
+      return {
+        subject: 'FCP Sports gym rental follow-up',
+        email: 'Hi ' + first + ',\n\nThanks for asking about gym rental at FCP Sports. Send over your preferred date, time window, and expected group size, and we will check availability.\n\n- FCP Sports',
+        text: 'Hi ' + first + ', this is FCP Sports about gym rental. What date, time window, and group size are you looking for?',
+        note: 'Rental template'
+      };
+    }
+    if (category === 'sponsor') {
+      return {
+        subject: 'FCP Sports sponsorship follow-up',
+        email: 'Hi ' + first + ',\n\nThanks for your interest in sponsoring FCP Sports. We can share current sponsorship options and help match you with the right package.\n\nWould you like the sponsorship menu by email?\n\n- FCP Sports',
+        text: 'Hi ' + first + ', this is FCP Sports following up on sponsorship. Would you like us to send current sponsorship options?',
+        note: 'Sponsor template'
+      };
+    }
+    return {
+      subject: 'FCP Sports follow-up',
+      email: 'Hi ' + first + ',\n\nThanks for reaching out to FCP Sports. Are you looking for camps, Saturday League, training, open gym, or gym rental?\n\nReply with your athlete age and what you are looking for, and we will point you in the right direction.\n\n- FCP Sports',
+      text: 'Hi ' + first + ', this is FCP Sports. Are you looking for camps, Saturday League, training, open gym, or gym rental?',
+      note: 'General template'
+    };
+  }
+
+  function leadKey(lead) {
+    return cleanKey(lead.id || lead.email || lead.phone || ((lead.name || 'lead') + '-' + (lead.created_at || '')));
+  }
+
+  function cleanKey(value) {
+    return String(value || '').replace(/[^a-zA-Z0-9@.+_-]/g, '-');
+  }
+
+  function smsRecipient(phone) {
+    return encodeURIComponent(String(phone || '').replace(/[^\d+]/g, ''));
+  }
+
+  function exportLeads(leads, filename) {
     if (!leads.length) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#999;padding:1rem;">No matching leads</td></tr>';
+      showToast('No leads to export.', 'info');
       return;
     }
+    var headers = ['Name', 'First Name', 'Last Name', 'Category', 'Interest', 'Status', 'Email', 'Phone', 'Source', 'Added', 'Tags', 'CRM URL'];
+    var rows = leads.map(function (lead) {
+      return [
+        lead.name || '',
+        lead.first_name || '',
+        lead.last_name || '',
+        categoryLabel(leadCategory(lead)),
+        lead.interest || '',
+        lead.bucket || '',
+        lead.email || '',
+        formatPhone(lead.phone || ''),
+        lead.source || '',
+        lead.created_at || '',
+        (lead.tags || []).join('; '),
+        lead.crm_url || ''
+      ];
+    });
+    var csv = [headers].concat(rows).map(function (row) {
+      return row.map(csvCell).join(',');
+    }).join('\r\n');
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    showToast('Exported ' + leads.length + ' leads.', 'success');
+  }
 
-    tbody.innerHTML = leads.map(function (lead) {
-      var email = lead.email || '';
-      var phone = lead.phone || '';
-      var first = lead.first_name || (lead.name || '').split(' ')[0] || 'there';
-      var subject = 'FCP Sports follow-up';
-      var emailBody = 'Hi ' + first + ',\n\nThanks for reaching out to FCP Sports. Wanted to follow up and help you find the right camp, league, or training option.\n\n- FCP Sports';
-      var textBody = 'Hi ' + first + ', this is FCP Sports following up about camps/leagues/training. What can we help you with?';
-      var tags = (lead.tags || []).filter(function (tag) {
-        return !/^submitted-\d{4}-\d{2}-\d{2}$/.test(tag) && tag !== 'fcpsports';
-      }).slice(0, 4);
-      return '<tr>' +
-        '<td><strong>' + esc(lead.name || 'Unknown') + '</strong>' +
-          (lead.needs_followup ? ' <span class="status-pill partial">Follow up</span>' : '') +
-          '<div class="lead-tags">' + tags.map(function (tag) { return '<span class="tag-chip">' + esc(tag) + '</span>'; }).join('') + '</div>' +
-        '</td>' +
-        '<td><span class="status-pill ' + esc(lead.bucket || 'inquiry') + '">' + esc(lead.interest || 'Lead') + '</span></td>' +
-        '<td><div class="contact-stack">' +
-          (email ? '<a href="mailto:' + esc(email) + '">' + esc(email) + '</a>' : '<span class="empty-cell">No email</span>') +
-          (phone ? '<a href="tel:' + esc(phone) + '">' + esc(formatPhone(phone)) + '</a>' : '<span class="empty-cell">No phone</span>') +
-        '</div></td>' +
-        '<td>' + esc(lead.source || '—') + '</td>' +
-        '<td style="white-space:nowrap;">' + esc(formatDateTime(lead.created_at)) + '</td>' +
-        '<td><div class="actions-row">' +
-          (email ? '<a class="action-link" href="mailto:' + esc(email) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(emailBody) + '">Email</a>' : '<span class="action-link disabled">Email</span>') +
-          (phone ? '<a class="action-link" href="sms:' + esc(phone) + '?&body=' + encodeURIComponent(textBody) + '">Text</a>' : '<span class="action-link disabled">Text</span>') +
-          (lead.crm_url ? '<a class="action-link" href="' + esc(lead.crm_url) + '" target="_blank" rel="noopener">CRM</a>' : '') +
-        '</div></td>' +
-      '</tr>';
-    }).join('');
+  function csvCell(value) {
+    return '"' + String(value == null ? '' : value).replace(/"/g, '""') + '"';
+  }
+
+  function emailFilteredLeads() {
+    var leads = getFilteredLeads().filter(function (lead) { return lead.email; });
+    if (!leads.length) {
+      showToast('No email addresses in this filtered list.', 'info');
+      return;
+    }
+    var category = dominantCategory(leads);
+    var template = bulkTemplateFor(category);
+    var emails = uniqueValues(leads.map(function (lead) { return lead.email; })).slice(0, 80);
+    window.location.href = 'mailto:?bcc=' + encodeURIComponent(emails.join(',')) +
+      '&subject=' + encodeURIComponent(template.subject) +
+      '&body=' + encodeURIComponent(template.body);
+    showToast('Opened email for ' + emails.length + ' filtered leads.', 'success');
+  }
+
+  function copyLeadField(field) {
+    var values = uniqueValues(getFilteredLeads().map(function (lead) {
+      return field === 'phone' ? formatPhone(lead.phone || '') : (lead.email || '');
+    }).filter(Boolean));
+    if (!values.length) {
+      showToast(field === 'phone' ? 'No phone numbers in this filtered list.' : 'No email addresses in this filtered list.', 'info');
+      return;
+    }
+    copyToClipboard(values.join('\n'), 'Copied ' + values.length + (field === 'phone' ? ' phone numbers.' : ' email addresses.'));
+  }
+
+  function copyToClipboard(text, successMsg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        showToast(successMsg || 'Copied.', 'success');
+      }).catch(function () {
+        fallbackCopy(text, successMsg);
+      });
+      return;
+    }
+    fallbackCopy(text, successMsg);
+  }
+
+  function fallbackCopy(text, successMsg) {
+    var area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.left = '-9999px';
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    area.remove();
+    showToast(successMsg || 'Copied.', 'success');
+  }
+
+  function uniqueValues(values) {
+    var seen = {};
+    return values.filter(function (value) {
+      var key = String(value || '').toLowerCase();
+      if (!key || seen[key]) return false;
+      seen[key] = true;
+      return true;
+    });
+  }
+
+  function dominantCategory(leads) {
+    var counts = {};
+    leads.forEach(function (lead) {
+      var category = leadCategory(lead);
+      counts[category] = (counts[category] || 0) + 1;
+    });
+    return Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; })[0] || 'general';
+  }
+
+  function bulkTemplateFor(category) {
+    if (category === 'league') {
+      return {
+        subject: 'FCP Sports Saturday League',
+        body: 'Hi,\n\nFollowing up from FCP Sports about Saturday League. Session 1 starts June 6 and runs 7 Saturdays, skipping July 4. Session 2 starts August 1, and Back to School Fall starts September 19.\n\nReply here if you want help choosing a division or finishing registration.\n\n- FCP Sports'
+      };
+    }
+    if (category === 'camp') {
+      return {
+        subject: 'FCP Sports camp follow-up',
+        body: 'Hi,\n\nFollowing up from FCP Sports about camp. Reply with your athlete grade and the week you are considering, and we will help you pick the right session.\n\n- FCP Sports'
+      };
+    }
+    return {
+      subject: 'FCP Sports follow-up',
+      body: 'Hi,\n\nFollowing up from FCP Sports. Are you looking for camps, Saturday League, training, open gym, or gym rental? Reply with your athlete age and what you need, and we will point you in the right direction.\n\n- FCP Sports'
+    };
   }
 
   function buildRegistrationIndex(camps) {

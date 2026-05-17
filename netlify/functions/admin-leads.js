@@ -18,7 +18,7 @@ const RATE_WINDOW = 60_000;
 const RATE_MAX = 10;
 const rateLimit = {};
 const PAGE_LIMIT = 100;
-const MAX_PAGES = 3;
+const MAX_PAGES = 20;
 
 function json(body, status) {
   return {
@@ -87,7 +87,7 @@ function classify(tags) {
   if (/mens-league-waitlist|waitlist/.test(joined)) {
     return { bucket: "waitlist", interest: "Waitlist", needsFollowup: true };
   }
-  if (/league-inquiry/.test(joined)) {
+  if (/league-inquiry|compete|aau-inquiry/.test(joined)) {
     return { bucket: "inquiry", interest: "League inquiry", needsFollowup: true };
   }
   if (/camp-inquiry|camp-survey-lead/.test(joined)) {
@@ -103,6 +103,15 @@ function classify(tags) {
     return { bucket: "inquiry", interest: "Website inquiry", needsFollowup: true };
   }
   return { bucket: "inquiry", interest: "Lead", needsFollowup: true };
+}
+
+function categoryFor(tags) {
+  const joined = tags.join(" ").toLowerCase();
+  if (/youth-league|mens-league|league-inquiry|league-registered|paid-league|compete|aau-inquiry/.test(joined)) return "league";
+  if (/camp|holiday|spring-break|summer-day/.test(joined)) return "camp";
+  if (/gym-rental|rental/.test(joined)) return "rental";
+  if (/sponsor/.test(joined)) return "sponsor";
+  return "general";
 }
 
 function sourceFor(contact) {
@@ -130,6 +139,7 @@ function normalizeContact(contact) {
     created_at: createdAt,
     tags,
     bucket: classification.bucket,
+    category: categoryFor(tags),
     interest: classification.interest,
     needs_followup: classification.needsFollowup,
     crm_url: id && process.env.GHL_LOCATION_ID

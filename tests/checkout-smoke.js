@@ -114,6 +114,8 @@ async function leagueCheckoutSmoke(browser) {
     await page.locator("#btn-next").click();
 
     await page.locator('.step-panel[data-step="5"]').waitFor({ state: "visible" });
+    await assertTextContains(page, "#pay-session-name", /Saturday Summer League — Session 2/, "league payment session");
+    await assertTextContains(page, "#pay-session-dates", /August 1 – September 12, 2026/, "league payment dates");
     await assertTextContains(page, "#pay-price", /\$149/, "league price");
     await assertVisible(page, "#cc-name", "league cardholder name");
     await assertVisible(page, "#cc-number", "league card number");
