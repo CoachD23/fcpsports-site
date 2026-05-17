@@ -127,6 +127,168 @@
   .adm-table tr:nth-child(even) td { background: #fafafa; }
   .adm-table tr:hover td { background: #fffbef; }
   .adm-table .highlight td { border: 2px solid #c9a227; background: #fffbef !important; }
+  .empty-cell,
+  .adm-table td.empty-cell {
+    color: #999;
+    font-style: italic;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.16rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .status-pill.upcoming { background: #edf5ff; color: #075985; }
+  .status-pill.current { background: #fff3cd; color: #8a5a00; }
+  .status-pill.past { background: #f3f4f6; color: #6b7280; }
+  .status-pill.open { background: #ecfdf5; color: #166534; }
+  .status-pill.camp { background: #ecfdf5; color: #166534; }
+  .status-pill.league { background: #eef2ff; color: #3730a3; }
+  .status-pill.registered { background: #e8f5e9; color: #1b5e20; }
+  .status-pill.partial { background: #fff7ed; color: #9a3412; }
+  .status-pill.inquiry { background: #eef2ff; color: #3730a3; }
+  .status-pill.waitlist { background: #fdf2f8; color: #9d174d; }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 760px) { .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 430px) { .dashboard-grid { grid-template-columns: 1fr; } }
+  .metric-tile {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.75rem;
+    background: #fafafa;
+  }
+  .metric-tile .metric-label {
+    color: #777;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .metric-tile .metric-value {
+    color: #0a1628;
+    font-size: 1.45rem;
+    font-weight: 850;
+    line-height: 1.1;
+    margin-top: 0.2rem;
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .toolbar-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: center;
+  }
+  .filter-btn,
+  .action-link,
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 0.35rem 0.62rem;
+    border-radius: 6px;
+    border: 1px solid #d8dde4;
+    background: #fff;
+    color: #0a1628;
+    font-size: 0.76rem;
+    font-weight: 750;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .filter-btn:hover,
+  .action-link:hover,
+  .action-btn:hover { border-color: #c9a227; background: #fffbef; }
+  .filter-btn.active { background: #0a1628; border-color: #0a1628; color: #fff; }
+  .action-link.disabled,
+  .action-btn:disabled {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .lead-controls {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) 180px auto;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 760px) { .lead-controls { grid-template-columns: 1fr; } }
+  .lead-controls .adm-input {
+    margin-bottom: 0;
+    min-height: 38px;
+  }
+  .lead-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.35rem;
+  }
+  .tag-chip {
+    border-radius: 999px;
+    background: #f3f4f6;
+    color: #555;
+    padding: 0.12rem 0.42rem;
+    font-size: 0.68rem;
+    font-weight: 650;
+  }
+  .contact-stack {
+    display: grid;
+    gap: 0.2rem;
+  }
+  .contact-stack a {
+    color: #0a1628;
+    text-decoration: none;
+  }
+  .contact-stack a:hover { color: #c9a227; }
+  .actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: flex-end;
+  }
+  #program-table { min-width: 1120px; }
+  #lead-table { min-width: 980px; }
+  #program-table th,
+  #program-table td,
+  #lead-table th,
+  #lead-table td { vertical-align: top; }
+  #program-table th:nth-child(3),
+  #program-table td:nth-child(3),
+  #program-table th:nth-child(4),
+  #program-table td:nth-child(4),
+  #program-table th:nth-child(5),
+  #program-table td:nth-child(5),
+  #program-table th:nth-child(6),
+  #program-table td:nth-child(6),
+  #program-table th:nth-child(7),
+  #program-table td:nth-child(7),
+  #program-table th:nth-child(8),
+  #program-table td:nth-child(8),
+  #program-table th:nth-child(9),
+  #program-table td:nth-child(9),
+  #program-table th:nth-child(10),
+  #program-table td:nth-child(10) {
+    white-space: nowrap;
+  }
 
   /* ── UTM bars ───────────────────────────────────────────────── */
   .utm-list { list-style: none; padding: 0; margin: 0; }
@@ -230,8 +392,8 @@
 
   <!-- ── Auth Section ───────────────────────────────────────────── -->
   <div id="auth-section" class="adm-card">
-    <h1>Camp Dashboard</h1>
-    <p class="sub">FCP Sports internal tool — enter your admin password to view registration stats.</p>
+    <h1>FCP Sports Dashboard</h1>
+    <p class="sub">FCP Sports internal tool — enter your admin password to view registrations, programs, and leads.</p>
     <label for="adm-pw" style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:0.35rem;">Password</label>
     <input type="password" id="adm-pw" class="adm-input" placeholder="Admin password" autocomplete="current-password" />
     <button class="adm-btn" id="adm-login-btn" onclick="doLogin()">View Dashboard</button>
@@ -242,10 +404,10 @@
   <div id="dashboard" style="display:none;">
 
     <div class="dash-header">
-      <h1>Camp Dashboard</h1>
+      <h1>FCP Sports Dashboard</h1>
       <div style="display:flex;align-items:center;gap:0.75rem;">
         <span class="dash-meta" id="last-updated"></span>
-        <button class="btn-refresh" onclick="loadStats(true)">&#8635; Refresh</button>
+        <button class="btn-refresh" onclick="refreshDashboard()">&#8635; Refresh</button>
       </div>
     </div>
 
@@ -290,6 +452,97 @@
       </div>
     </div>
 
+    <!-- All programs -->
+    <div class="adm-card">
+      <div class="toolbar">
+        <h2 style="margin:0;">All Camps &amp; Leagues</h2>
+        <div class="toolbar-group" role="group" aria-label="Program filters">
+          <button type="button" class="filter-btn active" data-program-filter="all">All</button>
+          <button type="button" class="filter-btn" data-program-filter="camp">Camps</button>
+          <button type="button" class="filter-btn" data-program-filter="league">Leagues</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="adm-table" id="program-table">
+          <thead>
+            <tr>
+              <th>Program</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Age</th>
+              <th style="text-align:right;">Price</th>
+              <th style="text-align:center;">Registered</th>
+              <th style="text-align:right;">Revenue</th>
+              <th>Status</th>
+              <th style="text-align:right;">Link</th>
+            </tr>
+          </thead>
+          <tbody id="program-tbody">
+            <tr><td colspan="10" class="loading-msg"><span class="spinner dark"></span> Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Lead dashboard -->
+    <div class="adm-card">
+      <div class="toolbar">
+        <h2 style="margin:0;">Lead Dashboard</h2>
+        <button class="btn-refresh" id="lead-refresh-btn" onclick="loadLeads(true)">&#8635; Refresh Leads</button>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="metric-tile">
+          <div class="metric-label">Total Leads</div>
+          <div class="metric-value" id="lead-total">—</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Needs Follow-Up</div>
+          <div class="metric-value" id="lead-followup">—</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Textable</div>
+          <div class="metric-value" id="lead-textable">—</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Emailed</div>
+          <div class="metric-value" id="lead-emailed">—</div>
+        </div>
+      </div>
+
+      <div class="lead-controls">
+        <input id="lead-search" class="adm-input" type="search" placeholder="Search leads" autocomplete="off" />
+        <select id="lead-filter" class="adm-input" aria-label="Lead filter">
+          <option value="all">All leads</option>
+          <option value="followup">Needs follow-up</option>
+          <option value="partial">Partial registrations</option>
+          <option value="inquiry">Inquiries</option>
+          <option value="registered">Registered</option>
+          <option value="waitlist">Waitlists</option>
+        </select>
+        <button class="action-btn" type="button" id="lead-clear-btn">Clear</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="adm-table" id="lead-table">
+          <thead>
+            <tr>
+              <th>Lead</th>
+              <th>Interest</th>
+              <th>Contact</th>
+              <th>Source</th>
+              <th>Added</th>
+              <th style="text-align:right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="lead-tbody">
+            <tr><td colspan="6" class="loading-msg">Authenticate to load leads.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- Recent registrations -->
     <div class="adm-card">
       <h2>Recent Registrations</h2>
@@ -323,20 +576,31 @@
 </div><!-- /adm -->
 
 <script>
+window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps") "active" true) "leagueEvents" (where site.Data.events "type" "League") | jsonify | safeJS }};
+</script>
+
+<script>
 (function () {
   'use strict';
 
   var CACHE_KEY = 'fcp_dash_cache';
+  var LEADS_CACHE_KEY = 'fcp_lead_cache';
   var CACHE_TTL = 60 * 1000; // 60 seconds
   var pw = '';
+  var currentProgramFilter = 'all';
+  var currentLeads = [];
 
   /* ── Saved session ─────────────────────────────────────────── */
   (function init() {
+    wireDashboardControls();
     var saved = sessionStorage.getItem('fcp_dash_pw');
     if (saved) {
       pw = saved;
       showDashboard();
-      loadStats(false);
+      setTimeout(function () {
+        window.loadStats(false);
+        window.loadLeads(false);
+      }, 0);
     }
     document.getElementById('adm-pw').addEventListener('keydown', function (e) {
       if (e.key === 'Enter') doLogin();
@@ -370,6 +634,7 @@
         cacheSet(data);
         showDashboard();
         renderData(data);
+        loadLeads(false);
       })
       .catch(function (err) {
         showLoginErr(err.message);
@@ -391,6 +656,36 @@
   function hideLoginErr() {
     document.getElementById('adm-login-err').style.display = 'none';
   }
+
+  function wireDashboardControls() {
+    document.querySelectorAll('[data-program-filter]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        currentProgramFilter = btn.getAttribute('data-program-filter') || 'all';
+        document.querySelectorAll('[data-program-filter]').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        renderProgramCatalog(cacheGet() || {});
+      });
+    });
+
+    var leadSearch = document.getElementById('lead-search');
+    var leadFilter = document.getElementById('lead-filter');
+    var leadClear = document.getElementById('lead-clear-btn');
+    if (leadSearch) leadSearch.addEventListener('input', renderLeads);
+    if (leadFilter) leadFilter.addEventListener('change', renderLeads);
+    if (leadClear) {
+      leadClear.addEventListener('click', function () {
+        if (leadSearch) leadSearch.value = '';
+        if (leadFilter) leadFilter.value = 'all';
+        renderLeads();
+      });
+    }
+  }
+
+  window.refreshDashboard = function () {
+    loadStats(true);
+    loadLeads(true);
+  };
 
   /* ── Load / refresh stats ──────────────────────────────────── */
   window.loadStats = function (force) {
@@ -420,6 +715,58 @@
       })
       .catch(function (err) {
         showToast('Error: ' + err.message, 'error');
+      });
+  };
+
+  window.loadLeads = function (force) {
+    if (!pw) return;
+    if (!force) {
+      var cached = leadsCacheGet();
+      if (cached) {
+        currentLeads = cached.leads || [];
+        renderLeads();
+        return;
+      }
+    }
+
+    var btn = document.getElementById('lead-refresh-btn');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner dark"></span> Loading';
+    }
+
+    fetch('/.netlify/functions/admin-leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw })
+    })
+      .then(function (r) {
+        if (r.status === 401) {
+          sessionStorage.removeItem('fcp_dash_pw');
+          sessionStorage.removeItem(LEADS_CACHE_KEY);
+          location.reload();
+          return;
+        }
+        if (!r.ok) throw new Error('Lead server error (' + r.status + ').');
+        return r.json();
+      })
+      .then(function (data) {
+        if (!data) return;
+        if (!data.ok) throw new Error(data.error || 'Failed to load leads.');
+        currentLeads = data.leads || [];
+        leadsCacheSet(data);
+        renderLeads();
+      })
+      .catch(function (err) {
+        var tbody = document.getElementById('lead-tbody');
+        if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#c0392b;padding:1rem;">' + esc(err.message) + '</td></tr>';
+        showToast('Lead dashboard: ' + err.message, 'error');
+      })
+      .finally(function () {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '&#8635; Refresh Leads';
+        }
       });
   };
 
@@ -454,6 +801,8 @@
           '</tr>';
       }).join('');
     }
+
+    renderProgramCatalog(d);
 
     // Recent
     var recent = d.recent || [];
@@ -499,6 +848,202 @@
     if (d.note) showToast(d.note, 'info');
   }
 
+  function renderProgramCatalog(data) {
+    var tbody = document.getElementById('program-tbody');
+    if (!tbody) return;
+
+    var programData = window.FCP_ADMIN_PROGRAMS || {};
+    var index = buildRegistrationIndex(data.by_camp || []);
+    var rows = [];
+
+    (programData.camps || []).forEach(function (camp) {
+      var reg = findRegistrationForCamp(camp, index);
+      rows.push({
+        type: 'camp',
+        name: camp.name || camp.id || 'Camp',
+        detail: '',
+        date: camp.dates_display || dateRange(camp.start_date, camp.end_date),
+        startDate: camp.start_date || '',
+        endDate: camp.end_date || camp.start_date || '',
+        time: camp.times || '',
+        age: camp.grades || '',
+        price: camp.price != null ? '$' + fmt(camp.price) : '',
+        registered: reg ? reg.count : 0,
+        revenue: reg ? reg.revenue : 0,
+        url: '/register/?camp=' + encodeURIComponent(camp.id || ''),
+        status: statusForDates(camp.start_date, camp.end_date)
+      });
+    });
+
+    (programData.leagueEvents || []).forEach(function (event) {
+      rows.push({
+        type: 'league',
+        name: event.title || 'League',
+        detail: event.badge || '',
+        date: event.date_display || event.date || '',
+        startDate: event.date || '',
+        endDate: event.date || '',
+        time: event.time || '',
+        age: event.age || '',
+        price: event.price || '',
+        registered: null,
+        revenue: null,
+        url: event.slug || '/league-admin/',
+        status: statusForDates(event.date, event.date)
+      });
+    });
+
+    rows = rows
+      .filter(function (row) { return currentProgramFilter === 'all' || row.type === currentProgramFilter; })
+      .sort(function (a, b) {
+        return String(a.startDate || '9999').localeCompare(String(b.startDate || '9999')) ||
+          a.type.localeCompare(b.type) ||
+          a.name.localeCompare(b.name);
+      });
+
+    if (!rows.length) {
+      tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;color:#999;padding:1rem;">No programs found</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = rows.map(function (row) {
+      var statusClass = row.status.toLowerCase();
+      return '<tr>' +
+        '<td><strong>' + esc(row.name) + '</strong>' +
+          (row.detail ? '<div style="font-size:0.72rem;color:#6b7280;margin-top:2px;">' + esc(row.detail) + '</div>' : '') +
+        '</td>' +
+        '<td><span class="status-pill ' + esc(row.type) + '">' + esc(row.type) + '</span></td>' +
+        '<td>' + esc(row.date || '—') + '</td>' +
+        '<td>' + esc(row.time || '—') + '</td>' +
+        '<td>' + esc(row.age || '—') + '</td>' +
+        '<td style="text-align:right;">' + esc(row.price || '—') + '</td>' +
+        '<td style="text-align:center;">' + (row.registered == null ? '<span class="empty-cell">—</span>' : fmt(row.registered)) + '</td>' +
+        '<td style="text-align:right;">' + (row.revenue == null ? '<span class="empty-cell">—</span>' : '$' + fmt(row.revenue)) + '</td>' +
+        '<td><span class="status-pill ' + esc(statusClass) + '">' + esc(row.status) + '</span></td>' +
+        '<td style="text-align:right;"><a class="action-link" href="' + esc(row.url) + '">Open</a></td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  function renderLeads() {
+    var tbody = document.getElementById('lead-tbody');
+    if (!tbody) return;
+
+    var search = (document.getElementById('lead-search')?.value || '').toLowerCase().trim();
+    var filter = document.getElementById('lead-filter')?.value || 'all';
+    var leads = currentLeads.slice();
+
+    var total = leads.length;
+    var needsFollowup = leads.filter(function (lead) { return lead.needs_followup; }).length;
+    var textable = leads.filter(function (lead) { return lead.phone; }).length;
+    var emailed = leads.filter(function (lead) { return lead.tags && lead.tags.some(function (tag) { return /email|autoresponder/i.test(tag); }); }).length;
+    setText('lead-total', total);
+    setText('lead-followup', needsFollowup);
+    setText('lead-textable', textable);
+    setText('lead-emailed', emailed);
+
+    leads = leads.filter(function (lead) {
+      if (filter !== 'all') {
+        if (filter === 'followup' && !lead.needs_followup) return false;
+        if (filter !== 'followup' && lead.bucket !== filter) return false;
+      }
+      if (!search) return true;
+      return [
+        lead.name,
+        lead.email,
+        lead.phone,
+        lead.source,
+        lead.interest,
+        (lead.tags || []).join(' ')
+      ].join(' ').toLowerCase().indexOf(search) !== -1;
+    });
+
+    if (!leads.length) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#999;padding:1rem;">No matching leads</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = leads.map(function (lead) {
+      var email = lead.email || '';
+      var phone = lead.phone || '';
+      var first = lead.first_name || (lead.name || '').split(' ')[0] || 'there';
+      var subject = 'FCP Sports follow-up';
+      var emailBody = 'Hi ' + first + ',\n\nThanks for reaching out to FCP Sports. Wanted to follow up and help you find the right camp, league, or training option.\n\n- FCP Sports';
+      var textBody = 'Hi ' + first + ', this is FCP Sports following up about camps/leagues/training. What can we help you with?';
+      var tags = (lead.tags || []).filter(function (tag) {
+        return !/^submitted-\d{4}-\d{2}-\d{2}$/.test(tag) && tag !== 'fcpsports';
+      }).slice(0, 4);
+      return '<tr>' +
+        '<td><strong>' + esc(lead.name || 'Unknown') + '</strong>' +
+          (lead.needs_followup ? ' <span class="status-pill partial">Follow up</span>' : '') +
+          '<div class="lead-tags">' + tags.map(function (tag) { return '<span class="tag-chip">' + esc(tag) + '</span>'; }).join('') + '</div>' +
+        '</td>' +
+        '<td><span class="status-pill ' + esc(lead.bucket || 'inquiry') + '">' + esc(lead.interest || 'Lead') + '</span></td>' +
+        '<td><div class="contact-stack">' +
+          (email ? '<a href="mailto:' + esc(email) + '">' + esc(email) + '</a>' : '<span class="empty-cell">No email</span>') +
+          (phone ? '<a href="tel:' + esc(phone) + '">' + esc(formatPhone(phone)) + '</a>' : '<span class="empty-cell">No phone</span>') +
+        '</div></td>' +
+        '<td>' + esc(lead.source || '—') + '</td>' +
+        '<td style="white-space:nowrap;">' + esc(formatDateTime(lead.created_at)) + '</td>' +
+        '<td><div class="actions-row">' +
+          (email ? '<a class="action-link" href="mailto:' + esc(email) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(emailBody) + '">Email</a>' : '<span class="action-link disabled">Email</span>') +
+          (phone ? '<a class="action-link" href="sms:' + esc(phone) + '?&body=' + encodeURIComponent(textBody) + '">Text</a>' : '<span class="action-link disabled">Text</span>') +
+          (lead.crm_url ? '<a class="action-link" href="' + esc(lead.crm_url) + '" target="_blank" rel="noopener">CRM</a>' : '') +
+        '</div></td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  function buildRegistrationIndex(camps) {
+    var index = { byId: {}, byName: {} };
+    (camps || []).forEach(function (camp) {
+      if (camp.camp_id) index.byId[normalizeKey(camp.camp_id)] = camp;
+      if (camp.camp) index.byName[normalizeKey(camp.camp)] = camp;
+    });
+    return index;
+  }
+
+  function findRegistrationForCamp(camp, index) {
+    var byId = index.byId[normalizeKey(camp.id)];
+    if (byId) return byId;
+    return index.byName[normalizeKey(camp.name)];
+  }
+
+  function normalizeKey(value) {
+    return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+  }
+
+  function dateRange(start, end) {
+    if (!start) return '';
+    return start + (end && end !== start ? ' – ' + end : '');
+  }
+
+  function statusForDates(start, end) {
+    if (!start) return 'Open';
+    var today = new Date();
+    var startDate = new Date(String(start) + 'T00:00:00');
+    var endDate = new Date(String(end || start) + 'T23:59:59');
+    if (today > endDate) return 'Past';
+    if (today >= startDate && today <= endDate) return 'Current';
+    return 'Upcoming';
+  }
+
+  function formatDateTime(value) {
+    if (!value) return '—';
+    var date = new Date(value);
+    if (Number.isNaN(date.getTime())) return String(value).slice(0, 10);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  function formatPhone(value) {
+    var digits = String(value || '').replace(/\D/g, '');
+    if (digits.length === 11 && digits.charAt(0) === '1') digits = digits.slice(1);
+    if (digits.length === 10) {
+      return '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6);
+    }
+    return value || '';
+  }
+
   /* ── Cache helpers ─────────────────────────────────────────── */
   function cacheSet(data) {
     try {
@@ -508,6 +1053,20 @@
   function cacheGet() {
     try {
       var raw = sessionStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      var entry = JSON.parse(raw);
+      if (Date.now() - entry.ts > CACHE_TTL) return null;
+      return entry.data;
+    } catch (e) { return null; }
+  }
+  function leadsCacheSet(data) {
+    try {
+      sessionStorage.setItem(LEADS_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data }));
+    } catch (e) { /* ignore */ }
+  }
+  function leadsCacheGet() {
+    try {
+      var raw = sessionStorage.getItem(LEADS_CACHE_KEY);
       if (!raw) return null;
       var entry = JSON.parse(raw);
       if (Date.now() - entry.ts > CACHE_TTL) return null;
