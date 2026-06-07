@@ -19,7 +19,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
       <!-- Summer Camps -->
-      <a href="/register/" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+      <a href="/register/" data-track-program="summer-camp" data-track-label="Summer Day Camp" data-track-dest="/register/" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
         <div class="flex items-start justify-between mb-3">
           <div>
             <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Camps</p>
@@ -32,7 +32,7 @@
       </a>
 
       <!-- Skills Training -->
-      <a href="/checkout/?program=skills-training" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+      <a href="/checkout/?program=skills-training" data-track-program="skills-training" data-track-label="Skills Training" data-track-dest="/checkout/?program=skills-training" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
         <div class="flex items-start justify-between mb-3">
           <div>
             <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Train</p>
@@ -45,7 +45,7 @@
       </a>
 
       <!-- Saturday League -->
-      <a href="/youth-league/#interest-form" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+      <a href="/youth-league/#interest-form" data-track-program="saturday-league" data-track-label="Saturday League" data-track-dest="/youth-league/#interest-form" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
         <div class="flex items-start justify-between mb-3">
           <div>
             <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Compete</p>
@@ -58,7 +58,7 @@
       </a>
 
       <!-- Private Lessons -->
-      <a href="/checkout/?program=private-lesson" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+      <a href="/checkout/?program=private-lesson" data-track-program="private-lesson" data-track-label="Private Lessons" data-track-dest="/checkout/?program=private-lesson" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
         <div class="flex items-start justify-between mb-3">
           <div>
             <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Train</p>
@@ -71,7 +71,7 @@
       </a>
 
       <!-- Homeschool PE -->
-      <a href="/checkout/?program=homeschool-pe" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
+      <a href="/checkout/?program=homeschool-pe" data-track-program="homeschool-pe" data-track-label="Homeschool PE" data-track-dest="/checkout/?program=homeschool-pe" class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-gold hover:bg-white/8 transition-all">
         <div class="flex items-start justify-between mb-3">
           <div>
             <p class="text-gold font-display text-xs uppercase tracking-widest mb-2">Train</p>
@@ -97,5 +97,58 @@
 
   </div>
 </section>
+
+<script>
+/* ── Program click tracking + landing-spot safety guard ──────────────────
+   Fires a tracked event for every program card click (GA4 + Meta + GTM
+   dataLayer) so we can see which program each visitor chooses. Also
+   verifies the link's destination matches its program — if anything ever
+   misroutes again (e.g. "training" pointing to camps), it's caught here
+   and logged instead of silently sending the user to the wrong page. */
+(function () {
+  // Source of truth: each program MUST land on exactly this path.
+  var EXPECTED = {
+    'summer-camp':     '/register/',
+    'skills-training': '/checkout/?program=skills-training',
+    'saturday-league': '/youth-league/#interest-form',
+    'private-lesson':  '/checkout/?program=private-lesson',
+    'homeschool-pe':   '/checkout/?program=homeschool-pe'
+  };
+
+  document.querySelectorAll('[data-track-program]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var id = el.getAttribute('data-track-program');
+      var label = el.getAttribute('data-track-label') || id;
+      var dest = el.getAttribute('href');
+
+      // Safety guard: confirm this card actually points where it should.
+      if (EXPECTED[id] && dest !== EXPECTED[id]) {
+        console.error('[program-routing] "' + label + '" points to ' + dest +
+                      ' but should go to ' + EXPECTED[id] + ' — correcting.');
+        el.setAttribute('href', EXPECTED[id]); // self-heal before navigation
+        if (typeof gtag === 'function') {
+          gtag('event', 'program_misroute', { program_id: id, wrong_dest: dest });
+        }
+      }
+
+      // Track the click across all our analytics surfaces.
+      if (typeof gtag === 'function') {
+        gtag('event', 'select_program', {
+          program_id: id, program_name: label, destination: EXPECTED[id] || dest
+        });
+      }
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'ProgramClick', { program: id, program_name: label });
+      }
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'program_click', program_id: id, program_name: label,
+          destination: EXPECTED[id] || dest
+        });
+      }
+    });
+  });
+})();
+</script>
 
 {{ end }}
