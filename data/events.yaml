@@ -64,39 +64,39 @@
 
 # ─── SATURDAY LEAGUE — SUMMER SPRING SESSION 1 ───────────────────────────────
 
-- title: "Summer Spring League — Session 1"
+- title: "Saturday League — Session 1 (Interest List)"
   type: "League"
   date: "2026-06-06"
-  date_display: "June 6 – July 25, 2026 (7 Saturdays — skip July 4)"
+  date_display: "June 6 – July 25, 2026 — gauging interest"
   time: "Ages 5–7: 8–10 AM · 8–10: 10 AM–12 PM · 11–14: 12–2 PM · 15+: 2–4 PM"
   age: "Ages 5+"
-  price: "$149/session"
-  slug: "/youth-league/register/?session=spring-2026"
-  badge: "REGISTER NOW"
+  price: "Interest list"
+  slug: "/youth-league/#interest-form"
+  badge: "JOIN INTEREST LIST"
 
 # ─── SATURDAY LEAGUE — SUMMER SESSION 2 ──────────────────────────────────────
 
-- title: "Saturday Summer League — Session 2"
+- title: "Saturday League — Session 2 (Interest List)"
   type: "League"
   date: "2026-08-01"
-  date_display: "August 1 – September 12, 2026 (7 Saturdays)"
+  date_display: "August 1 – September 12, 2026 — gauging interest"
   time: "Ages 5–7: 8–10 AM · 8–10: 10 AM–12 PM · 11–14: 12–2 PM · 15+: 2–4 PM"
   age: "Ages 5+"
-  price: "$149/session"
-  slug: "/youth-league/register/?session=mid-summer-2026"
-  badge: "REGISTER NOW"
+  price: "Interest list"
+  slug: "/youth-league/#interest-form"
+  badge: "JOIN INTEREST LIST"
 
 # ─── SATURDAY LEAGUE — BACK TO SCHOOL FALL SESSION 3 ─────────────────────────
 
-- title: "Back to School Fall League — Session 3"
+- title: "Saturday League — Session 3 (Interest List)"
   type: "League"
   date: "2026-09-19"
-  date_display: "September 19 – October 31, 2026 (7 Saturdays)"
+  date_display: "September 19 – October 31, 2026 — gauging interest"
   time: "Ages 5–7: 8–10 AM · 8–10: 10 AM–12 PM · 11–14: 12–2 PM · 15+: 2–4 PM"
   age: "Ages 5+"
-  price: "$149/session"
-  slug: "/youth-league/register/?session=late-summer-2026"
-  badge: "REGISTER NOW"
+  price: "Interest list"
+  slug: "/youth-league/#interest-form"
+  badge: "JOIN INTEREST LIST"
 
 # ─── HOLIDAY CAMP ─────────────────────────────────────────────────────────────
 

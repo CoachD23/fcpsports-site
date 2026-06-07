@@ -1,0 +1,6 @@
+/cdn-cgi/l/email-protection /contact/ 301
+
+# Saturday League paused — paid registration redirected to interest list (gauging demand)
+# Force flag (!) required so the redirect wins over the built register page file.
+/youth-league/register/ /youth-league/#interest-form 302!
+/youth-league/register /youth-league/#interest-form 302!

@@ -6,10 +6,10 @@
   <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ $heroImg }}');"></div>
   <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(6,15,34,0.72) 0%, rgba(6,15,34,0.92) 100%);"></div>
   <div class="relative z-10 max-w-3xl mx-auto px-4">
-    <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5">Ages 5+ &bull; 2026 Seasons</span>
+    <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5">Ages 5+ &bull; Interest List Open</span>
     <h1 class="font-display text-4xl sm:text-5xl md:text-7xl text-white mt-1 mb-4 leading-none">Saturday Basketball</h1>
-    <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-8">Seven Saturdays. Real games. Age-based divisions, balanced teams, and every player plays. Pick the session that fits your calendar.</p>
-    <a href="/youth-league/register/" class="btn-primary text-lg px-10 py-4 shadow-lg shadow-gold/20">Register Now</a>
+    <p class="text-white/70 text-base sm:text-lg max-w-xl mx-auto mb-8">Real games, age-based divisions, balanced teams, and every player plays. We're building the next session now — add your athlete to the interest list and we'll reach out the moment we have enough players to run it.</p>
+    <a href="#interest-form" class="btn-primary text-lg px-10 py-4 shadow-lg shadow-gold/20">Join the Interest List</a>
   </div>
 </section>
 
@@ -18,9 +18,15 @@
   <div class="max-w-6xl mx-auto px-4">
 
     <div class="text-center mb-10">
-      <span class="text-gold font-display tracking-widest text-xs uppercase mb-2 block">Three 7-Week Sessions</span>
-      <h2 class="font-display text-3xl md:text-5xl text-navy leading-tight">Choose Your Session</h2>
-      <p class="text-gray-500 mt-3 max-w-lg mx-auto">Same format, same price. Sign up for one, two, or all three.</p>
+      <span class="text-gold font-display tracking-widest text-xs uppercase mb-2 block">Planned 2026 Sessions</span>
+      <h2 class="font-display text-3xl md:text-5xl text-navy leading-tight">Which Session Fits You?</h2>
+      <p class="text-gray-500 mt-3 max-w-lg mx-auto">Here's what we're planning. Tell us which session you'd want — we run it once we have enough players for full teams.</p>
+    </div>
+
+    <!-- Interest-mode banner -->
+    <div class="bg-navy text-white rounded-2xl px-6 py-5 mb-8 flex items-start gap-3">
+      <svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+      <p class="text-sm text-white/85 leading-relaxed"><strong class="text-gold">We're gauging interest right now.</strong> There aren't enough players signed up yet to run a full league. Add your athlete to the interest list below — no payment, no commitment — and we'll email you the moment a session is confirmed.</p>
     </div>
 
     <!-- Venue & Who Plays — single block above session cards -->
@@ -61,10 +67,10 @@
           "startDate" "June 6, 2026"
           "endDate" "July 25, 2026"
           "weeks" "7"
-          "status" "Registration Open"
+          "status" "Interest List"
           "statusColor" "navy"
           "price" "$149"
-          "registerUrl" "/youth-league/register/?session=spring-2026"
+          "registerUrl" "#interest-form"
           "note" "Skips July 4"
           "badge" ""
         )
@@ -74,10 +80,10 @@
           "startDate" "August 1, 2026"
           "endDate" "September 12, 2026"
           "weeks" "7"
-          "status" "Registration Open"
+          "status" "Interest List"
           "statusColor" "navy"
           "price" "$149"
-          "registerUrl" "/youth-league/register/?session=mid-summer-2026"
+          "registerUrl" "#interest-form"
           "note" ""
           "badge" ""
         )
@@ -87,10 +93,10 @@
           "startDate" "September 19, 2026"
           "endDate" "October 31, 2026"
           "weeks" "7"
-          "status" "Registration Open"
+          "status" "Interest List"
           "statusColor" "navy"
           "price" "$149"
-          "registerUrl" "/youth-league/register/?session=late-summer-2026"
+          "registerUrl" "#interest-form"
           "note" ""
           "badge" ""
         )
@@ -141,7 +147,7 @@
 
           <!-- REGISTRATION INFO -->
           <div class="p-7 bg-gray-50/50">
-            <p class="font-display text-sm text-gold tracking-widest uppercase mb-5">Registration &amp; Fees</p>
+            <p class="font-display text-sm text-gold tracking-widest uppercase mb-5">Expected Fees <span class="normal-case tracking-normal text-gray-400">(when it runs)</span></p>
             <div class="text-sm">
               <div class="bg-gold/10 border border-gold/30 rounded-xl px-4 py-4 flex items-center gap-3">
                 <span class="font-bold text-navy text-2xl">{{ .price }}</span>
@@ -151,7 +157,7 @@
             <div class="mt-4 text-xs text-gray-500 space-y-1.5">
               <div class="flex items-center gap-2">
                 <svg class="w-3.5 h-3.5 text-gold shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                <span>$15 off each additional child</span>
+                <span>$20 off each additional child</span>
               </div>
               <div class="flex items-center gap-2">
                 <svg class="w-3.5 h-3.5 text-gold shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
@@ -159,7 +165,7 @@
               </div>
             </div>
             <div class="mt-5">
-              <a href="{{ .registerUrl }}" class="btn-primary block text-center py-4 text-sm shadow-md hover:shadow-lg transition-shadow">Register Now</a>
+              <a href="{{ .registerUrl }}" class="btn-primary block text-center py-4 text-sm shadow-md hover:shadow-lg transition-shadow">I'm Interested →</a>
             </div>
           </div>
 
@@ -168,22 +174,72 @@
       {{ end }}
     </div>
 
-    <!-- Multi-session discount callout -->
-    <div class="mt-10 bg-gradient-to-br from-navy to-navy-deep text-white rounded-2xl p-8 text-center shadow-lg">
-      <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">Stack &amp; Save</span>
-      <p class="font-display text-2xl text-gold uppercase tracking-wide mb-2">Multi-Session Discount</p>
-      <p class="text-white/70 text-sm max-w-xl mx-auto">Sign up for <strong class="text-white">2 sessions → $25 off</strong>. All <strong class="text-white">3 sessions → $50 off</strong>. Same-family, same-player registrations.</p>
-    </div>
-
   </div>
 </section>
+
+<!-- Interest Form -->
+<section id="interest-form" class="py-16 bg-navy-deep">
+  <div class="max-w-xl mx-auto px-4">
+    <div class="text-center mb-8">
+      <span class="text-gold font-display tracking-widest text-xs uppercase mb-2 block">No Payment &bull; No Commitment</span>
+      <h2 class="font-display text-3xl md:text-4xl text-white leading-tight">Add Your Athlete to the Interest List</h2>
+      <p class="text-white/70 text-sm mt-3 max-w-md mx-auto">Tell us you're interested and we'll email you the moment we have enough players to lock in a session. The more families who sign up, the sooner we run it.</p>
+    </div>
+
+    <form id="league-interest-form" class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl space-y-4" onsubmit="return submitLeagueInterest(event);">
+      <div>
+        <label for="li-name" class="block text-sm font-semibold text-navy mb-1">Parent Name</label>
+        <input type="text" id="li-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold" placeholder="First and last">
+      </div>
+      <div>
+        <label for="li-email" class="block text-sm font-semibold text-navy mb-1">Email</label>
+        <input type="email" id="li-email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold" placeholder="you@email.com">
+      </div>
+      <div>
+        <label for="li-phone" class="block text-sm font-semibold text-navy mb-1">Phone</label>
+        <input type="tel" id="li-phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold" placeholder="(850) 555-1234">
+      </div>
+      <button type="submit" class="w-full bg-gold text-navy font-bold px-6 py-3.5 rounded-lg uppercase text-sm tracking-wide hover:bg-gold-dark transition-colors">Add Me to the Interest List</button>
+      <p id="li-success" class="hidden text-green-600 text-sm text-center font-semibold pt-1">You're on the list! We'll email you as soon as a Saturday League session is confirmed.</p>
+    </form>
+
+    <p class="text-white/40 text-xs text-center mt-4">Questions? Call <a href="tel:8509612323" class="text-gold hover:text-gold-dark">850.961.2323</a>.</p>
+  </div>
+</section>
+
+<script>
+function submitLeagueInterest(e) {
+  e.preventDefault();
+  var f = document.getElementById('league-interest-form');
+  var name = f.name.value.trim();
+  var data = {
+    firstName: name.split(' ')[0],
+    lastName: name.split(' ').slice(1).join(' '),
+    email: f.email.value.trim().toLowerCase(),
+    phone: f.phone.value.trim(),
+    tag: 'saturday-league-interest',
+    source: 'saturday-league-interest-form',
+    notes: 'Saturday League interest list — gauging demand',
+    utm: (window.fcpUTM && window.fcpUTM()) || {}
+  };
+  fetch('/.netlify/functions/capture-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(function(){});
+  if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Saturday League Interest' });
+  f.querySelector('button').style.display = 'none';
+  document.getElementById('li-success').classList.remove('hidden');
+  return false;
+}
+</script>
 
 <!-- What's Included -->
 <section class="py-14 bg-white">
   <div class="max-w-5xl mx-auto px-4">
     <div class="text-center mb-10">
-      <span class="text-gold font-display tracking-widest text-xs uppercase mb-2 block">Every Registration</span>
-      <h2 class="font-display text-3xl md:text-4xl text-navy">What's Included</h2>
+      <span class="text-gold font-display tracking-widest text-xs uppercase mb-2 block">When We Run It</span>
+      <h2 class="font-display text-3xl md:text-4xl text-navy">What Every Player Gets</h2>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
       {{ $items := slice
@@ -206,18 +262,11 @@
   </div>
 </section>
 
-<!-- Stay Up to Date signup -->
-<section class="py-14 bg-white">
-  <div class="max-w-5xl mx-auto px-4">
-    {{ partial "stay-up-to-date.html" (dict "source" "saturday-league-page" "tag" "league-inquiry" "headline" "Stay Up to Date" "subhead" "Get updates on upcoming Saturday League sessions, registration windows, and schedule changes.") }}
-  </div>
-</section>
-
 <!-- Bottom CTA -->
 <section class="py-12 bg-navy text-center">
   <div class="max-w-3xl mx-auto px-4">
     <p class="text-white/50 text-xs uppercase tracking-widest mb-4">USA Basketball certified &bull; Fully insured &bull; Background-checked staff</p>
-    <a href="/youth-league/register/" class="btn-primary px-10 py-4 shadow-lg shadow-gold/20">Register Now</a>
+    <a href="#interest-form" class="btn-primary px-10 py-4 shadow-lg shadow-gold/20">Join the Interest List</a>
   </div>
 </section>
 
