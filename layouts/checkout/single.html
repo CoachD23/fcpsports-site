@@ -148,11 +148,11 @@
           </div>
         </div>
 
-        <!-- Promo code -->
-        <div class="flex gap-2 mb-6">
-          <input type="text" id="promo-code" class="checkout-input flex-1" placeholder="Promo code (optional)">
-          <button type="button" onclick="applyPromo()" id="promo-btn" class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-bold text-gray-600 hover:bg-gray-50 transition">Apply</button>
-        </div>
+        <!-- Military discount (one discount; ID verified at check-in) -->
+        <label class="flex items-start gap-2 mb-2 cursor-pointer">
+          <input type="checkbox" id="military-discount" class="mt-0.5 w-4 h-4 accent-gold" onchange="applyMilitary()">
+          <span class="text-sm text-gray-700"><strong class="text-navy">Military / DoD family</strong> — $20 off. Bring your ID — verified at check-in.</span>
+        </label>
         <p id="promo-msg" class="text-sm mb-4 hidden"></p>
 
         <!-- Card fields -->
@@ -333,41 +333,20 @@
   // ── Promo codes (validated server-side, client just shows feedback) ──
   var appliedPromo = '';
 
-  window.applyPromo = function() {
-    var code = document.getElementById('promo-code').value.trim().toUpperCase();
+  window.applyMilitary = function() {
+    var on = document.getElementById('military-discount').checked;
     var msg = document.getElementById('promo-msg');
-
-    if (!code) return;
-
-    // Validate promo server-side
-    fetch('/.netlify/functions/process-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'validate-promo', program: selectedProgram, promo: code })
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.valid) {
-        appliedPromo = code;
-        finalAmount = data.finalPrice;
-        msg.textContent = '✓ ' + data.label + ' — $' + finalAmount.toFixed(2);
-        msg.className = 'text-sm mb-4 text-green-600 font-semibold';
-        msg.classList.remove('hidden');
-        document.getElementById('summary-price').textContent = '$' + finalAmount.toFixed(0);
-        document.getElementById('pay-amount').textContent = '$' + finalAmount.toFixed(2);
-      } else {
-        appliedPromo = '';
-        finalAmount = selectedPrice;
-        msg.textContent = 'Invalid promo code.';
-        msg.className = 'text-sm mb-4 text-red-500';
-        msg.classList.remove('hidden');
-      }
-    })
-    .catch(function() {
-      msg.textContent = 'Could not validate code. Try again.';
-      msg.className = 'text-sm mb-4 text-red-500';
+    appliedPromo = on ? 'MILITARY20' : '';
+    finalAmount = on ? Math.max(selectedPrice - 20, 0) : selectedPrice;
+    if (on) {
+      msg.textContent = '✓ $20 Military/DoD discount applied — $' + finalAmount.toFixed(2);
+      msg.className = 'text-sm mb-4 text-green-600 font-semibold';
       msg.classList.remove('hidden');
-    });
+    } else {
+      msg.classList.add('hidden');
+    }
+    document.getElementById('summary-price').textContent = '$' + finalAmount.toFixed(0);
+    document.getElementById('pay-amount').textContent = '$' + finalAmount.toFixed(2);
   };
 
   // ── Card number formatting ──
@@ -448,7 +427,7 @@
         grade: f.querySelector('[name="grade"]').value,
         notes: f.querySelector('[name="notes"]').value.trim(),
         zip: ccZip,
-        promo: document.getElementById('promo-code').value.trim().toUpperCase(),
+        promo: document.getElementById('military-discount').checked ? 'MILITARY20' : '',
         checkoutId: tracking.getCheckoutId()
       };
 

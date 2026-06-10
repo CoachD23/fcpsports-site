@@ -114,7 +114,6 @@ exports.handler = async function (event) {
       };
       const PROMO_CODES_CHECK = {
         "MILITARY20": { flatDiscount: 20, label: "$20 Military/DoD Discount" },
-        "SIBLING20": { flatDiscount: 20, label: "$20 Sibling Discount" },
       };
       const basePrice = PROGRAM_PRICES_CHECK[body.program] || 0;
       const code = (body.promo || "").toUpperCase();
@@ -140,10 +139,9 @@ exports.handler = async function (event) {
       "homeschool-pe": 99,
     };
 
-    // ── Server-side promo codes (source of truth) — flat $20 each, stackable ──
+    // ── Server-side promo codes (source of truth) — $20 Military/DoD, one only ──
     const PROMO_CODES = {
       "MILITARY20": 20,
-      "SIBLING20": 20,
     };
 
     // ── Validate ──

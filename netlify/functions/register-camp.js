@@ -64,9 +64,8 @@ const CAMP_PRICES = {
   "spring-break-camp-2027": 129,
 };
 
-/* --- VALID PROMOS (each flat $20 off, stackable) --- */
+/* --- VALID PROMOS ($20 off, ONE per registration — no stacking) --- */
 const VALID_PROMOS = {
-  "SIBLING20": { discount: 20, label: "Sibling discount" },
   "MILITARY20": { discount: 20, label: "Military/DoD family discount" },
 };
 
@@ -77,7 +76,8 @@ function computeServerPrice(campId, promos) {
   const applied = [];
   for (const code of (promos || [])) {
     const p = VALID_PROMOS[code];
-    if (p) { price -= p.discount; applied.push(code); }
+    // Cap at one discount — only the first valid code applies
+    if (p && applied.length === 0) { price -= p.discount; applied.push(code); }
   }
   return { base, price: Math.max(price, 0), applied };
 }
@@ -277,7 +277,6 @@ exports.handler = async function (event) {
   // Collect promo codes from any of these client fields (backward-compatible)
   const clientPromos = [];
   if (b.promoApplied) clientPromos.push(String(b.promoApplied).toUpperCase());
-  if (b.siblingDiscount) clientPromos.push("SIBLING20");
   if (b.militaryDiscount) clientPromos.push("MILITARY20");
 
   const priced = computeServerPrice(b.camp, clientPromos);
@@ -314,7 +313,7 @@ exports.handler = async function (event) {
   let paymentStatus = "Pending";
 
   /* --- 1. Charge card via Authorize.net --- */
-  if (hasAuthnet && b.payment && b.payment.dataValue) {
+  if (hasAuthnet && b.payment?.dataDescriptor && b.payment?.dataValue) {
     try {
       const payload = {
         createTransactionRequest: {
@@ -378,16 +377,31 @@ exports.handler = async function (event) {
       return { statusCode: 500, headers: cors, body: json({ error: "Payment processor unavailable" }) };
     }
   } else {
-    // No payment creds configured — bail out. Registration is meaningless without payment.
-    console.error("[register-camp] Authorize.net not configured");
-    await recordIssue({
-      severity: "error",
-      eventType: "system_error",
-      statusCode: 500,
-      amount: b.priceAmount,
-      error: "Authorize.net not configured",
-    }, true);
-    return { statusCode: 500, headers: cors, body: json({ error: "Payment system not configured" }) };
+    // No payment token means Accept.js/browser tokenization failed before the card could be charged.
+    const missingPayment = !b.payment?.dataDescriptor || !b.payment?.dataValue;
+    console.error(
+      missingPayment
+        ? "[register-camp] Payment token missing"
+        : "[register-camp] Authorize.net not configured"
+    );
+    if (!missingPayment) {
+      await recordIssue({
+        severity: "error",
+        eventType: "system_error",
+        statusCode: 500,
+        amount: b.priceAmount,
+        error: "Authorize.net not configured",
+      }, true);
+    }
+    return {
+      statusCode: missingPayment ? 400 : 500,
+      headers: cors,
+      body: json({
+        error: missingPayment
+          ? "Payment token missing. Please try again."
+          : "Payment system not configured",
+      }),
+    };
   }
 
   /* --- 2. GHL: upsert parent contact + tag + note --- */
@@ -414,8 +428,7 @@ exports.handler = async function (event) {
           source,
           attributionSource: att,
           tags: ["fcpsports", "camp-registered", `camp-${b.camp}`, `paid-${today}`,
-                 b.promoApplied ? `promo-${b.promoApplied}` : null,
-                 b.promoApplied === "SIBLING20" ? "sibling-discount" : null].filter(Boolean),
+                 b.promoApplied ? `promo-${b.promoApplied}` : null].filter(Boolean),
           customFields: [
             { key: "camp_week", field_value: b.campName || b.camp },
             { key: "camp_dates", field_value: b.campDates || "" },
@@ -424,7 +437,11 @@ exports.handler = async function (event) {
           ],
         }),
       });
-      const up = await upsertRes.json();
+      const upsertText = await upsertRes.text();
+      if (!upsertRes.ok) {
+        throw new Error(`GHL upsert failed: ${upsertRes.status} ${upsertText.slice(0, 240)}`);
+      }
+      const up = upsertText ? JSON.parse(upsertText) : {};
       const contactId = up.contact?.id || up.id;
       ghlContactId = contactId || "";
 
@@ -439,14 +456,14 @@ exports.handler = async function (event) {
           `Photo consent: ${b.photoConsent ? "Yes" : "No"}\n` +
           `Paid: $${b.priceAmount} (${b.priceTier})` +
           (transactionId ? ` — Authnet txn ${transactionId}` : "") +
-          (b.promoApplied ? `\nPromo: ${b.promoApplied}` : "") +
-          (b.promoApplied === "SIBLING20" ? "\nSibling discount applied: $20 off" : "");
+          (b.promoApplied ? `\nPromo: ${b.promoApplied}` : "");
 
-        await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
+        const noteRes = await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
           method: "POST",
           headers: ghlHeaders(),
           body: json({ body: noteBody }),
-        }).catch((e) => console.warn("[register-camp] note failed:", e.message));
+        });
+        if (!noteRes.ok) throw new Error(`GHL note failed: ${noteRes.status} ${(await noteRes.text()).slice(0, 240)}`);
       }
     } catch (e) {
       console.error("[register-camp] GHL sync failed:", e.message);
@@ -546,6 +563,14 @@ exports.handler = async function (event) {
       const t = createSmtp();
       const campName = b.campName || b.camp;
       const campDates = b.campDates || "";
+
+      // Arrival / start / pickup follow the camp session (AM, PM, or Little Hoopers half-day)
+      const cid = String(b.camp || "").toLowerCase();
+      const sched = cid.includes("little-hoopers")
+        ? { arrive: "9:15 AM", start: "9:30 AM", pickup: "12:30 PM" }
+        : cid.endsWith("-pm")
+        ? { arrive: "1:45 PM", start: "2:00 PM", pickup: "5:30 PM" }
+        : { arrive: "9:15 AM", start: "9:30 AM", pickup: "1:00 PM" };
       const txnLine = transactionId ? `<tr><td style="padding:6px 12px;color:#666666;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;border-bottom:1px solid #e8e8e8;">Transaction ID</td><td style="padding:6px 12px;color:#0a1628;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;border-bottom:1px solid #e8e8e8;">${transactionId}</td></tr>` : "";
 
       await t.sendMail({
@@ -553,7 +578,7 @@ exports.handler = async function (event) {
         to: b.parentEmail.trim().toLowerCase(),
         bcc: "info@fcpsports.org",
         subject: `Registration Confirmed — ${campName}`,
-        text: `Hi ${b.parentFirst},\n\n${b.childFirst} ${b.childLast} is registered for ${campName}${campDates ? " — " + campDates : ""}.\n\nAmount paid: $${b.priceAmount}${transactionId ? ` (txn ${transactionId})` : ""}\n\nWHAT TO BRING\n- Court shoes\n- Athletic clothes\n- Water bottle\n- Packed lunch\n\nWHAT HAPPENS NEXT\n1. You'll get a reminder 48 hours before camp starts\n2. Day 1 arrival: 9:15 AM for 9:30 start\n3. Pick up: 2:00 PM\n\nQuestions? Reply to this email or call 850.961.2323.\ninfo@fcpsports.org | 33 Jet Drive NW, Fort Walton Beach, FL 32548\n\nView all camp details: https://fcpsports.org/camps/\n\n— FCP Sports`,
+        text: `Hi ${b.parentFirst},\n\n${b.childFirst} ${b.childLast} is registered for ${campName}${campDates ? " — " + campDates : ""}.\n\nAmount paid: $${b.priceAmount}${transactionId ? ` (txn ${transactionId})` : ""}\n\nWHAT TO BRING\n- Court shoes\n- Athletic clothes\n- Water bottle\n- Packed lunch\n\nWHAT HAPPENS NEXT\n1. You'll get a reminder 48 hours before camp starts\n2. Day 1 arrival: ${sched.arrive} for a ${sched.start} start\n3. Pick up: ${sched.pickup}\n\nQuestions? Reply to this email or call 850.961.2323.\ninfo@fcpsports.org | 33 Jet Drive NW, Fort Walton Beach, FL 32548\n\nView all camp details: https://fcpsports.org/camps/\n\n— FCP Sports`,
         html: `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
@@ -627,13 +652,13 @@ exports.handler = async function (event) {
                 <td style="padding:0 0 12px;vertical-align:top;width:28px;">
                   <div style="width:24px;height:24px;background-color:#0a1628;border-radius:50%;text-align:center;line-height:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12px;font-weight:700;color:#f5a623;">2</div>
                 </td>
-                <td style="padding:0 0 12px 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#333333;">Day 1 arrival: <strong>9:15 AM</strong> for a 9:30 start</td>
+                <td style="padding:0 0 12px 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#333333;">Day 1 arrival: <strong>${sched.arrive}</strong> for a ${sched.start} start</td>
               </tr>
               <tr>
                 <td style="padding:0;vertical-align:top;width:28px;">
                   <div style="width:24px;height:24px;background-color:#0a1628;border-radius:50%;text-align:center;line-height:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12px;font-weight:700;color:#f5a623;">3</div>
                 </td>
-                <td style="padding:0 0 0 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#333333;">Pick up: <strong>1:00 PM (AM camp) or 5:30 PM (PM camp)</strong></td>
+                <td style="padding:0 0 0 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#333333;">Pick up: <strong>${sched.pickup}</strong></td>
               </tr>
             </table>
 

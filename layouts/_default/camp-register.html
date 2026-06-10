@@ -40,7 +40,7 @@
           <li class="flex gap-3"><span class="text-gold font-black">&check;</span><span>Skill development, drills, and coached games</span></li>
           <li class="flex gap-3"><span class="text-gold font-black">&check;</span><span>Full-court basketball facility at 33 Jet Drive NW</span></li>
           <li class="flex gap-3"><span class="text-gold font-black">&check;</span><span>Camp T-shirt and safe skill-based grouping</span></li>
-          <li class="flex gap-3"><span class="text-gold font-black">&check;</span><span>$20 sibling and $20 military discounts can stack</span></li>
+          <li class="flex gap-3"><span class="text-gold font-black">&check;</span><span>$20 military/DoD discount &mdash; ID verified at check-in</span></li>
         </ul>
         <div class="mt-5 pt-5 border-t border-gray-100">
           <p class="text-xs font-bold text-navy uppercase tracking-wide">Need help choosing?</p>
@@ -126,7 +126,7 @@
           </fieldset>
 
           <div class="bg-gold/10 border border-gold/30 rounded-lg p-4 text-xs text-gray-600 mb-8">
-            <p><strong class="text-navy">Discounts:</strong> $20 off per additional sibling &bull; $20 off military families (Eglin &amp; Hurlburt). Stacking allowed.</p>
+            <p><strong class="text-navy">Military discount:</strong> $20 off for military / DoD families (Eglin, Hurlburt, any branch). Bring your ID &mdash; verified at check-in. Registering more than one child? <a href="/contact/" class="text-gold underline">Contact us</a>.</p>
           </div>
 
           <!-- Parent info merged into Step 1 — captures email earlier in flow -->
@@ -253,17 +253,14 @@
             <p class="text-xs text-gray-500 mt-1" id="pay-tier"></p>
           </div>
 
-          <!-- Discount checkboxes (server validates, stackable $20 each) -->
+          <!-- Military discount only (one discount; server validates; ID verified at check-in) -->
           <div class="border border-gray-200 rounded-xl p-4 mb-6 space-y-3 bg-gray-50">
-            <p class="text-xs font-semibold text-navy uppercase tracking-wide">Discounts ($20 off each, stack)</p>
-            <label class="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" id="disc-sibling" name="siblingDiscount" class="mt-0.5 w-4 h-4 accent-gold" />
-              <span class="text-sm text-gray-700"><strong class="text-navy">Sibling discount</strong> — additional child from the same family</span>
-            </label>
+            <p class="text-xs font-semibold text-navy uppercase tracking-wide">Military discount ($20 off)</p>
             <label class="flex items-start gap-3 cursor-pointer">
               <input type="checkbox" id="disc-military" name="militaryDiscount" class="mt-0.5 w-4 h-4 accent-gold" />
-              <span class="text-sm text-gray-700"><strong class="text-navy">Military / DoD family</strong> — Eglin, Hurlburt, Duke Field, any branch active duty/reserve</span>
+              <span class="text-sm text-gray-700"><strong class="text-navy">Military / DoD family</strong> — Eglin, Hurlburt, Duke Field, any branch active duty/reserve. Bring your ID — verified at check-in.</span>
             </label>
+            <p class="text-xs text-gray-500">Registering more than one child? <a href="/contact/" class="text-gold underline">Contact us</a> for family options.</p>
           </div>
 
           <div class="space-y-4">
@@ -312,9 +309,8 @@
         </div>
         <div id="sibling-cta" class="hidden mt-8">
           <div class="text-center mb-4">
-            <span class="inline-block bg-gold/20 border border-gold/40 text-gold text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2">Save $20</span>
-            <h3 class="font-display text-xl text-navy">Register a Sibling</h3>
-            <p class="text-gray-500 text-sm mt-1">Second child? Save $20 on this camp week.</p>
+            <h3 class="font-display text-xl text-navy">Register Another Child</h3>
+            <p class="text-gray-500 text-sm mt-1">Have a second camper? Register them here, or <a href="/contact/" class="text-gold underline">contact us</a> for family options.</p>
           </div>
           <div id="sibling-link-wrap"></div>
         </div>
@@ -500,17 +496,16 @@
   let saveTimer;
   form.addEventListener("input", function() { clearTimeout(saveTimer); saveTimer = setTimeout(saveFormData, 400); });
 
-  // Sibling upsell arrival (ADD20 multi-week was removed — SIBLING20 only)
-  (function handleUpsellArrival() {
+  // "Register another child" arrival — prefill parent info (no discount; sibling discount removed)
+  (function handleAnotherChildArrival() {
     const params = new URLSearchParams(window.location.search);
-    const promo = params.get("promo");
-    if (promo !== "SIBLING20") return;
+    if (params.get("another") !== "1") return;
     restoreFormData(PARENT_FIELDS);
     const notice = document.createElement("div");
     notice.className = "mb-6 bg-gold/10 border border-gold/30 rounded-lg p-4 text-sm text-navy";
     const strong = document.createElement("strong");
     strong.className = "text-gold";
-    strong.textContent = "$20 sibling discount applied.";
+    strong.textContent = "Registering another child.";
     notice.appendChild(strong);
     notice.appendChild(document.createTextNode(" Parent info pre-filled — just add the new camper's details."));
     wrap.insertBefore(notice, wrap.firstChild);
@@ -545,20 +540,11 @@
     const campId = getSelectedCamp();
     const c = CAMPS[campId];
     const tier = getCurrentTier(campId);
-    const params = new URLSearchParams(window.location.search);
 
-    // Promo from URL (sibling upsell flow) or user-checked boxes
-    const urlPromo = params.get("promo");
-    const urlSibling = urlPromo === "SIBLING20";
-    const sibCheckbox = document.getElementById("disc-sibling");
+    // Military discount only (one discount; ID verified at check-in)
     const milCheckbox = document.getElementById("disc-military");
-    // Auto-check sibling if URL promo
-    if (urlSibling && sibCheckbox && !sibCheckbox.checked) sibCheckbox.checked = true;
-
-    const sibOn = sibCheckbox && sibCheckbox.checked;
     const milOn = milCheckbox && milCheckbox.checked;
-    const promoAmt = (sibOn ? 20 : 0) + (milOn ? 20 : 0);
-    const finalPrice = Math.max(tier.price - promoAmt, 0);
+    const finalPrice = Math.max(tier.price - (milOn ? 20 : 0), 0);
 
     const summary = document.getElementById("pay-summary");
     summary.innerHTML = "";
@@ -568,18 +554,14 @@
       return p;
     };
     summary.appendChild(line(c.name, "$" + tier.price));
-    if (sibOn) summary.appendChild(line("Sibling discount", "-$20"));
     if (milOn) summary.appendChild(line("Military discount", "-$20"));
     document.getElementById("pay-price").textContent = "$" + finalPrice;
-    const suffix = [];
-    if (sibOn) suffix.push("sibling");
-    if (milOn) suffix.push("military");
-    document.getElementById("pay-tier").textContent = tier.label + " pricing" + (suffix.length ? " · " + suffix.join(" + ") + " discount applied" : "");
+    document.getElementById("pay-tier").textContent = tier.label + " pricing" + (milOn ? " · military discount applied" : "");
   }
 
   // Re-run populatePayment whenever discount checkboxes change
   document.addEventListener("change", function(e) {
-    if (e.target && (e.target.id === "disc-sibling" || e.target.id === "disc-military")) {
+    if (e.target && e.target.id === "disc-military") {
       if (step === 3) populatePayment();
     }
   });
@@ -677,11 +659,9 @@
     const camp = CAMPS[campId];
     const tier = getCurrentTier(campId);
 
-    // Client-side discount state (server re-validates and recomputes price)
-    const sibOn = document.getElementById("disc-sibling") && document.getElementById("disc-sibling").checked;
+    // Client-side discount state (server re-validates and recomputes price) — military only, one discount
     const milOn = document.getElementById("disc-military") && document.getElementById("disc-military").checked;
-    const promoAmt = (sibOn ? 20 : 0) + (milOn ? 20 : 0);
-    const finalPrice = Math.max(tier.price - promoAmt, 0);
+    const finalPrice = Math.max(tier.price - (milOn ? 20 : 0), 0);
 
     // Generate event_id for Meta CAPI / Pixel dedup (both fire the same event with this ID)
     const metaEventId = tracking.newEventId("purchase");
@@ -708,7 +688,6 @@
       waiverAccepted: true,
       priceTier: tier.label,
       priceAmount: finalPrice,              // server will overwrite with validated price
-      siblingDiscount: sibOn,                // server flag
       militaryDiscount: milOn,               // server flag
       promoApplied: "",                      // deprecated URL-promo path; discounts now via checkbox flags
       eventId: metaEventId,                  // Meta CAPI + Pixel dedup
@@ -775,9 +754,8 @@
     // Sibling CTA — same camp, different child
     if (justRegisteredId && just) {
       const siblingTier = getCurrentTier(justRegisteredId);
-      const siblingDiscounted = siblingTier.price - 20;
       const siblingLink = document.createElement("a");
-      siblingLink.href = "/register/?camp=" + encodeURIComponent(justRegisteredId) + "&promo=SIBLING20";
+      siblingLink.href = "/register/?camp=" + encodeURIComponent(justRegisteredId) + "&another=1";
       siblingLink.className = "block border-2 border-gray-200 rounded-xl p-4 hover:border-gold transition-colors";
       const sibRow = document.createElement("div");
       sibRow.className = "flex items-center justify-between gap-4";
@@ -797,17 +775,9 @@
       sibPriceRow.className = "flex items-baseline gap-1 justify-end";
       const sibNw = document.createElement("span");
       sibNw.className = "font-bold text-gold text-lg";
-      sibNw.textContent = "$" + siblingDiscounted;
-      const sibOld = document.createElement("span");
-      sibOld.className = "text-xs text-gray-400 line-through";
-      sibOld.textContent = "$" + siblingTier.price;
+      sibNw.textContent = "$" + siblingTier.price;
       sibPriceRow.appendChild(sibNw);
-      sibPriceRow.appendChild(sibOld);
       sibPriceBox.appendChild(sibPriceRow);
-      const sibSave = document.createElement("div");
-      sibSave.className = "text-[10px] text-gold font-bold uppercase tracking-wide";
-      sibSave.textContent = "Save $20";
-      sibPriceBox.appendChild(sibSave);
       sibRow.appendChild(sibInfo);
       sibRow.appendChild(sibPriceBox);
       siblingLink.appendChild(sibRow);

@@ -86,9 +86,8 @@ const LEAGUE_PRICES = {
   // Future sessions — add as they're scheduled
 };
 
-/* --- VALID PROMOS (flat $20 off each, stackable) --- */
+/* --- VALID PROMOS ($20 off, ONE per registration — no stacking) --- */
 const LEAGUE_PROMOS = {
-  "SIBLING20": 20,
   "MILITARY20": 20,
 };
 
@@ -98,7 +97,8 @@ function computeLeaguePrice(sessionId, promos) {
   let price = base;
   const applied = [];
   for (const code of (promos || [])) {
-    if (LEAGUE_PROMOS[code]) { price -= LEAGUE_PROMOS[code]; applied.push(code); }
+    // Cap at one discount — only the first valid code applies
+    if (LEAGUE_PROMOS[code] && applied.length === 0) { price -= LEAGUE_PROMOS[code]; applied.push(code); }
   }
   return { base, price: Math.max(price, 0), applied };
 }
@@ -244,7 +244,6 @@ exports.handler = async function (event) {
   const sessionKey = (b.session || b.sessionId || "").toLowerCase();
   const clientPromos = [];
   if (b.promoApplied) clientPromos.push(String(b.promoApplied).toUpperCase());
-  if (b.siblingDiscount) clientPromos.push("SIBLING20");
   if (b.militaryDiscount) clientPromos.push("MILITARY20");
 
   const priced = computeLeaguePrice(sessionKey, clientPromos);
@@ -276,7 +275,7 @@ exports.handler = async function (event) {
   let paymentStatus = "Pending";
 
   /* --- 0. Authorize.net: Charge card --- */
-  if (hasAuthnet && b.payment && b.payment.dataValue) {
+  if (hasAuthnet && b.payment?.dataDescriptor && b.payment?.dataValue) {
     try {
       const authnetPayload = {
         createTransactionRequest: {
@@ -367,7 +366,7 @@ exports.handler = async function (event) {
       };
     }
   } else {
-    const missingPayment = !b.payment || !b.payment.dataValue;
+    const missingPayment = !b.payment?.dataDescriptor || !b.payment?.dataValue;
     console.error(
       missingPayment
         ? "[register-youth-league] Payment token missing"

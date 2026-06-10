@@ -1,6 +1,6 @@
 ---
 title: "Summer Basketball Camp Fort Walton Beach | FCP Sports"
-description: "Summer basketball camp in Fort Walton Beach. 9 weeks June–July 2026 for grades K–12. Morning or afternoon sessions, skill-level groups, $149/week. Military + sibling discounts."
+description: "Summer basketball camp in Fort Walton Beach. 9 weeks June–July 2026 for grades K–12. Morning or afternoon sessions, skill-level groups, $149/week. $20 military discount."
 h1: "Summer Basketball Camp"
 keyword: "summer basketball camp fort walton beach"
 age_range: "Grades K–12"
@@ -13,7 +13,7 @@ ghl_tag: "train"
 program_name: "Summer Day Camp"
 faq:
   - q: "How much does summer basketball camp cost at FCP Sports?"
-    a: "Every full-week summer camp is $149. Little Hoopers Mini (K–2, 3 days half-day) is $79. Military families (Eglin/Hurlburt) save $20 and siblings save $20 each on camp weeks."
+    a: "Every full-week summer camp is $149. Little Hoopers Mini (K–2, 3 days half-day) is $79. Military / DoD families (Eglin/Hurlburt) save $20 — bring your ID, verified at check-in."
   - q: "What are the summer 2026 camp dates?"
     a: "Nine weeks of camp from June 1 through July 31, 2026. Every week runs Morning Camp (9:30 AM – 1:00 PM) and Afternoon Camp (2:00 PM – 5:30 PM). Both are $149/week. Players are grouped by skill level with age and safety considered. Register for one or both. Full schedule below."
   - q: "Is there a summer basketball camp near Destin FL?"
@@ -94,12 +94,11 @@ Morning drop-off 9:15 AM, pickup 1:00 PM. Afternoon drop-off 1:45 PM, pickup 5:3
 
 Skills assessment on Monday. Re-assessed Friday so your camper sees what improved.
 
-## Discounts
+## Discount
 
-- **Military / DoD families:** $20 off (Eglin + Hurlburt)
-- **Sibling:** $20 off per additional child
+- **Military / DoD families:** $20 off (Eglin + Hurlburt, any branch) — bring your ID, verified at check-in
 
-Discounts stack.
+Registering more than one child? [Contact us](/contact/) for family options.
 
 ## What to Pack
 
