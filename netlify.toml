@@ -103,3 +103,5 @@
   for = "/"
   [headers.values]
     Cache-Control = "public, max-age=0, stale-while-revalidate=86400"
+
+# Build config verified 2026-06-07 — Hugo + public dir (auto-deploy test)
