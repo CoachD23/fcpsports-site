@@ -9,6 +9,7 @@ const {
 const {
   findMissingCampTransactions,
   isCampTransaction,
+  isPaidTransaction,
   parseCampDescription,
 } = require("../netlify/functions/lib/camp-roster-reconciliation");
 
@@ -129,8 +130,15 @@ async function run() {
 
   assert.equal(isCampTransaction({
     transId: "1",
+    transactionStatus: "settledSuccessfully",
     order: { invoiceNumber: "CAMP-ABC", description: "\"Session 1 — Morning\" — Leia Giles" },
   }), true);
+  assert.equal(isPaidTransaction({ transactionStatus: "declined" }), false);
+  assert.equal(isCampTransaction({
+    transId: "declined",
+    transactionStatus: "declined",
+    order: { invoiceNumber: "CAMP-MPPK66J7", description: "\"Session 5 — Afternoon\" — Zoey Blando" },
+  }), false);
   assert.equal(isCampTransaction({
     transId: "2",
     order: { invoiceNumber: "FCP-GENERIC", description: "Skills Training" },
@@ -143,6 +151,7 @@ async function run() {
   const missing = findMissingCampTransactions([
     { transId: "81599952624", order: { invoiceNumber: "CAMP-MOULTWM5", description: "\"Session 1 — Morning\" — Leia Giles" } },
     { transId: "81599957095", order: { invoiceNumber: "CAMP-MOULYAEO", description: "\"Summer Kickoff — Morning\" — Jameson Giles" } },
+    { transId: "81629273912", transactionStatus: "declined", order: { invoiceNumber: "CAMP-MPPK66J7", description: "\"Session 5 — Afternoon\" — Zoey Blando" } },
     { transId: "999", order: { invoiceNumber: "FCP-999", description: "Skills Training" } },
   ], [
     buildCampRosterRecord({ transactionId: "81599952624", camp: "summer-s1-jun08", childFirst: "Leia", childLast: "Giles" }),

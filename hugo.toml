@@ -27,6 +27,12 @@ enableGitInfo = true
   section = ["HTML", "RSS"]
   page = ["HTML"]
 
+[security]
+  # Trusted in-repo admin pages such as content/league-admin.html need to render
+  # their HTML directly. Keep this scoped to HTML content instead of disabling
+  # Hugo's security policy wholesale.
+  allowContent = ["^text/html$", "^text/markdown$"]
+
 [markup.goldmark.renderer]
   unsafe = true
 

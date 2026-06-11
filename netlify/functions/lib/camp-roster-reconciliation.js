@@ -9,9 +9,16 @@ function transactionArray(value) {
 }
 
 function isCampTransaction(transaction) {
+  if (!isPaidTransaction(transaction)) return false;
   const invoice = clean(transaction.order?.invoiceNumber || transaction.invoiceNumber).toUpperCase();
   const description = clean(transaction.order?.description || transaction.description);
   return invoice.startsWith("CAMP-") || /^"?.+camp.+"?\s+—\s+.+/i.test(description);
+}
+
+function isPaidTransaction(transaction) {
+  const status = clean(transaction.transactionStatus || transaction.status).toLowerCase();
+  if (!status) return true;
+  return ["settledsuccessfully", "capturedpendingsettlement"].includes(status);
 }
 
 function parseCampDescription(description) {
@@ -151,5 +158,6 @@ module.exports = {
   fetchRecentCampTransactions,
   findMissingCampTransactions,
   isCampTransaction,
+  isPaidTransaction,
   parseCampDescription,
 };

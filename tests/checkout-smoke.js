@@ -217,6 +217,28 @@ async function functionSmokeChecks() {
   assert.equal(campFake.statusCode, 402, "camp fake token should return controlled payment failure");
   assert.match(campFake.body.error || "", /Payment failed/i);
 
+  const campMissingPayment = await invoke(registerCamp, {
+    camp: "summer-s1-jun08",
+    campName: "Session 1 Morning",
+    campDates: "June 8-12",
+    parentEmail: "camp-missing-token@example.com",
+    parentFirst: "Audit",
+    parentLast: "Parent",
+    parentPhone: "8505550100",
+    parentZip: "32548",
+    childFirst: "Camp",
+    childLast: "MissingToken",
+    childDob: "2016-06-15",
+    childGrade: "4",
+    shirtSize: "YL",
+    emergencyName: "Audit Emergency",
+    emergencyPhone: "8505550199",
+    photoConsent: true,
+    waiverAccepted: true,
+  });
+  assert.equal(campMissingPayment.statusCode, 400, "camp missing token should return 400");
+  assert.match(campMissingPayment.body.error || "", /Payment token missing/i);
+
   const leaguePayload = {
     session: "mid-summer-2026",
     sessionName: "Saturday Summer League — Session 2",
@@ -247,6 +269,13 @@ async function functionSmokeChecks() {
   const leagueMissingPayment = await invoke(registerLeague, leaguePayload);
   assert.equal(leagueMissingPayment.statusCode, 400, "league missing token should return 400");
   assert.match(leagueMissingPayment.body.error || "", /Payment token missing/i);
+
+  const leagueMissingDescriptor = await invoke(registerLeague, {
+    ...leaguePayload,
+    payment: { dataValue: "checkout-smoke-fake-token" },
+  });
+  assert.equal(leagueMissingDescriptor.statusCode, 400, "league missing descriptor should return 400");
+  assert.match(leagueMissingDescriptor.body.error || "", /Payment token missing/i);
 }
 
 async function main() {

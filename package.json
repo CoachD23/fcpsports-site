@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "@netlify/blobs": "^10.7.4",
-    "hugo": "^0.0.3",
     "nodemailer": "^8.0.5",
     "postcss-cli": "^11.0.1"
   }
