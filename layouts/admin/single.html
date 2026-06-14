@@ -628,6 +628,7 @@
               <th>Lead</th>
               <th>Type</th>
               <th>Interest</th>
+              <th>Camp</th>
               <th>Contact</th>
               <th>Source</th>
               <th>Added</th>
@@ -635,7 +636,7 @@
             </tr>
           </thead>
           <tbody id="lead-tbody">
-            <tr><td colspan="7" class="loading-msg">Authenticate to load leads.</td></tr>
+            <tr><td colspan="8" class="loading-msg">Authenticate to load leads.</td></tr>
           </tbody>
         </table>
       </div>
@@ -675,6 +676,7 @@
 
 <script>
 window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps") "active" true) "leagueEvents" (where site.Data.events "type" "League") | jsonify | safeJS }};
+window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camps") }}{{ $arr = $arr | append (dict "id" (index . "id") "name" (index . "name") "dates" (index . "dates_display")) }}{{ end }}{{ $arr | jsonify | safeJS }};
 </script>
 
 <script>
@@ -897,7 +899,7 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
       })
       .catch(function (err) {
         var tbody = document.getElementById('lead-tbody');
-        if (tbody) tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#c0392b;padding:1rem;">' + esc(err.message) + '</td></tr>';
+        if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#c0392b;padding:1rem;">' + esc(err.message) + '</td></tr>';
         showToast('Lead dashboard: ' + err.message, 'error');
       })
       .finally(function () {
@@ -1125,7 +1127,7 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
     updateLeadOps(leads);
 
     if (!leads.length) {
-      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#999;padding:1rem;">No matching leads</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#999;padding:1rem;">No matching leads</td></tr>';
       return;
     }
 
@@ -1146,6 +1148,7 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
         '</td>' +
         '<td><span class="status-pill ' + esc(category) + '">' + esc(categoryLabel(category)) + '</span></td>' +
         '<td><span class="status-pill ' + esc(lead.bucket || 'inquiry') + '">' + esc(lead.interest || 'Lead') + '</span></td>' +
+        '<td>' + campCell(lead) + '</td>' +
         '<td><div class="contact-stack">' +
           (email ? '<a href="mailto:' + esc(email) + '">' + esc(email) + '</a>' : '<span class="empty-cell">No email</span>') +
           (phone ? '<a href="tel:' + esc(phone) + '">' + esc(formatPhone(phone)) + '</a>' : '<span class="empty-cell">No phone</span>') +
@@ -1186,6 +1189,26 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
     });
 
     return sortLeads(filtered, sortMode);
+  }
+
+  // Resolve a lead's registered camp(s) from its camp-<id> tags into readable name + dates.
+  var CAMP_LOOKUP = null;
+  function campCell(lead) {
+    if (!CAMP_LOOKUP) {
+      CAMP_LOOKUP = {};
+      (window.FCP_CAMP_NAMES || []).forEach(function (c) { CAMP_LOOKUP[c.id] = c; });
+    }
+    var seen = {}, out = [];
+    (lead.tags || []).forEach(function (t) {
+      if (t.indexOf('camp-') !== 0) return;
+      var c = CAMP_LOOKUP[t.slice(5)];
+      if (c && !seen[c.id]) { seen[c.id] = 1; out.push(c); }
+    });
+    if (!out.length) return '<span class="empty-cell">—</span>';
+    return out.map(function (c) {
+      return '<strong>' + esc(c.name) + '</strong>' +
+        (c.dates ? '<div style="font-size:0.75rem;color:#6b7280;">' + esc(c.dates) + '</div>' : '');
+    }).join('<div style="height:4px;"></div>');
   }
 
   // Sortable key for a lead's camp session, parsed from its camp-* tags.
