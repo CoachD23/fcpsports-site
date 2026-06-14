@@ -600,6 +600,11 @@
           <option value="registered">Registered</option>
           <option value="waitlist">Waitlists</option>
         </select>
+        <select id="lead-sort" class="adm-input" aria-label="Sort leads">
+          <option value="recent">Sort: Newest</option>
+          <option value="camp">Sort: Camp session</option>
+          <option value="name">Sort: Name (A–Z)</option>
+        </select>
         <button class="action-btn" type="button" id="lead-clear-btn">Clear</button>
       </div>
 
@@ -782,10 +787,13 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
     });
     if (leadSearch) leadSearch.addEventListener('input', renderLeads);
     if (leadFilter) leadFilter.addEventListener('change', renderLeads);
+    var leadSort = document.getElementById('lead-sort');
+    if (leadSort) leadSort.addEventListener('change', renderLeads);
     if (leadClear) {
       leadClear.addEventListener('click', function () {
         if (leadSearch) leadSearch.value = '';
         if (leadFilter) leadFilter.value = 'all';
+        if (leadSort) leadSort.value = 'recent';
         currentLeadType = 'all';
         document.querySelectorAll('[data-lead-type]').forEach(function (b) {
           b.classList.toggle('active', b.getAttribute('data-lead-type') === 'all');
@@ -900,6 +908,30 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
       });
   };
 
+  /* Parse a camp date string ("June 8 – 12, 2026", "June 30 – July 2, 2026",
+     optionally quoted) into {start, end} Dates. Returns null if unparseable. */
+  function parseCampRange(s) {
+    if (!s) return null;
+    s = String(s).replace(/["']/g, '').trim();
+    var ym = s.match(/(\d{4})\s*$/);
+    var year = ym ? parseInt(ym[1], 10) : new Date().getFullYear();
+    var parts = s.split(/\s*[–—-]\s*/); // en-dash, em-dash, or hyphen
+    var lm = parts[0] && parts[0].match(/([A-Za-z]+)\s+(\d{1,2})/);
+    if (!lm) return null;
+    var startMonth = lm[1], startDay = parseInt(lm[2], 10);
+    var endMonth = startMonth, endDay = startDay;
+    if (parts[1]) {
+      var rm = parts[1].match(/([A-Za-z]+)\s+(\d{1,2})/); // cross-month end e.g. "July 2"
+      if (rm) { endMonth = rm[1]; endDay = parseInt(rm[2], 10); }
+      else { var rd = parts[1].match(/(\d{1,2})/); if (rd) endDay = parseInt(rd[1], 10); }
+    }
+    var start = new Date(startMonth + ' ' + startDay + ', ' + year);
+    var end = new Date(endMonth + ' ' + endDay + ', ' + year);
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) return null;
+    end.setHours(23, 59, 59, 999);
+    return { start: start, end: end };
+  }
+
   /* ── Render ────────────────────────────────────────────────── */
   function renderData(d) {
     var reg = d.registrations || {};
@@ -913,17 +945,38 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
     }
     setText('stat-leads', reg.partial_leads != null ? reg.partial_leads : '—');
 
-    // By camp
-    var camps = d.by_camp || [];
+    // By camp — sorted by start date; CURRENT = running today, NEXT UP = soonest upcoming
+    var camps = (d.by_camp || []).slice();
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    camps.forEach(function (c) { c._range = parseCampRange(c.dates); });
+    camps.sort(function (a, b) {
+      var as = a._range && a._range.start, bs = b._range && b._range.start;
+      if (as && bs) return as - bs || String(a.camp).localeCompare(String(b.camp));
+      if (as) return -1; if (bs) return 1;
+      return String(a.camp).localeCompare(String(b.camp));
+    });
+    var anyRunning = camps.some(function (c) { return c._range && c._range.start <= today && today <= c._range.end; });
+    var nextStart = null;
+    if (!anyRunning) {
+      camps.forEach(function (c) {
+        if (c._range && c._range.start > today) {
+          var t = c._range.start.getTime();
+          if (nextStart === null || t < nextStart) nextStart = t;
+        }
+      });
+    }
     var tbody = document.getElementById('camp-tbody');
     if (!camps.length) {
       tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#999;padding:1rem;">No camp data</td></tr>';
     } else {
       tbody.innerHTML = camps.map(function (c) {
-        var isCurrent = /session\s*4/i.test(c.camp);
+        var label = '';
+        if (c._range && c._range.start <= today && today <= c._range.end) label = 'CURRENT';
+        else if (!anyRunning && nextStart !== null && c._range && c._range.start.getTime() === nextStart) label = 'NEXT UP';
+        var isCurrent = !!label;
         return '<tr' + (isCurrent ? ' class="highlight"' : '') + '>' +
           '<td><strong>' + esc(c.camp) + '</strong>' +
-          (isCurrent ? ' <span style="font-size:0.7rem;color:#c9a227;font-weight:700;">&#9733; CURRENT</span>' : '') +
+          (isCurrent ? ' <span style="font-size:0.7rem;color:#c9a227;font-weight:700;">&#9733; ' + label + '</span>' : '') +
           (c.dates ? '<div style="font-size:0.78rem;color:#6b7280;margin-top:2px;">' + esc(c.dates) + '</div>' : '') +
           '</td>' +
           '<td style="text-align:center;">' + (c.count || 0) + '</td>' +
@@ -1112,8 +1165,9 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
   function getFilteredLeads() {
     var search = (document.getElementById('lead-search')?.value || '').toLowerCase().trim();
     var filter = document.getElementById('lead-filter')?.value || 'all';
+    var sortMode = document.getElementById('lead-sort')?.value || 'recent';
 
-    return currentLeads.filter(function (lead) {
+    var filtered = currentLeads.filter(function (lead) {
       if (currentLeadType !== 'all' && leadCategory(lead) !== currentLeadType) return false;
       if (filter !== 'all') {
         if (filter === 'followup' && !lead.needs_followup) return false;
@@ -1130,6 +1184,47 @@ window.FCP_ADMIN_PROGRAMS = {{ dict "camps" (where (index site.Data.camps "camps
         (lead.tags || []).join(' ')
       ].join(' ').toLowerCase().indexOf(search) !== -1;
     });
+
+    return sortLeads(filtered, sortMode);
+  }
+
+  // Sortable key for a lead's camp session, parsed from its camp-* tags.
+  // Returns "MMDD" (e.g. "0613") so sessions order chronologically; undatable last.
+  function campSessionKey(lead) {
+    var months = { jan: '01', feb: '02', mar: '03', apr: '04', may: '05', jun: '06', jul: '07', aug: '08', sep: '09', oct: '10', nov: '11', dec: '12' };
+    var best = null;
+    (lead.tags || []).forEach(function (t) {
+      if (!/^camp-/.test(t)) return;
+      var key = null;
+      var m = t.match(/(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)(\d{2})/i);
+      if (m) key = months[m[1].toLowerCase()] + m[2];
+      else if (/kickoff/.test(t)) key = '0601';
+      else if (/prep/.test(t)) key = '0615';
+      else if (/little-hoopers/.test(t)) key = '0630';
+      if (key && (best === null || key < best)) best = key;
+    });
+    return best || 'zzzz';
+  }
+
+  function leadTime(lead) {
+    var t = Date.parse(lead.created_at);
+    return isNaN(t) ? 0 : t;
+  }
+
+  function sortLeads(list, mode) {
+    var arr = list.slice();
+    if (mode === 'name') {
+      arr.sort(function (a, b) { return String(a.name || '').localeCompare(String(b.name || '')); });
+    } else if (mode === 'camp') {
+      arr.sort(function (a, b) {
+        var ka = campSessionKey(a), kb = campSessionKey(b);
+        if (ka !== kb) return ka < kb ? -1 : 1;
+        return String(a.name || '').localeCompare(String(b.name || ''));
+      });
+    } else {
+      arr.sort(function (a, b) { return leadTime(b) - leadTime(a); });
+    }
+    return arr;
   }
 
   function updateLeadOps(leads) {
