@@ -1211,6 +1211,21 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
     }).join('<div style="height:4px;"></div>');
   }
 
+  // Plain-text camp name(s) + dates for a lead, for CSV export.
+  function campInfo(lead) {
+    if (!CAMP_LOOKUP) {
+      CAMP_LOOKUP = {};
+      (window.FCP_CAMP_NAMES || []).forEach(function (c) { CAMP_LOOKUP[c.id] = c; });
+    }
+    var seen = {}, names = [], dates = [];
+    (lead.tags || []).forEach(function (t) {
+      if (t.indexOf('camp-') !== 0) return;
+      var c = CAMP_LOOKUP[t.slice(5)];
+      if (c && !seen[c.id]) { seen[c.id] = 1; names.push(c.name); dates.push(c.dates || ''); }
+    });
+    return { name: names.join('; '), dates: dates.join('; ') };
+  }
+
   // Sortable key for a lead's camp session, parsed from its camp-* tags.
   // Returns "MMDD" (e.g. "0613") so sessions order chronologically; undatable last.
   function campSessionKey(lead) {
@@ -1356,14 +1371,17 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
       showToast('No leads to export.', 'info');
       return;
     }
-    var headers = ['Name', 'First Name', 'Last Name', 'Category', 'Interest', 'Status', 'Email', 'Phone', 'Source', 'Added', 'Tags', 'CRM URL'];
+    var headers = ['Name', 'First Name', 'Last Name', 'Category', 'Interest', 'Camp', 'Camp Dates', 'Status', 'Email', 'Phone', 'Source', 'Added', 'Tags', 'CRM URL'];
     var rows = leads.map(function (lead) {
+      var ci = campInfo(lead);
       return [
         lead.name || '',
         lead.first_name || '',
         lead.last_name || '',
         categoryLabel(leadCategory(lead)),
         lead.interest || '',
+        ci.name,
+        ci.dates,
         lead.bucket || '',
         lead.email || '',
         formatPhone(lead.phone || ''),
