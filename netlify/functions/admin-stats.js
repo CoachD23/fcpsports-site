@@ -17,6 +17,10 @@ const {
   listCampRosterRecords,
   summarizeCampRosterRecords,
 } = require("./lib/camp-roster-ledger");
+const {
+  connectProgramRosterLedger,
+  listProgramRosterRecords,
+} = require("./lib/program-roster-ledger");
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 
@@ -92,6 +96,7 @@ async function fetchPartialLeadCount() {
 /* ── Main handler ───────────────────────────────────────────── */
 exports.handler = async function (event, context) {
   connectCampRosterLedger(event);
+  connectProgramRosterLedger(event);
   if (event.httpMethod !== "POST") {
     return json({ ok: false, error: "Method not allowed" }, 405);
   }
@@ -122,11 +127,12 @@ exports.handler = async function (event, context) {
   const ghlConfigured = !!(process.env.GHL_API_KEY && process.env.GHL_LOCATION_ID);
 
   let ledgerError = "";
-  const [records, partialLeads] = await Promise.all([
+  const [records, programRecords, partialLeads] = await Promise.all([
     listCampRosterRecords().catch((err) => {
       ledgerError = err.message;
       return [];
     }),
+    listProgramRosterRecords().catch(() => []),
     ghlConfigured ? fetchPartialLeadCount() : Promise.resolve(0),
   ]);
 
@@ -142,6 +148,7 @@ exports.handler = async function (event, context) {
     recent: summary.recent,
     roster: records.map(function (r) {
       return {
+        kind: "camp",
         campId: (r.camp && r.camp.id) || "",
         camp: (r.camp && r.camp.name) || "",
         dates: (r.camp && r.camp.dates) || "",
@@ -157,7 +164,21 @@ exports.handler = async function (event, context) {
         transactionId: (r.payment && r.payment.transactionId) || "",
         signup_date: r.createdAt || r.updatedAt || "",
       };
-    }),
+    }).concat((programRecords || []).map(function (p) {
+      return {
+        kind: "program",
+        program: p.program || "",
+        label: p.programLabel || p.program || "",
+        parent: p.parentName || "",
+        email: p.email || "",
+        phone: p.phone || "",
+        camper: p.athleteName || "",
+        amount: p.amount || 0,
+        status: p.status || "",
+        transactionId: p.transactionId || "",
+        signup_date: p.createdAt || p.updatedAt || "",
+      };
+    })),
     utm_breakdown: summary.utm_breakdown,
   });
 };

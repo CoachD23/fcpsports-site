@@ -22,6 +22,10 @@ const {
   sendGenericConfirmationEmail,
   sendPaymentAlert,
 } = require("./lib/checkout-reliability");
+const {
+  connectProgramRosterLedger,
+  saveProgramRosterRecord,
+} = require("./lib/program-roster-ledger");
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 
@@ -310,6 +314,34 @@ exports.handler = async function (event) {
 
     const transactionId = txnResult.transId || "";
     console.log("Payment success:", transactionId, numAmount, program);
+
+    // ── Money-truth program ledger (independent of GHL; alerts on failure) ──
+    try {
+      connectProgramRosterLedger(event);
+      await saveProgramRosterRecord({
+        program,
+        programLabel: programLabel || program,
+        parentFirst,
+        parentLast,
+        email,
+        phone,
+        athleteName,
+        amount: numAmount,
+        transactionId,
+        source: "checkout",
+      });
+      console.log("[process-payment] Program ledger written:", transactionId);
+    } catch (ledgerErr) {
+      console.error("[process-payment] Program ledger write FAILED:", ledgerErr.message);
+      await recordIssue({
+        severity: "error",
+        eventType: "program_ledger_write_failed",
+        statusCode: 200,
+        amount: numAmount.toFixed(2),
+        transactionId,
+        error: ledgerErr.message,
+      }, true);
+    }
 
     const nextStep = getProgramNextStep(program);
     let contactId = "";

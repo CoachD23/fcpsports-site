@@ -527,8 +527,12 @@
           <button type="button" class="filter-btn" data-month-prog="private-lesson">Private</button>
           <button type="button" class="filter-btn" data-month-prog="opengym">Open Gym / Clinics</button>
         </div>
+        <div class="toolbar-group" role="group" aria-label="Bucket basis">
+          <button type="button" class="filter-btn active" data-month-basis="signup">By sign-up</button>
+          <button type="button" class="filter-btn" data-month-basis="service">By month attending</button>
+        </div>
       </div>
-      <p style="font-size:0.8rem;color:#6b7280;margin:2px 0 14px;">Grouped by sign-up date. Camps come from the payment ledger (complete &amp; reconciled); Skills / Private / Open Gym come from the CRM and may lag a paid signup until it syncs.</p>
+      <p style="font-size:0.8rem;color:#6b7280;margin:2px 0 14px;">Camps and all new program signups come from the <strong>payment ledger</strong> (money-truth). A <span style="color:#b45309;">· CRM</span> tag marks an older program signup still sourced from the CRM until it syncs. Toggle <em>By month attending</em> to bucket camps by their start date instead of sign-up date.</p>
       <div id="month-buckets"><div class="loading-msg"><span class="spinner dark"></span> Loading…</div></div>
     </div>
 
@@ -707,8 +711,9 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
   var currentLeadType = 'all';
   var currentLeads = [];
   var currentLeadMeta = { total: null, truncated: false };
-  var currentRoster = [];      // full camp roster from money-truth ledger
+  var currentRoster = [];      // full roster (camps + programs) from money-truth ledgers
   var currentMonthProg = 'all'; // Registrations-by-Month program filter
+  var currentMonthBasis = 'signup'; // 'signup' = by sign-up date, 'service' = by month attending
 
   /* ── Saved session ─────────────────────────────────────────── */
   (function init() {
@@ -792,6 +797,16 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
       btn.addEventListener('click', function () {
         currentMonthProg = btn.getAttribute('data-month-prog') || 'all';
         document.querySelectorAll('[data-month-prog]').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        renderMonthBuckets();
+      });
+    });
+
+    document.querySelectorAll('[data-month-basis]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        currentMonthBasis = btn.getAttribute('data-month-basis') || 'signup';
+        document.querySelectorAll('[data-month-basis]').forEach(function (b) {
           b.classList.toggle('active', b === btn);
         });
         renderMonthBuckets();
@@ -1265,18 +1280,42 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
     return (d.getFullYear() - today.getFullYear()) * 12 + (d.getMonth() - today.getMonth());
   }
 
-  // Unified PAID-registration list: camps from the money-truth ledger, others from the CRM.
+  // Map a ledger/tag program id to a UI filter group.
+  function programGroup(programId) {
+    var p = String(programId || '').toLowerCase();
+    if (/skills/.test(p)) return 'skills-training';
+    if (/private|lesson/.test(p)) return 'private-lesson';
+    if (/open.?gym|clinic/.test(p)) return 'opengym';
+    if (/homeschool|\bpe\b/.test(p)) return 'homeschool';
+    return p || 'other';
+  }
+
+  // Unified PAID-registration list. Camps + programs come from the money-truth
+  // ledgers (currentRoster). The CRM (currentLeads) is a fallback only for
+  // program signups not yet in the ledger — deduped so nothing double-counts.
   function buildRegistrations() {
     var out = [];
+    var ledgerProgKeys = {};
     (currentRoster || []).forEach(function (r) {
       if (r.status && !/paid/i.test(r.status) && !r.transactionId) return; // paid only
-      out.push({
-        prog: 'camp', label: r.camp || 'Camp',
-        detail: (r.camp || '') + (r.dates ? ' · ' + r.dates : ''),
-        name: r.parent || r.camper || '(no name)',
-        email: r.email || '', phone: r.phone || '',
-        amount: r.amount || 0, date: String(r.signup_date || '').slice(0, 10)
-      });
+      if (r.kind === 'program') {
+        ledgerProgKeys[programGroup(r.program) + '|' + (r.email || '').toLowerCase()] = 1;
+        var sd = String(r.signup_date || '').slice(0, 10);
+        out.push({
+          prog: programGroup(r.program), label: r.label || r.program || 'Program', detail: r.label || r.program || 'Program',
+          name: r.parent || r.camper || '(no name)', email: r.email || '', phone: r.phone || '',
+          amount: r.amount || 0, date: sd, serviceDate: sd, src: 'ledger'
+        });
+      } else { // camp
+        var cd = String(r.signup_date || '').slice(0, 10);
+        var range = parseCampRange(r.dates); // derive camp start from the dates string (startDate field is unset)
+        var svc = range ? (range.start.getFullYear() + '-' + ('0' + (range.start.getMonth() + 1)).slice(-2) + '-' + ('0' + range.start.getDate()).slice(-2)) : (String(r.startDate || '').slice(0, 10) || cd);
+        out.push({
+          prog: 'camp', label: r.camp || 'Camp', detail: (r.camp || '') + (r.dates ? ' · ' + r.dates : ''),
+          name: r.parent || r.camper || '(no name)', email: r.email || '', phone: r.phone || '',
+          amount: r.amount || 0, date: cd, serviceDate: svc, src: 'ledger'
+        });
+      }
     });
     (currentLeads || []).forEach(function (L) {
       var tags = L.tags || [], prog = null, label = null;
@@ -1285,9 +1324,10 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
       else if (tags.some(function (t) { return /open.?gym|gym.?waiver|clinic/i.test(t); })) { prog = 'opengym'; label = 'Open Gym / Clinic'; }
       else return;
       if (!tags.some(function (t) { return t === 'paid' || t.indexOf('paid-') === 0; })) return; // paid only
+      if (ledgerProgKeys[prog + '|' + (L.email || '').toLowerCase()]) return; // already money-truth
       var paidTag = tags.filter(function (t) { return t.indexOf('paid-') === 0; })[0];
       var date = paidTag ? paidTag.replace('paid-', '') : String(L.created_at || '').slice(0, 10);
-      out.push({ prog: prog, label: label, detail: label, name: L.name || '(no name)', email: L.email || '', phone: L.phone || '', amount: 0, date: date });
+      out.push({ prog: prog, label: label, detail: label, name: L.name || '(no name)', email: L.email || '', phone: L.phone || '', amount: 0, date: date, serviceDate: date, src: 'crm' });
     });
     return out;
   }
@@ -1301,7 +1341,8 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
     });
     var g = { last: [], cur: [], next: [], earlier: [], later: [] };
     regs.forEach(function (r) {
-      var diff = monthDiff(r.date, today);
+      var basisDate = currentMonthBasis === 'service' ? (r.serviceDate || r.date) : r.date;
+      var diff = monthDiff(basisDate, today);
       if (diff === null || diff < -1) g.earlier.push(r);
       else if (diff === -1) g.last.push(r);
       else if (diff === 0) g.cur.push(r);
@@ -1325,7 +1366,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
             (r.email ? '<a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a>' : '<span class="empty-cell">No email</span>') +
             (r.phone ? '<a href="tel:' + esc(r.phone) + '">' + esc(formatPhone(r.phone)) + '</a>' : '') +
           '</div></td>' +
-          '<td>' + esc(r.detail || r.label) + '</td>' +
+          '<td>' + esc(r.detail || r.label) + (r.src === 'crm' ? ' <span style="font-size:0.7rem;color:#b45309;" title="From CRM — not yet in the payment ledger">· CRM</span>' : '') + '</td>' +
           '<td style="white-space:nowrap;">' + esc(r.date || '—') + '</td>' +
           '<td style="text-align:right;">' + (r.amount ? '$' + fmt(r.amount) : '') + '</td>' +
         '</tr>';
