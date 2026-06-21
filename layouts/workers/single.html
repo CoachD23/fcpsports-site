@@ -1,0 +1,199 @@
+{{ define "main" }}
+<style>
+  .wk-wrap { max-width: 760px; margin: 0 auto; padding: 1.25rem 1rem 4rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  .wk-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+  .wk-auth { max-width: 380px; margin: 3rem auto; text-align: center; }
+  .wk-auth h1 { font-size: 1.4rem; color: #0a1628; margin: 0 0 .25rem; }
+  .wk-auth p.sub { color: #6b7280; font-size: .9rem; margin: 0 0 1.25rem; }
+  .wk-input { width: 100%; padding: .85rem 1rem; border: 1px solid #d1d5db; border-radius: 10px; font-size: 1rem; box-sizing: border-box; }
+  .wk-btn { width: 100%; margin-top: .75rem; padding: .85rem 1rem; background: #f5a623; color: #0a1628; font-weight: 800; border: none; border-radius: 10px; font-size: 1rem; cursor: pointer; }
+  .wk-btn.ghost { background: transparent; color: #6b7280; border: 1px solid #d1d5db; font-weight: 600; width: auto; padding: .5rem .9rem; margin: 0; }
+  .wk-err { color: #c0392b; font-size: .9rem; margin-top: .6rem; min-height: 1.1rem; }
+  .wk-head { display: flex; align-items: center; justify-content: space-between; margin: 0 0 1rem; }
+  .wk-head h1 { font-size: 1.25rem; color: #0a1628; margin: 0; }
+  .wk-section { margin-top: 1.5rem; }
+  .wk-section > h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; color: #f5a623; font-weight: 800; margin: 0 0 .6rem; }
+  .wk-camp { border: 2px solid #0a1628; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
+  .wk-camp.next { border-color: #f5a623; background: #fffbf2; }
+  .wk-camp h3 { margin: 0; font-size: 1.1rem; color: #0a1628; }
+  .wk-camp .meta { font-size: .85rem; color: #6b7280; margin: .15rem 0 .75rem; }
+  .wk-badge { display: inline-block; font-size: .65rem; font-weight: 800; letter-spacing: .5px; padding: 2px 8px; border-radius: 999px; vertical-align: middle; margin-left: .4rem; }
+  .wk-badge.now { background: #e8f5e9; color: #1b5e20; }
+  .wk-badge.next { background: #fff3cd; color: #8a5a00; }
+  .wk-row { padding: .6rem 0; border-top: 1px solid #eef1f4; }
+  .wk-row:first-child { border-top: none; }
+  .wk-row .nm { font-weight: 700; color: #0a1628; }
+  .wk-row .dt { font-size: .82rem; color: #6b7280; }
+  .wk-row a { color: #0a1628; text-decoration: none; }
+  .wk-empty { color: #9ca3af; font-size: .9rem; padding: .5rem 0; }
+  .wk-list { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: .25rem 1rem; }
+</style>
+
+<div class="wk-wrap">
+  <!-- Auth -->
+  <div id="wk-auth" class="wk-card wk-auth">
+    <h1>FCP Staff Roster</h1>
+    <p class="sub">Camp week &amp; this month's training clients.</p>
+    <input type="password" id="wk-pw" class="wk-input" placeholder="Staff password" autocomplete="current-password" />
+    <button id="wk-login" class="wk-btn">View Roster</button>
+    <p id="wk-err" class="wk-err"></p>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="wk-dash" style="display:none;">
+    <div class="wk-head">
+      <h1>FCP Staff Roster</h1>
+      <button id="wk-refresh" class="wk-btn ghost" type="button">&#8635; Refresh</button>
+    </div>
+
+    <div class="wk-section">
+      <h2>This Week at Camp</h2>
+      <div id="wk-current"><div class="wk-empty">Loading…</div></div>
+    </div>
+
+    <div class="wk-section">
+      <h2>Skills Training &mdash; <span id="wk-month-a"></span></h2>
+      <div id="wk-skills" class="wk-list"><div class="wk-empty">Loading…</div></div>
+    </div>
+
+    <div class="wk-section">
+      <h2>Private Sessions &mdash; <span id="wk-month-b"></span></h2>
+      <div id="wk-private" class="wk-list"><div class="wk-empty">Loading…</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var PW_KEY = 'fcp_worker_pw';
+  var pw = '';
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function fmtPhone(v) { var d = String(v || '').replace(/\D/g, ''); if (d.length === 11 && d[0] === '1') d = d.slice(1); return d.length === 10 ? '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6) : (v || ''); }
+
+  // Parse "June 8 – 12, 2026" / "June 30 – July 2, 2026" (quotes ok) -> {start,end}
+  function parseCampRange(s) {
+    if (!s) return null;
+    s = String(s).replace(/["']/g, '').trim();
+    var ym = s.match(/(\d{4})\s*$/);
+    var year = ym ? parseInt(ym[1], 10) : new Date().getFullYear();
+    var parts = s.split(/\s*[–—-]\s*/);
+    var lm = parts[0] && parts[0].match(/([A-Za-z]+)\s+(\d{1,2})/);
+    if (!lm) return null;
+    var sM = lm[1], sD = parseInt(lm[2], 10), eM = sM, eD = sD;
+    if (parts[1]) {
+      var rm = parts[1].match(/([A-Za-z]+)\s+(\d{1,2})/);
+      if (rm) { eM = rm[1]; eD = parseInt(rm[2], 10); }
+      else { var rd = parts[1].match(/(\d{1,2})/); if (rd) eD = parseInt(rd[1], 10); }
+    }
+    var start = new Date(sM + ' ' + sD + ', ' + year);
+    var end = new Date(eM + ' ' + eD + ', ' + year);
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) return null;
+    end.setHours(23, 59, 59, 999);
+    return { start: start, end: end };
+  }
+
+  function isPaid(r) { return !r.status || /paid/i.test(r.status) || r.transactionId; }
+
+  function renderCurrent(roster, today) {
+    var camps = roster.filter(function (r) { return r.kind === 'camp' && isPaid(r); });
+    camps.forEach(function (r) { r._range = parseCampRange(r.dates); });
+    var running = camps.filter(function (r) { return r._range && r._range.start <= today && today <= r._range.end; });
+    var label, set;
+    if (running.length) { set = running; label = 'now'; }
+    else {
+      var future = camps.filter(function (r) { return r._range && r._range.start > today; });
+      var nextStart = null;
+      future.forEach(function (r) { var t = r._range.start.getTime(); if (nextStart === null || t < nextStart) nextStart = t; });
+      set = future.filter(function (r) { return r._range && r._range.start.getTime() === nextStart; });
+      label = 'next';
+    }
+    var el = document.getElementById('wk-current');
+    if (!set.length) { el.innerHTML = '<div class="wk-card"><div class="wk-empty">No upcoming camp on the calendar.</div></div>'; return; }
+    // group by camp name
+    var byCamp = {};
+    set.forEach(function (r) { (byCamp[r.camp] = byCamp[r.camp] || []).push(r); });
+    el.innerHTML = Object.keys(byCamp).map(function (name) {
+      var rows = byCamp[name];
+      var dates = rows[0].dates ? String(rows[0].dates).replace(/["']/g, '') : '';
+      var badge = label === 'now'
+        ? '<span class="wk-badge now">THIS WEEK</span>'
+        : '<span class="wk-badge next">NEXT UP</span>';
+      var people = rows.slice().sort(function (a, b) { return String(a.camper || a.parent).localeCompare(String(b.camper || b.parent)); }).map(function (r) {
+        return '<div class="wk-row"><div class="nm">' + esc(r.camper || r.parent || 'Camper') +
+          (r.grade ? ' <span class="dt">· Grade ' + esc(r.grade) + '</span>' : '') + '</div>' +
+          '<div class="dt">' + esc(r.parent || '') +
+          (r.phone ? ' · <a href="tel:' + esc(r.phone) + '">' + esc(fmtPhone(r.phone)) + '</a>' : '') + '</div></div>';
+      }).join('');
+      return '<div class="wk-camp ' + (label === 'next' ? 'next' : '') + '">' +
+        '<h3>' + esc(name) + badge + '</h3>' +
+        '<div class="meta">' + esc(dates) + ' · ' + rows.length + ' camper' + (rows.length === 1 ? '' : 's') + '</div>' +
+        people + '</div>';
+    }).join('');
+  }
+
+  function renderProgram(roster, today, match, elId) {
+    var y = today.getFullYear(), m = today.getMonth();
+    var rows = roster.filter(function (r) {
+      if (r.kind !== 'program' || !isPaid(r)) return false;
+      if (!match.test(String(r.program || r.label || ''))) return false;
+      var d = new Date(String(r.signup_date || '').slice(0, 10));
+      return !isNaN(d.getTime()) && d.getFullYear() === y && d.getMonth() === m;
+    }).sort(function (a, b) { return String(b.signup_date).localeCompare(String(a.signup_date)); });
+    var el = document.getElementById(elId);
+    if (!rows.length) { el.innerHTML = '<div class="wk-empty">No sign-ups yet this month.</div>'; return; }
+    el.innerHTML = rows.map(function (r) {
+      return '<div class="wk-row"><div class="nm">' + esc(r.camper || r.parent || 'Client') + '</div>' +
+        '<div class="dt">' + esc(r.parent || '') +
+        (r.phone ? ' · <a href="tel:' + esc(r.phone) + '">' + esc(fmtPhone(r.phone)) + '</a>' : '') +
+        (r.email ? ' · <a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a>' : '') +
+        ' · signed up ' + esc(String(r.signup_date || '').slice(0, 10)) + '</div></div>';
+    }).join('');
+  }
+
+  function render(roster) {
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var mn = today.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    document.getElementById('wk-month-a').textContent = mn;
+    document.getElementById('wk-month-b').textContent = mn;
+    renderCurrent(roster, today);
+    renderProgram(roster, today, /skills/i, 'wk-skills');
+    renderProgram(roster, today, /private|lesson/i, 'wk-private');
+  }
+
+  function load() {
+    fetch('/.netlify/functions/worker-stats', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw })
+    }).then(function (r) {
+      if (r.status === 401) throw new Error('Wrong password.');
+      if (!r.ok) throw new Error('Server error (' + r.status + ').');
+      return r.json();
+    }).then(function (d) {
+      if (!d.ok) throw new Error(d.error || 'Failed.');
+      sessionStorage.setItem(PW_KEY, pw);
+      document.getElementById('wk-auth').style.display = 'none';
+      document.getElementById('wk-dash').style.display = 'block';
+      render(d.roster || []);
+    }).catch(function (err) {
+      var e = document.getElementById('wk-err'); if (e) e.textContent = err.message;
+      sessionStorage.removeItem(PW_KEY);
+    });
+  }
+
+  function doLogin() {
+    pw = (document.getElementById('wk-pw').value || '').trim();
+    if (!pw) { document.getElementById('wk-err').textContent = 'Enter the staff password.'; return; }
+    document.getElementById('wk-err').textContent = '';
+    load();
+  }
+
+  document.getElementById('wk-login').addEventListener('click', doLogin);
+  document.getElementById('wk-pw').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
+  document.getElementById('wk-refresh').addEventListener('click', function () { if (pw) load(); });
+
+  var saved = sessionStorage.getItem(PW_KEY);
+  if (saved) { pw = saved; load(); }
+})();
+</script>
+{{ end }}
