@@ -111,9 +111,9 @@
     }
     var el = document.getElementById('wk-current');
     if (!set.length) { el.innerHTML = '<div class="wk-card"><div class="wk-empty">No upcoming camp on the calendar.</div></div>'; return; }
-    // group by camp name
+    // group by camp name (strip stray quotes some ledger records baked into the name)
     var byCamp = {};
-    set.forEach(function (r) { (byCamp[r.camp] = byCamp[r.camp] || []).push(r); });
+    set.forEach(function (r) { var nm = String(r.camp || '').replace(/["']/g, '').trim() || 'Camp'; (byCamp[nm] = byCamp[nm] || []).push(r); });
     el.innerHTML = Object.keys(byCamp).map(function (name) {
       var rows = byCamp[name];
       var dates = rows[0].dates ? String(rows[0].dates).replace(/["']/g, '') : '';
