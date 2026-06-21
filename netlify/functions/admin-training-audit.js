@@ -1,0 +1,126 @@
+/**
+ * admin-training-audit.js  (manual / reconcile)
+ *
+ * Money-truth check for TRAINING payments (Skills / Private / Homeschool) over a
+ * date range, straight from Authorize.net. Camps are skipped by their CAMP-
+ * invoice prefix; everything else is detail-fetched and classified by its order
+ * description. Use to confirm the program ledger isn't missing any training
+ * signups (the same GHL gap that hid camp registrations).
+ *
+ * POST { password, from?, to? }  ->  { ok, from, to, training: [...] }
+ */
+const crypto = require("crypto");
+const https = require("https");
+
+function json(b, s) { return { statusCode: s || 200, headers: { "Content-Type": "application/json" }, body: JSON.stringify(b) }; }
+function clean(v) { return String(v == null ? "" : v).trim(); }
+function passwordValid(input) {
+  const stored = process.env.ADMIN_PASSWORD;
+  if (!stored || !input) return false;
+  try {
+    const a = Buffer.from(String(input).padEnd(64).slice(0, 64), "utf8");
+    const b = Buffer.from(String(stored).padEnd(64).slice(0, 64), "utf8");
+    return crypto.timingSafeEqual(a, b) && input === stored;
+  } catch { return false; }
+}
+function authnetUrl() {
+  return process.env.AUTHNET_ENV === "sandbox"
+    ? "https://apitest.authorize.net/xml/v1/request.api"
+    : "https://api.authorize.net/xml/v1/request.api";
+}
+function merchantAuth() {
+  return { name: process.env.AUTHNET_API_LOGIN, transactionKey: process.env.AUTHNET_TRANSACTION_KEY };
+}
+function authnetPost(payload) {
+  return new Promise((resolve, reject) => {
+    const data = JSON.stringify(payload);
+    const u = new URL(authnetUrl());
+    const req = https.request(
+      { hostname: u.hostname, path: u.pathname, method: "POST", headers: { "Content-Type": "application/json", "Content-Length": Buffer.byteLength(data) } },
+      (res) => {
+        let body = "";
+        res.on("data", (c) => (body += c));
+        res.on("end", () => {
+          try { resolve(JSON.parse(body.replace(/^﻿/, ""))); }
+          catch (e) { reject(new Error("Authnet parse error: " + body.slice(0, 120))); }
+        });
+      }
+    );
+    req.on("error", reject);
+    req.write(data);
+    req.end();
+  });
+}
+async function chunked(items, size, fn) {
+  const out = [];
+  for (let i = 0; i < items.length; i += size) {
+    out.push(...await Promise.all(items.slice(i, i + size).map(fn)));
+  }
+  return out;
+}
+function classify(desc) {
+  const d = clean(desc).toLowerCase();
+  if (/skills training/.test(d)) return { program: "skills-training", label: "Skills Training" };
+  if (/private/.test(d)) return { program: "private-lesson", label: "Private Lessons" };
+  if (/homeschool/.test(d)) return { program: "homeschool-pe", label: "Homeschool PE" };
+  return null;
+}
+
+exports.handler = async function (event) {
+  if (event.httpMethod !== "POST") return json({ ok: false, error: "POST only" }, 405);
+  let body = {};
+  try { body = JSON.parse(event.body || "{}"); } catch { /* ignore */ }
+  if (!passwordValid(body.password)) return json({ ok: false, error: "Unauthorized" }, 401);
+  if (!process.env.AUTHNET_API_LOGIN || !process.env.AUTHNET_TRANSACTION_KEY) return json({ ok: false, error: "Authnet not configured" }, 500);
+
+  const from = clean(body.from) || "2026-05-01";
+  const to = clean(body.to) || new Date().toISOString().slice(0, 10);
+
+  // 1) settled batches in range
+  const batchResp = await authnetPost({
+    getSettledBatchListRequest: { merchantAuthentication: merchantAuth(), firstSettlementDate: from + "T00:00:00Z", lastSettlementDate: to + "T23:59:59Z" },
+  });
+  const batchIds = (batchResp.batchList || []).map((b) => b.batchId).filter(Boolean);
+
+  // 2) list transactions per batch (parallel) + unsettled; keep NON-camp candidates
+  const candidates = [];
+  const pushNonCamp = (t) => {
+    if (/^CAMP-/i.test(clean(t.invoiceNumber))) return;
+    candidates.push({ transId: clean(t.transId), name: [clean(t.firstName), clean(t.lastName)].filter(Boolean).join(" "), amount: t.settleAmount, date: clean(t.submitTimeUTC), status: clean(t.transactionStatus) });
+  };
+  const lists = await chunked(batchIds, 6, (batchId) =>
+    authnetPost({ getTransactionListRequest: { merchantAuthentication: merchantAuth(), batchId, paging: { limit: 1000, offset: 1 } } }).catch(() => ({}))
+  );
+  lists.forEach((r) => (r.transactions || []).forEach(pushNonCamp));
+  const unResp = await authnetPost({ getUnsettledTransactionListRequest: { merchantAuthentication: merchantAuth() } }).catch(() => ({}));
+  (unResp.transactions || []).forEach(pushNonCamp);
+
+  // 3) detail-fetch candidates (parallel, chunked) and classify training
+  const details = await chunked(candidates.filter((c) => c.transId), 6, (c) =>
+    authnetPost({ getTransactionDetailsRequest: { merchantAuthentication: merchantAuth(), transId: c.transId } })
+      .then((d) => ({ c, tx: d.transaction || {} }))
+      .catch(() => ({ c, tx: {} }))
+  );
+
+  const training = [];
+  details.forEach(({ c, tx }) => {
+    const cls = classify(tx.order && tx.order.description);
+    if (!cls) return;
+    const date = clean(tx.submitTimeUTC || c.date).slice(0, 10);
+    training.push({
+      transId: c.transId,
+      program: cls.program,
+      label: cls.label,
+      name: [clean(tx.billTo && tx.billTo.firstName), clean(tx.billTo && tx.billTo.lastName)].filter(Boolean).join(" ") || c.name,
+      email: clean(tx.customer && tx.customer.email),
+      amount: Number(tx.settleAmount || tx.authAmount || c.amount || 0) || 0,
+      date,
+      month: date.slice(0, 7),
+      status: clean(tx.transactionStatus || c.status),
+      description: clean(tx.order && tx.order.description),
+    });
+  });
+  training.sort((a, b) => String(a.date).localeCompare(String(b.date)));
+
+  return json({ ok: true, from, to, batches: batchIds.length, candidatesChecked: candidates.length, trainingCount: training.length, training });
+};
