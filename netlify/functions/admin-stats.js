@@ -140,6 +140,24 @@ exports.handler = async function (event, context) {
     registrations: summary.registrations,
     by_camp: summary.by_camp,
     recent: summary.recent,
+    roster: records.map(function (r) {
+      return {
+        campId: (r.camp && r.camp.id) || "",
+        camp: (r.camp && r.camp.name) || "",
+        dates: (r.camp && r.camp.dates) || "",
+        startDate: (r.camp && r.camp.startDate) || "",
+        session: (r.camp && r.camp.session) || "",
+        parent: (r.parent && r.parent.name) || "",
+        email: (r.parent && r.parent.email) || "",
+        phone: (r.parent && r.parent.phone) || "",
+        camper: (r.camper && r.camper.name) || "",
+        grade: (r.camper && r.camper.grade) || "",
+        amount: (r.payment && r.payment.amount) || 0,
+        status: (r.payment && r.payment.status) || "",
+        transactionId: (r.payment && r.payment.transactionId) || "",
+        signup_date: r.createdAt || r.updatedAt || "",
+      };
+    }),
     utm_breakdown: summary.utm_breakdown,
   });
 };

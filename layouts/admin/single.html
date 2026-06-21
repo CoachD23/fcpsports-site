@@ -516,6 +516,22 @@
       </div>
     </div>
 
+    <!-- Registrations by month -->
+    <div class="adm-card">
+      <div class="toolbar">
+        <h2 style="margin:0;">Registrations by Month</h2>
+        <div class="toolbar-group" role="group" aria-label="Program filter">
+          <button type="button" class="filter-btn active" data-month-prog="all">All</button>
+          <button type="button" class="filter-btn" data-month-prog="camp">Camps</button>
+          <button type="button" class="filter-btn" data-month-prog="skills-training">Skills</button>
+          <button type="button" class="filter-btn" data-month-prog="private-lesson">Private</button>
+          <button type="button" class="filter-btn" data-month-prog="opengym">Open Gym / Clinics</button>
+        </div>
+      </div>
+      <p style="font-size:0.8rem;color:#6b7280;margin:2px 0 14px;">Grouped by sign-up date. Camps come from the payment ledger (complete &amp; reconciled); Skills / Private / Open Gym come from the CRM and may lag a paid signup until it syncs.</p>
+      <div id="month-buckets"><div class="loading-msg"><span class="spinner dark"></span> Loading…</div></div>
+    </div>
+
     <!-- All programs -->
     <div class="adm-card">
       <div class="toolbar">
@@ -691,6 +707,8 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
   var currentLeadType = 'all';
   var currentLeads = [];
   var currentLeadMeta = { total: null, truncated: false };
+  var currentRoster = [];      // full camp roster from money-truth ledger
+  var currentMonthProg = 'all'; // Registrations-by-Month program filter
 
   /* ── Saved session ─────────────────────────────────────────── */
   (function init() {
@@ -767,6 +785,16 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
           b.classList.toggle('active', b === btn);
         });
         renderProgramCatalog(cacheGet() || {});
+      });
+    });
+
+    document.querySelectorAll('[data-month-prog]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        currentMonthProg = btn.getAttribute('data-month-prog') || 'all';
+        document.querySelectorAll('[data-month-prog]').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        renderMonthBuckets();
       });
     });
 
@@ -864,6 +892,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         currentLeads = cached.leads || [];
         currentLeadMeta = { total: cached.total, truncated: !!cached.truncated };
         renderLeads();
+        renderMonthBuckets();
         return;
       }
     }
@@ -896,6 +925,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         currentLeadMeta = { total: data.total, truncated: !!data.truncated };
         leadsCacheSet(data);
         renderLeads();
+        renderMonthBuckets();
       })
       .catch(function (err) {
         var tbody = document.getElementById('lead-tbody');
@@ -937,6 +967,8 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
   /* ── Render ────────────────────────────────────────────────── */
   function renderData(d) {
     var reg = d.registrations || {};
+    currentRoster = d.roster || [];
+    renderMonthBuckets();
 
     // Stat cards
     setText('stat-total', reg.total != null ? reg.total : '—');
@@ -1224,6 +1256,84 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
       if (c && !seen[c.id]) { seen[c.id] = 1; names.push(c.name); dates.push(c.dates || ''); }
     });
     return { name: names.join('; '), dates: dates.join('; ') };
+  }
+
+  /* ── Registrations by Month ──────────────────────────────────── */
+  function monthDiff(dateStr, today) {
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return null;
+    return (d.getFullYear() - today.getFullYear()) * 12 + (d.getMonth() - today.getMonth());
+  }
+
+  // Unified PAID-registration list: camps from the money-truth ledger, others from the CRM.
+  function buildRegistrations() {
+    var out = [];
+    (currentRoster || []).forEach(function (r) {
+      if (r.status && !/paid/i.test(r.status) && !r.transactionId) return; // paid only
+      out.push({
+        prog: 'camp', label: r.camp || 'Camp',
+        detail: (r.camp || '') + (r.dates ? ' · ' + r.dates : ''),
+        name: r.parent || r.camper || '(no name)',
+        email: r.email || '', phone: r.phone || '',
+        amount: r.amount || 0, date: String(r.signup_date || '').slice(0, 10)
+      });
+    });
+    (currentLeads || []).forEach(function (L) {
+      var tags = L.tags || [], prog = null, label = null;
+      if (tags.indexOf('skills-training') !== -1) { prog = 'skills-training'; label = 'Skills Training'; }
+      else if (tags.indexOf('private-lesson') !== -1) { prog = 'private-lesson'; label = 'Private Lessons'; }
+      else if (tags.some(function (t) { return /open.?gym|gym.?waiver|clinic/i.test(t); })) { prog = 'opengym'; label = 'Open Gym / Clinic'; }
+      else return;
+      if (!tags.some(function (t) { return t === 'paid' || t.indexOf('paid-') === 0; })) return; // paid only
+      var paidTag = tags.filter(function (t) { return t.indexOf('paid-') === 0; })[0];
+      var date = paidTag ? paidTag.replace('paid-', '') : String(L.created_at || '').slice(0, 10);
+      out.push({ prog: prog, label: label, detail: label, name: L.name || '(no name)', email: L.email || '', phone: L.phone || '', amount: 0, date: date });
+    });
+    return out;
+  }
+
+  function renderMonthBuckets() {
+    var el = document.getElementById('month-buckets');
+    if (!el) return;
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var regs = buildRegistrations().filter(function (r) {
+      return currentMonthProg === 'all' || r.prog === currentMonthProg;
+    });
+    var g = { last: [], cur: [], next: [], earlier: [], later: [] };
+    regs.forEach(function (r) {
+      var diff = monthDiff(r.date, today);
+      if (diff === null || diff < -1) g.earlier.push(r);
+      else if (diff === -1) g.last.push(r);
+      else if (diff === 0) g.cur.push(r);
+      else if (diff === 1) g.next.push(r);
+      else g.later.push(r);
+    });
+    function mName(off) { var d = new Date(today.getFullYear(), today.getMonth() + off, 1); return d.toLocaleString('en-US', { month: 'long', year: 'numeric' }); }
+    var blocks = [
+      ['Last Month — ' + mName(-1), g.last],
+      ['This Month — ' + mName(0), g.cur],
+      ['Next Month — ' + mName(1), g.next]
+    ];
+    if (g.later.length) blocks.push(['Later', g.later]);
+    if (g.earlier.length) blocks.push(['Earlier', g.earlier]);
+    el.innerHTML = blocks.map(function (b) {
+      var rows = b[1].slice().sort(function (a, z) { return String(z.date).localeCompare(String(a.date)); });
+      var body = rows.length ? rows.map(function (r) {
+        return '<tr>' +
+          '<td><strong>' + esc(r.name) + '</strong></td>' +
+          '<td><div class="contact-stack">' +
+            (r.email ? '<a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a>' : '<span class="empty-cell">No email</span>') +
+            (r.phone ? '<a href="tel:' + esc(r.phone) + '">' + esc(formatPhone(r.phone)) + '</a>' : '') +
+          '</div></td>' +
+          '<td>' + esc(r.detail || r.label) + '</td>' +
+          '<td style="white-space:nowrap;">' + esc(r.date || '—') + '</td>' +
+          '<td style="text-align:right;">' + (r.amount ? '$' + fmt(r.amount) : '') + '</td>' +
+        '</tr>';
+      }).join('') : '<tr><td colspan="5" style="text-align:center;color:#999;padding:0.75rem;">No registrations</td></tr>';
+      return '<div style="margin-bottom:1.25rem;">' +
+        '<h3 style="font-size:0.95rem;margin:0 0 0.5rem;color:#0a1628;">' + esc(b[0]) + ' <span style="color:#6b7280;font-weight:400;">(' + rows.length + ')</span></h3>' +
+        '<div class="table-wrap"><table class="adm-table"><thead><tr><th>Name</th><th>Contact</th><th>Program</th><th>Signed up</th><th style="text-align:right;">Paid</th></tr></thead><tbody>' + body + '</tbody></table></div></div>';
+    }).join('');
   }
 
   // Sortable key for a lead's camp session, parsed from its camp-* tags.
