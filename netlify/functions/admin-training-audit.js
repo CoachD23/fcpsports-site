@@ -76,11 +76,20 @@ exports.handler = async function (event) {
   const from = clean(body.from) || "2026-05-01";
   const to = clean(body.to) || new Date().toISOString().slice(0, 10);
 
-  // 1) settled batches in range
-  const batchResp = await authnetPost({
-    getSettledBatchListRequest: { merchantAuthentication: merchantAuth(), firstSettlementDate: from + "T00:00:00Z", lastSettlementDate: to + "T23:59:59Z" },
-  });
-  const batchIds = (batchResp.batchList || []).map((b) => b.batchId).filter(Boolean);
+  // 1) settled batches — Authnet caps getSettledBatchList at 31 days, so chunk the range
+  const addDays = (iso, n) => { const d = new Date(iso + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+  const windows = [];
+  for (let ws = from; ws <= to;) { let we = addDays(ws, 30); if (we > to) we = to; windows.push([ws, we]); ws = addDays(we, 1); }
+  const batchIds = [];
+  const errors = [];
+  for (const [ws, we] of windows) {
+    const br = await authnetPost({
+      getSettledBatchListRequest: { merchantAuthentication: merchantAuth(), firstSettlementDate: ws + "T00:00:00Z", lastSettlementDate: we + "T23:59:59Z" },
+    }).catch((e) => ({ _err: e.message }));
+    if (br._err) { errors.push(br._err); continue; }
+    if (br.messages && br.messages.resultCode === "Error") errors.push((br.messages.message || []).map((m) => m.text).join("; "));
+    (br.batchList || []).forEach((b) => { if (b.batchId) batchIds.push(b.batchId); });
+  }
 
   // 2) list transactions per batch (parallel) + unsettled; keep NON-camp candidates
   const candidates = [];
@@ -122,5 +131,5 @@ exports.handler = async function (event) {
   });
   training.sort((a, b) => String(a.date).localeCompare(String(b.date)));
 
-  return json({ ok: true, from, to, batches: batchIds.length, candidatesChecked: candidates.length, trainingCount: training.length, training });
+  return json({ ok: true, from, to, windows: windows.length, batches: batchIds.length, candidatesChecked: candidates.length, trainingCount: training.length, errors, training });
 };
