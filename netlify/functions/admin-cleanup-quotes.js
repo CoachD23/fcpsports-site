@@ -48,19 +48,34 @@ exports.handler = async function (event) {
   const dryRun = !!body.dryRun;
   const store = getStore(STORE_NAME);
   const records = await listCampRosterRecords();
-  const changes = [];
 
+  // Build a cleaned-name -> canonical slug map from records that already have a
+  // valid slug id, so we can repair records where the NAME leaked into the id.
+  const isSlug = (v) => /^[a-z0-9-]+$/.test(String(v || ""));
+  const nameToSlug = {};
+  for (const r of records) {
+    if (r && r.camp && isSlug(r.camp.id)) {
+      const nm = stripQuotes(r.camp.name);
+      if (nm && !nameToSlug[nm]) nameToSlug[nm] = r.camp.id;
+    }
+  }
+
+  const changes = [];
   for (const r of records) {
     if (!r || !r.id || !r.camp) continue;
     const nameBefore = r.camp.name || "";
     const datesBefore = r.camp.dates || "";
+    const idBefore = r.camp.id || "";
     const nameAfter = stripQuotes(nameBefore);
     const datesAfter = stripQuotes(datesBefore);
-    if (nameAfter === nameBefore && datesAfter === datesBefore) continue;
-    changes.push({ id: r.id, nameBefore, nameAfter, datesBefore, datesAfter });
+    let idAfter = idBefore;
+    if (idBefore && !isSlug(idBefore) && nameToSlug[nameAfter]) idAfter = nameToSlug[nameAfter];
+    if (nameAfter === nameBefore && datesAfter === datesBefore && idAfter === idBefore) continue;
+    changes.push({ id: r.id, nameBefore, nameAfter, datesBefore, datesAfter, idBefore, idAfter });
     if (!dryRun) {
       r.camp.name = nameAfter;
       r.camp.dates = datesAfter;
+      r.camp.id = idAfter;
       await store.setJSON(registrationKey(r), r);
     }
   }
