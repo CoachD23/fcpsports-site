@@ -11,6 +11,8 @@
  */
 const crypto = require("crypto");
 const https = require("https");
+const { connectProgramRosterLedger, saveProgramRosterRecord, STORE_NAME: PROGRAM_STORE, REGISTRATION_PREFIX: PROGRAM_PREFIX } = require("./lib/program-roster-ledger");
+const { getStore } = require("@netlify/blobs");
 
 function json(b, s) { return { statusCode: s || 200, headers: { "Content-Type": "application/json" }, body: JSON.stringify(b) }; }
 function clean(v) { return String(v == null ? "" : v).trim(); }
@@ -131,5 +133,26 @@ exports.handler = async function (event) {
   });
   training.sort((a, b) => String(a.date).localeCompare(String(b.date)));
 
-  return json({ ok: true, from, to, windows: windows.length, batches: batchIds.length, candidatesChecked: candidates.length, trainingCount: training.length, errors, training });
+  // Optional: rebuild the program ledger from this Authnet money-truth, with the
+  // ATHLETE name pulled from the order description ("Skills Training - Kyle Daniels").
+  let synced = 0;
+  if (body.sync) {
+    connectProgramRosterLedger(event);
+    const store = getStore(PROGRAM_STORE);
+    const existing = await store.list({ prefix: PROGRAM_PREFIX });
+    for (const b of (existing.blobs || [])) { await store.delete(b.key); } // clear (avoid hash-key vs txn-key dupes)
+    for (const t of training) {
+      const athlete = t.description.includes(" - ") ? t.description.split(" - ").pop().trim() : "";
+      await saveProgramRosterRecord({
+        program: t.program, programLabel: t.label,
+        parentName: t.name, email: t.email, phone: "",
+        athleteName: athlete, amount: t.amount, transactionId: t.transId,
+        createdAt: (t.date || "").slice(0, 10) + "T12:00:00Z",
+        source: "authnet-sync",
+      });
+      synced++;
+    }
+  }
+
+  return json({ ok: true, from, to, windows: windows.length, batches: batchIds.length, candidatesChecked: candidates.length, trainingCount: training.length, synced, errors, training });
 };

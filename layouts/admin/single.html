@@ -1302,8 +1302,9 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         ledgerProgKeys[programGroup(r.program) + '|' + (r.email || '').toLowerCase()] = 1;
         var sd = String(r.signup_date || '').slice(0, 10);
         out.push({
-          prog: programGroup(r.program), label: r.label || r.program || 'Program', detail: r.label || r.program || 'Program',
-          name: r.parent || r.camper || '(no name)', email: r.email || '', phone: r.phone || '',
+          prog: programGroup(r.program), label: r.label || r.program || 'Program',
+          detail: (r.label || r.program || 'Program') + (r.parent && r.camper ? ' · parent: ' + r.parent : ''),
+          name: r.camper || r.parent || '(no name)', email: r.email || '', phone: r.phone || '',
           amount: r.amount || 0, date: sd, serviceDate: sd, src: 'ledger'
         });
       } else { // camp
