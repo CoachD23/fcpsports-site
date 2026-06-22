@@ -49,10 +49,12 @@ function smtp() {
 function todayUTC() { const d = new Date(); d.setUTCHours(0, 0, 0, 0); return d; }
 function addDays(d, n) { const x = new Date(d); x.setUTCDate(x.getUTCDate() + n); return x; }
 function iso(d) { return d.toISOString().slice(0, 10); }
+function niceDate(isoStr) { const d = new Date(isoStr + "T00:00:00Z"); return isNaN(d.getTime()) ? isoStr : d.toLocaleDateString("en-US", { month: "long", day: "numeric", timeZone: "UTC" }); }
 
 function emailFor(type, m) {
   const first = firstName(m.parent);
   const who = m.athlete || "your athlete";
+  const when = niceDate(m.expiry);
   const link = PAY_LINKS[m.program] || PAY_LINKS["skills-training"];
   if (type === "today") {
     return {
@@ -68,8 +70,8 @@ function emailFor(type, m) {
   }
   // soon
   return {
-    subject: `${who}'s training renews ${m.expiry}`,
-    text: `Hi ${first},\n\n${who}'s 30 days of training are up on ${m.expiry}. To keep them on the court, renew for $${RATE} here:\n${link}\n\nThat covers the next 30 days — two sessions a week, 90 minutes each.\n\nQuestions? Just reply or call 850.961.2323.\n\n— FCP Sports`,
+    subject: `${who}'s training renews ${when}`,
+    text: `Hi ${first},\n\n${who}'s 30 days of training are up on ${when}. To keep them on the court, renew for $${RATE} here:\n${link}\n\nThat covers the next 30 days — two sessions a week, 90 minutes each.\n\nQuestions? Just reply or call 850.961.2323.\n\n— FCP Sports`,
   };
 }
 
