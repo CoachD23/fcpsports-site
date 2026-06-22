@@ -23,7 +23,7 @@ faq:
   - q: "Which league should I sign my child up for?"
     a: "Most players start with the Saturday League — it's year-round, has four age divisions, and every kid gets equal playing time. If you want Tuesday/Thursday evening games, check the Summer League. K–2nd only? Little Ballers."
   - q: "How much does it cost?"
-    a: "Saturday League is $149 per session, flat. Other seasonal leagues open only when scheduled. If a league is not listed in the session picker, contact us before paying."
+    a: "Saturday League is $149–$179 per season, depending on age division. Other seasonal leagues open only when scheduled. If a league is not listed in the session picker, contact us before paying."
   - q: "Are there tryouts?"
     a: "No tryouts for the Saturday League. Players start in age-based divisions, then coaches balance rosters by age, size, and ability. Staff may move a player to a better-fit group when safety, confidence, or competition level calls for it."
 ---

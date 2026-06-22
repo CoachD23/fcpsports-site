@@ -16,7 +16,7 @@ programs:
     description: "Saturday mornings look different here. Age-based divisions, balanced teams, real minutes, and no tryouts. Every player plays."
     url: "/youth-league/"
     ages: "Ages 5+"
-    price: "$149"
+    price: "$149–$179"
     image: "/images/fcp-coaches-huddle-players.jpg"
   - name: "Youth Basketball Programs"
     description: "A year-round development path from kindergarten through 8th grade. Little Ballers, Junior Program, and Prep tracks built to grow with your athlete."

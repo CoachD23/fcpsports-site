@@ -34,7 +34,7 @@ Youth basketball at FCP Sports isn't one program. It's four — pick the one tha
 
 Seven weeks of real games, no tryouts. Four age divisions from Juniors (5–7) through Varsity (15+). Teams are balanced by age, size, and ability so games stay fair. Jerseys included.
 
-**$149 per session.**  
+**$149–$179 per season.**  
 → [See the Saturday League](/youth-league/)
 
 ### Basketball Camps
