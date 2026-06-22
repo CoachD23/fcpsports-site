@@ -153,6 +153,29 @@
   var tagInput = document.getElementById('{{ $formId }}-tag');
   var programInput = document.getElementById('{{ $formId }}-program');
 
+  // Pre-fill from URL (?program=...&tag=...) — used by the Year-Round "Register by
+  // Inquiry" links. Additive: only runs when a program param is present, so the
+  // contact / services / locations embeds (no param) behave exactly as before.
+  (function prefillFromURL() {
+    var params = new URLSearchParams(window.location.search);
+    var p = (params.get('program') || '').slice(0, 80);
+    var t = (params.get('tag') || '').slice(0, 60);
+    if (!p) return;
+    programInput.value = p;
+    if (t) tagInput.value = t;
+    var banner = document.createElement('div');
+    banner.className = 'mb-4 rounded-lg bg-gold/10 border border-gold/30 px-4 py-3 text-sm text-navy';
+    banner.textContent = 'Inquiring about: ';
+    var strong = document.createElement('span');
+    strong.className = 'font-bold';
+    strong.textContent = p;
+    banner.appendChild(strong);
+    form.parentNode.insertBefore(banner, form);
+    // Hide the generic interest-card picker so the preset program isn't overwritten.
+    var cardsWrap = document.getElementById('{{ $formId }}-cards');
+    if (cardsWrap && cardsWrap.parentNode) cardsWrap.parentNode.style.display = 'none';
+  })();
+
   cards.forEach(function(btn) {
     btn.addEventListener('click', function() {
       btn.classList.toggle('border-gold');

@@ -12,7 +12,7 @@ faq:
   - q: "Are there youth sports near Eglin AFB in Fort Walton Beach?"
     a: "Yes — FCP Sports is a dedicated basketball facility located just 10 minutes from the Eglin AFB main gate. We offer year-round programs including summer camps, fall and spring leagues, open gym, private lessons, and clinics. It's one of the closest and most complete youth sports options for families stationed at Eglin."
   - q: "Do you offer a basketball camp military discount?"
-    a: "We do. FCP Sports offers a $20 military discount on every program we run. Camps drop from $149 to $129, leagues from $79–$149 down to $59–$129, and clinics from $49 to $29. Just check the Military / DoD family box when you register — bring your military ID and we verify it at check-in. The discount applies to all programs, all year."
+    a: "We do. FCP Sports offers a $20 military discount on every program we run. Camps drop from $149 to $129, leagues from $79–$149 down to $59–$129, and break clinics from $150 to $130. Just check the Military / DoD family box when you register — bring your military ID and we verify it at check-in. The discount applies to all programs, all year."
   - q: "Is there youth basketball near Hurlburt Field?"
     a: "FCP Sports is about 15 minutes from Hurlburt Field, making it one of the most convenient off-base youth basketball options for Hurlburt families. We've trained hundreds of military kids from both Eglin and Hurlburt over the years. Our programs run year-round so there's always something available regardless of when your family PCS'd to the area."
   - q: "Is there a summer camp near Eglin AFB for kids?"
@@ -37,7 +37,7 @@ We offer a flat **$20 military discount** on every program at FCP Sports. No fin
 |---------|---------------|----------------|
 | Summer Basketball Camp | $149 | **$129** |
 | Youth League (Fall/Spring) | $79–$149 | **$59–$129** |
-| Spring Break Camp | $129 | **$109** |
+| Holiday & Break Clinics | $150 | **$130** |
 
 To claim your discount, [register online](/registration/) and check the **Military / DoD family** box — bring your military ID and we verify it at check-in. Prefer to ask first? [Contact us](/contact/). The discount covers all programs year-round.
 

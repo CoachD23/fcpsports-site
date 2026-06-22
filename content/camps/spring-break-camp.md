@@ -1,10 +1,10 @@
 ---
 title: "Spring Break Basketball Camp Fort Walton Beach | FCP Sports"
-description: "Spring break basketball camp in Fort Walton Beach, March 15–18. Grades 3–5 mornings, grades 6–12 afternoons. $129 for 4 days. Friday open for families."
+description: "Spring break basketball camp in Fort Walton Beach, March 15–18. Grades 3–5 mornings, grades 6–12 afternoons. $150 for 4 days. Friday open for families."
 h1: "Spring Break Basketball Camp"
 keyword: "spring break basketball camp fort walton beach"
 age_range: "Grades 3–12"
-price: "$129 / 4 days"
+price: "$150 / 4 days"
 frequency: "Mon–Thu, Two Sessions"
 hero_image: /images/fcp-hero-full-court.jpg
 layout: "services"
@@ -15,7 +15,7 @@ faq:
   - q: "When is spring break camp?"
     a: "March 15–18, 2027 — Monday through Thursday during Okaloosa County spring break. Friday is left open for your family."
   - q: "How much does it cost?"
-    a: "$129 for all four days. No per-day pricing — the camp is a connected four-day progression."
+    a: "$150 for all four days. No per-day pricing — the camp is a connected four-day progression."
   - q: "What grades?"
     a: "Morning session (8:30 AM–noon) is grades 3–5. Afternoon session (12:30–4:00 PM) is grades 6–12."
   - q: "Is there a spring break camp near Destin?"
@@ -23,12 +23,12 @@ faq:
 event_dates:
   - start: "2027-03-15"
     end: "2027-03-18"
-    price: "129"
+    price: "150"
 ---
 
 ## Four Days of Real Training Over Spring Break
 
-Most kids spend spring break on a couch. Yours can spend it getting better. FCP Spring Break Camp is a structured four-day progression inside our 14,000 sq ft Spartan Training Center — from Monday's skill assessment to Thursday's mini-tournament. Your athlete walks out sharper than they walked in. $129 for four days of coached basketball is the best investment you'll make in their game all spring.
+Most kids spend spring break on a couch. Yours can spend it getting better. FCP Spring Break Camp is a structured four-day progression inside our 14,000 sq ft Spartan Training Center — from Monday's skill assessment to Thursday's mini-tournament. Your athlete walks out sharper than they walked in. $150 for four days of coached basketball is the best investment you'll make in their game all spring.
 
 ### Why It Works
 
@@ -43,7 +43,7 @@ Most kids spend spring break on a couch. Yours can spend it getting better. FCP 
 | Morning | 3–5 | 8:30 AM – 12:00 PM |
 | Afternoon | 6–12 | 12:30 PM – 4:00 PM |
 
-**$129 for all four days.** Same price, both sessions.
+**$150 for all four days.** Same price, both sessions.
 
 Younger athletes get fundamentals-focused coaching. Older athletes get advanced skills and competitive scrimmages.
 

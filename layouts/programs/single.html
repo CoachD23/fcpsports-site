@@ -1,0 +1,83 @@
+{{ define "main" }}
+{{ $heroImg := .Params.hero_image | default "/images/fcp-hero-league-game.jpg" }}
+<section class="relative py-24 text-center overflow-hidden" style="min-height:380px;">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('{{ $heroImg }}');"></div>
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(6,15,34,0.75) 0%,rgba(6,15,34,0.90) 100%);"></div>
+  <div class="relative z-10 max-w-4xl mx-auto px-4">
+    <span class="text-gold font-display tracking-widest text-sm uppercase">2025&ndash;2026 Program &amp; Fee Schedule</span>
+    <h1 class="font-display text-6xl md:text-7xl text-white mt-3 mb-6 leading-none">Programs &amp; Pricing</h1>
+    <p class="text-white/70 text-lg max-w-2xl mx-auto">Year-round development, any-sport performance training, and seasonal leagues, camps &amp; clinics &mdash; for athletes ages 5&ndash;18 in Fort Walton Beach.</p>
+  </div>
+</section>
+
+{{ range $i, $cat := site.Data.programpricing.categories }}
+{{ $bg := cond (eq (mod $i 2) 0) "bg-gray-50" "bg-white" }}
+<section class="py-16 {{ $bg }}">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="section-tag">{{ $cat.tag }}</span>
+      <h2 class="section-heading">{{ $cat.heading }}</h2>
+      <p class="text-gray-500">{{ $cat.blurb }}</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {{ range $cat.programs }}
+      <div class="bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden fade-in {{ if .highlight }}ring-2 ring-gold{{ end }}">
+        {{ if .highlight }}<div class="bg-gold text-navy text-center text-xs font-bold py-2 tracking-widest uppercase">Most Popular</div>{{ end }}
+        <div class="p-8">
+          <h3 class="font-display text-2xl text-navy mb-1">{{ .name }}</h3>
+          <p class="text-gray-400 text-sm mb-4">{{ .meta }}</p>
+          <div class="mb-6">
+            <span class="font-display text-4xl text-gold">{{ .price }}</span>
+            <span class="text-gray-400 text-sm ml-1">/ {{ .unit }}</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            {{ range .features }}
+            <li class="flex items-start gap-3 text-sm text-gray-600">
+              <span class="text-gold font-bold mt-0.5">&check;</span><span>{{ . }}</span>
+            </li>
+            {{ end }}
+          </ul>
+          <a href="{{ .cta_url }}" class="{{ if .highlight }}btn-primary{{ else }}btn-dark{{ end }} w-full text-center block">{{ .cta_text }}</a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ if eq $i 0 }}
+    <!-- Add-on callout — placed right after the year-round basketball tiers -->
+    <div class="max-w-4xl mx-auto mt-12">
+      <div class="bg-navy rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+        <div class="text-white text-center sm:text-left">
+          <p class="text-lg">Add the <span class="text-gold font-semibold">Kinetic Athlete</span> performance module to any basketball tier for <span class="text-gold font-bold">+$1,000/year</span>.</p>
+          <p class="text-white/70 text-sm mt-2">Foundations + Performance = <span class="text-gold font-semibold">$2,500</span> &middot; Development + Performance = <span class="text-gold font-semibold">$4,500</span> &middot; Elite Academy includes the full system.</p>
+        </div>
+        <a href="/registration/#year-round" class="btn-primary shrink-0">Request Info</a>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <span class="section-tag">Good to Know</span>
+    <h2 class="section-heading">Built for Ages 5&ndash;18, Right Here in Fort Walton Beach</h2>
+    <p class="text-gray-500 mb-6">Every program is grouped by age and skill level and delivered in person at our Fort Walton Beach facility.</p>
+    <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-gray-600 text-sm text-left">
+      <p><span class="font-semibold text-navy">Scholarship funding:</span> Programs may be eligible for funding through Florida scholarship programs &mdash; <span class="font-semibold">PEP, FTC, FES-EO, and FES-UA</span> &mdash; under the Physical Education category. <a href="/contact/" class="text-gold-dark hover:text-gold font-semibold">Contact us</a> to learn more.</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-navy-deep">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <span class="section-tag">Ready to Start?</span>
+    <h2 class="section-heading--white">Let's Find the Right Program for Your Athlete</h2>
+    <p class="text-white/70 mb-8">Not sure which tier fits? Tell us your athlete's age and goals &mdash; we'll point you to the right track.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/contact/" class="btn-primary">Contact Us</a>
+      <a href="/registration/" class="btn-outline">Register Now</a>
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,10 +1,10 @@
 ---
 title: "Holiday Basketball Camp Fort Walton Beach | FCP Sports"
-description: "Holiday basketball camp in Fort Walton Beach, December 28–30. Grades 4–8, half-day mornings. $79 for 3 days."
+description: "Holiday basketball camp in Fort Walton Beach, December 28–30. Grades 4–8, half-day mornings. $150 for 3 days."
 h1: "Holiday Basketball Camp"
 keyword: "holiday basketball camp fort walton beach"
 age_range: "Grades 4–8"
-price: "$79 / 3 days"
+price: "$150 / 3 days"
 frequency: "Mon–Wed, 9am–12pm"
 hero_image: /images/fcp-hero-banner-3.jpg
 layout: "services"
@@ -15,7 +15,7 @@ faq:
   - q: "When is holiday camp?"
     a: "December 28–30, 2026 — Monday through Wednesday during winter break. Half-day: 9:00 AM to noon."
   - q: "How much does it cost?"
-    a: "$79 for all three days. Our most affordable camp."
+    a: "$150 for all three days, fully coached."
   - q: "What ages?"
     a: "Grades 4–8, boys and girls. Grouped by skill level."
   - q: "Does my child need experience?"
@@ -23,12 +23,12 @@ faq:
 event_dates:
   - start: "2026-12-28"
     end: "2026-12-30"
-    price: "79"
+    price: "150"
 ---
 
 ## Three Days Between Christmas and New Year's. Best Decision of the Break.
 
-While most kids are winding down, yours can be getting better. FCP Holiday Camp runs December 28–30 inside our 14,000 sq ft Spartan Training Center for grades 4–8. Three days, three hours a day, $79. Every session is coached and structured. On Day 3, your athlete tests everything they learned in live scrimmages and a skills competition.
+While most kids are winding down, yours can be getting better. FCP Holiday Camp runs December 28–30 inside our 14,000 sq ft Spartan Training Center for grades 4–8. Three days, three hours a day, $150. Every session is coached and structured. On Day 3, your athlete tests everything they learned in live scrimmages and a skills competition.
 
 ### Why Holiday Camp Is Worth the Three Days
 
@@ -39,7 +39,7 @@ While most kids are winding down, yours can be getting better. FCP Holiday Camp 
 **Dates:** December 28–30 (Mon–Wed)
 **Time:** 9:00 AM – 12:00 PM
 **Grades:** 4–8
-**Price:** $79
+**Price:** $150
 
 ## The Three Days
 

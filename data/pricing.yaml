@@ -37,8 +37,8 @@
 
 - name: "Saturday League"
   ages: "Ages 5+"
-  price: "$149"
-  frequency: "per session"
+  price: "$149–$179"
+  frequency: "per season"
   highlight: true
   features:
     - "Three 2026 sessions: Session 1, Session 2, Back to School Fall"
@@ -50,12 +50,12 @@
 
 - name: "Holiday & Spring Break Camps"
   ages: "Grades K-12"
-  price: "From $79"
-  frequency: "per camp"
+  price: "$150"
+  frequency: "per clinic"
   highlight: false
   features:
-    - "Holiday Camp: $79 (Dec 28–30, 2026)"
-    - "Spring Break Camp: $129 (Mar 15–18, 2027)"
+    - "Holiday Camp: $150 (Dec 28–30, 2026)"
+    - "Spring Break Camp: $150 (Mar 15–18, 2027)"
     - "Perfect for school breaks"
     - "Military & sibling discounts available"
 

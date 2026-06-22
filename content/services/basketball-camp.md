@@ -15,12 +15,12 @@ ghl_tag: "train"
 summary_card:
   dates: "Year-round camp schedule"
   ages: "Grades K–12"
-  price: "$79–$149 per camp"
+  price: "$79–$150 per camp"
   note: "Summer · Spring Break · Holiday"
   register_url: "/register/"
 faq:
   - q: "How much does basketball camp cost at FCP Sports?"
-    a: "Camps range from $79 to $149 depending on the program: Summer Camp is $149/week (Morning or Afternoon), Little Hoopers Mini is $79 (K–2 half-day), Spring Break Camp is $129, and Holiday Camp is $79. Military and sibling discounts ($20 off each, stack) are available on summer camps."
+    a: "Camps range from $79 to $150 depending on the program: Summer Camp is $149/week (Morning or Afternoon), Little Hoopers Mini is $79 (K–2 half-day), Spring Break Camp is $150, and Holiday Camp is $150. Military and sibling discounts ($20 off each, stack) are available on summer camps."
   - q: "What ages can attend basketball camp?"
     a: "Our camps serve grades K through 12 in summer, with Little Hoopers Mini for K–2 and break camps for older age bands. Campers are grouped by skill level with age and safety considered."
   - q: "Is there a basketball camp near Destin?"
@@ -43,8 +43,8 @@ Your child gets coached at FCP Camps. Really coached. Inside our 14,000 sq ft Sp
 | Camp | Dates | Grades | Price |
 |------|-------|--------|-------|
 | [Summer Day Camp](/camps/summer-day-camp/) | Jun 1 – Jul 31 (9 weeks, AM + PM) | K–12 | $149/wk |
-| [Spring Break Camp](/camps/spring-break-camp/) | March 15–18, 2027 | 3–12 | $129 |
-| [Holiday Camp](/camps/holiday-camp/) | Dec 28–30, 2026 | 4–8 | $79 |
+| [Spring Break Camp](/camps/spring-break-camp/) | March 15–18, 2027 | 3–12 | $150 |
+| [Holiday Camp](/camps/holiday-camp/) | Dec 28–30, 2026 | 4–8 | $150 |
 
 ## What's Included
 

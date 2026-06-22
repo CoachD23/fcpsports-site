@@ -40,7 +40,7 @@ Our gym is running full-time through August with Summer Camps and Saturday Leagu
 | Program | When | Ages | Price |
 |---------|------|------|-------|
 | [**Summer Camps**](/camps/) | Every week, Jun 1 – Jul 31 (AM + PM) | K–12 | $79–$149 |
-| [**Saturday League**](/youth-league/) | May–October (3 sessions) | 5+ | $149/session |
+| [**Saturday League**](/youth-league/) | May–October (3 sessions) | 5+ | $149–$179/season |
 | [**Private Lessons**](/services/basketball-lessons/) | Flexible | 6+ | From $50/session |
 | [**Gym Rental**](/services/gym-rental/) | Flexible | All | From $75/hr |
 

@@ -106,7 +106,7 @@
   date_display: "December 28–30, 2026"
   time: "Mon–Wed, 9:00 AM – 12:00 PM (half-day)"
   age: "Grades 4–8"
-  price: "$79"
+  price: "$150"
   slug: "/camps/holiday-camp/"
   badge: "HOLIDAY BREAK"
 
@@ -118,6 +118,6 @@
   date_display: "March 15–18, 2027"
   time: "Mon–Thu | AM: Grades 3-5 | PM: Grades 6-12"
   age: "Grades 3–12 (Two Sessions)"
-  price: "$129"
+  price: "$150"
   slug: "/camps/spring-break-camp/"
   badge: "SPRING BREAK"

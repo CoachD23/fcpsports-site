@@ -380,7 +380,7 @@ camps:
     grades: "4–8"
     age_min: 9
     age_max: 14
-    price: 79
+    price: 150
     min_enrollment: 8
     detail_url: "/camps/holiday-camp/"
     active: true
@@ -397,7 +397,7 @@ camps:
     grades: "3–12"
     age_min: 8
     age_max: 18
-    price: 129
+    price: 150
     min_enrollment: 10
     detail_url: "/camps/spring-break-camp/"
     active: true

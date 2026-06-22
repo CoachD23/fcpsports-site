@@ -1,0 +1,144 @@
+# Programs & Pricing — drives /programs/ via layouts/programs/single.html
+#
+# Source of truth: "FCP Sports Program & Fee Schedule 2025–2026" PDF.
+# This is the year-round membership model (annual tiers) + Kinetic Athlete
+# performance + season/week/clinic programs. SEPARATE from data/pricing.yaml
+# (legacy a-la-carte /pricing/ page) and data/programs.yaml (homepage cards).
+#
+# Order within "Year-Round Development" matches the PDF: Elite → Development → Foundations.
+# highlight: true (gold "Most Popular" ribbon) is on Foundations — the skills-training tier.
+#
+# Field reference:
+#   tag/heading/blurb    — category eyebrow / heading / intro line
+#   programs[].name      — program title (matches PDF)
+#   programs[].meta      — small line under the name
+#   programs[].price     — display price (string, includes $)
+#   programs[].unit      — billing unit, rendered as "/ <unit>" ("year", "block"...)
+#   programs[].highlight — true = gold ring + "Most Popular" ribbon (one per page)
+#   programs[].features  — bullet list (gold check), drawn from the PDF "What's included"
+#   programs[].cta_text / cta_url — button label + link (existing site URLs only)
+#   programs[].inquiry   — true = registers by inquiry (over $1,000, no direct payment yet)
+
+categories:
+  - tag: "Year-Round Development"
+    heading: "Year-Round Basketball Development"
+    blurb: "Full-season memberships that pair basketball mastery with athletic performance. Ages 5–18, grouped by age and skill level."
+    programs:
+      - name: "Elite Academy Track"
+        meta: "Ages 5–18 · Full system"
+        price: "$5,500"
+        unit: "year"
+        highlight: false
+        inquiry: true
+        features:
+          - "Basketball mastery + full Kinetic Athlete performance system"
+          - "5 sessions/week · film & showcases"
+          - "Individualized development planning"
+        cta_text: "Request Info"
+        cta_url: "/registration/#year-round"
+      - name: "Development Program"
+        meta: "Ages 5–18 · Train 2×/week"
+        price: "$3,500"
+        unit: "year"
+        highlight: false
+        inquiry: true
+        features:
+          - "Basketball training 2×/week"
+          - "Group strength & conditioning"
+          - "League play + team film"
+        cta_text: "Request Info"
+        cta_url: "/registration/#year-round"
+      - name: "Foundations Program"
+        meta: "Ages 5–18 · Skills training"
+        price: "$1,500"
+        unit: "year"
+        highlight: true
+        inquiry: true
+        features:
+          - "Basketball skills training 1×/week"
+          - "League play included"
+          - "Fundamentals & skill evaluation"
+        cta_text: "Request Info"
+        cta_url: "/registration/#year-round"
+
+  - tag: "Sports Performance"
+    heading: "Sports Performance — Any Sport"
+    blurb: "Strength, speed, agility, and explosive power for athletes of any sport — not just basketball."
+    programs:
+      - name: "Kinetic Athlete Performance"
+        meta: "Any sport · Standalone"
+        price: "$2,500"
+        unit: "year"
+        highlight: false
+        inquiry: true
+        features:
+          - "Standalone strength, speed, agility & explosive power"
+          - "Built for athletes of any sport"
+          - "Performance testing & planning"
+        cta_text: "Request Info"
+        cta_url: "/registration/#year-round"
+      - name: "Kinetic Athlete Add-On"
+        meta: "Add to any basketball tier"
+        price: "+$1,000"
+        unit: "year"
+        highlight: false
+        inquiry: true
+        features:
+          - "Add performance training to any basketball program"
+          - "2 sessions/week"
+          - "Same strength, speed & power system"
+        cta_text: "Request Info"
+        cta_url: "/registration/#year-round"
+      - name: "Speed & Agility Training"
+        meta: "Any sport · Sold in blocks"
+        price: "$500"
+        unit: "block"
+        highlight: false
+        inquiry: false
+        features:
+          - "Focused acceleration, speed & agility"
+          - "For athletes of any sport"
+          - "Sold in training blocks"
+        cta_text: "Request Info"
+        cta_url: "/registration/#year-round"
+
+  - tag: "Leagues, Camps & Clinics"
+    heading: "Leagues, Camps & Clinics"
+    blurb: "Season-, week-, and break-based programs for every age. Play all season or drop in for a clinic."
+    programs:
+      - name: "Saturday Youth League"
+        meta: "Ages 5–18 · Grouped by age"
+        price: "$149–$179"
+        unit: "season"
+        highlight: false
+        inquiry: false
+        features:
+          - "8-week coached league"
+          - "Team placement & jersey included"
+          - "Grouped by age division"
+        cta_text: "Join the League"
+        cta_url: "/youth-league/"
+      - name: "Summer Day Camp"
+        meta: "Grades K–12 · Mon–Fri"
+        price: "$149"
+        unit: "week"
+        highlight: false
+        inquiry: false
+        features:
+          - "Full-week day camp"
+          - "Skills, games & competition"
+          - "Morning (K–5) or Afternoon (6–12)"
+        cta_text: "See Camp Dates"
+        cta_url: "/camps/summer-day-camp/"
+      - name: "Holiday & Break Clinics"
+        meta: "School breaks · Focused skills"
+        price: "$150"
+        unit: "clinic"
+        highlight: false
+        inquiry: false
+        features:
+          - "Focused skill clinics during school breaks"
+          - "Holiday & spring break sessions"
+          - "Coached, structured, all levels"
+        cta_text: "See Break Clinics"
+        cta_url: "/camps/"
