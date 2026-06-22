@@ -434,6 +434,49 @@
 
 
 <!-- =====================================================
+     PROGRAMS — year-round membership teaser
+     ===================================================== -->
+<section class="bg-gray-50 py-16 sm:py-20">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="section-tag fade-in">Our Programs</span>
+      <h2 class="section-heading fade-in">Year-Round Development for Serious Athletes</h2>
+      <p class="text-gray-500 text-lg fade-in">Full-season memberships that pair basketball mastery with athletic performance &mdash; ages 5&ndash;18, grouped by age and skill level.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {{ range (index site.Data.programpricing.categories 0).programs }}
+      <div class="fade-in bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden flex flex-col {{ if .highlight }}ring-2 ring-gold{{ end }}">
+        {{ if .highlight }}<div class="bg-gold text-navy text-center text-xs font-bold py-2 tracking-widest uppercase">Most Popular</div>{{ end }}
+        <div class="p-7 flex flex-col flex-grow">
+          <h3 class="font-display text-2xl text-navy mb-1">{{ .name }}</h3>
+          <p class="text-gray-400 text-xs uppercase tracking-widest mb-4">{{ .meta }}</p>
+          <div class="mb-5">
+            <span class="font-display text-4xl text-gold">{{ .price }}</span>
+            <span class="text-gray-400 text-sm ml-1">/ {{ .unit }}</span>
+          </div>
+          <ul class="space-y-2 mb-6 flex-grow">
+            {{ range .features }}
+            <li class="flex items-start gap-2 text-sm text-gray-600"><span class="text-gold font-bold mt-0.5">&check;</span><span>{{ . }}</span></li>
+            {{ end }}
+          </ul>
+          <a href="{{ .cta_url }}" class="{{ if .highlight }}btn-primary{{ else }}btn-dark{{ end }} w-full text-center block">{{ .cta_text }}</a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    <div class="text-center mt-10 fade-in">
+      <p class="text-gray-500 text-sm mb-5">Plus Kinetic Athlete performance training (any sport), summer camps, Saturday league &amp; break clinics.</p>
+      <a href="/programs/" class="btn-primary inline-block">View All Programs &amp; Pricing &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =====================================================
      FINAL CTA
      ===================================================== -->
 {{ partial "cta-section.html" . }}
