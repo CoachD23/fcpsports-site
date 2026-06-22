@@ -32,17 +32,17 @@
 <div class="wk-wrap">
   <!-- Auth -->
   <div id="wk-auth" class="wk-card wk-auth">
-    <h1>FCP Staff Roster</h1>
-    <p class="sub">Camp week &amp; this month's training clients.</p>
-    <input type="password" id="wk-pw" class="wk-input" placeholder="Staff password" autocomplete="current-password" />
-    <button id="wk-login" class="wk-btn">View Roster</button>
+    <h1>FCP Sports Info</h1>
+    <p class="sub">Enter your access code to continue.</p>
+    <input type="password" id="wk-pw" class="wk-input" placeholder="Access code" autocomplete="current-password" />
+    <button id="wk-login" class="wk-btn">Continue</button>
     <p id="wk-err" class="wk-err"></p>
   </div>
 
   <!-- Dashboard -->
   <div id="wk-dash" style="display:none;">
     <div class="wk-head">
-      <h1>FCP Staff Roster</h1>
+      <h1>FCP Sports Info</h1>
       <button id="wk-refresh" class="wk-btn ghost" type="button">&#8635; Refresh</button>
     </div>
 
@@ -183,7 +183,7 @@
 
   function doLogin() {
     pw = (document.getElementById('wk-pw').value || '').trim();
-    if (!pw) { document.getElementById('wk-err').textContent = 'Enter the staff password.'; return; }
+    if (!pw) { document.getElementById('wk-err').textContent = 'Enter your access code.'; return; }
     document.getElementById('wk-err').textContent = '';
     load();
   }

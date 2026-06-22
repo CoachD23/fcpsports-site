@@ -4,3 +4,4 @@
 # Force flag (!) required so the redirect wins over the built register page file.
 /youth-league/register/ /youth-league/#interest-form 302!
 /youth-league/register /youth-league/#interest-form 302!
+/workers/ /stafflogin/ 301!
