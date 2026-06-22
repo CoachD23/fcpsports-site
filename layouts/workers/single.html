@@ -20,6 +20,10 @@
   .wk-badge { display: inline-block; font-size: .65rem; font-weight: 800; letter-spacing: .5px; padding: 2px 8px; border-radius: 999px; vertical-align: middle; margin-left: .4rem; }
   .wk-badge.now { background: #e8f5e9; color: #1b5e20; }
   .wk-badge.next { background: #fff3cd; color: #8a5a00; }
+  .wk-tag { display: inline-block; font-size: .62rem; font-weight: 800; letter-spacing: .3px; padding: 2px 7px; border-radius: 999px; vertical-align: middle; }
+  .wk-tag.ok { background: #e8f5e9; color: #1b5e20; }
+  .wk-tag.due { background: #fff3cd; color: #8a5a00; }
+  .wk-tag.exp { background: #fde8e8; color: #b3261e; }
   .wk-row { padding: .6rem 0; border-top: 1px solid #eef1f4; }
   .wk-row:first-child { border-top: none; }
   .wk-row .nm { font-weight: 700; color: #0a1628; }
@@ -52,12 +56,12 @@
     </div>
 
     <div class="wk-section">
-      <h2>Skills Training &mdash; <span id="wk-month-a"></span></h2>
+      <h2>Skills Training</h2>
       <div id="wk-skills" class="wk-list"><div class="wk-empty">Loading…</div></div>
     </div>
 
     <div class="wk-section">
-      <h2>Private Sessions &mdash; <span id="wk-month-b"></span></h2>
+      <h2>Private Sessions</h2>
       <div id="wk-private" class="wk-list"><div class="wk-empty">Loading…</div></div>
     </div>
   </div>
@@ -133,30 +137,45 @@
     }).join('');
   }
 
+  // 30-day membership view: latest payment per athlete = their current window (start + 30 days).
   function renderProgram(roster, today, match, elId) {
-    var y = today.getFullYear(), m = today.getMonth();
-    var rows = roster.filter(function (r) {
-      if (r.kind !== 'program' || !isPaid(r)) return false;
-      if (!match.test(String(r.program || r.label || ''))) return false;
-      var d = new Date(String(r.signup_date || '').slice(0, 10));
-      return !isNaN(d.getTime()) && d.getFullYear() === y && d.getMonth() === m;
-    }).sort(function (a, b) { return String(b.signup_date).localeCompare(String(a.signup_date)); });
+    var byKid = {};
+    roster.forEach(function (r) {
+      if (r.kind !== 'program' || !isPaid(r)) return;
+      if (!match.test(String(r.program || r.label || ''))) return;
+      var key = String(r.camper || r.parent || '').toLowerCase() + '|' + String(r.email || '').toLowerCase();
+      var d = String(r.signup_date || '').slice(0, 10);
+      if (!d) return;
+      if (!byKid[key] || d > byKid[key]._start) {
+        var c = {}; for (var k in r) c[k] = r[k]; c._start = d; byKid[key] = c;
+      }
+    });
+    var rows = Object.keys(byKid).map(function (k) { return byKid[k]; });
+    rows.forEach(function (r) {
+      var start = new Date(r._start + 'T00:00:00');
+      var exp = new Date(start); exp.setDate(exp.getDate() + 30);
+      r._exp = exp;
+      r._daysLeft = Math.round((exp - today) / 86400000);
+    });
+    rows.sort(function (a, b) { return a._exp - b._exp; }); // most overdue / soonest-to-expire first
     var el = document.getElementById(elId);
-    if (!rows.length) { el.innerHTML = '<div class="wk-empty">No sign-ups yet this month.</div>'; return; }
+    if (!rows.length) { el.innerHTML = '<div class="wk-empty">No active members.</div>'; return; }
     el.innerHTML = rows.map(function (r) {
-      return '<div class="wk-row"><div class="nm">' + esc(r.camper || r.parent || 'Client') + '</div>' +
+      var dl = r._daysLeft, badge;
+      if (dl < 0) badge = '<span class="wk-tag exp">EXPIRED ' + (-dl) + 'd ago</span>';
+      else if (dl <= 5) badge = '<span class="wk-tag due">RENEW · ' + dl + 'd left</span>';
+      else badge = '<span class="wk-tag ok">Active · ' + dl + 'd left</span>';
+      var expStr = r._exp.getFullYear() + '-' + ('0' + (r._exp.getMonth() + 1)).slice(-2) + '-' + ('0' + r._exp.getDate()).slice(-2);
+      return '<div class="wk-row"><div class="nm">' + esc(r.camper || r.parent || 'Client') + ' ' + badge + '</div>' +
         '<div class="dt">' + esc(r.parent || '') +
         (r.phone ? ' · <a href="tel:' + esc(r.phone) + '">' + esc(fmtPhone(r.phone)) + '</a>' : '') +
         (r.email ? ' · <a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a>' : '') +
-        ' · signed up ' + esc(String(r.signup_date || '').slice(0, 10)) + '</div></div>';
+        '</div><div class="dt">Started ' + esc(r._start) + ' · renews by <strong>' + esc(expStr) + '</strong></div></div>';
     }).join('');
   }
 
   function render(roster) {
     var today = new Date(); today.setHours(0, 0, 0, 0);
-    var mn = today.toLocaleString('en-US', { month: 'long', year: 'numeric' });
-    document.getElementById('wk-month-a').textContent = mn;
-    document.getElementById('wk-month-b').textContent = mn;
     renderCurrent(roster, today);
     renderProgram(roster, today, /skills/i, 'wk-skills');
     renderProgram(roster, today, /private|lesson/i, 'wk-private');
