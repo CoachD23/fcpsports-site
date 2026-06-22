@@ -64,8 +64,8 @@ function emailFor(type, m) {
   }
   if (type === "lapsed") {
     return {
-      subject: `Come back — ${who}'s training`,
-      text: `Hi ${first},\n\n${who}'s training membership has lapsed. Pick right back up whenever you're ready — renew for $${RATE} for another 30 days (two sessions a week, 90 minutes each):\n${link}\n\nWe'd love to keep ${who} developing on the court. Reply or call 850.961.2323.\n\n— FCP Sports`,
+      subject: `$${RATE} due for ${who}'s training`,
+      text: `Hi ${first},\n\n${who}'s 30-day training period renewed on ${when}, and since ${who} has kept training with us, the $${RATE} for this period is now due. You can take care of it here:\n${link}\n\nThat keeps ${who} going for the next 30 days — two sessions a week, 90 minutes each. Thanks so much for training with FCP Sports!\n\nQuestions? Just reply or call 850.961.2323.\n\n— FCP Sports`,
     };
   }
   // soon

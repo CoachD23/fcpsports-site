@@ -162,7 +162,7 @@
     if (!rows.length) { el.innerHTML = '<div class="wk-empty">No active members.</div>'; return; }
     el.innerHTML = rows.map(function (r) {
       var dl = r._daysLeft, badge;
-      if (dl < 0) badge = '<span class="wk-tag exp">EXPIRED ' + (-dl) + 'd ago</span>';
+      if (dl < 0) badge = '<span class="wk-tag exp">PAST DUE · ' + (-dl) + 'd</span>';
       else if (dl <= 5) badge = '<span class="wk-tag due">RENEW · ' + dl + 'd left</span>';
       else badge = '<span class="wk-tag ok">Active · ' + dl + 'd left</span>';
       var expStr = r._exp.getFullYear() + '-' + ('0' + (r._exp.getMonth() + 1)).slice(-2) + '-' + ('0' + r._exp.getDate()).slice(-2);
