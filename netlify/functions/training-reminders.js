@@ -53,7 +53,7 @@ function niceDate(isoStr) { const d = new Date(isoStr + "T00:00:00Z"); return is
 
 function emailFor(type, m) {
   const first = firstName(m.parent);
-  const who = m.athlete || "your athlete";
+  const who = clean(m.athlete).split(/\s+/)[0] || "your athlete";
   const when = niceDate(m.expiry);
   const link = PAY_LINKS[m.program] || PAY_LINKS["skills-training"];
   if (type === "today") {
