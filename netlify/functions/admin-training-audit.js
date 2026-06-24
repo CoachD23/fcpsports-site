@@ -93,21 +93,29 @@ exports.handler = async function (event) {
     (br.batchList || []).forEach((b) => { if (b.batchId) batchIds.push(b.batchId); });
   }
 
-  // 2) list transactions per batch (parallel) + unsettled; tally camps, keep NON-camp candidates
+  // 2) list transactions per batch (parallel) + unsettled; tally SETTLED camps, keep settled non-camp candidates
   const candidates = [];
+  const campTxns = [];
   let campCount = 0, campSum = 0;
-  const pushNonCamp = (t) => {
+  const isSettled = (s) => /settledSuccessfully|capturedPendingSettlement/i.test(s);
+  const pushTxn = (t) => {
     const inv = clean(t.invoiceNumber);
+    const status = clean(t.transactionStatus);
     const amt = Number(t.settleAmount || t.authAmount || 0) || 0;
-    if (/^CAMP-/i.test(inv)) { campCount++; campSum += amt; return; }
-    candidates.push({ transId: clean(t.transId), name: [clean(t.firstName), clean(t.lastName)].filter(Boolean).join(" "), amount: t.settleAmount, date: clean(t.submitTimeUTC), status: clean(t.transactionStatus) });
+    if (/^CAMP-/i.test(inv)) {
+      if (isSettled(status)) { campCount++; campSum += amt; }
+      campTxns.push({ transId: clean(t.transId), name: [clean(t.firstName), clean(t.lastName)].filter(Boolean).join(" "), amount: amt, date: clean(t.submitTimeUTC).slice(0, 10), status });
+      return;
+    }
+    if (!isSettled(status)) return; // skip declined/errored non-camp — they never charged
+    candidates.push({ transId: clean(t.transId), name: [clean(t.firstName), clean(t.lastName)].filter(Boolean).join(" "), amount: amt, date: clean(t.submitTimeUTC), status });
   };
   const lists = await chunked(batchIds, 6, (batchId) =>
     authnetPost({ getTransactionListRequest: { merchantAuthentication: merchantAuth(), batchId, paging: { limit: 1000, offset: 1 } } }).catch(() => ({}))
   );
-  lists.forEach((r) => (r.transactions || []).forEach(pushNonCamp));
+  lists.forEach((r) => (r.transactions || []).forEach(pushTxn));
   const unResp = await authnetPost({ getUnsettledTransactionListRequest: { merchantAuthentication: merchantAuth() } }).catch(() => ({}));
-  (unResp.transactions || []).forEach(pushNonCamp);
+  (unResp.transactions || []).forEach(pushTxn);
 
   // 3) detail-fetch candidates (parallel, chunked) and classify training
   const details = await chunked(candidates.filter((c) => c.transId), 6, (c) =>
@@ -158,5 +166,5 @@ exports.handler = async function (event) {
   }
 
   const trainingSum = Math.round(training.reduce((s, t) => s + (Number(t.amount) || 0), 0) * 100) / 100;
-  return json({ ok: true, from, to, windows: windows.length, batches: batchIds.length, candidatesChecked: candidates.length, camps: { count: campCount, sum: Math.round(campSum * 100) / 100 }, trainingCount: training.length, trainingSum, synced, errors, training });
+  return json({ ok: true, from, to, windows: windows.length, batches: batchIds.length, candidatesChecked: candidates.length, camps: { count: campCount, sum: Math.round(campSum * 100) / 100 }, campTxns, trainingCount: training.length, trainingSum, synced, errors, training });
 };
