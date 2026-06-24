@@ -155,6 +155,9 @@ exports.handler = async function (event) {
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Valid email required." }) };
     }
+    if (!parentFirst || !parentLast) {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: "Parent first and last name are required." }) };
+    }
     if (!program || !PROGRAM_PRICES[program]) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid program selected." }) };
     }

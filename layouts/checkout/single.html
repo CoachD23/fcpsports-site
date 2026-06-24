@@ -291,11 +291,13 @@
     if (step === 3 && currentStep === 2) {
       var f = document.getElementById('info-form');
       var parentFirst = f.querySelector('[name="parentFirst"]').value.trim();
+      var parentLast = f.querySelector('[name="parentLast"]').value.trim();
       var email = f.querySelector('[name="email"]').value.trim();
       var athleteName = f.querySelector('[name="athleteName"]').value.trim();
       var errEl = document.getElementById('step2-error');
 
       if (!parentFirst) { errEl.textContent = 'Please enter your first name.'; errEl.classList.remove('hidden'); f.querySelector('[name="parentFirst"]').focus(); return; }
+      if (!parentLast) { errEl.textContent = 'Please enter your last name.'; errEl.classList.remove('hidden'); f.querySelector('[name="parentLast"]').focus(); return; }
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email.'; errEl.classList.remove('hidden'); f.querySelector('[name="email"]').focus(); return; }
       if (!athleteName) { errEl.textContent = "Please enter the athlete's name."; errEl.classList.remove('hidden'); f.querySelector('[name="athleteName"]').focus(); return; }
       errEl.classList.add('hidden');
