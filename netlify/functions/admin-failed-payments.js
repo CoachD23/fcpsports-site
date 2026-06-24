@@ -36,13 +36,19 @@ exports.handler = async function (event) {
 
   // 1) failed charges from the payment-alerts store, deduped by email (latest attempt)
   const failed = {};
+  const breakdown = {};
+  let totalIssues = 0;
   try {
     const store = getStore("payment-alerts");
     const res = await store.list({ prefix: "issues/" });
     for (const blob of (res.blobs || [])) {
       let issue;
       try { issue = await store.get(blob.key, { type: "json" }); } catch { continue; }
-      if (!issue || issue.eventType !== "payment_failed") continue;
+      if (!issue) continue;
+      totalIssues += 1;
+      const et = clean(issue.eventType) || "(none)";
+      breakdown[et] = (breakdown[et] || 0) + 1;
+      if (issue.eventType !== "payment_failed") continue;
       const email = clean(issue.email).toLowerCase();
       if (!email) continue;
       const ts = clean(issue.timestamp);
@@ -80,6 +86,8 @@ exports.handler = async function (event) {
 
   return json({
     ok: true,
+    storeTotalIssues: totalIssues,
+    eventTypeBreakdown: breakdown,
     totalFailedContacts: Object.keys(failed).length,
     paidExcluded: Object.keys(failed).length - blocked.length,
     blockedCount: blocked.length,
