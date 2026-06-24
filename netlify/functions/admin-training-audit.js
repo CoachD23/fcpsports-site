@@ -93,10 +93,13 @@ exports.handler = async function (event) {
     (br.batchList || []).forEach((b) => { if (b.batchId) batchIds.push(b.batchId); });
   }
 
-  // 2) list transactions per batch (parallel) + unsettled; keep NON-camp candidates
+  // 2) list transactions per batch (parallel) + unsettled; tally camps, keep NON-camp candidates
   const candidates = [];
+  let campCount = 0, campSum = 0;
   const pushNonCamp = (t) => {
-    if (/^CAMP-/i.test(clean(t.invoiceNumber))) return;
+    const inv = clean(t.invoiceNumber);
+    const amt = Number(t.settleAmount || t.authAmount || 0) || 0;
+    if (/^CAMP-/i.test(inv)) { campCount++; campSum += amt; return; }
     candidates.push({ transId: clean(t.transId), name: [clean(t.firstName), clean(t.lastName)].filter(Boolean).join(" "), amount: t.settleAmount, date: clean(t.submitTimeUTC), status: clean(t.transactionStatus) });
   };
   const lists = await chunked(batchIds, 6, (batchId) =>
@@ -154,5 +157,6 @@ exports.handler = async function (event) {
     }
   }
 
-  return json({ ok: true, from, to, windows: windows.length, batches: batchIds.length, candidatesChecked: candidates.length, trainingCount: training.length, synced, errors, training });
+  const trainingSum = Math.round(training.reduce((s, t) => s + (Number(t.amount) || 0), 0) * 100) / 100;
+  return json({ ok: true, from, to, windows: windows.length, batches: batchIds.length, candidatesChecked: candidates.length, camps: { count: campCount, sum: Math.round(campSum * 100) / 100 }, trainingCount: training.length, trainingSum, synced, errors, training });
 };
