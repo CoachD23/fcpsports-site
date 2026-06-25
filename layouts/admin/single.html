@@ -2266,6 +2266,10 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
     if (el) el.textContent = val;
   }
 
+  function clean(v) {
+    return String(v == null ? '' : v).trim();
+  }
+
   function esc(str) {
     if (str == null) return '';
     return String(str)
