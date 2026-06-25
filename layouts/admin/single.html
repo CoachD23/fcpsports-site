@@ -168,6 +168,19 @@
   .status-pill.p-blocked { background: #fde8e8; color: #9b1c1c; }
   .status-pill.p-lead { background: #fef3c7; color: #92400e; }
 
+  /* People email modal */
+  .pe-overlay { position: fixed; inset: 0; background: rgba(10,22,40,0.55); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
+  .pe-modal { background: #fff; border-radius: 12px; max-width: 560px; width: 100%; max-height: 86vh; overflow: auto; padding: 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.25); }
+  .pe-modal h3 { margin: 0 0 0.3rem; font-size: 1.1rem; color: #0a1628; }
+  .pe-preview { border: 1px solid #e2e6ea; border-radius: 8px; padding: 0.85rem 1rem; margin: 0.85rem 0; background: #f9fafb; }
+  .pe-preview .pe-subj { font-weight: 700; color: #0a1628; margin-bottom: 0.5rem; font-size: 0.9rem; }
+  .pe-preview pre { white-space: pre-wrap; font-family: inherit; font-size: 0.85rem; color: #374151; margin: 0; line-height: 1.55; }
+  .pe-actions { display: flex; gap: 0.6rem; justify-content: flex-end; margin-top: 1rem; flex-wrap: wrap; }
+  .pe-bar { height: 6px; background: #eef2f7; border-radius: 99px; overflow: hidden; margin: 0.6rem 0 0; display: none; }
+  .pe-bar > span { display: block; height: 100%; background: #1b5e20; width: 0%; transition: width 0.2s; }
+  #people-email-btn { background: #0a1628; color: #fff; border: 1px solid #0a1628; padding: 0.4rem 0.85rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+  #people-email-btn:hover { background: #1a2e50; }
+
   .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -513,6 +526,7 @@
           <button type="button" class="filter-btn" data-people-filter="lead">Leads <span id="pc-lead">0</span></button>
         </div>
         <input type="search" id="people-search" class="adm-input" placeholder="Search name, email, phone…" style="margin:0;width:240px;max-width:100%;">
+        <button type="button" id="people-email-btn" style="display:none;"></button>
       </div>
       <p style="font-size:0.8rem;color:#6b7280;margin:2px 0 14px;">Every contact in one place — <strong>GHL leads</strong> joined to the <strong>payment ledgers</strong> (money-truth) by email. <span style="color:#1b5e20;">Active</span> = paid &amp; current · <span style="color:#075985;">Past</span> = paid before · <span style="color:#9b1c1c;">Blocked</span> = card declined, never paid · <span style="color:#92400e;">Lead</span> = never paid.</p>
       <div class="table-wrap">
@@ -531,6 +545,24 @@
             <tr><td colspan="6" class="loading-msg"><span class="spinner dark"></span> Loading…</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <div id="people-email-modal" class="pe-overlay" style="display:none;">
+        <div class="pe-modal">
+          <h3 id="pe-title">Email</h3>
+          <p id="pe-count" class="card-sub" style="margin-top:0;"></p>
+          <div class="pe-preview">
+            <div class="pe-subj" id="pe-subject"></div>
+            <pre id="pe-body"></pre>
+          </div>
+          <p class="card-sub" style="margin:0;">Sent from info@fcpsports.org, BCC&rsquo;d to your inbox. Anyone already emailed this exact note is skipped automatically.</p>
+          <div class="pe-bar" id="pe-bar"><span id="pe-bar-fill"></span></div>
+          <div id="pe-status" class="card-sub" style="margin:0.4rem 0 0;"></div>
+          <div class="pe-actions">
+            <button type="button" class="action-btn" id="pe-cancel">Cancel</button>
+            <button type="button" class="adm-btn" id="pe-send" style="width:auto;">Send</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -750,6 +782,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
   var currentLeadMeta = { total: null, truncated: false };
   var currentRoster = [];      // full roster (camps + programs) from money-truth ledgers
   var currentPeopleFilter = 'all';
+  var currentPeopleRows = [];  // the People rows currently shown (post filter+search)
   var blockedPeople = [];      // failed-payment contacts who never paid (admin-failed-payments)
   var currentMonthProg = 'all'; // Registrations-by-Month program filter
   var currentMonthBasis = 'signup'; // 'signup' = by sign-up date, 'service' = by month attending
@@ -913,6 +946,12 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
     });
     var peopleSearch = document.getElementById('people-search');
     if (peopleSearch) peopleSearch.addEventListener('input', renderPeople);
+    var peopleEmailBtn = document.getElementById('people-email-btn');
+    if (peopleEmailBtn) peopleEmailBtn.addEventListener('click', openPeopleEmailModal);
+    var peCancel = document.getElementById('pe-cancel');
+    if (peCancel) peCancel.addEventListener('click', closePeopleEmailModal);
+    var peSend = document.getElementById('pe-send');
+    if (peSend) peSend.addEventListener('click', sendPeopleEmailNow);
   }
 
   window.refreshDashboard = function () {
@@ -1414,6 +1453,8 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
       if (order[a.status] !== order[b.status]) return order[a.status] - order[b.status];
       return String(b.lastDate).localeCompare(String(a.lastDate));
     });
+    currentPeopleRows = rows;
+    updatePeopleEmailBtn();
 
     if (!rows.length) {
       tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#999;padding:1rem;">No matching people</td></tr>';
@@ -1435,6 +1476,107 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         '<td style="text-align:right;font-variant-numeric:tabular-nums;' + (p.paidTotal > 0 ? 'font-weight:700;' : 'color:#9ca3af;') + '">$' + fmt(p.paidTotal || 0) + '</td>' +
       '</tr>';
     }).join('');
+  }
+
+  // Show the "Email these N" button only for past/blocked/lead filters (never
+  // for "all" or "active" — no accidental blast of current customers).
+  function updatePeopleEmailBtn() {
+    var btn = document.getElementById('people-email-btn');
+    if (!btn) return;
+    var cfg = { past: 'win-backs', blocked: 'blocked', lead: 'leads' }[currentPeopleFilter];
+    var emailable = (currentPeopleRows || []).filter(function (p) { return p.email; });
+    if (cfg && emailable.length) {
+      btn.style.display = '';
+      btn.textContent = '✉ Email ' + emailable.length + ' ' + cfg;
+    } else {
+      btn.style.display = 'none';
+    }
+  }
+
+  var peopleEmailState = null; // { tmpl, recipients }
+
+  function openPeopleEmailModal() {
+    var tmplFor = { past: 'winback', blocked: 'reengage', lead: 'nurture' };
+    var tmpl = tmplFor[currentPeopleFilter];
+    if (!tmpl) return;
+    var recipients = (currentPeopleRows || []).filter(function (p) { return p.email; })
+      .map(function (p) { return { email: p.email, name: p.name, athlete: p.athlete }; });
+    if (!recipients.length) { showToast('No email addresses in this list.', 'info'); return; }
+    peopleEmailState = { tmpl: tmpl, recipients: recipients };
+
+    var titleMap = { winback: 'Win-back email', reengage: 'Re-engagement email', nurture: 'Lead nurture email' };
+    setText('pe-title', titleMap[tmpl] || 'Email');
+    document.getElementById('pe-count').textContent = 'To ' + recipients.length + ' ' + (recipients.length === 1 ? 'person' : 'people') + ' in the "' + currentPeopleFilter + '" filter.';
+    document.getElementById('pe-status').textContent = '';
+    document.getElementById('pe-bar').style.display = 'none';
+    document.getElementById('pe-bar-fill').style.width = '0%';
+    var sendBtn = document.getElementById('pe-send');
+    var cancelBtn = document.getElementById('pe-cancel');
+    cancelBtn.disabled = false; cancelBtn.textContent = 'Cancel';
+    sendBtn.disabled = true; sendBtn.textContent = 'Loading preview…';
+    document.getElementById('pe-subject').textContent = '';
+    document.getElementById('pe-body').textContent = '';
+    document.getElementById('people-email-modal').style.display = 'flex';
+
+    fetch('/.netlify/functions/admin-people-email', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw, template: tmpl, recipients: recipients.slice(0, 1), dryRun: true })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.ok) throw new Error(d && d.error ? d.error : 'Preview failed.');
+        document.getElementById('pe-subject').textContent = d.preview.subject;
+        document.getElementById('pe-body').textContent = d.preview.text;
+        sendBtn.disabled = false; sendBtn.textContent = 'Send to ' + recipients.length;
+      })
+      .catch(function (err) { showToast('Preview: ' + err.message, 'error'); closePeopleEmailModal(); });
+  }
+
+  function closePeopleEmailModal() {
+    document.getElementById('people-email-modal').style.display = 'none';
+    peopleEmailState = null;
+  }
+
+  // Send in client-chunked batches so each function call stays under the timeout;
+  // server dedupes, so a retry/resume never double-sends.
+  function sendPeopleEmailNow() {
+    if (!peopleEmailState) return;
+    var tmpl = peopleEmailState.tmpl, recipients = peopleEmailState.recipients;
+    var CHUNK = 10, total = recipients.length;
+    var sent = 0, skipped = 0, i = 0;
+    var sendBtn = document.getElementById('pe-send'), cancelBtn = document.getElementById('pe-cancel');
+    sendBtn.disabled = true; cancelBtn.disabled = true; sendBtn.textContent = 'Sending…';
+    document.getElementById('pe-bar').style.display = 'block';
+    var fill = document.getElementById('pe-bar-fill'), status = document.getElementById('pe-status');
+
+    function next() {
+      if (i >= total) {
+        status.textContent = 'Done — ' + sent + ' sent' + (skipped ? ', ' + skipped + ' skipped (already emailed)' : '') + '.';
+        showToast('Emailed ' + sent + ' ' + (sent === 1 ? 'person' : 'people') + (skipped ? ' (' + skipped + ' skipped)' : '') + '.', 'success');
+        sendBtn.textContent = 'Done'; cancelBtn.disabled = false; cancelBtn.textContent = 'Close';
+        return;
+      }
+      var batch = recipients.slice(i, i + CHUNK);
+      fetch('/.netlify/functions/admin-people-email', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw, template: tmpl, recipients: batch, dryRun: false })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (!d || !d.ok) throw new Error(d && d.error ? d.error : 'Send failed.');
+          sent += d.sentCount || 0; skipped += d.skippedCount || 0;
+          i += batch.length;
+          fill.style.width = Math.round((i / total) * 100) + '%';
+          status.textContent = 'Sent ' + sent + ' of ' + total + '…';
+          next();
+        })
+        .catch(function (err) {
+          status.textContent = 'Stopped at ' + i + '/' + total + ': ' + err.message + '. Click Resume — already-sent are skipped.';
+          showToast('Send error: ' + err.message, 'error');
+          sendBtn.disabled = false; sendBtn.textContent = 'Resume'; cancelBtn.disabled = false;
+        });
+    }
+    next();
   }
 
   function getFilteredLeads() {
