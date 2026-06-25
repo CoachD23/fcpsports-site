@@ -561,6 +561,10 @@
           <tbody id="current-training-tbody"><tr><td colspan="8" class="loading-msg"><span class="spinner dark"></span> Loading…</td></tr></tbody>
         </table>
       </div>
+      <div id="current-league-wrap" style="display:none;">
+        <h3 style="font-size:0.9rem;color:#0a1628;margin:1.5rem 0 0.6rem;text-transform:uppercase;letter-spacing:0.04em;">Saturday League <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#6b7280;font-size:0.78rem;">— current players</span></h3>
+        <div id="current-league"></div>
+      </div>
     </div>
 
     <!-- People (leads + payers, unified) -->
@@ -644,6 +648,7 @@
           <button type="button" class="filter-btn" data-month-prog="skills-training">Skills</button>
           <button type="button" class="filter-btn" data-month-prog="private-lesson">Private</button>
           <button type="button" class="filter-btn" data-month-prog="opengym">Open Gym / Clinics</button>
+          <button type="button" class="filter-btn" data-month-prog="league">League</button>
         </div>
         <div class="toolbar-group" role="group" aria-label="Bucket basis">
           <button type="button" class="filter-btn active" data-month-basis="signup">By sign-up</button>
@@ -1400,7 +1405,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
     function ensure(key) {
       if (!map[key]) map[key] = {
         name: '', athlete: '', email: '', phone: '', crm_url: '', interest: '',
-        paidTotal: 0, campCount: 0, trainingLabels: {}, hasPaid: false, hasActive: false,
+        paidTotal: 0, campCount: 0, trainingLabels: {}, leagueLabels: {}, hasPaid: false, hasActive: false,
         blocked: false, blockedProgram: '', lead: false, lastDate: ''
       };
       return map[key];
@@ -1424,6 +1429,9 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         var range = parseCampRange(r.dates);
         active = range ? (range.end >= today) : false;
         p.campCount += 1;
+      } else if (r.kind === 'league') {
+        active = true; // a paid league player is a current registrant
+        p.leagueLabels[(r.league || 'Saturday League') + (r.division ? ' · ' + r.division : '')] = 1;
       } else {
         var exp = sd ? new Date(sd + 'T00:00:00') : null;
         if (exp) exp.setDate(exp.getDate() + 30);
@@ -1473,6 +1481,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         var parts = [];
         if (p.campCount) parts.push(p.campCount === 1 ? '1 camp week' : p.campCount + ' camp weeks');
         Object.keys(p.trainingLabels).forEach(function (l) { parts.push(l); });
+        Object.keys(p.leagueLabels).forEach(function (l) { parts.push(l); });
         detail = parts.join(' · ') || 'Paid';
       } else if (p.blocked) {
         detail = (p.blockedProgram ? p.blockedProgram + ' · ' : '') + 'declined';
@@ -1736,6 +1745,22 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         '</tr>';
       }).join('') : '<tr><td colspan="8" style="text-align:center;color:#999;padding:1rem;">No training members' + (q ? ' match that search' : ' yet') + '.</td></tr>';
     }
+
+    // Saturday League players (from Airtable) — so no paid league player is invisible
+    var leaguePlayers = (currentRoster || []).filter(function (r) { return r.kind === 'league'; })
+      .filter(function (r) { return !q || (clean(r.camper) + ' ' + clean(r.parent) + ' ' + clean(r.division)).toLowerCase().indexOf(q) !== -1; })
+      .sort(function (a, b) { return String(a.camper || a.parent).localeCompare(String(b.camper || b.parent)); });
+    var lwrap = document.getElementById('current-league-wrap');
+    var lel = document.getElementById('current-league');
+    if (lwrap) lwrap.style.display = leaguePlayers.length ? '' : 'none';
+    if (lel) {
+      lel.innerHTML = leaguePlayers.map(function (r) {
+        return '<div class="cur-camp"><h4>' + esc(r.camper || r.parent || 'Player') +
+          (r.division ? ' <span class="status-pill p-active">' + esc(r.division) + '</span>' : '') + '</h4>' +
+          '<div style="font-size:0.8rem;color:#6b7280;margin-top:2px;">' + esc(r.parent || '') +
+          (r.phone ? ' · ' + esc(formatPhone(r.phone)) : '') + (r.email ? ' · ' + esc(r.email) : '') + '</div></div>';
+      }).join('');
+    }
   }
 
   // Remind button on a Past-due / Ending-soon training row -> emails that one
@@ -1850,6 +1875,14 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
           detail: (r.label || r.program || 'Program') + (r.parent && r.camper ? ' · parent: ' + r.parent : ''),
           name: r.camper || r.parent || '(no name)', email: r.email || '', phone: r.phone || '',
           amount: r.amount || 0, date: sd, serviceDate: sd, src: 'ledger'
+        });
+      } else if (r.kind === 'league') {
+        var ld = String(r.signup_date || '').slice(0, 10);
+        out.push({
+          prog: 'league', label: 'Saturday League',
+          detail: 'Saturday League' + (r.division ? ' · ' + r.division : ''),
+          name: r.camper || r.parent || '(no name)', email: r.email || '', phone: r.phone || '',
+          amount: r.amount || 0, date: ld, serviceDate: ld, src: 'airtable'
         });
       } else { // camp
         var cd = String(r.signup_date || '').slice(0, 10);

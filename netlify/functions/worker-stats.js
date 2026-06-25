@@ -17,6 +17,7 @@ const {
   connectProgramRosterLedger,
   listProgramRosterRecords,
 } = require("./lib/program-roster-ledger");
+const { listLeagueRosterRecords } = require("./lib/league-roster");
 
 function json(body, status) {
   return { statusCode: status || 200, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) };
@@ -45,9 +46,10 @@ exports.handler = async function (event) {
   try { body = JSON.parse(event.body || "{}"); } catch { /* ignore */ }
   if (!passwordValid(body.password)) return json({ ok: false, error: "Unauthorized" }, 401);
 
-  const [camps, programs] = await Promise.all([
+  const [camps, programs, leagues] = await Promise.all([
     listCampRosterRecords().catch(() => []),
     listProgramRosterRecords().catch(() => []),
+    listLeagueRosterRecords().catch(() => []),
   ]);
 
   const roster = camps.map(function (r) {
@@ -78,6 +80,19 @@ exports.handler = async function (event) {
       status: p.status || "",
       transactionId: p.transactionId || "",
       signup_date: p.createdAt || p.updatedAt || "",
+    };
+  })).concat((leagues || []).map(function (l) {
+    return {
+      kind: "league",
+      league: l.league || "Saturday League",
+      division: l.division || "",
+      parent: l.parent || "",
+      phone: l.phone || "",
+      email: l.email || "",
+      camper: l.camper || "",
+      status: l.status || "",
+      transactionId: l.transactionId || "",
+      signup_date: l.signup_date || "",
     };
   }));
 

@@ -21,6 +21,7 @@ const {
   connectProgramRosterLedger,
   listProgramRosterRecords,
 } = require("./lib/program-roster-ledger");
+const { listLeagueRosterRecords } = require("./lib/league-roster");
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 
@@ -127,12 +128,13 @@ exports.handler = async function (event, context) {
   const ghlConfigured = !!(process.env.GHL_API_KEY && process.env.GHL_LOCATION_ID);
 
   let ledgerError = "";
-  const [records, programRecords, partialLeads] = await Promise.all([
+  const [records, programRecords, leagueRecords, partialLeads] = await Promise.all([
     listCampRosterRecords().catch((err) => {
       ledgerError = err.message;
       return [];
     }),
     listProgramRosterRecords().catch(() => []),
+    listLeagueRosterRecords().catch(() => []),
     ghlConfigured ? fetchPartialLeadCount() : Promise.resolve(0),
   ]);
 
@@ -178,7 +180,7 @@ exports.handler = async function (event, context) {
         transactionId: p.transactionId || "",
         signup_date: p.createdAt || p.updatedAt || "",
       };
-    })),
+    })).concat(leagueRecords || []),
     utm_breakdown: summary.utm_breakdown,
   });
 };

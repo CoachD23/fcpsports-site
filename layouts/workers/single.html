@@ -67,6 +67,11 @@
       <h2>Private Sessions</h2>
       <div id="wk-private" class="wk-list"><div class="wk-empty">Loading…</div></div>
     </div>
+
+    <div class="wk-section" id="wk-league-section" style="display:none;">
+      <h2>Saturday League</h2>
+      <div id="wk-league" class="wk-list"></div>
+    </div>
   </div>
 </div>
 
@@ -193,11 +198,30 @@
     }).join('');
   }
 
+  // Saturday League players (from Airtable via worker-stats). Shown so no paid
+  // league player is invisible to coaches. Section hides itself when empty.
+  function renderLeague(roster) {
+    var players = roster.filter(function (r) { return r.kind === 'league'; })
+      .sort(function (a, b) { return String(a.camper || a.parent).localeCompare(String(b.camper || b.parent)); });
+    var sec = document.getElementById('wk-league-section');
+    var el = document.getElementById('wk-league');
+    if (sec) sec.style.display = players.length ? '' : 'none';
+    if (!el) return;
+    el.innerHTML = players.map(function (r) {
+      return '<div class="wk-row"><div class="nm">' + esc(r.camper || r.parent || 'Player') +
+        (r.division ? ' <span class="dt">· ' + esc(r.division) + '</span>' : '') + '</div>' +
+        '<div class="dt">' + esc(r.parent || '') +
+        (r.phone ? ' · <a href="tel:' + esc(r.phone) + '">' + esc(fmtPhone(r.phone)) + '</a>' : '') +
+        (r.email ? ' · <a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a>' : '') + '</div></div>';
+    }).join('');
+  }
+
   function render(roster) {
     var today = new Date(); today.setHours(0, 0, 0, 0);
     renderCurrent(roster, today);
     renderProgram(roster, today, /skills/i, 'wk-skills');
     renderProgram(roster, today, /private|lesson/i, 'wk-private');
+    renderLeague(roster);
   }
 
   function load() {
