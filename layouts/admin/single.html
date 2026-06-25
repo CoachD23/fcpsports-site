@@ -557,8 +557,8 @@
       <h3 style="font-size:0.9rem;color:#0a1628;margin:1.5rem 0 0.6rem;text-transform:uppercase;letter-spacing:0.04em;">Training members <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#6b7280;font-size:0.78rem;">— start &amp; end of each 30-day membership</span></h3>
       <div class="table-wrap">
         <table class="adm-table" id="current-training-table">
-          <thead><tr><th>Athlete</th><th>Parent</th><th>Program</th><th>Started</th><th>Ends</th><th style="text-align:right;">Days left</th><th>Status</th></tr></thead>
-          <tbody id="current-training-tbody"><tr><td colspan="7" class="loading-msg"><span class="spinner dark"></span> Loading…</td></tr></tbody>
+          <thead><tr><th>Athlete</th><th>Parent</th><th>Program</th><th>Started</th><th>Ends</th><th style="text-align:right;">Days left</th><th>Status</th><th></th></tr></thead>
+          <tbody id="current-training-tbody"><tr><td colspan="8" class="loading-msg"><span class="spinner dark"></span> Loading…</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -1003,6 +1003,11 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
     if (peSend) peSend.addEventListener('click', sendPeopleEmailNow);
     var curSearch = document.getElementById('current-search');
     if (curSearch) curSearch.addEventListener('input', renderCurrent);
+    var curTbody = document.getElementById('current-training-tbody');
+    if (curTbody) curTbody.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-remind-email]');
+      if (b) remindMember(b.getAttribute('data-remind-email'), b.getAttribute('data-remind-name'), b);
+    });
     initTabs();
   }
 
@@ -1698,7 +1703,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
       if (!key) return;
       var sd = String(r.signup_date || '').slice(0, 10);
       if (!byAthlete[key] || sd > byAthlete[key].start) {
-        byAthlete[key] = { athlete: clean(r.camper), parent: clean(r.parent), program: clean(r.label || r.program || 'Training'), start: sd };
+        byAthlete[key] = { athlete: clean(r.camper), parent: clean(r.parent), program: clean(r.label || r.program || 'Training'), start: sd, email: clean(r.email) };
       }
     });
     var members = Object.keys(byAthlete).map(function (k) {
@@ -1709,7 +1714,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
       var status = daysLeft == null ? 'unknown' : (daysLeft < 0 ? 'past' : (daysLeft <= 7 ? 'soon' : 'active'));
       var endStr = '';
       if (endD) { endStr = endD.getFullYear() + '-' + ('0' + (endD.getMonth() + 1)).slice(-2) + '-' + ('0' + endD.getDate()).slice(-2); }
-      return { athlete: m.athlete || '(no name)', parent: m.parent, program: m.program, start: m.start, end: endStr, daysLeft: daysLeft, status: status };
+      return { athlete: m.athlete || '(no name)', parent: m.parent, program: m.program, start: m.start, end: endStr, daysLeft: daysLeft, status: status, email: m.email };
     }).filter(function (m) {
       return !q || (m.athlete + ' ' + m.parent).toLowerCase().indexOf(q) !== -1;
     }).sort(function (a, b) { return (a.daysLeft == null ? 9999 : a.daysLeft) - (b.daysLeft == null ? 9999 : b.daysLeft); });
@@ -1727,9 +1732,28 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
           '<td style="white-space:nowrap;">' + esc(pDateShort(m.end)) + '</td>' +
           '<td style="text-align:right;font-variant-numeric:tabular-nums;">' + (m.daysLeft == null ? '—' : m.daysLeft) + '</td>' +
           '<td><span class="status-pill ' + PILL[m.status] + '">' + LABEL[m.status] + '</span></td>' +
+          '<td>' + ((m.status === 'past' || m.status === 'soon') && m.email ? '<button type="button" class="action-btn" data-remind-email="' + esc(m.email) + '" data-remind-name="' + esc(m.athlete) + '">Remind</button>' : '') + '</td>' +
         '</tr>';
-      }).join('') : '<tr><td colspan="7" style="text-align:center;color:#999;padding:1rem;">No training members' + (q ? ' match that search' : ' yet') + '.</td></tr>';
+      }).join('') : '<tr><td colspan="8" style="text-align:center;color:#999;padding:1rem;">No training members' + (q ? ' match that search' : ' yet') + '.</td></tr>';
     }
+  }
+
+  // Remind button on a Past-due / Ending-soon training row -> emails that one
+  // member their $149 renewal note (reuses training-reminders.js; dedup-safe).
+  function remindMember(email, name, btn) {
+    if (!window.confirm('Send the renewal reminder to ' + name + '?')) return;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch('/.netlify/functions/training-reminders', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw, mode: 'one', email: email, athlete: name })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.ok && d.sentCount) { btn.textContent = 'Reminded ✓'; showToast('Renewal reminder sent to ' + name + '.', 'success'); }
+        else if (d && d.ok) { btn.textContent = 'Already sent'; showToast((d.skipped && d.skipped[0] && d.skipped[0].reason) || 'Already reminded this cycle.', 'info'); }
+        else { btn.disabled = false; btn.textContent = 'Remind'; showToast('Remind failed: ' + ((d && d.error) || 'error'), 'error'); }
+      })
+      .catch(function (e) { btn.disabled = false; btn.textContent = 'Remind'; showToast('Remind failed: ' + e.message, 'error'); });
   }
 
   function getFilteredLeads() {

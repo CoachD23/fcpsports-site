@@ -106,8 +106,32 @@ exports.handler = async function (event) {
   if (!passwordValid(body.password)) return json({ ok: false, error: "Unauthorized" }, 401);
 
   const dryRun = !!body.dryRun;
-  const mode = body.mode === "catchup" ? "catchup" : "daily";
   const members = await computeMembers();
+
+  // mode "one" — manual "Remind" button: email a single member their renewal note.
+  if (body.mode === "one") {
+    const email = clean(body.email).toLowerCase();
+    if (!email) return json({ ok: false, error: "email required" }, 400);
+    const want = clean(body.athlete).toLowerCase();
+    const m = (want && members.find((x) => x.email === email && clean(x.athlete).toLowerCase() === want)) || members.find((x) => x.email === email);
+    if (!m) return json({ ok: false, error: "No training member with that email" }, 404);
+    const type = m.daysLeft < 0 ? "lapsed" : (m.daysLeft === 0 ? "today" : "soon");
+    const msg = emailFor(type, m);
+    if (dryRun) return json({ ok: true, mode: "one", dryRun: true, athlete: m.athlete, type, preview: msg });
+    if (!process.env.FCPSPORTS_SMTP_PASS) return json({ ok: false, error: "SMTP not configured" }, 500);
+    const store = getStore(SENT_STORE);
+    const sentKey = `${m.email}|${m.start}|${type}`.replace(/[^a-z0-9|.@_-]/gi, "_");
+    if (await store.get(sentKey).catch(() => null)) {
+      return json({ ok: true, mode: "one", sentCount: 0, skipped: [{ athlete: m.athlete, reason: "already reminded this cycle" }] });
+    }
+    try {
+      await smtp().sendMail({ from: '"FCP Sports" <info@fcpsports.org>', to: m.email, bcc: "info@fcpsports.org", subject: msg.subject, text: msg.text });
+      await store.set(sentKey, new Date().toISOString());
+      return json({ ok: true, mode: "one", sentCount: 1, athlete: m.athlete, type });
+    } catch (e) { return json({ ok: false, error: e.message }, 500); }
+  }
+
+  const mode = body.mode === "catchup" ? "catchup" : "daily";
 
   const queue = [];
   for (const m of members) {
