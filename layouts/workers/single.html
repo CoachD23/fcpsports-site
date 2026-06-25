@@ -143,7 +143,8 @@
     roster.forEach(function (r) {
       if (r.kind !== 'program' || !isPaid(r)) return;
       if (!match.test(String(r.program || r.label || ''))) return;
-      var key = String(r.camper || r.parent || '').toLowerCase() + '|' + String(r.email || '').toLowerCase();
+      // dedupe by athlete first (a kid who renewed under a different email is ONE member, latest window wins)
+      var key = (String(r.camper || '').trim() || String(r.email || '').trim() || String(r.parent || '').trim()).toLowerCase();
       var d = String(r.signup_date || '').slice(0, 10);
       if (!d) return;
       if (!byKid[key] || d > byKid[key]._start) {
