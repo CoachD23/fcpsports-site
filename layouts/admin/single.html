@@ -163,6 +163,10 @@
   .status-pill.general { background: #f3f4f6; color: #374151; }
   .status-pill.rental { background: #eff6ff; color: #1d4ed8; }
   .status-pill.sponsor { background: #fef3c7; color: #92400e; }
+  .status-pill.p-active { background: #e8f5e9; color: #1b5e20; }
+  .status-pill.p-past { background: #edf5ff; color: #075985; }
+  .status-pill.p-blocked { background: #fde8e8; color: #9b1c1c; }
+  .status-pill.p-lead { background: #fef3c7; color: #92400e; }
 
   .dashboard-grid {
     display: grid;
@@ -497,6 +501,39 @@
       </div>
     </div>
 
+    <!-- People (leads + payers, unified) -->
+    <div class="adm-card" id="people-card">
+      <div class="toolbar">
+        <h2 style="margin:0;">People</h2>
+        <div class="toolbar-group" role="group" aria-label="Status filter">
+          <button type="button" class="filter-btn active" data-people-filter="all">All <span id="pc-all">0</span></button>
+          <button type="button" class="filter-btn" data-people-filter="active">Active <span id="pc-active">0</span></button>
+          <button type="button" class="filter-btn" data-people-filter="past">Past <span id="pc-past">0</span></button>
+          <button type="button" class="filter-btn" data-people-filter="blocked">Blocked <span id="pc-blocked">0</span></button>
+          <button type="button" class="filter-btn" data-people-filter="lead">Leads <span id="pc-lead">0</span></button>
+        </div>
+        <input type="search" id="people-search" class="adm-input" placeholder="Search name, email, phone…" style="margin:0;width:240px;max-width:100%;">
+      </div>
+      <p style="font-size:0.8rem;color:#6b7280;margin:2px 0 14px;">Every contact in one place — <strong>GHL leads</strong> joined to the <strong>payment ledgers</strong> (money-truth) by email. <span style="color:#1b5e20;">Active</span> = paid &amp; current · <span style="color:#075985;">Past</span> = paid before · <span style="color:#9b1c1c;">Blocked</span> = card declined, never paid · <span style="color:#92400e;">Lead</span> = never paid.</p>
+      <div class="table-wrap">
+        <table class="adm-table" id="people-table">
+          <thead>
+            <tr>
+              <th>Person</th>
+              <th>Contact</th>
+              <th>Status</th>
+              <th>Paid for / interest</th>
+              <th style="white-space:nowrap;">Last activity</th>
+              <th style="text-align:right;">Paid</th>
+            </tr>
+          </thead>
+          <tbody id="people-tbody">
+            <tr><td colspan="6" class="loading-msg"><span class="spinner dark"></span> Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- By camp -->
     <div class="adm-card">
       <h2>Enrollment by Camp</h2>
@@ -712,6 +749,8 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
   var currentLeads = [];
   var currentLeadMeta = { total: null, truncated: false };
   var currentRoster = [];      // full roster (camps + programs) from money-truth ledgers
+  var currentPeopleFilter = 'all';
+  var blockedPeople = [];      // failed-payment contacts who never paid (admin-failed-payments)
   var currentMonthProg = 'all'; // Registrations-by-Month program filter
   var currentMonthBasis = 'signup'; // 'signup' = by sign-up date, 'service' = by month attending
 
@@ -760,6 +799,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         showDashboard();
         renderData(data);
         loadLeads(false);
+        loadBlocked();
       })
       .catch(function (err) {
         showLoginErr(err.message);
@@ -861,11 +901,24 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         if (lead) copyToClipboard(messageTemplateFor(lead).text, 'Text message copied.');
       });
     }
+
+    document.querySelectorAll('[data-people-filter]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        currentPeopleFilter = btn.getAttribute('data-people-filter') || 'all';
+        document.querySelectorAll('[data-people-filter]').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        renderPeople();
+      });
+    });
+    var peopleSearch = document.getElementById('people-search');
+    if (peopleSearch) peopleSearch.addEventListener('input', renderPeople);
   }
 
   window.refreshDashboard = function () {
     loadStats(true);
     loadLeads(true);
+    loadBlocked();
   };
 
   /* ── Load / refresh stats ──────────────────────────────────── */
@@ -908,6 +961,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         currentLeadMeta = { total: cached.total, truncated: !!cached.truncated };
         renderLeads();
         renderMonthBuckets();
+        renderPeople();
         return;
       }
     }
@@ -941,6 +995,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
         leadsCacheSet(data);
         renderLeads();
         renderMonthBuckets();
+        renderPeople();
       })
       .catch(function (err) {
         var tbody = document.getElementById('lead-tbody');
@@ -984,6 +1039,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
     var reg = d.registrations || {};
     currentRoster = d.roster || [];
     renderMonthBuckets();
+    renderPeople();
 
     // Stat cards
     setText('stat-total', reg.total != null ? reg.total : '—');
@@ -1208,6 +1264,175 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
           '<button class="action-btn" type="button" data-copy-lead="' + esc(leadKey(lead)) + '">Copy</button>' +
           (lead.crm_url ? '<a class="action-link" href="' + esc(lead.crm_url) + '" target="_blank" rel="noopener">CRM</a>' : '') +
         '</div><div class="lead-action-note">' + esc(template.note) + '</div></td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  /* ── People (unified leads + payers) ─────────────────────────── */
+  window.loadBlocked = function () {
+    if (!pw) return;
+    fetch('/.netlify/functions/admin-failed-payments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw })
+    })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && d.ok) { blockedPeople = d.blocked || []; renderPeople(); } })
+      .catch(function () { /* blocked list is best-effort */ });
+  };
+
+  function personKey(email, name) {
+    return (email || '').toLowerCase() || ('name:' + (name || '').toLowerCase().trim());
+  }
+  function pDateShort(s) {
+    if (!s) return '—';
+    var d = new Date(s + 'T00:00:00');
+    if (isNaN(d.getTime())) return s;
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  // Join the money-truth roster (camps + programs) with GHL leads and the
+  // failed-payment list into one person-per-row list, stamped with a status:
+  //   active  = paid AND current (camp not ended / training within 30 days)
+  //   past    = paid before, nothing current
+  //   blocked = card declined, never paid
+  //   lead    = in GHL, never paid
+  function buildPeople() {
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var map = {};
+    function ensure(key) {
+      if (!map[key]) map[key] = {
+        name: '', athlete: '', email: '', phone: '', crm_url: '', interest: '',
+        paidTotal: 0, campCount: 0, trainingLabels: {}, hasPaid: false, hasActive: false,
+        blocked: false, blockedProgram: '', lead: false, lastDate: ''
+      };
+      return map[key];
+    }
+
+    (currentRoster || []).forEach(function (r) {
+      var isPaid = r.transactionId || (r.status && /paid/i.test(r.status));
+      if (!isPaid) return;
+      var email = (r.email || '').toLowerCase();
+      var name = r.parent || r.camper || '';
+      var p = ensure(personKey(email, name));
+      if (email && !p.email) p.email = email;
+      if (name && !p.name) p.name = name;
+      if (r.phone && !p.phone) p.phone = r.phone;
+      if (r.camper && !p.athlete) p.athlete = r.camper;
+      p.hasPaid = true;
+      p.paidTotal += Number(r.amount) || 0;
+      var sd = String(r.signup_date || '').slice(0, 10);
+      var active;
+      if (r.kind === 'camp') {
+        var range = parseCampRange(r.dates);
+        active = range ? (range.end >= today) : false;
+        p.campCount += 1;
+      } else {
+        var exp = sd ? new Date(sd + 'T00:00:00') : null;
+        if (exp) exp.setDate(exp.getDate() + 30);
+        active = exp ? (exp >= today) : false;
+        p.trainingLabels[r.label || r.program || 'Training'] = 1;
+      }
+      if (active) p.hasActive = true;
+      if (sd && sd > p.lastDate) p.lastDate = sd;
+    });
+
+    (currentLeads || []).forEach(function (L) {
+      var email = (L.email || '').toLowerCase();
+      var name = L.name || '';
+      var key = personKey(email, name);
+      var existed = !!map[key];
+      var p = ensure(key);
+      if (email && !p.email) p.email = email;
+      if (name && !p.name) p.name = name;
+      if (L.phone && !p.phone) p.phone = L.phone;
+      if (L.crm_url && !p.crm_url) p.crm_url = L.crm_url;
+      if (!p.interest) p.interest = L.interest || 'Lead';
+      if (!existed) p.lead = true;
+      var cd = String(L.created_at || '').slice(0, 10);
+      if (cd && !p.hasPaid && cd > p.lastDate) p.lastDate = cd;
+    });
+
+    (blockedPeople || []).forEach(function (b) {
+      var email = (b.email || '').toLowerCase();
+      var name = b.parentName || '';
+      var key = personKey(email, name);
+      if (map[key] && map[key].hasPaid) return; // never override a real payer
+      var p = ensure(key);
+      if (email && !p.email) p.email = email;
+      if (name && !p.name) p.name = name;
+      p.blocked = true;
+      p.lead = false;
+      if (b.program && !p.blockedProgram) p.blockedProgram = b.program;
+      var ts = String(b.timestamp || '').slice(0, 10);
+      if (ts && ts > p.lastDate) p.lastDate = ts;
+    });
+
+    return Object.keys(map).map(function (k) {
+      var p = map[k];
+      var status = p.hasActive ? 'active' : (p.hasPaid ? 'past' : (p.blocked ? 'blocked' : 'lead'));
+      var detail;
+      if (p.hasPaid) {
+        var parts = [];
+        if (p.campCount) parts.push(p.campCount === 1 ? '1 camp week' : p.campCount + ' camp weeks');
+        Object.keys(p.trainingLabels).forEach(function (l) { parts.push(l); });
+        detail = parts.join(' · ') || 'Paid';
+      } else if (p.blocked) {
+        detail = (p.blockedProgram ? p.blockedProgram + ' · ' : '') + 'declined';
+      } else {
+        detail = p.interest || 'Lead';
+      }
+      return {
+        name: p.name || p.email || '(no name)', athlete: p.athlete,
+        email: p.email, phone: p.phone, crm_url: p.crm_url,
+        status: status, paidTotal: p.paidTotal, detail: detail, lastDate: p.lastDate
+      };
+    });
+  }
+
+  function renderPeople() {
+    var tbody = document.getElementById('people-tbody');
+    if (!tbody) return;
+    var all = buildPeople();
+
+    var counts = { all: all.length, active: 0, past: 0, blocked: 0, lead: 0 };
+    all.forEach(function (p) { counts[p.status]++; });
+    setText('pc-all', counts.all);
+    setText('pc-active', counts.active);
+    setText('pc-past', counts.past);
+    setText('pc-blocked', counts.blocked);
+    setText('pc-lead', counts.lead);
+
+    var q = (document.getElementById('people-search') && document.getElementById('people-search').value || '').toLowerCase().trim();
+    var rows = all.filter(function (p) {
+      if (currentPeopleFilter !== 'all' && p.status !== currentPeopleFilter) return false;
+      if (!q) return true;
+      return [p.name, p.athlete, p.email, p.phone, p.detail].join(' ').toLowerCase().indexOf(q) !== -1;
+    });
+    var order = { active: 0, past: 1, blocked: 2, lead: 3 };
+    rows.sort(function (a, b) {
+      if (order[a.status] !== order[b.status]) return order[a.status] - order[b.status];
+      return String(b.lastDate).localeCompare(String(a.lastDate));
+    });
+
+    if (!rows.length) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#999;padding:1rem;">No matching people</td></tr>';
+      return;
+    }
+    var PILL = { active: 'p-active', past: 'p-past', blocked: 'p-blocked', lead: 'p-lead' };
+    var LABEL = { active: 'Active', past: 'Past', blocked: 'Blocked', lead: 'Lead' };
+    tbody.innerHTML = rows.map(function (p) {
+      var email = p.email || '', phone = p.phone || '';
+      return '<tr>' +
+        '<td><strong>' + esc(p.name) + '</strong>' + (p.athlete ? '<div style="font-size:0.75rem;color:#6b7280;">' + esc(p.athlete) + '</div>' : '') + '</td>' +
+        '<td><div class="contact-stack">' +
+          (email ? '<a href="mailto:' + esc(email) + '">' + esc(email) + '</a>' : '<span class="empty-cell">No email</span>') +
+          (phone ? '<a href="tel:' + esc(phone) + '">' + esc(formatPhone(phone)) + '</a>' : '') +
+        '</div></td>' +
+        '<td><span class="status-pill ' + PILL[p.status] + '">' + LABEL[p.status] + '</span></td>' +
+        '<td>' + esc(p.detail || '—') + (p.crm_url ? ' <a href="' + esc(p.crm_url) + '" target="_blank" rel="noopener" style="font-size:0.72rem;color:#6b7280;">CRM</a>' : '') + '</td>' +
+        '<td style="white-space:nowrap;">' + esc(pDateShort(p.lastDate)) + '</td>' +
+        '<td style="text-align:right;font-variant-numeric:tabular-nums;' + (p.paidTotal > 0 ? 'font-weight:700;' : 'color:#9ca3af;') + '">$' + fmt(p.paidTotal || 0) + '</td>' +
       '</tr>';
     }).join('');
   }
