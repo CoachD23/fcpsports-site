@@ -1424,7 +1424,7 @@ window.FCP_CAMP_NAMES = {{ $arr := slice }}{{ range (index site.Data.camps "camp
     tbody.innerHTML = rows.map(function (p) {
       var email = p.email || '', phone = p.phone || '';
       return '<tr>' +
-        '<td><strong>' + esc(p.name) + '</strong>' + (p.athlete ? '<div style="font-size:0.75rem;color:#6b7280;">' + esc(p.athlete) + '</div>' : '') + '</td>' +
+        '<td><strong>' + esc(p.name) + '</strong>' + (p.athlete && p.athlete.toLowerCase() !== String(p.name).toLowerCase() ? '<div style="font-size:0.75rem;color:#6b7280;">' + esc(p.athlete) + '</div>' : '') + '</td>' +
         '<td><div class="contact-stack">' +
           (email ? '<a href="mailto:' + esc(email) + '">' + esc(email) + '</a>' : '<span class="empty-cell">No email</span>') +
           (phone ? '<a href="tel:' + esc(phone) + '">' + esc(formatPhone(phone)) + '</a>' : '') +
