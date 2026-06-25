@@ -15,11 +15,14 @@
   .wk-section > h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; color: #f5a623; font-weight: 800; margin: 0 0 .6rem; }
   .wk-camp { border: 2px solid #0a1628; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
   .wk-camp.next { border-color: #f5a623; background: #fffbf2; }
+  .wk-camp.last { border-color: #cbd5e1; background: #fafbfc; }
+  .wk-note { font-size: .8rem; color: #6b7280; margin: 0 0 .5rem; }
   .wk-camp h3 { margin: 0; font-size: 1.1rem; color: #0a1628; }
   .wk-camp .meta { font-size: .85rem; color: #6b7280; margin: .15rem 0 .75rem; }
   .wk-badge { display: inline-block; font-size: .65rem; font-weight: 800; letter-spacing: .5px; padding: 2px 8px; border-radius: 999px; vertical-align: middle; margin-left: .4rem; }
   .wk-badge.now { background: #e8f5e9; color: #1b5e20; }
   .wk-badge.next { background: #fff3cd; color: #8a5a00; }
+  .wk-badge.last { background: #eef1f4; color: #475569; }
   .wk-tag { display: inline-block; font-size: .62rem; font-weight: 800; letter-spacing: .3px; padding: 2px 7px; border-radius: 999px; vertical-align: middle; }
   .wk-tag.ok { background: #e8f5e9; color: #1b5e20; }
   .wk-tag.due { background: #fff3cd; color: #8a5a00; }
@@ -51,7 +54,7 @@
     </div>
 
     <div class="wk-section">
-      <h2>This Week at Camp</h2>
+      <h2>Camp Weeks — this, next &amp; last</h2>
       <div id="wk-current"><div class="wk-empty">Loading…</div></div>
     </div>
 
@@ -100,41 +103,56 @@
 
   function isPaid(r) { return !r.status || /paid/i.test(r.status) || r.transactionId; }
 
-  function renderCurrent(roster, today) {
-    var camps = roster.filter(function (r) { return r.kind === 'camp' && isPaid(r); });
-    camps.forEach(function (r) { r._range = parseCampRange(r.dates); });
-    var running = camps.filter(function (r) { return r._range && r._range.start <= today && today <= r._range.end; });
-    var label, set;
-    if (running.length) { set = running; label = 'now'; }
-    else {
-      var future = camps.filter(function (r) { return r._range && r._range.start > today; });
-      var nextStart = null;
-      future.forEach(function (r) { var t = r._range.start.getTime(); if (nextStart === null || t < nextStart) nextStart = t; });
-      set = future.filter(function (r) { return r._range && r._range.start.getTime() === nextStart; });
-      label = 'next';
-    }
-    var el = document.getElementById('wk-current');
-    if (!set.length) { el.innerHTML = '<div class="wk-card"><div class="wk-empty">No upcoming camp on the calendar.</div></div>'; return; }
-    // group by camp name (strip stray quotes some ledger records baked into the name)
+  // Build the camp cards for one window (this/next/last), grouped by camp name.
+  function campSetHtml(set, kind) {
+    var badge = kind === 'now' ? '<span class="wk-badge now">THIS WEEK</span>'
+      : kind === 'next' ? '<span class="wk-badge next">NEXT WEEK</span>'
+      : '<span class="wk-badge last">LAST WEEK</span>';
     var byCamp = {};
     set.forEach(function (r) { var nm = String(r.camp || '').replace(/["']/g, '').trim() || 'Camp'; (byCamp[nm] = byCamp[nm] || []).push(r); });
-    el.innerHTML = Object.keys(byCamp).map(function (name) {
+    return Object.keys(byCamp).map(function (name) {
       var rows = byCamp[name];
       var dates = rows[0].dates ? String(rows[0].dates).replace(/["']/g, '') : '';
-      var badge = label === 'now'
-        ? '<span class="wk-badge now">THIS WEEK</span>'
-        : '<span class="wk-badge next">NEXT UP</span>';
       var people = rows.slice().sort(function (a, b) { return String(a.camper || a.parent).localeCompare(String(b.camper || b.parent)); }).map(function (r) {
         return '<div class="wk-row"><div class="nm">' + esc(r.camper || r.parent || 'Camper') +
           (r.grade ? ' <span class="dt">· Grade ' + esc(r.grade) + '</span>' : '') + '</div>' +
           '<div class="dt">' + esc(r.parent || '') +
           (r.phone ? ' · <a href="tel:' + esc(r.phone) + '">' + esc(fmtPhone(r.phone)) + '</a>' : '') + '</div></div>';
       }).join('');
-      return '<div class="wk-camp ' + (label === 'next' ? 'next' : '') + '">' +
+      return '<div class="wk-camp ' + kind + '">' +
         '<h3>' + esc(name) + badge + '</h3>' +
         '<div class="meta">' + esc(dates) + ' · ' + rows.length + ' camper' + (rows.length === 1 ? '' : 's') + '</div>' +
         people + '</div>';
     }).join('');
+  }
+
+  // Three windows so coaches can run this week, prep next week, and follow up with last week.
+  function renderCurrent(roster, today) {
+    var DAY = 86400000;
+    var camps = roster.filter(function (r) { return r.kind === 'camp' && isPaid(r); });
+    camps.forEach(function (r) { r._range = parseCampRange(r.dates); });
+    var dated = camps.filter(function (r) { return r._range; });
+
+    // This week: running now
+    var running = dated.filter(function (r) { return r._range.start <= today && today <= r._range.end; });
+    // Next week: soonest upcoming start
+    var future = dated.filter(function (r) { return r._range.start > today; });
+    var nextStart = null;
+    future.forEach(function (r) { var t = r._range.start.getTime(); if (nextStart === null || t < nextStart) nextStart = t; });
+    var next = future.filter(function (r) { return r._range.start.getTime() === nextStart; });
+    // Last week: most recent finished camp(s), within the past ~9 days
+    var past = dated.filter(function (r) { return r._range.end < today && (today - r._range.end) <= 9 * DAY; });
+    var lastEnd = null;
+    past.forEach(function (r) { var t = r._range.end.getTime(); if (lastEnd === null || t > lastEnd) lastEnd = t; });
+    var last = past.filter(function (r) { return r._range.end.getTime() === lastEnd; });
+
+    var blocks = [];
+    if (running.length) blocks.push(campSetHtml(running, 'now'));
+    if (next.length) blocks.push('<p class="wk-note">Coming up — prep and reach out to confirm.</p>' + campSetHtml(next, 'next'));
+    if (last.length) blocks.push('<p class="wk-note">Just finished — reach out and invite them back.</p>' + campSetHtml(last, 'last'));
+
+    var el = document.getElementById('wk-current');
+    el.innerHTML = blocks.join('') || '<div class="wk-card"><div class="wk-empty">No camps last week, this week, or next.</div></div>';
   }
 
   // 30-day membership view: latest payment per athlete = their current window (start + 30 days).
