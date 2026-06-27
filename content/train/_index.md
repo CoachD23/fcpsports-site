@@ -1,6 +1,6 @@
 ---
 title: "Basketball Training Programs | FCP Sports"
-description: "Your kid has more game than they know. Let's prove it."
+description: "Basketball training programs for all ages at FCP Sports in Fort Walton Beach, FL — skill development, shooting, ball-handling, and position-specific coaching on the Emerald Coast."
 h1: "Your Kid Has More Game Than They Know"
 type: "hub"
 hero_image: "/images/fcp-hero-coaching.jpg"
